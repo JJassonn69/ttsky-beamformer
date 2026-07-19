@@ -1,0 +1,76 @@
+* Ideal two-channel LO-phase beamformer architecture verification.
+* This test intentionally uses only primitives and behavioral sources. It
+* verifies the architecture before any SKY130 transistor implementation.
+
+.title Tiny Tapeout beamformer v1 ideal architecture
+.include models/tt_path/tt_analog_path.inc
+
+.param fin=5Meg
+.param flo=4Meg
+.param vin_peak=5m
+.param rpath=500
+.param cpath=5p
+.param lp_r=1k
+.param lp_c=79.577p
+
+* Equal, coherent nominal inputs at the package-side pads.
+VRF1 rf1_pad 0 SIN(0 {vin_peak} {fin})
+VRF2 rf2_pad 0 SIN(0 {vin_peak} {fin})
+
+* An intentionally mismatched channel: +1 dB and +8 degrees.
+VRF2ERR rf2_error_pad 0 SIN(0 {vin_peak*1.122018454} {fin} 0 0 8)
+
+XRF1 rf1_pad rf1_core tt_analog_path rpath={rpath} cpath={cpath}
+XRF2 rf2_pad rf2_core tt_analog_path rpath={rpath} cpath={cpath}
+XRF2ERR rf2_error_pad rf2_error_core tt_analog_path rpath={rpath} cpath={cpath}
+
+* In-phase and inverted LO waveforms. Unit peak makes the multiplier output
+* directly comparable to the Python phasor model.
+VLO0 lo_0 0 SIN(0 1 {flo})
+VLO180 lo_180 0 SIN(0 1 {flo} 0 0 180)
+
+* Ideal voltage multipliers stand in for the gm stage and switching quad.
+BCH1 ch1 0 V=V(rf1_core)*V(lo_0)
+BCH2SUM ch2_sum 0 V=V(rf2_core)*V(lo_0)
+BCH2DIFF ch2_diff 0 V=V(rf2_core)*V(lo_180)
+BCH2ERROR ch2_error 0 V=V(rf2_error_core)*V(lo_180)
+
+* Voltage summation represents the ideal current-summing node.
+BSUM sum_raw 0 V=V(ch1)+V(ch2_sum)
+BDIFF diff_raw 0 V=V(ch1)+V(ch2_diff)
+BERROR error_raw 0 V=V(ch1)+V(ch2_error)
+
+* Two-pole 2 MHz low-pass removes most of the 9 MHz sum product while passing
+* the intended 1 MHz difference product. The same network is used for all
+* modes, so null ratios remain directly comparable.
+RSUM1 sum_raw sum_lp1 {lp_r}
+CSUM1 sum_lp1 0 {lp_c}
+RSUM2 sum_lp1 sum_core {lp_r}
+CSUM2 sum_core 0 {lp_c}
+
+RDIFF1 diff_raw diff_lp1 {lp_r}
+CDIFF1 diff_lp1 0 {lp_c}
+RDIFF2 diff_lp1 diff_core {lp_r}
+CDIFF2 diff_core 0 {lp_c}
+
+RERROR1 error_raw error_lp1 {lp_r}
+CERROR1 error_lp1 0 {lp_c}
+RERROR2 error_lp1 error_core {lp_r}
+CERROR2 error_core 0 {lp_c}
+
+* Output path and a high-impedance instrument load.
+XSUMOUT sum_core sum_out tt_analog_path rpath={rpath} cpath={cpath}
+XDIFFOUT diff_core diff_out tt_analog_path rpath={rpath} cpath={cpath}
+XERROUT error_core error_out tt_analog_path rpath={rpath} cpath={cpath}
+RSUMLOAD sum_out 0 1Meg
+RDIFFLOAD diff_out 0 1Meg
+RERRORLOAD error_out 0 1Meg
+CSUMLOAD sum_out 0 10p
+CDIFFLOAD diff_out 0 10p
+CERRORLOAD error_out 0 10p
+
+.tran 10n 40u 20u
+.measure tran sum_rms RMS V(sum_out) FROM=20u TO=40u
+.measure tran diff_rms RMS V(diff_out) FROM=20u TO=40u
+.measure tran error_rms RMS V(error_out) FROM=20u TO=40u
+.end

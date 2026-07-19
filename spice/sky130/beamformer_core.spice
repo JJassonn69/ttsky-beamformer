@@ -1,0 +1,142 @@
+* Integrated two-channel SKY130 beamformer core at the schematic boundary.
+* Ideal voltage/current sources exist only in the external testbench. Inside
+* the DUT are MOSFETs, resistors and small capacitors suitable for later
+* replacement with layout-qualified PDK primitives.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+.include "spice/sky130/sky130_passives_tt.inc"
+
+.param FIN=5meg
+.param FLOPER=250n
+.param VINPK=5m
+.param VDDVAL=1.8
+.temp 27
+
+.subckt cmos_inv in out vdd vss params: wn=1.26 wp=2.0 l=0.15
+XNI out in vss vss sky130_fd_pr__nfet_01v8 w={wn} l={l}
+XPI out in vdd vdd sky130_fd_pr__pfet_01v8 w={wp} l={l}
+.ends cmos_inv
+
+.subckt transmission_gate a b en enb vdd vss params: wn=4 wp=8
+XNT a en b vss sky130_fd_pr__nfet_01v8 w={wn} l=0.15
+XPT a enb b vdd sky130_fd_pr__pfet_01v8 w={wp} l=0.15
+.ends transmission_gate
+
+.subckt mixer_channel sig ref lop lon outp outn vbias vss
+XGM1 gm_p sig tail vss sky130_fd_pr__nfet_01v8 w=8 l=0.30
+XGM2 gm_n ref tail vss sky130_fd_pr__nfet_01v8 w=8 l=0.30
+XSW1 outp lop gm_p vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
+XSW2 outn lon gm_p vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
+XSW3 outn lop gm_n vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
+XSW4 outp lon gm_n vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
+* Ratioed against the 32 um reference device for low-VDS compensation.
+XTAIL tail vbias vss vss sky130_fd_pr__nfet_01v8 w=38 l=0.50
+.ends mixer_channel
+
+.subckt beamformer_core vdd vss clk select sig1 sig2 outp outn
+* Self-starting shared current reference: 1.41 um high-res poly, L=44.9768 um.
+XRBias vdd vbias vss sky130_fd_pr__res_high_po_1p41 l=44.9768
+XBIAS vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=32 l=0.50
+
+* Ratio-derived VCM and input bias use 1.41 um extra-high-res poly, L=70.5 um.
+* The VCM bypass is a 22 x 22 um M3 MIM capacitor (~0.98 pF).
+XRVCMT vdd vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+XRVCMB vcm vss vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+XCVCM vcm vss sky130_fd_pr__cap_mim_m3_1 w=22 l=22 mf=1
+XRIN1 sig1 vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+XRIN2 sig2 vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+
+* Buffered in-phase and complementary LO rails from the single clk input.
+XLP1 clk lp1 vdd vss cmos_inv wn=2.4 wp=4
+XLP2 lp1 lop vdd vss cmos_inv wn=16 wp=32
+XLN1 clk ln1 vdd vss cmos_inv wn=2.4 wp=2.4
+XLN2 ln1 ln2 vdd vss cmos_inv wn=4 wp=8
+XLN3 ln2 lon vdd vss cmos_inv wn=16 wp=32
+
+* Static CMOS routing selects 0 or 180 degree LO weighting for channel two.
+* The mux drives a pair of matched post-selector inverters.  Besides restoring
+* full swing, these isolate mixer-gate parasitics from the transmission gates.
+XSELB select select_b vdd vss cmos_inv wn=2.4 wp=4
+XDP lon ch2_lop_raw select_b select vdd vss transmission_gate
+XDN lop ch2_lon_raw select_b select vdd vss transmission_gate
+XXP lop ch2_lop_raw select select_b vdd vss transmission_gate
+XXN lon ch2_lon_raw select select_b vdd vss transmission_gate
+XCH2LP ch2_lop_raw ch2_lop vdd vss cmos_inv wn=8 wp=16
+XCH2LN ch2_lon_raw ch2_lon vdd vss cmos_inv wn=8 wp=16
+
+* Matched 1.41 um high-res poly loads, L=11.6117 um (~2.93 kohm each).
+XRLOADP vdd outp vss sky130_fd_pr__res_high_po_1p41 l=11.6117
+XRLOADN vdd outn vss sky130_fd_pr__res_high_po_1p41 l=11.6117
+XCH1 sig1 vcm lop lon outp outn vbias vss mixer_channel
+XCH2 sig2 vcm ch2_lop ch2_lon outp outn vbias vss mixer_channel
+.ends beamformer_core
+
+* External package/bench fixtures for simultaneous sum and difference modes.
+VCLK clk 0 pulse(0 {VDDVAL} 100n 2n 2n 123n {FLOPER})
+VSEL0 select0 0 0
+VSEL1 select1 0 {VDDVAL}
+VDDS vdds 0 {VDDVAL}
+VDDN vddn 0 {VDDVAL}
+
+VS1S s1s_src 0 sin(0 {VINPK} {FIN})
+VS2S s2s_src 0 sin(0 {VINPK} {FIN})
+VS1N s1n_src 0 sin(0 {VINPK} {FIN})
+VS2N s2n_src 0 sin(0 {VINPK} {FIN})
+
+* AC coupling is external; 500 ohm / 5 pF models the maximum TT path.
+CCS1 s1s_src s1s_pre 100p
+RSS1 s1s_pre s1s 500
+CSS1 s1s 0 5p
+CCS2 s2s_src s2s_pre 100p
+RSS2 s2s_pre s2s 500
+CSS2 s2s 0 5p
+CCN1 s1n_src s1n_pre 100p
+RSN1 s1n_pre s1n 500
+CSN1 s1n 0 5p
+CCN2 s2n_src s2n_pre 100p
+RSN2 s2n_pre s2n 500
+CSN2 s2n 0 5p
+
+XSUM vdds 0 clk select0 s1s s2s soutp soutn beamformer_core
+XNULL vddn 0 clk select1 s1n s2n noutp noutn beamformer_core
+
+* Maximum output loading through the analog path.
+RSOP soutp sopad 500
+RSON soutn sonad 500
+CSOP sopad 0 10p
+CSON sonad 0 10p
+RSPL sopad 0 1meg
+RSNL sonad 0 1meg
+RNOP noutp nopad 500
+RNON noutn nonad 500
+CNOP nopad 0 10p
+CNON nonad 0 10p
+RNPL nopad 0 1meg
+RNNL nonad 0 1meg
+
+ESDIFF sdiff 0 sonad sopad 1
+ENDIFF ndiff 0 nonad nopad 1
+BSCM scm 0 v=(v(sopad)+v(sonad))/2
+BNCM ncm 0 v=(v(nopad)+v(nonad))/2
+
+* External 2 MHz measurement filters.
+RSF1 sdiff sf1 1k
+CSF1 sf1 0 79.577p
+RSF2 sf1 sfilt 1k
+CSF2 sfilt 0 79.577p
+RNF1 ndiff nf1 1k
+CNF1 nf1 0 79.577p
+RNF2 nf1 nfilt 1k
+CNF2 nfilt 0 79.577p
+
+.tran 2n 25u 15u
+.measure tran sum_rms rms v(sfilt) from=15u to=25u
+.measure tran null_rms rms v(nfilt) from=15u to=25u
+.measure tran sum_cm avg v(scm) from=15u to=25u
+.measure tran null_cm avg v(ncm) from=15u to=25u
+.measure tran sum_supply avg i(VDDS) from=15u to=25u
+.measure tran null_supply avg i(VDDN) from=15u to=25u
+
+.end

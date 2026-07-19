@@ -1,0 +1,22 @@
+* SKY130 primitive-model smoke test: 1.8 V CMOS inverter.
+* Run from the repository root so the model path resolves.
+
+.option scale=1e-6
+* Deliberately include only the two primitive families used by the design.
+* The PDK's broad tt library also loads unrelated 3.3/5/20 V and ESD models.
+.include "spice/sky130/sky130_1v8_tt.inc"
+
+VDD vdd 0 1.8
+VIN in 0 0
+
+* Width and length are in micrometres because scale=1e-6.
+XMN out in 0   0   sky130_fd_pr__nfet_01v8 w=1.26 l=0.15
+XMP out in vdd vdd sky130_fd_pr__pfet_01v8 w=2.00 l=0.15
+RLEAK out 0 100meg
+
+.dc VIN 0 1.8 0.005
+.measure dc vout_high find v(out) at=0
+.measure dc vout_low find v(out) at=1.795
+.measure dc vtrip when v(out)=v(in) cross=1
+
+.end

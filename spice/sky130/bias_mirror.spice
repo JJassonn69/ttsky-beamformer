@@ -1,0 +1,29 @@
+* Shared resistor-referenced NMOS bias and one representative tail sink.
+* This deliberately favors startup simplicity over precision; PVT sensitivity
+* will determine whether trimming or a regulated reference is necessary.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+
+.param VDDVAL=1.8
+.param RREF=10.5k
+.param WREF=32
+.param WTAIL=38
+.param LBIAS=0.50
+.param VTAIL=0.15
+
+VDD vdd 0 {VDDVAL}
+RBIAS vdd vbias {RREF}
+XREF vbias vbias 0 0 sky130_fd_pr__nfet_01v8 w={WREF} l={LBIAS}
+* The 38/32 ratio compensates the finite output voltage at the 150 mV
+* nominal tail node; PVT regression will decide whether this is retained.
+XTAIL tail vbias 0 0 sky130_fd_pr__nfet_01v8 w={WTAIL} l={LBIAS}
+VTAILTEST tail 0 {VTAIL}
+
+.tran 100p 2n 1n
+.measure tran vbias_dc avg v(vbias) from=1n to=2n
+.measure tran iref_dc avg i(VDD) from=1n to=2n
+.measure tran itail_dc avg i(VTAILTEST) from=1n to=2n
+
+.end

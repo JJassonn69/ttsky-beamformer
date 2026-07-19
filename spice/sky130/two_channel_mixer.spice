@@ -1,0 +1,126 @@
+* Two-channel SKY130 low-IF LO-phase beamformer.
+* The DUT ends at differential high-impedance output pads. The following
+* 2 MHz filters are external measurement fixtures, not claimed on-chip area.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+
+.param VCM=0.9
+.param FIN=5meg
+.param FLO=4meg
+.param VINPK=5m
+.param RLOAD=3k
+
+* One channel: input gm pair followed by an NMOS switching quad.
+.subckt mixer_channel sig ref lop lon outp outn vss params: wscale=1 ibias=100u
+XGM1 gm_p sig tail vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.30
+XGM2 gm_n ref tail vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.30
+XSW1 outp lop gm_p vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.15
+XSW2 outn lon gm_p vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.15
+XSW3 outn lop gm_n vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.15
+XSW4 outp lon gm_n vss sky130_fd_pr__nfet_01v8 w={8*wscale} l=0.15
+ITAIL tail vss {ibias}
+.ends mixer_channel
+
+* Fast complementary external LO drivers. On-chip clock buffering is the next
+* block; finite 2 ns edges are retained here to avoid an ideal discontinuity.
+VLOP lop 0 pulse(0 1.8 0 2n 2n 123n 250n)
+VLON lon 0 pulse(1.8 0 0 2n 2n 123n 250n)
+
+* Three independent input fixtures: constructive, ideal null, and the full
+* 1 dB / 8 degree path-error envelope used by the golden model.
+VS1A s1a_pad 0 sin({VCM} {VINPK} {FIN})
+VS2A s2a_pad 0 sin({VCM} {VINPK} {FIN})
+VS1N s1n_pad 0 sin({VCM} {VINPK} {FIN})
+VS2N s2n_pad 0 sin({VCM} {VINPK} {FIN})
+VS1E s1e_pad 0 sin({VCM} {VINPK} {FIN})
+VS2E s2e_pad 0 sin({VCM} {VINPK*1.122018454} {FIN} 0 0 8)
+VREF ref_src 0 {VCM}
+
+* Maximum analog mux/interconnect envelope at all signal inputs.
+RS1A s1a_pad s1a 500
+CS1A s1a 0 5p
+RS2A s2a_pad s2a 500
+CS2A s2a 0 5p
+RS1N s1n_pad s1n 500
+CS1N s1n 0 5p
+RS2N s2n_pad s2n 500
+CS2N s2n 0 5p
+RS1E s1e_pad s1e 500
+CS1E s1e 0 5p
+RS2E s2e_pad s2e 500
+CS2E s2e 0 5p
+RREF ref_src ref 500
+CREF ref 0 5p
+
+* Constructive circuit: both channels use the same LO polarity.
+VDDS vdds 0 1.8
+RLSP vdds soutp {RLOAD}
+RLSN vdds soutn {RLOAD}
+XS1 s1a ref lop lon soutp soutn 0 mixer_channel
+XS2 s2a ref lop lon soutp soutn 0 mixer_channel
+
+* Ideal cancellation circuit: channel two swaps the LO phases.
+VDDN vddn 0 1.8
+RLNP vddn noutp {RLOAD}
+RLNN vddn noutn {RLOAD}
+XN1 s1n ref lop lon noutp noutn 0 mixer_channel
+XN2 s2n ref lon lop noutp noutn 0 mixer_channel
+
+* Error-envelope circuit: channel two is inverted but has +1 dB / +8 degrees.
+VDDE vdde 0 1.8
+RLEP vdde eoutp {RLOAD}
+RLEN vdde eoutn {RLOAD}
+XE1 s1e ref lop lon eoutp eoutn 0 mixer_channel
+XE2 s2e ref lon lop eoutp eoutn 0 mixer_channel
+
+* Pessimistic differential output paths and high-impedance instrument loads.
+RSOP soutp sopad 500
+RSON soutn sonad 500
+CSOP sopad 0 10p
+CSON sonad 0 10p
+RSPL sopad 0 1meg
+RSNL sonad 0 1meg
+
+RNOP noutp nopad 500
+RNON noutn nonad 500
+CNOP nopad 0 10p
+CNON nonad 0 10p
+RNPL nopad 0 1meg
+RNNL nonad 0 1meg
+
+REOP eoutp eopad 500
+REON eoutn eonad 500
+CEOP eopad 0 10p
+CEON eonad 0 10p
+REPL eopad 0 1meg
+RENL eonad 0 1meg
+
+* External differential receiver and two-pole, 2 MHz measurement filter.
+ESDIFF sdiff 0 sonad sopad 1
+ENDIFF ndiff 0 nonad nopad 1
+EEDIFF ediff 0 eonad eopad 1
+
+RSF1 sdiff sf1 1k
+CSF1 sf1 0 79.577p
+RSF2 sf1 sfilt 1k
+CSF2 sfilt 0 79.577p
+RNF1 ndiff nf1 1k
+CNF1 nf1 0 79.577p
+RNF2 nf1 nfilt 1k
+CNF2 nfilt 0 79.577p
+REF1 ediff ef1 1k
+CEF1 ef1 0 79.577p
+REF2 ef1 efilt 1k
+CEF2 efilt 0 79.577p
+
+BSCM scm 0 v=(v(sopad)+v(sonad))/2
+
+.tran 2n 20u 10u
+.measure tran sum_rms rms v(sfilt) from=10u to=20u
+.measure tran null_rms rms v(nfilt) from=10u to=20u
+.measure tran error_rms rms v(efilt) from=10u to=20u
+.measure tran output_cm avg v(scm) from=10u to=20u
+
+.end

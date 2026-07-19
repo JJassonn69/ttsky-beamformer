@@ -1,0 +1,66 @@
+{
+  "top": "tt_um_jjassonn69_beamformer",
+  "tile": {"width_um": 161.0, "height_um": 225.76},
+  "track_order": [
+    "VDPWR", "VGND", "clk", "select", "ua[0]", "ua[1]", "ua[2]", "ua[3]",
+    "vbias", "vcm", "lp1", "lop", "ln1", "ln2", "lon", "select_b",
+    "ch2_lop_raw", "ch2_lon_raw", "ch2_lop", "ch2_lon",
+    "gm1_p", "gm1_n", "tail1", "gm2_p", "gm2_n", "tail2"
+  ],
+  "pin_aliases": {"select": "ui_in[0]"},
+  "devices": [
+    {"name":"XBIAS","kind":"nmos","total_w":32.0,"l":0.50,"nf":17,"x":68,"y":20,"nets":{"D":"vbias","G":"vbias","S":"VGND","B":"VGND"}},
+
+    {"name":"XCH1_GM1","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":15,"y":20,"nets":{"D":"gm1_p","G":"ua[0]","S":"tail1","B":"VGND"}},
+    {"name":"XCH1_GM2","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":27,"y":20,"nets":{"D":"gm1_n","G":"vcm","S":"tail1","B":"VGND"}},
+    {"name":"XCH1_SW1","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":10,"y":36,"nets":{"D":"ua[2]","G":"lop","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH1_SW2","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":22,"y":36,"nets":{"D":"ua[3]","G":"lon","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH1_SW3","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":34,"y":36,"nets":{"D":"ua[3]","G":"lop","S":"gm1_n","B":"VGND"}},
+    {"name":"XCH1_SW4","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":46,"y":36,"nets":{"D":"ua[2]","G":"lon","S":"gm1_n","B":"VGND"}},
+    {"name":"XCH1_TAIL","kind":"nmos","total_w":38.0,"l":0.50,"nf":19,"x":20,"y":52,"nets":{"D":"tail1","G":"vbias","S":"VGND","B":"VGND"}},
+
+    {"name":"XCH2_GM1","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":15,"y":135,"nets":{"D":"gm2_p","G":"ua[1]","S":"tail2","B":"VGND"}},
+    {"name":"XCH2_GM2","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":27,"y":135,"nets":{"D":"gm2_n","G":"vcm","S":"tail2","B":"VGND"}},
+    {"name":"XCH2_SW1","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":10,"y":151,"nets":{"D":"ua[2]","G":"ch2_lop","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH2_SW2","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":22,"y":151,"nets":{"D":"ua[3]","G":"ch2_lon","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH2_SW3","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":34,"y":151,"nets":{"D":"ua[3]","G":"ch2_lop","S":"gm2_n","B":"VGND"}},
+    {"name":"XCH2_SW4","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":46,"y":151,"nets":{"D":"ua[2]","G":"ch2_lon","S":"gm2_n","B":"VGND"}},
+    {"name":"XCH2_TAIL","kind":"nmos","total_w":38.0,"l":0.50,"nf":19,"x":20,"y":167,"nets":{"D":"tail2","G":"vbias","S":"VGND","B":"VGND"}},
+
+    {"name":"XLP1_N","kind":"nmos","total_w":2.4,"l":0.15,"nf":3,"x":56,"y":135,"nets":{"D":"lp1","G":"clk","S":"VGND","B":"VGND"}},
+    {"name":"XLP1_P","kind":"pmos","total_w":4.0,"l":0.15,"nf":3,"x":56,"y":143,"nets":{"D":"lp1","G":"clk","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XLP2_N","kind":"nmos","total_w":16.0,"l":0.15,"nf":9,"x":70,"y":135,"nets":{"D":"lop","G":"lp1","S":"VGND","B":"VGND"}},
+    {"name":"XLP2_P","kind":"pmos","total_w":32.0,"l":0.15,"nf":9,"x":70,"y":143,"nets":{"D":"lop","G":"lp1","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XLN1_N","kind":"nmos","total_w":2.4,"l":0.15,"nf":3,"x":88,"y":135,"nets":{"D":"ln1","G":"clk","S":"VGND","B":"VGND"}},
+    {"name":"XLN1_P","kind":"pmos","total_w":2.4,"l":0.15,"nf":3,"x":88,"y":143,"nets":{"D":"ln1","G":"clk","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XLN2_N","kind":"nmos","total_w":4.0,"l":0.15,"nf":5,"x":101,"y":135,"nets":{"D":"ln2","G":"ln1","S":"VGND","B":"VGND"}},
+    {"name":"XLN2_P","kind":"pmos","total_w":8.0,"l":0.15,"nf":5,"x":101,"y":143,"nets":{"D":"ln2","G":"ln1","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XLN3_N","kind":"nmos","total_w":16.0,"l":0.15,"nf":9,"x":114,"y":135,"nets":{"D":"lon","G":"ln2","S":"VGND","B":"VGND"}},
+    {"name":"XLN3_P","kind":"pmos","total_w":32.0,"l":0.15,"nf":9,"x":114,"y":143,"nets":{"D":"lon","G":"ln2","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XSELB_N","kind":"nmos","total_w":2.4,"l":0.15,"nf":3,"x":136,"y":135,"nets":{"D":"select_b","G":"select","S":"VGND","B":"VGND"}},
+    {"name":"XSELB_P","kind":"pmos","total_w":4.0,"l":0.15,"nf":3,"x":136,"y":143,"nets":{"D":"select_b","G":"select","S":"VDPWR","B":"VDPWR"}},
+
+    {"name":"XDP_N","kind":"nmos","total_w":4.0,"l":0.15,"nf":5,"x":56,"y":167,"nets":{"D":"lon","G":"select_b","S":"ch2_lop_raw","B":"VGND"}},
+    {"name":"XDP_P","kind":"pmos","total_w":8.0,"l":0.15,"nf":5,"x":56,"y":175,"nets":{"D":"lon","G":"select","S":"ch2_lop_raw","B":"VDPWR"}},
+    {"name":"XDN_N","kind":"nmos","total_w":4.0,"l":0.15,"nf":5,"x":70,"y":167,"nets":{"D":"lop","G":"select_b","S":"ch2_lon_raw","B":"VGND"}},
+    {"name":"XDN_P","kind":"pmos","total_w":8.0,"l":0.15,"nf":5,"x":70,"y":175,"nets":{"D":"lop","G":"select","S":"ch2_lon_raw","B":"VDPWR"}},
+    {"name":"XXP_N","kind":"nmos","total_w":4.0,"l":0.15,"nf":5,"x":84,"y":167,"nets":{"D":"lop","G":"select","S":"ch2_lop_raw","B":"VGND"}},
+    {"name":"XXP_P","kind":"pmos","total_w":8.0,"l":0.15,"nf":5,"x":84,"y":175,"nets":{"D":"lop","G":"select_b","S":"ch2_lop_raw","B":"VDPWR"}},
+    {"name":"XXN_N","kind":"nmos","total_w":4.0,"l":0.15,"nf":5,"x":98,"y":167,"nets":{"D":"lon","G":"select","S":"ch2_lon_raw","B":"VGND"}},
+    {"name":"XXN_P","kind":"pmos","total_w":8.0,"l":0.15,"nf":5,"x":98,"y":175,"nets":{"D":"lon","G":"select_b","S":"ch2_lon_raw","B":"VDPWR"}},
+
+    {"name":"XCH2LP_N","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":112,"y":167,"nets":{"D":"ch2_lop","G":"ch2_lop_raw","S":"VGND","B":"VGND"}},
+    {"name":"XCH2LP_P","kind":"pmos","total_w":16.0,"l":0.15,"nf":5,"x":112,"y":175,"nets":{"D":"ch2_lop","G":"ch2_lop_raw","S":"VDPWR","B":"VDPWR"}},
+    {"name":"XCH2LN_N","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":128,"y":167,"nets":{"D":"ch2_lon","G":"ch2_lon_raw","S":"VGND","B":"VGND"}},
+    {"name":"XCH2LN_P","kind":"pmos","total_w":16.0,"l":0.15,"nf":5,"x":128,"y":175,"nets":{"D":"ch2_lon","G":"ch2_lon_raw","S":"VDPWR","B":"VDPWR"}},
+
+    {"name":"XRBIAS","kind":"res_high_po","l":44.9768,"x":155,"y":15,"route_y_offsets":{"R2":0.65},"nets":{"R1":"VDPWR","R2":"vbias","B":"VGND"}},
+    {"name":"XRVCMT","kind":"res_xhigh_po","l":70.5,"x":126,"y":15,"nets":{"R1":"VDPWR","R2":"vcm","B":"VGND"}},
+    {"name":"XRVCMB","kind":"res_xhigh_po","l":70.5,"x":132,"y":44,"nets":{"R1":"vcm","R2":"VGND","B":"VGND"}},
+    {"name":"XRIN1","kind":"res_xhigh_po","l":70.5,"x":138,"y":15,"nets":{"R1":"ua[0]","R2":"vcm","B":"VGND"}},
+    {"name":"XRIN2","kind":"res_xhigh_po","l":70.5,"x":144,"y":44,"nets":{"R1":"ua[1]","R2":"vcm","B":"VGND"}},
+    {"name":"XRLOADP","kind":"res_high_po","l":11.6117,"x":116,"y":25,"nets":{"R1":"VDPWR","R2":"ua[2]","B":"VGND"}},
+    {"name":"XRLOADN","kind":"res_high_po","l":11.6117,"x":121,"y":25,"route_y_offsets":{"R2":0.65},"nets":{"R1":"VDPWR","R2":"ua[3]","B":"VGND"}},
+    {"name":"XCVCM","kind":"cap_mim_m3","w":22.0,"l":22.0,"x":112,"y":188,"nets":{"C1":"vcm","C2":"VGND"}}
+  ]
+}

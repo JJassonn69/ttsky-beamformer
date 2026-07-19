@@ -1,0 +1,27 @@
+* Characterize the exact PDK passives selected for the first layout.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_passives_tt.inc"
+
+* Resistance is measured near the actual voltage ranges.
+VLOAD load 0 0.30
+XLOAD load 0 0 sky130_fd_pr__res_high_po_1p41 l=11.6117
+VBIAS bias 0 1.10
+XBIAS bias 0 0 sky130_fd_pr__res_high_po_1p41 l=44.9768
+VXHIGH xhigh 0 0.90
+XXHIGH xhigh 0 0 sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+
+* A 22 x 22 um MIM capacitor is close to the 1 pF VCM target. Its
+* capacitance is inferred from a 1 kohm 10-to-90% step response.
+VSTEP step 0 pulse(0 1 10n 1p 1p 20n 50n)
+RCAP step capnode 1k
+XCAP capnode 0 sky130_fd_pr__cap_mim_m3_1 w=22 l=22 mf=1
+
+.tran 1p 20n
+.measure tran iload avg i(VLOAD) from=1n to=5n
+.measure tran ibias avg i(VBIAS) from=1n to=5n
+.measure tran ixhigh avg i(VXHIGH) from=1n to=5n
+.measure tran cap_rise trig v(capnode) val=0.1 rise=1 targ v(capnode) val=0.9 rise=1
+
+.end

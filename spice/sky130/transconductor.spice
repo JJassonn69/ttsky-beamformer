@@ -1,0 +1,47 @@
+* First transistor-level beamformer block.
+* A single-ended input is compared with VCM by an NMOS differential pair.
+* The ideal tail sink isolates device sizing from bias-generator design for now.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+
+.param VDDVAL=1.8
+.param VCM=0.9
+.param FREQ=5meg
+.param VINPK=5m
+.param IBIAS=200u
+.param RLOAD=3k
+
+VDD vdd 0 {VDDVAL}
+VSIG sig_src 0 sin({VCM} {VINPK} {FREQ}) ac 0.5
+VREF ref_src 0 {VCM} ac -0.5
+
+* Pessimistic Tiny Tapeout analog path on both externally driven nodes.
+RSIG sig_src sig 500
+CSIG sig 0 5p
+RREF ref_src ref 500
+CREF ref 0 5p
+
+RLP vdd outp {RLOAD}
+RLN vdd outn {RLOAD}
+XINP outp sig tail 0 sky130_fd_pr__nfet_01v8 w=16.0 l=0.30
+XINN outn ref tail 0 sky130_fd_pr__nfet_01v8 w=16.0 l=0.30
+ITAIL tail 0 {IBIAS}
+
+* Small estimated local and mixer-gate load.
+COUTP outp 0 50f
+COUTN outn 0 50f
+BCM out_cm 0 v=(v(outp)+v(outn))/2
+EDIFF out_diff 0 outn outp 1
+EINPUT input_diff 0 sig ref 1
+
+.op
+.tran 1n 5u 3u
+.measure tran vin_pp pp v(input_diff) from=3u to=5u
+.measure tran vout_pp pp v(out_diff) from=3u to=5u
+.measure tran vout_cm avg v(out_cm) from=3u to=5u
+.measure tran gain_v param='vout_pp/vin_pp'
+.measure tran tail_voltage avg v(tail) from=3u to=5u
+
+.end

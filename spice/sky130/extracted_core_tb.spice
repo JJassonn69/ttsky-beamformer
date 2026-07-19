@@ -1,0 +1,53 @@
+* Post-layout functional testbench for Magic's flattened extracted netlist.
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+.include "spice/sky130/sky130_passives_tt.inc"
+.include "build/layout/extracted.spice"
+
+.param FIN=5meg
+.param FLOPER=250n
+.param VINPK=5m
+.param VDDVAL=1.8
+.temp 27
+
+VDD VDPWR 0 {VDDVAL}
+VSS VGND 0 0
+VCLK clk 0 pulse(0 {VDDVAL} 100n 2n 2n 123n {FLOPER})
+* First window is constructive; the second switches channel two by 180 degrees.
+VSEL ui_in[0] 0 pwl(0 0 25u 0 25.01u {VDDVAL} 50u {VDDVAL})
+
+VS1 source1 0 sin(0 {VINPK} {FIN})
+VS2 source2 0 sin(0 {VINPK} {FIN})
+CC1 source1 input1_pre 100p
+RC1 input1_pre ua[0] 500
+CI1 ua[0] 0 5p
+CC2 source2 input2_pre 100p
+RC2 input2_pre ua[1] 500
+CI2 ua[1] 0 5p
+
+* Maximum expected TinyTapeout analog-path and bench loading.
+ROP ua[2] outp_pad 500
+RON ua[3] outn_pad 500
+COP outp_pad 0 10p
+CON outn_pad 0 10p
+RPL outp_pad 0 1meg
+RNL outn_pad 0 1meg
+
+EDIFF differential 0 outn_pad outp_pad 1
+BCM common_mode 0 v=(v(outp_pad)+v(outn_pad))/2
+* Two-pole 2 MHz measurement filter removes the switching carrier.
+RF1 differential filt1 1k
+CF1 filt1 0 79.577p
+RF2 filt1 filtered 1k
+CF2 filtered 0 79.577p
+
+.tran 2n 50u 15u
+.measure tran sum_rms rms v(filtered) from=15u to=25u
+.measure tran null_rms rms v(filtered) from=40u to=50u
+.measure tran sum_cm avg v(common_mode) from=15u to=25u
+.measure tran null_cm avg v(common_mode) from=40u to=50u
+.measure tran sum_supply avg i(VDD) from=15u to=25u
+.measure tran null_supply avg i(VDD) from=40u to=50u
+
+.end

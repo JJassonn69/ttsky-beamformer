@@ -1,0 +1,40 @@
+* Complementary 4 MHz LO generation from the Tiny Tapeout clk input.
+* Both outputs end in identical large inverters; the extra inversion on the N
+* path creates a small deterministic skew that is checked below.
+
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+
+.subckt cmos_inv in out vdd vss params: wn=1.26 wp=2.0 l=0.15
+XNI out in vss vss sky130_fd_pr__nfet_01v8 w={wn} l={l}
+XPI out in vdd vdd sky130_fd_pr__pfet_01v8 w={wp} l={l}
+.ends cmos_inv
+
+VDD vdd 0 1.8
+VCLK clk 0 pulse(0 1.8 100n 2n 2n 123n 250n)
+
+* Even-inversion path: buffered in-phase LO.
+XP1 clk p1 vdd 0 cmos_inv wn=2.4 wp=4
+XP2 p1 lop vdd 0 cmos_inv wn=16 wp=32
+
+* Odd-inversion path: buffered complementary LO.
+XN1 clk n1 vdd 0 cmos_inv wn=2.4 wp=2.4
+XN2 n1 n2 vdd 0 cmos_inv wn=4 wp=8
+XN3 n2 lon vdd 0 cmos_inv wn=16 wp=32
+
+* Conservative combined gate and routing load for two switching quads.
+CLOP lop 0 200f
+CLON lon 0 200f
+
+.tran 100p 3u
+.measure tran lop_high max v(lop) from=1u to=3u
+.measure tran lop_low min v(lop) from=1u to=3u
+.measure tran lon_high max v(lon) from=1u to=3u
+.measure tran lon_low min v(lon) from=1u to=3u
+.measure tran lop_delay trig v(clk) val=0.9 rise=5 targ v(lop) val=0.9 rise=5
+.measure tran lon_delay trig v(clk) val=0.9 rise=5 targ v(lon) val=0.9 fall=5
+.measure tran lop_rise trig v(lop) val=0.18 rise=5 targ v(lop) val=1.62 rise=5
+.measure tran lon_fall trig v(lon) val=1.62 fall=5 targ v(lon) val=0.18 fall=5
+
+.end
