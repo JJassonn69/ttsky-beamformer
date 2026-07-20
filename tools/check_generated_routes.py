@@ -298,6 +298,81 @@ def top_boundary_clearance_errors(shapes: dict[str, list[Shape]]) -> list[str]:
     return errors
 
 
+def boundary_route_results(
+    shapes: dict[str, list[Shape]], constraints: list[dict[str, object]],
+) -> tuple[list[dict[str, object]], list[str]]:
+    """Check that top-pin control routes fan out monotonically downward."""
+    results: list[dict[str, object]] = []
+    failures: list[str] = []
+    for constraint in constraints:
+        name = str(constraint["name"])
+        net = str(constraint["net"])
+        track_route = f"horizontal net track: {net}"
+        boundary_route = f"TinyTapeout boundary pin -> {net}"
+        track_shapes = [
+            shape for shape in shapes.get("metal3", [])
+            if shape.net == net and shape.route == track_route
+            and shape.width > shape.height
+        ]
+        boundary_shapes = [
+            shape for shape in shapes.get("metal4", [])
+            if shape.net == net and shape.route == boundary_route
+            and shape.height > shape.width
+        ]
+        endpoint_shapes = [
+            shape for shape in shapes.get("metal4", [])
+            if shape.net == net and shape.route not in {track_route, boundary_route}
+        ]
+        item_failures: list[str] = []
+        if len(track_shapes) != 1:
+            item_failures.append(
+                f"{name}: expected one horizontal M3 track for {net}, "
+                f"found {len(track_shapes)}"
+            )
+            track_y = 0.0
+        else:
+            track_y = track_shapes[0].center[1]
+        if not boundary_shapes:
+            item_failures.append(f"{name}: missing top-pin M4 leg for {net}")
+            source_leg = float("inf")
+        else:
+            source_leg = max(shape.height for shape in boundary_shapes)
+        if not endpoint_shapes:
+            item_failures.append(f"{name}: missing endpoint M4 routes for {net}")
+            reversal = float("inf")
+        else:
+            # The 0.20 um allowance is the intended M4 landing half-width at
+            # the M3 track.  Any conductor above that landing means the track
+            # sits below a load and creates a down-then-up U-shaped detour.
+            reversal = max(
+                0.0,
+                max(shape.y2 for shape in endpoint_shapes) - (track_y + 0.20),
+            )
+        source_limit = float(constraint["max_source_leg_um"])
+        reversal_limit = float(constraint["max_endpoint_reversal_um"])
+        if source_leg > source_limit + EPSILON:
+            item_failures.append(
+                f"{name}: source-to-track leg {source_leg:.3f} um exceeds "
+                f"{source_limit:.3f} um"
+            )
+        if reversal > reversal_limit + EPSILON:
+            item_failures.append(
+                f"{name}: endpoint route reverses {reversal:.3f} um above "
+                f"the distribution track; limit is {reversal_limit:.3f} um"
+            )
+        failures.extend(item_failures)
+        results.append({
+            "name": name,
+            "net": net,
+            "track_y_um": track_y,
+            "source_leg_um": round(source_leg, 6),
+            "endpoint_reversal_um": round(reversal, 6),
+            "passed": not item_failures,
+            "failures": item_failures,
+        })
+    return results, failures
+
+
 def close(value: float, target: float) -> bool:
     return abs(value - target) <= EPSILON
 
@@ -761,6 +836,9 @@ def main() -> None:
     path_results, path_failures = path_matching_results(
         shapes, list(manifest.get("route_path_constraints", []))
     )
+    boundary_results, boundary_failures = boundary_route_results(
+        shapes, list(manifest.get("boundary_route_constraints", []))
+    )
     report = {
         "route": str(path),
         "route_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
@@ -779,12 +857,14 @@ def main() -> None:
         "matching": results,
         "endpoint_matching": endpoint_results,
         "path_matching": path_results,
+        "boundary_routing": boundary_results,
         "passed": (
             not errors and not via_errors and not spacing_errors and not dead_end_via3
             and not disconnected_errors
             and not top_boundary_errors
             and not matching_failures
             and not endpoint_failures and not path_failures
+            and not boundary_failures
         ),
     }
     if args.report:
@@ -819,11 +899,14 @@ def main() -> None:
     if path_failures:
         print("Generated route violates functional source-to-load constraints:")
         print("\n".join(path_failures))
+    if boundary_failures:
+        print("Generated route violates boundary-control routing constraints:")
+        print("\n".join(boundary_failures))
     if (
         errors or via_errors or spacing_errors or dead_end_via3 or disconnected_errors
         or top_boundary_errors
         or matching_failures
-        or endpoint_failures or path_failures
+        or endpoint_failures or path_failures or boundary_failures
     ):
         raise SystemExit(1)
     print(

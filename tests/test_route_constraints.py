@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools.check_generated_routes import (
+    boundary_route_results,
     dead_end_via3_errors,
     disconnected_route_errors,
     endpoint_matching_results,
@@ -183,6 +184,28 @@ paint_rect metal3 0.0 0.53 4.0 0.93
         self.assertEqual(len(failures), 1)
         self.assertIn("0.130 um", failures[0])
         self.assertIn("minimum is 0.30 um", failures[0])
+
+    def test_low_boundary_track_u_detour_is_rejected(self) -> None:
+        route = """# horizontal net track: clk
+paint_rect metal3 0.0 10.0 10.0 10.4
+# TinyTapeout boundary pin -> clk
+paint_rect metal4 9.8 10.2 10.2 20.0
+# sink.G -> clk
+paint_rect metal4 0.0 10.2 0.4 15.0
+"""
+        constraints = [{
+            "name": "clock",
+            "net": "clk",
+            "max_source_leg_um": 3.0,
+            "max_endpoint_reversal_um": 0.0,
+        }]
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            results, failures = boundary_route_results(parse_route(path), constraints)
+        self.assertFalse(results[0]["passed"])
+        self.assertTrue(any("source-to-track leg" in failure for failure in failures))
+        self.assertTrue(any("reverses" in failure for failure in failures))
 
     def test_disconnected_same_net_route_is_rejected(self) -> None:
         route = """# device.D -> signal

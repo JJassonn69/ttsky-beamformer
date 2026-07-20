@@ -9,9 +9,23 @@
     "gm1_p", "gm1_n", "tail1", "gm2_p", "gm2_n", "tail2"
   ],
   "track_y_overrides": {
-    "clk": 180.50,
-    "select": 182.35
+    "clk": 223.50,
+    "select": 222.35
   },
+  "boundary_route_constraints": [
+    {
+      "name": "clk_monotonic_fanout",
+      "net": "clk",
+      "max_source_leg_um": 3.0,
+      "max_endpoint_reversal_um": 0.0
+    },
+    {
+      "name": "select_monotonic_fanout",
+      "net": "select",
+      "max_source_leg_um": 4.0,
+      "max_endpoint_reversal_um": 0.0
+    }
+  ],
   "post_breakout_y_offsets": {
     "XCH2_SW2A.S": -3.0,
     "XCH2_SW1A.S": -3.0,
