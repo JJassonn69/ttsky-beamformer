@@ -4,11 +4,19 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+from run_lock import acquire_run_lock
+try:
+    from simulation_provenance import ngspice_provenance
+except ModuleNotFoundError:
+    from tools.simulation_provenance import ngspice_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "spice" / "sky130" / "extracted_core_tb.spice"
@@ -21,13 +29,30 @@ MEASURE_RE = re.compile(
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("--ngspice", default="ngspice")
-    parser.add_argument("--netlist", default="build/layout/extracted.spice")
+    parser.add_argument("--netlist", default="build/layout/extracted_rc.spice")
     return parser.parse_args()
+
+
+def run_deck(ngspice: str, deck: Path, log: Path) -> tuple[int, dict[str, float]]:
+    completed = subprocess.run(
+        [ngspice, "-b", "-o", str(log), str(deck)], cwd=ROOT,
+        check=False, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
+    )
+    values = {
+        name: float(value)
+        for name, value in MEASURE_RE.findall(
+            log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
+        )
+    }
+    return completed.returncode, values
 
 
 def main() -> int:
     args = parse_args()
-    template = TEMPLATE.read_text(encoding="utf-8").replace(
+    netlist_path = ROOT / args.netlist
+    netlist_sha256 = hashlib.sha256(netlist_path.read_bytes()).hexdigest()
+    template = (f"* extracted_netlist_sha256={netlist_sha256}\n" +
+                TEMPLATE.read_text(encoding="utf-8")).replace(
         '.include "build/layout/extracted.spice"', f'.include "{args.netlist}"'
     )
     template = re.sub(r"^VSEL ui_in\[0\].*$", "VSEL ui_in[0] 0 0",
@@ -47,8 +72,10 @@ def main() -> int:
     )
     build = ROOT / "build" / "extracted_balance"
     build.mkdir(parents=True, exist_ok=True)
+    run_lock = acquire_run_lock(build / ".run.lock")
     results: dict[str, dict[str, float]] = {}
     errors: list[str] = []
+    jobs: list[tuple[str, Path, Path]] = []
     for channel, inactive_source in (("ch1", "VS2"), ("ch2", "VS1")):
         deck = build / f"{channel}.spice"
         log = build / f"{channel}.log"
@@ -60,19 +87,20 @@ def main() -> int:
             flags=re.MULTILINE,
         )
         deck.write_text(text, encoding="utf-8")
-        completed = subprocess.run(
-            [args.ngspice, "-b", "-o", str(log), str(deck)], cwd=ROOT,
-            check=False, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
-        )
-        values = {
-            name: float(value)
-            for name, value in MEASURE_RE.findall(
-                log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
-            )
+        jobs.append((channel, deck, log))
+    raw: dict[str, tuple[int, dict[str, float]]] = {}
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        futures = {
+            executor.submit(run_deck, args.ngspice, deck, log): channel
+            for channel, deck, log in jobs
         }
+        for future in as_completed(futures):
+            raw[futures[future]] = future.result()
+    for channel, _deck, _log in jobs:
+        returncode, values = raw[channel]
         required = {"mode_rms", "mode_avg", "mode_cm", "mode_supply"}
-        if completed.returncode or required - values.keys():
-            errors.append(f"{channel}: ngspice={completed.returncode}, values={values}")
+        if returncode or required - values.keys():
+            errors.append(f"{channel}: ngspice={returncode}, values={values}")
         else:
             values["mode_ac_rms"] = max(
                 values["mode_rms"] ** 2 - values["mode_avg"] ** 2, 0.0
@@ -87,6 +115,9 @@ def main() -> int:
     average = (ch1 + ch2) / 2.0
     mismatch = abs(ch1 - ch2) / average
     report: dict[str, object] = {
+        **ngspice_provenance(args.ngspice),
+        "netlist": args.netlist,
+        "netlist_sha256": netlist_sha256,
         "channels": results,
         "gain_mismatch_fraction": mismatch,
         "gain_mismatch_percent": 100.0 * mismatch,

@@ -354,6 +354,18 @@ def main() -> None:
         (1500, 1300),
         [((64, 93, 89, 118), "22 x 22 um MIM capacitor")],
     )
+    render(
+        polygons,
+        db_um,
+        args.output_dir / "beamformer-top-boundary-detail.png",
+        (50.0, 214.0, 130.0, 225.76),
+        "Top-edge TinyTapeout M4 pin clearance",
+        (1900, 900),
+        [
+            ((50.0, 224.76, 130.0, 225.76), "standard top-edge M4 pins"),
+            ((50.0, 223.85, 130.0, 224.46), "route ceiling and clearance band"),
+        ],
+    )
     print(f"top={top} db_unit={db_um:g}um structures={len(structures)} polygons={len(polygons)}")
     for layer, count in sorted(counts.items()):
         print(f"layer={layer[0]}/{layer[1]} name={LAYERS[layer][0]} polygons={count}")

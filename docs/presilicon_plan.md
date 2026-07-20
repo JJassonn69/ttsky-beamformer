@@ -15,9 +15,12 @@ electrical confidence are tracked separately.
 - schematic 45-case deterministic PVT grid: TT/SS/FF/SF/FS, 1.62/1.80/1.98 V,
   and -40/27/125 C;
 - exact 1x2 TinyTapeout boundary with 70 PCells and explicit M2/M3/M4 routing;
-- split A/B; B/A common-centroid channel devices, mirrored passives, matched
-  local breakouts, and a full MIM route keep-out;
+- split A/B; B/A common-centroid channel devices, mirrored equal-valued passive
+  pairs, a ratio-controlled 1:2 VCM divider, matched local breakouts, and a
+  full MIM route keep-out;
 - zero Magic errors at placement, routed, extraction, and final DRC stages;
+- clean-placement-before-route and route-before-extraction dependencies, so
+  repeated additive Magic paint cannot accumulate stale route revisions;
 - extraction topology check: 338 MOS fingers, eight passives, connected power,
   and no unexpected net equivalences;
 - zero Magic GDS-writer geometry warnings;
@@ -26,19 +29,26 @@ electrical confidence are tracked separately.
   precheck's 9/12/176/2 marker counts and the second pass's two M4-width
   markers before the route fixes, and synthetic unit cases cover every rule
   detector's fail and clean paths;
-- paired, equal-settling-time full-parasitic sum/null simulation;
+- generated-route rejection of same-layer shorts, cross-net via-to-metal
+  landings, disconnected same-net conductor islands, and sub-0.30-um clearance
+  to any standard top-edge M4 pin;
+- paired, equal-settling-time distributed-RC sum/null simulation, with a
+  separate gate proving explicit resistor segments and internal RC nodes were
+  emitted rather than only devices and capacitances, and that every extracted
+  resistor component is anchored to a manifest net;
 - coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass the 20 dB release gate,
-  with 54.45 dB null at 4 MHz and 33.54 dB at 30 MHz;
-- independent Ubuntu/ngspice 44.2 replay at 4 MHz: 0.8070 mVrms and 60.88 dB,
-  corroborating the conservative ngspice 46 result;
+  with 66.96 dB null at 4 MHz and 38.84 dB at 30 MHz;
+- independent macOS/ngspice 46 replay at 4 MHz: 0.9335 mVrms and 52.52 dB,
+  bound to the exact RC-netlist hash and independently passing the 40 dB
+  nominal target;
 - extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
-- nominal extracted channel amplitude difference: 0.0000374 percent;
-- foundry-slope mismatch surrogate: 30/30 pass, 39.28 dB worst null;
-- parasitic-extracted deterministic PVT: 45/45 pass, 31.04 dB worst null at
+- nominal extracted channel amplitude difference: 0.0016874 percent;
+- foundry-slope mismatch surrogate: 30/30 pass, 39.22 dB worst null;
+- distributed-RC parasitic-extracted deterministic PVT: 45/45 pass, 31.04 dB worst null at
   TT, 1.62 V, and 125 C;
-- refreshed schematic PVT: 45/45 pass with an 85.78 dB minimum null after the
-  clock/matching edit, with report-input freshness and hash locking added to
-  the release gate;
+- refreshed schematic PVT: 45/45 pass with an 81.08 dB minimum null and
+  0.292 V minimum output high-side headroom after the clock/matching/VCM edit,
+  with report-input freshness and hash locking added to the release gate;
 - the locally runnable official TinyTapeout structural, pin, boundary, power,
   layer, analog-pad, cell-name, and Verilog checks; and
 - official GitHub TinyTapeout custom-GDS, viewer, and 15/15 full-precheck jobs
@@ -48,7 +58,10 @@ electrical confidence are tracked separately.
 The PVT release gate follows `spec/beamformer_v1.md`: at least 20 dB destructive
 null at every deterministic corner. The nominal test keeps a stronger 40 dB
 implementation target. Reports also preserve the actual null depth so a passed
-threshold cannot hide lost margin.
+threshold cannot hide lost margin. Output common mode is checked against the
+active swept supply: it must exceed 1.0 V and retain at least 100 mV high-side
+headroom, avoiding the invalid assumption that a 1.75 V absolute ceiling
+applies when VDPWR is intentionally characterized at 1.98 V.
 
 ## Deliberately limited first-silicon scope
 

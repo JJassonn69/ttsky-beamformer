@@ -1,6 +1,7 @@
 PYTHON ?= python3
 NGSPICE ?= ngspice
 BUILD_DIR := build
+EXTRACTED_RC_NETLIST ?= build/layout/extracted_rc.spice
 
 .PHONY: verify test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives mismatch-mc pvt-quick pvt layout-template layout-scripts layout-place layout-route layout-extract layout-sim layout-balance layout-clock-sweep layout-frequency-sweep layout-pvt-quick layout-pvt layout-signoff submission-evidence release-check
 
@@ -77,33 +78,39 @@ layout-scripts:
 layout-place: layout-template layout-scripts
 	tools/run_magic_layout.sh build/layout/place.tcl
 
-layout-route:
+# Routing is not idempotent: Magic paint commands add geometry to the loaded
+# cell.  Always rebuild the clean placed cell first so rerunning this target
+# cannot accumulate two route revisions and create extraction-only shorts.
+layout-route: layout-place
 	$(PYTHON) tools/generate_route_script.py
-	$(PYTHON) tools/check_generated_routes.py build/layout/route.tcl
+	$(PYTHON) tools/check_generated_routes.py build/layout/route.tcl --report build/layout/route_matching.json
 	tools/run_magic_layout.sh build/layout/route.tcl
 
-layout-extract:
+# Extraction must consume routing generated from the current manifest and
+# router sources, rather than an arbitrary stale build/layout/buffered cell.
+layout-extract: layout-route
 	tools/run_magic_layout.sh layout/extract.tcl
 	$(PYTHON) tools/check_extracted_layout.py build/layout/extracted.spice build/layout/buffered/tt_um_jjassonn69_beamformer.ext
+	$(PYTHON) tools/check_distributed_rc.py build/layout/extracted.spice $(EXTRACTED_RC_NETLIST) build/layout/buffered/tt_um_jjassonn69_beamformer.res.ext --report build/layout/distributed_rc_coverage.json
 
 layout-sim:
-	$(PYTHON) tools/run_extracted_sim.py --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_sim.py --netlist $(EXTRACTED_RC_NETLIST) --ngspice $(NGSPICE)
 	$(PYTHON) tools/check_beamformer_core.py --null-min-db 20 $(BUILD_DIR)/extracted_core.log
 
 layout-balance:
-	$(PYTHON) tools/run_extracted_channel_balance.py --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_channel_balance.py --netlist $(EXTRACTED_RC_NETLIST) --ngspice $(NGSPICE)
 
 layout-clock-sweep:
-	$(PYTHON) tools/run_extracted_clock_sweep.py --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_clock_sweep.py --netlist $(EXTRACTED_RC_NETLIST) --ngspice $(NGSPICE)
 
 layout-frequency-sweep:
-	$(PYTHON) tools/run_extracted_frequency_sweep.py --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_frequency_sweep.py --netlist $(EXTRACTED_RC_NETLIST) --ngspice $(NGSPICE)
 
 layout-pvt-quick:
-	$(PYTHON) tools/run_extracted_pvt.py --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_pvt.py --netlist $(EXTRACTED_RC_NETLIST) --ngspice $(NGSPICE)
 
 layout-pvt:
-	$(PYTHON) tools/run_extracted_pvt.py --full --ngspice $(NGSPICE)
+	$(PYTHON) tools/run_extracted_pvt.py --netlist $(EXTRACTED_RC_NETLIST) --full --resume --ngspice $(NGSPICE)
 
 layout-signoff: layout-extract
 	tools/run_magic_layout.sh layout/signoff.tcl

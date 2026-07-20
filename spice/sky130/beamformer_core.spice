@@ -47,10 +47,13 @@ XRBias vdd vbias vss sky130_fd_pr__res_high_po_1p41 l=44.9768
 XBIASA vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=16 l=0.50
 XBIASB vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=16 l=0.50
 
-* Ratio-derived VCM and input bias use 1.41 um extra-high-res poly, L=70.5 um.
+* The VCM divider keeps the original 141 um total resistance but uses a 1:2
+* top/bottom ratio.  The resulting ~0.667*VDPWR input common mode preserves
+* transconductor overdrive and output headroom at the 1.62 V slow/cold corner.
+* Input bias resistors remain 1.41 um extra-high-res poly, L=70.5 um.
 * The VCM bypass is a 22 x 22 um M3 MIM capacitor (~0.98 pF).
-XRVCMT vdd vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
-XRVCMB vcm vss vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
+XRVCMT vdd vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=47.0
+XRVCMB vcm vss vss sky130_fd_pr__res_xhigh_po_1p41 l=94.0
 XCVCM vcm vss sky130_fd_pr__cap_mim_m3_1 w=22 l=22 mf=1
 XRIN1 sig1 vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5
 XRIN2 sig2 vcm vss sky130_fd_pr__res_xhigh_po_1p41 l=70.5

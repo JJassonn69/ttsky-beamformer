@@ -23,7 +23,24 @@ M3_WIDTH = 0.40
 M4_WIDTH = 0.40
 TRACK_Y0 = 125.0
 TRACK_PITCH = 1.85
+# The standard TinyTapeout top-edge M4 pins start at y=224.76 um.  Ordinary
+# generated routes must stop at least met4.2 (0.30 um) below them, including
+# the 0.20 um half-width of a horizontal M4 landing.  Keeping the breakout
+# center at or below 224.25 um leaves 0.31 um of physical clearance.  The
+# explicit clk/select boundary routes are emitted separately and intentionally
+# connect to their corresponding pins.
+SIGNAL_ROUTE_TOP_Y = 224.25
 BOUNDARY_M4_X = [2.00, 5.00, 94.30, 113.62, 132.94, 138.46, 144.00, 152.26]
+BOUNDARY_PINS = {
+    "VDPWR": (2.00, 112.88),
+    "VGND": (5.00, 112.88),
+    "clk": (144.00, 225.26),
+    "select": (138.46, 225.26),
+    "ua[0]": (152.26, 0.50),
+    "ua[1]": (132.94, 0.50),
+    "ua[2]": (113.62, 0.50),
+    "ua[3]": (94.30, 0.50),
+}
 
 
 @dataclass(frozen=True)
@@ -47,6 +64,7 @@ class Connection:
     breakout_y: float
     escape_x: float
     column_x: float = 0.0
+    escape_fixed: bool = False
 
 
 def fmt(value: float) -> str:
@@ -219,34 +237,62 @@ def capacitor_keepouts(
 
 def assign_local_escape_columns(
     connections: list[Connection],
+    reserved_columns: list[float],
 ) -> None:
     """Move local doglegs off fixed TinyTapeout M4 boundary risers."""
     grouped: dict[str, list[Connection]] = {}
     for connection in connections:
         grouped.setdefault(connection.device, []).append(connection)
     shifts = [0.0]
-    for index in range(1, 25):
+    for index in range(1, 200):
         shifts.extend((-0.80 * index, 0.80 * index))
+    # Clock/control devices occupy two dense rows at the top of the tile and
+    # their breakouts frequently span both rows.  Reserve their local M4
+    # columns across the complete bank; per-device uniqueness alone allowed a
+    # select-gate dogleg to overlap a channel-LO gate dogleg.
+    top_bank_used: list[float] = []
     for device_connections in grouped.values():
         used: list[float] = []
         for connection in sorted(
             device_connections,
-            key=lambda item: (item.terminal != "D", item.terminal),
+            # Fixed analog-match escapes are reserved before the remaining
+            # terminals of the same PCell choose their nearest legal lane.
+            key=lambda item: (
+                not item.escape_fixed,
+                item.terminal != "D",
+                item.terminal,
+            ),
         ):
-            for shift in shifts:
+            connection_shifts = [0.0] if connection.escape_fixed else shifts
+            for shift in connection_shifts:
                 candidate = connection.escape_x + shift
                 if not 6.8 <= candidate <= 154.2:
                     continue
                 if any(abs(candidate - fixed_x) < 0.75 for fixed_x in BOUNDARY_M4_X):
                     continue
-                if any(abs(candidate - other_x) < 0.75 for other_x in used):
+                if any(
+                    abs(candidate - reserved_x) < 0.75
+                    for reserved_x in reserved_columns
+                ):
+                    continue
+                reserve_top_escape = (
+                    connection.terminal == "G" and connection.labels[0].y >= 180.0
+                )
+                regional_used = top_bank_used if reserve_top_escape else []
+                if any(
+                    abs(candidate - other_x) < 0.75
+                    for other_x in [*used, *regional_used]
+                ):
                     continue
                 connection.escape_x = candidate
                 used.append(candidate)
+                if reserve_top_escape:
+                    top_bank_used.append(candidate)
                 break
             else:
+                qualifier = "fixed " if connection.escape_fixed else ""
                 raise ValueError(
-                    f"cannot place a local M4 escape for "
+                    f"cannot place a {qualifier}local M4 escape for "
                     f"{connection.device}.{connection.terminal}"
                 )
 
@@ -276,13 +322,19 @@ def available_columns(
 def assign_net_columns(
     connections: list[Connection],
     keepouts: list[tuple[float, float, float, float]],
+    tracks: dict[str, float],
+    match_constraints: list[dict[str, object]],
+    endpoint_constraints: list[dict[str, object]],
+    column_overrides: dict[str, float],
 ) -> None:
-    """Use one nearby M4 riser per net instead of one per terminal.
+    """Use one M4 riser per net, assigning matched pairs together.
 
     The original router consumed a separate full-height M4 column for every
     device terminal and spread those columns across the complete tile.  That
     made even local mixer nodes unnecessarily long.  A shared riser keeps each
-    local net close to the centroid of the devices it actually connects.
+    local net close to the devices it actually connects.  Matching-critical
+    pairs are allocated before ordinary nets, using the complete pin-to-device
+    Manhattan tree as the cost instead of optimizing each net independently.
     """
     anchors: dict[str, list[float]] = {}
     for connection in connections:
@@ -302,13 +354,183 @@ def assign_net_columns(
     candidates = available_columns(len(medians), local_risers, keepouts)
     unused = set(candidates)
     columns: dict[str, float] = {}
+    for net, column in sorted(column_overrides.items()):
+        if net not in medians:
+            raise ValueError(f"route-column override names unknown net {net}")
+        if column not in unused:
+            nearest = sorted(candidates, key=lambda candidate: abs(candidate - column))[:6]
+            raise ValueError(
+                f"route-column override {net}={column} is unavailable; "
+                f"nearest legal columns are {nearest}"
+            )
+        columns[net] = column
+        unused.remove(column)
+
+    def route_proxy(net: str, column: float) -> float:
+        net_connections = [item for item in connections if item.net == net]
+        # M3 branches from each local escape to the shared column.  Equal-y
+        # branches may later merge, but summing them here intentionally avoids
+        # hiding a long unmatched device branch behind a coincident segment.
+        horizontal = sum(abs(item.escape_x - column) for item in net_connections)
+        fixed = sum(abs(item.anchor_x - item.escape_x) for item in net_connections)
+        if net in BOUNDARY_PINS:
+            pin_x, pin_y = BOUNDARY_PINS[net]
+            horizontal += abs(pin_x - column)
+            fixed += abs(tracks[net] - pin_y)
+        # The common M4 column is a union, not one independent riser per
+        # terminal.  Model its complete occupied span once.
+        ys = [item.access_y for item in net_connections]
+        ys.append(tracks[net])
+        vertical = max(ys) - min(ys)
+        return horizontal + vertical + fixed
+
+    connection_by_endpoint = {
+        f"{item.device}.{item.terminal}": item for item in connections
+    }
+
+    def endpoint_proxy(endpoint: str, net: str, column: float) -> tuple[float, float]:
+        connection = connection_by_endpoint[endpoint]
+        if connection.net != net:
+            raise ValueError(f"endpoint constraint maps {endpoint} to wrong net {net}")
+        # Internal matched nets are compared from each device to their shared
+        # horizontal track.  Boundary-facing analog nets additionally include
+        # the fixed TinyTapeout pin leg in the placement cost.
+        pin_x, pin_y = BOUNDARY_PINS.get(net, (column, tracks[net]))
+        local_rail = 0.0
+        if connection.terminal == "D":
+            local_rail = max(label.x for label in connection.labels) - min(
+                label.x for label in connection.labels
+            )
+        metal3 = (
+            local_rail
+            + abs(connection.anchor_x - connection.escape_x)
+            + abs(connection.escape_x - column)
+            + abs(column - pin_x)
+        )
+        metal4 = (
+            abs(tracks[net] - connection.access_y)
+            + abs(tracks[net] - pin_y)
+        )
+        return metal3, metal4
+
+    paired_nets: set[str] = set()
+    for constraint in match_constraints:
+        first, second = map(str, constraint["nets"])
+        if first not in medians or second not in medians:
+            continue
+        if first in columns or second in columns:
+            if first not in columns or second not in columns:
+                raise ValueError(
+                    f"matched pair {first}/{second} requires either zero or two overrides"
+                )
+            paired_nets.update((first, second))
+            continue
+        best: tuple[tuple[float, ...], float, float] | None = None
+        for first_column in sorted(unused):
+            first_proxy = route_proxy(first, first_column)
+            for second_column in sorted(unused - {first_column}):
+                second_proxy = route_proxy(second, second_column)
+                average = (first_proxy + second_proxy) / 2.0
+                mismatch = abs(first_proxy - second_proxy) / max(average, 1e-12)
+                total = first_proxy + second_proxy
+                displacement = (
+                    abs(first_column - medians[first])
+                    + abs(second_column - medians[second])
+                )
+                endpoint_penalty = 0.0
+                endpoint_worst = 0.0
+                for endpoint_constraint in endpoint_constraints:
+                    if list(map(str, endpoint_constraint["nets"])) != [first, second]:
+                        continue
+                    first_endpoint, second_endpoint = map(
+                        str, endpoint_constraint["endpoints"]
+                    )
+                    first_m3, first_m4 = endpoint_proxy(
+                        first_endpoint, first, first_column
+                    )
+                    second_m3, second_m4 = endpoint_proxy(
+                        second_endpoint, second, second_column
+                    )
+                    layer_limit = float(
+                        endpoint_constraint["max_layer_length_mismatch_percent"]
+                    ) / 100.0
+                    total_limit = float(
+                        endpoint_constraint["max_total_length_mismatch_percent"]
+                    ) / 100.0
+                    comparisons = (
+                        (first_m3, second_m3, layer_limit),
+                        (first_m4, second_m4, layer_limit),
+                        (first_m3 + first_m4, second_m3 + second_m4, total_limit),
+                    )
+                    for first_value, second_value, limit in comparisons:
+                        pair_average = (first_value + second_value) / 2.0
+                        pair_mismatch = abs(first_value - second_value) / max(
+                            pair_average, 1e-12
+                        )
+                        violation = max(0.0, pair_mismatch - limit)
+                        endpoint_penalty += violation
+                        endpoint_worst = max(endpoint_worst, violation)
+                # First satisfy the one-percent constraint when possible,
+                # then minimize total wire and centroid displacement.
+                score = (
+                    0.0 if endpoint_penalty <= 1e-12 else 1.0,
+                    endpoint_worst,
+                    endpoint_penalty,
+                    0.0 if mismatch <= 0.005 else mismatch,
+                    total,
+                    displacement,
+                    first_column,
+                    second_column,
+                )
+                if best is None or score < best[0]:
+                    best = (score, first_column, second_column)
+        if best is None:
+            raise ValueError(f"cannot allocate matched M4 columns for {first}/{second}")
+        _, first_column, second_column = best
+        columns[first] = first_column
+        columns[second] = second_column
+        unused.remove(first_column)
+        unused.remove(second_column)
+        paired_nets.update((first, second))
+
     for net in sorted(medians, key=lambda item: (medians[item], item)):
+        if net in paired_nets:
+            continue
         target = medians[net]
         column = min(unused, key=lambda item: (abs(item - target), item))
         columns[net] = column
         unused.remove(column)
     for connection in connections:
         connection.column_x = columns[connection.net]
+
+
+def expand_endpoint_constraints(
+    constraints: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    """Expand compact matched endpoint groups for column cost evaluation."""
+    expanded: list[dict[str, object]] = []
+    for constraint in constraints:
+        if "endpoints" in constraint:
+            expanded.append(constraint)
+            continue
+        pairs = constraint.get("endpoint_pairs")
+        if not isinstance(pairs, list) or not pairs:
+            raise ValueError(
+                f"{constraint.get('name', '<unnamed>')}: endpoint constraint "
+                "requires endpoints or a non-empty endpoint_pairs list"
+            )
+        for index, pair in enumerate(pairs, 1):
+            if not isinstance(pair, list) or len(pair) != 2:
+                raise ValueError(
+                    f"{constraint.get('name', '<unnamed>')}: endpoint pair "
+                    f"{index} must contain exactly two endpoints"
+                )
+            item = dict(constraint)
+            item.pop("endpoint_pairs")
+            item["name"] = f"{constraint['name']}_{index:02d}"
+            item["endpoints"] = pair
+            expanded.append(item)
+    return expanded
 
 
 def separate_breakout_lanes(
@@ -324,6 +546,7 @@ def separate_breakout_lanes(
         ((6.5, track_y - M3_WIDTH / 2, 154.5, track_y + M3_WIDTH / 2), net)
         for net, track_y in tracks.items()
     ]
+    placed_m4: list[tuple[tuple[float, float, float, float], str]] = []
     for connection in connections:
         local_y = (
             connection.labels[0].y
@@ -376,7 +599,7 @@ def separate_breakout_lanes(
         )
         for offset in offsets:
             candidate = connection.breakout_y + offset
-            if not 1.0 <= candidate <= 224.4:
+            if not 1.0 <= candidate <= SIGNAL_ROUTE_TOP_Y:
                 continue
             # The MIM PCell's broad lower electrode is Metal3.  A breakout
             # lane can therefore short C2 even when both of its Metal4
@@ -423,14 +646,33 @@ def separate_breakout_lanes(
                 if gap < 0.30 - 1e-9:
                     conflict = True
                     break
+            local_m4_rect: tuple[float, float, float, float] | None = None
+            if abs(candidate - local_y) > DBU_UM / 2:
+                local_m4_rect = (
+                    connection.escape_x - M4_WIDTH / 2,
+                    min(local_y, candidate) - M4_WIDTH / 2,
+                    connection.escape_x + M4_WIDTH / 2,
+                    max(local_y, candidate) + M4_WIDTH / 2,
+                )
+                for other_rect, other_net in placed_m4:
+                    gap = rectangle_gap(local_m4_rect, other_rect)
+                    if gap <= 1e-9 and other_net == connection.net:
+                        continue
+                    if gap < 0.30 - 1e-9:
+                        conflict = True
+                        break
             if not conflict:
                 connection.breakout_y = candidate
                 placed_m3.append((candidate_rect, connection.net))
+                if local_m4_rect is not None:
+                    placed_m4.append((local_m4_rect, connection.net))
                 break
         else:
             raise ValueError(
                 f"cannot allocate a non-overlapping M3 breakout for "
-                f"{connection.device}.{connection.terminal}"
+                f"{connection.device}.{connection.terminal} "
+                f"(net={connection.net}, escape={connection.escape_x:.3f}, "
+                f"column={connection.column_x:.3f}, access={local_y:.3f})"
             )
 
 
@@ -441,10 +683,14 @@ def rect(layer: str, x1: float, y1: float, x2: float, y2: float) -> str:
 
 
 def wire_h(layer: str, x1: float, x2: float, y: float, width: float) -> str:
+    if abs(x2 - x1) <= DBU_UM / 2:
+        return f"# skipped zero-length horizontal {layer} wire"
     return rect(layer, x1, y - width / 2, x2, y + width / 2)
 
 
 def wire_v(layer: str, x: float, y1: float, y2: float, width: float) -> str:
+    if abs(y2 - y1) <= DBU_UM / 2:
+        return f"# skipped zero-length vertical {layer} wire"
     return rect(layer, x - width / 2, y1, x + width / 2, y2)
 
 
@@ -683,37 +929,50 @@ def main() -> None:
 
     connections.sort(key=lambda item: (item.anchor_x, item.breakout_y,
                                         item.device, item.terminal))
+    connection_by_endpoint = {
+        f"{item.device}.{item.terminal}": item for item in connections
+    }
+    for endpoint, escape_x in manifest.get("route_escape_overrides", {}).items():
+        endpoint = str(endpoint)
+        if endpoint not in connection_by_endpoint:
+            raise ValueError(f"route-escape override names unknown endpoint {endpoint}")
+        connection = connection_by_endpoint[endpoint]
+        connection.escape_x = float(escape_x)
+        connection.escape_fixed = True
     keepouts = capacitor_keepouts(connections)
-    assign_local_escape_columns(connections)
-    assign_net_columns(connections, keepouts)
+    column_overrides = {
+        str(net): float(column)
+        for net, column in manifest.get("route_column_overrides", {}).items()
+    }
+    assign_local_escape_columns(connections, list(column_overrides.values()))
     tracks = {
         net: TRACK_Y0 + index * TRACK_PITCH
         for index, net in enumerate(manifest["track_order"])
     }
+    endpoint_constraints = expand_endpoint_constraints(
+        list(manifest.get("route_endpoint_constraints", []))
+    )
+    assign_net_columns(
+        connections,
+        keepouts,
+        tracks,
+        list(manifest.get("route_match_constraints", [])),
+        endpoint_constraints,
+        column_overrides,
+    )
     separate_breakout_lanes(connections, keepouts, tracks)
 
     missing_tracks = {connection.net for connection in connections} - tracks.keys()
     if missing_tracks:
         raise ValueError(f"nets without tracks: {sorted(missing_tracks)}")
 
-    boundary_pins = {
-        "VDPWR": (2.00, 112.88),
-        "VGND": (5.00, 112.88),
-        "clk": (144.00, 225.26),
-        "select": (138.46, 225.26),
-        "ua[0]": (152.26, 0.50),
-        "ua[1]": (132.94, 0.50),
-        "ua[2]": (113.62, 0.50),
-        "ua[3]": (94.30, 0.50),
-    }
-
     commands: list[str] = []
     for net, y in tracks.items():
         endpoints = [
             connection.column_x for connection in connections if connection.net == net
         ]
-        if net in boundary_pins:
-            endpoints.append(boundary_pins[net][0])
+        if net in BOUNDARY_PINS:
+            endpoints.append(BOUNDARY_PINS[net][0])
         if not endpoints:
             raise ValueError(f"track {net} has no physical endpoint")
         left = max(6.5, min(endpoints) - 0.40)
@@ -746,7 +1005,7 @@ def main() -> None:
         router = route_capacitor if connection.kind == "cap_mim_m3" else route_connection
         commands.extend(router(connection, tracks[connection.net]))
 
-    for net, (x, y) in boundary_pins.items():
+    for net, (x, y) in BOUNDARY_PINS.items():
         commands.extend(boundary_route(net, x, y, tracks[net]))
 
     body = "\n".join(commands)

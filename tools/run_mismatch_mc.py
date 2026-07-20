@@ -11,6 +11,7 @@ for foundry-qualified Spectre Monte Carlo.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import random
@@ -19,6 +20,11 @@ import statistics
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+try:
+    from simulation_provenance import ngspice_provenance
+except ModuleNotFoundError:
+    from tools.simulation_provenance import ngspice_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "spice" / "sky130" / "beamformer_core.spice"
@@ -127,7 +133,9 @@ def main() -> int:
     args = parse_args()
     if args.trials < 1:
         raise SystemExit("--trials must be positive")
-    base = TEMPLATE.read_text(encoding="utf-8")
+    template_bytes = TEMPLATE.read_bytes()
+    template_sha256 = hashlib.sha256(template_bytes).hexdigest()
+    base = template_bytes.decode("utf-8")
     build = ROOT / "build" / "mismatch_mc"
     build.mkdir(parents=True, exist_ok=True)
     rng = random.Random(args.seed)
@@ -169,6 +177,9 @@ def main() -> int:
         results.append(result)
     valid_nulls = sorted(float(item["null_db"]) for item in results if "null_db" in item)
     report = {
+        **ngspice_provenance(args.ngspice),
+        "source": str(TEMPLATE.relative_to(ROOT)),
+        "source_sha256": template_sha256,
         "method": "ngspice surrogate using SKY130 NMOS VTH Pelgrom slope",
         "vth_slope_v_um": VTH_SLOPE_V_UM,
         "gm_vth_sigma_v": sigma_vth(16.0, 0.30),

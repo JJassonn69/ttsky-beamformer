@@ -1,6 +1,6 @@
 # TT-BF1 two-channel low-IF beamformer
 
-Engineering datasheet and iteration handoff, release candidate 1.1
+Engineering datasheet and iteration handoff, release candidate 1.3
 
 Target: TinyTapeout SKY130 `ttsky26c`
 
@@ -47,8 +47,9 @@ known.
   decoupling;
 - 4 MHz nominal operation plus extracted 10, 20, and 30 MHz clock
   characterization;
-- A/B; B/A common-centroid channel devices and mirrored passives for improved
-  cancellation yield;
+- A/B; B/A common-centroid channel devices, mirrored equal-valued passive
+  pairs, and a ratio-controlled VCM divider for improved cancellation yield
+  and low-supply headroom;
 - nominal 1.8 V operation using `VDPWR`; no `VAPWR` dependency;
 - 161.00 x 225.76 um 1x2 TinyTapeout analog macro;
 - 70 placed SKY130 PCells and 338 extracted MOS fingers;
@@ -120,7 +121,7 @@ foundry absolute-maximum ratings.
 | Input frequency | 5 MHz | `LO + 1 MHz` characterized | Two phase-locked sources. |
 | Useful output | 1 MHz | 1 MHz signoff point | Difference product, measured differentially. |
 | Input amplitude | 10 mVpp/channel | 10 to 30 mVpp intended | AC-coupled; compression is not yet characterized. |
-| Input common mode | Internally biased | approximately 0.9 V design target | Do not externally force DC common mode. |
+| Input common mode | Internally biased | approximately two-thirds of `VDPWR` (1.20 V nominal) | Do not externally force DC common mode. |
 | Output load | high impedance | 1 Mohm fixture; 0 to 10 pF planned sweep | Never terminate either output directly in 50 ohms. |
 | External LPF | approximately 2 MHz | two-pole simulation fixture | Required to reject higher mixer products. |
 
@@ -168,10 +169,12 @@ the common mode.
 ### 7.1 Shared bias and common mode
 
 A diode-connected NMOS implemented as two matched 16 um/0.50 um units and an
-approximately 10.60 kohm poly resistor generate the shared bias. Two
-approximately 100.15 kohm
-extra-high-resistance poly devices generate the common-mode reference, which is
-decoupled by a 22 x 22 um M3 MIM capacitor of approximately 0.983 pF.
+approximately 10.60 kohm poly resistor generate the shared bias. Approximately
+66.77 kohm top and 133.54 kohm bottom extra-high-resistance poly devices
+generate an approximately two-thirds-of-`VDPWR` common-mode reference. The divider
+retains the original total resistance while providing output headroom at
+low-supply/slow-process corners. It is decoupled by a 22 x 22 um M3 MIM
+capacitor of approximately 0.983 pF.
 
 ### 7.2 Channel transconductors
 
@@ -207,7 +210,7 @@ and logical depth remain comparable.
 | Output load | 2 | `res_high_po_1p41` | approximately 2.93 kohm each |
 | Bias resistor | 1 | `res_high_po_1p41` | approximately 10.60 kohm |
 | Input bias | 2 | `res_xhigh_po_1p41` | approximately 100.15 kohm each |
-| VCM divider | 2 | `res_xhigh_po_1p41` | approximately 100.15 kohm each |
+| VCM divider | 2 | `res_xhigh_po_1p41` | approximately 66.77 / 133.54 kohm (1:2 top/bottom ratio) |
 | VCM bypass | 1 | `cap_mim_m3_1` | approximately 0.983 pF |
 
 All passives are predefined SKY130 PCells. Their physical geometry is generated
@@ -230,7 +233,8 @@ applies the 20 dB release gate to the broad time-domain RMS detector, while
 `make layout-frequency-sweep` independently records both the 40 dB nominal
 target and the 20 dB release gate at the coherent wanted tone.
 
-All extracted tests use the final parasitic netlist, TT primitive models unless
+All extracted tests use `build/layout/extracted_rc.spice`, the final
+distributed-resistance and capacitance netlist, with TT primitive models unless
 otherwise stated, 1.8 V, 27 C, equal 10 mVpp inputs, and paired constructive and
 destructive runs with equal settling time. The frequency testbench already
 includes 500 ohm series plus 5 pF shunt loading on each input and 500 ohm
@@ -242,48 +246,49 @@ that the eventual package has those exact values.
 
 | LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
 |---:|---:|---:|---:|---:|---:|
-| 4 MHz | 5 MHz | 0.8103 mVrms | 54.45 dB | pass | pass |
-| 10 MHz | 11 MHz | 0.7566 mVrms | 48.45 dB | pass | pass |
-| 20 MHz | 21 MHz | 0.6888 mVrms | 34.85 dB | miss | pass |
-| 30 MHz | 31 MHz | 0.6584 mVrms | 33.54 dB | miss | pass |
+| 4 MHz | 5 MHz | 0.9999 mVrms | 66.96 dB | pass | pass |
+| 10 MHz | 11 MHz | 1.1594 mVrms | 44.30 dB | pass | pass |
+| 20 MHz | 21 MHz | 1.1599 mVrms | 41.96 dB | pass | pass |
+| 30 MHz | 31 MHz | 1.1594 mVrms | 38.84 dB | miss | pass |
 
-The output retains 81.3 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
-The 30 MHz mode is therefore useful for characterization, but it is not the
-datasheet operating point: only 4 MHz is carried as `clock_hz` in the
-TinyTapeout metadata and through the complete release matrix. The principal
-higher-speed degradation is cancellation depth, not failure of the clock
-drivers.
+The wanted-tone amplitude remains approximately 1.0 to 1.16 mVrms throughout
+the sweep; the 30 MHz result is 116.0 percent of the 4 MHz amplitude. The
+30 MHz mode is nevertheless characterization-only: only 4 MHz is carried as
+`clock_hz` in the TinyTapeout metadata and through the complete release matrix.
+The principal higher-speed degradation is cancellation depth, not gain or
+failure of the clock drivers.
 
-An independent Ubuntu replay with ngspice 44.2 and the same extracted-netlist
-hash measured 0.8070 mVrms constructive output and 60.88 dB null at 4 MHz.
-The constructive amplitudes agree within approximately 0.4 percent. Very deep
-cancellation is numerically sensitive to solver version, so this datasheet
-uses the lower ngspice 46 result, 54.45 dB, rather than claiming the larger
-cross-check value. Both independently clear the 40 dB nominal target.
+An independent macOS replay with ngspice 46 and the same extracted-netlist
+hash measured 0.9335 mVrms constructive output and 52.52 dB null at 4 MHz.
+Very deep cancellation is numerically sensitive to solver version, so both
+solver results are preserved rather than silently selecting one. Both
+independently clear the 40 dB nominal target.
 
 ### 8.3 Extracted clock integrity
 
 Dedicated extracted-clock simulations independently measure the complementary
 and per-channel LO rails. All four clock points pass rail, edge-time,
-complement-skew, and paired-channel-skew gates.
+complement-skew, and paired-channel-skew gates. The rail gate now rejects both
+undershoot below -0.10 V and overshoot above 1.90 V rather than checking only
+that a logic threshold was crossed.
 
 | LO | Slowest measured edge | Worst paired-channel skew | Result |
 |---:|---:|---:|---:|
-| 4 MHz | 0.205 ns | 0.045 ns | pass |
-| 10 MHz | 0.206 ns | 0.041 ns | pass |
-| 20 MHz | 0.180 ns | 0.049 ns | pass |
-| 30 MHz | 0.151 ns | 0.036 ns | pass |
+| 4 MHz | 0.193 ns | 0.024 ns | pass |
+| 10 MHz | 0.190 ns | 0.022 ns | pass |
+| 20 MHz | 0.192 ns | 0.021 ns | pass |
+| 30 MHz | 0.188 ns | 0.022 ns | pass |
 
-At 30 MHz the measured selected-rail extrema are approximately -5 mV and
-1.95 V in the ideal-pad testbench. These small overshoots should be rechecked
+At 30 MHz the measured selected-rail extrema are approximately -12 mV and
+1.868 V in the ideal-pad testbench. These small overshoots should be rechecked
 with shuttle pad, package, and board models before treating 30 MHz as a field
 rating.
 
 ### 8.4 Nominal channel balance
 
 Driving each channel independently through the same extracted testbench gives
-0.0000374 percent nominal amplitude difference. The amplitude-only
-cancellation estimate is 134.56 dB; the actual switched two-channel null is
+0.0016874 percent nominal amplitude difference. The amplitude-only
+cancellation estimate is 101.48 dB; the actual switched two-channel null is
 lower because phase skew, residual clock products, and detector bandwidth also
 contribute.
 This is a deterministic result, not a yield prediction.
@@ -294,8 +299,8 @@ The open SKY130 model files contain Spectre `statistics` blocks that ngspice
 cannot execute. A reproducible 30-trial surrogate therefore applies the SKY130
 NMOS threshold Pelgrom slope of 3.356 mV-um to the channel input and tail
 devices and adds independent 0.5 percent load-resistor variation. With seed
-130, all 30 trials pass the 20 dB requirement: the worst null is 39.28 dB, the
-empirical fifth percentile is 39.72 dB, and the median is 49.39 dB.
+130, all 30 trials pass the 20 dB requirement: the worst null is 39.22 dB, the
+empirical fifth percentile is 39.72 dB, and the median is 49.01 dB.
 
 The input-device one-sigma threshold offset is 1.532 mV for 16 um x 0.30 um;
 the tail value is 0.770 mV for 38 um x 0.50 um. This test is valuable evidence
@@ -312,6 +317,13 @@ equal-duration constructive and destructive simulations. The committed JSON
 report is the authoritative source for all 45 cases; its summary is inserted
 into `submission/signoff.json` by the release process.
 
+Each case requires more than 1 mVrms constructive output, at least 20 dB null,
+common mode above 1.0 V with at least 0.10 V headroom below the active swept
+supply, less than 1 mA supply current, and less than 10 percent sum/null
+current difference. The headroom rule scales correctly through the intentional
+1.62-to-1.98 V supply characterization; it does not impose a fixed 1.75 V
+ceiling at the 1.98 V cases.
+
 | Metric | Final extracted result |
 |---|---:|
 | Cases passed | 45/45 |
@@ -324,18 +336,19 @@ into `submission/signoff.json` by the release process.
 
 The nominal TT, 1.80 V, 27 C time-domain result is 16.783 mVrms
 constructive, 0.196 mVrms destructive, 38.63 dB null, 1.504 V common mode,
-and 0.323 mA. Its null is lower than the 54.45 dB coherent wanted-tone result
+and 0.323 mA. Its null is lower than the 66.96 dB coherent wanted-tone result
 because the time-domain detector also includes residual filtered switching
 products, as described in Section 8.1.
 
 ### 8.7 Schematic and block regressions
 
-- integrated schematic nominal: 5.432 mVrms useful-tone constructive output
-  and approximately 0.352 mA current;
+- integrated schematic nominal: 5.815 mVrms constructive output and
+  approximately 0.375 mA current;
 - ideal 1 dB gain/8 degree phase-error envelope: 20.3701 dB null;
 - transistor mixer 1 dB/8 degree error envelope: 20.3721 dB null;
 - bias reference and passive PDK smoke tests pass for the pinned model set; and
-- refreshed schematic 45-case PVT: 45/45 pass with an 85.78 dB minimum null;
+- refreshed schematic 45-case PVT: 45/45 pass with an 81.08 dB minimum null
+  and 0.292 V minimum output high-side headroom;
   it remains a topology-level cross-check, while the final extracted matrix
   supersedes its numerical result.
 
@@ -349,13 +362,13 @@ products, as described in Section 8.1.
 | Extracted MOS fingers | 338 |
 | Extracted passives | 8 |
 | Generated terminal routes | 271 on 30 named tracks |
-| Generated route geometry | 7,367 shapes; overlap audit passed |
+| Generated route geometry | 7,214 nonzero-area shapes; overlap, connectivity, and top-pin audits passed |
 | Signal routing | local M2, compact M3 tracks, shared local M4 risers |
 | Power | `VDPWR` and `VGND`; no `VAPWR` |
-| GDS size | 688,306 bytes, uncompressed GDSII |
-| GDS SHA-256 | `1010991ccf40aff786186e0e23cf0a38b2151f71a0e4d575b1dea4258693ca9d` |
+| GDS size | 755,306 bytes, uncompressed GDSII |
+| GDS SHA-256 | `6d620f373932d0711c67ad4c22a11ba384e06a75e74e4e4b50b79239ed66c609` |
 | LEF SHA-256 | `9df231957326895371afc1f5e903b51e7992b3b6f8c3401546fa7ef7d82eb760` |
-| Extracted SPICE SHA-256 | `2a2d3d6d918b80a4c4302036bf7feb8792876b1fbf6c7e35be2caf6bc6ccb65c` |
+| Distributed-RC SPICE SHA-256 | `9b4d802906e882d9df5c23f9ede787415a0bb79b1a14d98dd36da32883327a24` |
 | Official DEF SHA-256 | `042803101760925474f602e69119f497922eb912c37a6651bed030164bb576af` |
 
 ### 9.1 Matching architecture
@@ -365,9 +378,11 @@ separate regions. The final version replaces every matching-critical channel
 device with equal halves and places the halves as A/B on the first row and B/A
 on the second. The centroids of channels A and B are therefore coincident for
 each transconductor input, reference device, tail, and mixer-switch group. The
-input-bias, VCM-divider, and output-load resistors are mirrored around their
-pair axes. Device orientation, finger count, local contacts, and breakout
-direction are held equal within each pair.
+equal input-bias and output-load resistors are mirrored around their pair axes.
+The unequal VCM divider retains its deliberate 1:2 resistance ratio and
+symmetric local breakout rather than being described as an equal matched pair.
+Device orientation, finger count, local contacts, and breakout direction are
+held equal within every actual matched pair.
 
 This structure strongly rejects first-order linear process gradients and makes
 local route parasitics much closer. It cannot remove microscopic random
@@ -387,9 +402,50 @@ Carlo quantify the available margin against that residual.
   unnecessary via stacks;
 - M2 is used for short device-terminal escape rather than long global nets;
 - the router forbids both vertical M4 and horizontal M3 crossings through the
-  full MIM-capacitor footprint; and
-- generated-shape overlap checking runs before Magic, followed by extraction
-  feedback and unexpected-net-equivalence checks.
+  full MIM-capacitor footprint;
+- ordinary route breakouts stop below a full-width top-edge keep-out, and an
+  independent audit models every standard TinyTapeout top M4 pin; and
+- generated same-layer/via-to-metal overlap and disconnected-island checking
+  runs before Magic,
+  followed by extraction
+  feedback, unexpected-net-equivalence checks, and an explicit distributed-RC
+  coverage gate.
+
+The router also emits `route_matching.json` from the exact generated TCL.
+Required constraints cover aggregate analog inputs/outputs, GM and tail nets,
+both input-GM branches, both output loads, and all eight switch-drain output
+branches. They compare unioned M3/M4 length (so duplicate paint and via landing
+pads are not double-counted) plus via-site equality or an explicit small via
+delta. Cross-net same-layer overlap is always fatal. LO wire-length/path
+comparisons remain diagnostic because the branched clocks cannot be judged
+reliably by one aggregate Manhattan number; their release gate is the actual
+zero-pruning extracted transient, with <50 ps paired-channel skew, <150 ps
+complement skew, and <250 ps edge time required at 4, 10, 20, and 30 MHz.
+
+The routed device escapes are 0.32 um on M2; named M3/M4 tracks and risers are
+0.40 um. These widths satisfy SKY130 minimum geometry while avoiding the
+excessive capacitance of making every local signal a wide power-style strap.
+The exact unioned-length constraint results are:
+
+| Matched route set | Required total-length limit | Measured mismatch |
+|---|---:|---:|
+| Analog input pins `ua[0]` / `ua[1]` | <=2.0% and equal via counts | 1.397% |
+| Differential output pins `ua[2]` / `ua[3]` | <=1.0% and equal via counts | 0.935% |
+| Channel GM positive / negative | <=2.0% | 0.121% / 0.427% |
+| Channel tail-current nets | <=2.0% | 0.126% |
+| Upper / lower input-to-GM endpoints | <=2.0% | 0.746% / 1.510% |
+| Differential output-load endpoints | <=2.0% | 0.213% |
+| Eight switch-drain-to-output endpoint pairs | <=2.0% | 1.312% to 1.929% |
+
+All required endpoint pairs also have equal via-1, via-2, and via-3 counts;
+the only explicit exceptions are the aggregate internal GM/tail trees, whose
+via-3 deltas are bounded because their legal local branches are asymmetric.
+This answers pin-length matching separately from device matching: the P/N
+outputs and both analog inputs are constrained all the way to their boundary
+pins, while individual critical device endpoints are constrained as their own
+pairs.
+
+![Top-edge M4 pins and the internal-route clearance band in the exact GDS](images/beamformer-top-boundary-detail.png)
 
 ### 9.3 What each visible GDS layer does
 
@@ -442,6 +498,32 @@ These figures are parsed directly from the committed GDSII hierarchy. They are
 not a schematic, a Magic source-cell screenshot, or a post-fabrication
 micrograph.
 
+### 9.6 Distributed-RC extraction views
+
+The extraction flow deliberately produces three different netlists so their
+purposes cannot be confused:
+
+| View | Contents | Use |
+|---|---|---|
+| `extracted.spice` | devices plus all extracted capacitances; no explicit route resistors | device/topology reference |
+| `extracted_rc.spice` | devices, capacitances, and Magic `.res.ext` resistor networks | every post-layout electrical regression |
+| `extracted_lvs.spice` | devices with parasitic C/R suppressed | topology/LVS-style comparison |
+
+`ext2spice rthresh 0` alone does not create a distributed network. The pinned
+Magic 8.3.676 flow first sets `extresist threshold 0`, `mindelay 0`, and
+`minres 0`, disables simplification, and runs `extract do resistance`. Only
+then does `ext2spice extresist on` consume the generated `.res.ext` files.
+Consequently the simulation view is a literal zero-pruning network, not a
+lumped-R estimate or a capacitance-only extraction.
+
+`tools/check_distributed_rc.py` compares the views and fails unless the
+resistance annotation is fresh, explicit positive resistor segments and
+internal nodes exist, the device count is preserved, capacitance is
+distributed onto the new nodes, all 30 manifest electrical nets appear in the
+resistor graph, and every resistor-network component is anchored to one of
+those nets. The signed submission evidence also freezes the exact RC
+netlist, its hash, and this coverage report.
+
 ## 10. Physical and submission verification
 
 The following checks are complete for the local release candidate:
@@ -456,8 +538,14 @@ The following checks are complete for the local release candidate:
 - extraction topology: 338 MOS fingers, eight passives, connected power, one
   MIM capacitor, and no unexpected net equivalences;
 - exact extracted-device and parasitic-capacitor multisets agree with the
-  electrically simulated final candidate;
-- generated route overlap audit: pass for 7,367 generated shapes;
+  resistance-free extraction reference;
+- distributed-RC coverage: 11,368 explicit SPICE resistors, 6,382 capacitors,
+  6,559 internal resistor nodes, 6,364 top-level route annotations, exactly 30
+  manifest-anchored resistor components, and zero floating extracted
+  components;
+- generated route same-layer/via/connectivity/top-boundary audit: pass for
+  7,214 nonzero-area generated shapes and zero disconnected same-net
+  components;
 - dependency-free flattened-GDS audit: zero M3 spacing, M4 spacing, M4 width,
   M4 connected-area, or capm-to-unrelated-M3 markers;
 - official static prechecks: 8/8 locally runnable checks pass, covering top
@@ -478,14 +566,39 @@ rule class to produce a marker and require clean reference geometry to produce
 none. The exact release-GDS regression and those detector tests now run from
 `make verify`, `make layout-signoff`, `make release-check`, and before the
 custom-GDS Action.
-The extraction gate separately rejects unexpected net equivalences and an
-incorrect 338-finger/eight-passive device multiset.
+The separate generated-route audit runs on the exact route TCL immediately
+before Magic paint; its report must be newer than the route generator and
+manifest when evidence is frozen, and those sources are then hash-locked.
+Synthetic route tests in `make verify` and CI cover same-layer overlap,
+cross-net via landing, disconnected same-net islands, top-pin clearance,
+endpoint matching, and path-matching failure modes without requiring a local
+PDK installation.
+The extraction gates separately reject unexpected net equivalences, an
+incorrect 338-finger/eight-passive device multiset, missing `.res.ext`
+annotations, an RC view without explicit resistor/internal nodes, changed
+device count, or any manifest net omitted from the resistor graph.
+The physical Make dependency graph always regenerates placement before route
+paint and route paint before extraction. This matters because Magic paint is
+additive: without the dependency, rerunning two route revisions in the same
+buffered cell can create a short even when each generated script independently
+passes its source-geometry audit.
 
 The same audit found that the previously tracked schematic PVT JSON predated
 the clock/matching schematic edit. The final release reruns that full matrix,
 copies it only from `build/` during evidence freezing, rejects reports older
 than their primary inputs, and records the input hashes. This is why report
 freshness is now a release invariant rather than a manual assumption.
+
+That rerun also exposed a real low-supply slow-corner bias weakness that the
+old fixed 1.75 V common-mode ceiling obscured. The gate now checks both a
+1.0 V receiver-side floor and at least 0.10 V of headroom below the active
+swept supply. The VCM divider was changed from 1:1 to a fixed-total-resistance
+1:2 ratio, moving the input reference to approximately two-thirds of `VDPWR`; the
+complete schematic and distributed-RC PVT matrices were then restarted from
+the changed source/netlist. Unit tests independently prove that the
+supply-relative rule accepts a safe high-supply point and rejects inadequate
+headroom. This closes the specific path by which an absolute threshold and a
+stale report could previously appear clean while hiding lost analog margin.
 
 The GitHub workflow remains the final mechanical submission gate because it
 runs the complete pinned TinyTapeout Magic and KLayout rule set. The exact
@@ -513,8 +626,8 @@ paying for fabrication.
 | SKY130 primitive simulation models | `f62031a1be9aefe902d6d54cddd6f59b57627436` |
 | Magic | 8.3.676 |
 | KLayout precheck library | 0.30.8 |
-| ngspice | 46 |
-| Independent Ubuntu cross-check | ngspice 44.2, 4 MHz extracted wanted-tone case |
+| Primary extracted matrix/sweeps | ngspice 44.2 on Ubuntu |
+| Independent cross-check | ngspice 46 on macOS, 4 MHz exact-RC wanted-tone case |
 
 Only the sparse primitive model checkout is required for local schematic and
 extracted simulation. The complete PDK is required for PCell generation,
@@ -561,11 +674,14 @@ with the layout-script generators. The fabrication views are
 `submission/extracted_frequency_sweep.json`,
 `submission/extracted_clock_sweep.json`,
 `submission/extracted_channel_balance.json`,
+`submission/distributed_rc_coverage.json`,
+`submission/route_matching.json`,
 `submission/mismatch_mc_summary.json`, and the GDS-bound official Action
 attestation in `submission/official_action.json`. The independent solver replay
-is preserved in `submission/linux_ngspice44_frequency_crosscheck.json`.
-`submission/simulation_inputs.json` binds the frozen reports to the extracted
-SPICE, testbenches, runners, and corner-include hashes. Evidence freezing also
+is preserved in `submission/independent_ngspice46_frequency_crosscheck.json`.
+`submission/extracted_rc.spice` is the exact zero-pruning simulation netlist.
+`submission/simulation_inputs.json` binds the frozen reports to that extracted
+SPICE, the testbenches, runners, and corner-include hashes. Evidence freezing also
 rejects a generated report older than any of its primary inputs.
 
 ## 13. First-silicon bench procedure
@@ -695,3 +811,4 @@ requirement.
 | RC1.0 | 2026-07-19 | Initial 1x2 binary 0/180-degree low-IF beamformer; GDS/LEF frozen, nominal extracted and 45-corner extracted PVT passing, local physical/release gates passing. |
 | RC1.1 | 2026-07-20 | Split A/B; B/A common-centroid GM, tail, and mixer devices; mirrored passives; stronger/equalized LO paths; MIM route keep-out; extracted 4-30 MHz and clock sweeps; mismatch surrogate; regenerated GDS and direct-GDS layer images. |
 | RC1.2 | 2026-07-20 | Flattened-GDS cross-hierarchy spacing/width/area/capm regression; corrected M3/M4 and capacitor routing; official 15/15 TinyTapeout precheck pass; GDS-bound Action attestation; detector-specific electrical gates; report freshness and simulation-input locks. |
+| RC1.3 | 2026-07-20 | Literal zero-pruning distributed metal-RC extraction; RC-netlist hash binding on every extracted regression; numeric input/output/device endpoint matching constraints; all-top-pin M4 clearance; cross-net via and same-net floating-island rejection; no-op paint removal; supply-relative output-headroom PVT rule; ratio-controlled 1:2 VCM divider with schematic/layout consistency regression; refreshed exact-GDS inspection images and 45-corner evidence. |

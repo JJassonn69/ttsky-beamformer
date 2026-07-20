@@ -28,8 +28,9 @@ def main() -> None:
     clock = read_json("extracted_clock_sweep.json")
     balance = read_json("extracted_channel_balance.json")
     pvt = read_json("extracted_pvt_summary.json")
-    linux = read_json("linux_ngspice44_frequency_crosscheck.json")
+    independent = read_json("independent_ngspice46_frequency_crosscheck.json")
     core_pvt = read_json("core_pvt_summary.json")
+    mismatch = read_json("mismatch_mc_summary.json")
     signoff = read_json("signoff.json")
 
     for result in frequency["results"]:
@@ -81,6 +82,9 @@ def main() -> None:
         for item in pvt_results
         for key in ("sum_supply", "null_supply")
     ]
+    worst_headroom = min(
+        pvt_results, key=lambda item: float(item["output_high_headroom_v"])
+    )
     require(
         datasheet,
         (
@@ -119,6 +123,17 @@ def main() -> None:
         ),
         "datasheet PVT table",
     )
+    require(
+        datasheet,
+        (
+            f"| Minimum output high-side headroom | "
+            f"{float(worst_headroom['output_high_headroom_v']):.3f} V at "
+            f"{str(worst_headroom['corner']).upper()}, "
+            f"{float(worst_headroom['supply_v']):.2f} V, "
+            f"{int(worst_headroom['temperature_c'])} C |"
+        ),
+        "datasheet PVT table",
+    )
 
     nominal = next(
         item for item in pvt_results if item["case"] == "tt_1.80v_p27c"
@@ -147,6 +162,9 @@ def main() -> None:
     require(readme, f"with a {worst_null:.2f} dB worst null;", "README PVT result")
     require(plan, f"45/45 pass, {worst_null:.2f} dB worst null at", "pre-silicon plan")
     core_minimum = min(float(item["null_db"]) for item in core_pvt["results"])
+    core_headroom = min(
+        float(item["output_high_headroom_v"]) for item in core_pvt["results"]
+    )
     require(
         datasheet,
         f"schematic 45-case PVT: 45/45 pass with an {core_minimum:.2f} dB minimum null",
@@ -157,15 +175,43 @@ def main() -> None:
         f"schematic PVT: 45/45 pass with an {core_minimum:.2f} dB minimum null",
         "pre-silicon schematic PVT result",
     )
-
-    linux_result = linux["results"][0]
+    for document, text in (("datasheet", datasheet), ("pre-silicon plan", plan)):
+        require(
+            text,
+            f"{core_headroom:.3f} V minimum output high-side headroom",
+            f"{document} schematic PVT headroom",
+        )
+    mismatch_minimum = float(mismatch["minimum_null_db"])
+    mismatch_p05 = float(mismatch["p05_null_db"])
+    mismatch_median = float(mismatch["median_null_db"])
     require(
         datasheet,
         (
-            f"measured {float(linux_result['sum']['tone_rms']) * 1e3:.4f} mVrms "
-            f"constructive output and {float(linux_result['null_db']):.2f} dB null"
+            f"the worst null is {mismatch_minimum:.2f} dB, the\n"
+            f"empirical fifth percentile is {mismatch_p05:.2f} dB, and the "
+            f"median is {mismatch_median:.2f} dB"
         ),
-        "datasheet Linux cross-check",
+        "datasheet mismatch result",
+    )
+    require(
+        readme,
+        f"with {mismatch_minimum:.2f} dB worst-case",
+        "README mismatch result",
+    )
+    require(
+        plan,
+        f"30/30 pass, {mismatch_minimum:.2f} dB worst null",
+        "pre-silicon mismatch result",
+    )
+
+    independent_result = independent["results"][0]
+    require(
+        datasheet,
+        (
+            f"measured {float(independent_result['sum']['tone_rms']) * 1e3:.4f} mVrms "
+            f"constructive output and {float(independent_result['null_db']):.2f} dB null"
+        ),
+        "datasheet independent cross-check",
     )
 
     artifact_labels = {
@@ -182,7 +228,7 @@ def main() -> None:
 
     print(
         "Documented metrics passed: frequency, clock, balance, extracted and "
-        "schematic PVT, Linux cross-check, and artifact hashes match frozen evidence"
+        "schematic PVT, independent cross-check, and artifact hashes match frozen evidence"
     )
 
 

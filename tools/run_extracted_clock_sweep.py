@@ -4,10 +4,17 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import subprocess
 from pathlib import Path
+
+from run_lock import acquire_run_lock
+try:
+    from simulation_provenance import ngspice_provenance
+except ModuleNotFoundError:
+    from tools.simulation_provenance import ngspice_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "spice" / "sky130" / "extracted_clock_tb.spice"
@@ -17,6 +24,11 @@ MEASURES = (
     "ch1_lon_fall", "ch2_lop_fall", "ch1_lop_high", "ch2_lon_high",
     "ch1_lon_low", "ch2_lop_low",
 )
+PAIRED_SKEW_LIMIT_S = 50e-12
+COMPLEMENT_SKEW_LIMIT_S = 150e-12
+EDGE_LIMIT_S = 250e-12
+RAIL_MIN_V = -0.10
+RAIL_MAX_V = 1.90
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,7 +36,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frequencies", default="4,10,20,30",
                         help="comma-separated clock frequencies in MHz")
     parser.add_argument("--ngspice", default="ngspice")
-    parser.add_argument("--netlist", default="build/layout/extracted.spice")
+    parser.add_argument("--netlist", default="build/layout/extracted_rc.spice")
     return parser.parse_args()
 
 
@@ -42,12 +54,16 @@ def measurements(path: Path) -> dict[str, float]:
 
 def main() -> int:
     args = parse_args()
+    netlist_path = ROOT / args.netlist
+    netlist_sha256 = hashlib.sha256(netlist_path.read_bytes()).hexdigest()
     frequencies = [float(item) for item in args.frequencies.split(",")]
-    template = TEMPLATE.read_text(encoding="utf-8").replace(
+    template = (f"* extracted_netlist_sha256={netlist_sha256}\n" +
+                TEMPLATE.read_text(encoding="utf-8")).replace(
         '.include "build/layout/extracted.spice"', f'.include "{args.netlist}"'
     )
     build = ROOT / "build" / "extracted_clock"
     build.mkdir(parents=True, exist_ok=True)
+    run_lock = acquire_run_lock(build / ".run.lock")
     results: list[dict[str, object]] = []
     for frequency_mhz in frequencies:
         tag = f"{frequency_mhz:g}mhz".replace(".", "p")
@@ -79,11 +95,22 @@ def main() -> int:
                 values["ch1_lon_fall"], values["ch2_lop_fall"],
             )
             checks = {
-                "rail_high": min(values["ch1_lop_high"], values["ch2_lon_high"]) > 1.70,
-                "rail_low": max(values["ch1_lon_low"], values["ch2_lop_low"]) < 0.10,
-                "paired_channel_skew": max(p_pair_skew, n_pair_skew) < 1e-9,
-                "complement_skew": complement_skew < 1e-9,
-                "edge_fraction": max_edge < 0.10 * period,
+                "rail_high": (
+                    min(values["ch1_lop_high"], values["ch2_lon_high"]) > 1.70
+                    and max(values["ch1_lop_high"], values["ch2_lon_high"])
+                    < RAIL_MAX_V
+                ),
+                "rail_low": (
+                    max(values["ch1_lon_low"], values["ch2_lop_low"]) < 0.10
+                    and min(values["ch1_lon_low"], values["ch2_lop_low"])
+                    > RAIL_MIN_V
+                ),
+                "paired_channel_skew": (
+                    max(p_pair_skew, n_pair_skew) < PAIRED_SKEW_LIMIT_S
+                ),
+                "complement_skew": complement_skew < COMPLEMENT_SKEW_LIMIT_S,
+                "absolute_edge_time": max_edge < EDGE_LIMIT_S,
+                "edge_fraction": max_edge < 0.02 * period,
             }
             result = {
                 "frequency_mhz": frequency_mhz,
@@ -98,6 +125,17 @@ def main() -> int:
         results.append(result)
         print(("PASS" if result["passed"] else "FAIL"), tag, flush=True)
     report = {
+        **ngspice_provenance(args.ngspice),
+        "netlist": args.netlist,
+        "netlist_sha256": netlist_sha256,
+        "limits": {
+            "paired_channel_skew_s": PAIRED_SKEW_LIMIT_S,
+            "complement_skew_s": COMPLEMENT_SKEW_LIMIT_S,
+            "edge_time_s": EDGE_LIMIT_S,
+            "edge_fraction": 0.02,
+            "rail_min_v": RAIL_MIN_V,
+            "rail_max_v": RAIL_MAX_V,
+        },
         "frequencies_mhz": frequencies,
         "pass_count": sum(bool(item["passed"]) for item in results),
         "case_count": len(results),

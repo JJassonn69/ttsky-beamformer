@@ -9,6 +9,219 @@
     "gm1_p", "gm1_n", "tail1", "gm2_p", "gm2_n", "tail2"
   ],
   "pin_aliases": {"select": "ui_in[0]"},
+  "route_column_overrides": {
+    "ua[0]": 48.0,
+    "ua[1]": 15.2,
+    "ua[2]": 109.6,
+    "ua[3]": 97.6,
+    "ch1_lop": 102.4,
+    "ch2_lop": 60.8,
+    "ch1_lon": 120.0,
+    "ch2_lon": 112.0,
+    "gm1_p": 21.6,
+    "gm2_p": 24.0,
+    "gm1_n": 60.0,
+    "gm2_n": 61.6,
+    "tail1": 56.8,
+    "tail2": 62.4
+  },
+  "route_escape_overrides": {
+    "XRLOADP.R2": 137.2
+  },
+  "route_match_constraints": [
+    {
+      "name": "analog_inputs",
+      "nets": ["ua[0]", "ua[1]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 5.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "differential_outputs",
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_total_length_mismatch_percent": 1.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "final_lo_positive",
+      "nets": ["ch1_lop", "ch2_lop"],
+      "required": false,
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "final_lo_negative",
+      "nets": ["ch1_lon", "ch2_lon"],
+      "required": false,
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "gm_positive",
+      "nets": ["gm1_p", "gm2_p"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 5.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2"],
+      "max_via_site_delta": {"via3": 2}
+    },
+    {
+      "name": "gm_negative",
+      "nets": ["gm1_n", "gm2_n"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 5.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2"],
+      "max_via_site_delta": {"via3": 2}
+    },
+    {
+      "name": "tail_currents",
+      "nets": ["tail1", "tail2"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2"],
+      "max_via_site_delta": {"via3": 1}
+    }
+  ],
+  "route_endpoint_constraints": [
+    {
+      "name": "input_gm_upper",
+      "endpoints": ["XCH1_GM1A.G", "XCH2_GM1A.G"],
+      "nets": ["ua[0]", "ua[1]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "input_gm_lower",
+      "endpoints": ["XCH1_GM1B.G", "XCH2_GM1B.G"],
+      "nets": ["ua[0]", "ua[1]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "input_bias_resistors",
+      "endpoints": ["XRIN1.R1", "XRIN2.R1"],
+      "nets": ["ua[0]", "ua[1]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 25.0,
+      "max_total_length_mismatch_percent": 10.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_loads",
+      "endpoints": ["XRLOADP.R2", "XRLOADN.R2"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch1_gmp_upper",
+      "endpoints": ["XCH1_SW1A.D", "XCH1_SW2A.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch2_gmp_upper",
+      "endpoints": ["XCH2_SW1A.D", "XCH2_SW2A.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch1_gmp_lower",
+      "endpoints": ["XCH1_SW1B.D", "XCH1_SW2B.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch2_gmp_lower",
+      "endpoints": ["XCH2_SW1B.D", "XCH2_SW2B.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch1_gmn_upper",
+      "endpoints": ["XCH1_SW4A.D", "XCH1_SW3A.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch2_gmn_upper",
+      "endpoints": ["XCH2_SW4A.D", "XCH2_SW3A.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch1_gmn_lower",
+      "endpoints": ["XCH1_SW4B.D", "XCH1_SW3B.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "output_ch2_gmn_lower",
+      "endpoints": ["XCH2_SW4B.D", "XCH2_SW3B.D"],
+      "nets": ["ua[2]", "ua[3]"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    }
+  ],
+  "route_path_constraints": [
+    {
+      "name": "final_lo_positive_paths",
+      "required": false,
+      "path_pairs": [
+        [["XCH1LP_N.D", "XCH1_SW1A.G"], ["XCH2LP_N.D", "XCH2_SW1A.G"]],
+        [["XCH1LP_N.D", "XCH1_SW1B.G"], ["XCH2LP_N.D", "XCH2_SW1B.G"]],
+        [["XCH1LP_N.D", "XCH1_SW3A.G"], ["XCH2LP_N.D", "XCH2_SW3A.G"]],
+        [["XCH1LP_N.D", "XCH1_SW3B.G"], ["XCH2LP_N.D", "XCH2_SW3B.G"]],
+        [["XCH1LP_P.D", "XCH1_SW1A.G"], ["XCH2LP_P.D", "XCH2_SW1A.G"]],
+        [["XCH1LP_P.D", "XCH1_SW1B.G"], ["XCH2LP_P.D", "XCH2_SW1B.G"]],
+        [["XCH1LP_P.D", "XCH1_SW3A.G"], ["XCH2LP_P.D", "XCH2_SW3A.G"]],
+        [["XCH1LP_P.D", "XCH1_SW3B.G"], ["XCH2LP_P.D", "XCH2_SW3B.G"]]
+      ],
+      "nets": ["ch1_lop", "ch2_lop"],
+      "layers": ["metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 3.0,
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    }
+  ],
   "devices": [
     {"name":"XCH1_GM1A","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":14,"y":18,"match_group":"gm_sig","unit":"A","nets":{"D":"gm1_p","G":"ua[0]","S":"tail1","B":"VGND"}},
     {"name":"XCH2_GM1A","kind":"nmos","total_w":8.0,"l":0.30,"nf":5,"x":34,"y":18,"match_group":"gm_sig","unit":"B","nets":{"D":"gm2_p","G":"ua[1]","S":"tail2","B":"VGND"}},
@@ -24,21 +237,21 @@
     {"name":"XCH2_TAILB","kind":"nmos","total_w":19.0,"l":0.50,"nf":9,"x":94,"y":36,"match_group":"tail","unit":"B","nets":{"D":"tail2","G":"vbias","S":"VGND","B":"VGND"}},
     {"name":"XCH1_TAILB","kind":"nmos","total_w":19.0,"l":0.50,"nf":9,"x":112,"y":36,"match_group":"tail","unit":"A","nets":{"D":"tail1","G":"vbias","S":"VGND","B":"VGND"}},
 
-    {"name":"XCH1_SW1A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":12,"y":58,"match_group":"sw1","unit":"A","nets":{"D":"ua[2]","G":"ch1_lop","S":"gm1_p","B":"VGND"}},
-    {"name":"XCH2_SW1A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":25,"y":58,"match_group":"sw1","unit":"B","nets":{"D":"ua[2]","G":"ch2_lop","S":"gm2_p","B":"VGND"}},
-    {"name":"XCH1_SW2A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":38,"y":58,"match_group":"sw2","unit":"A","nets":{"D":"ua[3]","G":"ch1_lon","S":"gm1_p","B":"VGND"}},
-    {"name":"XCH2_SW2A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":51,"y":58,"match_group":"sw2","unit":"B","nets":{"D":"ua[3]","G":"ch2_lon","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH1_SW2A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":12,"y":58,"match_group":"sw2","unit":"A","nets":{"D":"ua[3]","G":"ch1_lon","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH1_SW1A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":25,"y":58,"match_group":"sw1","unit":"A","nets":{"D":"ua[2]","G":"ch1_lop","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH2_SW2A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":38,"y":58,"match_group":"sw2","unit":"B","nets":{"D":"ua[3]","G":"ch2_lon","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH2_SW1A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":51,"y":58,"match_group":"sw1","unit":"B","nets":{"D":"ua[2]","G":"ch2_lop","S":"gm2_p","B":"VGND"}},
     {"name":"XCH1_SW3A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":64,"y":58,"match_group":"sw3","unit":"A","nets":{"D":"ua[3]","G":"ch1_lop","S":"gm1_n","B":"VGND"}},
-    {"name":"XCH2_SW3A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":77,"y":58,"match_group":"sw3","unit":"B","nets":{"D":"ua[3]","G":"ch2_lop","S":"gm2_n","B":"VGND"}},
-    {"name":"XCH1_SW4A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":90,"y":58,"match_group":"sw4","unit":"A","nets":{"D":"ua[2]","G":"ch1_lon","S":"gm1_n","B":"VGND"}},
+    {"name":"XCH1_SW4A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":77,"y":58,"match_group":"sw4","unit":"A","nets":{"D":"ua[2]","G":"ch1_lon","S":"gm1_n","B":"VGND"}},
+    {"name":"XCH2_SW3A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":90,"y":58,"match_group":"sw3","unit":"B","nets":{"D":"ua[3]","G":"ch2_lop","S":"gm2_n","B":"VGND"}},
     {"name":"XCH2_SW4A","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":103,"y":58,"match_group":"sw4","unit":"B","nets":{"D":"ua[2]","G":"ch2_lon","S":"gm2_n","B":"VGND"}},
-    {"name":"XCH2_SW1B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":12,"y":76,"match_group":"sw1","unit":"B","nets":{"D":"ua[2]","G":"ch2_lop","S":"gm2_p","B":"VGND"}},
-    {"name":"XCH1_SW1B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":25,"y":76,"match_group":"sw1","unit":"A","nets":{"D":"ua[2]","G":"ch1_lop","S":"gm1_p","B":"VGND"}},
-    {"name":"XCH2_SW2B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":38,"y":76,"match_group":"sw2","unit":"B","nets":{"D":"ua[3]","G":"ch2_lon","S":"gm2_p","B":"VGND"}},
-    {"name":"XCH1_SW2B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":51,"y":76,"match_group":"sw2","unit":"A","nets":{"D":"ua[3]","G":"ch1_lon","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH2_SW2B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":12,"y":76,"match_group":"sw2","unit":"B","nets":{"D":"ua[3]","G":"ch2_lon","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH2_SW1B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":25,"y":76,"match_group":"sw1","unit":"B","nets":{"D":"ua[2]","G":"ch2_lop","S":"gm2_p","B":"VGND"}},
+    {"name":"XCH1_SW2B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":38,"y":76,"match_group":"sw2","unit":"A","nets":{"D":"ua[3]","G":"ch1_lon","S":"gm1_p","B":"VGND"}},
+    {"name":"XCH1_SW1B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":51,"y":76,"match_group":"sw1","unit":"A","nets":{"D":"ua[2]","G":"ch1_lop","S":"gm1_p","B":"VGND"}},
     {"name":"XCH2_SW3B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":64,"y":76,"match_group":"sw3","unit":"B","nets":{"D":"ua[3]","G":"ch2_lop","S":"gm2_n","B":"VGND"}},
-    {"name":"XCH1_SW3B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":77,"y":76,"match_group":"sw3","unit":"A","nets":{"D":"ua[3]","G":"ch1_lop","S":"gm1_n","B":"VGND"}},
-    {"name":"XCH2_SW4B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":90,"y":76,"match_group":"sw4","unit":"B","nets":{"D":"ua[2]","G":"ch2_lon","S":"gm2_n","B":"VGND"}},
+    {"name":"XCH2_SW4B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":77,"y":76,"match_group":"sw4","unit":"B","nets":{"D":"ua[2]","G":"ch2_lon","S":"gm2_n","B":"VGND"}},
+    {"name":"XCH1_SW3B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":90,"y":76,"match_group":"sw3","unit":"A","nets":{"D":"ua[3]","G":"ch1_lop","S":"gm1_n","B":"VGND"}},
     {"name":"XCH1_SW4B","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":103,"y":76,"match_group":"sw4","unit":"A","nets":{"D":"ua[2]","G":"ch1_lon","S":"gm1_n","B":"VGND"}},
 
     {"name":"XBIASA","kind":"nmos","total_w":16.0,"l":0.50,"nf":9,"x":8,"y":98,"match_group":"bias_diode","unit":"A","nets":{"D":"vbias","G":"vbias","S":"VGND","B":"VGND"}},
@@ -79,12 +292,12 @@
     {"name":"XCH2LN_N","kind":"nmos","total_w":8.0,"l":0.15,"nf":5,"x":141,"y":208,"nets":{"D":"ch2_lon","G":"ch2_lon_raw","S":"VGND","B":"VGND"}},
     {"name":"XCH2LN_P","kind":"pmos","total_w":16.0,"l":0.15,"nf":5,"x":141,"y":216,"nets":{"D":"ch2_lon","G":"ch2_lon_raw","S":"VDPWR","B":"VDPWR"}},
 
-    {"name":"XRVCMT","kind":"res_xhigh_po","l":70.5,"x":122,"y":5,"match_group":"vcm_divider","unit":"A","nets":{"R1":"VDPWR","R2":"vcm","B":"VGND"}},
-    {"name":"XRIN1","kind":"res_xhigh_po","l":70.5,"x":132,"y":5,"match_group":"input_bias","unit":"A","nets":{"R1":"ua[0]","R2":"vcm","B":"VGND"}},
-    {"name":"XRIN2","kind":"res_xhigh_po","l":70.5,"x":142,"y":5,"match_group":"input_bias","unit":"B","nets":{"R1":"ua[1]","R2":"vcm","B":"VGND"}},
-    {"name":"XRVCMB","kind":"res_xhigh_po","l":70.5,"x":152,"y":5,"match_group":"vcm_divider","unit":"B","nets":{"R1":"vcm","R2":"VGND","B":"VGND"}},
-    {"name":"XRLOADP","kind":"res_high_po","l":11.6117,"x":132,"y":83,"match_group":"output_load","unit":"A","nets":{"R1":"VDPWR","R2":"ua[2]","B":"VGND"}},
-    {"name":"XRLOADN","kind":"res_high_po","l":11.6117,"x":142,"y":83,"match_group":"output_load","unit":"B","nets":{"R1":"VDPWR","R2":"ua[3]","B":"VGND"}},
+    {"name":"XRIN2","kind":"res_xhigh_po","l":70.5,"x":122,"y":5,"match_group":"input_bias","unit":"B","nets":{"R1":"ua[1]","R2":"vcm","B":"VGND"}},
+    {"name":"XRVCMT","kind":"res_xhigh_po","l":47.0,"x":132,"y":5,"match_group":"vcm_divider","unit":"A","nets":{"R1":"VDPWR","R2":"vcm","B":"VGND"}},
+    {"name":"XRVCMB","kind":"res_xhigh_po","l":94.0,"x":142,"y":5,"match_group":"vcm_divider","unit":"B","nets":{"R1":"vcm","R2":"VGND","B":"VGND"}},
+    {"name":"XRIN1","kind":"res_xhigh_po","l":70.5,"x":152,"y":5,"match_group":"input_bias","unit":"A","nets":{"R1":"ua[0]","R2":"vcm","B":"VGND"}},
+    {"name":"XRLOADN","kind":"res_high_po","l":11.6117,"x":124,"y":83,"match_group":"output_load","unit":"B","nets":{"R1":"VDPWR","R2":"ua[3]","B":"VGND"}},
+    {"name":"XRLOADP","kind":"res_high_po","l":11.6117,"x":135.3,"y":83,"match_group":"output_load","unit":"A","nets":{"R1":"VDPWR","R2":"ua[2]","B":"VGND"}},
     {"name":"XRBIAS","kind":"res_high_po","l":44.9768,"x":157,"y":64,"route_y_offsets":{"R2":0.65},"nets":{"R1":"VDPWR","R2":"vbias","B":"VGND"}},
     {"name":"XCVCM","kind":"cap_mim_m3","w":22.0,"l":22.0,"x":65,"y":94,"nets":{"C1":"vcm","C2":"VGND"}}
   ]

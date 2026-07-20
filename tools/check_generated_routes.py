@@ -1,40 +1,114 @@
 #!/usr/bin/env python3
-"""Reject generated top-level geometry that overlaps across logical nets."""
+"""Audit generated routing for shorts and matched-pair geometry.
+
+The router deliberately emits overlapping landing pads and repeated branches
+on the same logical net.  Metrics therefore union collinear wire intervals and
+exclude the known via-landing rectangles before comparing matched nets.
+"""
 
 from __future__ import annotations
 
+import argparse
+import hashlib
+import json
 import re
-import sys
 from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
 LAYERS = r"metal[1-4]|locali|via[1-3]|viali"
+WIRE_LAYERS = ("metal1", "metal2", "metal3", "metal4")
+VIA_LAYERS = ("via1", "via2", "via3")
+EPSILON = 1e-6
+VIA_ADJACENT_LAYERS = {
+    "viali": ("locali", "metal1"),
+    "via1": ("metal1", "metal2"),
+    "via2": ("metal2", "metal3"),
+    "via3": ("metal3", "metal4"),
+}
+TOP_PIN_BOTTOM = 224.76
+TOP_PIN_TOP = 225.76
+TOP_PIN_HALF_WIDTH = 0.15
+TOP_PIN_MINIMUM_SPACING = 0.30
+
+# Exact M4 pin centers from the TinyTapeout SKY130 analog template LEF.  These
+# shapes exist in the base cell but not in generated route.tcl, so the route
+# audit must add them explicitly.  Only clk and ui_in[0] are used by this
+# design; all other top-edge pins remain obstacles even when logically unused.
+TOP_M4_PINS: tuple[tuple[str, float, frozenset[str]], ...] = (
+    ("clk", 143.98, frozenset({"clk"})),
+    ("ena", 146.74, frozenset()),
+    ("rst_n", 141.22, frozenset()),
+    ("ui_in[0]", 138.46, frozenset({"select", "ui_in[0]"})),
+    ("ui_in[1]", 135.70, frozenset()),
+    ("ui_in[2]", 132.94, frozenset()),
+    ("ui_in[3]", 130.18, frozenset()),
+    ("ui_in[4]", 127.42, frozenset()),
+    ("ui_in[5]", 124.66, frozenset()),
+    ("ui_in[6]", 121.90, frozenset()),
+    ("ui_in[7]", 119.14, frozenset()),
+    *((f"uio_in[{index}]", center, frozenset()) for index, center in enumerate(
+        (116.38, 113.62, 110.86, 108.10, 105.34, 102.58, 99.82, 97.06)
+    )),
+    *((f"uo_out[{index}]", center, frozenset()) for index, center in enumerate(
+        (94.30, 91.54, 88.78, 86.02, 83.26, 80.50, 77.74, 74.98)
+    )),
+    *((f"uio_out[{index}]", center, frozenset()) for index, center in enumerate(
+        (72.22, 69.46, 66.70, 63.94, 61.18, 58.42, 55.66, 52.90)
+    )),
+    *((f"uio_oe[{index}]", center, frozenset()) for index, center in enumerate(
+        (50.14, 47.38, 44.62, 41.86, 39.10, 36.34, 33.58, 30.82)
+    )),
+)
 
 
 @dataclass(frozen=True)
 class Shape:
+    layer: str
     x1: float
     y1: float
     x2: float
     y2: float
     net: str
+    route: str
     line: int
 
+    @property
+    def width(self) -> float:
+        return self.x2 - self.x1
 
-def overlaps(a: Shape, b: Shape) -> bool:
-    return min(a.x2, b.x2) >= max(a.x1, b.x1) and min(a.y2, b.y2) >= max(a.y1, b.y1)
+    @property
+    def height(self) -> float:
+        return self.y2 - self.y1
+
+    @property
+    def center(self) -> tuple[float, float]:
+        return (round((self.x1 + self.x2) / 2.0, 4),
+                round((self.y1 + self.y2) / 2.0, 4))
 
 
-def main() -> None:
-    path = Path(sys.argv[1] if len(sys.argv) > 1 else "build/layout/route.tcl")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("route", nargs="?", default="build/layout/route.tcl")
+    parser.add_argument("--manifest", default="layout/circuit.json")
+    parser.add_argument("--report")
+    return parser.parse_args()
+
+
+def parse_route(path: Path) -> dict[str, list[Shape]]:
     shapes: dict[str, list[Shape]] = defaultdict(list)
     net: str | None = None
+    route = ""
     for line_number, line in enumerate(path.read_text().splitlines(), 1):
+        route_comment = None
         for pattern in (r"# horizontal net track: (.+)", r"# .* -> (.+)"):
             match = re.match(pattern, line)
             if match:
-                net = match.group(1)
+                route_comment = match.group(1)
+                break
+        if route_comment is not None:
+            net = route_comment
+            route = line[2:].strip()
         match = re.match(
             rf"paint_rect ({LAYERS}) ([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)",
             line,
@@ -42,22 +116,565 @@ def main() -> None:
         if match and net is not None:
             layer = match.group(1)
             x1, y1, x2, y2 = map(float, match.groups()[1:])
-            shapes[layer].append(Shape(x1, y1, x2, y2, net, line_number))
+            shapes[layer].append(
+                Shape(layer, min(x1, x2), min(y1, y2), max(x1, x2),
+                      max(y1, y2), net, route, line_number)
+            )
+    return shapes
 
+
+def overlaps(a: Shape, b: Shape) -> bool:
+    return (min(a.x2, b.x2) >= max(a.x1, b.x1)
+            and min(a.y2, b.y2) >= max(a.y1, b.y1))
+
+
+def overlap_errors(shapes: dict[str, list[Shape]]) -> list[str]:
     errors: list[str] = []
     for layer, layer_shapes in shapes.items():
         for index, first in enumerate(layer_shapes):
-            for second in layer_shapes[index + 1 :]:
+            for second in layer_shapes[index + 1:]:
                 if first.net != second.net and overlaps(first, second):
                     errors.append(
                         f"{layer}: {first.net} line {first.line} overlaps "
                         f"{second.net} line {second.line}"
                     )
+    return errors
+
+
+def via_connection_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject a via cut overlapping adjacent metal attributed to another net."""
+    errors: list[str] = []
+    for via_layer, adjacent_layers in VIA_ADJACENT_LAYERS.items():
+        for via in shapes.get(via_layer, []):
+            for metal_layer in adjacent_layers:
+                for metal in shapes.get(metal_layer, []):
+                    if via.net != metal.net and overlaps(via, metal):
+                        errors.append(
+                            f"{via_layer}: {via.net} line {via.line} overlaps "
+                            f"{metal_layer} for {metal.net} line {metal.line}"
+                        )
+    return errors
+
+
+def disconnected_route_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject floating same-net metal/via islands in generated geometry."""
+    by_net: dict[str, list[Shape]] = defaultdict(list)
+    for layer_shapes in shapes.values():
+        for shape in layer_shapes:
+            # Degenerate paint boxes produce no mask geometry and therefore
+            # are not electrical components.
+            if shape.width > EPSILON and shape.height > EPSILON:
+                by_net[shape.net].append(shape)
+
+    errors: list[str] = []
+    for net, net_shapes in sorted(by_net.items()):
+        parents = list(range(len(net_shapes)))
+
+        def find(index: int) -> int:
+            while parents[index] != index:
+                parents[index] = parents[parents[index]]
+                index = parents[index]
+            return index
+
+        def union(first: int, second: int) -> None:
+            first_root = find(first)
+            second_root = find(second)
+            if first_root != second_root:
+                parents[second_root] = first_root
+
+        for first_index, first in enumerate(net_shapes):
+            for second_index in range(first_index + 1, len(net_shapes)):
+                second = net_shapes[second_index]
+                connected = first.layer == second.layer and overlaps(first, second)
+                if not connected and first.layer in VIA_ADJACENT_LAYERS:
+                    connected = (
+                        second.layer in VIA_ADJACENT_LAYERS[first.layer]
+                        and overlaps(first, second)
+                    )
+                if not connected and second.layer in VIA_ADJACENT_LAYERS:
+                    connected = (
+                        first.layer in VIA_ADJACENT_LAYERS[second.layer]
+                        and overlaps(first, second)
+                    )
+                if connected:
+                    union(first_index, second_index)
+
+        components: dict[int, list[Shape]] = defaultdict(list)
+        for index, shape in enumerate(net_shapes):
+            components[find(index)].append(shape)
+        ordered = sorted(components.values(), key=len, reverse=True)
+        for component in ordered[1:]:
+            sample = min(component, key=lambda shape: shape.line)
+            errors.append(
+                f"{net}: disconnected generated component with "
+                f"{len(component)} shape(s), starting at {sample.layer} "
+                f"line {sample.line}"
+            )
+    return errors
+
+
+def rectangle_gap(
+    first: tuple[float, float, float, float],
+    second: tuple[float, float, float, float],
+) -> float:
+    dx = max(0.0, first[0] - second[2], second[0] - first[2])
+    dy = max(0.0, first[1] - second[3], second[1] - first[3])
+    return (dx * dx + dy * dy) ** 0.5
+
+
+def top_boundary_clearance_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject M4 routes too close to any standard top-edge boundary pin."""
+    errors: list[str] = []
+    for shape in shapes.get("metal4", []):
+        route_rect = (shape.x1, shape.y1, shape.x2, shape.y2)
+        for pin_name, center_x, allowed_nets in TOP_M4_PINS:
+            if shape.net in allowed_nets:
+                continue
+            pin_rect = (
+                center_x - TOP_PIN_HALF_WIDTH,
+                TOP_PIN_BOTTOM,
+                center_x + TOP_PIN_HALF_WIDTH,
+                TOP_PIN_TOP,
+            )
+            gap = rectangle_gap(route_rect, pin_rect)
+            if gap < TOP_PIN_MINIMUM_SPACING - EPSILON:
+                errors.append(
+                    f"metal4: {shape.net} line {shape.line} is {gap:.3f} um "
+                    f"from top pin {pin_name}; minimum is "
+                    f"{TOP_PIN_MINIMUM_SPACING:.2f} um"
+                )
+    return errors
+
+
+def close(value: float, target: float) -> bool:
+    return abs(value - target) <= EPSILON
+
+
+def landing_shape(shape: Shape, via_centers: dict[str, set[tuple[float, float]]]) -> bool:
+    """Return true for metal rectangles emitted only to enclose a via cut."""
+    dimensions = tuple(sorted((round(shape.width, 4), round(shape.height, 4))))
+    center = shape.center
+    if shape.layer == "metal1":
+        return dimensions in {(0.32, 0.32), (0.40, 0.40)} and center in via_centers["via1"]
+    if shape.layer == "metal2":
+        return ((dimensions == (0.32, 0.32) and center in via_centers["via1"])
+                or (dimensions == (0.40, 0.40) and center in via_centers["via2"]))
+    if shape.layer == "metal3":
+        return dimensions == (0.40, 0.62) and (
+            center in via_centers["via2"] or center in via_centers["via3"]
+        )
+    if shape.layer == "metal4":
+        return dimensions == (0.40, 0.40) and center in via_centers["via3"]
+    return False
+
+
+def merged_length(intervals: list[tuple[float, float]]) -> float:
+    merged: list[tuple[float, float]] = []
+    for start, stop in sorted(intervals):
+        if merged and start <= merged[-1][1] + EPSILON:
+            merged[-1] = (merged[-1][0], max(merged[-1][1], stop))
+        else:
+            merged.append((start, stop))
+    return sum(stop - start for start, stop in merged)
+
+
+def shape_metrics(net_shapes: dict[str, list[Shape]], net: str) -> dict[str, object]:
+    shapes = net_shapes
+    via_centers = {
+        layer: {shape.center for shape in shapes.get(layer, []) if shape.net == net}
+        for layer in VIA_LAYERS
+    }
+    intervals: dict[tuple[str, str, float], list[tuple[float, float]]] = defaultdict(list)
+    for layer in WIRE_LAYERS:
+        for shape in shapes.get(layer, []):
+            if shape.net != net or landing_shape(shape, via_centers):
+                continue
+            if shape.width <= EPSILON or shape.height <= EPSILON:
+                continue
+            horizontal = shape.width >= shape.height
+            orientation = "h" if horizontal else "v"
+            centerline = round(
+                (shape.y1 + shape.y2) / 2.0 if horizontal
+                else (shape.x1 + shape.x2) / 2.0,
+                4,
+            )
+            interval = (shape.x1, shape.x2) if horizontal else (shape.y1, shape.y2)
+            if interval[1] - interval[0] > EPSILON:
+                intervals[(layer, orientation, centerline)].append(interval)
+    wire_lengths = {layer: 0.0 for layer in WIRE_LAYERS}
+    for (layer, _orientation, _centerline), layer_intervals in intervals.items():
+        wire_lengths[layer] += merged_length(layer_intervals)
+    wire_lengths = {layer: round(length, 6) for layer, length in wire_lengths.items()}
+    return {
+        "wire_length_um": wire_lengths,
+        "total_wire_length_um": round(sum(wire_lengths.values()), 6),
+        "via_sites": {layer: len(via_centers[layer]) for layer in VIA_LAYERS},
+    }
+
+
+def route_metrics(shapes: dict[str, list[Shape]]) -> dict[str, dict[str, object]]:
+    nets = sorted({shape.net for layer_shapes in shapes.values() for shape in layer_shapes})
+    return {net: shape_metrics(shapes, net) for net in nets}
+
+
+def endpoint_path_metrics(
+    shapes: dict[str, list[Shape]], endpoint: str, net: str,
+    include_global_track: bool = True,
+) -> dict[str, object]:
+    route_names = {f"{endpoint} -> {net}"}
+    if include_global_track:
+        route_names.update({
+            f"horizontal net track: {net}",
+            f"TinyTapeout boundary pin -> {net}",
+        })
+    selected: dict[str, list[Shape]] = defaultdict(list)
+    for layer, layer_shapes in shapes.items():
+        selected[layer] = [
+            shape for shape in layer_shapes
+            if shape.net == net and shape.route in route_names
+        ]
+    endpoint_route = f"{endpoint} -> {net}"
+    if not any(shape.route == endpoint_route for layer in selected.values() for shape in layer):
+        raise ValueError(f"missing generated endpoint route {endpoint_route}")
+    return shape_metrics(selected, net)
+
+
+def functional_path_metrics(
+    shapes: dict[str, list[Shape]], endpoints: list[str], net: str,
+) -> dict[str, object]:
+    """Measure the connected source-to-load tree, not one arbitrary branch."""
+    route_names = {f"{endpoint} -> {net}" for endpoint in endpoints}
+    route_names.add(f"horizontal net track: {net}")
+    selected: dict[str, list[Shape]] = defaultdict(list)
+    for layer, layer_shapes in shapes.items():
+        selected[layer] = [
+            shape for shape in layer_shapes
+            if shape.net == net and shape.route in route_names
+        ]
+    for endpoint in endpoints:
+        endpoint_route = f"{endpoint} -> {net}"
+        if not any(
+            shape.route == endpoint_route
+            for layer_shapes in selected.values()
+            for shape in layer_shapes
+        ):
+            raise ValueError(f"missing generated endpoint route {endpoint_route}")
+    return shape_metrics(selected, net)
+
+
+def mismatch_percent(first: float, second: float) -> float:
+    average = (abs(first) + abs(second)) / 2.0
+    if average <= EPSILON:
+        return 0.0
+    return 100.0 * abs(first - second) / average
+
+
+def matching_results(
+    metrics: dict[str, dict[str, object]], constraints: list[dict[str, object]],
+) -> tuple[list[dict[str, object]], list[str]]:
+    results: list[dict[str, object]] = []
+    failures: list[str] = []
+    for constraint in constraints:
+        name = str(constraint["name"])
+        required = bool(constraint.get("required", True))
+        first_net, second_net = map(str, constraint["nets"])
+        if first_net not in metrics or second_net not in metrics:
+            failure = f"{name}: missing route metrics for {first_net} or {second_net}"
+            failures.append(failure)
+            results.append({"name": name, "passed": False, "failures": [failure]})
+            continue
+        first = metrics[first_net]
+        second = metrics[second_net]
+        layers = [str(layer) for layer in constraint.get("layers", WIRE_LAYERS)]
+        layer_limit = float(constraint["max_layer_length_mismatch_percent"])
+        total_limit = float(constraint["max_total_length_mismatch_percent"])
+        pair_failures: list[str] = []
+        layer_mismatch: dict[str, float] = {}
+        for layer in layers:
+            first_length = float(first["wire_length_um"][layer])
+            second_length = float(second["wire_length_um"][layer])
+            mismatch = mismatch_percent(first_length, second_length)
+            layer_mismatch[layer] = mismatch
+            if mismatch > layer_limit + EPSILON:
+                pair_failures.append(
+                    f"{name}: {layer} length mismatch {mismatch:.3f}% > {layer_limit:.3f}% "
+                    f"({first_net}={first_length:.3f}um, {second_net}={second_length:.3f}um)"
+                )
+        first_total = sum(float(first["wire_length_um"][layer]) for layer in layers)
+        second_total = sum(float(second["wire_length_um"][layer]) for layer in layers)
+        total_mismatch = mismatch_percent(first_total, second_total)
+        if total_mismatch > total_limit + EPSILON:
+            pair_failures.append(
+                f"{name}: selected-layer total mismatch {total_mismatch:.3f}% > "
+                f"{total_limit:.3f}% ({first_net}={first_total:.3f}um, "
+                f"{second_net}={second_total:.3f}um)"
+            )
+        via_comparison: dict[str, list[int]] = {}
+        for layer in map(str, constraint.get("equal_vias", [])):
+            first_count = int(first["via_sites"][layer])
+            second_count = int(second["via_sites"][layer])
+            via_comparison[layer] = [first_count, second_count]
+            if first_count != second_count:
+                pair_failures.append(
+                    f"{name}: {layer} site count differs "
+                    f"({first_net}={first_count}, {second_net}={second_count})"
+                )
+        for layer, allowed_delta in constraint.get("max_via_site_delta", {}).items():
+            layer = str(layer)
+            first_count = int(first["via_sites"][layer])
+            second_count = int(second["via_sites"][layer])
+            via_comparison[layer] = [first_count, second_count]
+            if abs(first_count - second_count) > int(allowed_delta):
+                pair_failures.append(
+                    f"{name}: {layer} site-count delta exceeds {int(allowed_delta)} "
+                    f"({first_net}={first_count}, {second_net}={second_count})"
+                )
+        if required:
+            failures.extend(pair_failures)
+        results.append({
+            "name": name,
+            "nets": [first_net, second_net],
+            "layers": layers,
+            "layer_length_mismatch_percent": layer_mismatch,
+            "selected_layer_total_um": [round(first_total, 6), round(second_total, 6)],
+            "total_length_mismatch_percent": total_mismatch,
+            "via_sites": via_comparison,
+            "required": required,
+            "geometry_passed": not pair_failures,
+            "passed": not pair_failures or not required,
+            "failures": pair_failures,
+        })
+    return results, failures
+
+
+def endpoint_matching_results(
+    shapes: dict[str, list[Shape]], constraints: list[dict[str, object]],
+) -> tuple[list[dict[str, object]], list[str]]:
+    results: list[dict[str, object]] = []
+    failures: list[str] = []
+    for constraint in expand_endpoint_constraints(constraints):
+        name = str(constraint["name"])
+        first_endpoint, second_endpoint = map(str, constraint["endpoints"])
+        first_net, second_net = map(str, constraint["nets"])
+        include_global_track = str(constraint.get("path_scope", "pin")) != "branch"
+        first = endpoint_path_metrics(
+            shapes, first_endpoint, first_net, include_global_track
+        )
+        second = endpoint_path_metrics(
+            shapes, second_endpoint, second_net, include_global_track
+        )
+        pair_constraint = dict(constraint)
+        pair_constraint["nets"] = [first_net, second_net]
+        pair_results, pair_failures = matching_results(
+            {first_net: first, second_net: second}, [pair_constraint]
+        )
+        result = pair_results[0]
+        result["endpoints"] = [first_endpoint, second_endpoint]
+        # Replace generic net-only prefixes with the physical endpoint names
+        # in the human-readable failure output.
+        raw_failures = list(result["failures"])
+        renamed = [
+            failure.replace(
+                f"({first_net}=", f"({first_endpoint}=",
+            ).replace(
+                f", {second_net}=", f", {second_endpoint}=",
+            )
+            for failure in raw_failures
+        ]
+        result["failures"] = renamed
+        results.append(result)
+        if bool(constraint.get("required", True)):
+            failures.extend(renamed)
+    return results, failures
+
+
+def expand_endpoint_constraints(
+    constraints: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    """Expand a matched-net endpoint group into independently checked paths."""
+    expanded: list[dict[str, object]] = []
+    for constraint in constraints:
+        if "endpoints" in constraint:
+            expanded.append(constraint)
+            continue
+        pairs = constraint.get("endpoint_pairs")
+        if not isinstance(pairs, list) or not pairs:
+            raise ValueError(
+                f"{constraint.get('name', '<unnamed>')}: endpoint constraint "
+                "requires endpoints or a non-empty endpoint_pairs list"
+            )
+        branch_clusters = constraint.get("branch_clusters")
+        if branch_clusters is not None and (
+            not isinstance(branch_clusters, list)
+            or len(branch_clusters) != len(pairs)
+        ):
+            raise ValueError(
+                f"{constraint.get('name', '<unnamed>')}: branch_clusters "
+                "must have one entry per endpoint pair"
+            )
+        for index, pair in enumerate(pairs, 1):
+            if not isinstance(pair, list) or len(pair) != 2:
+                raise ValueError(
+                    f"{constraint.get('name', '<unnamed>')}: endpoint pair "
+                    f"{index} must contain exactly two endpoints"
+                )
+            item = dict(constraint)
+            item.pop("endpoint_pairs")
+            item["name"] = f"{constraint['name']}_{index:02d}"
+            item["endpoints"] = pair
+            item.pop("branch_clusters", None)
+            if branch_clusters is not None:
+                cluster = branch_clusters[index - 1]
+                if cluster is None:
+                    item["local_branch_columns"] = False
+                else:
+                    item["branch_cluster"] = f"{constraint['name']}:{cluster}"
+            expanded.append(item)
+    return expanded
+
+
+def expand_path_constraints(
+    constraints: list[dict[str, object]],
+) -> list[dict[str, object]]:
+    expanded: list[dict[str, object]] = []
+    for constraint in constraints:
+        path_pairs = constraint.get("path_pairs")
+        if not isinstance(path_pairs, list) or not path_pairs:
+            raise ValueError(
+                f"{constraint.get('name', '<unnamed>')}: path constraint "
+                "requires a non-empty path_pairs list"
+            )
+        for index, pair in enumerate(path_pairs, 1):
+            if (
+                not isinstance(pair, list)
+                or len(pair) != 2
+                or any(not isinstance(path, list) or len(path) < 2 for path in pair)
+            ):
+                raise ValueError(
+                    f"{constraint.get('name', '<unnamed>')}: path pair {index} "
+                    "must contain two endpoint lists"
+                )
+            item = dict(constraint)
+            item.pop("path_pairs")
+            item["name"] = f"{constraint['name']}_{index:02d}"
+            item["paths"] = pair
+            expanded.append(item)
+    return expanded
+
+
+def path_matching_results(
+    shapes: dict[str, list[Shape]], constraints: list[dict[str, object]],
+) -> tuple[list[dict[str, object]], list[str]]:
+    results: list[dict[str, object]] = []
+    failures: list[str] = []
+    for constraint in expand_path_constraints(constraints):
+        name = str(constraint["name"])
+        first_net, second_net = map(str, constraint["nets"])
+        first_path, second_path = constraint["paths"]
+        first = functional_path_metrics(shapes, list(map(str, first_path)), first_net)
+        second = functional_path_metrics(shapes, list(map(str, second_path)), second_net)
+        pair_constraint = dict(constraint)
+        pair_constraint["nets"] = [first_net, second_net]
+        pair_results, pair_failures = matching_results(
+            {first_net: first, second_net: second}, [pair_constraint]
+        )
+        result = pair_results[0]
+        result["paths"] = [first_path, second_path]
+        first_label = " -> ".join(map(str, first_path))
+        second_label = " -> ".join(map(str, second_path))
+        raw_failures = list(result["failures"])
+        renamed = [
+            failure.replace(f"({first_net}=", f"({first_label}=").replace(
+                f", {second_net}=", f", {second_label}="
+            )
+            for failure in raw_failures
+        ]
+        result["failures"] = renamed
+        results.append(result)
+        if bool(constraint.get("required", True)):
+            failures.extend(renamed)
+    return results, failures
+
+
+def main() -> None:
+    args = parse_args()
+    path = Path(args.route)
+    manifest = json.loads(Path(args.manifest).read_text())
+    shapes = parse_route(path)
+    errors = overlap_errors(shapes)
+    via_errors = via_connection_errors(shapes)
+    disconnected_errors = disconnected_route_errors(shapes)
+    top_boundary_errors = top_boundary_clearance_errors(shapes)
+    metrics = route_metrics(shapes)
+    results, matching_failures = matching_results(
+        metrics, list(manifest.get("route_match_constraints", []))
+    )
+    endpoint_results, endpoint_failures = endpoint_matching_results(
+        shapes, list(manifest.get("route_endpoint_constraints", []))
+    )
+    path_results, path_failures = path_matching_results(
+        shapes, list(manifest.get("route_path_constraints", []))
+    )
+    report = {
+        "route": str(path),
+        "route_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "shape_count": sum(
+            shape.width > EPSILON and shape.height > EPSILON
+            for layer_shapes in shapes.values()
+            for shape in layer_shapes
+        ),
+        "cross_net_overlap_count": len(errors),
+        "cross_net_via_overlap_count": len(via_errors),
+        "disconnected_route_component_count": len(disconnected_errors),
+        "top_boundary_m4_clearance_count": len(top_boundary_errors),
+        "metrics": metrics,
+        "matching": results,
+        "endpoint_matching": endpoint_results,
+        "path_matching": path_results,
+        "passed": (
+            not errors and not via_errors and not disconnected_errors
+            and not top_boundary_errors
+            and not matching_failures
+            and not endpoint_failures and not path_failures
+        ),
+    }
+    if args.report:
+        report_path = Path(args.report)
+        report_path.parent.mkdir(parents=True, exist_ok=True)
+        report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+        print(f"route-matching report={report_path}")
     if errors:
         print("Generated route contains cross-net overlaps:")
         print("\n".join(errors[:50]))
+    if via_errors:
+        print("Generated route contains cross-net via/metal overlaps:")
+        print("\n".join(via_errors[:50]))
+    if disconnected_errors:
+        print("Generated route contains disconnected same-net components:")
+        print("\n".join(disconnected_errors[:50]))
+    if top_boundary_errors:
+        print("Generated route violates top-boundary M4 clearance:")
+        print("\n".join(top_boundary_errors[:50]))
+    if matching_failures:
+        print("Generated route violates matched-pair constraints:")
+        print("\n".join(matching_failures))
+    if endpoint_failures:
+        print("Generated route violates endpoint-path constraints:")
+        print("\n".join(endpoint_failures))
+    if path_failures:
+        print("Generated route violates functional source-to-load constraints:")
+        print("\n".join(path_failures))
+    if (
+        errors or via_errors or disconnected_errors or top_boundary_errors
+        or matching_failures
+        or endpoint_failures or path_failures
+    ):
         raise SystemExit(1)
-    print(f"Generated-route overlap audit passed ({sum(map(len, shapes.values()))} shapes)")
+    print(
+        f"Generated-route audit passed ({report['shape_count']} shapes, "
+        f"{len(results)} net pairs, {len(endpoint_results)} endpoint pairs, "
+        f"{len(path_results)} functional paths)"
+    )
 
 
 if __name__ == "__main__":

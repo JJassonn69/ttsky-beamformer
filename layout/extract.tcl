@@ -16,7 +16,19 @@ if {$drc_count != 0} {
     error "refusing to extract a layout with DRC errors"
 }
 
+# Generate both the normal device/capacitance database and Magic's detailed
+# route-resistance annotation.  ext2spice rthresh only filters resistors that
+# already exist; `extract do resistance` is what creates the distributed
+# .res.ext network in Magic >= 8.3.597.
 extract do local
+extresist threshold 0
+extresist mindelay 0
+# First generate a literal audit view: every extracted resistance, no segment
+# floor and no topology reduction.
+extresist minres 0
+extresist simplify off
+extresist extout on
+extract do resistance
 extract all
 set extract_feedback_count [feedback count]
 puts "EXTRACTION_FEEDBACK_COUNT=$extract_feedback_count"
@@ -26,11 +38,23 @@ if {$extract_feedback_count != 0} {
 }
 ext2spice lvs
 ext2spice hierarchy off
+ext2spice extresist off
 ext2spice cthresh 0
 ext2spice rthresh 0
 ext2spice -o $PROJECT_ROOT/build/layout/extracted.spice $TOP.ext
 puts "EXTRACTED_SPICE=$PROJECT_ROOT/build/layout/extracted.spice"
+
+# Literal zero-pruning distributed-RC simulation and audit view.
+ext2spice extresist on
+ext2spice cthresh 0
+ext2spice rthresh 0
+ext2spice -o $PROJECT_ROOT/build/layout/extracted_rc.spice $TOP.ext
+puts "EXTRACTED_RC_SPICE=$PROJECT_ROOT/build/layout/extracted_rc.spice"
+
+# Keep a resistance-free, capacitance-suppressed view for topology/LVS checks.
+ext2spice extresist off
 ext2spice cthresh 1e99
+ext2spice rthresh infinite
 ext2spice -o $PROJECT_ROOT/build/layout/extracted_lvs.spice $TOP.ext
 puts "EXTRACTED_LVS_SPICE=$PROJECT_ROOT/build/layout/extracted_lvs.spice"
 quit -noprompt

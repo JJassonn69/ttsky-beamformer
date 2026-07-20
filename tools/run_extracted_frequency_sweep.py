@@ -4,11 +4,19 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
+
+from run_lock import acquire_run_lock
+try:
+    from simulation_provenance import ngspice_provenance
+except ModuleNotFoundError:
+    from tools.simulation_provenance import ngspice_provenance
 
 ROOT = Path(__file__).resolve().parents[1]
 TEMPLATE = ROOT / "spice" / "sky130" / "extracted_core_tb.spice"
@@ -23,18 +31,37 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--frequencies", default="4,10,20,30",
                         help="comma-separated clock frequencies in MHz")
     parser.add_argument("--ngspice", default="ngspice")
-    parser.add_argument("--netlist", default="build/layout/extracted.spice")
+    parser.add_argument("--netlist", default="build/layout/extracted_rc.spice")
+    parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--merge-existing", action="store_true",
                         help="replace only requested frequencies in the existing report")
     return parser.parse_args()
 
 
+def run_deck(ngspice: str, deck: Path, log: Path) -> tuple[int, dict[str, float]]:
+    completed = subprocess.run(
+        [ngspice, "-b", "-o", str(log), str(deck)], cwd=ROOT,
+        check=False, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
+    )
+    values = {
+        name: float(value)
+        for name, value in MEASURE_RE.findall(
+            log.read_text(encoding="utf-8", errors="replace")
+            if log.exists() else ""
+        )
+    }
+    return completed.returncode, values
+
+
 def main() -> int:
     args = parse_args()
+    netlist_path = ROOT / args.netlist
+    netlist_sha256 = hashlib.sha256(netlist_path.read_bytes()).hexdigest()
     frequencies = [
         float(item) for item in args.frequencies.split(",") if item.strip()
     ]
-    template = TEMPLATE.read_text(encoding="utf-8").replace(
+    template = (f"* extracted_netlist_sha256={netlist_sha256}\n" +
+                TEMPLATE.read_text(encoding="utf-8")).replace(
         '.include "build/layout/extracted.spice"', f'.include "{args.netlist}"'
     )
     # Remove the broadband RMS measures.  Switching-carrier feedthrough can
@@ -55,19 +82,23 @@ def main() -> int:
     template = template.replace("\n.end", analysis + "\n.end")
     build = ROOT / "build" / "extracted_frequency"
     build.mkdir(parents=True, exist_ok=True)
+    run_lock = acquire_run_lock(build / ".run.lock")
     report_path = ROOT / "build" / "extracted_frequency_sweep.json"
     previous_results: list[dict[str, object]] = []
     if args.merge_existing and report_path.exists():
-        previous_results = json.loads(
-            report_path.read_text(encoding="utf-8")
-        ).get("results", [])
-    results: list[dict[str, object]] = []
+        previous = json.loads(report_path.read_text(encoding="utf-8"))
+        if (
+            previous.get("netlist") != args.netlist
+            or previous.get("netlist_sha256") != netlist_sha256
+        ):
+            raise SystemExit("refusing to merge results from a different netlist")
+        previous_results = previous.get("results", [])
+
+    jobs: list[tuple[float, str, Path, Path]] = []
     for frequency_mhz in frequencies:
         period_ns = 1000.0 / frequency_mhz
         high_ns = period_ns / 2.0 - 1.0
         step_ns = min(1.0, period_ns / 50.0)
-        frequency_results: dict[str, dict[str, float]] = {}
-        errors: list[str] = []
         for mode, select in (("sum", "0"), ("null", "{VDDVAL}")):
             tag = f"{frequency_mhz:g}mhz_{mode}".replace(".", "p")
             deck = build / f"{tag}.spice"
@@ -83,20 +114,26 @@ def main() -> int:
                           f"VSEL ui_in[0] 0 {select}", text, flags=re.MULTILINE)
             text = text.replace("{TSTEP}", f"{step_ns:g}n")
             deck.write_text(text, encoding="utf-8")
-            completed = subprocess.run(
-                [args.ngspice, "-b", "-o", str(log), str(deck)], cwd=ROOT,
-                check=False, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT,
-            )
-            values = {
-                name: float(value)
-                for name, value in MEASURE_RE.findall(
-                    log.read_text(encoding="utf-8", errors="replace")
-                    if log.exists() else ""
-                )
-            }
+            jobs.append((frequency_mhz, mode, deck, log))
+
+    raw: dict[tuple[float, str], tuple[int, dict[str, float]]] = {}
+    with ThreadPoolExecutor(max_workers=max(1, args.workers)) as executor:
+        futures = {
+            executor.submit(run_deck, args.ngspice, deck, log): (frequency_mhz, mode)
+            for frequency_mhz, mode, deck, log in jobs
+        }
+        for future in as_completed(futures):
+            raw[futures[future]] = future.result()
+
+    results: list[dict[str, object]] = []
+    for frequency_mhz in frequencies:
+        frequency_results: dict[str, dict[str, float]] = {}
+        errors: list[str] = []
+        for mode in ("sum", "null"):
+            returncode, values = raw[(frequency_mhz, mode)]
             required = {"tone_i", "tone_q", "mode_cm", "mode_supply"}
-            if completed.returncode or required - values.keys():
-                errors.append(f"{mode}: ngspice={completed.returncode}, values={values}")
+            if returncode or required - values.keys():
+                errors.append(f"{mode}: ngspice={returncode}, values={values}")
             else:
                 values["tone_rms"] = math.sqrt(
                     2.0 * (values["tone_i"] ** 2 + values["tone_q"] ** 2)
@@ -168,6 +205,9 @@ def main() -> int:
             item["nominal_40db_target_met"] = null_db >= 40.0
             item["passed"] = all(checks.values())
     report = {
+        **ngspice_provenance(args.ngspice),
+        "netlist": args.netlist,
+        "netlist_sha256": netlist_sha256,
         "if_frequency_mhz": 1.0,
         "frequencies_mhz": [float(item["frequency_mhz"]) for item in results],
         "pass_count": sum(bool(item["passed"]) for item in results),
