@@ -20,21 +20,21 @@
       "nominal_40db_target_met": true,
       "null": {
         "mode_cm": 1.63988,
-        "mode_supply": -0.000231302,
-        "tone_i": -7.20202e-07,
-        "tone_phase_deg": -119.65842696488413,
-        "tone_q": -1.26478e-06,
-        "tone_rms": 2.0583291132391825e-06
+        "mode_supply": -0.00023117,
+        "tone_i": -8.41862e-07,
+        "tone_phase_deg": -140.83225822160688,
+        "tone_q": -6.85817e-07,
+        "tone_rms": 1.5356279396605156e-06
       },
-      "null_db": 51.82926054838079,
+      "null_db": 54.44711450417103,
       "passed": true,
       "sum": {
-        "mode_cm": 1.64,
-        "mode_supply": -0.000229812,
-        "tone_i": -0.000159837,
-        "tone_phase_deg": -106.33953846755837,
-        "tone_q": -0.000545203,
-        "tone_rms": 0.0008034851308866891
+        "mode_cm": 1.63998,
+        "mode_supply": -0.000229901,
+        "tone_i": -0.000175678,
+        "tone_phase_deg": -107.85523566423922,
+        "tone_q": -0.000545366,
+        "tone_rms": 0.0008102923344571391
       }
     },
     {
@@ -47,22 +47,22 @@
       "frequency_mhz": 10.0,
       "nominal_40db_target_met": true,
       "null": {
-        "mode_cm": 1.63989,
-        "mode_supply": -0.000247873,
-        "tone_i": 4.43139e-07,
-        "tone_phase_deg": 81.817292825482,
-        "tone_q": 3.08176e-06,
-        "tone_rms": 4.403093655810878e-06
+        "mode_cm": 1.63988,
+        "mode_supply": -0.000247539,
+        "tone_i": 1.52931e-06,
+        "tone_phase_deg": -40.88330299897473,
+        "tone_q": -1.32395e-06,
+        "tone_rms": 2.8606407249425784e-06
       },
-      "null_db": 44.586200417015434,
+      "null_db": 48.44791852928267,
       "passed": true,
       "sum": {
-        "mode_cm": 1.63996,
-        "mode_supply": -0.000244252,
-        "tone_i": 0.000220438,
-        "tone_phase_deg": 65.31847754921613,
-        "tone_q": 0.000479674,
-        "tone_rms": 0.0007465655471825632
+        "mode_cm": 1.63992,
+        "mode_supply": -0.000244467,
+        "tone_i": 0.000224448,
+        "tone_phase_deg": 65.19456543964152,
+        "tone_q": 0.000485629,
+        "tone_rms": 0.0007565876424380721
       }
     },
     {
@@ -75,22 +75,22 @@
       "frequency_mhz": 20.0,
       "nominal_40db_target_met": false,
       "null": {
-        "mode_cm": 1.6399,
-        "mode_supply": -0.000275483,
-        "tone_i": 1.38961e-06,
-        "tone_phase_deg": 74.24971018022367,
-        "tone_q": 4.92709e-06,
-        "tone_rms": 7.239783397340006e-06
+        "mode_cm": 1.63989,
+        "mode_supply": -0.000274798,
+        "tone_i": 8.77202e-06,
+        "tone_phase_deg": 5.321501306627297,
+        "tone_q": 8.17076e-07,
+        "tone_rms": 1.2459209290334277e-05
       },
-      "null_db": 39.66043568192798,
+      "null_db": 34.85246278046789,
       "passed": true,
       "sum": {
-        "mode_cm": 1.63997,
-        "mode_supply": -0.000268296,
-        "tone_i": 0.00042429,
-        "tone_phase_deg": 30.47534035075046,
-        "tone_q": 0.00024968,
-        "tone_rms": 0.0006962213821766752
+        "mode_cm": 1.63991,
+        "mode_supply": -0.0002687,
+        "tone_i": 0.000418091,
+        "tone_phase_deg": 30.866458955748058,
+        "tone_q": 0.00024989,
+        "tone_rms": 0.0006888324852690965
       }
     },
     {
@@ -103,22 +103,22 @@
       "frequency_mhz": 30.0,
       "nominal_40db_target_met": false,
       "null": {
-        "mode_cm": 1.63994,
-        "mode_supply": -0.00030257,
-        "tone_i": 5.71198e-06,
-        "tone_phase_deg": 52.168248811226995,
-        "tone_q": 7.35542e-06,
-        "tone_rms": 1.3170339319607523e-05
+        "mode_cm": 1.6399,
+        "mode_supply": -0.000301933,
+        "tone_i": 8.00626e-06,
+        "tone_phase_deg": 35.16612952351943,
+        "tone_q": 5.64071e-06,
+        "tone_rms": 1.3850473529211916e-05
       },
-      "null_db": 33.92764984612677,
+      "null_db": 33.5403564379429,
       "passed": true,
       "sum": {
-        "mode_cm": 1.64001,
-        "mode_supply": -0.000290675,
-        "tone_i": 0.00044745,
-        "tone_phase_deg": 14.833462535445417,
-        "tone_q": 0.000118501,
-        "tone_rms": 0.0006546052085050958
+        "mode_cm": 1.63991,
+        "mode_supply": -0.000294567,
+        "tone_i": 0.000449814,
+        "tone_phase_deg": 14.939931517347599,
+        "tone_q": 0.000120022,
+        "tone_rms": 0.0006583888138174889
       }
     }
   ]

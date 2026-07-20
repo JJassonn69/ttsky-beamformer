@@ -24,17 +24,26 @@ electrical confidence are tracked separately.
 - flattened emitted-GDS regression: zero M3/M4 spacing, M4 width/connected-area,
   and capm-clearance markers; the checker reproduced the original independent
   precheck's 9/12/176/2 marker counts and the second pass's two M4-width
-  markers before the route fixes;
+  markers before the route fixes, and synthetic unit cases cover every rule
+  detector's fail and clean paths;
 - paired, equal-settling-time full-parasitic sum/null simulation;
 - coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass the 20 dB release gate,
-  with 44.60 dB null at 4 MHz and 33.54 dB at 30 MHz;
+  with 54.45 dB null at 4 MHz and 33.54 dB at 30 MHz;
+- independent Ubuntu/ngspice 44.2 replay at 4 MHz: 0.8070 mVrms and 60.88 dB,
+  corroborating the conservative ngspice 46 result;
 - extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
 - nominal extracted channel amplitude difference: 0.0000374 percent;
 - foundry-slope mismatch surrogate: 30/30 pass, 39.28 dB worst null;
-- parasitic-extracted deterministic PVT: 45/45 pass, 25.60 dB worst null at
-  FF, 1.62 V, and 125 C; and
+- parasitic-extracted deterministic PVT: 45/45 pass, 31.04 dB worst null at
+  TT, 1.62 V, and 125 C;
+- refreshed schematic PVT: 45/45 pass with an 85.78 dB minimum null after the
+  clock/matching edit, with report-input freshness and hash locking added to
+  the release gate;
 - the locally runnable official TinyTapeout structural, pin, boundary, power,
-  layer, analog-pad, cell-name, and Verilog checks.
+  layer, analog-pad, cell-name, and Verilog checks; and
+- official GitHub TinyTapeout custom-GDS, viewer, and 15/15 full-precheck jobs
+  pass on the exact release GDS in
+  [run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666).
 
 The PVT release gate follows `spec/beamformer_v1.md`: at least 20 dB destructive
 null at every deterministic corner. The nominal test keeps a stronger 40 dB
@@ -78,8 +87,18 @@ documentation actions. A release is mechanically submission-ready only when:
    boundary, layer, power, analog-pad, cell-name, and Verilog check;
 3. the documentation job passes;
 4. the published artifact contains the expected uncompressed GDS, LEF,
-   Verilog, `info.yaml`, docs, license, PDK metadata, and commit metadata; and
-5. the hashes in `submission/template.lock` match the committed views.
+   Verilog, `info.yaml`, docs, license, PDK metadata, and commit metadata;
+5. the hashes in `submission/template.lock` match the committed views; and
+6. the post-precheck `release-evidence` job confirms report hashes and all
+   rounded human-readable metrics still match the frozen JSON.
+
+`submission/official_action.json` binds the successful run, downloaded
+reports, and release-GDS SHA-256. Evidence freezing and `make release-check`
+fail if the GDS changes without a new successful Action attestation. This
+prevents a previous iteration's green report from being mistaken for current
+signoff. `submission/simulation_inputs.json` similarly hashes the extracted
+netlist, testbenches, runners, and model-corner include files; the freeze step
+rejects generated reports older than their primary inputs.
 
 ## Silicon bench rehearsal
 

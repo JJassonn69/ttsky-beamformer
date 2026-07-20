@@ -27,6 +27,10 @@ def result_at(report: dict[str, object], key: str, value: object) -> dict[str, o
 
 def main() -> None:
     generated = {
+        "schematic_pvt": (
+            ROOT / "build/core_pvt_summary.json",
+            SUBMISSION / "core_pvt_summary.json",
+        ),
         "extracted_pvt": (
             ROOT / "build/extracted_pvt_summary.json",
             SUBMISSION / "extracted_pvt_summary.json",
@@ -51,6 +55,67 @@ def main() -> None:
     missing = [str(source) for source, _target in generated.values() if not source.is_file()]
     if missing:
         raise SystemExit(f"missing generated reports: {missing}")
+
+    artifacts = {
+        "gds": ROOT / "gds/tt_um_jjassonn69_beamformer.gds",
+        "lef": ROOT / "lef/tt_um_jjassonn69_beamformer.lef",
+        "extracted_spice": ROOT / "build/layout/extracted.spice",
+    }
+    official_action = read_json(SUBMISSION / "official_action.json")
+    if official_action["conclusion"] != "success":
+        raise SystemExit("official TinyTapeout Action is not successful")
+    if official_action["gds_sha256"] != digest(artifacts["gds"]):
+        raise SystemExit(
+            "official TinyTapeout Action is stale for the current GDS; "
+            "run the Action and update submission/official_action.json"
+        )
+    official_result = SUBMISSION / "official_precheck_results.md"
+    official_magic = SUBMISSION / "official_magic_drc.txt"
+    if official_action["results_sha256"] != digest(official_result):
+        raise SystemExit("official precheck result does not match its Action attestation")
+    if official_action["magic_drc_sha256"] != digest(official_magic):
+        raise SystemExit("official Magic DRC result does not match its Action attestation")
+
+    freshness_inputs = {
+        "schematic_pvt": [
+            ROOT / "spice/sky130/beamformer_core.spice",
+            ROOT / "tools/run_core_pvt.py",
+        ],
+        "extracted_pvt": [
+            ROOT / "build/layout/extracted.spice",
+            ROOT / "spice/sky130/extracted_core_tb.spice",
+            ROOT / "tools/run_extracted_pvt.py",
+            ROOT / "tools/run_extracted_sim.py",
+            ROOT / "tools/run_core_pvt.py",
+        ],
+        "extracted_frequency_sweep": [
+            ROOT / "build/layout/extracted.spice",
+            ROOT / "spice/sky130/extracted_core_tb.spice",
+            ROOT / "tools/run_extracted_frequency_sweep.py",
+        ],
+        "extracted_clock_sweep": [
+            ROOT / "build/layout/extracted.spice",
+            ROOT / "spice/sky130/extracted_clock_tb.spice",
+            ROOT / "tools/run_extracted_clock_sweep.py",
+        ],
+        "extracted_channel_balance": [
+            ROOT / "build/layout/extracted.spice",
+            ROOT / "spice/sky130/extracted_core_tb.spice",
+            ROOT / "tools/run_extracted_channel_balance.py",
+        ],
+        "mismatch_mc": [
+            ROOT / "spice/sky130/beamformer_core.spice",
+            ROOT / "tools/run_mismatch_mc.py",
+        ],
+    }
+    for name, inputs in freshness_inputs.items():
+        source = generated[name][0]
+        newest_input = max(path.stat().st_mtime for path in inputs)
+        if source.stat().st_mtime < newest_input:
+            raise SystemExit(
+                f"stale {name} report: regenerate {source.relative_to(ROOT)}"
+            )
+
     for source, target in generated.values():
         shutil.copyfile(source, target)
 
@@ -59,9 +124,18 @@ def main() -> None:
     clock = read_json(generated["extracted_clock_sweep"][0])
     balance = read_json(generated["extracted_channel_balance"][0])
     mismatch = read_json(generated["mismatch_mc"][0])
-    core_pvt = read_json(SUBMISSION / "core_pvt_summary.json")
+    core_pvt = read_json(generated["schematic_pvt"][0])
+    linux_frequency = read_json(
+        SUBMISSION / "linux_ngspice44_frequency_crosscheck.json"
+    )
     if pvt["matrix"] != "full" or pvt["case_count"] != 45:
         raise SystemExit("refusing to freeze anything except the full 45-case extracted PVT")
+    if (
+        linux_frequency["case_count"] != 1
+        or linux_frequency["pass_count"] != 1
+        or linux_frequency["results"][0]["frequency_mhz"] != 4.0
+    ):
+        raise SystemExit("Linux ngspice cross-check is not a passing 4 MHz case")
 
     nominal = result_at(pvt, "case", "tt_1.80v_p27c")
     nominal_frequency = result_at(frequency, "frequency_mhz", 4.0)
@@ -75,11 +149,6 @@ def main() -> None:
         for item in clock["results"]
     )
 
-    artifacts = {
-        "gds": ROOT / "gds/tt_um_jjassonn69_beamformer.gds",
-        "lef": ROOT / "lef/tt_um_jjassonn69_beamformer.lef",
-        "extracted_spice": ROOT / "build/layout/extracted.spice",
-    }
     reports = {
         "schematic_pvt": SUBMISSION / "core_pvt_summary.json",
         "extracted_pvt": SUBMISSION / "extracted_pvt_summary.json",
@@ -88,7 +157,44 @@ def main() -> None:
         "extracted_channel_balance": SUBMISSION / "extracted_channel_balance.json",
         "mismatch_mc": SUBMISSION / "mismatch_mc_summary.json",
         "magic_gds_readback_drc": SUBMISSION / "official_magic_drc.txt",
+        "official_tinytapeout_precheck": (
+            SUBMISSION / "official_precheck_results.md"
+        ),
+        "official_tinytapeout_action": SUBMISSION / "official_action.json",
+        "linux_ngspice44_frequency_crosscheck": (
+            SUBMISSION / "linux_ngspice44_frequency_crosscheck.json"
+        ),
     }
+    simulation_input_paths = [
+        ROOT / "spice/sky130/beamformer_core.spice",
+        ROOT / "spice/sky130/extracted_core_tb.spice",
+        ROOT / "spice/sky130/extracted_clock_tb.spice",
+        ROOT / "tools/run_core_pvt.py",
+        ROOT / "tools/run_extracted_pvt.py",
+        ROOT / "tools/run_extracted_sim.py",
+        ROOT / "tools/run_extracted_frequency_sweep.py",
+        ROOT / "tools/run_extracted_clock_sweep.py",
+        ROOT / "tools/run_extracted_channel_balance.py",
+        ROOT / "tools/run_mismatch_mc.py",
+        *sorted((ROOT / "spice/sky130").glob("sky130_1v8_*.inc")),
+    ]
+    simulation_inputs = {
+        "extracted_spice_sha256": digest(artifacts["extracted_spice"]),
+        "files": {
+            str(path.relative_to(ROOT)): digest(path)
+            for path in simulation_input_paths
+        },
+        "report_inputs": {
+            name: [str(path.relative_to(ROOT)) for path in inputs]
+            for name, inputs in freshness_inputs.items()
+        },
+    }
+    simulation_inputs_path = SUBMISSION / "simulation_inputs.json"
+    simulation_inputs_path.write_text(
+        json.dumps(simulation_inputs, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+    )
+    reports["simulation_inputs"] = simulation_inputs_path
     previous = read_json(SUBMISSION / "signoff.json")
     signoff = {
         "artifacts": {
@@ -136,6 +242,13 @@ def main() -> None:
                 "gain_mismatch_percent": balance["gain_mismatch_percent"],
                 "passed": balance["passed"],
             },
+            "linux_ngspice44_frequency_crosscheck": {
+                "case_count": linux_frequency["case_count"],
+                "frequency_mhz": 4.0,
+                "null_db": linux_frequency["results"][0]["null_db"],
+                "pass_count": linux_frequency["pass_count"],
+                "sum_rms_v": linux_frequency["results"][0]["sum"]["tone_rms"],
+            },
             "mismatch_surrogate": {
                 "case_count": mismatch["trial_count"],
                 "method": mismatch["method"],
@@ -166,12 +279,21 @@ def main() -> None:
             "magic_gds_readback_drc_count": 0,
             "magic_internal_signoff_drc_count": 0,
             "named_route_tracks": 30,
+            "official_action_prechecks_passed": official_action[
+                "official_prechecks_passed"
+            ],
+            "official_action_prechecks_run": official_action[
+                "official_prechecks_run"
+            ],
             "placed_devices": 70,
             "static_official_prechecks_passed": 8,
             "static_official_prechecks_run": 8,
             "topology_check_passed": True,
         },
-        "provenance": previous["provenance"],
+        "provenance": {
+            **previous["provenance"],
+            "linux_crosscheck_ngspice_version": "44.2",
+        },
         "reports": {
             name: {"path": str(path.relative_to(ROOT)), "sha256": digest(path)}
             for name, path in reports.items()
@@ -183,7 +305,7 @@ def main() -> None:
             "noise, linearity, compression, and LO-feedthrough characterization remain",
             "20-30 MHz modes have nominal extracted characterization, not full PVT ratings",
         ],
-        "status": "local_release_candidate",
+        "status": "official_action_passed_release_candidate",
         "target": "TinyTapeout SKY130 ttsky26c",
         "top_module": "tt_um_jjassonn69_beamformer",
     }

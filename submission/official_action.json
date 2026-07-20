@@ -1,0 +1,11 @@
+{
+  "conclusion": "success",
+  "gds_sha256": "1010991ccf40aff786186e0e23cf0a38b2151f71a0e4d575b1dea4258693ca9d",
+  "gds_source_commit": "7a0b1d21d986486623e62ba02a9bfcf30d44f214",
+  "magic_drc_sha256": "63d5fb7c996ddc6ef65c1a50ac55249e543bfaf07e6e91d3202fa998f954e051",
+  "official_prechecks_passed": 15,
+  "official_prechecks_run": 15,
+  "results_sha256": "8ab1c8bc31ac259f4b23800945c005507f2bfa5377d84d4f7b2465d9d1aa7f87",
+  "run_id": 29713672666,
+  "run_url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666"
+}

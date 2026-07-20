@@ -29,17 +29,21 @@ known risks, and recommended iteration-two roadmap.
 - real, uncompressed GDSII and an exact TinyTapeout-pin LEF;
 - Magic placement, routed, extraction, and final DRC counts: zero;
 - Magic GDS writer geometry-feedback count: zero;
-- nominal extracted 1 MHz wanted-tone result: 0.809 mVrms constructive output
-  and 44.60 dB null at a 4 MHz LO;
+- nominal extracted 1 MHz wanted-tone result: 0.810 mVrms constructive output
+  and 54.45 dB null at a 4 MHz LO;
+- independent Ubuntu/ngspice 44.2 replay corroborates the 4 MHz point at
+  0.807 mVrms and 60.88 dB; the lower ngspice 46 null is the published value;
 - extracted higher-clock characterization passes the 20 dB release criterion
   at 4, 10, 20, and 30 MHz, with 33.54 dB null at 30 MHz;
 - full parasitic-extracted PVT passes 45/45 TT/SS/FF/SF/FS,
-  1.62/1.80/1.98 V, and -40/27/125 C cases, with a 25.60 dB worst null;
+  1.62/1.80/1.98 V, and -40/27/125 C cases, with a 31.04 dB worst null;
 - 30/30 foundry-slope mismatch-surrogate trials pass, with 39.28 dB worst-case
-  null; and
+  null;
 - all locally runnable checks from the official TinyTapeout precheck pass,
   including exact DEF/LEF/GDS pin geometry, analog-pad connectivity, boundary,
-  layers, power ports, cell names, and Verilog syntax.
+  layers, power ports, cell names, and Verilog syntax; and
+- the official GitHub TinyTapeout precheck passes 15/15 checks on the exact
+  release GDS ([run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666)).
 
 The analog core is always active while `VDPWR` is present. `ena` and `rst_n`
 are boundary-compatible reserved inputs in this minimal revision; shutdown,
@@ -90,8 +94,12 @@ precheck actions. Before invoking them it also flattens the exact release GDS
 and rejects M3/M4 spacing, M4 width/connected-area, and capm-clearance regressions;
 the same gate runs from `make verify`, `make layout-signoff`, and
 `make release-check`. A green precheck confirms submission compatibility, not
-manufacturing yield; the remaining electrical risks and bench plan are kept
-explicit in `docs/presilicon_plan.md`.
+manufacturing yield. The successful Action, its reports, and the exact GDS hash
+are bound in `submission/official_action.json`, so a changed GDS cannot reuse a
+stale green report. A post-precheck `release-evidence` CI job also rejects
+report-hash, simulation-input, or documented-metric drift. The remaining
+electrical risks and bench plan are kept explicit in
+`docs/presilicon_plan.md`.
 
 ## Fabrication layout
 

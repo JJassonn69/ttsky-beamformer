@@ -7,6 +7,7 @@ the exact GDS that will be submitted, flattens its hierarchy, and mirrors the
 small set of independent SKY130 rules that previously escaped local signoff:
 
 * met3 and met4 minimum spacing: 0.30 um;
+* met4 minimum width: 0.30 um;
 * met4 connected-area minimum: 0.24 um^2;
 * capm spacing to an unrelated met3 component: 1.34 um.
 
@@ -270,6 +271,41 @@ def spacing_violations(components: list[list[Rect]], minimum: float) -> list[flo
     return violations
 
 
+def audit_rectangles(
+    rectangles: dict[Layer, list[Rect]],
+) -> tuple[dict[Layer, list[list[Rect]]], dict[str, list[float]]]:
+    """Return flattened components and markers for the escaped rule subset."""
+    components = {
+        layer: connected_components(rectangles[layer])
+        for layer in (MET3, MET4, CAPM)
+    }
+    met4_width = [
+        min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
+        for rectangle in rectangles[MET4]
+        if min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
+        < 0.30 - 1e-9
+    ]
+    met4_area = [
+        union_area(component)
+        for component in components[MET4]
+        if union_area(component) < 0.24 - 1e-9
+    ]
+    capm_spacing = []
+    for plate in components[CAPM]:
+        for metal in components[MET3]:
+            gap = component_gap(plate, metal)
+            if 0.0 < gap < 1.34 - 1e-9:
+                capm_spacing.append(gap)
+    checks = {
+        "met3 spacing": spacing_violations(components[MET3], 0.30),
+        "met4 spacing": spacing_violations(components[MET4], 0.30),
+        "met4 minimum width": met4_width,
+        "met4 minimum area": met4_area,
+        "capm-to-unrelated-met3 spacing": capm_spacing,
+    }
+    return components, checks
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("gds", type=Path)
@@ -278,39 +314,13 @@ def main() -> None:
     top = args.top or args.gds.stem
     structures, database_um = parse_gds(args.gds)
     rectangles = flatten_rectangles(structures, top, database_um)
-    met3 = connected_components(rectangles[MET3])
-    met4 = connected_components(rectangles[MET4])
-    capm = connected_components(rectangles[CAPM])
-
-    met3_spacing = spacing_violations(met3, 0.30)
-    met4_spacing = spacing_violations(met4, 0.30)
-    met4_width = [
-        min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
-        for rectangle in rectangles[MET4]
-        if min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
-        < 0.30 - 1e-9
-    ]
-    met4_area = [union_area(component) for component in met4 if union_area(component) < 0.24 - 1e-9]
-    capm_spacing = []
-    for plate in capm:
-        for metal in met3:
-            gap = component_gap(plate, metal)
-            if 0.0 < gap < 1.34 - 1e-9:
-                capm_spacing.append(gap)
-
-    checks = {
-        "met3 spacing": met3_spacing,
-        "met4 spacing": met4_spacing,
-        "met4 minimum width": met4_width,
-        "met4 minimum area": met4_area,
-        "capm-to-unrelated-met3 spacing": capm_spacing,
-    }
+    components, checks = audit_rectangles(rectangles)
     failures = {name: values for name, values in checks.items() if values}
     print(
         "Flattened GDS audit: "
-        f"{len(rectangles[MET3])} M3 rectangles/{len(met3)} components, "
-        f"{len(rectangles[MET4])} M4 rectangles/{len(met4)} components, "
-        f"{len(capm)} capm component(s)"
+        f"{len(rectangles[MET3])} M3 rectangles/{len(components[MET3])} components, "
+        f"{len(rectangles[MET4])} M4 rectangles/{len(components[MET4])} components, "
+        f"{len(components[CAPM])} capm component(s)"
     )
     for name, values in failures.items():
         sample = ", ".join(f"{value:.3f}" for value in sorted(values)[:8])

@@ -1,0 +1,38 @@
+{
+  "case_count": 1,
+  "frequencies_mhz": [
+    4.0
+  ],
+  "if_frequency_mhz": 1.0,
+  "pass_count": 1,
+  "results": [
+    {
+      "checks": {
+        "common_mode": true,
+        "release_null_db": true,
+        "supply_current": true,
+        "wanted_tone": true
+      },
+      "frequency_mhz": 4.0,
+      "nominal_40db_target_met": true,
+      "null": {
+        "mode_cm": 1.639877,
+        "mode_supply": -0.000231373,
+        "tone_i": -1.687415e-07,
+        "tone_phase_deg": -109.10620344042081,
+        "tone_q": -4.871258e-07,
+        "tone_rms": 7.290613675787381e-07
+      },
+      "null_db": 60.882182058747524,
+      "passed": true,
+      "sum": {
+        "mode_cm": 1.639983,
+        "mode_supply": -0.0002300748,
+        "tone_i": -0.0001754673,
+        "tone_phase_deg": -107.90832984442986,
+        "tone_q": -0.0005429873,
+        "tone_rms": 0.0008069993572867081
+      }
+    }
+  ]
+}

@@ -225,6 +225,10 @@ best measure of useful beamformer output. The PVT regression retains the older
 time-domain RMS measurement after the testbench filter; it is deliberately a
 broader metric and therefore gives a more conservative null number. Results
 from those two detectors must not be compared as if they were the same unit.
+The local harness encodes that distinction explicitly: `make layout-sim`
+applies the 20 dB release gate to the broad time-domain RMS detector, while
+`make layout-frequency-sweep` independently records both the 40 dB nominal
+target and the 20 dB release gate at the coherent wanted tone.
 
 All extracted tests use the final parasitic netlist, TT primitive models unless
 otherwise stated, 1.8 V, 27 C, equal 10 mVpp inputs, and paired constructive and
@@ -238,17 +242,24 @@ that the eventual package has those exact values.
 
 | LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
 |---:|---:|---:|---:|---:|---:|
-| 4 MHz | 5 MHz | 0.8090 mVrms | 44.60 dB | pass | pass |
-| 10 MHz | 11 MHz | 0.7600 mVrms | 46.37 dB | pass | pass |
-| 20 MHz | 21 MHz | 0.7043 mVrms | 40.15 dB | pass | pass |
+| 4 MHz | 5 MHz | 0.8103 mVrms | 54.45 dB | pass | pass |
+| 10 MHz | 11 MHz | 0.7566 mVrms | 48.45 dB | pass | pass |
+| 20 MHz | 21 MHz | 0.6888 mVrms | 34.85 dB | miss | pass |
 | 30 MHz | 31 MHz | 0.6584 mVrms | 33.54 dB | miss | pass |
 
-The output retains 81.4 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
+The output retains 81.3 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
 The 30 MHz mode is therefore useful for characterization, but it is not the
 datasheet operating point: only 4 MHz is carried as `clock_hz` in the
 TinyTapeout metadata and through the complete release matrix. The principal
 higher-speed degradation is cancellation depth, not failure of the clock
 drivers.
+
+An independent Ubuntu replay with ngspice 44.2 and the same extracted-netlist
+hash measured 0.8070 mVrms constructive output and 60.88 dB null at 4 MHz.
+The constructive amplitudes agree within approximately 0.4 percent. Very deep
+cancellation is numerically sensitive to solver version, so this datasheet
+uses the lower ngspice 46 result, 54.45 dB, rather than claiming the larger
+cross-check value. Both independently clear the 40 dB nominal target.
 
 ### 8.3 Extracted clock integrity
 
@@ -272,8 +283,9 @@ rating.
 
 Driving each channel independently through the same extracted testbench gives
 0.0000374 percent nominal amplitude difference. The amplitude-only
-cancellation estimate is 134.56 dB; the actual switched two-channel null is lower because
-phase skew, residual clock products, and detector bandwidth also contribute.
+cancellation estimate is 134.56 dB; the actual switched two-channel null is
+lower because phase skew, residual clock products, and detector bandwidth also
+contribute.
 This is a deterministic result, not a yield prediction.
 
 ### 8.5 Random-mismatch surrogate
@@ -304,15 +316,15 @@ into `submission/signoff.json` by the release process.
 |---|---:|
 | Cases passed | 45/45 |
 | Release requirement | at least 20 dB null in every case |
-| Minimum null | 25.60 dB at FF, 1.62 V, 125 C |
-| Maximum null | 50.02 dB |
-| Constructive time-domain RMS range | 4.035 to 32.065 mVrms |
-| Output common-mode range | 1.335 to 1.715 V |
-| Supply-current range | 0.126 to 0.426 mA |
+| Minimum null | 31.04 dB at TT, 1.62 V, 125 C |
+| Maximum null | 48.85 dB |
+| Constructive time-domain RMS range | 5.621 to 32.614 mVrms |
+| Output common-mode range | 1.335 to 1.668 V |
+| Supply-current range | 0.145 to 0.426 mA |
 
-The nominal TT, 1.80 V, 27 C time-domain result is 16.748 mVrms
-constructive, 0.420 mVrms destructive, 32.01 dB null, 1.504 V common mode,
-and 0.323 mA. Its null is lower than the 44.60 dB coherent wanted-tone result
+The nominal TT, 1.80 V, 27 C time-domain result is 16.783 mVrms
+constructive, 0.196 mVrms destructive, 38.63 dB null, 1.504 V common mode,
+and 0.323 mA. Its null is lower than the 54.45 dB coherent wanted-tone result
 because the time-domain detector also includes residual filtered switching
 products, as described in Section 8.1.
 
@@ -323,8 +335,9 @@ products, as described in Section 8.1.
 - ideal 1 dB gain/8 degree phase-error envelope: 20.3701 dB null;
 - transistor mixer 1 dB/8 degree error envelope: 20.3721 dB null;
 - bias reference and passive PDK smoke tests pass for the pinned model set; and
-- the old schematic 45-case PVT matrix remains available as a topology-level
-  cross-check, but the final extracted matrix supersedes its numerical result.
+- refreshed schematic 45-case PVT: 45/45 pass with an 85.78 dB minimum null;
+  it remains a topology-level cross-check, while the final extracted matrix
+  supersedes its numerical result.
 
 ## 9. Physical implementation
 
@@ -437,6 +450,9 @@ The following checks are complete for the local release candidate:
   zero errors at every stage;
 - Magic GDS-writer feedback and extraction feedback: zero;
 - official Magic readback DRC on the emitted GDS: zero errors;
+- official TinyTapeout GitHub Action precheck: 15/15 checks pass, including
+  Magic DRC, KLayout FEOL/BEOL/off-grid/zero-area checks, pin and boundary
+  checks, analog-pad connectivity, layer and cell-name checks, and Verilog;
 - extraction topology: 338 MOS fingers, eight passives, connected power, one
   MIM capacitor, and no unexpected net equivalences;
 - exact extracted-device and parasitic-capacitor multisets agree with the
@@ -447,21 +463,40 @@ The following checks are complete for the local release candidate:
 - official static prechecks: 8/8 locally runnable checks pass, covering top
   macro, forbidden layers, project boundary, exact DEF/LEF/GDS pin geometry,
   power pins, valid layers, cell names, analog-pad connectivity, and Verilog;
-  and
 - release integrity authenticates GDS, LEF, reports, plain GDSII header, macro
-  dimensions, 53 LEF pins, zero physical-error counters, and required metadata.
+  dimensions, 53 LEF pins, zero physical-error counters, and required metadata;
+  and
+- the post-precheck GitHub `release-evidence` job independently repeats the
+  frozen-report and documented-metric consistency gates on Ubuntu.
 
 The project-local GDS audit deliberately flattens the exact emitted hierarchy.
 It was regression-tested against the first independent-precheck failure and
 reproduced all 9 M3 spacing, 12 M4 spacing, 176 M4 connected-area, and two capm
 markers from the first independent precheck, then the two M4-width markers
-from the second pass. It now runs from `make verify`,
-`make layout-signoff`, `make release-check`, and before the custom-GDS Action.
+from the second pass. Synthetic unit cases independently require every escaped
+rule class to produce a marker and require clean reference geometry to produce
+none. The exact release-GDS regression and those detector tests now run from
+`make verify`, `make layout-signoff`, `make release-check`, and before the
+custom-GDS Action.
 The extraction gate separately rejects unexpected net equivalences and an
 incorrect 338-finger/eight-passive device multiset.
 
+The same audit found that the previously tracked schematic PVT JSON predated
+the clock/matching schematic edit. The final release reruns that full matrix,
+copies it only from `build/` during evidence freezing, rejects reports older
+than their primary inputs, and records the input hashes. This is why report
+freshness is now a release invariant rather than a manual assumption.
+
 The GitHub workflow remains the final mechanical submission gate because it
-runs the complete pinned TinyTapeout Magic and KLayout rule set. A green
+runs the complete pinned TinyTapeout Magic and KLayout rule set. The exact
+release GDS passed
+[run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666);
+the committed
+`submission/official_precheck_results.md` and
+`submission/official_magic_drc.txt` preserve that run's reports. The
+`submission/official_action.json` attestation binds that successful run and
+both reports to the exact release-GDS SHA-256; evidence freezing and
+`make release-check` reject a stale report after any future GDS change. A green
 workflow establishes compatibility with that submission flow; it does not
 prove analog yield. The topology checker is also not a second,
 foundry-qualified LVS engine, so an independent LVS remains desirable before
@@ -479,6 +514,7 @@ paying for fabrication.
 | Magic | 8.3.676 |
 | KLayout precheck library | 0.30.8 |
 | ngspice | 46 |
+| Independent Ubuntu cross-check | ngspice 44.2, 4 MHz extracted wanted-tone case |
 
 Only the sparse primitive model checkout is required for local schematic and
 extracted simulation. The complete PDK is required for PCell generation,
@@ -523,8 +559,14 @@ with the layout-script generators. The fabrication views are
 `submission/signoff.json`, `submission/core_pvt_summary.json`,
 `submission/extracted_pvt_summary.json`,
 `submission/extracted_frequency_sweep.json`,
-`submission/extracted_clock_sweep.json`, and
-`submission/mismatch_mc_summary.json`.
+`submission/extracted_clock_sweep.json`,
+`submission/extracted_channel_balance.json`,
+`submission/mismatch_mc_summary.json`, and the GDS-bound official Action
+attestation in `submission/official_action.json`. The independent solver replay
+is preserved in `submission/linux_ngspice44_frequency_crosscheck.json`.
+`submission/simulation_inputs.json` binds the frozen reports to the extracted
+SPICE, testbenches, runners, and corner-include hashes. Evidence freezing also
+rejects a generated report older than any of its primary inputs.
 
 ## 13. First-silicon bench procedure
 
@@ -652,3 +694,4 @@ requirement.
 |---|---|---|
 | RC1.0 | 2026-07-19 | Initial 1x2 binary 0/180-degree low-IF beamformer; GDS/LEF frozen, nominal extracted and 45-corner extracted PVT passing, local physical/release gates passing. |
 | RC1.1 | 2026-07-20 | Split A/B; B/A common-centroid GM, tail, and mixer devices; mirrored passives; stronger/equalized LO paths; MIM route keep-out; extracted 4-30 MHz and clock sweeps; mismatch surrogate; regenerated GDS and direct-GDS layer images. |
+| RC1.2 | 2026-07-20 | Flattened-GDS cross-hierarchy spacing/width/area/capm regression; corrected M3/M4 and capacitor routing; official 15/15 TinyTapeout precheck pass; GDS-bound Action attestation; detector-specific electrical gates; report freshness and simulation-input locks. |

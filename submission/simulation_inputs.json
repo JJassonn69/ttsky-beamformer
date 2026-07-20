@@ -1,0 +1,52 @@
+{
+  "extracted_spice_sha256": "2a2d3d6d918b80a4c4302036bf7feb8792876b1fbf6c7e35be2caf6bc6ccb65c",
+  "files": {
+    "spice/sky130/beamformer_core.spice": "e4e2b972a8519ef7ab35035e0186deaded2da0ff31d114a80fcb915dca95cbff",
+    "spice/sky130/extracted_clock_tb.spice": "0e48d06aa4ff3017d44f85f3c8e771b868e2f475aa0cf048e91ec61a239d24f1",
+    "spice/sky130/extracted_core_tb.spice": "f3bb0698fb3c4ead52464518501f8f1014c7e2dab8eea9de514511634ea25c70",
+    "spice/sky130/sky130_1v8_ff.inc": "fb69568e03010dab2340a0342a91d3877a381de3e93b5ba827c18582bd2372de",
+    "spice/sky130/sky130_1v8_fs.inc": "808f14a054b460be977866f369a2b4ee0fb3dec5774ef880b6f555725261513b",
+    "spice/sky130/sky130_1v8_sf.inc": "37c460e95f3e63968d9c44852930ff87123b975c35a948b615bba889f0c203ac",
+    "spice/sky130/sky130_1v8_ss.inc": "b7176eee6d464f4edc66250d557afa95b3ec32a28e026533d4af51e850d2c30f",
+    "spice/sky130/sky130_1v8_tt.inc": "35d338a5cb7bb58270b457bc49027c2de6af90ac40ac997b0d8d3ca3a76b242e",
+    "tools/run_core_pvt.py": "3920da9af18605d10afdedfbdbe7821aad9d1b27f8e15727aad6e39887ca731f",
+    "tools/run_extracted_channel_balance.py": "7d8b606e26601faf94b6612043e7704a6c413022721faa2a1ef89833609e721e",
+    "tools/run_extracted_clock_sweep.py": "35b965fd4a49cee1ec7e9f3010f9beebc9311b250f6f34f053a75aa6a471eee1",
+    "tools/run_extracted_frequency_sweep.py": "5262727c44eba76d9d3225f8988f26570c9469fda9452d6dd783c567d4f41341",
+    "tools/run_extracted_pvt.py": "4a04335604755b946de122ef1923d187f0c210fd64a7fd87581227b204dc75ea",
+    "tools/run_extracted_sim.py": "def7d30c027951feb65304ba458df58c75fcc82d10ad54b4a4227762012c5db5",
+    "tools/run_mismatch_mc.py": "090c6b8cbc6b805cd14fc2eba3eed04cf5518481320d596f066ff40ab130007a"
+  },
+  "report_inputs": {
+    "extracted_channel_balance": [
+      "build/layout/extracted.spice",
+      "spice/sky130/extracted_core_tb.spice",
+      "tools/run_extracted_channel_balance.py"
+    ],
+    "extracted_clock_sweep": [
+      "build/layout/extracted.spice",
+      "spice/sky130/extracted_clock_tb.spice",
+      "tools/run_extracted_clock_sweep.py"
+    ],
+    "extracted_frequency_sweep": [
+      "build/layout/extracted.spice",
+      "spice/sky130/extracted_core_tb.spice",
+      "tools/run_extracted_frequency_sweep.py"
+    ],
+    "extracted_pvt": [
+      "build/layout/extracted.spice",
+      "spice/sky130/extracted_core_tb.spice",
+      "tools/run_extracted_pvt.py",
+      "tools/run_extracted_sim.py",
+      "tools/run_core_pvt.py"
+    ],
+    "mismatch_mc": [
+      "spice/sky130/beamformer_core.spice",
+      "tools/run_mismatch_mc.py"
+    ],
+    "schematic_pvt": [
+      "spice/sky130/beamformer_core.spice",
+      "tools/run_core_pvt.py"
+    ]
+  }
+}

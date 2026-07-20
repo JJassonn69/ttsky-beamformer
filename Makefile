@@ -88,7 +88,7 @@ layout-extract:
 
 layout-sim:
 	$(PYTHON) tools/run_extracted_sim.py --ngspice $(NGSPICE)
-	$(PYTHON) tools/check_beamformer_core.py $(BUILD_DIR)/extracted_core.log
+	$(PYTHON) tools/check_beamformer_core.py --null-min-db 20 $(BUILD_DIR)/extracted_core.log
 
 layout-balance:
 	$(PYTHON) tools/run_extracted_channel_balance.py --ngspice $(NGSPICE)
@@ -115,5 +115,6 @@ submission-evidence:
 
 release-check:
 	$(PYTHON) tools/check_release_files.py
+	$(PYTHON) tools/check_documented_metrics.py
 	$(PYTHON) tools/check_gds_flat_rules.py gds/tt_um_jjassonn69_beamformer.gds
 	iverilog -g2012 -s tt_um_jjassonn69_beamformer -o $(BUILD_DIR)/project.vvp src/project.v

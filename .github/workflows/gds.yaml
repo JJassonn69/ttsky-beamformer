@@ -37,6 +37,19 @@ jobs:
       - name: Run Tiny Tapeout Precheck
         uses: TinyTapeout/tt-gds-action/precheck@ttsky26c
 
+  release-evidence:
+    needs: precheck
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout release evidence
+        uses: actions/checkout@v4
+
+      - name: Check frozen reports and artifact bindings
+        run: python3 tools/check_release_files.py
+
+      - name: Check documented metrics against frozen JSON
+        run: python3 tools/check_documented_metrics.py
+
   viewer:
     needs: gds
     runs-on: ubuntu-24.04

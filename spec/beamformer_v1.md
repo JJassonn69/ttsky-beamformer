@@ -47,8 +47,10 @@ as a differential voltage for a high-impedance external receiver.
 - The 2 MHz two-pole filter used by the simulation measurement fixture is
   external. A large on-chip IF capacitor is not part of v1.
 
-The stretch experiment is a 30 MHz input, 29 MHz LO and 1 MHz output. It is
-not a v1 signoff requirement.
+The stretch experiment is a 31 MHz input, 30 MHz LO and 1 MHz output. The
+intermediate 10 and 20 MHz LO points likewise keep the input 1 MHz above the
+LO. These higher-clock modes are characterized against the 20 dB release
+floor but are not v1 operating ratings.
 
 ## Architecture
 

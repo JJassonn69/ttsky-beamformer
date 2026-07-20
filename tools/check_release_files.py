@@ -32,6 +32,12 @@ def main() -> None:
             raise SystemExit(f"{kind.upper()} SHA-256 mismatch: {actual} != {expected}")
 
     signoff = json.loads((ROOT / "submission/signoff.json").read_text(encoding="utf-8"))
+    official_action = json.loads(
+        (ROOT / "submission/official_action.json").read_text(encoding="utf-8")
+    )
+    simulation_inputs = json.loads(
+        (ROOT / "submission/simulation_inputs.json").read_text(encoding="utf-8")
+    )
     for kind in ("gds", "lef"):
         if signoff["artifacts"][kind]["sha256"] != values[f"{kind}_sha256"]:
             raise SystemExit(f"{kind.upper()} signoff hash does not match template.lock")
@@ -55,7 +61,12 @@ def main() -> None:
         raise SystemExit("extracted PVT signoff is not fully passing")
     if pvt["case_count"] != 45:
         raise SystemExit(f"extracted PVT has {pvt['case_count']} cases, expected 45")
-    for name in ("frequency_sweep", "clock_sweep", "mismatch_surrogate"):
+    for name in (
+        "frequency_sweep",
+        "clock_sweep",
+        "mismatch_surrogate",
+        "linux_ngspice44_frequency_crosscheck",
+    ):
         evidence = signoff["electrical"][name]
         if evidence["pass_count"] != evidence["case_count"]:
             raise SystemExit(f"{name} signoff is not fully passing")
@@ -63,6 +74,31 @@ def main() -> None:
         raise SystemExit("release does not contain the 338-finger matched layout")
     if signoff["physical"]["placed_devices"] != 70:
         raise SystemExit("release does not contain the 70-device matched layout")
+    if (
+        signoff["physical"]["official_action_prechecks_passed"]
+        != signoff["physical"]["official_action_prechecks_run"]
+        or signoff["physical"]["official_action_prechecks_run"] != 15
+    ):
+        raise SystemExit("official TinyTapeout Action is not recorded as 15/15 passing")
+    if official_action["conclusion"] != "success":
+        raise SystemExit("official TinyTapeout Action conclusion is not successful")
+    if official_action["gds_sha256"] != values["gds_sha256"]:
+        raise SystemExit("official TinyTapeout Action is stale for this GDS")
+    if (
+        simulation_inputs["extracted_spice_sha256"]
+        != signoff["artifacts"]["extracted_spice"]["sha256"]
+    ):
+        raise SystemExit("simulation-input lock does not match extracted SPICE signoff")
+    for relative, expected in simulation_inputs["files"].items():
+        actual = digest(ROOT / relative)
+        if actual != expected:
+            raise SystemExit(f"simulation input changed after evidence freeze: {relative}")
+    official_result = ROOT / "submission/official_precheck_results.md"
+    official_magic = ROOT / "submission/official_magic_drc.txt"
+    if digest(official_result) != official_action["results_sha256"]:
+        raise SystemExit("official precheck report does not match its Action attestation")
+    if digest(official_magic) != official_action["magic_drc_sha256"]:
+        raise SystemExit("official Magic report does not match its Action attestation")
     for report in signoff["reports"].values():
         report_path = ROOT / report["path"]
         if digest(report_path) != report["sha256"]:
@@ -92,12 +128,16 @@ def main() -> None:
         ROOT / "docs/images/beamformer-mim-detail.png",
         ROOT / "LICENSE",
         ROOT / "submission/official_magic_drc.txt",
+        ROOT / "submission/official_precheck_results.md",
+        ROOT / "submission/official_action.json",
         ROOT / "submission/core_pvt_summary.json",
         ROOT / "submission/extracted_pvt_summary.json",
         ROOT / "submission/extracted_frequency_sweep.json",
         ROOT / "submission/extracted_clock_sweep.json",
         ROOT / "submission/extracted_channel_balance.json",
         ROOT / "submission/mismatch_mc_summary.json",
+        ROOT / "submission/linux_ngspice44_frequency_crosscheck.json",
+        ROOT / "submission/simulation_inputs.json",
         ROOT / "submission/signoff.json",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
@@ -108,7 +148,8 @@ def main() -> None:
         "Release files passed: authenticated GDS/LEF hashes, plain GDSII, "
         "161x225.76 um macro, 53 LEF pins, zero physical error counts, "
         "45/45 extracted PVT, 4/4 frequency/clock sweeps, mismatch evidence, "
-        "and required metadata"
+        "Linux ngspice cross-check, authenticated simulation inputs, 15/15 "
+        "official Action prechecks, and required metadata"
     )
 
 
