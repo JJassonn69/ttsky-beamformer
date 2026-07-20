@@ -16,8 +16,8 @@ The reproducible flow is:
    ceiling that clears every TinyTapeout digital M4 pin by at least 0.30 um.
 4. `tools/check_generated_routes.py` rejects cross-net same-layer overlaps,
    cross-net via-to-adjacent-metal overlaps, disconnected same-net conductor
-   islands, and independently checks the exact top-pin rectangles before
-   Magic is run.
+   islands, via-3 enclosure pads with no real M3/via-2 or M4 continuation, and
+   independently checks the exact top-pin rectangles before Magic is run.
 5. `layout/extract.tcl` requires zero DRC errors and writes three explicit
    views: device/capacitance (`extracted.spice`), distributed route-RC
    (`extracted_rc.spice`), and capacitance-suppressed topology/LVS
@@ -25,7 +25,9 @@ The reproducible flow is:
    zero network/segment thresholds, no topology simplification or resistor
    pruning, and `ext2spice extresist on`.
 6. `tools/check_extracted_layout.py` checks device/finger/passive counts,
-   power connectivity, and unexpected net equivalences.
+   power connectivity, unexpected net equivalences, and explicitly proves that
+   all 18 XBIASA/XBIASB fingers retain the intended `D=G=vbias`,
+   `S=B=VGND` diode connection without merging the two nets.
 7. `tools/check_distributed_rc.py` rejects a capacitance-only fallback, proves
    the `.res.ext` annotation exists, checks explicit R/C/internal-node counts,
    preserves the device count, requires every manifest net to participate in
@@ -33,10 +35,13 @@ The reproducible flow is:
    manifest net.
 8. `layout/signoff.tcl` requires zero final DRC errors, emits uncompressed
    GDSII, and rejects any Magic GDS-writer geometry feedback.
-9. `tools/generate_submission_lef.py` creates the exact template-pin abstract
+9. `tools/check_gds_flat_rules.py` flattens the exact release GDS, checks the
+   escaped M3/M4/capm interaction rules, and proves every via-3 cut has complete
+   two-sided M3/M4 enclosure, including legal split-rectangle junctions.
+10. `tools/generate_submission_lef.py` creates the exact template-pin abstract
    LEF. Magic's generic LEF output is intentionally not used because it exposes
    internal connected geometry as extra port rectangles.
-10. `tools/render_gds.py` parses the emitted hierarchical GDSII directly and
+11. `tools/render_gds.py` parses the emitted hierarchical GDSII directly and
    regenerates the overview, matching-core, MIM/via, and top-pin-clearance
    detail images.
 

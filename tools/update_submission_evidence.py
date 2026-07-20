@@ -303,6 +303,7 @@ def main() -> None:
         ROOT / "tools/generate_layout_scripts.py",
         ROOT / "tools/generate_route_script.py",
         ROOT / "tools/check_generated_routes.py",
+        ROOT / "tools/check_extracted_layout.py",
         ROOT / "tools/check_gds_flat_rules.py",
         ROOT / "tools/check_distributed_rc.py",
         ROOT / "spice/sky130/sky130_passives_tt.inc",
@@ -413,6 +414,7 @@ def main() -> None:
             "flattened_gds_met4_area_count": 0,
             "flattened_gds_met4_spacing_count": 0,
             "flattened_gds_met4_width_count": 0,
+            "flattened_gds_via3_enclosure_count": 0,
             "gds_writer_feedback_count": 0,
             "generated_route_shapes": route_matching["shape_count"],
             "magic_gds_readback_drc_count": 0,
@@ -424,6 +426,9 @@ def main() -> None:
             ],
             "route_cross_net_via_overlap_count": route_matching[
                 "cross_net_via_overlap_count"
+            ],
+            "route_dead_end_via3_site_count": route_matching[
+                "dead_end_via3_site_count"
             ],
             "route_disconnected_component_count": route_matching[
                 "disconnected_route_component_count"

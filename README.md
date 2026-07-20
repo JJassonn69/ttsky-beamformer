@@ -33,12 +33,13 @@ known risks, and recommended iteration-two roadmap.
 - zero-pruning distributed-RC extraction: 11,368 explicit resistors, 6,382
   capacitances, 6,559 internal resistor nodes, and exactly 30 manifest-anchored
   resistor components with no floating extracted network;
-- nominal extracted 1 MHz wanted-tone result: 1.000 mVrms constructive output
-  and 66.96 dB null at a 4 MHz LO;
+- nominal extracted 1 MHz wanted-tone result: 0.937 mVrms constructive output
+  and 51.92 dB null at a 4 MHz LO;
 - independent macOS/ngspice 46 replay of the exact RC hash corroborates the
   4 MHz point at 0.933 mVrms and 52.52 dB;
-- extracted higher-clock characterization passes the 20 dB release criterion
-  at 4, 10, 20, and 30 MHz, with 38.84 dB null at 30 MHz;
+- extracted higher-clock characterization passes both the 40 dB nominal target
+  and 20 dB release criterion at 4, 10, 20, and 30 MHz, with 46.45 dB null at
+  30 MHz;
 - distributed-RC parasitic-extracted PVT passes 45/45 TT/SS/FF/SF/FS,
   1.62/1.80/1.98 V, and -40/27/125 C cases, with a 31.04 dB worst null;
 - 30/30 foundry-slope mismatch-surrogate trials pass, with 39.22 dB worst-case
@@ -47,7 +48,7 @@ known risks, and recommended iteration-two roadmap.
   including exact DEF/LEF/GDS pin geometry, analog-pad connectivity, boundary,
   layers, power ports, cell names, and Verilog syntax; and
 - the official GitHub TinyTapeout precheck passes 15/15 checks on the exact
-  release GDS ([run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666)).
+  release GDS ([run 29764564303](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29764564303)).
 
 The analog core is always active while `VDPWR` is present. `ena` and `rst_n`
 are boundary-compatible reserved inputs in this minimal revision; shutdown,

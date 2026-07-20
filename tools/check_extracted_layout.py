@@ -56,6 +56,50 @@ def expected_devices() -> Counter[tuple[object, ...]]:
     return expected
 
 
+def expected_bias_reference() -> tuple[tuple[object, ...], int]:
+    """Return the exact flattened signature of the diode-connected bias pair.
+
+    Keeping this assertion separate from the aggregate device comparison makes
+    the safety property explicit in signoff output: the gate/drain strap is
+    intentional, while source/body must remain on a different ground net.
+    """
+    manifest = json.loads(MANIFEST.read_text())
+    devices = {
+        device["name"]: device
+        for device in manifest["devices"]
+        if device["name"] in {"XBIASA", "XBIASB"}
+    }
+    if set(devices) != {"XBIASA", "XBIASB"}:
+        raise ValueError("manifest must contain exactly XBIASA and XBIASB")
+
+    signatures: set[tuple[object, ...]] = set()
+    finger_count = 0
+    for name, device in devices.items():
+        nets = {key: canonical_net(value) for key, value in device["nets"].items()}
+        if not (
+            device["kind"] == "nmos"
+            and nets["D"] == nets["G"] == "vbias"
+            and nets["S"] == nets["B"] == "VGND"
+            and nets["D"] != nets["S"]
+        ):
+            raise ValueError(
+                f"{name} must remain diode-connected D=G=vbias, "
+                "S=B=VGND, with vbias distinct from VGND"
+            )
+        signatures.add((
+            "sky130_fd_pr__nfet_01v8",
+            tuple(sorted((nets["D"], nets["S"]))),
+            nets["G"],
+            nets["B"],
+            round(float(device["total_w"]) / int(device["nf"]), 2),
+            round(float(device["l"]), 2),
+        ))
+        finger_count += int(device["nf"])
+    if len(signatures) != 1:
+        raise ValueError("XBIASA and XBIASB must have identical unit geometry")
+    return signatures.pop(), finger_count
+
+
 def actual_devices(path: Path) -> Counter[tuple[object, ...]]:
     actual: Counter[tuple[object, ...]] = Counter()
     for line in path.read_text().splitlines():
@@ -128,6 +172,13 @@ def main() -> None:
         for signature, count in (actual - expected).items():
             print(count, signature)
         raise SystemExit(1)
+    bias_signature, bias_fingers = expected_bias_reference()
+    if actual[bias_signature] != bias_fingers:
+        raise SystemExit(
+            "extracted bias reference is not the expected distinct-net "
+            f"diode connection: expected {bias_fingers} fingers, "
+            f"found {actual[bias_signature]}"
+        )
     totals = Counter()
     for signature, count in actual.items():
         model = str(signature[0])
@@ -135,6 +186,7 @@ def main() -> None:
     print(
         "Extracted-layout topology passed: "
         f"{totals['mos']} MOS fingers, {totals['passive']} passives, "
+        f"{bias_fingers} bias fingers preserve D=G=vbias and S=B=VGND, "
         "power connected, no unexpected net equivalences"
     )
 

@@ -30,6 +30,10 @@ TOP_PIN_BOTTOM = 224.76
 TOP_PIN_TOP = 225.76
 TOP_PIN_HALF_WIDTH = 0.15
 TOP_PIN_MINIMUM_SPACING = 0.30
+ROUTING_MINIMUM_SPACING = {
+    "metal3": 0.30,
+    "metal4": 0.30,
+}
 
 # Exact M4 pin centers from the TinyTapeout SKY130 analog template LEF.  These
 # shapes exist in the base cell but not in generated route.tcl, so the route
@@ -128,6 +132,31 @@ def overlaps(a: Shape, b: Shape) -> bool:
             and min(a.y2, b.y2) >= max(a.y1, b.y1))
 
 
+def same_layer_components(layer_shapes: list[Shape]) -> list[list[Shape]]:
+    """Group touching/overlapping rectangles on one conductor layer."""
+    parents = list(range(len(layer_shapes)))
+
+    def root(index: int) -> int:
+        while parents[index] != index:
+            parents[index] = parents[parents[index]]
+            index = parents[index]
+        return index
+
+    def union(first: int, second: int) -> None:
+        first_root, second_root = root(first), root(second)
+        if first_root != second_root:
+            parents[second_root] = first_root
+
+    for first_index, first in enumerate(layer_shapes):
+        for second_index, second in enumerate(layer_shapes[:first_index]):
+            if first.net == second.net and overlaps(first, second):
+                union(first_index, second_index)
+    grouped: dict[int, list[Shape]] = defaultdict(list)
+    for index, shape in enumerate(layer_shapes):
+        grouped[root(index)].append(shape)
+    return list(grouped.values())
+
+
 def overlap_errors(shapes: dict[str, list[Shape]]) -> list[str]:
     errors: list[str] = []
     for layer, layer_shapes in shapes.items():
@@ -222,6 +251,29 @@ def rectangle_gap(
     return (dx * dx + dy * dy) ** 0.5
 
 
+def same_layer_spacing_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject sub-rule spacing between generated shapes on different nets."""
+    errors: list[str] = []
+    for layer, minimum in ROUTING_MINIMUM_SPACING.items():
+        layer_shapes = shapes.get(layer, [])
+        for index, first in enumerate(layer_shapes):
+            first_rect = (first.x1, first.y1, first.x2, first.y2)
+            for second in layer_shapes[index + 1:]:
+                if first.net == second.net:
+                    continue
+                gap = rectangle_gap(
+                    first_rect, (second.x1, second.y1, second.x2, second.y2)
+                )
+                # Overlaps are reported separately with more direct wording.
+                if EPSILON < gap < minimum - EPSILON:
+                    errors.append(
+                        f"{layer}: {first.net} line {first.line} is {gap:.3f} um "
+                        f"from {second.net} line {second.line}; minimum is "
+                        f"{minimum:.2f} um"
+                    )
+    return errors
+
+
 def top_boundary_clearance_errors(shapes: dict[str, list[Shape]]) -> list[str]:
     """Reject M4 routes too close to any standard top-edge boundary pin."""
     errors: list[str] = []
@@ -266,6 +318,98 @@ def landing_shape(shape: Shape, via_centers: dict[str, set[tuple[float, float]]]
     if shape.layer == "metal4":
         return dimensions == (0.40, 0.40) and center in via_centers["via3"]
     return False
+
+
+def dead_end_via3_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject via3 landings that do not continue on both sides of the cut.
+
+    A lower M3 landing may continue laterally on M3 or immediately descend
+    through via2 to a device terminal.  Merely belonging to the overall net
+    through M4 is not enough: that would leave an unnecessary dead-end M3 pad.
+    The upper M4 side must likewise extend beyond its via enclosure.
+    """
+    via_centers = {
+        layer: {shape.center for shape in shapes.get(layer, [])}
+        for layer in VIA_LAYERS
+    }
+    unique_sites = {
+        (via.net, *via.center): via for via in shapes.get("via3", [])
+    }
+    errors: list[str] = []
+    for (net, x, y), via in sorted(unique_sites.items()):
+        lower = [
+            metal for metal in shapes.get("metal3", [])
+            if metal.net == net and overlaps(metal, via)
+        ]
+        upper = [
+            metal for metal in shapes.get("metal4", [])
+            if metal.net == net and overlaps(metal, via)
+        ]
+        lateral_m3 = any(
+            not landing_shape(metal, via_centers) for metal in lower
+        )
+        downward_via2 = any(
+            cut.net == net and any(overlaps(cut, metal) for metal in lower)
+            for cut in shapes.get("via2", [])
+        )
+        extending_m4 = any(
+            not landing_shape(metal, via_centers) for metal in upper
+        )
+        if not lower or (not lateral_m3 and not downward_via2):
+            errors.append(
+                f"via3: {net} at ({x:.4f}, {y:.4f}) has a dead-end M3 landing"
+            )
+        if not upper or not extending_m4:
+            errors.append(
+                f"via3: {net} at ({x:.4f}, {y:.4f}) has a dead-end M4 landing"
+            )
+
+    # A wider stale track rectangle is not geometrically a via landing, so the
+    # local test above intentionally regards it as lateral M3.  Catch the more
+    # subtle case by examining the complete same-net connectivity graph: an M3
+    # component that has no via2 and only hangs from one M4 component performs
+    # no routing function even if it is wider than the nominal landing pad.
+    m4_component_ids: dict[Shape, int] = {}
+    for component_index, component in enumerate(
+        same_layer_components(shapes.get("metal4", []))
+    ):
+        for metal in component:
+            m4_component_ids[metal] = component_index
+    for component in same_layer_components(shapes.get("metal3", [])):
+        net = component[0].net
+        attached_via3 = [
+            via for via in unique_sites.values()
+            if via.net == net and any(overlaps(via, metal) for metal in component)
+        ]
+        if not attached_via3:
+            continue
+        has_lateral_m3 = any(
+            not landing_shape(metal, via_centers) for metal in component
+        )
+        if not has_lateral_m3:
+            continue
+        descends_through_via2 = any(
+            cut.net == net and any(overlaps(cut, metal) for metal in component)
+            for cut in shapes.get("via2", [])
+        )
+        if descends_through_via2:
+            continue
+        attached_m4_components = {
+            m4_component_ids[metal]
+            for via in attached_via3
+            for metal in shapes.get("metal4", [])
+            if metal.net == net and overlaps(via, metal)
+        }
+        if len(attached_m4_components) <= 1:
+            left = min(metal.x1 for metal in component)
+            bottom = min(metal.y1 for metal in component)
+            right = max(metal.x2 for metal in component)
+            top = max(metal.y2 for metal in component)
+            errors.append(
+                f"via3: {net} has a via-only M3 island "
+                f"({left:.4f}, {bottom:.4f})-({right:.4f}, {top:.4f})"
+            )
+    return errors
 
 
 def merged_length(intervals: list[tuple[float, float]]) -> float:
@@ -603,6 +747,8 @@ def main() -> None:
     shapes = parse_route(path)
     errors = overlap_errors(shapes)
     via_errors = via_connection_errors(shapes)
+    spacing_errors = same_layer_spacing_errors(shapes)
+    dead_end_via3 = dead_end_via3_errors(shapes)
     disconnected_errors = disconnected_route_errors(shapes)
     top_boundary_errors = top_boundary_clearance_errors(shapes)
     metrics = route_metrics(shapes)
@@ -625,6 +771,8 @@ def main() -> None:
         ),
         "cross_net_overlap_count": len(errors),
         "cross_net_via_overlap_count": len(via_errors),
+        "cross_net_spacing_count": len(spacing_errors),
+        "dead_end_via3_site_count": len(dead_end_via3),
         "disconnected_route_component_count": len(disconnected_errors),
         "top_boundary_m4_clearance_count": len(top_boundary_errors),
         "metrics": metrics,
@@ -632,7 +780,8 @@ def main() -> None:
         "endpoint_matching": endpoint_results,
         "path_matching": path_results,
         "passed": (
-            not errors and not via_errors and not disconnected_errors
+            not errors and not via_errors and not spacing_errors and not dead_end_via3
+            and not disconnected_errors
             and not top_boundary_errors
             and not matching_failures
             and not endpoint_failures and not path_failures
@@ -649,6 +798,12 @@ def main() -> None:
     if via_errors:
         print("Generated route contains cross-net via/metal overlaps:")
         print("\n".join(via_errors[:50]))
+    if spacing_errors:
+        print("Generated route violates same-layer routing spacing:")
+        print("\n".join(spacing_errors[:50]))
+    if dead_end_via3:
+        print("Generated route contains dead-end via3 landings:")
+        print("\n".join(dead_end_via3[:50]))
     if disconnected_errors:
         print("Generated route contains disconnected same-net components:")
         print("\n".join(disconnected_errors[:50]))
@@ -665,7 +820,8 @@ def main() -> None:
         print("Generated route violates functional source-to-load constraints:")
         print("\n".join(path_failures))
     if (
-        errors or via_errors or disconnected_errors or top_boundary_errors
+        errors or via_errors or spacing_errors or dead_end_via3 or disconnected_errors
+        or top_boundary_errors
         or matching_failures
         or endpoint_failures or path_failures
     ):

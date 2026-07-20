@@ -378,9 +378,12 @@ def assign_net_columns(
             horizontal += abs(pin_x - column)
             fixed += abs(tracks[net] - pin_y)
         # The common M4 column is a union, not one independent riser per
-        # terminal.  Model its complete occupied span once.
+        # terminal.  Model its complete occupied span once.  Internal nets no
+        # longer extend to an arbitrary M3 track; their trunk is bounded by
+        # real terminal breakouts.  Boundary nets still include their M3 bus.
         ys = [item.access_y for item in net_connections]
-        ys.append(tracks[net])
+        if net in BOUNDARY_PINS:
+            ys.append(tracks[net])
         vertical = max(ys) - min(ys)
         return horizontal + vertical + fixed
 
@@ -537,6 +540,7 @@ def separate_breakout_lanes(
     connections: list[Connection],
     keepouts: list[tuple[float, float, float, float]],
     tracks: dict[str, float],
+    m3_track_nets: set[str],
 ) -> None:
     """Stagger crossing M3 and M2 terminal escapes while preserving locality."""
     # Model the actual M3 rectangles, including each via landing's 0.31 um
@@ -545,6 +549,7 @@ def separate_breakout_lanes(
     placed_m3: list[tuple[tuple[float, float, float, float], str]] = [
         ((6.5, track_y - M3_WIDTH / 2, 154.5, track_y + M3_WIDTH / 2), net)
         for net, track_y in tracks.items()
+        if net in m3_track_nets
     ]
     placed_m4: list[tuple[tuple[float, float, float, float], str]] = []
     for connection in connections:
@@ -748,7 +753,11 @@ def via3_stack(x: float, y: float) -> list[str]:
     ]
 
 
-def route_connection(connection: Connection, track_y: float) -> list[str]:
+def route_connection(
+    connection: Connection,
+    junction_y: float,
+    terminate_on_m3_track: bool,
+) -> list[str]:
     labels = connection.labels
     commands = [f"# {connection.device}.{connection.terminal} -> {connection.net}"]
     if connection.terminal == "D":
@@ -785,9 +794,10 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
         commands.extend(via3_stack(connection.column_x, connection.breakout_y))
         commands.append(
             wire_v("metal4", connection.column_x, connection.breakout_y,
-                   track_y, M4_WIDTH)
+                   junction_y, M4_WIDTH)
         )
-        commands.extend(via3_stack(connection.column_x, track_y))
+        if terminate_on_m3_track:
+            commands.extend(via3_stack(connection.column_x, junction_y))
         return commands
 
     for original, label in zip(connection.original_labels, labels, strict=True):
@@ -817,19 +827,27 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
     )
     commands.extend(via3_stack(connection.column_x, connection.breakout_y))
     commands.append(
-        wire_v("metal4", connection.column_x, connection.breakout_y, track_y, M4_WIDTH)
+        wire_v(
+            "metal4", connection.column_x, connection.breakout_y,
+            junction_y, M4_WIDTH,
+        )
     )
-    commands.extend(via3_stack(connection.column_x, track_y))
+    if terminate_on_m3_track:
+        commands.extend(via3_stack(connection.column_x, junction_y))
     return commands
 
 
-def route_capacitor(connection: Connection, track_y: float) -> list[str]:
+def route_capacitor(
+    connection: Connection,
+    junction_y: float,
+    terminate_on_m3_track: bool,
+) -> list[str]:
     label = connection.labels[0]
     # Remain on M4 while leaving the physical electrode.  In particular, do
     # not place a via3 on C1: its M3 landing would directly touch C2's broad
     # bottom plate and short the capacitor.  The M4 routing keep-out ensures
     # no unrelated riser crosses either plate.
-    return [
+    commands = [
         f"# {connection.device}.{connection.terminal} -> {connection.net}",
         rect("metal4", label.x - 0.20, label.y - 0.20, label.x + 0.20, label.y + 0.20),
         wire_h("metal4", label.x, connection.escape_x, label.y, M4_WIDTH),
@@ -843,9 +861,11 @@ def route_capacitor(connection: Connection, track_y: float) -> list[str]:
                connection.breakout_y, M3_WIDTH),
         *via3_stack(connection.column_x, connection.breakout_y),
         wire_v("metal4", connection.column_x, connection.breakout_y,
-               track_y, M4_WIDTH),
-        *via3_stack(connection.column_x, track_y),
+               junction_y, M4_WIDTH),
     ]
+    if terminate_on_m3_track:
+        commands.extend(via3_stack(connection.column_x, junction_y))
+    return commands
 
 
 def boundary_route(net: str, x: float, pin_y: float, track_y: float) -> list[str]:
@@ -945,8 +965,17 @@ def main() -> None:
         for net, column in manifest.get("route_column_overrides", {}).items()
     }
     assign_local_escape_columns(connections, list(column_overrides.values()))
+    track_y_overrides = {
+        str(net): float(y)
+        for net, y in manifest.get("track_y_overrides", {}).items()
+    }
+    unknown_track_overrides = track_y_overrides.keys() - set(manifest["track_order"])
+    if unknown_track_overrides:
+        raise ValueError(
+            f"track-y overrides name unknown nets: {sorted(unknown_track_overrides)}"
+        )
     tracks = {
-        net: TRACK_Y0 + index * TRACK_PITCH
+        net: track_y_overrides.get(net, TRACK_Y0 + index * TRACK_PITCH)
         for index, net in enumerate(manifest["track_order"])
     }
     endpoint_constraints = expand_endpoint_constraints(
@@ -960,14 +989,71 @@ def main() -> None:
         endpoint_constraints,
         column_overrides,
     )
-    separate_breakout_lanes(connections, keepouts, tracks)
+    # Only boundary-facing nets need an M3 distribution bus.  Every internal
+    # net already uses one shared M4 column, so descending to an arbitrary M3
+    # track and immediately returning to that same M4 component creates a
+    # via-only stub and lengthens the trunk without adding connectivity.
+    m3_track_nets = set(BOUNDARY_PINS)
+    separate_breakout_lanes(connections, keepouts, tracks, m3_track_nets)
+    # Apply explicit matched-path compensation only after legal breakout lanes
+    # have been allocated.  Each selected branch already contains a real
+    # M4 dogleg between two via3 sites, so moving its second landing changes a
+    # conducting component-to-trunk path without adding a via or a dead end.
+    post_breakout_offsets = {
+        str(endpoint): float(offset)
+        for endpoint, offset in manifest.get(
+            "post_breakout_y_offsets", {}
+        ).items()
+    }
+    unknown_post_offsets = post_breakout_offsets.keys() - connection_by_endpoint.keys()
+    if unknown_post_offsets:
+        raise ValueError(
+            "post-breakout offsets name unknown endpoints: "
+            f"{sorted(unknown_post_offsets)}"
+        )
+    for endpoint, offset in post_breakout_offsets.items():
+        connection_by_endpoint[endpoint].breakout_y += offset
 
     missing_tracks = {connection.net for connection in connections} - tracks.keys()
     if missing_tracks:
         raise ValueError(f"nets without tracks: {sorted(missing_tracks)}")
 
+    junction_y_by_net: dict[str, float] = {}
+    for net in tracks:
+        net_connections = [item for item in connections if item.net == net]
+        if not net_connections:
+            raise ValueError(f"net {net} has no routed device connection")
+        if net in m3_track_nets:
+            junction_y_by_net[net] = tracks[net]
+            continue
+        columns = {item.column_x for item in net_connections}
+        if len(columns) != 1:
+            raise ValueError(
+                f"direct-M4 net {net} unexpectedly uses columns {sorted(columns)}"
+            )
+        breakout_ys = sorted(item.breakout_y for item in net_connections)
+        # Pick an existing transition point so the label always lands on real
+        # M4 geometry.  Connecting every branch to this median bounds the
+        # shared trunk by actual endpoints rather than an artificial track.
+        junction_y_by_net[net] = breakout_ys[len(breakout_ys) // 2]
+
     commands: list[str] = []
     for net, y in tracks.items():
+        if net not in m3_track_nets:
+            column_x = next(
+                connection.column_x for connection in connections
+                if connection.net == net
+            )
+            junction_y = junction_y_by_net[net]
+            commands.extend(
+                [
+                    f"# direct M4 junction: {net}",
+                    f"box {fmt(column_x)}um {fmt(junction_y)}um "
+                    f"{fmt(column_x)}um {fmt(junction_y)}um",
+                    f"label {{{net}}} FreeSans 0.10u -met4",
+                ]
+            )
+            continue
         endpoints = [
             connection.column_x for connection in connections if connection.net == net
         ]
@@ -1003,7 +1089,13 @@ def main() -> None:
         ):
             continue
         router = route_capacitor if connection.kind == "cap_mim_m3" else route_connection
-        commands.extend(router(connection, tracks[connection.net]))
+        commands.extend(
+            router(
+                connection,
+                junction_y_by_net[connection.net],
+                connection.net in m3_track_nets,
+            )
+        )
 
     for net, (x, y) in BOUNDARY_PINS.items():
         commands.extend(boundary_route(net, x, y, tracks[net]))

@@ -176,6 +176,14 @@ retains the original total resistance while providing output headroom at
 low-supply/slow-process corners. It is decoupled by a 22 x 22 um M3 MIM
 capacitor of approximately 0.983 pF.
 
+The two physical cells `XBIASA` and `XBIASB` are parallel halves of that one
+32 um reference device, not two independently adjustable bias outputs. In each
+cell the drain fingers and gate strap intentionally share `vbias`; the source
+fingers and body contacts share `VGND`. Thus the apparent same-rail drain/gate
+connection in a 3-D viewer is the required diode connection. Final extraction
+keeps `vbias` and `VGND` distinct across all 18 fingers, and the topology gate
+asserts this named connection explicitly.
+
 ### 7.2 Channel transconductors
 
 Each channel uses a matched NMOS single-ended-to-differential transconductor.
@@ -246,23 +254,22 @@ that the eventual package has those exact values.
 
 | LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
 |---:|---:|---:|---:|---:|---:|
-| 4 MHz | 5 MHz | 0.9999 mVrms | 66.96 dB | pass | pass |
-| 10 MHz | 11 MHz | 1.1594 mVrms | 44.30 dB | pass | pass |
-| 20 MHz | 21 MHz | 1.1599 mVrms | 41.96 dB | pass | pass |
-| 30 MHz | 31 MHz | 1.1594 mVrms | 38.84 dB | miss | pass |
+| 4 MHz | 5 MHz | 0.9370 mVrms | 51.92 dB | pass | pass |
+| 10 MHz | 11 MHz | 0.9221 mVrms | 50.69 dB | pass | pass |
+| 20 MHz | 21 MHz | 0.8992 mVrms | 44.59 dB | pass | pass |
+| 30 MHz | 31 MHz | 0.8282 mVrms | 46.45 dB | pass | pass |
 
-The wanted-tone amplitude remains approximately 1.0 to 1.16 mVrms throughout
-the sweep; the 30 MHz result is 116.0 percent of the 4 MHz amplitude. The
-30 MHz mode is nevertheless characterization-only: only 4 MHz is carried as
+The wanted-tone amplitude remains 0.83 to 0.94 mVrms throughout the sweep;
+the 30 MHz result is 88.4 percent of the 4 MHz amplitude. The 30 MHz mode is
+nevertheless characterization-only: only 4 MHz is carried as
 `clock_hz` in the TinyTapeout metadata and through the complete release matrix.
-The principal higher-speed degradation is cancellation depth, not gain or
-failure of the clock drivers.
+All four points retain more than 44 dB cancellation; the higher-speed change is
+a modest gain roll-off, not failure of the clock drivers.
 
 An independent macOS replay with ngspice 46 and the same extracted-netlist
 hash measured 0.9335 mVrms constructive output and 52.52 dB null at 4 MHz.
-Very deep cancellation is numerically sensitive to solver version, so both
-solver results are preserved rather than silently selecting one. Both
-independently clear the 40 dB nominal target.
+The constructive amplitudes agree within 0.4 percent and the null depths within
+0.60 dB. Both independently clear the 40 dB nominal target.
 
 ### 8.3 Extracted clock integrity
 
@@ -274,7 +281,7 @@ that a logic threshold was crossed.
 
 | LO | Slowest measured edge | Worst paired-channel skew | Result |
 |---:|---:|---:|---:|
-| 4 MHz | 0.193 ns | 0.024 ns | pass |
+| 4 MHz | 0.182 ns | 0.022 ns | pass |
 | 10 MHz | 0.190 ns | 0.022 ns | pass |
 | 20 MHz | 0.192 ns | 0.021 ns | pass |
 | 30 MHz | 0.188 ns | 0.022 ns | pass |
@@ -287,8 +294,8 @@ rating.
 ### 8.4 Nominal channel balance
 
 Driving each channel independently through the same extracted testbench gives
-0.0016874 percent nominal amplitude difference. The amplitude-only
-cancellation estimate is 101.48 dB; the actual switched two-channel null is
+0.0026539 percent nominal amplitude difference. The amplitude-only
+cancellation estimate is 97.54 dB; the actual switched two-channel null is
 lower because phase skew, residual clock products, and detector bandwidth also
 contribute.
 This is a deterministic result, not a yield prediction.
@@ -336,7 +343,7 @@ ceiling at the 1.98 V cases.
 
 The nominal TT, 1.80 V, 27 C time-domain result is 16.783 mVrms
 constructive, 0.196 mVrms destructive, 38.63 dB null, 1.504 V common mode,
-and 0.323 mA. Its null is lower than the 66.96 dB coherent wanted-tone result
+and 0.323 mA. Its null is lower than the 51.92 dB coherent wanted-tone result
 because the time-domain detector also includes residual filtered switching
 products, as described in Section 8.1.
 
@@ -490,6 +497,31 @@ the designated access sides. Extracted `vcm` and `VGND` remain distinct, the
 capacitor is present once, and GDS readback DRC and extraction feedback are
 both zero.
 
+In a tilted 3-D viewer, the `vcm` access can look like a narrow trace entering
+the capacitor and stopping near its center. That geometry is real but
+intentional: terminal C1 runs on M4 from the left to approximately
+`(76.2, 105.2) um`, where it merges into the PCell's broad M4 top electrode.
+The visible dotted row is part of the PDK via-3 array under that electrode;
+opaque layer rendering hides most of the remaining array. Terminal C2 is the
+separate narrow M4 strip at approximately `x=88.7..89.1 um` and connects the
+M3 bottom plate to `VGND`. Exact extraction resolves the device as
+`vcm`-to-`VGND`, with no third net or plate short.
+
+Disabling M4 in a 3-D viewer also makes many ordinary via-3 landing pads look
+like isolated M3 stubs. They are the lower enclosures of vertical M4 risers,
+not unused metal. In the exact release GDS, all 61 small M3 components of at
+most 1 um2 contain via-3, and all 3,376 flattened via-3 cuts have complete M3
+and M4 enclosure. Five cuts lie at legal split-rectangle M3 junctions, so the
+two adjacent rectangles jointly provide their enclosure. The exact-GDS gate
+checks union enclosure rather than incorrectly requiring one rectangle.
+Generated-route connectivity independently reports zero disconnected
+components. Of 421 unique generated via-3 sites, 418 directly overlap a
+non-landing M3 trace. The other three descend immediately through via-2/M2 at
+`XBIASA.S`, `XBIASB.S`, and `XRIN1.R1`; no site terminates in an enclosure-only
+pad. A dedicated dead-end-via gate enforces that rule on both sides of every
+generated cut. Distributed-RC extraction also reports zero unanchored
+components.
+
 ### 9.5 Signed-off full layout
 
 ![Mask-layer rendering of the final signed-off beamformer GDS](images/beamformer-gds.png)
@@ -603,7 +635,7 @@ stale report could previously appear clean while hiding lost analog margin.
 The GitHub workflow remains the final mechanical submission gate because it
 runs the complete pinned TinyTapeout Magic and KLayout rule set. The exact
 release GDS passed
-[run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666);
+[run 29764564303](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29764564303);
 the committed
 `submission/official_precheck_results.md` and
 `submission/official_magic_drc.txt` preserve that run's reports. The

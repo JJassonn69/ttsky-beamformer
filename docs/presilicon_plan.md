@@ -36,13 +36,14 @@ electrical confidence are tracked separately.
   separate gate proving explicit resistor segments and internal RC nodes were
   emitted rather than only devices and capacitances, and that every extracted
   resistor component is anchored to a manifest net;
-- coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass the 20 dB release gate,
-  with 66.96 dB null at 4 MHz and 38.84 dB at 30 MHz;
+- coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass both the 40 dB nominal
+  target and 20 dB release gate, with 51.92 dB null at 4 MHz and 46.45 dB at
+  30 MHz;
 - independent macOS/ngspice 46 replay at 4 MHz: 0.9335 mVrms and 52.52 dB,
   bound to the exact RC-netlist hash and independently passing the 40 dB
   nominal target;
 - extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
-- nominal extracted channel amplitude difference: 0.0016874 percent;
+- nominal extracted channel amplitude difference: 0.0026539 percent;
 - foundry-slope mismatch surrogate: 30/30 pass, 39.22 dB worst null;
 - distributed-RC parasitic-extracted deterministic PVT: 45/45 pass, 31.04 dB worst null at
   TT, 1.62 V, and 125 C;
@@ -53,7 +54,7 @@ electrical confidence are tracked separately.
   layer, analog-pad, cell-name, and Verilog checks; and
 - official GitHub TinyTapeout custom-GDS, viewer, and 15/15 full-precheck jobs
   pass on the exact release GDS in
-  [run 29713672666](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29713672666).
+  [run 29764564303](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29764564303).
 
 The PVT release gate follows `spec/beamformer_v1.md`: at least 20 dB destructive
 null at every deterministic corner. The nominal test keeps a stronger 40 dB

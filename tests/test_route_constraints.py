@@ -5,6 +5,7 @@ import unittest
 from pathlib import Path
 
 from tools.check_generated_routes import (
+    dead_end_via3_errors,
     disconnected_route_errors,
     endpoint_matching_results,
     expand_endpoint_constraints,
@@ -12,6 +13,7 @@ from tools.check_generated_routes import (
     parse_route,
     path_matching_results,
     route_metrics,
+    same_layer_spacing_errors,
     top_boundary_clearance_errors,
     via_connection_errors,
 )
@@ -168,6 +170,20 @@ paint_rect metal3 9.9 10.0 10.5 10.4
         self.assertIn("via3", failures[0])
         self.assertIn("metal3", failures[0])
 
+    def test_cross_net_m3_spacing_is_rejected_before_gds(self) -> None:
+        route = """# first.D -> first
+paint_rect metal3 0.0 0.0 4.0 0.4
+# second.G -> second
+paint_rect metal3 0.0 0.53 4.0 0.93
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            failures = same_layer_spacing_errors(parse_route(path))
+        self.assertEqual(len(failures), 1)
+        self.assertIn("0.130 um", failures[0])
+        self.assertIn("minimum is 0.30 um", failures[0])
+
     def test_disconnected_same_net_route_is_rejected(self) -> None:
         route = """# device.D -> signal
 paint_rect metal3 0.0 0.0 1.0 0.4
@@ -180,6 +196,38 @@ paint_rect metal3 5.0 0.0 6.0 0.4
         self.assertEqual(len(failures), 1)
         self.assertIn("signal", failures[0])
         self.assertIn("disconnected", failures[0])
+
+    def test_dead_end_via3_requires_real_continuation_on_both_sides(self) -> None:
+        dead_end = """# device.D -> signal
+paint_rect metal3 9.69 10.0 10.31 10.4
+paint_rect via3 9.8 10.0 10.2 10.4
+paint_rect metal4 9.8 10.0 10.2 10.4
+"""
+        continued = dead_end + """paint_rect via2 9.8 10.0 10.2 10.4
+paint_rect metal4 9.8 10.0 10.2 12.0
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(dead_end)
+            failures = dead_end_via3_errors(parse_route(path))
+            self.assertEqual(len(failures), 2)
+            self.assertTrue(any("M3" in failure for failure in failures))
+            self.assertTrue(any("M4" in failure for failure in failures))
+            path.write_text(continued)
+            self.assertEqual(dead_end_via3_errors(parse_route(path)), [])
+
+    def test_wide_stale_m3_track_below_one_m4_component_is_rejected(self) -> None:
+        route = """# horizontal net track: signal
+paint_rect metal3 9.6 10.0 10.4 10.4
+paint_rect via3 9.8 10.0 10.2 10.4
+paint_rect metal4 9.8 5.0 10.2 12.0
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            failures = dead_end_via3_errors(parse_route(path))
+        self.assertEqual(len(failures), 1, failures)
+        self.assertIn("via-only M3 island", failures[0])
 
 
 if __name__ == "__main__":

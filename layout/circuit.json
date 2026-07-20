@@ -8,6 +8,15 @@
     "ch2_lop_raw", "ch2_lon_raw", "ch2_lop", "ch2_lon",
     "gm1_p", "gm1_n", "tail1", "gm2_p", "gm2_n", "tail2"
   ],
+  "track_y_overrides": {
+    "clk": 180.50,
+    "select": 182.35
+  },
+  "post_breakout_y_offsets": {
+    "XCH2_SW2A.S": -3.0,
+    "XCH2_SW1A.S": -3.0,
+    "XCH2_TAILA.D": 5.2306
+  },
   "pin_aliases": {"select": "ui_in[0]"},
   "route_column_overrides": {
     "ua[0]": 48.0,
@@ -18,10 +27,10 @@
     "ch2_lop": 60.8,
     "ch1_lon": 120.0,
     "ch2_lon": 112.0,
-    "gm1_p": 21.6,
+    "gm1_p": 23.2,
     "gm2_p": 24.0,
-    "gm1_n": 60.0,
-    "gm2_n": 61.6,
+    "gm1_n": 59.2,
+    "gm2_n": 60.0,
     "tail1": 56.8,
     "tail2": 62.4
   },

@@ -9,6 +9,8 @@ small set of independent SKY130 rules that previously escaped local signoff:
 * met3 and met4 minimum spacing: 0.30 um;
 * met4 minimum width: 0.30 um;
 * met4 connected-area minimum: 0.24 um^2;
+* every via3 cut is fully enclosed by the union of met3 below and met4 above;
+* no met4-to-met3 transition terminates on a via-only met3 island;
 * capm spacing to an unrelated met3 component: 1.34 um.
 
 It intentionally accepts only axis-aligned rectangles on the checked layers.
@@ -28,7 +30,10 @@ Point = tuple[float, float]
 Rect = tuple[float, float, float, float]
 Matrix = tuple[float, float, float, float, float, float]
 
+MET2 = (69, 20)
+VIA2 = (69, 44)
 MET3 = (70, 20)
+VIA3 = (70, 44)
 CAPM = (89, 44)
 MET4 = (71, 20)
 
@@ -158,7 +163,7 @@ def transform(matrix: Matrix, point: tuple[int, int]) -> Point:
 def flatten_rectangles(
     structures: dict[str, Structure], top: str, database_um: float
 ) -> dict[Layer, list[Rect]]:
-    wanted = {MET3, MET4, CAPM}
+    wanted = {MET2, VIA2, MET3, VIA3, MET4, CAPM}
     output: dict[Layer, list[Rect]] = {layer: [] for layer in wanted}
 
     def visit(name: str, matrix: Matrix, ancestry: tuple[str, ...]) -> None:
@@ -261,6 +266,29 @@ def union_area(rectangles: list[Rect]) -> float:
     return area
 
 
+def clipped_rectangle(rectangle: Rect, boundary: Rect) -> Rect | None:
+    clipped = (
+        max(rectangle[0], boundary[0]),
+        max(rectangle[1], boundary[1]),
+        min(rectangle[2], boundary[2]),
+        min(rectangle[3], boundary[3]),
+    )
+    if clipped[0] >= clipped[2] or clipped[1] >= clipped[3]:
+        return None
+    return clipped
+
+
+def enclosure_deficit(cut: Rect, conductors: list[Rect]) -> float:
+    """Return uncovered cut area, allowing legal split-rectangle junctions."""
+    intersections = [
+        clipped
+        for conductor in conductors
+        if (clipped := clipped_rectangle(conductor, cut)) is not None
+    ]
+    cut_area = (cut[2] - cut[0]) * (cut[3] - cut[1])
+    return max(0.0, cut_area - union_area(intersections))
+
+
 def spacing_violations(components: list[list[Rect]], minimum: float) -> list[float]:
     violations: list[float] = []
     for first_index, first in enumerate(components):
@@ -269,6 +297,49 @@ def spacing_violations(components: list[list[Rect]], minimum: float) -> list[flo
             if gap < minimum - 1e-9:
                 violations.append(gap)
     return violations
+
+
+def via_only_met3_islands(
+    rectangles: dict[Layer, list[Rect]],
+    components: dict[Layer, list[list[Rect]]],
+) -> list[float]:
+    """Return areas of M3 components that only hang from one M4 component.
+
+    This is deliberately a connectivity test, not an enclosure test.  A stale
+    via3 plus its legal M3 landing can pass DRC while doing no useful work.  A
+    useful M3 component below via3 must continue down through via2, bridge two
+    otherwise separate M4 components, or form part of the intentional MIM
+    capacitor plate geometry.
+    """
+    dangling: list[float] = []
+    for met3_component in components[MET3]:
+        attached_via3 = [
+            cut for cut in rectangles[VIA3]
+            if any(rectangle_gap(cut, metal) == 0.0 for metal in met3_component)
+        ]
+        if not attached_via3:
+            continue
+        descends_through_via2 = any(
+            any(rectangle_gap(cut, metal) == 0.0 for metal in met3_component)
+            for cut in rectangles[VIA2]
+        )
+        if descends_through_via2:
+            continue
+        mim_plate_geometry = any(
+            component_gap(met3_component, capm_component) == 0.0
+            for capm_component in components[CAPM]
+        )
+        if mim_plate_geometry:
+            continue
+        attached_met4_components = {
+            index
+            for cut in attached_via3
+            for index, met4_component in enumerate(components[MET4])
+            if any(rectangle_gap(cut, metal) == 0.0 for metal in met4_component)
+        }
+        if len(attached_met4_components) <= 1:
+            dangling.append(union_area(met3_component))
+    return dangling
 
 
 def audit_rectangles(
@@ -296,11 +367,21 @@ def audit_rectangles(
             gap = component_gap(plate, metal)
             if 0.0 < gap < 1.34 - 1e-9:
                 capm_spacing.append(gap)
+    via3_enclosure = [
+        max(
+            enclosure_deficit(cut, rectangles[MET3]),
+            enclosure_deficit(cut, rectangles[MET4]),
+        )
+        for cut in rectangles[VIA3]
+    ]
+    via3_enclosure = [deficit for deficit in via3_enclosure if deficit > 1e-9]
     checks = {
         "met3 spacing": spacing_violations(components[MET3], 0.30),
         "met4 spacing": spacing_violations(components[MET4], 0.30),
         "met4 minimum width": met4_width,
         "met4 minimum area": met4_area,
+        "via3 enclosure": via3_enclosure,
+        "via-only met3 island": via_only_met3_islands(rectangles, components),
         "capm-to-unrelated-met3 spacing": capm_spacing,
     }
     return components, checks
@@ -319,18 +400,21 @@ def main() -> None:
     print(
         "Flattened GDS audit: "
         f"{len(rectangles[MET3])} M3 rectangles/{len(components[MET3])} components, "
+        f"{len(rectangles[VIA3])} via3 cuts, "
         f"{len(rectangles[MET4])} M4 rectangles/{len(components[MET4])} components, "
         f"{len(components[CAPM])} capm component(s)"
     )
     for name, values in failures.items():
         sample = ", ".join(f"{value:.3f}" for value in sorted(values)[:8])
-        unit = "um^2" if name == "met4 minimum area" else "um"
+        unit = "um^2" if name in {
+            "met4 minimum area", "via3 enclosure", "via-only met3 island"
+        } else "um"
         print(f"FAIL {name}: {len(values)} marker(s); smallest {sample} {unit}")
     if failures:
         raise SystemExit(1)
     print(
         "Flattened GDS routing rules passed: M3/M4 spacing, M4 width/area, "
-        "and capm clearance"
+        "via3 two-sided enclosure/dead-end connectivity, and capm clearance"
     )
 
 
