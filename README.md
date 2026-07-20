@@ -29,10 +29,10 @@ known risks, and recommended iteration-two roadmap.
 - real, uncompressed GDSII and an exact TinyTapeout-pin LEF;
 - Magic placement, routed, extraction, and final DRC counts: zero;
 - Magic GDS writer geometry-feedback count: zero;
-- nominal extracted 1 MHz wanted-tone result: 0.803 mVrms constructive output
-  and 51.83 dB null at a 4 MHz LO;
+- nominal extracted 1 MHz wanted-tone result: 0.809 mVrms constructive output
+  and 44.60 dB null at a 4 MHz LO;
 - extracted higher-clock characterization passes the 20 dB release criterion
-  at 4, 10, 20, and 30 MHz, with 33.93 dB null at 30 MHz;
+  at 4, 10, 20, and 30 MHz, with 33.54 dB null at 30 MHz;
 - full parasitic-extracted PVT passes 45/45 TT/SS/FF/SF/FS,
   1.62/1.80/1.98 V, and -40/27/125 C cases, with a 25.60 dB worst null;
 - 30/30 foundry-slope mismatch-surrogate trials pass, with 39.28 dB worst-case
@@ -87,7 +87,7 @@ is not on `PATH`. The release files are
 
 The GitHub `gds` workflow uses TinyTapeout's pinned `ttsky26c` custom-GDS and
 precheck actions. Before invoking them it also flattens the exact release GDS
-and rejects M3/M4 spacing, M4 connected-area, and capm-clearance regressions;
+and rejects M3/M4 spacing, M4 width/connected-area, and capm-clearance regressions;
 the same gate runs from `make verify`, `make layout-signoff`, and
 `make release-check`. A green precheck confirms submission compatibility, not
 manufacturing yield; the remaining electrical risks and bench plan are kept

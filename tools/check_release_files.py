@@ -42,6 +42,7 @@ def main() -> None:
         "flattened_gds_met3_spacing_count",
         "flattened_gds_met4_area_count",
         "flattened_gds_met4_spacing_count",
+        "flattened_gds_met4_width_count",
         "gds_writer_feedback_count",
         "magic_gds_readback_drc_count",
         "magic_internal_signoff_drc_count",

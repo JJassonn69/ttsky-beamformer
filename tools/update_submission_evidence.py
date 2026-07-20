@@ -160,6 +160,7 @@ def main() -> None:
             "flattened_gds_met3_spacing_count": 0,
             "flattened_gds_met4_area_count": 0,
             "flattened_gds_met4_spacing_count": 0,
+            "flattened_gds_met4_width_count": 0,
             "gds_writer_feedback_count": 0,
             "generated_route_shapes": 7367,
             "magic_gds_readback_drc_count": 0,

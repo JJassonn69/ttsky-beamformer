@@ -238,12 +238,12 @@ that the eventual package has those exact values.
 
 | LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
 |---:|---:|---:|---:|---:|---:|
-| 4 MHz | 5 MHz | 0.8035 mVrms | 51.83 dB | pass | pass |
-| 10 MHz | 11 MHz | 0.7466 mVrms | 44.59 dB | pass | pass |
-| 20 MHz | 21 MHz | 0.6962 mVrms | 39.66 dB | miss by 0.34 dB | pass |
-| 30 MHz | 31 MHz | 0.6546 mVrms | 33.93 dB | miss | pass |
+| 4 MHz | 5 MHz | 0.8090 mVrms | 44.60 dB | pass | pass |
+| 10 MHz | 11 MHz | 0.7600 mVrms | 46.37 dB | pass | pass |
+| 20 MHz | 21 MHz | 0.7043 mVrms | 40.15 dB | pass | pass |
+| 30 MHz | 31 MHz | 0.6584 mVrms | 33.54 dB | miss | pass |
 
-The output retains 81.5 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
+The output retains 81.4 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
 The 30 MHz mode is therefore useful for characterization, but it is not the
 datasheet operating point: only 4 MHz is carried as `clock_hz` in the
 TinyTapeout metadata and through the complete release matrix. The principal
@@ -312,7 +312,7 @@ into `submission/signoff.json` by the release process.
 
 The nominal TT, 1.80 V, 27 C time-domain result is 16.748 mVrms
 constructive, 0.420 mVrms destructive, 32.01 dB null, 1.504 V common mode,
-and 0.323 mA. Its null is lower than the 51.83 dB coherent wanted-tone result
+and 0.323 mA. Its null is lower than the 44.60 dB coherent wanted-tone result
 because the time-domain detector also includes residual filtered switching
 products, as described in Section 8.1.
 
@@ -339,10 +339,10 @@ products, as described in Section 8.1.
 | Generated route geometry | 7,367 shapes; overlap audit passed |
 | Signal routing | local M2, compact M3 tracks, shared local M4 risers |
 | Power | `VDPWR` and `VGND`; no `VAPWR` |
-| GDS size | 688,370 bytes, uncompressed GDSII |
-| GDS SHA-256 | `0f2ee40b65e029ddbf665f2533f5c16d2b78bba1d325bd3bbe724508bbd83389` |
+| GDS size | 688,306 bytes, uncompressed GDSII |
+| GDS SHA-256 | `1010991ccf40aff786186e0e23cf0a38b2151f71a0e4d575b1dea4258693ca9d` |
 | LEF SHA-256 | `9df231957326895371afc1f5e903b51e7992b3b6f8c3401546fa7ef7d82eb760` |
-| Extracted SPICE SHA-256 | `06ade8ea01ebfa4f0f29b7d4ef129a5949f381e6a98da0232addd04a76624f44` |
+| Extracted SPICE SHA-256 | `2a2d3d6d918b80a4c4302036bf7feb8792876b1fbf6c7e35be2caf6bc6ccb65c` |
 | Official DEF SHA-256 | `042803101760925474f602e69119f497922eb912c37a6651bed030164bb576af` |
 
 ### 9.1 Matching architecture
@@ -442,8 +442,8 @@ The following checks are complete for the local release candidate:
 - exact extracted-device and parasitic-capacitor multisets agree with the
   electrically simulated final candidate;
 - generated route overlap audit: pass for 7,367 generated shapes;
-- dependency-free flattened-GDS audit: zero M3 spacing, M4 spacing, M4
-  connected-area, or capm-to-unrelated-M3 markers;
+- dependency-free flattened-GDS audit: zero M3 spacing, M4 spacing, M4 width,
+  M4 connected-area, or capm-to-unrelated-M3 markers;
 - official static prechecks: 8/8 locally runnable checks pass, covering top
   macro, forbidden layers, project boundary, exact DEF/LEF/GDS pin geometry,
   power pins, valid layers, cell names, analog-pad connectivity, and Verilog;
@@ -454,7 +454,8 @@ The following checks are complete for the local release candidate:
 The project-local GDS audit deliberately flattens the exact emitted hierarchy.
 It was regression-tested against the first independent-precheck failure and
 reproduced all 9 M3 spacing, 12 M4 spacing, 176 M4 connected-area, and two capm
-markers before the router was corrected. It now runs from `make verify`,
+markers from the first independent precheck, then the two M4-width markers
+from the second pass. It now runs from `make verify`,
 `make layout-signoff`, `make release-check`, and before the custom-GDS Action.
 The extraction gate separately rejects unexpected net equivalences and an
 incorrect 338-finger/eight-passive device multiset.

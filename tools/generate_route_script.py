@@ -587,7 +587,10 @@ def route_capacitor(connection: Connection, track_y: float) -> list[str]:
         f"# {connection.device}.{connection.terminal} -> {connection.net}",
         rect("metal4", label.x - 0.20, label.y - 0.20, label.x + 0.20, label.y + 0.20),
         wire_h("metal4", label.x, connection.escape_x, label.y, M4_WIDTH),
-        wire_v("metal4", connection.escape_x, label.y,
+        # Extend to the lower edge of the horizontal wire.  Starting on its
+        # centerline leaves a 0.20 um re-entrant leg after GDS booleanization,
+        # which violates met4.1 even though the painted wires are 0.40 um.
+        wire_v("metal4", connection.escape_x, label.y - M4_WIDTH / 2,
                connection.breakout_y, M4_WIDTH),
         *via3_stack(connection.escape_x, connection.breakout_y),
         wire_h("metal3", connection.escape_x, connection.column_x,

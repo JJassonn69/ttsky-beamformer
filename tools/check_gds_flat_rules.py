@@ -284,6 +284,12 @@ def main() -> None:
 
     met3_spacing = spacing_violations(met3, 0.30)
     met4_spacing = spacing_violations(met4, 0.30)
+    met4_width = [
+        min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
+        for rectangle in rectangles[MET4]
+        if min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
+        < 0.30 - 1e-9
+    ]
     met4_area = [union_area(component) for component in met4 if union_area(component) < 0.24 - 1e-9]
     capm_spacing = []
     for plate in capm:
@@ -295,6 +301,7 @@ def main() -> None:
     checks = {
         "met3 spacing": met3_spacing,
         "met4 spacing": met4_spacing,
+        "met4 minimum width": met4_width,
         "met4 minimum area": met4_area,
         "capm-to-unrelated-met3 spacing": capm_spacing,
     }
@@ -311,7 +318,10 @@ def main() -> None:
         print(f"FAIL {name}: {len(values)} marker(s); smallest {sample} {unit}")
     if failures:
         raise SystemExit(1)
-    print("Flattened GDS routing rules passed: M3/M4 spacing, M4 area, and capm clearance")
+    print(
+        "Flattened GDS routing rules passed: M3/M4 spacing, M4 width/area, "
+        "and capm clearance"
+    )
 
 
 if __name__ == "__main__":
