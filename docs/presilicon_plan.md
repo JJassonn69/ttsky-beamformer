@@ -21,11 +21,14 @@ electrical confidence are tracked separately.
 - extraction topology check: 338 MOS fingers, eight passives, connected power,
   and no unexpected net equivalences;
 - zero Magic GDS-writer geometry warnings;
+- flattened emitted-GDS regression: zero M3/M4 spacing, M4 connected-area,
+  and capm-clearance markers; the checker reproduced the original independent
+  precheck's 9/12/176/2 marker counts before the route fix;
 - paired, equal-settling-time full-parasitic sum/null simulation;
 - coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass the 20 dB release gate,
   with 51.83 dB null at 4 MHz and 33.93 dB at 30 MHz;
 - extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
-- nominal extracted channel amplitude difference: 0.00346 percent;
+- nominal extracted channel amplitude difference: 0.0000374 percent;
 - foundry-slope mismatch surrogate: 30/30 pass, 39.28 dB worst null;
 - parasitic-extracted deterministic PVT: 45/45 pass, 25.60 dB worst null at
   FF, 1.62 V, and 125 C; and

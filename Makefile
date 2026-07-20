@@ -105,8 +105,9 @@ layout-pvt-quick:
 layout-pvt:
 	$(PYTHON) tools/run_extracted_pvt.py --full --ngspice $(NGSPICE)
 
-layout-signoff:
+layout-signoff: layout-extract
 	tools/run_magic_layout.sh layout/signoff.tcl
+	$(PYTHON) tools/check_gds_flat_rules.py gds/tt_um_jjassonn69_beamformer.gds
 	$(PYTHON) tools/generate_submission_lef.py
 
 submission-evidence:
@@ -114,4 +115,5 @@ submission-evidence:
 
 release-check:
 	$(PYTHON) tools/check_release_files.py
+	$(PYTHON) tools/check_gds_flat_rules.py gds/tt_um_jjassonn69_beamformer.gds
 	iverilog -g2012 -s tt_um_jjassonn69_beamformer -o $(BUILD_DIR)/project.vvp src/project.v

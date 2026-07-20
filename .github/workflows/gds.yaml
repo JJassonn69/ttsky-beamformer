@@ -18,6 +18,9 @@ jobs:
         run: |
           echo TOP_MODULE=`yq '.project.top_module' info.yaml` | tee $GITHUB_OUTPUT
 
+      - name: Check flattened GDS routing interactions
+        run: python3 tools/check_gds_flat_rules.py gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
+
       - name: Create and publish the GDS artifact
         uses: TinyTapeout/tt-gds-action/custom_gds@ttsky26c
         with:

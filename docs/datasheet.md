@@ -258,21 +258,21 @@ complement-skew, and paired-channel-skew gates.
 
 | LO | Slowest measured edge | Worst paired-channel skew | Result |
 |---:|---:|---:|---:|
-| 4 MHz | 0.183 ns | 0.017 ns | pass |
-| 10 MHz | 0.180 ns | 0.039 ns | pass |
-| 20 MHz | 0.185 ns | 0.040 ns | pass |
-| 30 MHz | 0.155 ns | 0.023 ns | pass |
+| 4 MHz | 0.205 ns | 0.045 ns | pass |
+| 10 MHz | 0.206 ns | 0.041 ns | pass |
+| 20 MHz | 0.180 ns | 0.049 ns | pass |
+| 30 MHz | 0.151 ns | 0.036 ns | pass |
 
-At 30 MHz the measured selected-rail extrema are approximately -4 mV and
-1.93 V in the ideal-pad testbench. These small overshoots should be rechecked
+At 30 MHz the measured selected-rail extrema are approximately -5 mV and
+1.95 V in the ideal-pad testbench. These small overshoots should be rechecked
 with shuttle pad, package, and board models before treating 30 MHz as a field
 rating.
 
 ### 8.4 Nominal channel balance
 
 Driving each channel independently through the same extracted testbench gives
-0.00346 percent nominal amplitude difference. The amplitude-only cancellation
-estimate is 95.24 dB; the actual switched two-channel null is lower because
+0.0000374 percent nominal amplitude difference. The amplitude-only
+cancellation estimate is 134.56 dB; the actual switched two-channel null is lower because
 phase skew, residual clock products, and detector bandwidth also contribute.
 This is a deterministic result, not a yield prediction.
 
@@ -336,13 +336,13 @@ products, as described in Section 8.1.
 | Extracted MOS fingers | 338 |
 | Extracted passives | 8 |
 | Generated terminal routes | 271 on 30 named tracks |
-| Generated route geometry | 8,473 shapes; overlap audit passed |
+| Generated route geometry | 7,367 shapes; overlap audit passed |
 | Signal routing | local M2, compact M3 tracks, shared local M4 risers |
 | Power | `VDPWR` and `VGND`; no `VAPWR` |
-| GDS size | 706,162 bytes, uncompressed GDSII |
-| GDS SHA-256 | `ae1c9ba8f17110b828a722a05b883ae49e5483d6fb836c5d1d7632051beeea42` |
+| GDS size | 688,370 bytes, uncompressed GDSII |
+| GDS SHA-256 | `0f2ee40b65e029ddbf665f2533f5c16d2b78bba1d325bd3bbe724508bbd83389` |
 | LEF SHA-256 | `9df231957326895371afc1f5e903b51e7992b3b6f8c3401546fa7ef7d82eb760` |
-| Extracted SPICE SHA-256 | `4ddb794aa8a5c7abc5b9d3a413bfe2b3ac9383fd0d56a68f3befbe4a6bdee042` |
+| Extracted SPICE SHA-256 | `06ade8ea01ebfa4f0f29b7d4ef129a5949f381e6a98da0232addd04a76624f44` |
 | Official DEF SHA-256 | `042803101760925474f602e69119f497922eb912c37a6651bed030164bb576af` |
 
 ### 9.1 Matching architecture
@@ -441,7 +441,9 @@ The following checks are complete for the local release candidate:
   MIM capacitor, and no unexpected net equivalences;
 - exact extracted-device and parasitic-capacitor multisets agree with the
   electrically simulated final candidate;
-- generated route overlap audit: pass for 8,473 generated shapes;
+- generated route overlap audit: pass for 7,367 generated shapes;
+- dependency-free flattened-GDS audit: zero M3 spacing, M4 spacing, M4
+  connected-area, or capm-to-unrelated-M3 markers;
 - official static prechecks: 8/8 locally runnable checks pass, covering top
   macro, forbidden layers, project boundary, exact DEF/LEF/GDS pin geometry,
   power pins, valid layers, cell names, analog-pad connectivity, and Verilog;
@@ -449,11 +451,20 @@ The following checks are complete for the local release candidate:
 - release integrity authenticates GDS, LEF, reports, plain GDSII header, macro
   dimensions, 53 LEF pins, zero physical-error counters, and required metadata.
 
-The GitHub workflow is the final mechanical submission gate because it runs
-the complete pinned TinyTapeout Magic and KLayout rule set. A green workflow
-establishes compatibility with that submission flow; it does not prove analog
-yield. The topology checker is also not a second, foundry-qualified LVS engine,
-so an independent LVS remains desirable before paying for fabrication.
+The project-local GDS audit deliberately flattens the exact emitted hierarchy.
+It was regression-tested against the first independent-precheck failure and
+reproduced all 9 M3 spacing, 12 M4 spacing, 176 M4 connected-area, and two capm
+markers before the router was corrected. It now runs from `make verify`,
+`make layout-signoff`, `make release-check`, and before the custom-GDS Action.
+The extraction gate separately rejects unexpected net equivalences and an
+incorrect 338-finger/eight-passive device multiset.
+
+The GitHub workflow remains the final mechanical submission gate because it
+runs the complete pinned TinyTapeout Magic and KLayout rule set. A green
+workflow establishes compatibility with that submission flow; it does not
+prove analog yield. The topology checker is also not a second,
+foundry-qualified LVS engine, so an independent LVS remains desirable before
+paying for fabrication.
 
 ## 11. Tool and source provenance
 
@@ -610,6 +621,8 @@ low-IF current-summing core, not a jump directly to an on-chip RF front end.
 - preserve symmetric channel placement, equalized breakout geometry, and
   matched LO paths;
 - maintain deterministic route generation and explicit overlap auditing;
+- flatten the emitted GDS and check cross-hierarchy M3/M4 spacing, connected
+  M4 area, and capm clearance on every change;
 - keep extraction feedback at zero before trusting extracted SPICE;
 - reread the emitted GDS with the official DRC script rather than checking only
   the in-memory Magic layout; and

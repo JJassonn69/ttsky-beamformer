@@ -178,7 +178,9 @@ def local_escape_x(kind: str, terminal: str, anchor_x: float) -> float:
         # plate through the narrow via3/M4 strip at the right edge.  Exit
         # those electrodes on opposite sides and only change layer outside
         # the complete capacitor footprint.
-        offsets = {"C1": -12.20, "C2": 1.30}
+        # Put C1's first M3 landing more than capm.11's 1.34 um away from
+        # the PCell plate edge (including the 0.31 um landing overhang).
+        offsets = {"C1": -13.00, "C2": 1.30}
     try:
         return anchor_x + offsets[terminal]
     except KeyError as error:
@@ -197,7 +199,8 @@ def capacitor_keepouts(
         if set(terminals) != {"C1", "C2"}:
             raise ValueError(f"{device}: incomplete MIM capacitor terminals")
         # These margins include the PCell's M3 bottom plate, M4/capm top
-        # plate, the right-hand C2 via strip, wire half-width, and spacing.
+        # plate, the right-hand C2 via strip, wire half-width, and the
+        # independent signoff capm.11 spacing rule.
         c1 = next(
             connection
             for connection in connections
@@ -205,10 +208,10 @@ def capacitor_keepouts(
         )
         keepouts.append(
             (
-                terminals["C1"] - 11.70,
+                terminals["C1"] - 12.60,
                 terminals["C2"] + 0.80,
-                c1.labels[0].y - 11.60,
-                c1.labels[0].y + 11.60,
+                c1.labels[0].y - 12.60,
+                c1.labels[0].y + 12.60,
             )
         )
     return keepouts
@@ -234,9 +237,9 @@ def assign_local_escape_columns(
                 candidate = connection.escape_x + shift
                 if not 6.8 <= candidate <= 154.2:
                     continue
-                if any(abs(candidate - fixed_x) < 0.55 for fixed_x in BOUNDARY_M4_X):
+                if any(abs(candidate - fixed_x) < 0.75 for fixed_x in BOUNDARY_M4_X):
                     continue
-                if any(abs(candidate - other_x) < 0.65 for other_x in used):
+                if any(abs(candidate - other_x) < 0.75 for other_x in used):
                     continue
                 connection.escape_x = candidate
                 used.append(candidate)
@@ -259,12 +262,12 @@ def available_columns(
     x = 8.0
     while x <= 153.0:
         if (
-            all(abs(x - pin_x) >= 0.65 for pin_x in reserved)
-            and all(abs(x - anchor_x) >= 0.55 for anchor_x in forbidden)
+            all(abs(x - pin_x) >= 0.75 for pin_x in reserved)
+            and all(abs(x - anchor_x) >= 0.75 for anchor_x in forbidden)
             and all(not left <= x <= right for left, right, _bottom, _top in keepouts)
         ):
             candidates.append(round(x, 4))
-        x += 0.72
+        x += 0.80
     if len(candidates) < count:
         raise ValueError(f"need {count} M4 columns but only {len(candidates)} are available")
     return candidates
@@ -311,36 +314,55 @@ def assign_net_columns(
 def separate_breakout_lanes(
     connections: list[Connection],
     keepouts: list[tuple[float, float, float, float]],
+    tracks: dict[str, float],
 ) -> None:
     """Stagger crossing M3 and M2 terminal escapes while preserving locality."""
-    # Reserve the immutable local M3 bars that join each multifinger drain.
-    # Other nets must dogleg around these bars even if their own requested
-    # breakout lane would otherwise appear free.
-    placed_m3: list[tuple[float, float, float, str]] = []
+    # Model the actual M3 rectangles, including each via landing's 0.31 um
+    # overhang.  Comparing only centerlines missed end-to-end spacing, while
+    # ignoring the global buses allowed a legal-looking lane to short a bus.
+    placed_m3: list[tuple[tuple[float, float, float, float], str]] = [
+        ((6.5, track_y - M3_WIDTH / 2, 154.5, track_y + M3_WIDTH / 2), net)
+        for net, track_y in tracks.items()
+    ]
     for connection in connections:
+        local_y = (
+            connection.labels[0].y
+            if connection.terminal == "D"
+            else connection.access_y
+        )
         if connection.terminal == "D":
-            placed_m3.append(
-                (
-                    connection.labels[0].y,
-                    min(label.x for label in connection.labels),
-                    max(label.x for label in connection.labels),
-                    connection.net,
-                )
-            )
+            local_x = [label.x for label in connection.labels]
+            local_x.extend((connection.anchor_x, connection.escape_x))
         elif connection.kind != "cap_mim_m3":
-            placed_m3.append(
+            local_x = [connection.anchor_x, connection.escape_x]
+        else:
+            continue
+        placed_m3.append(
+            (
                 (
-                    connection.access_y,
-                    min(connection.anchor_x, connection.escape_x),
-                    max(connection.anchor_x, connection.escape_x),
-                    connection.net,
-                )
+                    min(local_x) - 0.31,
+                    local_y - M3_WIDTH / 2,
+                    max(local_x) + 0.31,
+                    local_y + M3_WIDTH / 2,
+                ),
+                connection.net,
             )
+        )
+
+    def rectangle_gap(
+        first: tuple[float, float, float, float],
+        second: tuple[float, float, float, float],
+    ) -> float:
+        dx = max(0.0, first[0] - second[2], second[0] - first[2])
+        dy = max(0.0, first[1] - second[3], second[1] - first[3])
+        return (dx * dx + dy * dy) ** 0.5
+
     step = 0.75
     offsets = [0.0]
     # The two dense LO/control banks need more candidate lanes than the analog
-    # core.  Search far enough to use the full quiet band above the M3 buses.
-    for index in range(1, 41):
+    # core.  Search the complete tile; the bounds below still choose the
+    # nearest legal lane, while avoiding an artificial +/-30 um dead end.
+    for index in range(1, 301):
         offsets.extend((index * step, -index * step))
     for connection in sorted(
         connections,
@@ -385,17 +407,25 @@ def separate_breakout_lanes(
                 ) in keepouts
             ):
                 continue
-            conflict = any(
-                other_net != connection.net
-                and abs(candidate - other_y) < 0.68
-                # Include the 0.31 um M3 via landing overhang at both ends.
-                and min(right + 0.31, other_right + 0.31)
-                >= max(left - 0.31, other_left - 0.31)
-                for other_y, other_left, other_right, other_net in placed_m3
+            candidate_rect = (
+                left - 0.31,
+                candidate - M3_WIDTH / 2,
+                right + 0.31,
+                candidate + M3_WIDTH / 2,
             )
+            conflict = False
+            for other_rect, other_net in placed_m3:
+                gap = rectangle_gap(candidate_rect, other_rect)
+                # Overlapping/touching rectangles are only legal when they
+                # deliberately merge branches of the same extracted net.
+                if gap <= 1e-9 and other_net == connection.net:
+                    continue
+                if gap < 0.30 - 1e-9:
+                    conflict = True
+                    break
             if not conflict:
                 connection.breakout_y = candidate
-                placed_m3.append((candidate, left, right, connection.net))
+                placed_m3.append((candidate_rect, connection.net))
                 break
         else:
             raise ValueError(
@@ -488,17 +518,20 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
         max_x = max(label.x for label in labels)
         local_y = labels[0].y
         commands.append(wire_h("metal3", min_x, max_x, local_y, M3_WIDTH))
-        commands.extend(via3_stack(connection.escape_x, local_y))
         if connection.escape_x != connection.anchor_x:
             commands.append(
                 wire_h("metal3", connection.anchor_x, connection.escape_x,
                        local_y, M3_WIDTH)
             )
-        commands.append(
-            wire_v("metal4", connection.escape_x, local_y,
-                   connection.breakout_y, M4_WIDTH)
-        )
-        commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
+        # Do not build a pair of via3 stacks around a zero-length M4 dogleg.
+        # The old pair left an isolated 0.16 um^2 M4 landing, below met4.4a.
+        if abs(connection.breakout_y - local_y) > DBU_UM / 2:
+            commands.extend(via3_stack(connection.escape_x, local_y))
+            commands.append(
+                wire_v("metal4", connection.escape_x, local_y,
+                       connection.breakout_y, M4_WIDTH)
+            )
+            commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
         commands.append(
             wire_h("metal3", connection.escape_x, connection.column_x,
                    connection.breakout_y, M3_WIDTH)
@@ -525,12 +558,13 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
         wire_h("metal3", connection.anchor_x, connection.escape_x,
                connection.access_y, M3_WIDTH)
     )
-    commands.extend(via3_stack(connection.escape_x, connection.access_y))
-    commands.append(
-        wire_v("metal4", connection.escape_x, connection.access_y,
-               connection.breakout_y, M4_WIDTH)
-    )
-    commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
+    if abs(connection.breakout_y - connection.access_y) > DBU_UM / 2:
+        commands.extend(via3_stack(connection.escape_x, connection.access_y))
+        commands.append(
+            wire_v("metal4", connection.escape_x, connection.access_y,
+                   connection.breakout_y, M4_WIDTH)
+        )
+        commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
     commands.append(
         wire_h("metal3", connection.escape_x, connection.column_x,
                connection.breakout_y, M3_WIDTH)
@@ -649,12 +683,12 @@ def main() -> None:
     keepouts = capacitor_keepouts(connections)
     assign_local_escape_columns(connections)
     assign_net_columns(connections, keepouts)
-    separate_breakout_lanes(connections, keepouts)
-
     tracks = {
         net: TRACK_Y0 + index * TRACK_PITCH
         for index, net in enumerate(manifest["track_order"])
     }
+    separate_breakout_lanes(connections, keepouts, tracks)
+
     missing_tracks = {connection.net for connection in connections} - tracks.keys()
     if missing_tracks:
         raise ValueError(f"nets without tracks: {sorted(missing_tracks)}")

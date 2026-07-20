@@ -86,7 +86,10 @@ is not on `PATH`. The release files are
 `lef/tt_um_jjassonn69_beamformer.lef`.
 
 The GitHub `gds` workflow uses TinyTapeout's pinned `ttsky26c` custom-GDS and
-precheck actions. A green precheck confirms submission compatibility, not
+precheck actions. Before invoking them it also flattens the exact release GDS
+and rejects M3/M4 spacing, M4 connected-area, and capm-clearance regressions;
+the same gate runs from `make verify`, `make layout-signoff`, and
+`make release-check`. A green precheck confirms submission compatibility, not
 manufacturing yield; the remaining electrical risks and bench plan are kept
 explicit in `docs/presilicon_plan.md`.
 
