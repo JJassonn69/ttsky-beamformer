@@ -25,12 +25,15 @@ XPT a enb b vdd sky130_fd_pr__pfet_01v8 w={wp} l=0.15
 .ends transmission_gate
 
 .subckt mixer_channel sig ref lop lon outp outn vbias vss
-XGM1 gm_p sig tail vss sky130_fd_pr__nfet_01v8 w=8 l=0.30
-XGM2 gm_n ref tail vss sky130_fd_pr__nfet_01v8 w=8 l=0.30
-XSW1 outp lop gm_p vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
-XSW2 outn lon gm_p vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
-XSW3 outn lop gm_n vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
-XSW4 outp lon gm_n vss sky130_fd_pr__nfet_01v8 w=8 l=0.15
+* The gm and commutating devices use twice the v1 area.  The physical view
+* implements each logical device as two equal halves in a common-centroid
+* arrangement, reducing both random mismatch and first-order gradients.
+XGM1 gm_p sig tail vss sky130_fd_pr__nfet_01v8 w=16 l=0.30
+XGM2 gm_n ref tail vss sky130_fd_pr__nfet_01v8 w=16 l=0.30
+XSW1 outp lop gm_p vss sky130_fd_pr__nfet_01v8 w=16 l=0.15
+XSW2 outn lon gm_p vss sky130_fd_pr__nfet_01v8 w=16 l=0.15
+XSW3 outn lop gm_n vss sky130_fd_pr__nfet_01v8 w=16 l=0.15
+XSW4 outp lon gm_n vss sky130_fd_pr__nfet_01v8 w=16 l=0.15
 * Ratioed against the 32 um reference device for low-VDS compensation.
 XTAIL tail vbias vss vss sky130_fd_pr__nfet_01v8 w=38 l=0.50
 .ends mixer_channel
@@ -38,7 +41,11 @@ XTAIL tail vbias vss vss sky130_fd_pr__nfet_01v8 w=38 l=0.50
 .subckt beamformer_core vdd vss clk select sig1 sig2 outp outn
 * Self-starting shared current reference: 1.41 um high-res poly, L=44.9768 um.
 XRBias vdd vbias vss sky130_fd_pr__res_high_po_1p41 l=44.9768
-XBIAS vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=32 l=0.50
+* Two parallel 16 um unit cells implement the 32 um diode.  The split keeps
+* diffusion/gate access compact and provides a physical structure that can be
+* matched and independently checked instead of one fragile 17-finger PCell.
+XBIASA vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=16 l=0.50
+XBIASB vbias vbias vss vss sky130_fd_pr__nfet_01v8 w=16 l=0.50
 
 * Ratio-derived VCM and input bias use 1.41 um extra-high-res poly, L=70.5 um.
 * The VCM bypass is a 22 x 22 um M3 MIM capacitor (~0.98 pF).
@@ -56,20 +63,26 @@ XLN2 ln1 ln2 vdd vss cmos_inv wn=4 wp=8
 XLN3 ln2 lon vdd vss cmos_inv wn=16 wp=32
 
 * Static CMOS routing selects 0 or 180 degree LO weighting for channel two.
-* The mux drives a pair of matched post-selector inverters.  Besides restoring
-* full swing, these isolate mixer-gate parasitics from the transmission gates.
+* Both channels pass through one transmission gate and one matched final
+* inverter.  Channel one's gates are permanently enabled; channel two selects
+* the in-phase or inverted source.  Equal topology and loading are important
+* for null depth and make the LO path more tolerant of higher input clocks.
 XSELB select select_b vdd vss cmos_inv wn=2.4 wp=4
+X1DP lon ch1_lop_raw vdd vss vdd vss transmission_gate
+X1DN lop ch1_lon_raw vdd vss vdd vss transmission_gate
 XDP lon ch2_lop_raw select_b select vdd vss transmission_gate
 XDN lop ch2_lon_raw select_b select vdd vss transmission_gate
 XXP lop ch2_lop_raw select select_b vdd vss transmission_gate
 XXN lon ch2_lon_raw select select_b vdd vss transmission_gate
+XCH1LP ch1_lop_raw ch1_lop vdd vss cmos_inv wn=8 wp=16
+XCH1LN ch1_lon_raw ch1_lon vdd vss cmos_inv wn=8 wp=16
 XCH2LP ch2_lop_raw ch2_lop vdd vss cmos_inv wn=8 wp=16
 XCH2LN ch2_lon_raw ch2_lon vdd vss cmos_inv wn=8 wp=16
 
 * Matched 1.41 um high-res poly loads, L=11.6117 um (~2.93 kohm each).
 XRLOADP vdd outp vss sky130_fd_pr__res_high_po_1p41 l=11.6117
 XRLOADN vdd outn vss sky130_fd_pr__res_high_po_1p41 l=11.6117
-XCH1 sig1 vcm lop lon outp outn vbias vss mixer_channel
+XCH1 sig1 vcm ch1_lop ch1_lon outp outn vbias vss mixer_channel
 XCH2 sig2 vcm ch2_lop ch2_lon outp outn vbias vss mixer_channel
 .ends beamformer_core
 

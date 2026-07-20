@@ -8,9 +8,11 @@ The reproducible flow is:
 
 1. `tools/fetch_tt_template.py` authenticates the pinned template DEF.
 2. `tools/generate_layout_scripts.py` generates the Magic PCell placement for
-   all 47 devices and the full-height power ports.
+   all 70 devices, including the split common-centroid channel units, and the
+   full-height power ports.
 3. `tools/generate_route_script.py` reads actual PCell terminal labels and
-   generates deterministic M2/M3/M4 routing on 26 named tracks.
+   generates deterministic local-M2/M3/M4 routing on 30 named tracks, with
+   matched breakouts and a full MIM-capacitor keep-out.
 4. `tools/check_generated_routes.py` rejects cross-net same-layer overlaps
    before Magic is run.
 5. `layout/extract.tcl` requires zero DRC errors and writes full-parasitic and
@@ -22,6 +24,8 @@ The reproducible flow is:
 8. `tools/generate_submission_lef.py` creates the exact template-pin abstract
    LEF. Magic's generic LEF output is intentionally not used because it exposes
    internal connected geometry as extra port rectangles.
+9. `tools/render_gds.py` parses the emitted hierarchical GDSII directly and
+   regenerates the overview, matching-core, and MIM/via detail images.
 
 Run a physical script with the pinned SKY130 PDK and Magic:
 

@@ -14,16 +14,21 @@ electrical confidence are tracked separately.
   matched output loads, PDK resistors, and MIM capacitor;
 - schematic 45-case deterministic PVT grid: TT/SS/FF/SF/FS, 1.62/1.80/1.98 V,
   and -40/27/125 C;
-- exact 1x2 TinyTapeout boundary with 47 PCells and explicit M2/M3/M4 routing;
+- exact 1x2 TinyTapeout boundary with 70 PCells and explicit M2/M3/M4 routing;
+- split A/B; B/A common-centroid channel devices, mirrored passives, matched
+  local breakouts, and a full MIM route keep-out;
 - zero Magic errors at placement, routed, extraction, and final DRC stages;
-- extraction topology check: 239 MOS fingers, eight passives, connected power,
+- extraction topology check: 338 MOS fingers, eight passives, connected power,
   and no unexpected net equivalences;
 - zero Magic GDS-writer geometry warnings;
 - paired, equal-settling-time full-parasitic sum/null simulation;
-- nominal extracted result: 14.705 mVrms constructive, 42.56 dB null,
-  1.539 V common mode, and approximately 298 uA; and
-- parasitic-extracted 45-case PVT grid: 45/45 pass, with a 29.09 dB minimum
-  null at FS, 1.62 V, and -40 C; and
+- coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass the 20 dB release gate,
+  with 51.83 dB null at 4 MHz and 33.93 dB at 30 MHz;
+- extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
+- nominal extracted channel amplitude difference: 0.00346 percent;
+- foundry-slope mismatch surrogate: 30/30 pass, 39.28 dB worst null;
+- parasitic-extracted deterministic PVT: 45/45 pass, 25.60 dB worst null at
+  FF, 1.62 V, and 125 C; and
 - the locally runnable official TinyTapeout structural, pin, boundary, power,
   layer, analog-pad, cell-name, and Verilog checks.
 
@@ -42,9 +47,8 @@ inductor, transformer, transmission-line phase shifter, or large IF filter.
 
 ## Remaining electrical confidence work before paying for fabrication
 
-- run statistical mismatch/Monte Carlo with a documented sample count and
-  confidence interval, especially the paired transconductors, loads, LO paths,
-  and phase-selector buffers;
+- replace the ngspice foundry-slope mismatch surrogate with native
+  foundry-qualified Spectre Monte Carlo and a larger documented sample count;
 - sweep independent input series resistance and shunt capacitance, package and
   pad capacitance, output load from 0 to 10 pF, source amplitude, LO duty cycle,
   and relative startup phase;
@@ -81,3 +85,8 @@ differential receiver, and an external approximately 2 MHz low-pass filter.
 Automate a 360-degree input phase sweep and record constructive amplitude,
 null depth, output common mode, current, and safe pin voltages. Do not terminate
 the analog outputs directly in 50 ohms.
+
+After nominal 4 MHz bring-up succeeds, repeat with 10, 20, and 30 MHz LO and
+set each input to `LO + 1 MHz`. Treat these as characterization modes until pad,
+package, board, temperature, supply, and mismatch data support an operating
+rating.

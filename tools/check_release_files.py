@@ -48,6 +48,16 @@ def main() -> None:
     pvt = signoff["electrical"]["extracted_pvt"]
     if pvt["pass_count"] != pvt["case_count"]:
         raise SystemExit("extracted PVT signoff is not fully passing")
+    if pvt["case_count"] != 45:
+        raise SystemExit(f"extracted PVT has {pvt['case_count']} cases, expected 45")
+    for name in ("frequency_sweep", "clock_sweep", "mismatch_surrogate"):
+        evidence = signoff["electrical"][name]
+        if evidence["pass_count"] != evidence["case_count"]:
+            raise SystemExit(f"{name} signoff is not fully passing")
+    if signoff["physical"]["extracted_mos_fingers"] != 338:
+        raise SystemExit("release does not contain the 338-finger matched layout")
+    if signoff["physical"]["placed_devices"] != 70:
+        raise SystemExit("release does not contain the 70-device matched layout")
     for report in signoff["reports"].values():
         report_path = ROOT / report["path"]
         if digest(report_path) != report["sha256"]:
@@ -73,10 +83,16 @@ def main() -> None:
         ROOT / "docs/info.md",
         ROOT / "docs/datasheet.md",
         ROOT / "docs/images/beamformer-gds.png",
+        ROOT / "docs/images/beamformer-core-detail.png",
+        ROOT / "docs/images/beamformer-mim-detail.png",
         ROOT / "LICENSE",
         ROOT / "submission/official_magic_drc.txt",
         ROOT / "submission/core_pvt_summary.json",
         ROOT / "submission/extracted_pvt_summary.json",
+        ROOT / "submission/extracted_frequency_sweep.json",
+        ROOT / "submission/extracted_clock_sweep.json",
+        ROOT / "submission/extracted_channel_balance.json",
+        ROOT / "submission/mismatch_mc_summary.json",
         ROOT / "submission/signoff.json",
     ]
     missing = [str(path.relative_to(ROOT)) for path in required if not path.is_file()]
@@ -86,7 +102,8 @@ def main() -> None:
     print(
         "Release files passed: authenticated GDS/LEF hashes, plain GDSII, "
         "161x225.76 um macro, 53 LEF pins, zero physical error counts, "
-        "45/45 extracted PVT, and required metadata"
+        "45/45 extracted PVT, 4/4 frequency/clock sweeps, mismatch evidence, "
+        "and required metadata"
     )
 
 

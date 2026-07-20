@@ -1,8 +1,12 @@
 {
   "artifacts": {
+    "extracted_spice": {
+      "path": "build/layout/extracted.spice",
+      "sha256": "4ddb794aa8a5c7abc5b9d3a413bfe2b3ac9383fd0d56a68f3befbe4a6bdee042"
+    },
     "gds": {
       "path": "gds/tt_um_jjassonn69_beamformer.gds",
-      "sha256": "c445c59d2b2b98329c2daf885f9cafbbd8d5a63e46c33fbf474d20e294da8aaf"
+      "sha256": "ae1c9ba8f17110b828a722a05b883ae49e5483d6fb836c5d1d7632051beeea42"
     },
     "lef": {
       "path": "lef/tt_um_jjassonn69_beamformer.lef",
@@ -10,20 +14,53 @@
     }
   },
   "electrical": {
-    "extracted_nominal": {
-      "current_a": 0.000298042,
-      "null_db": 42.55953308394325,
-      "null_rms_v": 0.000109515,
-      "output_common_mode_v": 1.53876,
+    "channel_balance": {
+      "gain_mismatch_percent": 0.0034607185030495124,
+      "passed": true
+    },
+    "clock_sweep": {
+      "case_count": 4,
+      "maximum_edge_s": 1.84785e-10,
+      "maximum_frequency_mhz": 30.0,
+      "maximum_paired_channel_skew_s": 4.010499999999999e-11,
+      "pass_count": 4
+    },
+    "extracted_nominal_time_domain": {
+      "current_a": 0.000322622,
+      "null_db": 32.00900164462345,
+      "null_rms_v": 0.00042026,
+      "output_common_mode_v": 1.50358,
       "passed": true,
-      "sum_rms_v": 0.0147045
+      "sum_rms_v": 0.0167482
+    },
+    "extracted_nominal_wanted_tone": {
+      "frequency_mhz": 4.0,
+      "if_frequency_mhz": 1.0,
+      "null_db": 51.82926054838079,
+      "null_rms_v": 2.0583291132391825e-06,
+      "passed": true,
+      "sum_rms_v": 0.0008034851308866891
     },
     "extracted_pvt": {
       "case_count": 45,
-      "minimum_null_db": 29.090328238246656,
+      "minimum_null_db": 25.600020528160687,
       "minimum_null_spec_db": 20.0,
       "pass_count": 45,
-      "worst_case": "fs_1.62v_m40c"
+      "worst_case": "ff_1.62v_p125c"
+    },
+    "frequency_sweep": {
+      "case_count": 4,
+      "maximum_frequency_mhz": 30.0,
+      "minimum_null_db": 33.92764984612677,
+      "pass_count": 4
+    },
+    "mismatch_surrogate": {
+      "case_count": 30,
+      "method": "ngspice surrogate using SKY130 NMOS VTH Pelgrom slope",
+      "minimum_null_db": 39.284008336277225,
+      "p05_null_db": 39.716302568458666,
+      "pass_count": 30,
+      "seed": 130
     },
     "schematic_pvt": {
       "case_count": 45,
@@ -32,13 +69,15 @@
     }
   },
   "physical": {
-    "extracted_mos_fingers": 239,
+    "extracted_mos_fingers": 338,
     "extracted_passives": 8,
     "extraction_feedback_count": 0,
     "gds_writer_feedback_count": 0,
+    "generated_route_shapes": 8473,
     "magic_gds_readback_drc_count": 0,
     "magic_internal_signoff_drc_count": 0,
-    "placed_devices": 47,
+    "named_route_tracks": 30,
+    "placed_devices": 70,
     "static_official_prechecks_passed": 8,
     "static_official_prechecks_run": 8,
     "topology_check_passed": true
@@ -51,26 +90,43 @@
     "sky130_precheck_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005",
     "template_commit": "fdd487cb8e3003b40496f0f143ff3bf650f78e48"
   },
+  "remaining_risks": [
+    "native foundry Spectre mismatch Monte Carlo is not complete",
+    "package and shuttle analog-pad parasitics are emulated, not extracted",
+    "independent foundry-grade LVS is not complete",
+    "noise, linearity, compression, and LO-feedthrough characterization remain",
+    "20-30 MHz modes have nominal extracted characterization, not full PVT ratings"
+  ],
   "reports": {
+    "extracted_channel_balance": {
+      "path": "submission/extracted_channel_balance.json",
+      "sha256": "f47937db89ba88cc7ffeae2401c5a42e20067b4681809d18e1896c9cad647efd"
+    },
+    "extracted_clock_sweep": {
+      "path": "submission/extracted_clock_sweep.json",
+      "sha256": "5aaeea5dfb19c7444b5b64e4a7944f34ded2d5a12072280f62302cc90d3557d6"
+    },
+    "extracted_frequency_sweep": {
+      "path": "submission/extracted_frequency_sweep.json",
+      "sha256": "dc34f1ccf7f2459e26df5e753cb4fab01e6939a97e9a210da79481f9fd7458d0"
+    },
     "extracted_pvt": {
       "path": "submission/extracted_pvt_summary.json",
-      "sha256": "10cc2b77cb4f5cb47319152e3862336f6d1e3a2b312fc5d1a8fa4b28f62763ad"
+      "sha256": "7b6085e851de265f17ce6b223c09923608cd0ba437399d0da3e1656b60eba908"
     },
     "magic_gds_readback_drc": {
       "path": "submission/official_magic_drc.txt",
       "sha256": "63d5fb7c996ddc6ef65c1a50ac55249e543bfaf07e6e91d3202fa998f954e051"
+    },
+    "mismatch_mc": {
+      "path": "submission/mismatch_mc_summary.json",
+      "sha256": "9c022cbcf588db5246f7b241e89e8471e81493d9849135c7a7e016f4f5884569"
     },
     "schematic_pvt": {
       "path": "submission/core_pvt_summary.json",
       "sha256": "70e6c31ea424e68abdb6098a3d45817eccdc9a0d5893f1adb9ba418e8033995f"
     }
   },
-  "remaining_risks": [
-    "statistical mismatch and Monte Carlo are not complete",
-    "package and shuttle analog-pad parasitics are not yet confirmed",
-    "independent foundry-grade LVS is not complete",
-    "noise, linearity, compression, and LO-feedthrough characterization remain"
-  ],
   "status": "local_release_candidate",
   "target": "TinyTapeout SKY130 ttsky26c",
   "top_module": "tt_um_jjassonn69_beamformer"

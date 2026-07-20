@@ -25,6 +25,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--full", action="store_true")
     parser.add_argument("--ngspice", default="ngspice")
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--resume",
+        action="store_true",
+        help="reuse a completed log only when its generated deck is unchanged",
+    )
     return parser.parse_args()
 
 
@@ -35,6 +40,7 @@ def run_mode(
     case: str,
     mode: str,
     select: str,
+    resume: bool,
 ) -> tuple[str, str, int, dict[str, float]]:
     deck = build / f"{case}_{mode}.spice"
     log = build / f"{case}_{mode}.log"
@@ -49,6 +55,12 @@ def run_mode(
         template,
         flags=re.MULTILINE,
     ).replace(MEASURE_BLOCK, measures)
+    required = {"mode_rms", "mode_cm", "mode_supply"}
+    if resume and deck.exists() and log.exists() and deck.read_text() == text:
+        log_text = log.read_text(errors="replace")
+        values = {name: float(value) for name, value in MODE_RE.findall(log_text)}
+        if not required - values.keys():
+            return case, mode, 0, values
     deck.write_text(text)
     completed = subprocess.run(
         [ngspice, "-b", "-o", str(log), str(deck)],
@@ -88,11 +100,11 @@ def main() -> int:
         for case, _corner, _supply, _temperature, case_template in cases:
             futures.append(
                 executor.submit(run_mode, args.ngspice, case_template, build, case,
-                                "sum", "0")
+                                "sum", "0", args.resume)
             )
             futures.append(
                 executor.submit(run_mode, args.ngspice, case_template, build, case,
-                                "null", "{VDDVAL}")
+                                "null", "{VDDVAL}", args.resume)
             )
         for future in as_completed(futures):
             case, mode, returncode, values = future.result()

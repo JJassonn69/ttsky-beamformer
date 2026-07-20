@@ -1,12 +1,12 @@
 # TT-BF1 two-channel low-IF beamformer
 
-Engineering datasheet and iteration handoff, release candidate 1.0
+Engineering datasheet and iteration handoff, release candidate 1.1
 
 Target: TinyTapeout SKY130 `ttsky26c`
 
 Top macro: `tt_um_jjassonn69_beamformer`
 
-Date: 2026-07-19
+Date: 2026-07-20
 
 ## 1. Document purpose and status
 
@@ -39,15 +39,19 @@ known.
 
 ### Key features
 
-- two phase-coherent, AC-coupled, high-impedance 5 MHz inputs;
-- differential 1 MHz beamformed output from a 4 MHz LO;
+- two phase-coherent, AC-coupled, high-impedance inputs;
+- differential 1 MHz beamformed output with the input set 1 MHz above the LO;
 - binary 0/180-degree weight on channel 2;
 - on-chip complementary LO generation and phase selection;
 - shared on-chip bias, input common mode, resistive output load, and MIM
   decoupling;
+- 4 MHz nominal operation plus extracted 10, 20, and 30 MHz clock
+  characterization;
+- A/B; B/A common-centroid channel devices and mirrored passives for improved
+  cancellation yield;
 - nominal 1.8 V operation using `VDPWR`; no `VAPWR` dependency;
 - 161.00 x 225.76 um 1x2 TinyTapeout analog macro;
-- 47 placed SKY130 PCells and 239 extracted MOS fingers;
+- 70 placed SKY130 PCells and 338 extracted MOS fingers;
 - committed uncompressed GDSII and exact-template LEF; and
 - reproducible golden, schematic-SPICE, extracted-SPICE, PVT, physical, and
   release-integrity checks.
@@ -112,8 +116,8 @@ foundry absolute-maximum ratings.
 |---|---:|---:|---|
 | `VDPWR` | 1.80 V | 1.62 to 1.98 V simulated | Use a quiet, current-limited supply. |
 | Temperature | 27 C | -40 to 125 C simulated | Package behavior is not included. |
-| LO frequency | 4 MHz | 4 MHz signoff point | 0-to-`VDPWR` square wave. |
-| Input frequency | 5 MHz | 5 MHz signoff point | Two phase-locked sources. |
+| LO frequency | 4 MHz | 4, 10, 20, 30 MHz nominal-extracted characterization | 0-to-`VDPWR` square wave; 4 MHz is the release operating point. |
+| Input frequency | 5 MHz | `LO + 1 MHz` characterized | Two phase-locked sources. |
 | Useful output | 1 MHz | 1 MHz signoff point | Difference product, measured differentially. |
 | Input amplitude | 10 mVpp/channel | 10 to 30 mVpp intended | AC-coupled; compression is not yet characterized. |
 | Input common mode | Internally biased | approximately 0.9 V design target | Do not externally force DC common mode. |
@@ -163,30 +167,38 @@ the common mode.
 
 ### 7.1 Shared bias and common mode
 
-A diode-connected 32 um/0.50 um NMOS and approximately 10.60 kohm poly
-resistor generate the shared bias. Two approximately 100.15 kohm
+A diode-connected NMOS implemented as two matched 16 um/0.50 um units and an
+approximately 10.60 kohm poly resistor generate the shared bias. Two
+approximately 100.15 kohm
 extra-high-resistance poly devices generate the common-mode reference, which is
 decoupled by a 22 x 22 um M3 MIM capacitor of approximately 0.983 pF.
 
 ### 7.2 Channel transconductors
 
-Each channel uses a matched NMOS single-ended-to-differential transconductor:
-two 8 um/0.30 um input devices and one 38 um/0.50 um tail device. One gate sees
-the AC-coupled input and the other sees the common-mode reference.
+Each channel uses a matched NMOS single-ended-to-differential transconductor.
+Each effective 16 um/0.30 um input device is split into two 8 um halves, and
+each 38 um/0.50 um tail is split into two 19 um halves. Corresponding channel
+halves use the two-dimensional A/B; B/A ordering described in Section 9. One
+gate sees the AC-coupled input and the other sees the common-mode reference.
 
 ### 7.3 Commutating mixers
 
-Four 8 um/0.15 um NMOS switches per channel steer the transconductor currents
-according to complementary LO rails. Both channels connect to the same
+Four effective 16 um/0.15 um NMOS switches per channel steer the
+transconductor currents according to complementary LO rails. Every switch is
+implemented as two 8 um halves in the same A/B; B/A channel pattern. Both
+channels connect to the same
 differential output load, so current summation is intrinsic rather than
 implemented by a separate op-amp summer.
 
 ### 7.4 LO generation and binary phase weight
 
-The single-ended `clk` input drives asymmetric multistage CMOS inverter paths
-that generate buffered complementary rails. Four CMOS transmission gates select
+The single-ended `clk` input drives sized multistage CMOS inverter paths that
+generate buffered complementary rails. Four CMOS transmission gates select
 normal or exchanged LO polarity for channel 2. Matched post-selector inverters
-restore full swing and isolate the mixer-gate capacitance from the mux.
+restore full swing and isolate the mixer-gate capacitance from the mux. The
+final drivers were strengthened for the doubled switch width, and each channel
+now traverses the same selector-plus-restoration topology so its clock loading
+and logical depth remain comparable.
 
 ### 7.5 Passive inventory
 
@@ -204,53 +216,115 @@ foundry layers.
 
 ## 8. Electrical simulation results
 
-### 8.1 Nominal full-parasitic extracted result
+### 8.1 Measurement definitions
 
-Conditions: TT primitive models, 1.8 V, 27 C, 5 MHz equal-phase inputs, 4 MHz
-LO, paired equal-settling-time sum/null simulations, and the external
-measurement filter defined by the testbench.
+The higher-speed sweep uses a coherent quadrature detector at the intended
+1 MHz difference tone. For every LO frequency, the input frequency is `LO +
+1 MHz`. This rejects switching carrier and unrelated mixer products and is the
+best measure of useful beamformer output. The PVT regression retains the older
+time-domain RMS measurement after the testbench filter; it is deliberately a
+broader metric and therefore gives a more conservative null number. Results
+from those two detectors must not be compared as if they were the same unit.
 
-| Measurement | Result | Release check |
-|---|---:|---:|
-| Constructive differential output | 14.7045 mVrms | greater than 1 mVrms |
-| Destructive differential output | 0.109515 mVrms | used for null calculation |
-| Destructive null | 42.5595 dB | greater than 40 dB nominal target |
-| Output common mode, sum | 1.53876 V | 1.2 to 1.7 V nominal gate |
-| Output common mode, null | 1.53875 V | 1.2 to 1.7 V nominal gate |
-| Supply current, sum | 0.298042 mA | less than 1 mA |
-| Supply current, null | 0.297806 mA | less than 1 mA |
+All extracted tests use the final parasitic netlist, TT primitive models unless
+otherwise stated, 1.8 V, 27 C, equal 10 mVpp inputs, and paired constructive and
+destructive runs with equal settling time. The frequency testbench already
+includes 500 ohm series plus 5 pF shunt loading on each input and 500 ohm
+series plus 10 pF shunt loading on each output, followed by a high-impedance
+receiver. These are conservative emulated pad/fixture parasitics, not a claim
+that the eventual package has those exact values.
 
-### 8.2 Deterministic extracted PVT matrix
+### 8.2 Clock-frequency and wanted-tone characterization
 
-The full matrix covers TT, SS, FF, SF, and FS process corners; 1.62, 1.80, and
-1.98 V supplies; and -40, 27, and 125 C temperatures. Each of the 45 cases
-contains separate constructive and destructive simulations.
+| LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
+|---:|---:|---:|---:|---:|---:|
+| 4 MHz | 5 MHz | 0.8035 mVrms | 51.83 dB | pass | pass |
+| 10 MHz | 11 MHz | 0.7466 mVrms | 44.59 dB | pass | pass |
+| 20 MHz | 21 MHz | 0.6962 mVrms | 39.66 dB | miss by 0.34 dB | pass |
+| 30 MHz | 31 MHz | 0.6546 mVrms | 33.93 dB | miss | pass |
 
-| Metric | Extracted PVT result |
+The output retains 81.5 percent of its 4 MHz wanted-tone amplitude at 30 MHz.
+The 30 MHz mode is therefore useful for characterization, but it is not the
+datasheet operating point: only 4 MHz is carried as `clock_hz` in the
+TinyTapeout metadata and through the complete release matrix. The principal
+higher-speed degradation is cancellation depth, not failure of the clock
+drivers.
+
+### 8.3 Extracted clock integrity
+
+Dedicated extracted-clock simulations independently measure the complementary
+and per-channel LO rails. All four clock points pass rail, edge-time,
+complement-skew, and paired-channel-skew gates.
+
+| LO | Slowest measured edge | Worst paired-channel skew | Result |
+|---:|---:|---:|---:|
+| 4 MHz | 0.183 ns | 0.017 ns | pass |
+| 10 MHz | 0.180 ns | 0.039 ns | pass |
+| 20 MHz | 0.185 ns | 0.040 ns | pass |
+| 30 MHz | 0.155 ns | 0.023 ns | pass |
+
+At 30 MHz the measured selected-rail extrema are approximately -4 mV and
+1.93 V in the ideal-pad testbench. These small overshoots should be rechecked
+with shuttle pad, package, and board models before treating 30 MHz as a field
+rating.
+
+### 8.4 Nominal channel balance
+
+Driving each channel independently through the same extracted testbench gives
+0.00346 percent nominal amplitude difference. The amplitude-only cancellation
+estimate is 95.24 dB; the actual switched two-channel null is lower because
+phase skew, residual clock products, and detector bandwidth also contribute.
+This is a deterministic result, not a yield prediction.
+
+### 8.5 Random-mismatch surrogate
+
+The open SKY130 model files contain Spectre `statistics` blocks that ngspice
+cannot execute. A reproducible 30-trial surrogate therefore applies the SKY130
+NMOS threshold Pelgrom slope of 3.356 mV-um to the channel input and tail
+devices and adds independent 0.5 percent load-resistor variation. With seed
+130, all 30 trials pass the 20 dB requirement: the worst null is 39.28 dB, the
+empirical fifth percentile is 39.72 dB, and the median is 49.39 dB.
+
+The input-device one-sigma threshold offset is 1.532 mV for 16 um x 0.30 um;
+the tail value is 0.770 mV for 38 um x 0.50 um. This test is valuable evidence
+that the larger devices have margin, but it is not native foundry Monte Carlo:
+it does not yet randomize every switch, PMOS, interconnect, capacitor, or
+spatially correlated parameter. A foundry-qualified Spectre mismatch run
+remains a pre-fabrication recommendation.
+
+### 8.6 Deterministic extracted PVT matrix
+
+The release matrix covers TT, SS, FF, SF, and FS process corners; 1.62, 1.80,
+and 1.98 V supplies; and -40, 27, and 125 C temperatures. Each case contains
+equal-duration constructive and destructive simulations. The committed JSON
+report is the authoritative source for all 45 cases; its summary is inserted
+into `submission/signoff.json` by the release process.
+
+| Metric | Final extracted result |
 |---|---:|
 | Cases passed | 45/45 |
-| Null release requirement | at least 20 dB at every corner |
-| Minimum null | 29.0903 dB at FS, 1.62 V, -40 C |
-| Maximum observed null | 50.0166 dB |
-| Constructive output range | 4.03534 to 29.0855 mVrms |
-| Output common-mode range | 1.35974 to 1.71545 V |
-| Supply-current range | 0.126082 to 0.416378 mA |
+| Release requirement | at least 20 dB null in every case |
+| Minimum null | 25.60 dB at FF, 1.62 V, 125 C |
+| Maximum null | 50.02 dB |
+| Constructive time-domain RMS range | 4.035 to 32.065 mVrms |
+| Output common-mode range | 1.335 to 1.715 V |
+| Supply-current range | 0.126 to 0.426 mA |
 
-The maximum PVT common mode occurs at the 1.98 V supply and is reported rather
-than hidden by the pass gate. Use the committed JSON report for every case and
-every individual check.
+The nominal TT, 1.80 V, 27 C time-domain result is 16.748 mVrms
+constructive, 0.420 mVrms destructive, 32.01 dB null, 1.504 V common mode,
+and 0.323 mA. Its null is lower than the 51.83 dB coherent wanted-tone result
+because the time-domain detector also includes residual filtered switching
+products, as described in Section 8.1.
 
-### 8.3 Schematic PVT and block results
+### 8.7 Schematic and block regressions
 
-- integrated schematic PVT: 45/45 cases pass, 52.1029 dB minimum null;
+- integrated schematic nominal: 5.432 mVrms useful-tone constructive output
+  and approximately 0.352 mA current;
 - ideal 1 dB gain/8 degree phase-error envelope: 20.3701 dB null;
 - transistor mixer 1 dB/8 degree error envelope: 20.3721 dB null;
-- LO rails: both highs above 1.75 V, lows below 50 mV nominal check, loaded
-  edges below 2 ns, and path skew below 1 ns;
-- bias reference: 105.198 uA nominal, with 2.03 percent mirror error at the
-  low-headroom test point; and
-- PDK passive smoke test: 2.933 kohm load, 10.603 kohm bias, 100.155 kohm
-  extra-high resistor, and 0.983 pF MIM capacitor.
+- bias reference and passive PDK smoke tests pass for the pinned model set; and
+- the old schematic 45-case PVT matrix remains available as a topology-level
+  cross-check, but the final extracted matrix supersedes its numerical result.
 
 ## 9. Physical implementation
 
@@ -258,45 +332,128 @@ every individual check.
 |---|---|
 | Tile | official TinyTapeout 1x2 analog boundary |
 | Macro size | 161.00 x 225.76 um |
-| Placed PCells | 47: 39 MOSFETs, 7 resistors, 1 MIM capacitor |
-| Extracted MOS fingers | 239 |
+| Placed PCells | 70: 62 MOSFETs, 7 resistors, 1 MIM capacitor |
+| Extracted MOS fingers | 338 |
 | Extracted passives | 8 |
-| Signal routing | deterministic M2/M3/M4, 26 named tracks |
+| Generated terminal routes | 271 on 30 named tracks |
+| Generated route geometry | 8,473 shapes; overlap audit passed |
+| Signal routing | local M2, compact M3 tracks, shared local M4 risers |
 | Power | `VDPWR` and `VGND`; no `VAPWR` |
-| GDS size | 651,370 bytes, uncompressed GDSII |
-| GDS SHA-256 | `c445c59d2b2b98329c2daf885f9cafbbd8d5a63e46c33fbf474d20e294da8aaf` |
+| GDS size | 706,162 bytes, uncompressed GDSII |
+| GDS SHA-256 | `ae1c9ba8f17110b828a722a05b883ae49e5483d6fb836c5d1d7632051beeea42` |
 | LEF SHA-256 | `9df231957326895371afc1f5e903b51e7992b3b6f8c3401546fa7ef7d82eb760` |
+| Extracted SPICE SHA-256 | `4ddb794aa8a5c7abc5b9d3a413bfe2b3ac9383fd0d56a68f3befbe4a6bdee042` |
 | Official DEF SHA-256 | `042803101760925474f602e69119f497922eb912c37a6651bed030164bb576af` |
 
-![Mask-layer rendering of the final beamformer GDS](images/beamformer-gds.png)
+### 9.1 Matching architecture
 
-The figure is a KLayout mask-layer rendering of the committed GDSII stream,
-not a microscope photograph of fabricated silicon.
+The earlier version placed whole channel-one and channel-two blocks in
+separate regions. The final version replaces every matching-critical channel
+device with equal halves and places the halves as A/B on the first row and B/A
+on the second. The centroids of channels A and B are therefore coincident for
+each transconductor input, reference device, tail, and mixer-switch group. The
+input-bias, VCM-divider, and output-load resistors are mirrored around their
+pair axes. Device orientation, finger count, local contacts, and breakout
+direction are held equal within each pair.
+
+This structure strongly rejects first-order linear process gradients and makes
+local route parasitics much closer. It cannot remove microscopic random
+mismatch; the larger effective GM and switch devices plus the surrogate Monte
+Carlo quantify the available margin against that residual.
+
+![Matching-critical core detail from the signed-off GDS](images/beamformer-core-detail.png)
+
+### 9.2 Parasitic controls for higher clock rates
+
+- the final LO inverters were strengthened to drive the doubled switch-gate
+  width;
+- both channels use the same transmission-gate and restoration-inverter depth;
+- clock breakouts are staggered locally instead of sharing long lower-metal
+  detours;
+- compact M3 tracks and local M4 risers reduce long parallel runs and avoid
+  unnecessary via stacks;
+- M2 is used for short device-terminal escape rather than long global nets;
+- the router forbids both vertical M4 and horizontal M3 crossings through the
+  full MIM-capacitor footprint; and
+- generated-shape overlap checking runs before Magic, followed by extraction
+  feedback and unexpected-net-equivalence checks.
+
+### 9.3 What each visible GDS layer does
+
+| Layer family | Function in this design |
+|---|---|
+| n-well | Encloses PMOS bodies and their well taps. It is not a conductor between unrelated nets. |
+| diffusion and implants | Form NMOS/PMOS source-drain active areas and explicit substrate/well taps. |
+| polysilicon | Crosses active diffusion to form transistor gates; elsewhere it is routing or the body of a poly resistor. |
+| licon/contact and LI1 | Connect an approved diffusion, tap, or poly-contact landing to local interconnect. |
+| mcon, metal 1, via 1 | Raise device-local LI1 nodes into the first general routing metal. |
+| metal 2, via 2, metal 3 | Carry short breakouts and the dense named signal tracks. |
+| capm | The special upper electrode of the predefined M3 MIM capacitor. |
+| via 3 and metal 4 | Contact the MIM upper electrode where defined by the PCell and carry global risers and pins. |
+| metal-4 pin and boundary | Expose the exact TinyTapeout LEF/GDS pins and macro extent. |
+| resistor/NPC markers | Tell the PDK extractor which poly geometry is a defined resistor and where contacts are prohibited. |
+
+The many small licon rectangles do not directly short substrate to LI1. A
+licon is only the cut; what it connects depends on its legal landing. On a
+source/drain it lands on implanted diffusion, on a gate it lands on a defined
+poly-contact structure, and on a substrate or n-well tap it intentionally ties
+the body to `VGND` or `VDPWR`. Magic DRC, exact extraction, and the
+unexpected-net-equivalence check all pass, so the release GDS contains no
+detected licon-induced signal/body short.
+
+Poly may geometrically run across n-well outside diffusion. That crossing is
+not a MOS device: a gate exists only where poly crosses active diffusion. For a
+PMOS, the active diffusion itself is inside n-well; for an NMOS, it is in the
+p-type substrate region. Poly outside active can therefore be visible over a
+well without creating a transistor or shorting to the well.
+
+### 9.4 MIM capacitor, capm, and via 3
+
+![MIM-capacitor and via-3 detail from the signed-off GDS](images/beamformer-mim-detail.png)
+
+The dense via-3 array overlapping the capm plate is intentional internal
+geometry of `sky130_fd_pr__cap_mim_m3_1`: capm is the upper electrode and the
+array connects that electrode to metal 4. The other electrode is metal 3. The
+unsafe condition would be an unrelated M3 or M4 route crossing the broad PCell
+footprint and being interpreted as an electrode connection. The final router
+uses a full two-dimensional keep-out and takes both `vcm` and `VGND` exits off
+the designated access sides. Extracted `vcm` and `VGND` remain distinct, the
+capacitor is present once, and GDS readback DRC and extraction feedback are
+both zero.
+
+### 9.5 Signed-off full layout
+
+![Mask-layer rendering of the final signed-off beamformer GDS](images/beamformer-gds.png)
+
+These figures are parsed directly from the committed GDSII hierarchy. They are
+not a schematic, a Magic source-cell screenshot, or a post-fabrication
+micrograph.
 
 ## 10. Physical and submission verification
 
-The following checks are complete for the committed local release candidate:
+The following checks are complete for the local release candidate:
 
-- Magic placement DRC: 0 errors;
-- Magic routed-layout DRC: 0 errors;
-- Magic extraction-stage DRC: 0 errors;
-- Magic internal final signoff DRC: 0 errors;
-- Magic GDS-writer geometry feedback: 0;
-- official Magic readback DRC on the emitted GDS: 0 errors;
-- extraction feedback: 0;
-- extraction topology: 239 MOS fingers, 8 passives, power connected, and no
-  unexpected net equivalences;
+- Magic placement, routed-layout, extraction-stage, and internal final DRC:
+  zero errors at every stage;
+- Magic GDS-writer feedback and extraction feedback: zero;
+- official Magic readback DRC on the emitted GDS: zero errors;
+- extraction topology: 338 MOS fingers, eight passives, connected power, one
+  MIM capacitor, and no unexpected net equivalences;
+- exact extracted-device and parasitic-capacitor multisets agree with the
+  electrically simulated final candidate;
+- generated route overlap audit: pass for 8,473 generated shapes;
 - official static prechecks: 8/8 locally runnable checks pass, covering top
   macro, forbidden layers, project boundary, exact DEF/LEF/GDS pin geometry,
-  power pins, valid layers, cell names, analog-pad connectivity, and Verilog
-  syntax; and
-- release integrity: GDS/LEF hashes, plain GDSII header, macro dimensions, 53
-  LEF pins, physical error counters, PVT result, and required metadata pass.
+  power pins, valid layers, cell names, analog-pad connectivity, and Verilog;
+  and
+- release integrity authenticates GDS, LEF, reports, plain GDSII header, macro
+  dimensions, 53 LEF pins, zero physical-error counters, and required metadata.
 
-The GitHub workflow is the final mechanical submission gate because it also
-runs the complete containerized TinyTapeout Magic and KLayout rule set. A green
-workflow establishes compatibility with the pinned submission flow; it does
-not guarantee analog performance or fabrication yield.
+The GitHub workflow is the final mechanical submission gate because it runs
+the complete pinned TinyTapeout Magic and KLayout rule set. A green workflow
+establishes compatibility with that submission flow; it does not prove analog
+yield. The topology checker is also not a second, foundry-qualified LVS engine,
+so an independent LVS remains desirable before paying for fabrication.
 
 ## 11. Tool and source provenance
 
@@ -324,7 +481,11 @@ the repository and can be recreated from `third_party/README.md`.
 make verify
 make pvt
 make layout-sim
+make layout-balance
+make layout-clock-sweep
+make layout-frequency-sweep
 make layout-pvt
+make mismatch-mc
 ```
 
 ### Physical generation and signoff
@@ -338,6 +499,8 @@ make layout-place
 make layout-route
 make layout-extract
 make layout-signoff
+python3 tools/render_gds.py gds/tt_um_jjassonn69_beamformer.gds
+make submission-evidence
 make release-check
 ```
 
@@ -345,8 +508,11 @@ The deterministic source of physical intent is `layout/circuit.json` together
 with the layout-script generators. The fabrication views are
 `gds/tt_um_jjassonn69_beamformer.gds` and
 `lef/tt_um_jjassonn69_beamformer.lef`. Machine-readable evidence is stored in
-`submission/signoff.json`, `submission/core_pvt_summary.json`, and
-`submission/extracted_pvt_summary.json`.
+`submission/signoff.json`, `submission/core_pvt_summary.json`,
+`submission/extracted_pvt_summary.json`,
+`submission/extracted_frequency_sweep.json`,
+`submission/extracted_clock_sweep.json`, and
+`submission/mismatch_mc_summary.json`.
 
 ## 13. First-silicon bench procedure
 
@@ -391,17 +557,18 @@ with the layout-script generators. The fabrication views are
 
 ## 14. Known limitations and open risks
 
-1. Statistical mismatch/Monte Carlo has not been completed. Deterministic PVT
-   does not predict random channel mismatch or null-yield distribution.
+1. The 30-trial foundry-slope mismatch surrogate is not native Spectre Monte
+   Carlo and is too small to establish production-yield confidence.
 2. The present extraction topology checker is not a second, foundry-qualified
    LVS implementation.
-3. Shuttle pad/ESD, package, bond-wire, and board parasitics are not included in
-   the reported extracted simulations.
+3. The exact shuttle pad/ESD, package, bond-wire, and board networks are not
+   available. Reported higher-speed simulations use conservative lumped
+   input/output loads, which are evidence of margin but not a package model.
 4. Noise, compression, IIP3, LO feedthrough, supply rejection, and phase-select
    transients have not passed a release characterization matrix.
 5. Independent input path resistance and capacitance, output capacitance, LO
-   duty cycle, source amplitude, and startup phase still require systematic
-   sweeps.
+   duty cycle, source amplitude, startup phase, and 30 MHz PVT still require
+   systematic sweeps.
 6. Antenna and density behavior must be reviewed in the assembled shuttle
    context.
 7. `ena` and `rst_n` do not shut down or reset the v1 analog core.
@@ -418,9 +585,9 @@ low-IF current-summing core, not a jump directly to an on-chip RF front end.
 
 ### Recommended feature order
 
-1. **Close v1 characterization:** complete mismatch Monte Carlo, package/pad
-   sweeps, noise, compression, IM3, feedthrough, independent LVS, and the full
-   automated bench rehearsal.
+1. **Close v1 characterization:** run native foundry mismatch Monte Carlo,
+   package/pad sweeps, noise, compression, IM3, feedthrough, independent LVS,
+   and the full automated bench rehearsal.
 2. **Add real enable control:** use `ena` to shut down the bias and LO buffers;
    retain a defined output state during disable.
 3. **Add per-channel observability:** provide a safe diagnostic mode that
@@ -470,3 +637,4 @@ requirement.
 | Revision | Date | Description |
 |---|---|---|
 | RC1.0 | 2026-07-19 | Initial 1x2 binary 0/180-degree low-IF beamformer; GDS/LEF frozen, nominal extracted and 45-corner extracted PVT passing, local physical/release gates passing. |
+| RC1.1 | 2026-07-20 | Split A/B; B/A common-centroid GM, tail, and mixer devices; mirrored passives; stronger/equalized LO paths; MIM route keep-out; extracted 4-30 MHz and clock sweeps; mismatch surrogate; regenerated GDS and direct-GDS layer images. |

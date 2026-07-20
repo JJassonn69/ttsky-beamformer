@@ -19,17 +19,24 @@ known risks, and recommended iteration-two roadmap.
 ## Release-candidate implementation
 
 - official 1x2 analog boundary: 161.00 x 225.76 um;
-- 47 placed SKY130 devices: 39 MOSFETs, seven PDK resistors, and one MIM
+- 70 placed SKY130 devices: 62 MOSFET PCells, seven PDK resistors, and one MIM
   capacitor;
-- 239 extracted MOS fingers and eight extracted passives;
-- deterministic M2/M3/M4 routing with 26 named tracks;
+- 338 extracted MOS fingers and eight extracted passives;
+- channel devices split into an A/B; B/A common-centroid pattern, with mirrored
+  passives and matched local breakouts;
+- deterministic M2/M3/M4 routing with 30 named tracks and explicit MIM
+  routing keep-outs;
 - real, uncompressed GDSII and an exact TinyTapeout-pin LEF;
 - Magic placement, routed, extraction, and final DRC counts: zero;
 - Magic GDS writer geometry-feedback count: zero;
-- extracted nominal result: 14.705 mVrms constructive output, 42.56 dB null,
-  1.539 V output common mode, and approximately 298 uA core current;
-- full parasitic-extracted PVT result: 45/45 cases passed, with a 29.09 dB
-  worst-case null against the 20 dB release requirement; and
+- nominal extracted 1 MHz wanted-tone result: 0.803 mVrms constructive output
+  and 51.83 dB null at a 4 MHz LO;
+- extracted higher-clock characterization passes the 20 dB release criterion
+  at 4, 10, 20, and 30 MHz, with 33.93 dB null at 30 MHz;
+- full parasitic-extracted PVT passes 45/45 TT/SS/FF/SF/FS,
+  1.62/1.80/1.98 V, and -40/27/125 C cases, with a 25.60 dB worst null;
+- 30/30 foundry-slope mismatch-surrogate trials pass, with 39.28 dB worst-case
+  null; and
 - all locally runnable checks from the official TinyTapeout precheck pass,
   including exact DEF/LEF/GDS pin geometry, analog-pad connectivity, boundary,
   layers, power ports, cell names, and Verilog syntax.
@@ -47,7 +54,11 @@ pinned SKY130 model checkout described in `third_party/README.md`.
 make verify
 make pvt
 make layout-sim
+make layout-balance
+make layout-clock-sweep
+make layout-frequency-sweep
 make layout-pvt
+make mismatch-mc
 ```
 
 The full deterministic PVT grid is five process corners, three supplies
@@ -65,6 +76,8 @@ make layout-place
 make layout-route
 make layout-extract
 make layout-signoff
+make submission-evidence
+make release-check
 ```
 
 Set `PDK_ROOT` to the directory containing `sky130A` and `MAGIC_BIN` if Magic
@@ -79,8 +92,9 @@ explicit in `docs/presilicon_plan.md`.
 
 ## Fabrication layout
 
-![KLayout rendering of the final beamformer GDS](docs/images/beamformer-gds.png)
+![Signed-off GDS layer rendering of the final beamformer](docs/images/beamformer-gds.png)
 
 This is a mask-layer rendering of the exact committed GDSII stream, not a
-post-fabrication microscope photograph. The image can be regenerated from the
-GDS with KLayout and the pinned SKY130A layer-properties file.
+post-fabrication microscope photograph. It can be regenerated directly from
+the release GDS with `tools/render_gds.py`; detailed core and capacitor views
+are included in the engineering datasheet.

@@ -1,0 +1,22 @@
+{
+  "channels": {
+    "ch1": {
+      "mode_ac_rms": 0.02715685406254515,
+      "mode_avg": 0.000538875,
+      "mode_cm": 1.64,
+      "mode_rms": 0.0271622,
+      "mode_supply": -0.000230601
+    },
+    "ch2": {
+      "mode_ac_rms": 0.027157793901081122,
+      "mode_avg": 0.000608049,
+      "mode_cm": 1.64,
+      "mode_rms": 0.0271646,
+      "mode_supply": -0.000230509
+    }
+  },
+  "estimated_amplitude_only_null_db": 95.23727441421697,
+  "gain_mismatch_fraction": 3.4607185030495126e-05,
+  "gain_mismatch_percent": 0.0034607185030495124,
+  "passed": true
+}

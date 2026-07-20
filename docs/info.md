@@ -15,6 +15,11 @@ amplitude and phase.
 The chip intentionally contains no 50-ohm RF match, inductor, transformer or
 large IF filter. These functions are more predictable and testable off-chip.
 
+The release operating point remains a 4 MHz clock with 5 MHz inputs. The final
+parasitic layout has additionally been characterized at 10, 20, and 30 MHz;
+for those modes keep the input 1 MHz above the clock. Higher-clock operation is
+for characterization until package and board parasitics are included.
+
 See the [complete engineering datasheet and iteration handoff](datasheet.md)
 for the circuit inventory, operating envelope, simulation results,
 physical-signoff provenance, known risks, and next-revision plan.

@@ -2,7 +2,7 @@ PYTHON ?= python3
 NGSPICE ?= ngspice
 BUILD_DIR := build
 
-.PHONY: verify test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives pvt-quick pvt layout-template layout-scripts layout-place layout-route layout-extract layout-sim layout-pvt-quick layout-pvt layout-signoff release-check
+.PHONY: verify test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives mismatch-mc pvt-quick pvt layout-template layout-scripts layout-place layout-route layout-extract layout-sim layout-balance layout-clock-sweep layout-frequency-sweep layout-pvt-quick layout-pvt layout-signoff submission-evidence release-check
 
 verify: test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives
 
@@ -59,6 +59,9 @@ passives: sky130-smoke
 	$(NGSPICE) -b -o $(BUILD_DIR)/passive_smoke.log spice/sky130/passive_smoke.spice
 	$(PYTHON) tools/check_passives.py $(BUILD_DIR)/passive_smoke.log
 
+mismatch-mc: sky130-smoke
+	$(PYTHON) tools/run_mismatch_mc.py --ngspice $(NGSPICE)
+
 pvt-quick: sky130-smoke
 	$(PYTHON) tools/run_core_pvt.py --ngspice $(NGSPICE)
 
@@ -87,6 +90,15 @@ layout-sim:
 	$(PYTHON) tools/run_extracted_sim.py --ngspice $(NGSPICE)
 	$(PYTHON) tools/check_beamformer_core.py $(BUILD_DIR)/extracted_core.log
 
+layout-balance:
+	$(PYTHON) tools/run_extracted_channel_balance.py --ngspice $(NGSPICE)
+
+layout-clock-sweep:
+	$(PYTHON) tools/run_extracted_clock_sweep.py --ngspice $(NGSPICE)
+
+layout-frequency-sweep:
+	$(PYTHON) tools/run_extracted_frequency_sweep.py --ngspice $(NGSPICE)
+
 layout-pvt-quick:
 	$(PYTHON) tools/run_extracted_pvt.py --ngspice $(NGSPICE)
 
@@ -96,6 +108,9 @@ layout-pvt:
 layout-signoff:
 	tools/run_magic_layout.sh layout/signoff.tcl
 	$(PYTHON) tools/generate_submission_lef.py
+
+submission-evidence:
+	$(PYTHON) tools/update_submission_evidence.py
 
 release-check:
 	$(PYTHON) tools/check_release_files.py

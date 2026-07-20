@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import os
 import re
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,8 +21,9 @@ DBU_UM = 0.005
 M2_WIDTH = 0.32
 M3_WIDTH = 0.40
 M4_WIDTH = 0.40
-TRACK_Y0 = 72.0
-TRACK_PITCH = 2.20
+TRACK_Y0 = 125.0
+TRACK_PITCH = 1.85
+BOUNDARY_M4_X = [2.00, 5.00, 94.30, 113.62, 132.94, 138.46, 144.00, 152.26]
 
 
 @dataclass(frozen=True)
@@ -41,7 +43,9 @@ class Connection:
     labels: list[Label]
     original_labels: list[Label]
     anchor_x: float
+    access_y: float
     breakout_y: float
+    escape_x: float
     column_x: float = 0.0
 
 
@@ -73,6 +77,44 @@ def parse_top_instances(top: str) -> dict[str, tuple[str, int, int]]:
             instances[instance] = (cell, int(match.group(1)), int(match.group(2)))
             cell = instance = None
     return instances
+
+
+def check_instance_overlaps(top: str) -> None:
+    """Reject physical PCell body overlap that same-layer DRC can miss."""
+    lines = (WORK / f"{top}.mag").read_text().splitlines()
+    boxes: dict[str, tuple[float, float, float, float]] = {}
+    instance: str | None = None
+    tx = ty = None
+    for line in lines:
+        match = re.match(r"use\s+\S+\s+(\S+)", line)
+        if match:
+            instance = match.group(1)
+            tx = ty = None
+            continue
+        match = re.match(r"transform\s+1\s+0\s+(-?\d+)\s+0\s+1\s+(-?\d+)", line)
+        if match and instance is not None:
+            tx, ty = map(int, match.groups())
+            continue
+        match = re.match(r"box\s+(-?\d+)\s+(-?\d+)\s+(-?\d+)\s+(-?\d+)", line)
+        if match and instance is not None and tx is not None and ty is not None:
+            x1, y1, x2, y2 = map(int, match.groups())
+            boxes[instance] = tuple(
+                coordinate * DBU_UM
+                for coordinate in (x1 + tx, y1 + ty, x2 + tx, y2 + ty)
+            )
+            instance = None
+    for index, (first_name, first) in enumerate(boxes.items()):
+        for second_name, second in list(boxes.items())[index + 1 :]:
+            overlap_x = min(first[2], second[2]) - max(first[0], second[0])
+            overlap_y = min(first[3], second[3]) - max(first[1], second[1])
+            # Generated guard-ring bounding boxes can intentionally graze at
+            # their edges.  Reject only a material two-dimensional intrusion,
+            # such as the former 2.5 x 4.0 um XBIAS/XRBIAS overlap.
+            if overlap_x > 1.0 and overlap_y > 1.0:
+                raise ValueError(
+                    f"physical PCell overlap: {first_name} {first} and "
+                    f"{second_name} {second}"
+                )
 
 
 def parse_child_labels(cell: str, tx: int, ty: int) -> list[Label]:
@@ -125,22 +167,241 @@ def breakout_y(kind: str, terminal: str, labels: list[Label]) -> float:
     return rules[terminal]
 
 
-def available_columns(count: int) -> list[float]:
+def local_escape_x(kind: str, terminal: str, anchor_x: float) -> float:
+    """Give each terminal a distinct local M4 dogleg corridor."""
+    if kind in {"nmos", "pmos"}:
+        offsets = {"D": 0.0, "S": 0.80, "G": -0.80, "B": 1.60}
+    elif kind.startswith("res_"):
+        offsets = {"R1": -0.80, "R2": 0.80, "B": 1.60}
+    else:
+        # C1 is the broad M4/capm top plate; C2 reaches the M3 bottom
+        # plate through the narrow via3/M4 strip at the right edge.  Exit
+        # those electrodes on opposite sides and only change layer outside
+        # the complete capacitor footprint.
+        offsets = {"C1": -12.20, "C2": 1.30}
+    try:
+        return anchor_x + offsets[terminal]
+    except KeyError as error:
+        raise ValueError(f"no local escape offset for {kind}.{terminal}") from error
+
+
+def capacitor_keepouts(
+    connections: list[Connection],
+) -> list[tuple[float, float, float, float]]:
+    grouped: dict[str, dict[str, float]] = {}
+    for connection in connections:
+        if connection.kind == "cap_mim_m3":
+            grouped.setdefault(connection.device, {})[connection.terminal] = connection.anchor_x
+    keepouts: list[tuple[float, float, float, float]] = []
+    for device, terminals in grouped.items():
+        if set(terminals) != {"C1", "C2"}:
+            raise ValueError(f"{device}: incomplete MIM capacitor terminals")
+        # These margins include the PCell's M3 bottom plate, M4/capm top
+        # plate, the right-hand C2 via strip, wire half-width, and spacing.
+        c1 = next(
+            connection
+            for connection in connections
+            if connection.device == device and connection.terminal == "C1"
+        )
+        keepouts.append(
+            (
+                terminals["C1"] - 11.70,
+                terminals["C2"] + 0.80,
+                c1.labels[0].y - 11.60,
+                c1.labels[0].y + 11.60,
+            )
+        )
+    return keepouts
+
+
+def assign_local_escape_columns(
+    connections: list[Connection],
+) -> None:
+    """Move local doglegs off fixed TinyTapeout M4 boundary risers."""
+    grouped: dict[str, list[Connection]] = {}
+    for connection in connections:
+        grouped.setdefault(connection.device, []).append(connection)
+    shifts = [0.0]
+    for index in range(1, 25):
+        shifts.extend((-0.80 * index, 0.80 * index))
+    for device_connections in grouped.values():
+        used: list[float] = []
+        for connection in sorted(
+            device_connections,
+            key=lambda item: (item.terminal != "D", item.terminal),
+        ):
+            for shift in shifts:
+                candidate = connection.escape_x + shift
+                if not 6.8 <= candidate <= 154.2:
+                    continue
+                if any(abs(candidate - fixed_x) < 0.55 for fixed_x in BOUNDARY_M4_X):
+                    continue
+                if any(abs(candidate - other_x) < 0.65 for other_x in used):
+                    continue
+                connection.escape_x = candidate
+                used.append(candidate)
+                break
+            else:
+                raise ValueError(
+                    f"cannot place a local M4 escape for "
+                    f"{connection.device}.{connection.terminal}"
+                )
+
+
+def available_columns(
+    count: int,
+    forbidden: list[float],
+    keepouts: list[tuple[float, float, float, float]],
+) -> list[float]:
     # Clear the used TinyTapeout boundary-pin columns, which already carry M4.
-    reserved = [94.30, 113.62, 132.94, 138.46, 144.00, 152.26]
+    reserved = BOUNDARY_M4_X
     candidates: list[float] = []
     x = 8.0
     while x <= 153.0:
-        if all(abs(x - pin_x) >= 0.65 for pin_x in reserved):
+        if (
+            all(abs(x - pin_x) >= 0.65 for pin_x in reserved)
+            and all(abs(x - anchor_x) >= 0.55 for anchor_x in forbidden)
+            and all(not left <= x <= right for left, right, _bottom, _top in keepouts)
+        ):
             candidates.append(round(x, 4))
         x += 0.72
     if len(candidates) < count:
         raise ValueError(f"need {count} M4 columns but only {len(candidates)} are available")
-    indices = [round(i * (len(candidates) - 1) / (count - 1)) for i in range(count)]
-    chosen = [candidates[index] for index in indices]
-    if len(set(chosen)) != count:
-        raise ValueError("column selection produced a duplicate")
-    return chosen
+    return candidates
+
+
+def assign_net_columns(
+    connections: list[Connection],
+    keepouts: list[tuple[float, float, float, float]],
+) -> None:
+    """Use one nearby M4 riser per net instead of one per terminal.
+
+    The original router consumed a separate full-height M4 column for every
+    device terminal and spread those columns across the complete tile.  That
+    made even local mixer nodes unnecessarily long.  A shared riser keeps each
+    local net close to the centroid of the devices it actually connects.
+    """
+    anchors: dict[str, list[float]] = {}
+    for connection in connections:
+        anchors.setdefault(connection.net, []).append(connection.anchor_x)
+    medians = {
+        net: sorted(values)[len(values) // 2]
+        for net, values in anchors.items()
+    }
+    # A drain breakout briefly runs vertically on M4 at its local PCell
+    # anchor.  Keep every shared net riser away from those immutable local
+    # corridors; otherwise two unrelated nets can cross even though each has
+    # a unique global column.
+    local_risers = [
+        connection.escape_x
+        for connection in connections
+    ]
+    candidates = available_columns(len(medians), local_risers, keepouts)
+    unused = set(candidates)
+    columns: dict[str, float] = {}
+    for net in sorted(medians, key=lambda item: (medians[item], item)):
+        target = medians[net]
+        column = min(unused, key=lambda item: (abs(item - target), item))
+        columns[net] = column
+        unused.remove(column)
+    for connection in connections:
+        connection.column_x = columns[connection.net]
+
+
+def separate_breakout_lanes(
+    connections: list[Connection],
+    keepouts: list[tuple[float, float, float, float]],
+) -> None:
+    """Stagger crossing M3 and M2 terminal escapes while preserving locality."""
+    # Reserve the immutable local M3 bars that join each multifinger drain.
+    # Other nets must dogleg around these bars even if their own requested
+    # breakout lane would otherwise appear free.
+    placed_m3: list[tuple[float, float, float, str]] = []
+    for connection in connections:
+        if connection.terminal == "D":
+            placed_m3.append(
+                (
+                    connection.labels[0].y,
+                    min(label.x for label in connection.labels),
+                    max(label.x for label in connection.labels),
+                    connection.net,
+                )
+            )
+        elif connection.kind != "cap_mim_m3":
+            placed_m3.append(
+                (
+                    connection.access_y,
+                    min(connection.anchor_x, connection.escape_x),
+                    max(connection.anchor_x, connection.escape_x),
+                    connection.net,
+                )
+            )
+    step = 0.75
+    offsets = [0.0]
+    # The two dense LO/control banks need more candidate lanes than the analog
+    # core.  Search far enough to use the full quiet band above the M3 buses.
+    for index in range(1, 41):
+        offsets.extend((index * step, -index * step))
+    for connection in sorted(
+        connections,
+        key=lambda item: (item.breakout_y, item.anchor_x, item.net, item.device),
+    ):
+        left, right = sorted((connection.escape_x, connection.column_x))
+        local_y = (
+            connection.labels[0].y
+            if connection.terminal == "D"
+            else connection.access_y
+        )
+        for offset in offsets:
+            candidate = connection.breakout_y + offset
+            if not 1.0 <= candidate <= 224.4:
+                continue
+            # The MIM PCell's broad lower electrode is Metal3.  A breakout
+            # lane can therefore short C2 even when both of its Metal4
+            # endpoints and risers sit safely outside the capacitor.  Reject
+            # every horizontal M3 segment whose complete interval crosses the
+            # capacitor footprint; the earlier test only protected the local
+            # vertical dogleg.
+            if any(
+                keepout_bottom <= candidate <= keepout_top
+                and min(right, keepout_right) >= max(left, keepout_left)
+                for (
+                    keepout_left,
+                    keepout_right,
+                    keepout_bottom,
+                    keepout_top,
+                ) in keepouts
+            ):
+                continue
+            if connection.kind != "cap_mim_m3" and any(
+                keepout_left <= connection.escape_x <= keepout_right
+                and min(local_y, candidate) <= keepout_top
+                and max(local_y, candidate) >= keepout_bottom
+                for (
+                    keepout_left,
+                    keepout_right,
+                    keepout_bottom,
+                    keepout_top,
+                ) in keepouts
+            ):
+                continue
+            conflict = any(
+                other_net != connection.net
+                and abs(candidate - other_y) < 0.68
+                # Include the 0.31 um M3 via landing overhang at both ends.
+                and min(right + 0.31, other_right + 0.31)
+                >= max(left - 0.31, other_left - 0.31)
+                for other_y, other_left, other_right, other_net in placed_m3
+            )
+            if not conflict:
+                connection.breakout_y = candidate
+                placed_m3.append((candidate, left, right, connection.net))
+                break
+        else:
+            raise ValueError(
+                f"cannot allocate a non-overlapping M3 breakout for "
+                f"{connection.device}.{connection.terminal}"
+            )
 
 
 def rect(layer: str, x1: float, y1: float, x2: float, y2: float) -> str:
@@ -216,17 +477,30 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
     commands = [f"# {connection.device}.{connection.terminal} -> {connection.net}"]
     if connection.terminal == "D":
         # Alternating multifinger drain contacts are lifted independently and
-        # joined on M3.  Their interleaved source contacts remain isolated on
-        # M2 and escape below the device.
+        # joined locally on M3.  A short M4 dogleg then reaches the allocated
+        # breakout lane.  Keeping that dogleg off M3 prevents it from crossing
+        # neighbouring power and signal escapes in the dense LO row.
         for original, label in zip(connection.original_labels, labels, strict=True):
             commands.extend(metal1_escape(original, label))
             commands.extend(contact_stack(label.x, label.y))
             commands.extend(via2_stack(label.x, label.y))
         min_x = min(label.x for label in labels)
         max_x = max(label.x for label in labels)
-        commands.append(wire_h("metal3", min_x, max_x, connection.breakout_y, M3_WIDTH))
+        local_y = labels[0].y
+        commands.append(wire_h("metal3", min_x, max_x, local_y, M3_WIDTH))
+        commands.extend(via3_stack(connection.escape_x, local_y))
+        if connection.escape_x != connection.anchor_x:
+            commands.append(
+                wire_h("metal3", connection.anchor_x, connection.escape_x,
+                       local_y, M3_WIDTH)
+            )
         commands.append(
-            wire_h("metal3", connection.anchor_x, connection.column_x,
+            wire_v("metal4", connection.escape_x, local_y,
+                   connection.breakout_y, M4_WIDTH)
+        )
+        commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
+        commands.append(
+            wire_h("metal3", connection.escape_x, connection.column_x,
                    connection.breakout_y, M3_WIDTH)
         )
         commands.extend(via3_stack(connection.column_x, connection.breakout_y))
@@ -242,13 +516,23 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
         commands.extend(
             contact_stack(label.x, label.y, from_bulk=connection.terminal == "B")
         )
-        commands.append(wire_v("metal2", label.x, label.y, connection.breakout_y, M2_WIDTH))
+        commands.append(wire_v("metal2", label.x, label.y, connection.access_y, M2_WIDTH))
     min_x = min(label.x for label in labels)
     max_x = max(label.x for label in labels)
-    commands.append(wire_h("metal2", min_x, max_x, connection.breakout_y, M2_WIDTH))
-    commands.extend(via2_stack(connection.anchor_x, connection.breakout_y))
+    commands.append(wire_h("metal2", min_x, max_x, connection.access_y, M2_WIDTH))
+    commands.extend(via2_stack(connection.anchor_x, connection.access_y))
     commands.append(
-        wire_h("metal3", connection.anchor_x, connection.column_x,
+        wire_h("metal3", connection.anchor_x, connection.escape_x,
+               connection.access_y, M3_WIDTH)
+    )
+    commands.extend(via3_stack(connection.escape_x, connection.access_y))
+    commands.append(
+        wire_v("metal4", connection.escape_x, connection.access_y,
+               connection.breakout_y, M4_WIDTH)
+    )
+    commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
+    commands.append(
+        wire_h("metal3", connection.escape_x, connection.column_x,
                connection.breakout_y, M3_WIDTH)
     )
     commands.extend(via3_stack(connection.column_x, connection.breakout_y))
@@ -261,31 +545,22 @@ def route_connection(connection: Connection, track_y: float) -> list[str]:
 
 def route_capacitor(connection: Connection, track_y: float) -> list[str]:
     label = connection.labels[0]
-    if connection.terminal == "C2":
-        # The C2 electrode is a tall M4 strip.  A separate parallel escape
-        # leaves a 20 nm spacing sliver after GDS polygonization.  Continue
-        # down on the electrode itself, then jog below the capacitor body.
-        escape_y = label.y - 12.0
-        return [
-            f"# {connection.device}.{connection.terminal} -> {connection.net}",
-            rect("metal4", label.x - 0.20, label.y - 0.20,
-                 label.x + 0.20, label.y + 0.20),
-            wire_v("metal4", label.x, escape_y, label.y, M4_WIDTH),
-            wire_h("metal4", label.x, connection.column_x, escape_y, M4_WIDTH),
-            wire_v("metal4", connection.column_x, escape_y, track_y, M4_WIDTH),
-            # Square off both bends; otherwise GDS booleanization leaves a
-            # 0.10 um re-entrant corner that violates met4.1.
-            rect("metal4", label.x - 0.30, escape_y - 0.30,
-                 label.x + 0.30, escape_y + 0.30),
-            rect("metal4", connection.column_x - 0.30, escape_y - 0.30,
-                 connection.column_x + 0.30, escape_y + 0.30),
-            *via3_stack(connection.column_x, track_y),
-        ]
+    # Remain on M4 while leaving the physical electrode.  In particular, do
+    # not place a via3 on C1: its M3 landing would directly touch C2's broad
+    # bottom plate and short the capacitor.  The M4 routing keep-out ensures
+    # no unrelated riser crosses either plate.
     return [
         f"# {connection.device}.{connection.terminal} -> {connection.net}",
         rect("metal4", label.x - 0.20, label.y - 0.20, label.x + 0.20, label.y + 0.20),
-        wire_h("metal4", label.x, connection.column_x, label.y, M4_WIDTH),
-        wire_v("metal4", connection.column_x, label.y, track_y, M4_WIDTH),
+        wire_h("metal4", label.x, connection.escape_x, label.y, M4_WIDTH),
+        wire_v("metal4", connection.escape_x, label.y,
+               connection.breakout_y, M4_WIDTH),
+        *via3_stack(connection.escape_x, connection.breakout_y),
+        wire_h("metal3", connection.escape_x, connection.column_x,
+               connection.breakout_y, M3_WIDTH),
+        *via3_stack(connection.column_x, connection.breakout_y),
+        wire_v("metal4", connection.column_x, connection.breakout_y,
+               track_y, M4_WIDTH),
         *via3_stack(connection.column_x, track_y),
     ]
 
@@ -306,6 +581,7 @@ def boundary_route(net: str, x: float, pin_y: float, track_y: float) -> list[str
 def main() -> None:
     manifest = json.loads(MANIFEST.read_text())
     top = str(manifest["top"])
+    check_instance_overlaps(top)
     instances = parse_top_instances(top)
     connections: list[Connection] = []
     for device in manifest["devices"]:
@@ -363,13 +639,17 @@ def main() -> None:
                     original_labels,
                     anchor_x,
                     y,
+                    y,
+                    local_escape_x(kind, terminal, anchor_x),
                 )
             )
 
     connections.sort(key=lambda item: (item.anchor_x, item.breakout_y,
                                         item.device, item.terminal))
-    for connection, column in zip(connections, available_columns(len(connections)), strict=True):
-        connection.column_x = column
+    keepouts = capacitor_keepouts(connections)
+    assign_local_escape_columns(connections)
+    assign_net_columns(connections, keepouts)
+    separate_breakout_lanes(connections, keepouts)
 
     tracks = {
         net: TRACK_Y0 + index * TRACK_PITCH
@@ -378,20 +658,6 @@ def main() -> None:
     missing_tracks = {connection.net for connection in connections} - tracks.keys()
     if missing_tracks:
         raise ValueError(f"nets without tracks: {sorted(missing_tracks)}")
-
-    commands: list[str] = []
-    for net, y in tracks.items():
-        commands.extend(
-            [
-                f"# horizontal net track: {net}",
-                wire_h("metal3", 6.5, 154.5, y, M3_WIDTH),
-                f"box 80um {fmt(y)}um 80um {fmt(y)}um",
-                f"label {{{net}}} FreeSans 0.10u -met3",
-            ]
-        )
-    for connection in connections:
-        router = route_capacitor if connection.kind == "cap_mim_m3" else route_connection
-        commands.extend(router(connection, tracks[connection.net]))
 
     boundary_pins = {
         "VDPWR": (2.00, 112.88),
@@ -403,6 +669,46 @@ def main() -> None:
         "ua[2]": (113.62, 0.50),
         "ua[3]": (94.30, 0.50),
     }
+
+    commands: list[str] = []
+    for net, y in tracks.items():
+        endpoints = [
+            connection.column_x for connection in connections if connection.net == net
+        ]
+        if net in boundary_pins:
+            endpoints.append(boundary_pins[net][0])
+        if not endpoints:
+            raise ValueError(f"track {net} has no physical endpoint")
+        left = max(6.5, min(endpoints) - 0.40)
+        right = min(154.5, max(endpoints) + 0.40)
+        label_x = (left + right) / 2.0
+        commands.extend(
+            [
+                f"# horizontal net track: {net}",
+                wire_h("metal3", left, right, y, M3_WIDTH),
+                f"box {fmt(label_x)}um {fmt(y)}um {fmt(label_x)}um {fmt(y)}um",
+                f"label {{{net}}} FreeSans 0.10u -met3",
+            ]
+        )
+    skipped_devices = {
+        item
+        for item in os.environ.get("ROUTE_SKIP_DEVICES", "").split(",")
+        if item
+    }
+    skipped_connections = {
+        item
+        for item in os.environ.get("ROUTE_SKIP_CONNECTIONS", "").split(",")
+        if item
+    }
+    for connection in connections:
+        if (
+            connection.device in skipped_devices
+            or f"{connection.device}.{connection.terminal}" in skipped_connections
+        ):
+            continue
+        router = route_capacitor if connection.kind == "cap_mim_m3" else route_connection
+        commands.extend(router(connection, tracks[connection.net]))
+
     for net, (x, y) in boundary_pins.items():
         commands.extend(boundary_route(net, x, y, tracks[net]))
 
