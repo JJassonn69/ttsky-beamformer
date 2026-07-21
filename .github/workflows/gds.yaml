@@ -18,6 +18,12 @@ jobs:
         run: |
           echo TOP_MODULE=`yq '.project.top_module' info.yaml` | tee $GITHUB_OUTPUT
 
+      - name: Run physical-regression and constraint unit tests
+        run: python3 -m unittest discover -s tests -v
+
+      - name: Check flattened GDS routing interactions
+        run: python3 tools/check_gds_flat_rules.py gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
+
       - name: Create and publish the GDS artifact
         uses: TinyTapeout/tt-gds-action/custom_gds@ttsky26c
         with:
@@ -33,6 +39,19 @@ jobs:
     steps:
       - name: Run Tiny Tapeout Precheck
         uses: TinyTapeout/tt-gds-action/precheck@ttsky26c
+
+  release-evidence:
+    needs: precheck
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout release evidence
+        uses: actions/checkout@v4
+
+      - name: Check frozen reports and artifact bindings
+        run: python3 tools/check_release_files.py
+
+      - name: Check documented metrics against frozen JSON
+        run: python3 tools/check_documented_metrics.py
 
   viewer:
     needs: gds

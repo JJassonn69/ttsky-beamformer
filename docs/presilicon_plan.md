@@ -14,23 +14,55 @@ electrical confidence are tracked separately.
   matched output loads, PDK resistors, and MIM capacitor;
 - schematic 45-case deterministic PVT grid: TT/SS/FF/SF/FS, 1.62/1.80/1.98 V,
   and -40/27/125 C;
-- exact 1x2 TinyTapeout boundary with 47 PCells and explicit M2/M3/M4 routing;
+- exact 1x2 TinyTapeout boundary with 70 PCells and explicit M2/M3/M4 routing;
+- split A/B; B/A common-centroid channel devices, mirrored equal-valued passive
+  pairs, a ratio-controlled 1:2 VCM divider, matched local breakouts, and a
+  full MIM route keep-out;
 - zero Magic errors at placement, routed, extraction, and final DRC stages;
-- extraction topology check: 239 MOS fingers, eight passives, connected power,
+- clean-placement-before-route and route-before-extraction dependencies, so
+  repeated additive Magic paint cannot accumulate stale route revisions;
+- extraction topology check: 338 MOS fingers, eight passives, connected power,
   and no unexpected net equivalences;
 - zero Magic GDS-writer geometry warnings;
-- paired, equal-settling-time full-parasitic sum/null simulation;
-- nominal extracted result: 14.705 mVrms constructive, 42.56 dB null,
-  1.539 V common mode, and approximately 298 uA; and
-- parasitic-extracted 45-case PVT grid: 45/45 pass, with a 29.09 dB minimum
-  null at FS, 1.62 V, and -40 C; and
+- flattened emitted-GDS regression: zero M3/M4 spacing, M4 width/connected-area,
+  and capm-clearance markers; the checker reproduced the original independent
+  precheck's 9/12/176/2 marker counts and the second pass's two M4-width
+  markers before the route fixes, and synthetic unit cases cover every rule
+  detector's fail and clean paths;
+- generated-route rejection of same-layer shorts, cross-net via-to-metal
+  landings, disconnected same-net conductor islands, and sub-0.30-um clearance
+  to any standard top-edge M4 pin;
+- paired, equal-settling-time distributed-RC sum/null simulation, with a
+  separate gate proving explicit resistor segments and internal RC nodes were
+  emitted rather than only devices and capacitances, and that every extracted
+  resistor component is anchored to a manifest net;
+- coherent extracted 4/10/20/30 MHz LO sweep: 4/4 pass both the 40 dB nominal
+  target and 20 dB release gate, with 45.20 dB null at 4 MHz and 47.02 dB at
+  30 MHz;
+- independent macOS/ngspice 46 replay at 4 MHz: 0.8492 mVrms and 53.21 dB,
+  bound to the exact RC-netlist hash and independently passing the 40 dB
+  nominal target;
+- extracted LO rail/edge/skew sweep: 4/4 pass through 30 MHz;
+- nominal extracted channel amplitude difference: 0.0048522 percent;
+- foundry-slope mismatch surrogate: 30/30 pass, 39.22 dB worst null;
+- distributed-RC parasitic-extracted deterministic PVT: 45/45 pass, 39.88 dB worst null at
+  FS, 1.80 V, and 27 C;
+- refreshed schematic PVT: 45/45 pass with an 81.08 dB minimum null and
+  0.292 V minimum output high-side headroom after the clock/matching/VCM edit,
+  with report-input freshness and hash locking added to the release gate;
 - the locally runnable official TinyTapeout structural, pin, boundary, power,
-  layer, analog-pad, cell-name, and Verilog checks.
+  layer, analog-pad, cell-name, and Verilog checks; and
+- official GitHub TinyTapeout custom-GDS, viewer, and 15/15 full-precheck jobs
+  pass on the exact release GDS in
+  [run 29803067849](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29803067849).
 
 The PVT release gate follows `spec/beamformer_v1.md`: at least 20 dB destructive
 null at every deterministic corner. The nominal test keeps a stronger 40 dB
 implementation target. Reports also preserve the actual null depth so a passed
-threshold cannot hide lost margin.
+threshold cannot hide lost margin. Output common mode is checked against the
+active swept supply: it must exceed 1.0 V and retain at least 100 mV high-side
+headroom, avoiding the invalid assumption that a 1.75 V absolute ceiling
+applies when VDPWR is intentionally characterized at 1.98 V.
 
 ## Deliberately limited first-silicon scope
 
@@ -42,9 +74,8 @@ inductor, transformer, transmission-line phase shifter, or large IF filter.
 
 ## Remaining electrical confidence work before paying for fabrication
 
-- run statistical mismatch/Monte Carlo with a documented sample count and
-  confidence interval, especially the paired transconductors, loads, LO paths,
-  and phase-selector buffers;
+- replace the ngspice foundry-slope mismatch surrogate with native
+  foundry-qualified Spectre Monte Carlo and a larger documented sample count;
 - sweep independent input series resistance and shunt capacitance, package and
   pad capacitance, output load from 0 to 10 pF, source amplitude, LO duty cycle,
   and relative startup phase;
@@ -70,8 +101,18 @@ documentation actions. A release is mechanically submission-ready only when:
    boundary, layer, power, analog-pad, cell-name, and Verilog check;
 3. the documentation job passes;
 4. the published artifact contains the expected uncompressed GDS, LEF,
-   Verilog, `info.yaml`, docs, license, PDK metadata, and commit metadata; and
-5. the hashes in `submission/template.lock` match the committed views.
+   Verilog, `info.yaml`, docs, license, PDK metadata, and commit metadata;
+5. the hashes in `submission/template.lock` match the committed views; and
+6. the post-precheck `release-evidence` job confirms report hashes and all
+   rounded human-readable metrics still match the frozen JSON.
+
+`submission/official_action.json` binds the successful run, downloaded
+reports, and release-GDS SHA-256. Evidence freezing and `make release-check`
+fail if the GDS changes without a new successful Action attestation. This
+prevents a previous iteration's green report from being mistaken for current
+signoff. `submission/simulation_inputs.json` similarly hashes the extracted
+netlist, testbenches, runners, and model-corner include files; the freeze step
+rejects generated reports older than their primary inputs.
 
 ## Silicon bench rehearsal
 
@@ -81,3 +122,8 @@ differential receiver, and an external approximately 2 MHz low-pass filter.
 Automate a 360-degree input phase sweep and record constructive amplitude,
 null depth, output common mode, current, and safe pin voltages. Do not terminate
 the analog outputs directly in 50 ohms.
+
+After nominal 4 MHz bring-up succeeds, repeat with 10, 20, and 30 MHz LO and
+set each input to `LO + 1 MHz`. Treat these as characterization modes until pad,
+package, board, temperature, supply, and mismatch data support an operating
+rating.

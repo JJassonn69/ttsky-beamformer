@@ -1,0 +1,129 @@
+{
+  "case_count": 4,
+  "frequencies_mhz": [
+    4.0,
+    10.0,
+    20.0,
+    30.0
+  ],
+  "if_frequency_mhz": 1.0,
+  "netlist": "build/layout/extracted_rc.spice",
+  "netlist_sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
+  "ngspice_version": "44.2",
+  "pass_count": 4,
+  "platform": "Linux-6.17.0-22-generic-x86_64-with-glibc2.42",
+  "results": [
+    {
+      "checks": {
+        "common_mode": true,
+        "release_null_db": true,
+        "supply_current": true,
+        "wanted_tone": true
+      },
+      "frequency_mhz": 4.0,
+      "nominal_40db_target_met": true,
+      "null": {
+        "mode_cm": 1.465373,
+        "mode_supply": -0.0003491746,
+        "tone_i": -2.13764e-06,
+        "tone_phase_deg": 129.6500057644535,
+        "tone_q": 2.579376e-06,
+        "tone_rms": 4.737654550297225e-06
+      },
+      "null_db": 45.202009030477576,
+      "passed": true,
+      "sum": {
+        "mode_cm": 1.465536,
+        "mode_supply": -0.0003494014,
+        "tone_i": -0.0006095674,
+        "tone_phase_deg": 178.61382836191152,
+        "tone_q": 1.47503e-05,
+        "tone_rms": 0.0008623108331603517
+      }
+    },
+    {
+      "checks": {
+        "common_mode": true,
+        "release_null_db": true,
+        "supply_current": true,
+        "wanted_tone": true
+      },
+      "frequency_mhz": 10.0,
+      "nominal_40db_target_met": true,
+      "null": {
+        "mode_cm": 1.465373,
+        "mode_supply": -0.0003690122,
+        "tone_i": -4.573351e-06,
+        "tone_phase_deg": 167.40819831850465,
+        "tone_q": 1.021578e-06,
+        "tone_rms": 6.6270900068257716e-06
+      },
+      "null_db": 43.834505638646206,
+      "passed": true,
+      "sum": {
+        "mode_cm": 1.465429,
+        "mode_supply": -0.0003692251,
+        "tone_i": 0.0006799835,
+        "tone_phase_deg": 21.063996048176953,
+        "tone_q": 0.000261893,
+        "tone_rms": 0.0010305003675120643
+      }
+    },
+    {
+      "checks": {
+        "common_mode": true,
+        "release_null_db": true,
+        "supply_current": true,
+        "wanted_tone": true
+      },
+      "frequency_mhz": 20.0,
+      "nominal_40db_target_met": true,
+      "null": {
+        "mode_cm": 1.465374,
+        "mode_supply": -0.0004020037,
+        "tone_i": -5.433844e-06,
+        "tone_phase_deg": 167.38525886687083,
+        "tone_q": 1.216076e-06,
+        "tone_rms": 7.874706528387202e-06
+      },
+      "null_db": 42.497382944756026,
+      "passed": true,
+      "sum": {
+        "mode_cm": 1.465398,
+        "mode_supply": -0.0004025171,
+        "tone_i": 0.0007311034,
+        "tone_phase_deg": 9.970913390680986,
+        "tone_q": 0.0001285306,
+        "tone_rms": 0.0010497926429804316
+      }
+    },
+    {
+      "checks": {
+        "common_mode": true,
+        "release_null_db": true,
+        "supply_current": true,
+        "wanted_tone": true
+      },
+      "frequency_mhz": 30.0,
+      "nominal_40db_target_met": true,
+      "null": {
+        "mode_cm": 1.465375,
+        "mode_supply": -0.0004339873,
+        "tone_i": -2.991144e-06,
+        "tone_phase_deg": 157.770420727643,
+        "tone_q": 1.222465e-06,
+        "tone_rms": 4.5697621611985455e-06
+      },
+      "null_db": 47.02160084155353,
+      "passed": true,
+      "sum": {
+        "mode_cm": 1.465391,
+        "mode_supply": -0.0004358952,
+        "tone_i": 0.0007245685,
+        "tone_phase_deg": 2.3939322493120327,
+        "tone_q": 3.029155e-05,
+        "tone_rms": 0.0010255896734987658
+      }
+    }
+  ]
+}
