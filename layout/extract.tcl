@@ -4,6 +4,15 @@ set WORKDIR $PROJECT_ROOT/build/layout/buffered
 set TOP tt_um_jjassonn69_beamformer
 cd $WORKDIR
 
+# Resistance extraction is not safely incremental: an interrupted extresist
+# run can leave a newer top .ext beside an older .res.ext, and Magic may try to
+# reuse partial child annotations on the next invocation.  Remove only the
+# generated extraction databases in this isolated work directory before the
+# clean all-cell extraction below; source .mag layout is untouched.
+foreach stale [glob -nocomplain $WORKDIR/*.ext] {
+    file delete -force $stale
+}
+
 load $TOP
 select top cell
 expand

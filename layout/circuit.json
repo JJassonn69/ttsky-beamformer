@@ -10,7 +10,11 @@
   ],
   "track_y_overrides": {
     "clk": 223.50,
-    "select": 222.35
+    "select": 222.35,
+    "ua[0]": 3.21,
+    "ua[1]": 8.09,
+    "ua[2]": 87.35,
+    "ua[3]": 86.60
   },
   "boundary_route_constraints": [
     {
@@ -29,13 +33,21 @@
   "post_breakout_y_offsets": {
     "XCH2_SW2A.S": -3.0,
     "XCH2_SW1A.S": -3.0,
-    "XCH2_TAILA.D": 5.2306
+    "XCH2_TAILA.D": 5.2306,
+    "XRLOADN.R2": 2.25
+  },
+  "m4_dogleg_x_offsets": {
+    "XCH1_GM1A.G": 0.75,
+    "XRIN2.R1": 1.50
+  },
+  "m3_dogleg_y_offsets": {
+    "XCH1_GM1B.G": -0.70
   },
   "pin_aliases": {"select": "ui_in[0]"},
   "route_column_overrides": {
     "ua[0]": 48.0,
-    "ua[1]": 15.2,
-    "ua[2]": 109.6,
+    "ua[1]": 13.6,
+    "ua[2]": 110.4,
     "ua[3]": 97.6,
     "ch1_lop": 102.4,
     "ch2_lop": 60.8,
@@ -49,7 +61,7 @@
     "tail2": 62.4
   },
   "route_escape_overrides": {
-    "XRLOADP.R2": 137.2
+    "XRLOADP.R2": 137.68
   },
   "route_match_constraints": [
     {

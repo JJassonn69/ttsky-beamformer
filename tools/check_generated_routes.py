@@ -34,6 +34,10 @@ ROUTING_MINIMUM_SPACING = {
     "metal3": 0.30,
     "metal4": 0.30,
 }
+ROUTING_MINIMUM_WIDTH = {
+    "metal3": 0.30,
+    "metal4": 0.30,
+}
 
 # Exact M4 pin centers from the TinyTapeout SKY130 analog template LEF.  These
 # shapes exist in the base cell but not in generated route.tcl, so the route
@@ -91,6 +95,14 @@ class Shape:
                 round((self.y1 + self.y2) / 2.0, 4))
 
 
+@dataclass(frozen=True)
+class NetLabel:
+    net: str
+    x: float
+    y: float
+    line: int
+
+
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("route", nargs="?", default="build/layout/route.tcl")
@@ -125,6 +137,58 @@ def parse_route(path: Path) -> dict[str, list[Shape]]:
                       max(y1, y2), net, route, line_number)
             )
     return shapes
+
+
+def parse_net_labels(path: Path) -> list[NetLabel]:
+    labels: list[NetLabel] = []
+    net: str | None = None
+    for line_number, line in enumerate(path.read_text().splitlines(), 1):
+        match = re.match(r"# net label: (.+)", line)
+        if match:
+            net = match.group(1)
+            continue
+        if net is None:
+            continue
+        match = re.match(
+            r"box ([\d.-]+)um ([\d.-]+)um ([\d.-]+)um ([\d.-]+)um", line
+        )
+        if match:
+            x1, y1, x2, y2 = map(float, match.groups())
+            if abs(x2 - x1) > EPSILON or abs(y2 - y1) > EPSILON:
+                raise ValueError(f"net label box at line {line_number} is not a point")
+            labels.append(NetLabel(net, x1, y1, line_number))
+            net = None
+    if net is not None:
+        raise ValueError(f"net label {net} has no following box")
+    return labels
+
+
+def label_connection_errors(
+    shapes: dict[str, list[Shape]], labels: list[NetLabel],
+) -> list[str]:
+    """Reject labels at open space or ambiguous cross-net layer crossings."""
+    conductors = [
+        shape for layer in ("metal3", "via3", "metal4")
+        for shape in shapes.get(layer, [])
+    ]
+    errors: list[str] = []
+    for label in labels:
+        covering = [
+            shape for shape in conductors
+            if shape.x1 - EPSILON <= label.x <= shape.x2 + EPSILON
+            and shape.y1 - EPSILON <= label.y <= shape.y2 + EPSILON
+        ]
+        if not any(shape.net == label.net for shape in covering):
+            errors.append(
+                f"label {label.net} line {label.line} is not on its own conductor"
+            )
+        foreign = sorted({shape.net for shape in covering if shape.net != label.net})
+        if foreign:
+            errors.append(
+                f"label {label.net} line {label.line} also overlaps foreign "
+                f"conductor(s): {', '.join(foreign)}"
+            )
+    return errors
 
 
 def overlaps(a: Shape, b: Shape) -> bool:
@@ -166,6 +230,78 @@ def overlap_errors(shapes: dict[str, list[Shape]]) -> list[str]:
                     errors.append(
                         f"{layer}: {first.net} line {first.line} overlaps "
                         f"{second.net} line {second.line}"
+                    )
+    return errors
+
+
+def rectangle_union_covers(
+    target: tuple[float, float, float, float], candidates: list[Shape],
+) -> bool:
+    """Return true when candidate rectangles completely cover target."""
+    left, bottom, right, top = target
+    clipped: list[tuple[float, float, float, float]] = []
+    for shape in candidates:
+        rectangle = (
+            max(left, shape.x1),
+            max(bottom, shape.y1),
+            min(right, shape.x2),
+            min(top, shape.y2),
+        )
+        if rectangle[0] < rectangle[2] - EPSILON and rectangle[1] < rectangle[3] - EPSILON:
+            clipped.append(rectangle)
+    x_edges = sorted({left, right, *(value for item in clipped for value in (item[0], item[2]))})
+    y_edges = sorted({bottom, top, *(value for item in clipped for value in (item[1], item[3]))})
+    for x1, x2 in zip(x_edges, x_edges[1:]):
+        for y1, y2 in zip(y_edges, y_edges[1:]):
+            if x2 - x1 <= EPSILON or y2 - y1 <= EPSILON:
+                continue
+            x, y = (x1 + x2) / 2.0, (y1 + y2) / 2.0
+            if not any(
+                shape.x1 - EPSILON <= x <= shape.x2 + EPSILON
+                and shape.y1 - EPSILON <= y <= shape.y2 + EPSILON
+                for shape in candidates
+            ):
+                return False
+    return True
+
+
+def orthogonal_neck_errors(shapes: dict[str, list[Shape]]) -> list[str]:
+    """Reject half-width metal necks at Manhattan bends before GDS export.
+
+    Two nominal-width rectangles that both stop on the same centerline form
+    only a half-width corner overlap.  Magic exposes that re-entrant overlap
+    as a minimum-width marker after GDS booleanization.  A legal T/crossing or
+    an explicit full-width corner fill covers the complete minimum-width
+    square around the centerline intersection and passes this check.
+    """
+    errors: list[str] = []
+    reported: set[tuple[str, str, float, float]] = set()
+    for layer, minimum in ROUTING_MINIMUM_WIDTH.items():
+        layer_shapes = shapes.get(layer, [])
+        for net in sorted({shape.net for shape in layer_shapes}):
+            candidates = [shape for shape in layer_shapes if shape.net == net]
+            horizontal = [shape for shape in candidates if shape.width > shape.height + EPSILON]
+            vertical = [shape for shape in candidates if shape.height > shape.width + EPSILON]
+            for first in horizontal:
+                for second in vertical:
+                    x, y = second.center[0], first.center[1]
+                    if not (
+                        first.x1 - EPSILON <= x <= first.x2 + EPSILON
+                        and second.y1 - EPSILON <= y <= second.y2 + EPSILON
+                    ):
+                        continue
+                    key = (layer, net, round(x, 4), round(y, 4))
+                    if key in reported:
+                        continue
+                    half = minimum / 2.0
+                    target = (x - half, y - half, x + half, y + half)
+                    if rectangle_union_covers(target, candidates):
+                        continue
+                    reported.add(key)
+                    errors.append(
+                        f"{layer}: {net} has a sub-{minimum:.2f} um orthogonal "
+                        f"neck at ({x:.4f}, {y:.4f}) near lines "
+                        f"{first.line}/{second.line}"
                     )
     return errors
 
@@ -820,9 +956,12 @@ def main() -> None:
     path = Path(args.route)
     manifest = json.loads(Path(args.manifest).read_text())
     shapes = parse_route(path)
+    labels = parse_net_labels(path)
+    label_errors = label_connection_errors(shapes, labels)
     errors = overlap_errors(shapes)
     via_errors = via_connection_errors(shapes)
     spacing_errors = same_layer_spacing_errors(shapes)
+    neck_errors = orthogonal_neck_errors(shapes)
     dead_end_via3 = dead_end_via3_errors(shapes)
     disconnected_errors = disconnected_route_errors(shapes)
     top_boundary_errors = top_boundary_clearance_errors(shapes)
@@ -847,9 +986,12 @@ def main() -> None:
             for layer_shapes in shapes.values()
             for shape in layer_shapes
         ),
+        "net_label_count": len(labels),
+        "net_label_connection_error_count": len(label_errors),
         "cross_net_overlap_count": len(errors),
         "cross_net_via_overlap_count": len(via_errors),
         "cross_net_spacing_count": len(spacing_errors),
+        "orthogonal_neck_count": len(neck_errors),
         "dead_end_via3_site_count": len(dead_end_via3),
         "disconnected_route_component_count": len(disconnected_errors),
         "top_boundary_m4_clearance_count": len(top_boundary_errors),
@@ -859,9 +1001,11 @@ def main() -> None:
         "path_matching": path_results,
         "boundary_routing": boundary_results,
         "passed": (
-            not errors and not via_errors and not spacing_errors and not dead_end_via3
+            not errors and not via_errors and not spacing_errors and not neck_errors
+            and not dead_end_via3
             and not disconnected_errors
             and not top_boundary_errors
+            and not label_errors
             and not matching_failures
             and not endpoint_failures and not path_failures
             and not boundary_failures
@@ -881,6 +1025,9 @@ def main() -> None:
     if spacing_errors:
         print("Generated route violates same-layer routing spacing:")
         print("\n".join(spacing_errors[:50]))
+    if neck_errors:
+        print("Generated route contains sub-width Manhattan necks:")
+        print("\n".join(neck_errors[:50]))
     if dead_end_via3:
         print("Generated route contains dead-end via3 landings:")
         print("\n".join(dead_end_via3[:50]))
@@ -890,6 +1037,9 @@ def main() -> None:
     if top_boundary_errors:
         print("Generated route violates top-boundary M4 clearance:")
         print("\n".join(top_boundary_errors[:50]))
+    if label_errors:
+        print("Generated route contains ambiguous or disconnected net labels:")
+        print("\n".join(label_errors[:50]))
     if matching_failures:
         print("Generated route violates matched-pair constraints:")
         print("\n".join(matching_failures))
@@ -903,14 +1053,17 @@ def main() -> None:
         print("Generated route violates boundary-control routing constraints:")
         print("\n".join(boundary_failures))
     if (
-        errors or via_errors or spacing_errors or dead_end_via3 or disconnected_errors
+        errors or via_errors or spacing_errors or neck_errors or dead_end_via3
+        or disconnected_errors
         or top_boundary_errors
+        or label_errors
         or matching_failures
         or endpoint_failures or path_failures or boundary_failures
     ):
         raise SystemExit(1)
     print(
         f"Generated-route audit passed ({report['shape_count']} shapes, "
+        f"{report['net_label_count']} net labels, "
         f"{len(results)} net pairs, {len(endpoint_results)} endpoint pairs, "
         f"{len(path_results)} functional paths)"
     )

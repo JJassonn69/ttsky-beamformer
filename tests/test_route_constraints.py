@@ -10,17 +10,101 @@ from tools.check_generated_routes import (
     disconnected_route_errors,
     endpoint_matching_results,
     expand_endpoint_constraints,
+    label_connection_errors,
     matching_results,
+    orthogonal_neck_errors,
     parse_route,
+    parse_net_labels,
     path_matching_results,
     route_metrics,
     same_layer_spacing_errors,
     top_boundary_clearance_errors,
     via_connection_errors,
 )
+from tools.generate_route_script import Connection, Label, m3_breakout, m4_dogleg
 
 
 class RouteConstraintTests(unittest.TestCase):
+    @staticmethod
+    def route_connection(**overrides: float) -> Connection:
+        values = {
+            "anchor_x": 11.0,
+            "access_y": 20.0,
+            "breakout_y": 24.0,
+            "escape_x": 10.0,
+            "column_x": 20.0,
+            "m4_dogleg_x_offset": 0.0,
+            "m3_dogleg_y_offset": 0.0,
+        }
+        values.update(overrides)
+        label = Label("metal1", "G", 11.0, 20.0)
+        return Connection(
+            "device", "G", "signal", "nmos", [label], [label], **values
+        )
+
+    def test_m4_dogleg_uses_full_width_edge_aligned_corners(self) -> None:
+        connection = self.route_connection(m4_dogleg_x_offset=0.75)
+        route = "# device.G -> signal\n" + "\n".join(
+            m4_dogleg(connection, 20.0, 24.0)
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            shapes = parse_route(path)["metal4"]
+        self.assertEqual(len(shapes), 3)
+        self.assertTrue(
+            all(min(shape.width, shape.height) >= 0.40 - 1e-9 for shape in shapes)
+        )
+
+    def test_m3_dogleg_parallel_segment_is_local_to_column(self) -> None:
+        connection = self.route_connection(m3_dogleg_y_offset=-0.70)
+        route = "# device.G -> signal\n" + "\n".join(m3_breakout(connection))
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            parsed = parse_route(path)
+            shapes = parsed["metal3"]
+        horizontal = [shape for shape in shapes if shape.width > shape.height]
+        self.assertEqual(len(horizontal), 2)
+        self.assertAlmostEqual(min(shape.width for shape in horizontal), 1.0)
+        corner_fills = [
+            shape for shape in shapes
+            if abs(shape.width - 0.40) < 1e-9
+            and abs(shape.height - 0.40) < 1e-9
+        ]
+        self.assertEqual(len(corner_fills), 3)
+        self.assertEqual(orthogonal_neck_errors(parsed), [])
+
+    def test_unfilled_centerline_corner_is_rejected(self) -> None:
+        route = """# device.G -> signal
+paint_rect metal3 0.0 -0.2 4.0 0.2
+paint_rect metal3 3.8 0.0 4.2 3.0
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            errors = orthogonal_neck_errors(parse_route(path))
+        self.assertEqual(len(errors), 1)
+        self.assertIn("orthogonal neck", errors[0])
+
+    def test_net_label_at_cross_net_layer_crossing_is_rejected(self) -> None:
+        route = """# own.G -> own
+paint_rect metal3 0.0 0.0 2.0 0.4
+# foreign.G -> foreign
+paint_rect metal4 0.8 -1.0 1.2 1.0
+# net label: own
+box 1.0um 0.2um 1.0um 0.2um
+label {own} FreeSans 0.10u -met3
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            errors = label_connection_errors(
+                parse_route(path), parse_net_labels(path)
+            )
+        self.assertEqual(len(errors), 1)
+        self.assertIn("foreign conductor", errors[0])
+
     def test_endpoint_pair_group_expands_to_independent_constraints(self) -> None:
         constraints = [{
             "name": "branches",

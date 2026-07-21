@@ -65,6 +65,8 @@ class Connection:
     escape_x: float
     column_x: float = 0.0
     escape_fixed: bool = False
+    m4_dogleg_x_offset: float = 0.0
+    m3_dogleg_y_offset: float = 0.0
 
 
 def fmt(value: float) -> str:
@@ -753,6 +755,132 @@ def via3_stack(x: float, y: float) -> list[str]:
     ]
 
 
+def m4_dogleg(connection: Connection, start_y: float, end_y: float) -> list[str]:
+    """Route between two via3 sites, optionally adding real matched length.
+
+    The detour stays entirely on M4 and returns to the original escape column,
+    so it preserves both via count and the M3 breakout lane.  This is used for
+    small matching corrections after relocating a boundary bus; it does not
+    create a floating spur or a via-only island.
+    """
+    offset = connection.m4_dogleg_x_offset
+    if abs(offset) <= DBU_UM / 2:
+        return [
+            wire_v("metal4", connection.escape_x, start_y, end_y, M4_WIDTH)
+        ]
+    if abs(end_y - start_y) <= DBU_UM / 2:
+        raise ValueError(
+            f"{connection.device}.{connection.terminal}: M4 dogleg requires "
+            "two distinct via3 rows"
+        )
+    jog_x = connection.escape_x + offset
+    dogleg_width = M4_WIDTH
+    if abs(offset) < dogleg_width - DBU_UM / 2:
+        raise ValueError(
+            f"{connection.device}.{connection.terminal}: M4 dogleg offset "
+            f"{offset:.3f} um is below its {dogleg_width:.2f} um width"
+        )
+    if offset > 0.0:
+        horizontal_left = connection.escape_x - dogleg_width / 2
+        horizontal_right = jog_x
+        vertical_left = jog_x - dogleg_width
+        vertical_right = jog_x
+    else:
+        horizontal_left = jog_x
+        horizontal_right = connection.escape_x + dogleg_width / 2
+        vertical_left = jog_x
+        vertical_right = jog_x + dogleg_width
+    bottom, top = sorted((start_y, end_y))
+    return [
+        # Align each L-bend on the *edge* of the perpendicular segment.  A
+        # center-to-center join decomposes into half-width GDS slivers; these
+        # full-width corner squares remain 0.40 um rectangles after Magic's
+        # booleanization and still cover the standard via3 landing completely.
+        rect(
+            "metal4", horizontal_left, start_y - dogleg_width / 2,
+            horizontal_right,
+            start_y + dogleg_width / 2,
+        ),
+        rect(
+            "metal4", vertical_left, bottom - dogleg_width / 2,
+            vertical_right, top + dogleg_width / 2,
+        ),
+        rect(
+            "metal4", horizontal_left, end_y - dogleg_width / 2,
+            horizontal_right,
+            end_y + dogleg_width / 2,
+        ),
+    ]
+
+
+def m3_breakout(connection: Connection) -> list[str]:
+    """Join the local escape to its M4 column, with optional real detour."""
+    offset = connection.m3_dogleg_y_offset
+    if abs(offset) <= DBU_UM / 2:
+        return [
+            wire_h(
+                "metal3", connection.escape_x, connection.column_x,
+                connection.breakout_y, M3_WIDTH,
+            )
+        ]
+    # Parallel 0.40 um M3 legs need 0.30 um clear space.  Smaller offsets
+    # boolean into a broad plate and do not provide a controlled route length.
+    if abs(offset) < M3_WIDTH + 0.30 - DBU_UM / 2:
+        raise ValueError(
+            f"{connection.device}.{connection.terminal}: M3 dogleg offset "
+            f"{offset:.3f} um is below the 0.70 um routing pitch"
+        )
+    jog_y = connection.breakout_y + offset
+    direction = 1.0 if connection.column_x > connection.escape_x else -1.0
+    available = abs(connection.column_x - connection.escape_x)
+    if available < 1.0 - DBU_UM / 2:
+        raise ValueError(
+            f"{connection.device}.{connection.terminal}: M3 dogleg needs "
+            "at least 1.00 um of horizontal route"
+        )
+    # Put only the final 1 um of the branch on the parallel lane.  A full-
+    # length U-shape can cross unrelated device-access metal in a dense row;
+    # this compact end detour supplies the same controlled vertical length
+    # while keeping the added parallel segment beside the shared M4 column.
+    inner_x = connection.column_x - direction * 1.0
+    commands = [
+        wire_h(
+            "metal3", connection.escape_x, inner_x,
+            connection.breakout_y, M3_WIDTH,
+        ),
+        wire_v(
+            "metal3", inner_x, connection.breakout_y,
+            jog_y, M3_WIDTH,
+        ),
+        wire_h("metal3", inner_x, connection.column_x, jog_y, M3_WIDTH),
+        wire_v(
+            "metal3", connection.column_x, jog_y,
+            connection.breakout_y, M3_WIDTH,
+        ),
+    ]
+    # A centerline-to-centerline Manhattan bend overlaps its two 0.40 um
+    # rectangles by only 0.20 x 0.20 um.  Magic's GDS booleanization exposes
+    # that half-width overlap as a re-entrant 0.20 um neck, which the
+    # independent SKY130 deck correctly flags as m3.1.  Fill each bend with a
+    # complete 0.40 um square.  The fourth corner already receives the wider
+    # standard via3 M3 landing in route_connection().
+    for x, y in (
+        (inner_x, connection.breakout_y),
+        (inner_x, jog_y),
+        (connection.column_x, jog_y),
+    ):
+        commands.append(
+            rect(
+                "metal3",
+                x - M3_WIDTH / 2,
+                y - M3_WIDTH / 2,
+                x + M3_WIDTH / 2,
+                y + M3_WIDTH / 2,
+            )
+        )
+    return commands
+
+
 def route_connection(
     connection: Connection,
     junction_y: float,
@@ -782,15 +910,9 @@ def route_connection(
         # The old pair left an isolated 0.16 um^2 M4 landing, below met4.4a.
         if abs(connection.breakout_y - local_y) > DBU_UM / 2:
             commands.extend(via3_stack(connection.escape_x, local_y))
-            commands.append(
-                wire_v("metal4", connection.escape_x, local_y,
-                       connection.breakout_y, M4_WIDTH)
-            )
+            commands.extend(m4_dogleg(connection, local_y, connection.breakout_y))
             commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
-        commands.append(
-            wire_h("metal3", connection.escape_x, connection.column_x,
-                   connection.breakout_y, M3_WIDTH)
-        )
+        commands.extend(m3_breakout(connection))
         commands.extend(via3_stack(connection.column_x, connection.breakout_y))
         commands.append(
             wire_v("metal4", connection.column_x, connection.breakout_y,
@@ -816,15 +938,11 @@ def route_connection(
     )
     if abs(connection.breakout_y - connection.access_y) > DBU_UM / 2:
         commands.extend(via3_stack(connection.escape_x, connection.access_y))
-        commands.append(
-            wire_v("metal4", connection.escape_x, connection.access_y,
-                   connection.breakout_y, M4_WIDTH)
+        commands.extend(
+            m4_dogleg(connection, connection.access_y, connection.breakout_y)
         )
         commands.extend(via3_stack(connection.escape_x, connection.breakout_y))
-    commands.append(
-        wire_h("metal3", connection.escape_x, connection.column_x,
-               connection.breakout_y, M3_WIDTH)
-    )
+    commands.extend(m3_breakout(connection))
     commands.extend(via3_stack(connection.column_x, connection.breakout_y))
     commands.append(
         wire_v(
@@ -1014,6 +1132,37 @@ def main() -> None:
     for endpoint, offset in post_breakout_offsets.items():
         connection_by_endpoint[endpoint].breakout_y += offset
 
+    dogleg_offsets = {
+        str(endpoint): float(offset)
+        for endpoint, offset in manifest.get("m4_dogleg_x_offsets", {}).items()
+    }
+    unknown_doglegs = dogleg_offsets.keys() - connection_by_endpoint.keys()
+    if unknown_doglegs:
+        raise ValueError(
+            f"M4 dogleg offsets name unknown endpoints: {sorted(unknown_doglegs)}"
+        )
+    for endpoint, offset in dogleg_offsets.items():
+        connection = connection_by_endpoint[endpoint]
+        if connection.kind == "cap_mim_m3":
+            raise ValueError(f"{endpoint}: capacitor routes do not support M4 doglegs")
+        connection.m4_dogleg_x_offset = offset
+
+    m3_dogleg_offsets = {
+        str(endpoint): float(offset)
+        for endpoint, offset in manifest.get("m3_dogleg_y_offsets", {}).items()
+    }
+    unknown_m3_doglegs = m3_dogleg_offsets.keys() - connection_by_endpoint.keys()
+    if unknown_m3_doglegs:
+        raise ValueError(
+            "M3 dogleg offsets name unknown endpoints: "
+            f"{sorted(unknown_m3_doglegs)}"
+        )
+    for endpoint, offset in m3_dogleg_offsets.items():
+        connection = connection_by_endpoint[endpoint]
+        if connection.kind == "cap_mim_m3":
+            raise ValueError(f"{endpoint}: capacitor routes do not support M3 doglegs")
+        connection.m3_dogleg_y_offset = offset
+
     missing_tracks = {connection.net for connection in connections} - tracks.keys()
     if missing_tracks:
         raise ValueError(f"nets without tracks: {sorted(missing_tracks)}")
@@ -1038,6 +1187,7 @@ def main() -> None:
         junction_y_by_net[net] = breakout_ys[len(breakout_ys) // 2]
 
     commands: list[str] = []
+    label_commands: list[str] = []
     for net, y in tracks.items():
         if net not in m3_track_nets:
             column_x = next(
@@ -1045,9 +1195,10 @@ def main() -> None:
                 if connection.net == net
             )
             junction_y = junction_y_by_net[net]
-            commands.extend(
+            commands.append(f"# direct M4 junction: {net}")
+            label_commands.extend(
                 [
-                    f"# direct M4 junction: {net}",
+                    f"# net label: {net}",
                     f"box {fmt(column_x)}um {fmt(junction_y)}um "
                     f"{fmt(column_x)}um {fmt(junction_y)}um",
                     f"label {{{net}}} FreeSans 0.10u -met4",
@@ -1063,11 +1214,19 @@ def main() -> None:
             raise ValueError(f"track {net} has no physical endpoint")
         left = max(6.5, min(endpoints) - 0.40)
         right = min(154.5, max(endpoints) + 0.40)
-        label_x = (left + right) / 2.0
+        # Label a boundary net on its own known via3 stack, not at the bus
+        # midpoint.  A midpoint can sit at an unrelated M4/M3 crossing; Magic
+        # may then attach the text to the wrong conductor even without a via.
+        label_x = BOUNDARY_PINS[net][0]
         commands.extend(
             [
                 f"# horizontal net track: {net}",
                 wire_h("metal3", left, right, y, M3_WIDTH),
+            ]
+        )
+        label_commands.extend(
+            [
+                f"# net label: {net}",
                 f"box {fmt(label_x)}um {fmt(y)}um {fmt(label_x)}um {fmt(y)}um",
                 f"label {{{net}}} FreeSans 0.10u -met3",
             ]
@@ -1099,6 +1258,12 @@ def main() -> None:
 
     for net, (x, y) in BOUNDARY_PINS.items():
         commands.extend(boundary_route(net, x, y, tracks[net]))
+
+    # Apply net labels only after all conductor painting is complete.  Magic
+    # may canonicalize a non-port alias directly to a connected DEF port; the
+    # extracted device-signature check accepts that safe canonical form while
+    # still rejecting every unexpected equivalence.
+    commands.extend(label_commands)
 
     body = "\n".join(commands)
     script = f"""# Generated by tools/generate_route_script.py; do not edit.

@@ -145,15 +145,22 @@ def actual_devices(path: Path) -> Counter[tuple[object, ...]]:
     return actual
 
 
-def check_equivalences(ext_path: Path) -> None:
+def check_equivalences(ext_path: Path) -> bool:
     equivalences = []
     for line in ext_path.read_text().splitlines():
         match = re.match(r'equiv "([^"]+)" "([^"]+)"', line)
         if match:
             equivalences.append(frozenset(match.groups()))
     expected = [frozenset(("ui_in[0]", "select"))]
-    if equivalences != expected:
+    # Magic may either preserve the non-port `select` label as an explicit
+    # equivalence or immediately canonicalize the connected conductor to the
+    # DEF port name `ui_in[0]` and omit the redundant label.  Both are safe;
+    # the full device-signature comparison below independently requires every
+    # manifest `select` terminal to extract on ui_in[0].  Any other alias is a
+    # real short and remains forbidden.
+    if equivalences not in ([], expected):
         raise SystemExit(f"unexpected extracted net equivalences: {equivalences}")
+    return equivalences == expected
 
 
 def main() -> None:
@@ -161,7 +168,7 @@ def main() -> None:
         raise SystemExit("usage: check_extracted_layout.py EXTRACTED_SPICE TOP_EXT")
     spice_path = Path(sys.argv[1])
     ext_path = Path(sys.argv[2])
-    check_equivalences(ext_path)
+    explicit_select_alias = check_equivalences(ext_path)
     expected = expected_devices()
     actual = actual_devices(spice_path)
     if actual != expected:
@@ -187,7 +194,9 @@ def main() -> None:
         "Extracted-layout topology passed: "
         f"{totals['mos']} MOS fingers, {totals['passive']} passives, "
         f"{bias_fingers} bias fingers preserve D=G=vbias and S=B=VGND, "
-        "power connected, no unexpected net equivalences"
+        "power connected, no unexpected net equivalences, "
+        "select/ui_in[0] "
+        + ("explicitly aliased" if explicit_select_alias else "canonically merged")
     )
 
 
