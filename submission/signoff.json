@@ -1,12 +1,12 @@
 {
   "artifacts": {
     "extracted_spice": {
-      "path": "build/layout/extracted.spice",
-      "sha256": "2a2d3d6d918b80a4c4302036bf7feb8792876b1fbf6c7e35be2caf6bc6ccb65c"
+      "path": "submission/extracted_rc.spice",
+      "sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec"
     },
     "gds": {
       "path": "gds/tt_um_jjassonn69_beamformer.gds",
-      "sha256": "1010991ccf40aff786186e0e23cf0a38b2151f71a0e4d575b1dea4258693ca9d"
+      "sha256": "655e6108952e1ac604ed84671ae318a8a2d1e1c7603c7a412edbdad1adcc62a0"
     },
     "lef": {
       "path": "lef/tt_um_jjassonn69_beamformer.lef",
@@ -15,67 +15,78 @@
   },
   "electrical": {
     "channel_balance": {
-      "gain_mismatch_percent": 3.742180977777848e-05,
+      "gain_mismatch_percent": 0.004852162697304821,
       "passed": true
     },
     "clock_sweep": {
       "case_count": 4,
-      "maximum_edge_s": 2.05909e-10,
+      "maximum_edge_s": 2.449446e-10,
       "maximum_frequency_mhz": 30.0,
-      "maximum_paired_channel_skew_s": 4.909099999999994e-11,
+      "maximum_paired_channel_skew_s": 4.9915500000000085e-11,
       "pass_count": 4
     },
     "extracted_nominal_time_domain": {
-      "current_a": 0.000322562,
-      "null_db": 38.632520548329325,
-      "null_rms_v": 0.000196445,
-      "output_common_mode_v": 1.50356,
+      "current_a": 0.0003495038,
+      "null_db": 48.21670017151442,
+      "null_rms_v": 0.000237754,
+      "output_common_mode_v": 1.465537,
       "passed": true,
-      "sum_rms_v": 0.0167829
+      "sum_rms_v": 0.0612298
     },
     "extracted_nominal_wanted_tone": {
       "frequency_mhz": 4.0,
       "if_frequency_mhz": 1.0,
-      "null_db": 54.44711450417103,
-      "null_rms_v": 1.5356279396605156e-06,
+      "null_db": 45.202009030477576,
+      "null_rms_v": 4.737654550297225e-06,
       "passed": true,
-      "sum_rms_v": 0.0008102923344571391
+      "sum_rms_v": 0.0008623108331603517
     },
     "extracted_pvt": {
       "case_count": 45,
-      "minimum_null_db": 31.04152911129477,
+      "minimum_null_db": 39.87830433691308,
       "minimum_null_spec_db": 20.0,
+      "minimum_output_high_headroom_spec_v": 0.1,
+      "minimum_output_high_headroom_v": 0.20667100000000005,
       "pass_count": 45,
-      "worst_case": "tt_1.62v_p125c"
+      "worst_case": "fs_1.80v_p27c",
+      "worst_headroom_case": "fs_1.62v_m40c"
     },
     "frequency_sweep": {
       "case_count": 4,
       "maximum_frequency_mhz": 30.0,
-      "minimum_null_db": 33.5403564379429,
+      "minimum_null_db": 42.497382944756026,
       "pass_count": 4
     },
-    "linux_ngspice44_frequency_crosscheck": {
+    "independent_ngspice46_frequency_crosscheck": {
       "case_count": 1,
       "frequency_mhz": 4.0,
-      "null_db": 60.882182058747524,
+      "netlist_sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
+      "null_db": 53.213574566651445,
       "pass_count": 1,
-      "sum_rms_v": 0.0008069993572867081
+      "sum_rms_v": 0.0008492313778845081
     },
     "mismatch_surrogate": {
       "case_count": 30,
       "method": "ngspice surrogate using SKY130 NMOS VTH Pelgrom slope",
-      "minimum_null_db": 39.284008336277225,
-      "p05_null_db": 39.716302568458666,
+      "minimum_null_db": 39.21903902010261,
+      "p05_null_db": 39.717874748978886,
       "pass_count": 30,
       "seed": 130
     },
     "schematic_pvt": {
       "case_count": 45,
-      "minimum_null_db": 85.77539248888306,
+      "minimum_null_db": 81.07502477038749,
       "pass_count": 45
     }
   },
   "physical": {
+    "distributed_rc_capacitors": 6341,
+    "distributed_rc_check_passed": true,
+    "distributed_rc_internal_nodes": 6525,
+    "distributed_rc_resistor_components": 30,
+    "distributed_rc_resistors": 11333,
+    "distributed_rc_top_route_annotations": 6328,
+    "distributed_rc_unanchored_components": 0,
     "extracted_mos_fingers": 338,
     "extracted_passives": 8,
     "extraction_feedback_count": 0,
@@ -84,14 +95,21 @@
     "flattened_gds_met4_area_count": 0,
     "flattened_gds_met4_spacing_count": 0,
     "flattened_gds_met4_width_count": 0,
+    "flattened_gds_via3_enclosure_count": 0,
     "gds_writer_feedback_count": 0,
-    "generated_route_shapes": 7367,
+    "generated_route_shapes": 6753,
     "magic_gds_readback_drc_count": 0,
     "magic_internal_signoff_drc_count": 0,
     "named_route_tracks": 30,
     "official_action_prechecks_passed": 15,
     "official_action_prechecks_run": 15,
     "placed_devices": 70,
+    "route_constraint_check_passed": true,
+    "route_cross_net_overlap_count": 0,
+    "route_cross_net_via_overlap_count": 0,
+    "route_dead_end_via3_site_count": 0,
+    "route_disconnected_component_count": 0,
+    "route_top_boundary_m4_clearance_count": 0,
     "static_official_prechecks_passed": 8,
     "static_official_prechecks_run": 8,
     "topology_check_passed": true
@@ -99,9 +117,13 @@
   "provenance": {
     "action_commit": "30d38a7dfc6fda561d452b196fc822af0332ec23",
     "action_ref": "ttsky26c",
-    "linux_crosscheck_ngspice_version": "44.2",
+    "independent_crosscheck_ngspice_version": "46",
+    "independent_crosscheck_platform": "macOS-15.7.2-arm64-arm-64bit-Mach-O",
     "magic_version": "8.3.676",
-    "ngspice_version": "46",
+    "primary_extracted_ngspice_version": "44.2",
+    "primary_extracted_platform": "Linux-6.17.0-22-generic-x86_64-with-glibc2.42",
+    "schematic_ngspice_version": "46",
+    "schematic_platform": "macOS-15.7.2-arm64-arm-64bit-Mach-O",
     "sky130_precheck_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005",
     "template_commit": "fdd487cb8e3003b40496f0f143ff3bf650f78e48"
   },
@@ -113,49 +135,57 @@
     "20-30 MHz modes have nominal extracted characterization, not full PVT ratings"
   ],
   "reports": {
+    "distributed_rc_coverage": {
+      "path": "submission/distributed_rc_coverage.json",
+      "sha256": "0ff9f091757a311cb6d2ffc8ff43dc18cbd124cc0310ea27fbea95183066aacb"
+    },
     "extracted_channel_balance": {
       "path": "submission/extracted_channel_balance.json",
-      "sha256": "06f736fcd4636a88b71198282ac1493888f551e1499dc08030c988e486715ba9"
+      "sha256": "a649e803169e5ac4a9b14eda7389469649efcaeffeb084e1a946a1a8b39ab50b"
     },
     "extracted_clock_sweep": {
       "path": "submission/extracted_clock_sweep.json",
-      "sha256": "092ad4864dbb3fd2d19f0c5e92a36eb740c090fa1dd9b221702e103f65dfbfe9"
+      "sha256": "6a35feda86f46e9419c1c5eb14b2a4a01da16cb8cf4b2a8476ed756cb758e4d9"
     },
     "extracted_frequency_sweep": {
       "path": "submission/extracted_frequency_sweep.json",
-      "sha256": "9a03eb7d781b3c24dddf5698f31662572c99551782509e8d8df2bd0bbe44c0bb"
+      "sha256": "7970d61481fdd267f3f7a52853149c1cfd9ef14fc55215484e6874e5dcbdad5c"
     },
     "extracted_pvt": {
       "path": "submission/extracted_pvt_summary.json",
-      "sha256": "17e79cc49fbbb65c7ba6ae367f3f7be19340d6a5bca7a825191576dd11cbd3a2"
+      "sha256": "dc7bf8186d1413e181e4f7e909aeb6210b987f4eecacc0bd6b6dd88e15a6efa3"
     },
-    "linux_ngspice44_frequency_crosscheck": {
-      "path": "submission/linux_ngspice44_frequency_crosscheck.json",
-      "sha256": "f2605158a5c8470a503459edd0c38b55e7e5df133364bd9b48dc343b5981463c"
+    "independent_ngspice46_frequency_crosscheck": {
+      "path": "submission/independent_ngspice46_frequency_crosscheck.json",
+      "sha256": "b7b0697aca4ff3151c9f056b28d96204494951500e56da2e4bb29d57e71c0202"
     },
     "magic_gds_readback_drc": {
       "path": "submission/official_magic_drc.txt",
-      "sha256": "63d5fb7c996ddc6ef65c1a50ac55249e543bfaf07e6e91d3202fa998f954e051"
+      "sha256": "45ee2339c1288d57ecbb6ac5765ce3c2c4636c9b447af222df56c90d075c1578"
     },
     "mismatch_mc": {
       "path": "submission/mismatch_mc_summary.json",
-      "sha256": "9c022cbcf588db5246f7b241e89e8471e81493d9849135c7a7e016f4f5884569"
+      "sha256": "6d2400cdb7f04975bd65e12e50c5aeebd8090dd1dc7eb461ac9b81a9f099d20e"
     },
     "official_tinytapeout_action": {
       "path": "submission/official_action.json",
-      "sha256": "7992098089dd22ac1c8f27dde40428e85c41015195c89431de8cb2eeaf3d8a17"
+      "sha256": "09e5c2d3827563b4e34e701b2cfd7e200b39910624684c8e6d2fe52d8b706479"
     },
     "official_tinytapeout_precheck": {
       "path": "submission/official_precheck_results.md",
       "sha256": "8ab1c8bc31ac259f4b23800945c005507f2bfa5377d84d4f7b2465d9d1aa7f87"
     },
+    "route_matching": {
+      "path": "submission/route_matching.json",
+      "sha256": "3d02b933a9cbc36d4e60a1bad98df7d845e1f58fce1ce68bf870a0f75145cbee"
+    },
     "schematic_pvt": {
       "path": "submission/core_pvt_summary.json",
-      "sha256": "8016433fc612d506031b90f3f46529c51151212564c3836f3d0613457ffc9e65"
+      "sha256": "a61a9fefb8a02e7e29868b15a62bba683871735372a0d9c46e7e62467b3bb2ff"
     },
     "simulation_inputs": {
       "path": "submission/simulation_inputs.json",
-      "sha256": "7b9f1e5f6f72a100695f28a61b4f1fb41ebceaef96df8b8ab006ba378052501a"
+      "sha256": "2290e73ff24f1ca9216e194a2e315cdbb9240a7514d4f37554d7b5c719b10c47"
     }
   },
   "status": "official_action_passed_release_candidate",

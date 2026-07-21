@@ -1,22 +1,26 @@
 {
   "channels": {
     "ch1": {
-      "mode_ac_rms": 0.027155992258929815,
-      "mode_avg": 0.000975288,
-      "mode_cm": 1.63999,
-      "mode_rms": 0.0271735,
-      "mode_supply": -0.000230485
+      "mode_ac_rms": 0.06122049567203683,
+      "mode_avg": 0.0007982795,
+      "mode_cm": 1.465536,
+      "mode_rms": 0.0612257,
+      "mode_supply": -0.0003495219
     },
     "ch2": {
-      "mode_ac_rms": 0.027156002421195483,
-      "mode_avg": 0.000975005,
-      "mode_cm": 1.63999,
-      "mode_rms": 0.0271735,
-      "mode_supply": -0.000230485
+      "mode_ac_rms": 0.06121752522604816,
+      "mode_avg": 0.0007646061,
+      "mode_cm": 1.465536,
+      "mode_rms": 0.0612223,
+      "mode_supply": -0.0003495174
     }
   },
-  "estimated_amplitude_only_null_db": 134.5581041765114,
-  "gain_mismatch_fraction": 3.7421809777778483e-07,
-  "gain_mismatch_percent": 3.742180977777848e-05,
-  "passed": true
+  "estimated_amplitude_only_null_db": 92.30189281894758,
+  "gain_mismatch_fraction": 4.852162697304821e-05,
+  "gain_mismatch_percent": 0.004852162697304821,
+  "netlist": "build/layout/extracted_rc.spice",
+  "netlist_sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
+  "ngspice_version": "44.2",
+  "passed": true,
+  "platform": "Linux-6.17.0-22-generic-x86_64-with-glibc2.42"
 }

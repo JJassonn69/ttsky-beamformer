@@ -1,7 +1,11 @@
 {
-  "extracted_spice_sha256": "2a2d3d6d918b80a4c4302036bf7feb8792876b1fbf6c7e35be2caf6bc6ccb65c",
+  "extracted_spice_sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
+  "extraction_view": "distributed_rc",
   "files": {
-    "spice/sky130/beamformer_core.spice": "e4e2b972a8519ef7ab35035e0186deaded2da0ff31d114a80fcb915dca95cbff",
+    "layout/circuit.json": "50c283cadc101322a6fcc756fc5ce026c720641c97d2ff5f77e186b1bd02f8a3",
+    "layout/extract.tcl": "3189104f95d3f9b8c9e1e4d0d374e1136e919a3620bebf87b07483c04a8acf57",
+    "spec/beamformer_v1.md": "7d83677d76793bcef4079840e9ba8d3bd6b4ea6d79dc14569ace04fb1c208fcf",
+    "spice/sky130/beamformer_core.spice": "aba9b975b835bd5e2c6db8a718c1ba8614b374d3ba91eaa3d7e0455916a903de",
     "spice/sky130/extracted_clock_tb.spice": "0e48d06aa4ff3017d44f85f3c8e771b868e2f475aa0cf048e91ec61a239d24f1",
     "spice/sky130/extracted_core_tb.spice": "f3bb0698fb3c4ead52464518501f8f1014c7e2dab8eea9de514511634ea25c70",
     "spice/sky130/sky130_1v8_ff.inc": "fb69568e03010dab2340a0342a91d3877a381de3e93b5ba827c18582bd2372de",
@@ -9,44 +13,111 @@
     "spice/sky130/sky130_1v8_sf.inc": "37c460e95f3e63968d9c44852930ff87123b975c35a948b615bba889f0c203ac",
     "spice/sky130/sky130_1v8_ss.inc": "b7176eee6d464f4edc66250d557afa95b3ec32a28e026533d4af51e850d2c30f",
     "spice/sky130/sky130_1v8_tt.inc": "35d338a5cb7bb58270b457bc49027c2de6af90ac40ac997b0d8d3ca3a76b242e",
-    "tools/run_core_pvt.py": "3920da9af18605d10afdedfbdbe7821aad9d1b27f8e15727aad6e39887ca731f",
-    "tools/run_extracted_channel_balance.py": "7d8b606e26601faf94b6612043e7704a6c413022721faa2a1ef89833609e721e",
-    "tools/run_extracted_clock_sweep.py": "35b965fd4a49cee1ec7e9f3010f9beebc9311b250f6f34f053a75aa6a471eee1",
-    "tools/run_extracted_frequency_sweep.py": "5262727c44eba76d9d3225f8988f26570c9469fda9452d6dd783c567d4f41341",
-    "tools/run_extracted_pvt.py": "4a04335604755b946de122ef1923d187f0c210fd64a7fd87581227b204dc75ea",
-    "tools/run_extracted_sim.py": "def7d30c027951feb65304ba458df58c75fcc82d10ad54b4a4227762012c5db5",
-    "tools/run_mismatch_mc.py": "090c6b8cbc6b805cd14fc2eba3eed04cf5518481320d596f066ff40ab130007a"
+    "spice/sky130/sky130_passives_tt.inc": "347498cca279331244c3b91d3c2bcca040e0f98ec12f89a4d7a53319ff47270b",
+    "tools/check_distributed_rc.py": "66aa40a8cd168b84ab9770bc933b416c7e249fcc3bed1fa6c938ff75e0eccf16",
+    "tools/check_extracted_layout.py": "a76968fbdebd4e0a22a17150b0e1e0a300a2b6520d18022e6603b2359361299c",
+    "tools/check_gds_flat_rules.py": "2e4f24a035dc069dbf7f85e5c2ff5f9dc832657737ac0f9d6347470122e76a3d",
+    "tools/check_generated_routes.py": "00fde43789b6b8bb9ba849cc9d3dca5daa7e9a412e1b28c6306c85b06e1aac47",
+    "tools/generate_layout_scripts.py": "bbf2747d9004c6810845428b4571a2aaa5dc1ef263d25ae40c5ac43345ac65b8",
+    "tools/generate_route_script.py": "6e44ae1f216c202568521616c0bcb672f1bbb644b3ad27723fa4458208bdcfbe",
+    "tools/run_core_pvt.py": "e6b6a57d64fccdbaf0b5901083b2f9cc2c4d798e0aff774ee9fd1af8d42490ff",
+    "tools/run_extracted_channel_balance.py": "2fa6d4916354f442d9762b9c26ad4ffa5e3d5f7744d0fcf79804d720ccc16d82",
+    "tools/run_extracted_clock_sweep.py": "e69458aae228c095fbbfab9f9cdf18d2d7f07c2e61bf39b4d927fe4d38d60093",
+    "tools/run_extracted_frequency_sweep.py": "e52e9466e0abe82f7ec5c08fc12983f8875a132cf53ceccb06164e12c2423872",
+    "tools/run_extracted_pvt.py": "7ed7a6908dfcd308b9868525c673292c0e3764b88bce88a28848c75433fbd0b1",
+    "tools/run_extracted_sim.py": "7844f70c97afdf86bae3efbdb7b357a7bd214777855bb4592dde2eb6fcab7adf",
+    "tools/run_lock.py": "a8af357dcc955212bdbb63119df82113fa100f705340d6e6f83b22dc79405c6b",
+    "tools/run_mismatch_mc.py": "05f25221b32fec202d8cec9ed705ea906d1b42734383615f2bb737e5bc40a615",
+    "tools/simulation_provenance.py": "f409bd7847e59cbeaf17b4b8a4b43cd9964962177601fc489b09c8dbf4935f40"
   },
   "report_inputs": {
-    "extracted_channel_balance": [
+    "distributed_rc_coverage": [
       "build/layout/extracted.spice",
+      "build/layout/extracted_rc.spice",
+      "build/layout/buffered/tt_um_jjassonn69_beamformer.res.ext",
+      "layout/circuit.json",
+      "layout/extract.tcl",
+      "tools/check_distributed_rc.py"
+    ],
+    "extracted_channel_balance": [
+      "build/layout/extracted_rc.spice",
+      "spec/beamformer_v1.md",
       "spice/sky130/extracted_core_tb.spice",
-      "tools/run_extracted_channel_balance.py"
+      "tools/run_extracted_channel_balance.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
     ],
     "extracted_clock_sweep": [
-      "build/layout/extracted.spice",
+      "build/layout/extracted_rc.spice",
+      "spec/beamformer_v1.md",
       "spice/sky130/extracted_clock_tb.spice",
-      "tools/run_extracted_clock_sweep.py"
+      "tools/run_extracted_clock_sweep.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
     ],
     "extracted_frequency_sweep": [
-      "build/layout/extracted.spice",
+      "build/layout/extracted_rc.spice",
+      "spec/beamformer_v1.md",
       "spice/sky130/extracted_core_tb.spice",
-      "tools/run_extracted_frequency_sweep.py"
+      "tools/run_extracted_frequency_sweep.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
     ],
     "extracted_pvt": [
-      "build/layout/extracted.spice",
+      "build/layout/extracted_rc.spice",
+      "spec/beamformer_v1.md",
       "spice/sky130/extracted_core_tb.spice",
       "tools/run_extracted_pvt.py",
       "tools/run_extracted_sim.py",
-      "tools/run_core_pvt.py"
+      "tools/run_core_pvt.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
     ],
     "mismatch_mc": [
       "spice/sky130/beamformer_core.spice",
-      "tools/run_mismatch_mc.py"
+      "spec/beamformer_v1.md",
+      "tools/run_mismatch_mc.py",
+      "tools/simulation_provenance.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
+    ],
+    "route_matching": [
+      "build/layout/route.tcl",
+      "layout/circuit.json",
+      "tools/generate_route_script.py",
+      "tools/check_generated_routes.py"
     ],
     "schematic_pvt": [
       "spice/sky130/beamformer_core.spice",
-      "tools/run_core_pvt.py"
+      "spec/beamformer_v1.md",
+      "tools/run_core_pvt.py",
+      "tools/simulation_provenance.py",
+      "spice/sky130/sky130_passives_tt.inc",
+      "spice/sky130/sky130_1v8_ff.inc",
+      "spice/sky130/sky130_1v8_fs.inc",
+      "spice/sky130/sky130_1v8_sf.inc",
+      "spice/sky130/sky130_1v8_ss.inc",
+      "spice/sky130/sky130_1v8_tt.inc"
     ]
   }
 }

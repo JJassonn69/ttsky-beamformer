@@ -1,12 +1,12 @@
 # TT-BF1 two-channel low-IF beamformer
 
-Engineering datasheet and iteration handoff, release candidate 1.3
+Engineering datasheet and iteration handoff, release candidate 1.4
 
 Target: TinyTapeout SKY130 `ttsky26c`
 
 Top macro: `tt_um_jjassonn69_beamformer`
 
-Date: 2026-07-20
+Date: 2026-07-21
 
 ## 1. Document purpose and status
 
@@ -254,22 +254,24 @@ that the eventual package has those exact values.
 
 | LO | Input | Constructive 1 MHz tone | Null | 40 dB target | 20 dB release gate |
 |---:|---:|---:|---:|---:|---:|
-| 4 MHz | 5 MHz | 0.9370 mVrms | 51.92 dB | pass | pass |
-| 10 MHz | 11 MHz | 0.9221 mVrms | 50.69 dB | pass | pass |
-| 20 MHz | 21 MHz | 0.8992 mVrms | 44.59 dB | pass | pass |
-| 30 MHz | 31 MHz | 0.8282 mVrms | 46.45 dB | pass | pass |
+| 4 MHz | 5 MHz | 0.8623 mVrms | 45.20 dB | pass | pass |
+| 10 MHz | 11 MHz | 1.0305 mVrms | 43.83 dB | pass | pass |
+| 20 MHz | 21 MHz | 1.0498 mVrms | 42.50 dB | pass | pass |
+| 30 MHz | 31 MHz | 1.0256 mVrms | 47.02 dB | pass | pass |
 
-The wanted-tone amplitude remains 0.83 to 0.94 mVrms throughout the sweep;
-the 30 MHz result is 88.4 percent of the 4 MHz amplitude. The 30 MHz mode is
+The wanted-tone amplitude remains 0.86 to 1.05 mVrms throughout the sweep;
+the 30 MHz result is 118.9 percent of the 4 MHz amplitude. The 30 MHz mode is
 nevertheless characterization-only: only 4 MHz is carried as
 `clock_hz` in the TinyTapeout metadata and through the complete release matrix.
-All four points retain more than 44 dB cancellation; the higher-speed change is
-a modest gain roll-off, not failure of the clock drivers.
+All four points retain more than 42 dB cancellation; the higher-speed change
+does not cause failure of the clock drivers.
 
 An independent macOS replay with ngspice 46 and the same extracted-netlist
-hash measured 0.9335 mVrms constructive output and 52.52 dB null at 4 MHz.
-The constructive amplitudes agree within 0.4 percent and the null depths within
-0.60 dB. Both independently clear the 40 dB nominal target.
+hash measured 0.8492 mVrms constructive output and 53.21 dB null at 4 MHz.
+The constructive amplitudes agree within 1.6 percent. Null depth differs by
+8.01 dB because it is especially sensitive to solver and operating-point
+differences once the residual becomes small; both runs independently clear the
+40 dB nominal target.
 
 ### 8.3 Extracted clock integrity
 
@@ -281,10 +283,10 @@ that a logic threshold was crossed.
 
 | LO | Slowest measured edge | Worst paired-channel skew | Result |
 |---:|---:|---:|---:|
-| 4 MHz | 0.182 ns | 0.022 ns | pass |
-| 10 MHz | 0.190 ns | 0.022 ns | pass |
-| 20 MHz | 0.192 ns | 0.021 ns | pass |
-| 30 MHz | 0.188 ns | 0.022 ns | pass |
+| 4 MHz | 0.229 ns | 0.045 ns | pass |
+| 10 MHz | 0.245 ns | 0.050 ns | pass |
+| 20 MHz | 0.225 ns | 0.044 ns | pass |
+| 30 MHz | 0.193 ns | 0.050 ns | pass |
 
 At 30 MHz the measured selected-rail extrema are approximately -12 mV and
 1.868 V in the ideal-pad testbench. These small overshoots should be rechecked
@@ -294,8 +296,8 @@ rating.
 ### 8.4 Nominal channel balance
 
 Driving each channel independently through the same extracted testbench gives
-0.0026539 percent nominal amplitude difference. The amplitude-only
-cancellation estimate is 97.54 dB; the actual switched two-channel null is
+0.0048522 percent nominal amplitude difference. The amplitude-only
+cancellation estimate is 92.30 dB; the actual switched two-channel null is
 lower because phase skew, residual clock products, and detector bandwidth also
 contribute.
 This is a deterministic result, not a yield prediction.
@@ -335,15 +337,16 @@ ceiling at the 1.98 V cases.
 |---|---:|
 | Cases passed | 45/45 |
 | Release requirement | at least 20 dB null in every case |
-| Minimum null | 31.04 dB at TT, 1.62 V, 125 C |
-| Maximum null | 48.85 dB |
-| Constructive time-domain RMS range | 5.621 to 32.614 mVrms |
-| Output common-mode range | 1.335 to 1.668 V |
-| Supply-current range | 0.145 to 0.426 mA |
+| Minimum null | 39.88 dB at FS, 1.80 V, 27 C |
+| Maximum null | 55.33 dB |
+| Constructive time-domain RMS range | 39.400 to 77.702 mVrms |
+| Output common-mode range | 1.309 to 1.615 V |
+| Supply-current range | 0.243 to 0.439 mA |
+| Minimum output high-side headroom | 0.207 V at FS, 1.62 V, -40 C |
 
-The nominal TT, 1.80 V, 27 C time-domain result is 16.783 mVrms
-constructive, 0.196 mVrms destructive, 38.63 dB null, 1.504 V common mode,
-and 0.323 mA. Its null is lower than the 51.92 dB coherent wanted-tone result
+The nominal TT, 1.80 V, 27 C time-domain result is 61.230 mVrms
+constructive, 0.238 mVrms destructive, 48.22 dB null, 1.466 V common mode,
+and 0.350 mA. Its null differs from the 45.20 dB coherent wanted-tone result
 because the time-domain detector also includes residual filtered switching
 products, as described in Section 8.1.
 
@@ -372,10 +375,10 @@ products, as described in Section 8.1.
 | Generated route geometry | 7,214 nonzero-area shapes; overlap, connectivity, and top-pin audits passed |
 | Signal routing | local M2, compact M3 tracks, shared local M4 risers |
 | Power | `VDPWR` and `VGND`; no `VAPWR` |
-| GDS size | 755,306 bytes, uncompressed GDSII |
-| GDS SHA-256 | `6d620f373932d0711c67ad4c22a11ba384e06a75e74e4e4b50b79239ed66c609` |
+| GDS size | 752,618 bytes, uncompressed GDSII |
+| GDS SHA-256 | `655e6108952e1ac604ed84671ae318a8a2d1e1c7603c7a412edbdad1adcc62a0` |
 | LEF SHA-256 | `9df231957326895371afc1f5e903b51e7992b3b6f8c3401546fa7ef7d82eb760` |
-| Distributed-RC SPICE SHA-256 | `9b4d802906e882d9df5c23f9ede787415a0bb79b1a14d98dd36da32883327a24` |
+| Extracted SPICE SHA-256 | `8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec` |
 | Official DEF SHA-256 | `042803101760925474f602e69119f497922eb912c37a6651bed030164bb576af` |
 
 ### 9.1 Matching architecture
@@ -571,8 +574,8 @@ The following checks are complete for the local release candidate:
   MIM capacitor, and no unexpected net equivalences;
 - exact extracted-device and parasitic-capacitor multisets agree with the
   resistance-free extraction reference;
-- distributed-RC coverage: 11,368 explicit SPICE resistors, 6,382 capacitors,
-  6,559 internal resistor nodes, 6,364 top-level route annotations, exactly 30
+- distributed-RC coverage: 11,333 explicit SPICE resistors, 6,341 capacitors,
+  6,525 internal resistor nodes, 6,328 top-level route annotations, exactly 30
   manifest-anchored resistor components, and zero floating extracted
   components;
 - generated route same-layer/via/connectivity/top-boundary audit: pass for
@@ -635,7 +638,7 @@ stale report could previously appear clean while hiding lost analog margin.
 The GitHub workflow remains the final mechanical submission gate because it
 runs the complete pinned TinyTapeout Magic and KLayout rule set. The exact
 release GDS passed
-[run 29764564303](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29764564303);
+[run 29803067849](https://github.com/JJassonn69/ttsky-beamformer/actions/runs/29803067849);
 the committed
 `submission/official_precheck_results.md` and
 `submission/official_magic_drc.txt` preserve that run's reports. The

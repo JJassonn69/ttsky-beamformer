@@ -5,7 +5,7 @@
   ],
   "if_frequency_mhz": 1.0,
   "netlist": "build/layout/extracted_rc.spice",
-  "netlist_sha256": "9b4d802906e882d9df5c23f9ede787415a0bb79b1a14d98dd36da32883327a24",
+  "netlist_sha256": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
   "ngspice_version": "46",
   "pass_count": 1,
   "platform": "macOS-15.7.2-arm64-arm-64bit-Mach-O",
@@ -20,22 +20,22 @@
       "frequency_mhz": 4.0,
       "nominal_40db_target_met": true,
       "null": {
-        "mode_cm": 1.46538,
-        "mode_supply": -0.00035036,
-        "tone_i": -1.55954e-06,
-        "tone_phase_deg": -177.04819711977183,
-        "tone_q": -8.04166e-08,
-        "tone_rms": 2.208452780185965e-06
+        "mode_cm": 1.46537,
+        "mode_supply": -0.00034909,
+        "tone_i": -1.31111e-06,
+        "tone_phase_deg": -178.29120378608002,
+        "tone_q": -3.91143e-08,
+        "tone_rms": 1.8550144800321587e-06
       },
-      "null_db": 52.520468444906776,
+      "null_db": 53.213574566651445,
       "passed": true,
       "sum": {
         "mode_cm": 1.46554,
-        "mode_supply": -0.000351028,
-        "tone_i": -0.000659989,
-        "tone_phase_deg": 179.04884873442123,
-        "tone_q": 1.09573e-05,
-        "tone_rms": 0.0009334940198461799
+        "mode_supply": -0.000349012,
+        "tone_i": -0.000600323,
+        "tone_phase_deg": 178.61961868977292,
+        "tone_q": 1.44659e-05,
+        "tone_rms": 0.0008492313778845081
       }
     }
   ]
