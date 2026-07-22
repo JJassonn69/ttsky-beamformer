@@ -289,6 +289,7 @@ def parse_measures(text: str) -> dict[str, float]:
 def analyze(
     values: dict[str, float], distributed_rc: bool = False,
     require_output: bool = True,
+    settled_startup: bool = False,
 ) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     required = {
@@ -321,14 +322,21 @@ def analyze(
                 )
             if abs(period - 250e-9) > 2.5e-9:
                 errors.append(f"phase {index} period {period} is not nominal 250 ns")
-        if not 0.5 < values["common_mode_avg"] < 1.82:
-            errors.append("differential output common mode is outside a plausible range")
-        # UIC intentionally skips the DC solution and is retained only as a
-        # short connectivity/clock smoke test.  Settled analog performance is
-        # accepted by the operating-point codebook; here reject only a hard
-        # VCM rail short instead of making a false steady-state claim.
-        if not 0.1 < values["vcm_avg"] < 1.7:
-            errors.append("VCM appears stuck at a supply rail during startup")
+        if settled_startup:
+            if not 0.8 < values["common_mode_avg"] < 1.2:
+                errors.append("settled differential output common mode is out of range")
+            if not 1.1 < values["vcm_avg"] < 1.3:
+                errors.append("settled VCM is outside its nominal 1.2 V window")
+        else:
+            if not 0.5 < values["common_mode_avg"] < 1.82:
+                errors.append(
+                    "differential output common mode is outside a plausible range"
+                )
+            # UIC intentionally skips the DC solution and is retained only as
+            # a short connectivity/clock smoke test.  Here reject only a hard
+            # VCM rail short instead of making a false steady-state claim.
+            if not 0.1 < values["vcm_avg"] < 1.7:
+                errors.append("VCM appears stuck at a supply rail during startup")
         if abs(values["supply_avg"]) < 1e-6:
             errors.append("extracted chip draws no measurable supply current")
         ac_rms = max(values["output_rms"] ** 2 - values["output_avg"] ** 2, 0.0) ** 0.5
@@ -364,6 +372,10 @@ def analyze(
         "output_tone_rms_v": values.get("output_tone_rms", 0.0),
         "output_tone_i_v": values.get("tone_i_avg", 0.0),
         "output_tone_q_v": values.get("tone_q_avg", 0.0),
+        "output_common_mode_v": values.get("common_mode_avg", 0.0),
+        "vcm_v": values.get("vcm_avg", 0.0),
+        "supply_current_a": abs(values.get("supply_avg", 0.0)),
+        "estimated_power_w": 1.8 * abs(values.get("supply_avg", 0.0)),
         "phases": phases,
         "phase_leaf_skew": phase_leaf_skew,
     }, errors
@@ -466,6 +478,7 @@ def main() -> int:
     analysis, errors = analyze(
         values,
         distributed_rc=args.view == "rc",
+        settled_startup=args.startup == "op",
         require_output=(
             args.input_peak_v > 0.0
             and (args.incident_beam is None or args.beam == args.incident_beam)

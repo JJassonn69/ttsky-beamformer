@@ -217,6 +217,28 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         _, errors = analyze(values, require_output=False)
         self.assertEqual(errors, [])
 
+    def test_operating_point_analysis_enforces_settled_bias_windows(self) -> None:
+        values = {
+            "output_rms": 15e-3,
+            "output_avg": 0.0,
+            "output_tone_rms": 14e-3,
+            "tone_i_avg": 9e-3,
+            "tone_q_avg": 4e-3,
+            "common_mode_avg": 0.985,
+            "vcm_avg": 1.199,
+            "supply_avg": -695e-6,
+        }
+        for index in range(4):
+            values[f"phase{index}_min"] = 0.0
+            values[f"phase{index}_max"] = 1.8
+            values[f"phase{index}_period"] = 250e-9
+        analysis, errors = analyze(values, settled_startup=True)
+        self.assertEqual(errors, [])
+        self.assertAlmostEqual(analysis["estimated_power_w"], 1.251e-3)
+        values["vcm_avg"] = 0.5
+        _, errors = analyze(values, settled_startup=True)
+        self.assertIn("settled VCM is outside its nominal 1.2 V window", errors)
+
 
 if __name__ == "__main__":
     unittest.main()
