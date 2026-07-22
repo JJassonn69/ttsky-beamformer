@@ -144,6 +144,51 @@ def validate_case_identity(
     return errors
 
 
+def validate_settled_measurements(report: dict[str, Any]) -> list[str]:
+    """Apply release bias checks even when aggregating preserved reports."""
+    measurements = report.get("measurements")
+    if not isinstance(measurements, dict):
+        return ["case report lacks measurements"]
+    errors: list[str] = []
+    checks = (
+        ("vcm_avg", 1.1, 1.3, "VCM"),
+        ("common_mode_avg", 0.8, 1.2, "output common mode"),
+    )
+    for field, lower, upper, label in checks:
+        value = measurements.get(field)
+        if not isinstance(value, (int, float)) or not lower < float(value) < upper:
+            errors.append(f"settled {label} is outside {lower:g}..{upper:g} V")
+    supply = measurements.get("supply_avg")
+    if not isinstance(supply, (int, float)) or abs(float(supply)) < 1e-6:
+        errors.append("settled case draws no measurable supply current")
+    return errors
+
+
+def operating_ranges(
+    reports: dict[tuple[int, int, float], dict[str, Any]],
+) -> dict[str, list[float]]:
+    def values(field: str, *, absolute: bool = False) -> list[float]:
+        result = [
+            float(report["measurements"][field]) for report in reports.values()
+        ]
+        if absolute:
+            result = [abs(value) for value in result]
+        return result
+
+    vcm = values("vcm_avg")
+    common_mode = values("common_mode_avg")
+    supply_current = values("supply_avg", absolute=True)
+    return {
+        "vcm_v": [min(vcm), max(vcm)],
+        "output_common_mode_v": [min(common_mode), max(common_mode)],
+        "supply_current_a": [min(supply_current), max(supply_current)],
+        "estimated_power_w": [
+            1.8 * min(supply_current),
+            1.8 * max(supply_current),
+        ],
+    }
+
+
 def run_case(
     view: str,
     selected_beam: int,
@@ -191,6 +236,11 @@ def main() -> int:
             "startup for diagnostic smoke testing"
         ),
     )
+    parser.add_argument(
+        "--reuse-reports",
+        action="store_true",
+        help="aggregate and validate existing case reports without rerunning ngspice",
+    )
     args = parser.parse_args()
     if not 1 <= args.jobs <= 4:
         raise SystemExit("--jobs must be between one and four")
@@ -205,30 +255,36 @@ def main() -> int:
     ]
     cases = baseline_cases + signal_cases
     executions: list[tuple[int, int, float, int, str]] = []
-    with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as executor:
-        futures = [
-            executor.submit(
-                run_case,
-                args.view,
-                selected,
-                incident,
-                input_peak_v,
-                args.ngspice,
-                args.timeout,
-                args.startup,
-            )
+    if args.reuse_reports:
+        executions = [
+            (selected, incident, input_peak_v, 0, "")
             for selected, incident, input_peak_v in cases
         ]
-        for future in concurrent.futures.as_completed(futures):
-            result = future.result()
-            executions.append(result)
-            selected, incident, input_peak_v, returncode, _ = result
-            kind = "baseline" if input_peak_v == 0.0 else "signal"
-            print(
-                f"kind={kind} selected={selected} incident={incident} "
-                f"returncode={returncode}",
-                flush=True,
-            )
+    else:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as executor:
+            futures = [
+                executor.submit(
+                    run_case,
+                    args.view,
+                    selected,
+                    incident,
+                    input_peak_v,
+                    args.ngspice,
+                    args.timeout,
+                    args.startup,
+                )
+                for selected, incident, input_peak_v in cases
+            ]
+            for future in concurrent.futures.as_completed(futures):
+                result = future.result()
+                executions.append(result)
+                selected, incident, input_peak_v, returncode, _ = result
+                kind = "baseline" if input_peak_v == 0.0 else "signal"
+                print(
+                    f"kind={kind} selected={selected} incident={incident} "
+                    f"returncode={returncode}",
+                    flush=True,
+                )
 
     errors: list[str] = []
     reports: dict[tuple[int, int, float], dict[str, Any]] = {}
@@ -262,6 +318,11 @@ def main() -> int:
             f"selected beam {selected}, incident beam {incident}: {message}"
             for message in identity_errors
         )
+        if args.startup == "op":
+            errors.extend(
+                f"selected beam {selected}, incident beam {incident}: {message}"
+                for message in validate_settled_measurements(report)
+            )
         if report.get("status") != "pass":
             errors.append(
                 f"selected beam {selected}, incident beam {incident} "
@@ -302,11 +363,14 @@ def main() -> int:
             "netlist_sha256": netlist_hashes,
             "spiceinit_sha256": spiceinit_hashes,
         }
+        metrics["settled_operating_ranges"] = operating_ranges(reports)
         errors.extend(matrix_errors)
     else:
         metrics = {"response_matrix_v_rms": matrix}
 
-    summary_name = "summary_startup_op.json" if args.startup == "op" else "summary_uic.json"
+    summary_name = (
+        "summary_startup_op.json" if args.startup == "op" else "summary_uic.json"
+    )
     result_path = BUILD / args.view / "codebook" / summary_name
     result_path.parent.mkdir(parents=True, exist_ok=True)
     result = {
@@ -315,6 +379,7 @@ def main() -> int:
         "view": args.view,
         "startup": args.startup,
         "jobs": args.jobs,
+        "reused_reports": args.reuse_reports,
         "case_count": len(reports),
         "signal_case_count": sum(key[2] == 0.005 for key in reports),
         "baseline_case_count": sum(key[2] == 0.0 for key in reports),

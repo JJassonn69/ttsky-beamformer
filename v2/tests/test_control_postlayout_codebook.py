@@ -10,7 +10,9 @@ from run_control_postlayout_codebook import (
     case_report_path,
     corrected_response_matrices,
     evaluate_matrix,
+    operating_ranges,
     validate_case_identity,
+    validate_settled_measurements,
 )
 
 
@@ -127,6 +129,42 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
         )
         self.assertTrue(any("startup" in error for error in errors))
         self.assertTrue(any("gds_sha256" in error for error in errors))
+
+    def test_reused_reports_must_have_settled_bias_and_current(self) -> None:
+        report = {
+            "measurements": {
+                "vcm_avg": 1.199,
+                "common_mode_avg": 0.985,
+                "supply_avg": -695e-6,
+            }
+        }
+        self.assertEqual(validate_settled_measurements(report), [])
+        report["measurements"]["vcm_avg"] = 0.5
+        self.assertTrue(
+            any("VCM" in error for error in validate_settled_measurements(report))
+        )
+
+    def test_operating_ranges_include_power(self) -> None:
+        reports = {
+            (0, 0, 0.005): {
+                "measurements": {
+                    "vcm_avg": 1.198,
+                    "common_mode_avg": 0.984,
+                    "supply_avg": -690e-6,
+                }
+            },
+            (1, 1, 0.005): {
+                "measurements": {
+                    "vcm_avg": 1.200,
+                    "common_mode_avg": 0.986,
+                    "supply_avg": -700e-6,
+                }
+            },
+        }
+        ranges = operating_ranges(reports)
+        self.assertEqual(ranges["vcm_v"], [1.198, 1.2])
+        self.assertEqual(ranges["supply_current_a"], [690e-6, 700e-6])
+        self.assertAlmostEqual(ranges["estimated_power_w"][1], 1.26e-3)
 
 
 if __name__ == "__main__":
