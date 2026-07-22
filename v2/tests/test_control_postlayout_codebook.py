@@ -6,7 +6,11 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "v2/tools"))
 
-from run_control_postlayout_codebook import case_report_path, evaluate_matrix
+from run_control_postlayout_codebook import (
+    case_report_path,
+    corrected_response_matrices,
+    evaluate_matrix,
+)
 
 
 class ControlPostlayoutCodebookTests(unittest.TestCase):
@@ -17,6 +21,14 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
             Path(
                 "build/v2/postlayout_smoke/base/codebook/"
                 "selected_2_incident_3/report.json"
+            ),
+        )
+        baseline = case_report_path("base", 2, 3, input_peak_v=0.0)
+        self.assertEqual(
+            baseline.relative_to(ROOT),
+            Path(
+                "build/v2/postlayout_smoke/base/codebook/"
+                "selected_2_incident_3_vin_0nv/report.json"
             ),
         )
 
@@ -41,6 +53,32 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
     def test_matrix_shape_is_strict(self) -> None:
         with self.assertRaises(ValueError):
             evaluate_matrix([[1.0]])
+
+    def test_complex_background_is_subtracted_before_magnitude(self) -> None:
+        reports = {}
+        for selected in range(4):
+            baseline_incident = (selected + 1) % 4
+            reports[(selected, baseline_incident, 0.0)] = {
+                "analysis": {
+                    "output_tone_i_v": 2.0,
+                    "output_tone_q_v": -1.0,
+                    "output_tone_rms_v": 5.0,
+                }
+            }
+            for incident in range(4):
+                wanted = 1.0 if selected == incident else 0.1
+                reports[(selected, incident, 0.005)] = {
+                    "analysis": {
+                        "output_tone_i_v": 2.0 + wanted,
+                        "output_tone_q_v": -1.0,
+                        "output_tone_rms_v": 9.0,
+                    }
+                }
+        corrected, raw, background = corrected_response_matrices(reports)
+        self.assertAlmostEqual(corrected[0][0], 2 ** 0.5)
+        self.assertAlmostEqual(corrected[0][1], 0.1 * 2 ** 0.5)
+        self.assertEqual(raw[0][0], 9.0)
+        self.assertEqual(background[0], [2.0, -1.0])
 
 
 if __name__ == "__main__":

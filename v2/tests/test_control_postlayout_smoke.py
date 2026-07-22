@@ -43,6 +43,10 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         self.assertIn('.include "v2/spice/extracted_model_aliases.inc"', text)
         self.assertIn('.include "build/v2/control_routing/final_rc/control_final_base.spice"', text)
         self.assertIn(".measure tran vcm_avg avg v(ch0_vcm)", text)
+        self.assertIn("BTONEI tone_i 0 v=v(differential)*cos(2*pi*FOUT*time)", text)
+        self.assertIn("BTONEQ tone_q 0 v=v(differential)*sin(2*pi*FOUT*time)", text)
+        self.assertIn(".measure tran output_tone_rms param=", text)
+        self.assertIn("VINPK=0.005", text)
 
     def test_smoke_window_is_short_enough_for_iterative_signoff(self) -> None:
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
@@ -94,6 +98,10 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 self.assertIn(leaf, rc_netlist)
                 self.assertIn(f"v({leaf})", text)
                 self.assertIn(f"phase{phase}_ch{channel}_delay", text)
+        self.assertIn("ROUTP ch0_out_p.n0 outp_pad 500", text)
+        self.assertIn("ROUTN ch0_out_n.n0 outn_pad 500", text)
+        self.assertIn("ch0_out_p.n0", rc_netlist)
+        self.assertIn("ch0_out_n.n0", rc_netlist)
 
     def test_smoke_drives_only_real_extracted_external_control_nodes(self) -> None:
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
@@ -118,6 +126,30 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         for index, node in enumerate(("R038", "R039", "R040", "R041")):
             self.assertIn(f"BCH{index} {node} 0 v=v(VDPWR)", text)
 
+    def test_single_channel_mask_disables_the_other_three_channels(self) -> None:
+        text = deck_text(
+            Path("view.spice"), "netlist-hash", "gds-hash",
+            channel_mask=0x4,
+        )
+        self.assertIn("VCH0 R038 0 0", text)
+        self.assertIn("VCH1 R039 0 0", text)
+        self.assertIn("BCH2 R040 0 v=v(VDPWR)", text)
+        self.assertIn("VCH3 R041 0 0", text)
+
+    def test_zero_rf_input_preserves_the_enabled_mixer_testbench(self) -> None:
+        text = deck_text(
+            Path("view.spice"), "netlist-hash", "gds-hash",
+            input_peak_v=0.0,
+        )
+        self.assertIn("VINPK=0", text)
+        for index, node in enumerate(("R038", "R039", "R040", "R041")):
+            self.assertIn(f"BCH{index} {node} 0 v=v(VDPWR)", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                input_peak_v=-1e-3,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))
@@ -141,6 +173,9 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         values = {
             "output_rms": 8e-4,
             "output_avg": 0.0,
+            "output_tone_rms": 5e-4,
+            "tone_i_avg": 2e-4,
+            "tone_q_avg": 3e-4,
             "common_mode_avg": 1.79,
             "vcm_avg": 0.5,
             "supply_avg": -155e-6,
@@ -159,6 +194,9 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         values = {
             "output_rms": 0.0,
             "output_avg": 0.0,
+            "output_tone_rms": 0.0,
+            "tone_i_avg": 0.0,
+            "tone_q_avg": 0.0,
             "common_mode_avg": 1.79,
             "vcm_avg": 0.5,
             "supply_avg": -155e-6,

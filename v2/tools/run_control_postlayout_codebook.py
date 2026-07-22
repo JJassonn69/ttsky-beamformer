@@ -18,10 +18,18 @@ RUNNER = ROOT / "v2/tools/run_control_postlayout_smoke.py"
 BUILD = ROOT / "build/v2/postlayout_smoke"
 
 
-def case_report_path(view: str, selected_beam: int, incident_beam: int) -> Path:
+def case_report_path(
+    view: str,
+    selected_beam: int,
+    incident_beam: int,
+    input_peak_v: float = 0.005,
+) -> Path:
+    case_label = f"selected_{selected_beam}_incident_{incident_beam}"
+    if input_peak_v != 0.005:
+        case_label += f"_vin_{round(input_peak_v * 1e9):d}nv"
     return (
         BUILD / view / "codebook"
-        / f"selected_{selected_beam}_incident_{incident_beam}"
+        / case_label
         / "report.json"
     )
 
@@ -64,19 +72,58 @@ def evaluate_matrix(
     }, errors
 
 
+def corrected_response_matrices(
+    reports: dict[tuple[int, int, float], dict[str, Any]],
+) -> tuple[list[list[float]], list[list[float]], list[list[float]]]:
+    baselines = {
+        selected: reports[(selected, (selected + 1) % 4, 0.0)]
+        for selected in range(4)
+    }
+    background_iq = [
+        [
+            float(baselines[selected]["analysis"]["output_tone_i_v"]),
+            float(baselines[selected]["analysis"]["output_tone_q_v"]),
+        ]
+        for selected in range(4)
+    ]
+    raw_matrix = [
+        [
+            float(
+                reports[(selected, incident, 0.005)]["analysis"]
+                ["output_tone_rms_v"]
+            )
+            for incident in range(4)
+        ]
+        for selected in range(4)
+    ]
+    corrected_matrix: list[list[float]] = []
+    for selected in range(4):
+        row: list[float] = []
+        baseline_i, baseline_q = background_iq[selected]
+        for incident in range(4):
+            analysis = reports[(selected, incident, 0.005)]["analysis"]
+            signal_i = float(analysis["output_tone_i_v"]) - baseline_i
+            signal_q = float(analysis["output_tone_q_v"]) - baseline_q
+            row.append(math.sqrt(2.0 * (signal_i * signal_i + signal_q * signal_q)))
+        corrected_matrix.append(row)
+    return corrected_matrix, raw_matrix, background_iq
+
+
 def run_case(
     view: str,
     selected_beam: int,
     incident_beam: int,
+    input_peak_v: float,
     ngspice: str,
     timeout: int,
-) -> tuple[int, int, int, str]:
+) -> tuple[int, int, float, int, str]:
     command = [
         sys.executable,
         str(RUNNER),
         "--view", view,
         "--beam", str(selected_beam),
         "--incident-beam", str(incident_beam),
+        "--input-peak-v", str(input_peak_v),
         "--ngspice", ngspice,
         "--timeout", str(timeout),
     ]
@@ -88,7 +135,7 @@ def run_case(
         check=False,
     )
     output = completed.stdout + completed.stderr
-    return selected_beam, incident_beam, completed.returncode, output
+    return selected_beam, incident_beam, input_peak_v, completed.returncode, output
 
 
 def main() -> int:
@@ -102,8 +149,16 @@ def main() -> int:
     if not 1 <= args.jobs <= 4:
         raise SystemExit("--jobs must be between one and four")
 
-    cases = [(selected, incident) for selected in range(4) for incident in range(4)]
-    executions: list[tuple[int, int, int, str]] = []
+    signal_cases = [
+        (selected, incident, 0.005)
+        for selected in range(4) for incident in range(4)
+    ]
+    baseline_cases = [
+        (selected, (selected + 1) % 4, 0.0)
+        for selected in range(4)
+    ]
+    cases = baseline_cases + signal_cases
+    executions: list[tuple[int, int, float, int, str]] = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as executor:
         futures = [
             executor.submit(
@@ -111,24 +166,27 @@ def main() -> int:
                 args.view,
                 selected,
                 incident,
+                input_peak_v,
                 args.ngspice,
                 args.timeout,
             )
-            for selected, incident in cases
+            for selected, incident, input_peak_v in cases
         ]
         for future in concurrent.futures.as_completed(futures):
             result = future.result()
             executions.append(result)
-            selected, incident, returncode, _ = result
+            selected, incident, input_peak_v, returncode, _ = result
+            kind = "baseline" if input_peak_v == 0.0 else "signal"
             print(
-                f"selected={selected} incident={incident} returncode={returncode}",
+                f"kind={kind} selected={selected} incident={incident} "
+                f"returncode={returncode}",
                 flush=True,
             )
 
     errors: list[str] = []
-    reports: dict[tuple[int, int], dict[str, Any]] = {}
-    for selected, incident, returncode, output in executions:
-        path = case_report_path(args.view, selected, incident)
+    reports: dict[tuple[int, int, float], dict[str, Any]] = {}
+    for selected, incident, input_peak_v, returncode, output in executions:
+        path = case_report_path(args.view, selected, incident, input_peak_v)
         if returncode:
             errors.append(
                 f"selected beam {selected}, incident beam {incident} failed: "
@@ -138,7 +196,7 @@ def main() -> int:
             errors.append(f"missing case report: {path}")
             continue
         report = json.loads(path.read_text(encoding="utf-8"))
-        reports[(selected, incident)] = report
+        reports[(selected, incident, input_peak_v)] = report
         if report.get("status") != "pass":
             errors.append(
                 f"selected beam {selected}, incident beam {incident} "
@@ -146,15 +204,13 @@ def main() -> int:
             )
 
     matrix: list[list[float]] = []
-    if len(reports) == 16:
-        matrix = [
-            [
-                float(reports[(selected, incident)]["analysis"]["output_ac_rms_v"])
-                for incident in range(4)
-            ]
-            for selected in range(4)
-        ]
+    raw_matrix: list[list[float]] = []
+    background_iq: list[list[float]] = []
+    if len(reports) == 20:
+        matrix, raw_matrix, background_iq = corrected_response_matrices(reports)
         metrics, matrix_errors = evaluate_matrix(matrix, args.minimum_rejection_db)
+        metrics["raw_response_matrix_v_rms"] = raw_matrix
+        metrics["zero_input_background_iq_v"] = background_iq
         errors.extend(matrix_errors)
     else:
         metrics = {"response_matrix_v_rms": matrix}
@@ -167,6 +223,8 @@ def main() -> int:
         "view": args.view,
         "jobs": args.jobs,
         "case_count": len(reports),
+        "signal_case_count": sum(key[2] == 0.005 for key in reports),
+        "baseline_case_count": sum(key[2] == 0.0 for key in reports),
         "functional_rejection_gate_db": args.minimum_rejection_db,
         "metrics": metrics,
     }

@@ -158,12 +158,17 @@ def deck_text(
     channel_mask: int = 0xF,
     beam: int = 0,
     input_phases_deg: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
+    input_peak_v: float = 0.005,
     distributed_rc: bool = False,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
     if not 0 <= beam <= 3:
         raise ValueError("beam must be between zero and three")
+    if input_peak_v < 0.0:
+        raise ValueError("input peak voltage cannot be negative")
+    output_p_node = "ch0_out_p.n0" if distributed_rc else "ch0_out_p"
+    output_n_node = "ch0_out_n.n0" if distributed_rc else "ch0_out_n"
     controls = [
         f"VBEAM0 {CONTROL_NODES['beam_select[0]']} 0 "
         + ("{VDD}" if beam & 1 else "0"),
@@ -229,27 +234,30 @@ def deck_text(
 .include "v2/spice/extracted_model_aliases.inc"
 .include "{netlist.as_posix()}"
 
-.param VDD=1.8 FIN=5meg VINPK=5m
+.param VDD=1.8 FIN=5meg FOUT=1meg VINPK={input_peak_v:.12g}
 VDD_SOURCE VDPWR 0 pulse(0 {{VDD}} 0 20n 20n 100u 200u)
 VSS_SOURCE {GROUND} 0 0
 {chr(10).join(controls)}
 
 {chr(10).join(input_source(index, phase) for index, phase in enumerate(input_phases_deg))}
 
-ROUTP ch0_out_p outp_pad 500
-ROUTN ch0_out_n outn_pad 500
+ROUTP {output_p_node} outp_pad 500
+ROUTN {output_n_node} outn_pad 500
 COUTP outp_pad 0 10p
 COUTN outn_pad 0 10p
 RLOADP outp_pad 0 1meg
 RLOADN outn_pad 0 1meg
 EDIFF differential 0 outp_pad outn_pad 1
 BCM common_mode 0 v=(v(outp_pad)+v(outn_pad))/2
+BTONEI tone_i 0 v=v(differential)*cos(2*pi*FOUT*time)
+BTONEQ tone_q 0 v=v(differential)*sin(2*pi*FOUT*time)
 RF1 differential filt1 1k
 CF1 filt1 0 79.577p
 RF2 filt1 filtered 1k
 CF2 filtered 0 79.577p
 
-.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm) i(VDD_SOURCE)
+.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm)
++ v(tone_i) v(tone_q) i(VDD_SOURCE)
 + {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
 .tran 2n 4u 2u uic
@@ -258,6 +266,9 @@ CF2 filtered 0 79.577p
 .measure tran common_mode_avg avg v(common_mode) from=2u to=4u
 .measure tran vcm_avg avg v(ch0_vcm) from=2u to=4u
 .measure tran supply_avg avg i(VDD_SOURCE) from=2u to=4u
+.measure tran tone_i_avg avg v(tone_i) from=2u to=4u
+.measure tran tone_q_avg avg v(tone_q) from=2u to=4u
+.measure tran output_tone_rms param='sqrt(2*(tone_i_avg*tone_i_avg+tone_q_avg*tone_q_avg))'
 {phase_measures}
 {rc_leaf_measures}
 .end
@@ -274,7 +285,8 @@ def analyze(
 ) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     required = {
-        "output_rms", "output_avg", "common_mode_avg", "vcm_avg", "supply_avg"
+        "output_rms", "output_avg", "output_tone_rms", "tone_i_avg",
+        "tone_q_avg", "common_mode_avg", "vcm_avg", "supply_avg"
     }
     required.update(
         f"phase{index}_{field}"
@@ -313,7 +325,7 @@ def analyze(
         if abs(values["supply_avg"]) < 1e-6:
             errors.append("extracted chip draws no measurable supply current")
         ac_rms = max(values["output_rms"] ** 2 - values["output_avg"] ** 2, 0.0) ** 0.5
-        if require_output and ac_rms < 1e-6:
+        if require_output and values["output_tone_rms"] < 1e-6:
             errors.append("beamformed 1 MHz output is below the smoke-test floor")
     else:
         ac_rms = 0.0
@@ -342,6 +354,9 @@ def analyze(
                     )
     return {
         "output_ac_rms_v": ac_rms,
+        "output_tone_rms_v": values.get("output_tone_rms", 0.0),
+        "output_tone_i_v": values.get("tone_i_avg", 0.0),
+        "output_tone_q_v": values.get("tone_q_avg", 0.0),
         "phases": phases,
         "phase_leaf_skew": phase_leaf_skew,
     }, errors
@@ -357,10 +372,21 @@ def main() -> int:
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--beam", type=int, choices=range(4), default=0)
     parser.add_argument("--incident-beam", type=int, choices=range(4))
+    parser.add_argument(
+        "--channel-mask",
+        type=lambda value: int(value, 0),
+        default=0xF,
+        help="four-bit enabled-channel mask (for example 0xF or 0x1)",
+    )
+    parser.add_argument("--input-peak-v", type=float, default=0.005)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
     netlist = args.base_netlist if args.view == "base" else args.rc_netlist
+    if not 0 <= args.channel_mask <= 0xF:
+        raise SystemExit("--channel-mask must be a four-bit value")
+    if args.input_peak_v < 0.0:
+        raise SystemExit("--input-peak-v cannot be negative")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -372,7 +398,7 @@ def main() -> int:
         if args.incident_beam is not None
         else (0.0, 0.0, 0.0, 0.0)
     )
-    if args.beam == 0 and args.incident_beam is None:
+    if args.beam == 0 and args.incident_beam is None and args.channel_mask == 0xF:
         work = BUILD / args.view
     else:
         incident_label = (
@@ -380,9 +406,12 @@ def main() -> int:
             if args.incident_beam is not None
             else "custom"
         )
-        work = BUILD / args.view / "codebook" / (
-            f"selected_{args.beam}_incident_{incident_label}"
-        )
+        case_label = f"selected_{args.beam}_incident_{incident_label}"
+        if args.channel_mask != 0xF:
+            case_label += f"_mask_{args.channel_mask:x}"
+        if args.input_peak_v != 0.005:
+            case_label += f"_vin_{round(args.input_peak_v * 1e9):d}nv"
+        work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
     log = work / "ngspice.log"
@@ -390,8 +419,10 @@ def main() -> int:
     deck.write_text(
         deck_text(
             netlist, netlist_hash, gds_hash,
+            channel_mask=args.channel_mask,
             beam=args.beam,
             input_phases_deg=input_phases,
+            input_peak_v=args.input_peak_v,
             distributed_rc=args.view == "rc",
         ),
         encoding="utf-8",
@@ -433,7 +464,9 @@ def main() -> int:
         "view": args.view,
         "selected_beam": args.beam,
         "incident_beam": args.incident_beam,
+        "channel_mask": args.channel_mask,
         "input_phases_deg": input_phases,
+        "input_peak_v": args.input_peak_v,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),
