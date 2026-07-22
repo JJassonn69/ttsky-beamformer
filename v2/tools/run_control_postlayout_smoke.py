@@ -166,6 +166,7 @@ def deck_text(
     transient_step_ns: float = 2.0,
     enable_delay_us: float = 0.0,
     output_shunt_ohms: float | None = None,
+    vbias_bypass_pf: float | None = None,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -184,6 +185,8 @@ def deck_text(
         raise ValueError("enable delay must be nonnegative and before analysis stop")
     if output_shunt_ohms is not None and output_shunt_ohms <= 0.0:
         raise ValueError("output shunt resistance must be positive")
+    if vbias_bypass_pf is not None and vbias_bypass_pf <= 0.0:
+        raise ValueError("VBIAS bypass capacitance must be positive")
     start = f"{analysis_start_us:g}u"
     stop = f"{analysis_stop_us:g}u"
     step = f"{transient_step_ns:g}n"
@@ -195,6 +198,11 @@ def deck_text(
             f"RSHUNTP {output_p_node} VDPWR {output_shunt_ohms:.12g}\n"
             f"RSHUNTN {output_n_node} VDPWR {output_shunt_ohms:.12g}"
         )
+    vbias_bypass = (
+        f"CBIAS_BYPASS ch0_vbias 0 {vbias_bypass_pf:.12g}p"
+        if vbias_bypass_pf is not None
+        else ""
+    )
     ena_source = (
         f"VENA {CONTROL_NODES['ena']} 0 "
         f"pulse(0 {{VDD}} {enable_delay_us:g}u 200p 200p 100u 200u)"
@@ -277,6 +285,7 @@ def deck_text(
 .param VDD=1.8 FIN=5meg FOUT=1meg VINPK={input_peak_v:.12g}
 {vdd_source}
 VSS_SOURCE {GROUND} 0 0
+{vbias_bypass}
 {chr(10).join(controls)}
 
 {chr(10).join(input_source(index, phase) for index, phase in enumerate(input_phases_deg))}
@@ -297,7 +306,7 @@ CF1 filt1 0 79.577p
 RF2 filt1 filtered 1k
 CF2 filtered 0 79.577p
 
-.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm)
+.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm) v(ch0_vbias)
 + v(tone_i) v(tone_q) i(VDD_SOURCE)
 + {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
@@ -306,6 +315,11 @@ CF2 filtered 0 79.577p
 .measure tran output_avg avg v(filtered) from={start} to={stop}
 .measure tran common_mode_avg avg v(common_mode) from={start} to={stop}
 .measure tran vcm_avg avg v(ch0_vcm) from={start} to={stop}
+.measure tran vcm_min min v(ch0_vcm) from={start} to={stop}
+.measure tran vcm_max max v(ch0_vcm) from={start} to={stop}
+.measure tran vbias_avg avg v(ch0_vbias) from={start} to={stop}
+.measure tran vbias_min min v(ch0_vbias) from={start} to={stop}
+.measure tran vbias_max max v(ch0_vbias) from={start} to={stop}
 .measure tran supply_avg avg i(VDD_SOURCE) from={start} to={stop}
 .measure tran tone_i_avg avg v(tone_i) from={start} to={stop}
 .measure tran tone_q_avg avg v(tone_q) from={start} to={stop}
@@ -414,6 +428,13 @@ def analyze(
         "output_tone_q_v": values.get("tone_q_avg", 0.0),
         "output_common_mode_v": values.get("common_mode_avg", 0.0),
         "vcm_v": values.get("vcm_avg", 0.0),
+        "vcm_peak_to_peak_v": (
+            values.get("vcm_max", 0.0) - values.get("vcm_min", 0.0)
+        ),
+        "vbias_v": values.get("vbias_avg", 0.0),
+        "vbias_peak_to_peak_v": (
+            values.get("vbias_max", 0.0) - values.get("vbias_min", 0.0)
+        ),
         "supply_current_a": abs(values.get("supply_avg", 0.0)),
         "estimated_power_w": 1.8 * abs(values.get("supply_avg", 0.0)),
         "phases": phases,
@@ -449,6 +470,7 @@ def main() -> int:
     parser.add_argument("--transient-step-ns", type=float, default=2.0)
     parser.add_argument("--enable-delay-us", type=float, default=0.0)
     parser.add_argument("--output-shunt-ohms", type=float)
+    parser.add_argument("--vbias-bypass-pf", type=float)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -468,6 +490,8 @@ def main() -> int:
         raise SystemExit("--enable-delay-us must be nonnegative and before analysis stop")
     if args.output_shunt_ohms is not None and args.output_shunt_ohms <= 0.0:
         raise SystemExit("--output-shunt-ohms must be positive")
+    if args.vbias_bypass_pf is not None and args.vbias_bypass_pf <= 0.0:
+        raise SystemExit("--vbias-bypass-pf must be positive")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -490,6 +514,7 @@ def main() -> int:
         and args.transient_step_ns == 2.0
         and args.enable_delay_us == 0.0
         and args.output_shunt_ohms is None
+        and args.vbias_bypass_pf is None
     )
     if default_case:
         work = BUILD / args.view
@@ -517,6 +542,8 @@ def main() -> int:
             case_label += f"_enable_{args.enable_delay_us:g}us".replace(".", "p")
         if args.output_shunt_ohms is not None:
             case_label += f"_shunt_{args.output_shunt_ohms:g}ohm".replace(".", "p")
+        if args.vbias_bypass_pf is not None:
+            case_label += f"_vbiascap_{args.vbias_bypass_pf:g}pf".replace(".", "p")
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -536,6 +563,7 @@ def main() -> int:
             transient_step_ns=args.transient_step_ns,
             enable_delay_us=args.enable_delay_us,
             output_shunt_ohms=args.output_shunt_ohms,
+            vbias_bypass_pf=args.vbias_bypass_pf,
         ),
         encoding="utf-8",
     )
@@ -589,6 +617,7 @@ def main() -> int:
         "transient_step_ns": args.transient_step_ns,
         "enable_delay_us": args.enable_delay_us,
         "output_shunt_ohms": args.output_shunt_ohms,
+        "vbias_bypass_pf": args.vbias_bypass_pf,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),

@@ -240,6 +240,26 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 output_shunt_ohms=0.0,
             )
 
+    def test_vbias_bypass_experiment_is_explicit_and_measured(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            vbias_bypass_pf=10.0,
+        )
+        self.assertIn("CBIAS_BYPASS ch0_vbias 0 10p", text)
+        self.assertIn(".measure tran vbias_min", text)
+        self.assertIn(".measure tran vbias_max", text)
+        self.assertIn(".measure tran vcm_min", text)
+        self.assertIn(".measure tran vcm_max", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"),
+                "netlist-hash",
+                "gds-hash",
+                vbias_bypass_pf=-1.0,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))
