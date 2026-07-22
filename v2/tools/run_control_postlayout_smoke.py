@@ -301,6 +301,7 @@ def analyze(
     values: dict[str, float], distributed_rc: bool = False,
     require_output: bool = True,
     settled_startup: bool = False,
+    full_channel_operation: bool = False,
 ) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     required = {
@@ -334,8 +335,13 @@ def analyze(
             if abs(period - 250e-9) > 2.5e-9:
                 errors.append(f"phase {index} period {period} is not nominal 250 ns")
         if settled_startup:
-            if not 0.8 < values["common_mode_avg"] < 1.2:
-                errors.append("settled differential output common mode is out of range")
+            if full_channel_operation:
+                if not 0.8 < values["common_mode_avg"] < 1.2:
+                    errors.append(
+                        "settled differential output common mode is out of range"
+                    )
+            elif not 0.5 < values["common_mode_avg"] < 1.75:
+                errors.append("diagnostic output common mode is near a supply rail")
             if not 1.1 < values["vcm_avg"] < 1.3:
                 errors.append("settled VCM is outside its nominal 1.2 V window")
         else:
@@ -513,6 +519,7 @@ def main() -> int:
         values,
         distributed_rc=args.view == "rc",
         settled_startup=args.startup == "op",
+        full_channel_operation=args.channel_mask == 0xF,
         require_output=(
             args.input_peak_v > 0.0
             and (args.incident_beam is None or args.beam == args.incident_beam)
