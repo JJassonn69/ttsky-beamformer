@@ -323,10 +323,10 @@ def analyze(
                 errors.append(f"phase {index} period {period} is not nominal 250 ns")
         if not 0.5 < values["common_mode_avg"] < 1.82:
             errors.append("differential output common mode is outside a plausible range")
-        # UIC intentionally skips the expensive DC solution, and the high-value
-        # divider cannot fully charge the PDK MIM subcircuit in this 4 us smoke
-        # window.  The frozen full-chip DC operating-point check is responsible
-        # for the nominal 1.2 V criterion; here we only reject a hard rail short.
+        # UIC intentionally skips the DC solution and is retained only as a
+        # short connectivity/clock smoke test.  Settled analog performance is
+        # accepted by the operating-point codebook; here reject only a hard
+        # VCM rail short instead of making a false steady-state claim.
         if not 0.1 < values["vcm_avg"] < 1.7:
             errors.append("VCM appears stuck at a supply rail during startup")
         if abs(values["supply_avg"]) < 1e-6:
