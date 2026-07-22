@@ -1,0 +1,148 @@
+{
+  "schema_version": 3,
+  "status": "locally validated reproducible V2 routing release candidate",
+  "release_scope": "four-channel analog, phase-selector, power, and complete digital-control routing",
+  "pending_before_fabrication": [
+    "post-layout analog and phase-code simulation across the frozen extracted views",
+    "independent foundry-qualified LVS where available",
+    "official TinyTapeout GitHub workflow and submission attestation"
+  ],
+  "top": "v2_control_quadrature_routed",
+  "gds": {
+    "path": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "sha256": "d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130"
+  },
+  "routing": {
+    "planned_signal_nets": 207,
+    "physically_routed_control_nets": 206,
+    "observation_only_unrouted_nets": 1,
+    "mapped_cell_pin_endpoints": 719,
+    "router_and_handoff_endpoints": 790,
+    "top_and_analog_handoff_pins": 45,
+    "unified_openroad_owned_nets": 206,
+    "manual_trim_handoffs": 16,
+    "manual_phase_handoffs": 12,
+    "manual_quadrature_handoffs": 4,
+    "total_wire_length_um": 7552.55,
+    "total_router_vias": 1466,
+    "maximum_signal_layer": "met4",
+    "nets_using_met4": 13,
+    "metal5_used": false,
+    "artificial_length_meanders": false,
+    "route_cycles": 0,
+    "unattached_route_leaves": 0
+  },
+  "magic": {
+    "direct_gds_full_chip_drc_count": 0,
+    "gds_import_feedback_count": 0,
+    "extraction_feedback_count": 0,
+    "verified_control_route_count": 206,
+    "mapped_standard_cell_count": 194,
+    "fixed_helper_standard_cell_count": 48,
+    "verified_power_and_body_pin_count": 968,
+    "verified_analog_resistor_terminal_triplet_count": 4,
+    "unexpected_signal_to_power_short_count": 0,
+    "drc_log": "build/v2/control_routing/direct/quadrature_magic_import_drc.log",
+    "drc_log_sha256": "55e9d428f05b2964603ad9fe0c85812d25b7f47285350456a14e6f49544506c3",
+    "extraction_log": "build/v2/control_routing/direct/quadrature_magic_extraction.log",
+    "extraction_log_sha256": "0cd172b23d7853523613c6fc55c6565761585893e5c43d6d64065ab10f1d7d78"
+  },
+  "direct_gds_flat_audit": {
+    "status": "pass",
+    "unexpected_via_only_m3_island_count": 0,
+    "via3_enclosure_error_count": 0,
+    "capm_clearance_error_count": 0,
+    "cut_sizes_um": {
+      "mcon": 0.17,
+      "via1": 0.15,
+      "via2": 0.20,
+      "via3": 0.20
+    }
+  },
+  "klayout_full_deck_delta": {
+    "status": "pass",
+    "source_marker_count": 2776,
+    "candidate_marker_count": 2776,
+    "added_marker_count": 0,
+    "removed_marker_count": 0,
+    "reports_newer_than_checked_gds": true,
+    "note": "The open_pdks deck reports inherited library/PCell markers in both source and candidate; the exact normalized marker multiset is unchanged.",
+    "report": "build/v2/control_routing/direct/final_klayout_delta_audit.json",
+    "report_sha256": "d70c9ea77088db17b7a6f7ef36c595c95c316f5141e44a476e47b844563a2892"
+  },
+  "topology_reports": {
+    "all_control_routes": {
+      "path": "build/v2/control_routing/quadrature_extraction/all_routes_topology_audit.json",
+      "sha256": "8af02c263bdfb28c953adf66467c9205a52d7b0c0b94560ed34448cfc388f765",
+      "verified_routes": 206,
+      "expected_router_endpoints": 718,
+      "verified_final_endpoints": 790
+    },
+    "phase_handoffs": {
+      "path": "build/v2/control_routing/quadrature_extraction/phase_topology_audit.json",
+      "sha256": "91ddc22307fd7944f6ada9d4b00b9c8728623c1f870d514c984ce8ff65fc0be3",
+      "verified_nets": 12
+    },
+    "trim_handoffs": {
+      "path": "build/v2/control_routing/quadrature_extraction/trim_topology_audit.json",
+      "sha256": "8b3359e53ad5fed4a094c351df7ebed715452519feaa0d28b1a0b31a6f103a45",
+      "verified_endpoint_roles": 48
+    },
+    "quadrature_handoffs": {
+      "path": "build/v2/control_routing/quadrature_extraction/topology_audit.json",
+      "sha256": "6af155a115828a98c8104afdd4daaef66af6b16b1dd669891ef0047eec7cc5bc",
+      "verified_nets": 4
+    },
+    "power_and_analog_terminals": {
+      "path": "build/v2/control_routing/quadrature_extraction/power_topology_audit.json",
+      "sha256": "de5972d8b8ae5dfe3f0b8056bef41a540f3b1c170dc42e848e33725a80d0de5f",
+      "verified_power_and_body_pins": 968,
+      "verified_analog_resistor_terminal_triplets": 4
+    }
+  },
+  "distributed_rc": {
+    "status": "pass",
+    "resistors": 91671,
+    "capacitors": 34316,
+    "devices": 4244,
+    "internal_resistor_nodes": 60984,
+    "covered_named_routes": 254,
+    "required_named_routes": 254,
+    "spice_to_annotation_ratio": 0.9446625653074474,
+    "minimum_spice_to_annotation_ratio": 0.90,
+    "unexpected_magic_warnings": 0,
+    "classified_viali_mesh_fallback_warnings": 1,
+    "viali_note": "This is Magic extresist's one-node contact-array meshing fallback, not a physical DRC waiver; exact cut dimensions, Magic DRC, and the KLayout deck are independently gated.",
+    "report": "build/v2/control_routing/final_rc/coverage_audit.json",
+    "report_sha256": "545a9a0d68571a0b1917a4f9261dcc02627da0acb1cea7d084809678c33840f8"
+  },
+  "review_images": [
+    {
+      "path": "build/v2/control_routing/review/beamformer-v2-control-final-overview.png",
+      "sha256": "bf0537b7f250aad88cd0557b6802797d7cadeb43a107c2759070c922cf0152b8"
+    },
+    {
+      "path": "build/v2/control_routing/review/beamformer-v2-control-final-top-detail.png",
+      "sha256": "b8bc2bff8df7d46012135ae9cab9b6522bb3efe640aaf4b211ee6a041e1ca35d"
+    },
+    {
+      "path": "build/v2/control_routing/review/beamformer-v2-control-final-trim-detail.png",
+      "sha256": "2c3c2ec7fe7102e0807d58a0fe684376cf196c8da4b881698d43fe745eca9926"
+    },
+    {
+      "path": "build/v2/control_routing/review/beamformer-v2-control-final-handoff-detail.png",
+      "sha256": "ae62b5968cf328390f596a678d498eb764caf274419a3e0588d8e421d29d1f83"
+    },
+    {
+      "path": "build/v2/control_routing/review/beamformer-v2-control-final-load-power-detail.png",
+      "sha256": "c46b609372d9cd113cc526b9b71c69a76a83636436f0cdc6c216900efb65481c"
+    }
+  ],
+  "regressions": {
+    "v2_tests": 168,
+    "shared_gds_rule_tests": 8,
+    "shared_route_constraint_tests": 20,
+    "total_tests": 196,
+    "failures": 0
+  }
+}

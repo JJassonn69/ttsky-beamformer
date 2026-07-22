@@ -60,10 +60,10 @@ class FourChannelBeamformerTests(unittest.TestCase):
         self.assertAlmostEqual(abs(result), 0.02, places=12)
         self.assertAlmostEqual(cmath.phase(result), 0.0, places=12)
 
-    def test_trim_target_spans_plus_minus_fifteen_percent(self) -> None:
-        self.assertAlmostEqual(trim_scale(0), 0.85, places=12)
+    def test_trim_matches_equal_unit_switched_tail_bank(self) -> None:
+        self.assertAlmostEqual(trim_scale(0), 0.84, places=12)
         self.assertAlmostEqual(trim_scale(8), 1.0, places=12)
-        self.assertAlmostEqual(trim_scale(15), 1.15, places=12)
+        self.assertAlmostEqual(trim_scale(15), 1.14, places=12)
 
     def test_invalid_trim_code_is_rejected(self) -> None:
         with self.assertRaises(ValueError):

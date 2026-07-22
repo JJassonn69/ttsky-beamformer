@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "frozen pre-route control power topology",
+  "source_checkpoint": {
+    "gds": "build/v2/control_placement/direct/v2_four_channel_control_placed.gds",
+    "top": "v2_four_channel_control_placed",
+    "sha256": "a3836d142a2d053560d5f5f17a005795195097097136c7d2659f5b908d75e4a9"
+  },
+  "output_top": "v2_four_channel_control_powered",
+  "policy": {
+    "topology": "continuous M1 row rails, two redundant M3 straps per net and region, M4 distribution trunks; the inherited channel helper-cell rows receive the same named supplies",
+    "power_before_signal_routing": true,
+    "metal5_allowed": false,
+    "maximum_direction_reversals": 0,
+    "orphan_vias_allowed": false,
+    "floating_power_shapes_allowed": false,
+    "decorative_fill_allowed": false,
+    "source_crossing": "VDPWR uses a short M3 bridge beneath the inner M4 VGND source rail",
+    "trim_feed": "one M3 VDPWR spine and one M4 VGND spine beside, but outside, the signal service corridor"
+  },
+  "rules": {
+    "row_height": 2.72,
+    "m1_rail_width": 0.48,
+    "m3_strap_width": 0.80,
+    "m4_trunk_width": 0.80,
+    "source_rail_width": 2.00,
+    "minimum_same_layer_spacing": 0.30,
+    "minimum_upper_contacts_per_rail": 2,
+    "minimum_service_corridor_clearance": 1.00,
+    "minimum_phase_handoff_clearance": 1.00
+  },
+  "source_rails": [
+    {
+      "net": "VDPWR",
+      "layer": "metal4",
+      "bbox": [1.0, 5.0, 3.0, 220.76],
+      "label_point": [2.0, 219.0]
+    },
+    {
+      "net": "VGND",
+      "layer": "metal4",
+      "bbox": [4.0, 5.0, 6.0, 220.76],
+      "label_point": [5.0, 219.0]
+    }
+  ],
+  "top_distribution": {
+    "VDPWR": {
+      "m3_source_bridge": [2.0, 7.0, 195.05],
+      "m4_trunk": [7.0, 256.0, 195.05]
+    },
+    "VGND": {
+      "m4_trunk": [5.0, 257.2, 193.75]
+    }
+  },
+  "trim_distribution": {
+    "VDPWR": {
+      "spine_layer": "metal3",
+      "spine": [256.0, 69.80, 195.05],
+      "m4_trunk": [225.2, 256.0, 69.80]
+    },
+    "VGND": {
+      "spine_layer": "metal4",
+      "spine": [257.2, 68.50, 193.75],
+      "m4_trunk": [224.0, 257.2, 68.50]
+    }
+  },
+  "region_straps": {
+    "phase_configuration_bank": {
+      "VDPWR": [86.4, 190.7],
+      "VGND": [85.2, 191.9],
+      "trunk_y": {"VDPWR": 195.05, "VGND": 193.75}
+    },
+    "global_control_core": {
+      "VDPWR": [86.4, 247.7],
+      "VGND": [85.2, 248.9],
+      "trunk_y": {"VDPWR": 195.05, "VGND": 193.75}
+    },
+    "trim_configuration_bank": {
+      "VDPWR": [225.2, 228.8],
+      "VGND": [224.0, 227.6],
+      "trunk_y": {"VDPWR": 69.80, "VGND": 68.50}
+    }
+  },
+  "fixed_helper_standard_cell_power": {
+    "expected_standard_cells": 48,
+    "expected_well_taps": 16,
+    "groups": [
+      {
+        "name": "channel_trim_inverters",
+        "rails": [
+          {"net": "VGND", "y": 22.64},
+          {"net": "VDPWR", "y": 25.36}
+        ],
+        "segments": [
+          {"name": "ch3", "rail_x_span": [89.4, 99.4], "contact_x_by_net": {"VGND": [92.0, 99.2], "VDPWR": [89.8, 94.8]}},
+          {"name": "ch2", "rail_x_span": [108.72, 118.72], "contact_x_by_net": {"VGND": [111.32, 118.52], "VDPWR": [109.12, 114.12]}},
+          {"name": "ch1", "rail_x_span": [128.04, 138.04], "contact_x_by_net": {"VGND": [130.64, 137.84], "VDPWR": [128.44, 133.44]}},
+          {"name": "ch0", "rail_x_span": [147.36, 157.36], "contact_x_by_net": {"VGND": [149.96, 157.16], "VDPWR": [147.76, 152.76]}}
+        ]
+      },
+      {
+        "name": "channel_phase_selectors",
+        "rails": [
+          {"net": "VGND", "y": 120.0},
+          {"net": "VDPWR", "y": 122.72},
+          {"net": "VGND", "y": 123.72},
+          {"net": "VDPWR", "y": 126.44},
+          {"net": "VGND", "y": 127.44},
+          {"net": "VDPWR", "y": 130.16}
+        ],
+        "segments": [
+          {"name": "all_channels", "rail_x_span": [81.6, 164.4], "contact_x_by_net": {"VDPWR": [82.0, 162.5], "VGND": [83.5, 164.0]}}
+        ]
+      }
+    ],
+    "nwell_bridges": [
+      {"name": "ch3_trim_nwell", "bbox": [90.89, 23.945, 99.09, 25.55]},
+      {"name": "ch2_trim_nwell", "bbox": [110.21, 23.945, 118.41, 25.55]},
+      {"name": "ch1_trim_nwell", "bbox": [129.53, 23.945, 137.73, 25.55]},
+      {"name": "ch0_trim_nwell", "bbox": [148.85, 23.945, 157.05, 25.55]},
+      {"name": "ch3_phase_row0_nwell", "bbox": [88.59, 121.305, 100.93, 122.91]},
+      {"name": "ch2_phase_row0_nwell", "bbox": [107.91, 121.305, 120.25, 122.91]},
+      {"name": "ch1_phase_row0_nwell", "bbox": [127.23, 121.305, 139.57, 122.91]},
+      {"name": "ch0_phase_row0_nwell", "bbox": [146.55, 121.305, 158.89, 122.91]},
+      {"name": "ch3_phase_row1_nwell", "bbox": [89.74, 125.025, 99.78, 126.63]},
+      {"name": "ch2_phase_row1_nwell", "bbox": [109.06, 125.025, 119.10, 126.63]},
+      {"name": "ch1_phase_row1_nwell", "bbox": [128.38, 125.025, 138.42, 126.63]},
+      {"name": "ch0_phase_row1_nwell", "bbox": [147.70, 125.025, 157.74, 126.63]},
+      {"name": "ch3_phase_row2_nwell", "bbox": [89.74, 128.745, 99.78, 130.35]},
+      {"name": "ch2_phase_row2_nwell", "bbox": [109.06, 128.745, 119.10, 130.35]},
+      {"name": "ch1_phase_row2_nwell", "bbox": [128.38, 128.745, 138.42, 130.35]},
+      {"name": "ch0_phase_row2_nwell", "bbox": [147.70, 128.745, 157.74, 130.35]}
+    ],
+    "distribution_wires": [
+      {"net": "VGND", "layer": "metal4", "orientation": "h", "a": 5.0, "b": 173.0, "fixed": 20.0, "width": 0.80, "owner": "channel_ground_bus_overlay"},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 92.0, "width": 0.80, "owner": "ch3_trim_ground_a", "via3_at": [[92.0, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 99.2, "width": 0.80, "owner": "ch3_trim_ground_b", "via3_at": [[99.2, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 111.32, "width": 0.80, "owner": "ch2_trim_ground_a", "via3_at": [[111.32, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 118.52, "width": 0.80, "owner": "ch2_trim_ground_b", "via3_at": [[118.52, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 130.64, "width": 0.80, "owner": "ch1_trim_ground_a", "via3_at": [[130.64, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 137.84, "width": 0.80, "owner": "ch1_trim_ground_b", "via3_at": [[137.84, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 149.96, "width": 0.80, "owner": "ch0_trim_ground_a", "via3_at": [[149.96, 20.0]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 20.0, "b": 22.64, "fixed": 157.16, "width": 0.80, "owner": "ch0_trim_ground_b", "via3_at": [[157.16, 20.0]]},
+      {"net": "VDPWR", "layer": "metal4", "orientation": "h", "a": 89.8, "b": 256.0, "fixed": 21.40, "width": 0.80, "owner": "trim_inverter_vdpwr_trunk"},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 89.8, "width": 0.80, "owner": "ch3_trim_vdpwr_a", "via3_at": [[89.8, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 94.8, "width": 0.80, "owner": "ch3_trim_vdpwr_b", "via3_at": [[94.8, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 109.12, "width": 0.80, "owner": "ch2_trim_vdpwr_a", "via3_at": [[109.12, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 114.12, "width": 0.80, "owner": "ch2_trim_vdpwr_b", "via3_at": [[114.12, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 128.44, "width": 0.80, "owner": "ch1_trim_vdpwr_a", "via3_at": [[128.44, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 133.44, "width": 0.80, "owner": "ch1_trim_vdpwr_b", "via3_at": [[133.44, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 147.76, "width": 0.80, "owner": "ch0_trim_vdpwr_a", "via3_at": [[147.76, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 25.36, "fixed": 152.76, "width": 0.80, "owner": "ch0_trim_vdpwr_b", "via3_at": [[152.76, 21.40]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 21.40, "b": 69.80, "fixed": 256.0, "width": 0.80, "owner": "trim_vdpwr_spine_extension", "via3_at": [[256.0, 21.40]]},
+      {"net": "VDPWR", "layer": "metal4", "orientation": "h", "a": 78.0, "b": 162.5, "fixed": 116.80, "width": 0.80, "owner": "phase_selector_vdpwr_trunk"},
+      {"net": "VGND", "layer": "metal4", "orientation": "h", "a": 80.0, "b": 164.0, "fixed": 118.20, "width": 0.80, "owner": "phase_selector_vgnd_trunk"},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 116.80, "b": 195.05, "fixed": 78.0, "width": 0.80, "owner": "phase_selector_vdpwr_source_spine", "via3_at": [[78.0, 116.80], [78.0, 195.05]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 118.20, "b": 193.75, "fixed": 80.0, "width": 0.80, "owner": "phase_selector_vgnd_source_spine", "via3_at": [[80.0, 118.20], [80.0, 193.75]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 116.80, "b": 130.16, "fixed": 82.0, "width": 0.80, "owner": "phase_selector_vdpwr_left", "via3_at": [[82.0, 116.80]]},
+      {"net": "VDPWR", "layer": "metal3", "orientation": "v", "a": 116.80, "b": 130.16, "fixed": 162.5, "width": 0.80, "owner": "phase_selector_vdpwr_right", "via3_at": [[162.5, 116.80]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 118.20, "b": 127.44, "fixed": 83.5, "width": 0.80, "owner": "phase_selector_vgnd_left", "via3_at": [[83.5, 118.20]]},
+      {"net": "VGND", "layer": "metal3", "orientation": "v", "a": 118.20, "b": 127.44, "fixed": 164.0, "width": 0.80, "owner": "phase_selector_vgnd_right", "via3_at": [[164.0, 118.20]]}
+    ],
+    "rule": "each trim-inverter channel is isolated to its local M1 rail segment with two upper contacts; the VDPWR M4 trunk uses the verified clear corridor at y=21.40 instead of crossing the 32 vertical analog-signal M4 routes; 16 explicit nwell bridges close only the deliberate standard-cell gaps back to the adjacent tap cells; phase-selector rails retain two outside contacts"
+  },
+  "analog_vdpwr_endpoints": [
+    {
+      "component": "RVCM_TOP",
+      "terminal": "R1",
+      "expected_point": [25.0, 157.905],
+      "route_layer": "metal4",
+      "source_bridge_end_x": 7.0
+    },
+    {
+      "component": "RBIAS",
+      "terminal": "R1",
+      "expected_point": [172.5, 154.395],
+      "route_layer": "metal4",
+      "source_bridge_end_x": 7.0
+    },
+    {
+      "component": "LOAD_N",
+      "terminal": "R1",
+      "expected_point": [114.54, 114.71],
+      "route_layer": "metal3",
+      "connection": "phase_selector_vdpwr_trunk",
+      "trunk_y": 116.80
+    },
+    {
+      "component": "LOAD_P",
+      "terminal": "R1",
+      "expected_point": [133.86, 114.71],
+      "route_layer": "metal3",
+      "connection": "phase_selector_vdpwr_trunk",
+      "trunk_y": 116.80
+    }
+  ],
+  "reserved_keepouts": [
+    {
+      "name": "control_service_corridor",
+      "bbox": [259.0, 20.0, 267.0, 222.0],
+      "allowed_power": []
+    },
+    {
+      "name": "phase_handoff_columns",
+      "layer": "metal3",
+      "x_span": [89.9, 160.26],
+      "y_span": [151.0, 176.0],
+      "allowed_power": []
+    },
+    {
+      "name": "load_n_device_body",
+      "bbox": [113.005, 98.285, 116.075, 115.715],
+      "allowed_power": ["VDPWR"]
+    },
+    {
+      "name": "load_p_device_body",
+      "bbox": [132.325, 98.285, 135.395, 115.715],
+      "allowed_power": ["VDPWR"]
+    }
+  ],
+  "release_gates": [
+    "every placed standard-cell and tap power rail is overlapped by the correct M1 row rail",
+    "every row rail has at least two independent M1-to-M3 contact stacks",
+    "all VDPWR and VGND shapes form exactly one connected component per net",
+    "every via has owned conductor on both adjacent layers",
+    "no cross-net same-layer overlap or spacing violation",
+    "no project metal enters the M3 phase-handoff or service-corridor keepouts",
+    "Magic full DRC passes after importing the exact assembled GDS",
+    "extraction reports all standard-cell VPWR pins on VDPWR and all VGND pins on VGND",
+    "extraction preserves independent B, R1, and R2 ports for both output loads and connects only R1 to VDPWR"
+  ]
+}

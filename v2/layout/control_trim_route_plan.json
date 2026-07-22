@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "trim handoff contract after production internal routing",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/openroad_internal/direct/v2_control_internal_routed.gds",
+    "top": "v2_control_internal_routed",
+    "sha256": "f7ee1838a7f07f3977e7e5c8f4a1ab3a423daf4074d83b57cd856347b0687d5d"
+  },
+  "openroad_handoff_checkpoint": {
+    "jobs": "build/v2/control_routing/openroad/openroad_jobs.json",
+    "jobs_sha256": "b1c79c247911e858d38d238bfd1fc07f6b46fed91312a2531ed64934bf0e4947",
+    "geometry": "build/v2/control_routing/openroad_route_geometry.json",
+    "geometry_sha256": "b00d9f0844f899b795a09654e86f3a1e174b2fc96ba757679f6c4d59882699f7"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "c66ba77cb0ed9ef30818a055e3ee7a542fc2483d129cbc52a1092132d9d17428"
+  },
+  "overlay_top": "v2_control_trim_routes_overlay",
+  "output_top": "v2_control_trim_routed",
+  "expected_route_count": 16,
+  "policy": {
+    "internal_and_trim_boundary_routes_are_frozen_before_analog_handoffs": true,
+    "openroad_m3_handoff_pins_are_the_only_digital_analog_connection": true,
+    "trim_outputs_use_unique_analog_m3_columns": true,
+    "trim_bus_rows_are_monotonic": true,
+    "route_direction_reversals": 0,
+    "metal4_used": false
+  }
+}

@@ -5,3 +5,5 @@ __pycache__/
 
 # Recreate this pinned external model library using third_party/README.md.
 third_party/sky130_fd_pr/
+third_party/sky130_fd_pr_hvt/*.spice
+bsim4v5.out

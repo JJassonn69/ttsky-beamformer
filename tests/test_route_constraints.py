@@ -6,12 +6,15 @@ from pathlib import Path
 
 from tools.check_generated_routes import (
     boundary_route_results,
+    canonicalize_nets,
     dead_end_via3_errors,
     disconnected_route_errors,
     endpoint_matching_results,
     expand_endpoint_constraints,
     label_connection_errors,
     matching_results,
+    merge_route_files,
+    overlap_errors,
     orthogonal_neck_errors,
     parse_route,
     parse_net_labels,
@@ -105,6 +108,47 @@ label {own} FreeSans 0.10u -met3
         self.assertEqual(len(errors), 1)
         self.assertIn("foreign conductor", errors[0])
 
+    def test_incremental_route_audit_detects_cross_stage_short(self) -> None:
+        base = """# base output -> lop
+paint_rect metal4 0.0 0.0 0.4 5.0
+"""
+        addition = """# later enable -> enable
+paint_rect metal4 -1.0 2.0 1.0 2.4
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            base_path = Path(directory) / "base.tcl"
+            addition_path = Path(directory) / "addition.tcl"
+            base_path.write_text(base)
+            addition_path.write_text(addition)
+            shapes, _ = merge_route_files([base_path, addition_path])
+            errors = overlap_errors(shapes)
+        self.assertEqual(len(errors), 1)
+        self.assertIn("lop", errors[0])
+        self.assertIn("enable", errors[0])
+
+    def test_explicit_incremental_net_equivalence_allows_intended_join(self) -> None:
+        route = """# channel leaf -> ch0_phase_0_leaf
+paint_rect metal3 0.0 0.0 0.4 2.0
+# global tree -> phase_0
+paint_rect metal3 0.0 1.8 0.4 4.0
+"""
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "route.tcl"
+            path.write_text(route)
+            shapes = parse_route(path)
+            normalized, _ = canonicalize_nets(
+                shapes,
+                [],
+                [{
+                    "canonical": "phase_0",
+                    "members": ["phase_0", "ch0_phase_0_leaf"],
+                }],
+            )
+        self.assertEqual(overlap_errors(normalized), [])
+        self.assertEqual(
+            {shape.net for shape in normalized["metal3"]}, {"phase_0"}
+        )
+
     def test_endpoint_pair_group_expands_to_independent_constraints(self) -> None:
         constraints = [{
             "name": "branches",
@@ -156,6 +200,33 @@ paint_rect metal4 9.8 0.0 10.2 0.4
         self.assertFalse(results[0]["passed"])
         self.assertTrue(any("metal4 length mismatch" in failure for failure in failures))
         self.assertTrue(any("via3 site count" in failure for failure in failures))
+
+    def test_pair_constraint_supports_per_layer_limits(self) -> None:
+        metrics = {
+            "a": {
+                "wire_length_um": {"metal1": 10, "metal2": 0, "metal3": 10, "metal4": 20},
+                "via_sites": {"via1": 1, "via2": 1, "via3": 1},
+            },
+            "b": {
+                "wire_length_um": {"metal1": 8.6, "metal2": 0, "metal3": 10, "metal4": 20},
+                "via_sites": {"via1": 1, "via2": 1, "via3": 1},
+            },
+        }
+        constraints = [{
+            "name": "intentional_layer_change",
+            "nets": ["a", "b"],
+            "layers": ["metal1", "metal3", "metal4"],
+            "max_layer_length_mismatch_percent": 2,
+            "max_layer_length_mismatch_percent_by_layer": {"metal1": 16},
+            "max_total_length_mismatch_percent": 4,
+            "equal_vias": ["via1", "via2", "via3"],
+        }]
+        results, failures = matching_results(metrics, constraints)
+        self.assertEqual(failures, [])
+        self.assertTrue(results[0]["passed"])
+        self.assertEqual(
+            results[0]["layer_length_mismatch_limits_percent"]["metal1"], 16,
+        )
 
     def test_endpoint_constraint_includes_track_and_boundary_route(self) -> None:
         route = """# horizontal net track: a

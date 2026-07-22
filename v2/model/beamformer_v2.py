@@ -51,23 +51,20 @@ def rc_transfer(frequency_hz: float, path: AnalogPath) -> complex:
 
 
 def trim_scale(code: int, bits: int = 4, fractional_range: float = 0.15) -> float:
-    """Map a provisional static trim code onto a symmetric gain range.
+    """Map the verified equal-unit switched-tail code onto relative current.
 
-    The transfer is a system-model target, not a transistor-level DAC claim.
-    Code zero maps to 1-range, code 8 maps to nominal gain, and the maximum
-    code maps to 1+range. The slightly different steps above and below nominal
-    reflect that a four-bit word has no perfectly centered integer code.
+    Forty-two fixed current fingers plus the binary code give 42..57 active
+    fingers.  Code 8 activates 50 fingers and is the nominal operating point.
+    Small-signal channel gain is provisionally assumed to track tail current;
+    the transistor-level channel sweep must quantify any residual curvature.
     """
 
     maximum_code = (1 << bits) - 1
     if not 0 <= code <= maximum_code:
         raise ValueError(f"trim code must be in 0..{maximum_code}")
-    nominal_code = 1 << (bits - 1)
-    if code <= nominal_code:
-        return 1.0 - fractional_range * (nominal_code - code) / nominal_code
-    return 1.0 + fractional_range * (code - nominal_code) / (
-        maximum_code - nominal_code
-    )
+    if bits != 4 or fractional_range != 0.15:
+        raise ValueError("V2 production trim model is fixed to the verified four-bit bank")
+    return (42.0 + code) / 50.0
 
 
 def tx_phase_codes(beam_index: int) -> tuple[int, ...]:
@@ -156,9 +153,9 @@ def build_summary() -> dict[str, object]:
         "output_frequency_hz": 1.0e6,
         "tx_phase_codebook": [list(tx_phase_codes(beam)) for beam in range(4)],
         "rx_phase_codebook": [list(rx_phase_codes(beam)) for beam in range(4)],
-        "provisional_trim_scale_min": trim_scale(0),
-        "provisional_trim_scale_default_code_8": trim_scale(8),
-        "provisional_trim_scale_max": trim_scale(15),
+        "verified_tail_current_scale_min": trim_scale(0),
+        "verified_tail_current_scale_default_code_8": trim_scale(8),
+        "verified_tail_current_scale_max": trim_scale(15),
         "ideal_response_magnitude_matrix": [
             [abs(value) for value in row] for row in matrix
         ],

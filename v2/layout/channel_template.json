@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "measured analog PCells plus pinned phase-selector GDS placement; isolated selector DRC passed",
+  "coordinate_system": "x is relative to each channel center; y is absolute macro coordinate",
+  "orientation_pattern": {
+    "name": "source_facing_pairs",
+    "left_device": "R0",
+    "right_device": "MY",
+    "reason": "puts the shared source terminals inward and the drain escapes outward"
+  },
+  "critical_symmetry_axis_x": 0.92,
+  "regions": {
+    "input_resistor_column": [-9.0, 8.0, -5.93, 84.32],
+    "tail_trim_and_device_core": [-4.93, 28.5, 7.0, 82.5],
+    "local_route_channel": [7.0, 8.0, 9.0, 90.0],
+    "phase_selector_reserved": [-9.0, 118.0, 9.0, 151.0]
+  },
+  "guard_rings": [
+    {
+      "name": "trim_bank_psub_guard",
+      "bbox": [-5.25, 29.42, 7.09, 48.08],
+      "net": "VGND",
+      "contains": ["tail_trim"],
+      "centerline_semantics": true,
+      "reason": "GM and mixer PCells already contain individual PDK guard rings"
+    }
+  ],
+  "components": [
+    {"name": "RINPUT", "pcell": "input_bias_resistor_guarded", "x": -7.465, "y": 46.16, "orientation": "R0", "role": "input_bias"},
+
+    {"name": "TMAIN0", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 31.00, "orientation": "R0", "role": "trim_fixed_14"},
+    {"name": "TMAIN1", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 34.14, "orientation": "R0", "role": "trim_fixed_14"},
+    {"name": "TMAIN2", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 37.28, "orientation": "R0", "role": "trim_fixed_14"},
+    {"name": "TTRIM8", "pcell": "trim_bit8_nfet_shared_guard", "x": 0.92, "y": 40.42, "orientation": "R0", "role": "trim_binary_8"},
+    {"name": "TTRIM4", "pcell": "trim_bit4_nfet_shared_guard", "x": -1.555, "y": 43.56, "orientation": "R0", "role": "trim_binary_4"},
+    {"name": "TTRIM2", "pcell": "trim_bit2_nfet_shared_guard", "x": 2.105, "y": 43.56, "orientation": "R0", "role": "trim_binary_2"},
+    {"name": "TTRIM1", "pcell": "trim_bit1_nfet_shared_guard", "x": 4.58, "y": 43.56, "orientation": "R0", "role": "trim_binary_1"},
+
+    {"name": "TSW2_ON", "pcell": "trim_switch_nfet_shared_guard", "x": -3.385, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 2},
+    {"name": "TSW2_OFF", "pcell": "trim_switch_nfet_shared_guard", "x": -2.155, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 2},
+    {"name": "TSW3_ON", "pcell": "trim_switch_nfet_shared_guard", "x": -0.925, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 3},
+    {"name": "TSW3_OFF", "pcell": "trim_switch_nfet_shared_guard", "x": 0.305, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 3},
+    {"name": "TSW1_ON", "pcell": "trim_switch_nfet_shared_guard", "x": 1.535, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 1},
+    {"name": "TSW1_OFF", "pcell": "trim_switch_nfet_shared_guard", "x": 2.765, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 1},
+    {"name": "TSW0_ON", "pcell": "trim_switch_nfet_shared_guard", "x": 3.995, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 0},
+    {"name": "TSW0_OFF", "pcell": "trim_switch_nfet_shared_guard", "x": 5.225, "y": 46.50, "orientation": "R0", "role": "trim_gate_switch", "trim_bit": 0},
+
+    {"name": "GM_SIG_A", "pcell": "gm_nfet_guarded", "x": -1.89, "y": 52.00, "orientation": "R0", "role": "gm_signal", "unit": "A"},
+    {"name": "GM_REF_A", "pcell": "gm_nfet_guarded", "x": 3.73, "y": 52.00, "orientation": "MY", "role": "gm_reference", "unit": "A"},
+    {"name": "GM_REF_B", "pcell": "gm_nfet_guarded", "x": -1.89, "y": 56.70, "orientation": "R0", "role": "gm_reference", "unit": "B"},
+    {"name": "GM_SIG_B", "pcell": "gm_nfet_guarded", "x": 3.73, "y": 56.70, "orientation": "MY", "role": "gm_signal", "unit": "B"},
+
+    {"name": "SW1_A", "pcell": "mixer_nfet_guarded", "x": -1.615, "y": 65.00, "orientation": "R0", "role": "mixer_out_p", "gm_branch": "p", "lo_gate": "lop"},
+    {"name": "SW3_A", "pcell": "mixer_nfet_guarded", "x": 3.455, "y": 65.00, "orientation": "MY", "role": "mixer_out_n", "gm_branch": "n", "lo_gate": "lop"},
+    {"name": "SW2_A", "pcell": "mixer_nfet_guarded", "x": -1.615, "y": 69.70, "orientation": "R0", "role": "mixer_out_n", "gm_branch": "p", "lo_gate": "lon"},
+    {"name": "SW4_A", "pcell": "mixer_nfet_guarded", "x": 3.455, "y": 69.70, "orientation": "MY", "role": "mixer_out_p", "gm_branch": "n", "lo_gate": "lon"},
+    {"name": "SW4_B", "pcell": "mixer_nfet_guarded", "x": -1.615, "y": 74.40, "orientation": "R0", "role": "mixer_out_p", "gm_branch": "n", "lo_gate": "lon"},
+    {"name": "SW2_B", "pcell": "mixer_nfet_guarded", "x": 3.455, "y": 74.40, "orientation": "MY", "role": "mixer_out_n", "gm_branch": "p", "lo_gate": "lon"},
+    {"name": "SW3_B", "pcell": "mixer_nfet_guarded", "x": -1.615, "y": 79.10, "orientation": "R0", "role": "mixer_out_n", "gm_branch": "n", "lo_gate": "lop"},
+    {"name": "SW1_B", "pcell": "mixer_nfet_guarded", "x": 3.455, "y": 79.10, "orientation": "MY", "role": "mixer_out_p", "gm_branch": "p", "lo_gate": "lop"},
+
+    {"name": "PMUX_A", "pcell": "sc_hd_mux2_1", "x": -1.38, "y": 128.80, "orientation": "MY", "role": "phase_mux", "placement_region": "phase_selector"},
+    {"name": "PMUX_B", "pcell": "sc_hd_mux2_1", "x": 3.22, "y": 128.80, "orientation": "R0", "role": "phase_mux", "placement_region": "phase_selector"},
+    {"name": "PTAP2", "pcell": "sc_hd_tapvpwrvgnd_1", "x": -4.14, "y": 128.80, "orientation": "R0", "role": "well_tap", "placement_region": "phase_selector"},
+
+    {"name": "PMUX_P", "pcell": "sc_hd_mux2_1", "x": -1.38, "y": 125.08, "orientation": "R0", "role": "phase_mux", "placement_region": "phase_selector"},
+    {"name": "PMUX_N", "pcell": "sc_hd_mux2_1", "x": 3.22, "y": 125.08, "orientation": "MY", "role": "phase_mux", "placement_region": "phase_selector"},
+    {"name": "PTAP1", "pcell": "sc_hd_tapvpwrvgnd_1", "x": -4.14, "y": 125.08, "orientation": "R0", "role": "well_tap", "placement_region": "phase_selector"},
+
+    {"name": "PAND_P", "pcell": "sc_hd_and2_1", "x": -3.45, "y": 121.36, "orientation": "R0", "role": "phase_gate", "placement_region": "phase_selector"},
+    {"name": "PBUF_P", "pcell": "sc_hd_buf_4", "x": -0.92, "y": 121.36, "orientation": "R0", "role": "phase_buffer", "placement_region": "phase_selector"},
+    {"name": "PBUF_N", "pcell": "sc_hd_buf_4", "x": 2.76, "y": 121.36, "orientation": "MY", "role": "phase_buffer", "placement_region": "phase_selector"},
+    {"name": "PAND_N", "pcell": "sc_hd_and2_1", "x": 5.29, "y": 121.36, "orientation": "MY", "role": "phase_gate", "placement_region": "phase_selector"},
+    {"name": "PTAP0", "pcell": "sc_hd_tapvpwrvgnd_1", "x": -5.29, "y": 121.36, "orientation": "R0", "role": "well_tap", "placement_region": "phase_selector"},
+
+    {"name": "TINV2", "pcell": "sc_hd_inv_1", "x": -1.61, "y": 24.00, "orientation": "R0", "role": "trim_control_inverter", "placement_region": "local_static_control", "trim_bit": 2},
+    {"name": "TINV3", "pcell": "sc_hd_inv_1", "x": 0.23, "y": 24.00, "orientation": "R0", "role": "trim_control_inverter", "placement_region": "local_static_control", "trim_bit": 3},
+    {"name": "TINV1", "pcell": "sc_hd_inv_1", "x": 2.07, "y": 24.00, "orientation": "MY", "role": "trim_control_inverter", "placement_region": "local_static_control", "trim_bit": 1},
+    {"name": "TINV0", "pcell": "sc_hd_inv_1", "x": 3.91, "y": 24.00, "orientation": "MY", "role": "trim_control_inverter", "placement_region": "local_static_control", "trim_bit": 0},
+    {"name": "PTAP3", "pcell": "sc_hd_tapvpwrvgnd_1", "x": -2.99, "y": 24.00, "orientation": "R0", "role": "well_tap", "placement_region": "local_static_control"}
+  ],
+  "local_route_anchors": {
+    "input_root": [0.0, 8.0],
+    "trim_drain_collection": [0.92, 47.0],
+    "gm_tail_star": [0.92, 49.0],
+    "mixer_output_p": [-1.08, 90.0],
+    "mixer_output_n": [2.92, 90.0],
+    "phase_bundle_entry": [0.92, 151.0]
+  },
+  "local_route_budgets": {
+    "input_pin_to_farthest_gm_gate_um": 80.0,
+    "gm_source_to_tail_star_um": 12.0,
+    "tail_bank_drain_to_star_um": 22.0,
+    "gm_branch_tree_span_um": 30.0,
+    "mixer_drain_to_sum_bus_um": 28.0,
+    "local_lo_buffer_to_mixer_gate_um": 60.0,
+    "static_trim_control_to_gate_switch_um": 100.0,
+    "allowed_direction_reversals": 0,
+    "allowed_dead_end_stubs": 0,
+    "allowed_orphan_vias": 0,
+    "rule": "a route exceeding a budget blocks generation and requires component reordering or a named obstacle waiver; budgets are endpoint-to-tree spans, not cosmetic matched-length targets"
+  },
+  "unresolved_before_geometry": [
+    "prove R0/MY extraction equivalence for every mirrored device class",
+    "generate detailed route geometry from the frozen measured terminal escapes and pass route-topology checks",
+    "verify local phase-selector and relocated trim-control routes against the stated budgets",
+    "repeat full-cell DRC after power, signal, guard-ring, and boundary integration"
+  ]
+}

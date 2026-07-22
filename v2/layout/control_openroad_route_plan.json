@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "production unified-control detailed-route contract with reviewed trim-route optimization",
+  "source_checkpoint": {
+    "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
+    "top": "v2_four_channel_control_powered",
+    "sha256": "cf25e276fcb99a6c5e8559822ded5b4ec132e616a9a9583bbce3d425db7b6f81"
+  },
+  "route_checkpoint": {
+    "jobs": "build/v2/control_routing/openroad/openroad_jobs.json",
+    "jobs_sha256": "b1c79c247911e858d38d238bfd1fc07f6b46fed91312a2531ed64934bf0e4947",
+    "audit": "build/v2/control_routing/openroad/route_audit.json",
+    "audit_sha256": "b3a3a6500af08c35bd51d9512b5672a2a7841046a5a309a696760f10a4003f5f",
+    "routed_def": "build/v2/control_routing/openroad/digital_control/routed.def",
+    "routed_def_sha256": "0893d01378a1630ad86bd55885c0329e2912b550766e1371c7b9c86f0390eb3b",
+    "wire_length": "build/v2/control_routing/openroad/digital_control/wire_length.csv",
+    "wire_length_sha256": "5d9ba8591d1a3bfff3091bec01a0836feb937efde327d8593e11b93ac5bbefd2",
+    "placement": "build/v2/control_placement/control_placement.json",
+    "placement_sha256": "f12b8d75a6b7874bdaea6a772c7c0126b86bc5778cc97d1d5424eb1632c74a7c",
+    "mapping": "build/v2/control_mapping/physical_netlist.json",
+    "mapping_sha256": "e328f8ba9ef2a6b9bbd17efe645e4ebfb85641b17b2b93c72b031644211da4bd"
+  },
+  "overlay_top": "v2_control_openroad_routes",
+  "output_top": "v2_control_internal_routed",
+  "routed_classes": [
+    "local_direct",
+    "regional_trunk",
+    "trim_handoff",
+    "quadrature_handoff",
+    "direct_boundary",
+    "service_tree",
+    "phase_handoff",
+    "external_input"
+  ],
+  "expected_route_count": 206,
+  "maximum_route_layer": "met4",
+  "wire_widths": {
+    "li1": 0.17,
+    "met1": 0.14,
+    "met2": 0.14,
+    "met3": 0.3,
+    "met4": 0.3
+  },
+  "via_geometries": {
+    "L1M1": [
+      ["li1", [-0.085, -0.085, 0.085, 0.085]],
+      ["mcon", [-0.085, -0.085, 0.085, 0.085]],
+      ["met1", [-0.145, -0.115, 0.145, 0.115]]
+    ],
+    "M1M2": [
+      ["met1", [-0.16, -0.13, 0.16, 0.13]],
+      ["via", [-0.075, -0.075, 0.075, 0.075]],
+      ["met2", [-0.13, -0.16, 0.13, 0.16]]
+    ],
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.1, -0.1, 0.1, 0.1]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ],
+    "M3M4": [
+      ["met3", [-0.19, -0.16, 0.19, 0.16]],
+      ["via3", [-0.1, -0.1, 0.1, 0.1]],
+      ["met4", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "policy": {
+    "placement_is_fixed": true,
+    "global_phase_and_trim_banks_share_one_bounded_route_job": true,
+    "all_206_digital_internal_handoff_direct_service_and_external_input_nets_are_router_owned": true,
+    "trim_handoffs_terminate_on_fixed_m3_boundary_pins": true,
+    "quadrature_handoffs_terminate_on_fixed_m3_boundary_pins": true,
+    "phase_handoffs_terminate_on_fixed_m2_boundary_pins": true,
+    "direct_cross_bank_trees_are_detailed_router_owned": true,
+    "service_trees_and_all_thirteen_external_control_pins_are_detailed_router_owned": true,
+    "foundry_lef_pin_access_is_mandatory": true,
+    "power_geometry_and_analog_keepouts_are_blockages": true,
+    "route_centerlines_and_vias_are_reproduced_from_routed_def": true,
+    "reviewed_trim_route_optimization_is_frozen_in_the_audited_routed_def": true,
+    "metal4_is_used_only_by_the_thirteen_external_input_routes": true,
+    "metal5_used": false
+  },
+  "release_gates": [
+    "FastRoute routes all 206 internal, handoff, direct cross-bank, service-tree, and external-input nets without congestion overflow",
+    "TritonRoute reaches zero final detailed-route violations",
+    "every DEF route is a loop-free tree after transformed LEF pin conductors are included",
+    "every route leaf lands inside its named foundry LEF pin polygon",
+    "only the thirteen intentional external-input routes rise to metal4 and no orphan via or dead branch exists",
+    "Magic full-chip DRC and complete terminal-aware extraction pass on the assembled GDS"
+  ]
+}

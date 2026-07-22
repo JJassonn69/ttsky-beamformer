@@ -35,7 +35,10 @@ class Structure:
 # Human-readable layer names and a bottom-to-top drawing order for SKY130.
 LAYERS = {
     (235, 4): ("tile boundary", (118, 129, 151, 42)),
+    (236, 0): ("standard-cell boundary", (132, 145, 166, 34)),
     (64, 20): ("n-well", (73, 123, 255, 60)),
+    (64, 16): ("n-well pin", (108, 151, 255, 90)),
+    (122, 16): ("p-well pin", (255, 191, 242, 90)),
     (94, 20): ("p+ implant", (255, 118, 137, 54)),
     (93, 44): ("n+ implant", (90, 181, 255, 54)),
     (65, 20): ("diffusion", (76, 222, 128, 112)),
@@ -46,9 +49,11 @@ LAYERS = {
     (79, 20): ("ultra-high-R poly marker", (253, 186, 116, 94)),
     (86, 20): ("resistor marker", (251, 191, 36, 94)),
     (67, 20): ("local interconnect (LI1)", (214, 214, 214, 116)),
+    (67, 16): ("local interconnect pin", (238, 238, 238, 150)),
     (66, 44): ("licon/contact", (255, 245, 157, 225)),
     (67, 44): ("mcon", (255, 233, 96, 235)),
     (68, 20): ("metal 1", (75, 213, 238, 118)),
+    (68, 16): ("metal 1 pin", (112, 232, 250, 160)),
     (68, 44): ("via 1", (218, 247, 166, 235)),
     (69, 20): ("metal 2", (192, 132, 252, 116)),
     (69, 44): ("via 2", (244, 114, 182, 235)),
@@ -57,6 +62,8 @@ LAYERS = {
     (70, 44): ("via 3", (253, 224, 71, 240)),
     (71, 20): ("metal 4", (248, 113, 113, 120)),
     (71, 16): ("metal 4 pin", (255, 168, 168, 170)),
+    (78, 44): ("high-Vt PMOS marker", (184, 115, 219, 64)),
+    (81, 4): ("standard-cell area marker", (148, 163, 184, 36)),
 }
 
 
@@ -209,6 +216,7 @@ def render(
     title: str,
     size: tuple[int, int],
     annotations: list[tuple[tuple[float, float, float, float], str]],
+    subtitle: str = "Signed-off GDS geometry",
 ) -> None:
     scale_factor = 2
     width, height = size[0] * scale_factor, size[1] * scale_factor
@@ -232,7 +240,7 @@ def render(
     draw.text((margin, 14 * scale_factor), title, fill=(240, 244, 252, 255), font=title_font)
     draw.text(
         (margin, 42 * scale_factor),
-        f"Signed-off GDS geometry | view {x0:g},{y0:g} to {x1:g},{y1:g} um",
+        f"{subtitle} | view {x0:g},{y0:g} to {x1:g},{y1:g} um",
         fill=(158, 171, 194, 255),
         font=small,
     )
@@ -319,6 +327,315 @@ def main() -> None:
     unknown = sorted(layer for layer in counts if layer not in LAYERS)
     if unknown:
         raise SystemExit(f"add names/colors for GDS layers: {unknown}")
+
+    if top.startswith("v2_"):
+        subtitle = "DRC-clean intermediate GDS geometry"
+        is_output_checkpoint = "output" in top
+        is_support_checkpoint = "support" in top
+        is_control_checkpoint = "control_placed" in top
+        is_control_powered = "control_powered" in top
+        is_control_trim_routed = "control_trim_routed" in top
+        is_control_final_routed = (
+            "control_service_routed" in top
+            or "control_quadrature_routed" in top
+        )
+        if is_control_final_routed:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-final-overview.png",
+                (0.0, 0.0, 270.0, 225.76),
+                "V2 four-channel beamformer — final unified routing",
+                (2200, 1800),
+                [
+                    ((84.0, 8.0, 163.0, 175.0), "four matched analog/phase slices"),
+                    ((84.18, 176.80, 192.74, 193.12), "phase configuration and decode"),
+                    ((84.18, 195.84, 250.24, 223.04), "global control and quadrature core"),
+                    ((184.0, 24.0, 254.0, 68.0), "compact folded trim-control bank"),
+                    ((84.0, 145.0, 163.0, 176.0), "short phase and quadrature handoffs"),
+                ],
+                "Exact final GDS; 206 routed nets; Magic DRC/topology clean; KLayout marker delta = 0",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-final-top-detail.png",
+                (80.0, 172.0, 268.0, 225.76),
+                "V2 final phase/global-control routing",
+                (2200, 1000),
+                [
+                    ((84.18, 176.80, 192.74, 193.12), "short local decode routes"),
+                    ((84.18, 195.84, 250.24, 223.04), "unified global-control fanout"),
+                    ((110.0, 222.0, 149.0, 225.76), "external control pin entries"),
+                ],
+                "One router owns all digital nets; bounded detours; no artificial length meanders",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-final-trim-detail.png",
+                (180.0, 7.0, 222.0, 70.0),
+                "V2 final reviewed trim-code routing",
+                (1600, 1800),
+                [
+                    ((184.0, 9.2, 218.0, 19.5), "16 direct analog handoff rows"),
+                    ((184.2, 19.0, 218.0, 67.0), "reviewed trim-code route trees"),
+                ],
+                "Authoritative regenerated GDS; reviewed paths preserved; 12 router vias removed",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-final-handoff-detail.png",
+                (80.0, 145.0, 166.0, 177.0),
+                "V2 final phase and quadrature handoffs",
+                (2200, 1000),
+                [
+                    ((84.0, 149.0, 163.0, 152.0), "12 phase-select/enable joins"),
+                    ((98.0, 160.5, 148.0, 174.5), "4 compact quadrature-root joins"),
+                ],
+                "Legal 0.20 um cuts and enclosed landings; existing router vias reused where shorter",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-final-load-power-detail.png",
+                (108.0, 111.5, 140.5, 120.5),
+                "V2 matched output-load power connection",
+                (2200, 900),
+                [
+                    ((113.005, 111.5, 116.075, 115.715), "LOAD_N R1 to VDPWR"),
+                    ((132.325, 111.5, 135.395, 115.715), "LOAD_P R1 to VDPWR"),
+                    ((108.0, 116.4, 140.5, 117.2), "VDPWR trunk at y=116.8 um"),
+                    ((108.0, 117.8, 140.5, 118.6), "VGND trunk at y=118.2 um"),
+                ],
+                "Identical R1 stacks; load bodies remain on VGND; extracted B/R1/R2 ports are distinct",
+            )
+            return
+        if is_control_trim_routed:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-trim-routed-overview.png",
+                (0.0, 0.0, 270.0, 225.76),
+                "V2 four-channel beamformer — first control-routing checkpoint",
+                (2000, 1800),
+                [
+                    ((184.0, 9.0, 220.0, 68.0), "16 monotonic trim handoffs"),
+                    ((184.0, 24.0, 254.0, 67.52), "powered trim storage rows"),
+                    ((259.0, 20.0, 267.0, 222.0), "reserved service corridor"),
+                ],
+                "Exact assembled GDS; full-chip Magic DRC = 0",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-trim-routed-detail.png",
+                (180.0, 7.0, 222.0, 70.0),
+                "V2 trim outputs — unique columns and bus rows",
+                (1200, 1500),
+                [
+                    ((184.0, 9.2, 207.0, 19.5), "16 separate M2 bus rows"),
+                    ((184.5, 19.0, 207.0, 67.0), "16 separate M3 Q columns"),
+                ],
+                "No M4/M5; no U-turns; two owned via2 sites per net",
+            )
+            return
+        if is_control_powered:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-power-overview.png",
+                (0.0, 0.0, 270.0, 225.76),
+                "V2 four-channel beamformer — control power checkpoint",
+                (2000, 1800),
+                [
+                    ((1.0, 5.0, 6.0, 220.76), "full-height VDPWR / VGND sources"),
+                    ((84.18, 176.80, 250.24, 223.04), "phase and global powered rows"),
+                    ((184.0, 24.0, 254.0, 68.0), "trim powered rows"),
+                    ((255.5, 68.0, 257.7, 196.0), "edge-only trim feed spines"),
+                    ((259.0, 20.0, 267.0, 222.0), "untouched signal service corridor"),
+                ],
+                "Exact assembled GDS; Magic full DRC = 0; import fatal scan = clean",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-top-power-detail.png",
+                (0.0, 148.0, 260.0, 225.76),
+                "V2 upper control power distribution",
+                (2100, 900),
+                [
+                    ((1.0, 153.5, 173.0, 158.4), "two direct analog VDPWR feeds"),
+                    ((5.0, 193.2, 257.7, 195.5), "separated M4 supply trunks"),
+                    ((84.18, 176.80, 192.74, 193.12), "phase row rails and edge straps"),
+                    ((84.18, 195.84, 250.24, 223.04), "global row rails and edge straps"),
+                ],
+                "Two M1-to-M3 contacts per rail; no phase-handoff intrusion",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-trim-power-detail.png",
+                (180.0, 20.0, 260.0, 74.0),
+                "V2 trim-bank power distribution",
+                (1500, 1050),
+                [
+                    ((184.0, 24.0, 254.0, 67.52), "16 alternating powered rows"),
+                    ((223.5, 24.0, 229.3, 70.3), "four quiet internal M3 straps"),
+                    ((255.5, 68.0, 257.7, 74.0), "layer-separated feed spines"),
+                ],
+                "Power stays left of the shielded control-service corridor",
+            )
+            return
+        if is_control_checkpoint:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-overview.png",
+                (0.0, 0.0, 270.0, 225.76),
+                "V2 four-channel beamformer — production control placement",
+                (2000, 1800),
+                [
+                    ((84.0, 8.0, 163.0, 175.0), "matched analog and phase network"),
+                    ((84.18, 176.80, 192.74, 193.12), "phase configuration and local decode"),
+                    ((84.18, 195.84, 250.24, 223.04), "global control and quadrature core"),
+                    ((184.0, 24.0, 254.0, 68.0), "trim storage and folded shift chain"),
+                    ((259.0, 20.0, 267.0, 222.0), "reserved shielded service corridor"),
+                ],
+                "Exact hierarchy-preserving GDS; full Magic re-import DRC = 0",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-top-detail.png",
+                (80.0, 172.0, 255.0, 225.76),
+                "V2 phase-bank and global-control placement",
+                (2100, 1050),
+                [
+                    ((84.18, 176.80, 192.74, 193.12), "6 phase-bank rows"),
+                    ((84.18, 195.84, 250.24, 223.04), "10 global-control rows"),
+                    ((116.0, 195.84, 140.0, 198.56), "quadrature core over phase roots"),
+                ],
+                "Channel-local decode below; synchronizer pairs align toward top pins",
+            )
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-control-trim-detail.png",
+                (180.0, 20.0, 260.0, 92.0),
+                "V2 trim-control placement",
+                (1450, 1350),
+                [
+                    ((184.0, 24.0, 220.0, 68.0), "16 staggered active-output columns"),
+                    ((238.0, 24.0, 254.0, 68.0), "adjacent-row folded shift chain"),
+                ],
+                "One active pair and one shift pair per row; explicit well taps",
+            )
+            return
+        overview_title = (
+            "V2 four-channel beamformer — measured support placement"
+            if is_support_checkpoint
+            else (
+                "V2 four-channel analog beamformer — matched output checkpoint"
+                if is_output_checkpoint
+                else "V2 four-channel analog beamformer — routed phase tree"
+            )
+        )
+        overview_annotations = [
+            ((84, 8, 163, 90), "four matched analog channel slices"),
+            ((84, 118, 163, 151), "four identical 4:1 phase selectors"),
+            ((89, 151, 161, 175), "four-wire balanced H-tree"),
+        ]
+        if is_output_checkpoint:
+            overview_annotations.insert(
+                1, ((105, 90, 142, 117), "matched output trees and loads")
+            )
+        if is_support_checkpoint:
+            overview_annotations.extend(
+                [
+                    ((12, 4, 53, 160), "VCM divider and MIM reference"),
+                    ((162, 92, 183, 157), "symmetric bias reference"),
+                ]
+            )
+        render(
+            polygons,
+            db_um,
+            args.output_dir / "beamformer-v2-phase-tree.png",
+            (0.0, 0.0, 185.0, 176.0) if is_support_checkpoint
+            else (84.0, 0.0, 163.0, 176.0),
+            overview_title,
+            (1700, 1900),
+            overview_annotations,
+            subtitle,
+        )
+        if is_support_checkpoint:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-support-detail.png",
+                (12.0, 0.0, 183.0, 161.0),
+                "V2 measured VCM and bias support placement",
+                (1900, 1650),
+                [
+                    ((23, 4, 27, 160), "2:1 VCM divider"),
+                    ((27, 118, 53, 142), "22 um MIM decoupling capacitor"),
+                    ((162, 92, 183, 100), "matched diode-connected NMOS pair"),
+                    ((170, 104, 175, 156), "bias resistor"),
+                ],
+                subtitle,
+            )
+        render(
+            polygons,
+            db_um,
+            args.output_dir / "beamformer-v2-phase-detail.png",
+            (84.0, 116.0, 163.0, 176.0),
+            "V2 phase selectors and balanced distribution",
+            (1900, 1250),
+            [
+                ((84, 118, 163, 151), "mirrored selector rows"),
+                ((89, 151, 161, 175), "equal-length H-tree branches"),
+            ],
+            subtitle,
+        )
+        if is_output_checkpoint:
+            render(
+                polygons,
+                db_um,
+                args.output_dir / "beamformer-v2-output-detail.png",
+                (50.0, 0.0, 163.0, 118.0),
+                "V2 matched differential summing and pad routes",
+                (1900, 1650),
+                [
+                    ((85, 89.5, 163, 99), "balanced four-channel P/N trees"),
+                    ((105, 98, 142, 117), "identical resistor loads"),
+                    ((54.5, 0, 76.2, 89), "equal-layer output pad escapes"),
+                ],
+                subtitle,
+            )
+        render(
+            polygons,
+            db_um,
+            args.output_dir / "beamformer-v2-analog-detail.png",
+            (84.0, 8.0, 163.0, 90.0),
+            "V2 common-centroid analog channels",
+            (1900, 1450),
+            [
+                ((84, 28, 163, 49), "local switched-tail trim banks"),
+                ((84, 49, 163, 83), "ABBA GM and mixer devices"),
+            ],
+            subtitle,
+        )
+        print(
+            f"top={top} db_unit={db_um:g}um structures={len(structures)} "
+            f"polygons={len(polygons)}"
+        )
+        for layer, count in sorted(counts.items()):
+            print(
+                f"layer={layer[0]}/{layer[1]} name={LAYERS[layer][0]} "
+                f"polygons={count}"
+            )
+        return
 
     render(
         polygons,

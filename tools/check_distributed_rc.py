@@ -19,10 +19,29 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "layout" / "circuit.json"
 INTERNAL_NODE_RE = re.compile(r"(?:[/.])(?:n|t)\d+$")
+ATTRIBUTE_NODE_RE = re.compile(r"^res:", re.IGNORECASE)
 
 
 def canonical_net(net: str) -> str:
     return "ui_in[0]" if net == "select" else net
+
+
+def resistor_node_aliases(node: str) -> set[str]:
+    """Return physical-net names represented by an RC split-node token.
+
+    Magic appends ``.n#``/``.t#`` (or slash variants) when a conductor is
+    divided into a resistor graph.  Flattened standard-cell supply nodes can
+    additionally retain a hierarchy prefix, for example
+    ``CH0_PBUF_N.VGND.n1``.  Both spellings still anchor the same physical
+    routed net and must count toward coverage without rewriting the SPICE.
+    """
+
+    base = INTERNAL_NODE_RE.sub("", node)
+    aliases = {base}
+    for separator in ("/", "."):
+        if separator in base:
+            aliases.add(base.rsplit(separator, 1)[-1])
+    return aliases
 
 
 def manifest_nets(path: Path = MANIFEST) -> set[str]:
@@ -91,21 +110,34 @@ def rc_details(rc: dict[str, list[list[str]]], expected_nets: set[str]) -> dict[
                 nonpositive_resistors.append(" ".join(fields))
         except ValueError:
             malformed_resistors.append(" ".join(fields))
-    uncovered_nets = sorted(expected_nets - resistor_terminals)
+    terminal_aliases = {
+        alias
+        for node in resistor_terminals
+        for alias in resistor_node_aliases(node)
+    }
+    uncovered_nets = sorted(expected_nets - terminal_aliases)
     internal_nodes = {node for node in resistor_terminals if INTERNAL_NODE_RE.search(node)}
+    attribute_nodes = sorted(
+        node for node in resistor_terminals if ATTRIBUTE_NODE_RE.match(node)
+    )
     components: dict[str, set[str]] = {}
     for node in resistor_terminals:
         components.setdefault(find(node), set()).add(node)
     unanchored = [
         sorted(component)[:10]
         for component in components.values()
-        if not component.intersection(expected_nets)
+        if not {
+            alias
+            for member in component
+            for alias in resistor_node_aliases(member)
+        }.intersection(expected_nets)
     ]
     return {
         "resistors": len(rc["R"]),
         "capacitors": len(rc["C"]),
         "devices": len(rc["X"]),
         "internal_resistor_nodes": len(internal_nodes),
+        "attribute_like_resistor_nodes": attribute_nodes,
         "resistor_components": len(components),
         "unanchored_resistor_components": unanchored,
         "covered_manifest_nets": len(expected_nets) - len(uncovered_nets),
@@ -147,6 +179,9 @@ def audit(
         ),
         "resistor_records_well_formed": not full["malformed_resistors"],
         "resistor_values_positive": not full["nonpositive_resistors"],
+        "no_extraction_attribute_nodes": not full[
+            "attribute_like_resistor_nodes"
+        ],
     }
     report: dict[str, object] = {
         "base_netlist": str(base_path),

@@ -106,6 +106,15 @@ class NetLabel:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
     parser.add_argument("route", nargs="?", default="build/layout/route.tcl")
+    parser.add_argument(
+        "--base-route",
+        action="append",
+        default=[],
+        help=(
+            "previous generated route stage to include in overlap, spacing, "
+            "via, and connectivity checks; may be repeated"
+        ),
+    )
     parser.add_argument("--manifest", default="layout/circuit.json")
     parser.add_argument("--report")
     return parser.parse_args()
@@ -161,6 +170,91 @@ def parse_net_labels(path: Path) -> list[NetLabel]:
     if net is not None:
         raise ValueError(f"net label {net} has no following box")
     return labels
+
+
+def merge_route_files(
+    paths: list[Path],
+) -> tuple[dict[str, list[Shape]], list[NetLabel]]:
+    """Combine incremental route stages into one physical audit view.
+
+    Later generators import an earlier GDS, but their Tcl only contains newly
+    painted rectangles.  Auditing the files separately therefore cannot see a
+    new wire shorting an existing net.  Offset source line numbers so a
+    cumulative failure still points to a unique generated command.
+    """
+    merged: dict[str, list[Shape]] = defaultdict(list)
+    labels: list[NetLabel] = []
+    line_offset = 0
+    for path in paths:
+        parsed = parse_route(path)
+        for layer, layer_shapes in parsed.items():
+            merged[layer].extend(
+                Shape(
+                    shape.layer,
+                    shape.x1,
+                    shape.y1,
+                    shape.x2,
+                    shape.y2,
+                    shape.net,
+                    f"{path}:{shape.route}",
+                    shape.line + line_offset,
+                )
+                for shape in layer_shapes
+            )
+        labels.extend(
+            NetLabel(label.net, label.x, label.y, label.line + line_offset)
+            for label in parse_net_labels(path)
+        )
+        line_offset += len(path.read_text().splitlines()) + 1
+    return merged, labels
+
+
+def canonicalize_nets(
+    shapes: dict[str, list[Shape]],
+    labels: list[NetLabel],
+    groups: list[dict[str, object]],
+) -> tuple[dict[str, list[Shape]], list[NetLabel]]:
+    """Map intentionally joined incremental net names to one physical net.
+
+    Local route stages keep channel leaves separately named so extraction can
+    prove that no premature short exists.  A later H-tree intentionally joins
+    those leaves.  Equivalence is explicit in the later-stage manifest; no
+    blanket prefix or fuzzy-name rule is allowed.
+    """
+    aliases: dict[str, str] = {}
+    for group in groups:
+        canonical = str(group["canonical"])
+        members = [str(item) for item in group["members"]]
+        if canonical not in members:
+            members.append(canonical)
+        for member in members:
+            previous = aliases.get(member)
+            if previous is not None and previous != canonical:
+                raise ValueError(
+                    f"net {member} belongs to both {previous} and {canonical}"
+                )
+            aliases[member] = canonical
+
+    normalized: dict[str, list[Shape]] = defaultdict(list)
+    for layer, layer_shapes in shapes.items():
+        normalized[layer].extend(
+            Shape(
+                shape.layer,
+                shape.x1,
+                shape.y1,
+                shape.x2,
+                shape.y2,
+                aliases.get(shape.net, shape.net),
+                shape.route,
+                shape.line,
+            )
+            for shape in layer_shapes
+        )
+    normalized_labels = [
+        NetLabel(aliases.get(label.net, label.net), label.x, label.y, label.line)
+        for label in labels
+    ]
+    return normalized, normalized_labels
 
 
 def label_connection_errors(
@@ -742,6 +836,12 @@ def matching_results(
         second = metrics[second_net]
         layers = [str(layer) for layer in constraint.get("layers", WIRE_LAYERS)]
         layer_limit = float(constraint["max_layer_length_mismatch_percent"])
+        layer_limits = {
+            str(layer): float(limit)
+            for layer, limit in constraint.get(
+                "max_layer_length_mismatch_percent_by_layer", {}
+            ).items()
+        }
         total_limit = float(constraint["max_total_length_mismatch_percent"])
         pair_failures: list[str] = []
         layer_mismatch: dict[str, float] = {}
@@ -750,9 +850,11 @@ def matching_results(
             second_length = float(second["wire_length_um"][layer])
             mismatch = mismatch_percent(first_length, second_length)
             layer_mismatch[layer] = mismatch
-            if mismatch > layer_limit + EPSILON:
+            effective_layer_limit = layer_limits.get(layer, layer_limit)
+            if mismatch > effective_layer_limit + EPSILON:
                 pair_failures.append(
-                    f"{name}: {layer} length mismatch {mismatch:.3f}% > {layer_limit:.3f}% "
+                    f"{name}: {layer} length mismatch {mismatch:.3f}% > "
+                    f"{effective_layer_limit:.3f}% "
                     f"({first_net}={first_length:.3f}um, {second_net}={second_length:.3f}um)"
                 )
         first_total = sum(float(first["wire_length_um"][layer]) for layer in layers)
@@ -791,6 +893,9 @@ def matching_results(
             "nets": [first_net, second_net],
             "layers": layers,
             "layer_length_mismatch_percent": layer_mismatch,
+            "layer_length_mismatch_limits_percent": {
+                layer: layer_limits.get(layer, layer_limit) for layer in layers
+            },
             "selected_layer_total_um": [round(first_total, 6), round(second_total, 6)],
             "total_length_mismatch_percent": total_mismatch,
             "via_sites": via_comparison,
@@ -954,9 +1059,14 @@ def path_matching_results(
 def main() -> None:
     args = parse_args()
     path = Path(args.route)
+    route_paths = [*(Path(item) for item in args.base_route), path]
     manifest = json.loads(Path(args.manifest).read_text())
-    shapes = parse_route(path)
-    labels = parse_net_labels(path)
+    shapes, labels = merge_route_files(route_paths)
+    shapes, labels = canonicalize_nets(
+        shapes,
+        labels,
+        list(manifest.get("net_equivalence_groups", [])),
+    )
     label_errors = label_connection_errors(shapes, labels)
     errors = overlap_errors(shapes)
     via_errors = via_connection_errors(shapes)
@@ -981,6 +1091,11 @@ def main() -> None:
     report = {
         "route": str(path),
         "route_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        "audited_routes": [str(item) for item in route_paths],
+        "audited_route_sha256": {
+            str(item): hashlib.sha256(item.read_bytes()).hexdigest()
+            for item in route_paths
+        },
         "shape_count": sum(
             shape.width > EPSILON and shape.height > EPSILON
             for layer_shapes in shapes.values()

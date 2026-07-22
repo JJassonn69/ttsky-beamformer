@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "router-owned digital quadrature and analog-only root-drop contract",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_phase_routed.gds",
+    "top": "v2_control_phase_routed",
+    "sha256": "849285d94246c8673d7adeba1c873d2649b548f23a7e30058f042b05cdc5350b"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "c66ba77cb0ed9ef30818a055e3ee7a542fc2483d129cbc52a1092132d9d17428"
+  },
+  "openroad_handoff_checkpoint": {
+    "geometry": "build/v2/control_routing/openroad_route_geometry.json",
+    "geometry_sha256": "b00d9f0844f899b795a09654e86f3a1e174b2fc96ba757679f6c4d59882699f7"
+  },
+  "output_top": "v2_control_quadrature_routed",
+  "overlay_top": "v2_control_quad_routes_overlay",
+  "corridor_entry_y": 193.40,
+  "manual_boundary_via_nets": [
+    "phase_wave[0]",
+    "phase_wave[3]"
+  ],
+  "metal2_corridor_x_overrides": {
+    "phase_wave[0]": 121.31,
+    "phase_wave[2]": 127.16
+  },
+  "rules": {
+    "metal2_width": 0.26,
+    "metal2_landing_half_x": 0.14,
+    "metal2_landing_half_y": 0.185,
+    "via2_half_width": 0.10,
+    "metal3_landing_half_width": 0.165,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.3
+  },
+  "policy": {
+    "route_count": 4,
+    "all_standard_cell_pin_access_is_openroad_owned": true,
+    "manual_locali_metal1_and_via1_access": false,
+    "vertical_corridor_layer": "metal2",
+    "router_boundary_layer": "metal3",
+    "root_interface_layer": "metal2",
+    "boundary_via_policy": "reuse legal routed M2/M3 access for phase_wave[1:2]; add one compact local via for phase_wave[0] and phase_wave[3] where reuse would add 7-8um of wire",
+    "minimum_length_no_meanders": true,
+    "maximum_direction_reversals": 1,
+    "obstacle_forced_direction_reversal_route_count": 2,
+    "metal4_used": false,
+    "metal5_used": false,
+    "flattened_source_interaction_check_required": true,
+    "extracted_driver_load_and_four_leaf_check_required": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "candidates": [
+    {
+      "crossings": 0,
+      "extra_via_sites": 0,
+      "keepout_intersections": 0,
+      "left_orientation": "R0",
+      "name": "all_r0",
+      "pair_count": 6,
+      "right_orientation": "R0",
+      "total_outer_drain_escape_imbalance_um": 3.0999999999999996,
+      "total_source_collection_span_um": 43.92,
+      "weighted_cost": 59.42
+    },
+    {
+      "crossings": 0,
+      "extra_via_sites": 0,
+      "keepout_intersections": 0,
+      "left_orientation": "R0",
+      "name": "source_facing_pairs",
+      "pair_count": 6,
+      "right_orientation": "MY",
+      "total_outer_drain_escape_imbalance_um": 1.7763568394002505e-15,
+      "total_source_collection_span_um": 40.82,
+      "weighted_cost": 40.82000000000001
+    }
+  ],
+  "cost_weights": {
+    "drain_escape_imbalance": 5.0,
+    "source_collection_span": 1.0
+  },
+  "provenance": {
+    "pcell_dimension_file": "v2/layout/pcell_dimensions.json",
+    "port_coordinates": "measured from generated Magic child MAG labels",
+    "template_file": "v2/layout/channel_template.json"
+  },
+  "selected": "source_facing_pairs",
+  "selection_is_conditional_on": [
+    "Magic DRC",
+    "terminal-aware extraction topology",
+    "R0/MY device-count and W/L equivalence",
+    "post-layout parasitic comparison"
+  ],
+  "source_route_reduction_vs_all_r0_um_per_channel": 3.1000000000000014,
+  "status": "pass"
+}

@@ -1,0 +1,2396 @@
+{
+  "analog_pcells": {
+    "bias_diode_nfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.675
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -3.555,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.975,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.395,
+              0.0
+            ]
+          },
+          {
+            "label": "D6",
+            "layer": "ndiffc",
+            "point_um": [
+              1.185,
+              0.0
+            ]
+          },
+          {
+            "label": "D8",
+            "layer": "ndiffc",
+            "point_um": [
+              2.765,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -3.16,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -2.37,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.58,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.79,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.79,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.58,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              2.37,
+              1.165
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              3.16,
+              1.165
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -2.765,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.185,
+              0.0
+            ]
+          },
+          {
+            "label": "S5",
+            "layer": "ndiffc",
+            "point_um": [
+              0.395,
+              0.0
+            ]
+          },
+          {
+            "label": "S7",
+            "layer": "ndiffc",
+            "point_um": [
+              1.975,
+              0.0
+            ]
+          },
+          {
+            "label": "S8",
+            "layer": "ndiffc",
+            "point_um": [
+              3.555,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_XBH7H5.mag"
+    },
+    "dac_driver_nfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -2.045
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.535
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S",
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_64ZA3S.mag"
+    },
+    "dac_driver_pfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "nsubdiffcont",
+            "point_um": [
+              0.0,
+              -2.83
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D",
+            "layer": "pdiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              2.32
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S",
+            "layer": "pdiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__pfet_01v8_PVH9F5.mag"
+    },
+    "gm_nfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.585
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.475,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.295,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              0.885,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.18,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.59,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.59,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.18,
+              1.075
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.885,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              0.295,
+              0.0
+            ]
+          },
+          {
+            "label": "S4",
+            "layer": "ndiffc",
+            "point_um": [
+              1.475,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_KQNXXW.mag"
+    },
+    "input_bias_resistor_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -37.895
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              37.155
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -37.155
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_KKLLRZ.mag"
+    },
+    "mixer_nfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.585
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.2,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.24,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              0.72,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.96,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.48,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.48,
+              1.075
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.96,
+              1.075
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.72,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              0.24,
+              0.0
+            ]
+          },
+          {
+            "label": "S4",
+            "layer": "ndiffc",
+            "point_um": [
+              1.2,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_Q8P3CQ.mag"
+    },
+    "output_load_resistor_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -8.45
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              7.71
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -7.71
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_WFQE74.mag"
+    },
+    "r2r_unit_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -25.135
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              24.395
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -24.395
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_HMPGGH.mag"
+    },
+    "r2r_unit_shared_guard": {
+      "ports": {
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              24.395
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -24.395
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_KAE7ZM.mag"
+    },
+    "tail_nfet_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.84
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -3.555,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.975,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.395,
+              0.0
+            ]
+          },
+          {
+            "label": "D6",
+            "layer": "ndiffc",
+            "point_um": [
+              1.185,
+              0.0
+            ]
+          },
+          {
+            "label": "D8",
+            "layer": "ndiffc",
+            "point_um": [
+              2.765,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -3.16,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -2.37,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.58,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.79,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.79,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.58,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              2.37,
+              1.33
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              3.16,
+              1.33
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -2.765,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.185,
+              0.0
+            ]
+          },
+          {
+            "label": "S5",
+            "layer": "ndiffc",
+            "point_um": [
+              0.395,
+              0.0
+            ]
+          },
+          {
+            "label": "S7",
+            "layer": "ndiffc",
+            "point_um": [
+              1.975,
+              0.0
+            ]
+          },
+          {
+            "label": "S8",
+            "layer": "ndiffc",
+            "point_um": [
+              3.555,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_V8VEZM.mag"
+    },
+    "trim_bit1_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.395,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S",
+            "layer": "ndiffc",
+            "point_um": [
+              0.395,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_MRT496.mag"
+    },
+    "trim_bit2_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.79,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.395,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              0.0,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_JT58GU.mag"
+    },
+    "trim_bit4_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.58,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              0.0,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.185,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.185,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.79,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              0.79,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_UBS4ZY.mag"
+    },
+    "trim_bit8_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -3.16,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.58,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "label": "D6",
+            "layer": "ndiffc",
+            "point_um": [
+              1.58,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -2.765,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.975,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.185,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.185,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.975,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              2.765,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -2.37,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.79,
+              0.0
+            ]
+          },
+          {
+            "label": "S5",
+            "layer": "ndiffc",
+            "point_um": [
+              0.79,
+              0.0
+            ]
+          },
+          {
+            "label": "S7",
+            "layer": "ndiffc",
+            "point_um": [
+              2.37,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_KNL8QH.mag"
+    },
+    "trim_main_third_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D0",
+            "layer": "ndiffc",
+            "point_um": [
+              -5.53,
+              0.0
+            ]
+          },
+          {
+            "label": "D2",
+            "layer": "ndiffc",
+            "point_um": [
+              -3.95,
+              0.0
+            ]
+          },
+          {
+            "label": "D4",
+            "layer": "ndiffc",
+            "point_um": [
+              -2.37,
+              0.0
+            ]
+          },
+          {
+            "label": "D6",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.79,
+              0.0
+            ]
+          },
+          {
+            "label": "D8",
+            "layer": "ndiffc",
+            "point_um": [
+              0.79,
+              0.0
+            ]
+          },
+          {
+            "label": "D10",
+            "layer": "ndiffc",
+            "point_um": [
+              2.37,
+              0.0
+            ]
+          },
+          {
+            "label": "D12",
+            "layer": "ndiffc",
+            "point_um": [
+              3.95,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -5.135,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -4.345,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -3.555,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -2.765,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.975,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -1.185,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              -0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.395,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.185,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              1.975,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              2.765,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              3.555,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              4.345,
+              0.905
+            ]
+          },
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              5.135,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S1",
+            "layer": "ndiffc",
+            "point_um": [
+              -4.74,
+              0.0
+            ]
+          },
+          {
+            "label": "S3",
+            "layer": "ndiffc",
+            "point_um": [
+              -3.16,
+              0.0
+            ]
+          },
+          {
+            "label": "S5",
+            "layer": "ndiffc",
+            "point_um": [
+              -1.58,
+              0.0
+            ]
+          },
+          {
+            "label": "S7",
+            "layer": "ndiffc",
+            "point_um": [
+              0.0,
+              0.0
+            ]
+          },
+          {
+            "label": "S9",
+            "layer": "ndiffc",
+            "point_um": [
+              1.58,
+              0.0
+            ]
+          },
+          {
+            "label": "S11",
+            "layer": "ndiffc",
+            "point_um": [
+              3.16,
+              0.0
+            ]
+          },
+          {
+            "label": "S13",
+            "layer": "ndiffc",
+            "point_um": [
+              4.74,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_7YVVGW.mag"
+    },
+    "trim_switch_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {
+            "label": "D",
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.905
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S",
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_WSWNGM.mag"
+    },
+    "vcm_bottom_resistor_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -49.645
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              48.905
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -48.905
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_D7FUNJ.mag"
+    },
+    "vcm_mim_capacitor": {
+      "ports": {
+        "C1": [
+          {
+            "label": "C1",
+            "layer": "mimcapcontact",
+            "point_um": [
+              -0.88,
+              0.0
+            ]
+          }
+        ],
+        "C2": [
+          {
+            "label": "C2",
+            "layer": "via3",
+            "point_um": [
+              11.82,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__cap_mim_m3_1_2SELCQ.mag"
+    },
+    "vcm_top_resistor_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -26.145
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              25.405
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -25.405
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_Q4KKKZ.mag"
+    }
+  },
+  "coordinate_contract": {
+    "analog": "micrometres relative to the generated PCell origin",
+    "orientation_transform": {
+      "MY": "(-x,y) for centred analog PCells; (width-x,y) for LEF cells",
+      "R0": "(x,y)"
+    },
+    "standard_cells": "micrometres relative to the LEF ORIGIN"
+  },
+  "errors": [],
+  "schema_version": 1,
+  "standard_cells": {
+    "sc_hd_and2_1": {
+      "ports": {
+        "A": [
+          {
+            "center_um": [
+              0.4375,
+              1.2
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.1,
+              1.075,
+              0.775,
+              1.325
+            ]
+          },
+          {
+            "center_um": [
+              0.23249999999999998,
+              1.505
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.1,
+              1.325,
+              0.365,
+              1.685
+            ]
+          }
+        ],
+        "B": [
+          {
+            "center_um": [
+              1.165,
+              1.2
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.995,
+              1.075,
+              1.335,
+              1.325
+            ]
+          }
+        ],
+        "VGND": [
+          {
+            "center_um": [
+              1.15,
+              0.0
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              -0.085,
+              2.3,
+              0.085
+            ]
+          },
+          {
+            "center_um": [
+              1.36,
+              0.315
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.235,
+              0.085,
+              1.485,
+              0.545
+            ]
+          },
+          {
+            "center_um": [
+              1.15,
+              0.0
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              -0.24,
+              2.3,
+              0.24
+            ]
+          }
+        ],
+        "VPWR": [
+          {
+            "center_um": [
+              1.15,
+              2.7199999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              2.635,
+              2.3,
+              2.805
+            ]
+          },
+          {
+            "center_um": [
+              0.42499999999999993,
+              2.3
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.285,
+              1.965,
+              0.565,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              1.4,
+              2.275
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.235,
+              1.915,
+              1.565,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              1.15,
+              2.7199999999999998
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              2.48,
+              2.3,
+              2.96
+            ]
+          }
+        ],
+        "X": [
+          {
+            "center_um": [
+              1.935,
+              0.4
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.655,
+              0.255,
+              2.215,
+              0.545
+            ]
+          },
+          {
+            "center_um": [
+              1.9849999999999999,
+              2.19
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.755,
+              1.915,
+              2.215,
+              2.465
+            ]
+          },
+          {
+            "center_um": [
+              2.09,
+              1.23
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.965,
+              0.545,
+              2.215,
+              1.915
+            ]
+          }
+        ]
+      },
+      "source": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__and2_1.lef"
+    },
+    "sc_hd_buf_4": {
+      "ports": {
+        "A": [
+          {
+            "center_um": [
+              0.27999999999999997,
+              1.1949999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.09,
+              1.075,
+              0.47,
+              1.315
+            ]
+          }
+        ],
+        "VGND": [
+          {
+            "center_um": [
+              1.38,
+              0.0
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              -0.085,
+              2.76,
+              0.085
+            ]
+          },
+          {
+            "center_um": [
+              0.645,
+              0.32499999999999996
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.525,
+              0.085,
+              0.765,
+              0.565
+            ]
+          },
+          {
+            "center_um": [
+              1.52,
+              0.32499999999999996
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.355,
+              0.085,
+              1.685,
+              0.565
+            ]
+          },
+          {
+            "center_um": [
+              2.36,
+              0.485
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.195,
+              0.085,
+              2.525,
+              0.885
+            ]
+          },
+          {
+            "center_um": [
+              1.38,
+              0.0
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              -0.24,
+              2.76,
+              0.24
+            ]
+          }
+        ],
+        "VPWR": [
+          {
+            "center_um": [
+              1.38,
+              2.7199999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              2.635,
+              2.76,
+              2.805
+            ]
+          },
+          {
+            "center_um": [
+              0.715,
+              2.235
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.595,
+              1.835,
+              0.835,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              1.52,
+              2.235
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.355,
+              1.835,
+              1.685,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              2.36,
+              2.06
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.195,
+              1.485,
+              2.525,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              1.38,
+              2.7199999999999998
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              2.48,
+              2.76,
+              2.96
+            ]
+          }
+        ],
+        "X": [
+          {
+            "center_um": [
+              1.1,
+              0.495
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.015,
+              0.255,
+              1.185,
+              0.735
+            ]
+          },
+          {
+            "center_um": [
+              1.52,
+              0.8200000000000001
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.015,
+              0.735,
+              2.025,
+              0.905
+            ]
+          },
+          {
+            "center_um": [
+              1.52,
+              1.53
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.015,
+              1.445,
+              2.025,
+              1.615
+            ]
+          },
+          {
+            "center_um": [
+              1.1,
+              2.04
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.015,
+              1.615,
+              1.185,
+              2.465
+            ]
+          },
+          {
+            "center_um": [
+              1.7774999999999999,
+              1.175
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.53,
+              0.905,
+              2.025,
+              1.445
+            ]
+          },
+          {
+            "center_um": [
+              1.94,
+              0.495
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.855,
+              0.255,
+              2.025,
+              0.735
+            ]
+          },
+          {
+            "center_um": [
+              1.94,
+              2.04
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.855,
+              1.615,
+              2.025,
+              2.465
+            ]
+          }
+        ]
+      },
+      "source": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__buf_4.lef"
+    },
+    "sc_hd_inv_1": {
+      "ports": {
+        "A": [
+          {
+            "center_um": [
+              0.485,
+              1.1949999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.32,
+              1.075,
+              0.65,
+              1.315
+            ]
+          }
+        ],
+        "VGND": [
+          {
+            "center_um": [
+              0.69,
+              0.0
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              -0.085,
+              1.38,
+              0.085
+            ]
+          },
+          {
+            "center_um": [
+              0.43500000000000005,
+              0.495
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.32,
+              0.085,
+              0.55,
+              0.905
+            ]
+          },
+          {
+            "center_um": [
+              0.69,
+              0.0
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              -0.24,
+              1.38,
+              0.24
+            ]
+          }
+        ],
+        "VPWR": [
+          {
+            "center_um": [
+              0.69,
+              2.7199999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              2.635,
+              1.38,
+              2.805
+            ]
+          },
+          {
+            "center_um": [
+              0.44500000000000006,
+              2.065
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.34,
+              1.495,
+              0.55,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              0.69,
+              2.7199999999999998
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              2.48,
+              1.38,
+              2.96
+            ]
+          }
+        ],
+        "Y": [
+          {
+            "center_um": [
+              0.885,
+              0.5700000000000001
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.72,
+              0.255,
+              1.05,
+              0.885
+            ]
+          },
+          {
+            "center_um": [
+              0.885,
+              1.975
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.72,
+              1.485,
+              1.05,
+              2.465
+            ]
+          },
+          {
+            "center_um": [
+              0.935,
+              1.185
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.82,
+              0.885,
+              1.05,
+              1.485
+            ]
+          }
+        ]
+      },
+      "source": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__inv_1.lef"
+    },
+    "sc_hd_mux2_1": {
+      "ports": {
+        "A0": [
+          {
+            "center_um": [
+              2.1275,
+              0.835
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.99,
+              0.255,
+              2.265,
+              1.415
+            ]
+          }
+        ],
+        "A1": [
+          {
+            "center_um": [
+              1.7,
+              1.2149999999999999
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.615,
+              0.815,
+              1.785,
+              1.615
+            ]
+          },
+          {
+            "center_um": [
+              2.12,
+              1.7
+            ],
+            "layer": "li1",
+            "rect_um": [
+              1.615,
+              1.615,
+              2.625,
+              1.785
+            ]
+          },
+          {
+            "center_um": [
+              2.5300000000000002,
+              0.935
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.435,
+              0.255,
+              2.625,
+              1.615
+            ]
+          }
+        ],
+        "S": [
+          {
+            "center_um": [
+              1.0075,
+              1.16
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.91,
+              0.995,
+              1.105,
+              1.325
+            ]
+          },
+          {
+            "center_um": [
+              1.02,
+              1.81
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.935,
+              1.325,
+              1.105,
+              2.295
+            ]
+          },
+          {
+            "center_um": [
+              1.95,
+              2.38
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.935,
+              2.295,
+              2.965,
+              2.465
+            ]
+          },
+          {
+            "center_um": [
+              3.17,
+              1.535
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.795,
+              1.44,
+              3.545,
+              1.63
+            ]
+          },
+          {
+            "center_um": [
+              2.88,
+              1.9625
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.795,
+              1.63,
+              2.965,
+              2.295
+            ]
+          }
+        ],
+        "VGND": [
+          {
+            "center_um": [
+              2.07,
+              0.0
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              -0.085,
+              4.14,
+              0.085
+            ]
+          },
+          {
+            "center_um": [
+              0.6799999999999999,
+              0.285
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.515,
+              0.085,
+              0.845,
+              0.485
+            ]
+          },
+          {
+            "center_um": [
+              3.06,
+              0.3525
+            ],
+            "layer": "li1",
+            "rect_um": [
+              2.805,
+              0.085,
+              3.315,
+              0.62
+            ]
+          },
+          {
+            "center_um": [
+              2.07,
+              0.0
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              -0.24,
+              4.14,
+              0.24
+            ]
+          }
+        ],
+        "VPWR": [
+          {
+            "center_um": [
+              2.07,
+              2.7199999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              2.635,
+              4.14,
+              2.805
+            ]
+          },
+          {
+            "center_um": [
+              0.6799999999999999,
+              2.065
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.595,
+              1.495,
+              0.765,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              3.2199999999999998,
+              2.255
+            ],
+            "layer": "li1",
+            "rect_um": [
+              3.135,
+              1.875,
+              3.305,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              2.07,
+              2.7199999999999998
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              2.48,
+              4.14,
+              2.96
+            ]
+          }
+        ],
+        "X": [
+          {
+            "center_um": [
+              0.21749999999999997,
+              0.54
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.09,
+              0.255,
+              0.345,
+              0.825
+            ]
+          },
+          {
+            "center_um": [
+              0.175,
+              1.1600000000000001
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.09,
+              0.825,
+              0.26,
+              1.495
+            ]
+          },
+          {
+            "center_um": [
+              0.2575,
+              1.98
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.09,
+              1.495,
+              0.425,
+              2.465
+            ]
+          }
+        ]
+      },
+      "source": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__mux2_1.lef"
+    },
+    "sc_hd_tapvpwrvgnd_1": {
+      "ports": {
+        "VGND": [
+          {
+            "center_um": [
+              0.23,
+              0.0
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              -0.085,
+              0.46,
+              0.085
+            ]
+          },
+          {
+            "center_um": [
+              0.23,
+              0.4475
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.085,
+              0.085,
+              0.375,
+              0.81
+            ]
+          },
+          {
+            "center_um": [
+              0.23,
+              0.0
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              -0.24,
+              0.46,
+              0.24
+            ]
+          }
+        ],
+        "VPWR": [
+          {
+            "center_um": [
+              0.23,
+              2.7199999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.0,
+              2.635,
+              0.46,
+              2.805
+            ]
+          },
+          {
+            "center_um": [
+              0.23,
+              2.0524999999999998
+            ],
+            "layer": "li1",
+            "rect_um": [
+              0.085,
+              1.47,
+              0.375,
+              2.635
+            ]
+          },
+          {
+            "center_um": [
+              0.23,
+              2.7199999999999998
+            ],
+            "layer": "met1",
+            "rect_um": [
+              0.0,
+              2.48,
+              0.46,
+              2.96
+            ]
+          }
+        ]
+      },
+      "source": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__tapvpwrvgnd_1.lef"
+    }
+  },
+  "status": "pass"
+}

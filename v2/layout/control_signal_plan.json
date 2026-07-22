@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "frozen route-allocation contract before signal geometry",
+  "source_checkpoint": {
+    "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
+    "top": "v2_four_channel_control_powered",
+    "sha256": "cf25e276fcb99a6c5e8559822ded5b4ec132e616a9a9583bbce3d425db7b6f81"
+  },
+  "policy": {
+    "placement_is_frozen": true,
+    "route_all_mapped_signal_nets": true,
+    "route_from_measured_lef_access": true,
+    "prefer_component_orientation_over_wire_detours": true,
+    "local_before_global": true,
+    "power_before_signal": true,
+    "manual_gds_edits_allowed": false,
+    "regeneration_starts_from_exact_power_checkpoint": true,
+    "length_matching_u_bends_allowed": false,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "same_net_dead_end_landings_allowed": false,
+    "metal5_allowed": false
+  },
+  "geometry_rules": {
+    "database_grid": 0.005,
+    "metal2_width": 0.32,
+    "metal3_width": 0.40,
+    "metal4_width": 0.40,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_metal4_clearance": 0.30,
+    "reserved_service_m2_landing_half_width": 0.20,
+    "preferred_track_pitch": 0.70,
+    "maximum_pin_escape_length": 3.00,
+    "maximum_local_direction_reversals": 0,
+    "maximum_named_obstacle_doglegs": 1,
+    "via_stack_ownership": "every cut must overlap same-net conductor above and below",
+    "pin_stack": "LI-only pins use explicit viali/M1/via1; existing-M1 pins begin at via1",
+    "minimum_power_clearance": 0.30
+  },
+  "layer_policy": {
+    "locali": "measured terminal landing only",
+    "metal1": "terminal pad and shortest safe escape only; never a row-scale route",
+    "metal2": "short horizontal pin escape and compact same-row connection",
+    "metal3": "vertical leaves, adjacent-row links, and the shielded service bundle",
+    "metal4": "horizontal regional trunks and named crossings only",
+    "metal5": "forbidden"
+  },
+  "routing_windows": {
+    "phase_configuration_bank": {
+      "bbox": [84.18, 176.80, 192.74, 193.12],
+      "horizontal_m4_tracks": [177.40, 192.10],
+      "available_track_count": 22
+    },
+    "global_control_core": {
+      "bbox": [84.18, 195.84, 250.24, 223.04],
+      "horizontal_m4_tracks": [196.44, 222.34],
+      "available_track_count": 38
+    },
+    "trim_configuration_bank": {
+      "bbox": [184.00, 24.00, 254.00, 91.00],
+      "horizontal_m4_tracks": [24.60, 67.30],
+      "available_track_count": 62,
+      "excluded_power_tracks": [68.50, 69.80]
+    }
+  },
+  "service_bundle": {
+    "signals": ["cfg_clk", "cfg_latch", "serial_phase_to_trim", "apply_config", "clk", "rst_n"],
+    "layer": "metal3",
+    "x_tracks": [260.0, 260.8, 261.6, 262.4, 263.2, 264.0],
+    "width": 0.40,
+    "ground_shields_x": [259.2, 264.8],
+    "top_y": 224.60,
+    "bottom_y": 20.00,
+    "rule": "one straight shielded spine per net; region fanout leaves on M4 at named branch points"
+  },
+  "direct_boundary_signals": [
+    "direct_sync[0]", "blank_reg", "active_beam[0]", "active_beam[1]",
+    "active_manual", "active_channel_enable[0]", "active_channel_enable[1]",
+    "active_channel_enable[2]", "active_channel_enable[3]"
+  ],
+  "direct_boundary_bundle": {
+    "layer": "metal3",
+    "x_tracks": [139.2, 152.0, 114.8, 140.0, 131.0, 151.1375, 129.9775, 112.4975, 93.1775],
+    "width": 0.40,
+    "rule": "one straight phase/global boundary column per net; singleton phase-bank channel-enable columns land on the measured sink pin while shared columns remain median-demand; columns keep at least 0.8 um pitch and avoid power straps"
+  },
+  "handoff_classes": {
+    "phase_selector": {
+      "patterns": ["phase_select0[", "phase_select1[", "phase_enable["],
+      "transition_y": 176.0,
+      "rule": "one monotonic drop from its global driver to the already frozen channel column"
+    },
+    "quadrature_roots": {
+      "nets": ["phase_wave[0]", "phase_wave[1]", "phase_wave[2]", "phase_wave[3]"],
+      "transition_y": 174.0,
+      "rule": "four ordered wires; no phase crossing and no compensating meander"
+    },
+    "trim_outputs": {
+      "pattern": "active_trim_codes[",
+      "layer_pair": ["metal3", "metal2"],
+      "rule": "Q pin uses its unique pre-placed M3 column and joins exactly one monotonic M2 bus row"
+    },
+    "blanking": {
+      "net": "mixers_blank",
+      "rule": "observation-only logical status; do not create a physical route because per-channel phase_enable already contains blanking and there is no analog load or real macro port at the former (123.28,176.0) placeholder"
+    }
+  },
+  "local_topology_selection": {
+    "direct_max_endpoint_count": 4,
+    "direct_max_manhattan_span": 21.0,
+    "adjacent_row_max_vertical_span": 4.20,
+    "rule": "short same-row/adjacent-row nets use M2/M3 directly; the 21 um limit admits the measured three-pin manual-code feedback links without a regional trunk; wider or higher-fanout nets receive one interval-colored M4 trunk"
+  },
+  "release_gates": [
+    "all mapped signal nets and all required external/handoff anchors belong to one extracted component each",
+    "every service pin retains a direct M1-to-M2 via landing free of earlier signal routes",
+    "no signal component contains VDPWR or VGND",
+    "no route shape enters a passive, analog-current, output, phase, power, or boundary keepout without ownership",
+    "no via exists without same-net metal above and below",
+    "no floating metal rectangle, transition landing, or obsolete route stub exists",
+    "observation-only mixers_blank has no physical route unless a real consuming pin is added",
+    "every local route satisfies its direction-reversal budget",
+    "clock and quadrature routes pass extracted delay/skew checks at 4 MHz and the 30 MHz characterization target",
+    "Magic full DRC, topology extraction, direct-GDS flat checks, and distributed-RC coverage all pass"
+  ]
+}

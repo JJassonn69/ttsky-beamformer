@@ -30,6 +30,10 @@ Point = tuple[float, float]
 Rect = tuple[float, float, float, float]
 Matrix = tuple[float, float, float, float, float, float]
 
+LI1 = (67, 20)
+MCON = (67, 44)
+MET1 = (68, 20)
+VIA1 = (68, 44)
 MET2 = (69, 20)
 VIA2 = (69, 44)
 MET3 = (70, 20)
@@ -163,7 +167,10 @@ def transform(matrix: Matrix, point: tuple[int, int]) -> Point:
 def flatten_rectangles(
     structures: dict[str, Structure], top: str, database_um: float
 ) -> dict[Layer, list[Rect]]:
-    wanted = {MET2, VIA2, MET3, VIA3, MET4, CAPM}
+    # Keep lower-cut layers as well as the escaped upper-metal rule subset.
+    # They are inexpensive to flatten and let release tests prove that an
+    # extresist contact-meshing warning is not hiding malformed GDS cuts.
+    wanted = {MCON, VIA1, MET2, VIA2, MET3, VIA3, MET4, CAPM}
     output: dict[Layer, list[Rect]] = {layer: [] for layer in wanted}
 
     def visit(name: str, matrix: Matrix, ancestry: tuple[str, ...]) -> None:
@@ -197,6 +204,83 @@ def flatten_rectangles(
             if not math.isclose(polygon_area, rectangle_area, abs_tol=1e-9):
                 raise ValueError(f"non-rectangular polygon on checked layer {layer}")
             output[layer].append(rectangle)
+        for reference in structure.references:
+            visit(
+                reference.name,
+                compose(matrix, reference_matrix(reference)),
+                ancestry + (name,),
+            )
+
+    visit(top, (1.0, 0.0, 0.0, 1.0, 0.0, 0.0), ())
+    return output
+
+
+def orthogonal_polygon_rectangles(
+    points: list[Point], database_um: float,
+) -> list[Rect]:
+    """Decompose one closed orthogonal polygon into exact horizontal slabs.
+
+    Lower-metal standard-cell shapes are commonly L-shaped, so their bounding
+    boxes are too pessimistic for pin-access checks.  The existing release
+    checker intentionally rejects such polygons on upper routing layers; this
+    helper is separate and is used only where exact lower-metal obstacles are
+    required.
+    """
+
+    if points[0] != points[-1]:
+        points = points + [points[0]]
+    if any(
+        first[0] != second[0] and first[1] != second[1]
+        for first, second in zip(points, points[1:])
+    ):
+        raise ValueError("non-orthogonal polygon in lower-metal obstacle map")
+    y_edges = sorted({point[1] for point in points})
+    result: list[Rect] = []
+    for bottom, top in zip(y_edges, y_edges[1:]):
+        if bottom == top:
+            continue
+        middle = (bottom + top) / 2.0
+        crossings: list[float] = []
+        for first, second in zip(points, points[1:]):
+            if first[0] != second[0]:
+                continue
+            lo, hi = sorted((first[1], second[1]))
+            if lo <= middle < hi:
+                crossings.append(first[0])
+        crossings.sort()
+        if len(crossings) % 2:
+            raise ValueError("invalid orthogonal polygon has odd scanline crossings")
+        for left, right in zip(crossings[0::2], crossings[1::2]):
+            if left == right:
+                continue
+            result.append((
+                left * database_um, bottom * database_um,
+                right * database_um, top * database_um,
+            ))
+    return result
+
+
+def flatten_orthogonal_rectangles(
+    structures: dict[str, Structure], top: str, database_um: float,
+    wanted: set[Layer],
+) -> dict[Layer, list[Rect]]:
+    """Flatten arbitrary orthogonal polygons on explicitly requested layers."""
+
+    output: dict[Layer, list[Rect]] = {layer: [] for layer in wanted}
+
+    def visit(name: str, matrix: Matrix, ancestry: tuple[str, ...]) -> None:
+        if name in ancestry:
+            raise ValueError(f"recursive GDS hierarchy: {' -> '.join(ancestry + (name,))}")
+        if name not in structures:
+            raise ValueError(f"GDS references missing structure {name}")
+        structure = structures[name]
+        for layer, polygon in structure.polygons:
+            if layer not in wanted:
+                continue
+            transformed = [transform(matrix, point) for point in polygon]
+            output[layer].extend(
+                orthogonal_polygon_rectangles(transformed, database_um)
+            )
         for reference in structure.references:
             visit(
                 reference.name,
@@ -289,6 +373,40 @@ def enclosure_deficit(cut: Rect, conductors: list[Rect]) -> float:
     return max(0.0, cut_area - union_area(intersections))
 
 
+def minimum_width_violations(
+    rectangles: list[Rect], minimum: float,
+) -> list[float]:
+    """Return real narrow features after reconstructing fractured GDS paint.
+
+    Magic may serialize one legal wire as a full-width center rectangle plus
+    50 nm edge strips at via and branch junctions.  Testing each serialization
+    rectangle independently creates false violations.  A thin fragment is
+    legal only when the union covers a full minimum-width band along its
+    complete long dimension; a true narrow wire or attached stub still fails.
+    """
+    violations: list[float] = []
+    for rectangle in rectangles:
+        x1, y1, x2, y2 = rectangle
+        width, height = x2 - x1, y2 - y1
+        narrow = min(width, height)
+        if narrow >= minimum - 1e-9:
+            continue
+        candidates: list[Rect] = []
+        if height < minimum - 1e-9:
+            candidates.extend((
+                (x1, y2 - minimum, x2, y2),
+                (x1, y1, x2, y1 + minimum),
+            ))
+        if width < minimum - 1e-9:
+            candidates.extend((
+                (x2 - minimum, y1, x2, y2),
+                (x1, y1, x1 + minimum, y2),
+            ))
+        if not any(enclosure_deficit(target, rectangles) <= 1e-9 for target in candidates):
+            violations.append(narrow)
+    return violations
+
+
 def spacing_violations(components: list[list[Rect]], minimum: float) -> list[float]:
     violations: list[float] = []
     for first_index, first in enumerate(components):
@@ -350,12 +468,7 @@ def audit_rectangles(
         layer: connected_components(rectangles[layer])
         for layer in (MET3, MET4, CAPM)
     }
-    met4_width = [
-        min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
-        for rectangle in rectangles[MET4]
-        if min(rectangle[2] - rectangle[0], rectangle[3] - rectangle[1])
-        < 0.30 - 1e-9
-    ]
+    met4_width = minimum_width_violations(rectangles[MET4], 0.30)
     met4_area = [
         union_area(component)
         for component in components[MET4]

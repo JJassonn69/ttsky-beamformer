@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "net_equivalence_groups": [
+    {
+      "canonical": "phase_0",
+      "members": ["phase_0", "ch0_phase_0_leaf", "ch1_phase_0_leaf", "ch2_phase_0_leaf", "ch3_phase_0_leaf"]
+    },
+    {
+      "canonical": "phase_90",
+      "members": ["phase_90", "ch0_phase_90_leaf", "ch1_phase_90_leaf", "ch2_phase_90_leaf", "ch3_phase_90_leaf"]
+    },
+    {
+      "canonical": "phase_180",
+      "members": ["phase_180", "ch0_phase_180_leaf", "ch1_phase_180_leaf", "ch2_phase_180_leaf", "ch3_phase_180_leaf"]
+    },
+    {
+      "canonical": "phase_270",
+      "members": ["phase_270", "ch0_phase_270_leaf", "ch1_phase_270_leaf", "ch2_phase_270_leaf", "ch3_phase_270_leaf"]
+    }
+  ],
+  "route_match_constraints": [
+    {
+      "name": "global_phase_0_90",
+      "nets": ["phase_0", "phase_90"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "global_phase_0_180",
+      "nets": ["phase_0", "phase_180"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "global_phase_0_270",
+      "nets": ["phase_0", "phase_270"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2", "via3"]
+    }
+  ],
+  "route_endpoint_constraints": [],
+  "route_path_constraints": [],
+  "boundary_route_constraints": []
+}

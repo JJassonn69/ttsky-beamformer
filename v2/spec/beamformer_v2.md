@@ -1,6 +1,7 @@
 # Beamformer V2 electrical and architecture specification
 
-Status: architecture baseline. This file is not a silicon signoff claim.
+Status: frozen V2A architecture contract with a locally validated physical
+routing candidate. This file is not a silicon signoff claim.
 
 ## Objective
 
@@ -84,6 +85,9 @@ report the main lobe, sidelobes, and any grating lobes separately.
 - Distribute the four phases through a balanced, shielded tree.
 - Every channel must contain the same phase-select topology and load all four
   phase lines equally.
+- The selected local topology uses two shared first-stage 2:1 muxes, matched
+  P/N final muxes with swapped A/B inputs, matched blanking gates, and matched
+  output buffers from the pinned official SKY130 HD library.
 - Beam and manual-phase changes must be committed on a defined safe clock
   boundary.
 - Use break-before-make selection or blank the mixers for one LO period during
@@ -91,28 +95,43 @@ report the main lobe, sidelobes, and any grating lobes separately.
 - A 30 MHz LO would require a nominal 120 MHz phase-generator clock and is a
   separate stretch target, not a V2A rating.
 
-## R-2R calibration DACs
+The local selector itself passed its current schematic-level 4 and 30 MHz PVT
+sweep with less than 8 ps worst P/N skew. This does not promote V2A to a 30 MHz
+LO rating: the master-clock generator, global phase tree, mixer, package, and
+extracted interconnect must independently close at 120/30 MHz.
 
-V2A contains one four-bit trim DAC per channel. The DAC output controls a
-high-impedance gain-setting or bias-control node through a buffer or otherwise
-proven isolation stage.
+## Channel-gain calibration
 
-The R-2R ladder must not carry the 5 MHz signal directly in V2A.
+V2A uses one four-bit, channel-local switched tail-current bank per channel.
+It does not route an analog DAC voltage across the macro. Every current-source
+finger is the same 1.26 by 0.50 um NMOS unit. Forty-two units are always on;
+binary groups of 1, 2, 4, and 8 units are selected by the trim code. Code 8
+therefore enables 50 units and is the nominal point.
 
-Provisional targets, subject to transistor-level and Monte Carlo refinement:
+Verified schematic-level tail-current behavior:
 
 - four-bit unsigned code, default code 8;
-- approximately 0.85 to 1.15 relative channel-gain range;
-- monotonic response across selected PVT corners;
-- static codes during beam measurements;
-- code updates performed while the affected channel is muted;
-- identical unit resistors for `R`, with `2R` made from two series units;
-- dummy units, common orientation, matched driver resistance, and symmetric
-  local routing; and
-- local supply filtering and physical separation from the quadrature clock.
+- relative current from 0.84 at code 0 through 1.00 at code 8 to 1.14 at code
+  15;
+- monotonic in all 27 combinations of TT/FF/SS, 1.62/1.80/1.98 V, and
+  -40/27/85 C;
+- worst endpoint-fit DNL and INL below 0.00047 LSB in that deterministic PVT
+  sweep;
+- static codes during beam measurements; and
+- code changes committed while the channel is blanked.
 
-DAC calibration is allowed to improve typical and measured nulls. The
-uncalibrated beamformer must still meet its separately stated release floor.
+The fixed bank is physically split into three identical 14-finger groups.
+The binary groups use the same unit finger geometry and remain inside the
+owning channel guard ring. Extraction must recover 57 equal current fingers,
+not four unrelated transistor widths.
+
+The R-2R study remains in `v2/spice/r2r_4bit.inc` as characterized research.
+The standalone ladder was monotonic across the exercised PVT and load sweep,
+but a passive tail-bias blend measurably pulled the shared bias. Buffering four
+DAC voltages would add offset, power, area, and long analog control routes.
+For those reasons, R-2R is excluded from the V2A production floorplan. It is
+better suited to a future standalone voltage control, vector modulator, or
+programmable common-mode reference.
 
 ## Digital control contract
 
@@ -127,36 +146,49 @@ Direct controls:
 | `ena` | global analog and clock enable |
 | `rst_n` | phase generator and configuration reset |
 
-A serial configuration register will carry at least:
+A 24-bit serial configuration chain carries exactly:
 
 - four two-bit manual phase codes; and
 - four four-bit gain-trim codes.
 
-Candidate pins are `uio[0]` configuration clock, `uio[1]` configuration data,
-and `uio[2]` atomic configuration latch. The final crossing and reset behavior
-must be specified before RTL is frozen. All unused outputs remain static to
-minimize digital-to-analog coupling.
+The frozen integration mapping uses `uio_in[0]` for configuration clock,
+`uio_in[1]` for configuration data, and `uio_in[2]` for the atomic
+configuration latch. The 24-bit packet is shifted LSB-first: trim bits
+`trim[15:0]` first, followed by manual phase bits `manual_phase[7:0]`. The
+latch is asserted for one separate configuration-clock edge after shifting;
+a toggle synchronizer carries the commit into the master-clock domain. Direct
+controls pass through two flip-flops. Both paths are applied only at the
+defined phase-state boundary and blank all channels for one complete LO
+period. Reset selects zero-degree manual phase, trim code 8 on all channels,
+and disables every channel. All unused outputs remain static to minimize
+digital-to-analog coupling. The final TinyTapeout wrapper still has to bind
+this contract to the submission template.
 
 ## Physical architecture contract
 
 - Initial area target: SKY130A 2x2 analog macro.
-- Place four channel cores in a fourfold-symmetric arrangement around the
-  centered output load, bias, and clock distribution.
+- Place four identical narrow channel slices directly above `ua[0:3]`, on the
+  exact 19.32 um analog-pin pitch.  This translational symmetry avoids four
+  unequal lateral input runs; the shared differential loads and clock tree are
+  centered on the channel array rather than on the otherwise mostly empty die.
 - Give every channel identical device composition, orientation, local escape,
-  phase mux, DAC buffer, and clock loading.
+  phase mux, switched-tail bank, and clock loading.
 - Match all four input-pin-to-transconductor routes and independently match
   the two output routes.
 - Extend the V1 no-floating-stub, via-ownership, capacitor-keepout, clean-route
   regeneration, and distributed-RC gates to every V2 net.
 - The four phase-tree leaves must match electrically after extracted RC; equal
   drawn Manhattan length alone is insufficient.
-- Treat phase nets as noise sources: shield them from inputs, gain controls,
-  the output load, and R-2R ladders.
+- Treat phase nets as noise sources: shield them from inputs, static trim
+  controls, the output load, and shared bias circuitry.
 - Keep the shared summing node short and centered. A long common bus is not an
   acceptable substitute for symmetric placement.
 
-Numerical route, skew, and parasitic tolerances will be frozen only after the
-first placement study and extracted sensitivity sweep.
+The active numerical route and parasitic gates are frozen in
+`control_openroad_route_plan.json`, `control_routing_checkpoint.json`, and the
+associated extraction audits. Analog performance limits remain provisional
+until the frozen distributed-RC view completes the post-layout sensitivity
+sweep.
 
 ## Verification gates
 
@@ -183,9 +215,10 @@ first placement study and extracted sensitivity sweep.
 
 ## Decisions intentionally left open
 
-- Exact R-2R unit resistance and trim-to-transconductance transfer.
-- Quadrature generator logic family and clock-buffer sizing.
-- V2A channel common-centroid ordering and permitted device rotations.
+- Clock-buffer sizing for any frequency target beyond the nominal 16 MHz
+  master clock.
+- Final analog-performance acceptance of the selected ABBA channel ordering
+  and R0/MY source-facing device pairs after post-layout mismatch simulation.
 - Whether V2B uses a passive reciprocal mixer or separate active TX/RX paths.
 - Whether calibrated coefficients are loaded externally on every power-up or
   stored by the test controller.
