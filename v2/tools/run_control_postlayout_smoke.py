@@ -160,6 +160,7 @@ def deck_text(
     input_phases_deg: tuple[float, float, float, float] = (0.0, 0.0, 0.0, 0.0),
     input_peak_v: float = 0.005,
     distributed_rc: bool = False,
+    operating_point_startup: bool = False,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -195,6 +196,12 @@ def deck_text(
         for channel in range(4)
     )
     phase_nodes = RC_PHASE_ROOT_NODES if distributed_rc else PHASE_NODES
+    vdd_source = (
+        "VDD_SOURCE VDPWR 0 {VDD}"
+        if operating_point_startup
+        else "VDD_SOURCE VDPWR 0 pulse(0 {VDD} 0 20n 20n 100u 200u)"
+    )
+    transient = ".tran 2n 4u 2u" + ("" if operating_point_startup else " uic")
     phase_measures = "\n".join(
         f".measure tran phase{index}_min min v({node}) from=2u to=4u\n"
         f".measure tran phase{index}_max max v({node}) from=2u to=4u\n"
@@ -235,7 +242,7 @@ def deck_text(
 .include "{netlist.as_posix()}"
 
 .param VDD=1.8 FIN=5meg FOUT=1meg VINPK={input_peak_v:.12g}
-VDD_SOURCE VDPWR 0 pulse(0 {{VDD}} 0 20n 20n 100u 200u)
+{vdd_source}
 VSS_SOURCE {GROUND} 0 0
 {chr(10).join(controls)}
 
@@ -260,7 +267,7 @@ CF2 filtered 0 79.577p
 + v(tone_i) v(tone_q) i(VDD_SOURCE)
 + {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
-.tran 2n 4u 2u uic
+{transient}
 .measure tran output_rms rms v(filtered) from=2u to=4u
 .measure tran output_avg avg v(filtered) from=2u to=4u
 .measure tran common_mode_avg avg v(common_mode) from=2u to=4u
@@ -379,6 +386,12 @@ def main() -> int:
         help="four-bit enabled-channel mask (for example 0xF or 0x1)",
     )
     parser.add_argument("--input-peak-v", type=float, default=0.005)
+    parser.add_argument(
+        "--startup",
+        choices=("uic", "op"),
+        default="uic",
+        help="fast ramped UIC startup or exact DC operating-point startup",
+    )
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -411,6 +424,8 @@ def main() -> int:
             case_label += f"_mask_{args.channel_mask:x}"
         if args.input_peak_v != 0.005:
             case_label += f"_vin_{round(args.input_peak_v * 1e9):d}nv"
+        if args.startup == "op":
+            case_label += "_startup_op"
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -424,6 +439,7 @@ def main() -> int:
             input_phases_deg=input_phases,
             input_peak_v=args.input_peak_v,
             distributed_rc=args.view == "rc",
+            operating_point_startup=args.startup == "op",
         ),
         encoding="utf-8",
     )
@@ -451,7 +467,8 @@ def main() -> int:
         values,
         distributed_rc=args.view == "rc",
         require_output=(
-            args.incident_beam is None or args.beam == args.incident_beam
+            args.input_peak_v > 0.0
+            and (args.incident_beam is None or args.beam == args.incident_beam)
         ),
     )
     if timed_out:
@@ -467,6 +484,7 @@ def main() -> int:
         "channel_mask": args.channel_mask,
         "input_phases_deg": input_phases,
         "input_peak_v": args.input_peak_v,
+        "startup": args.startup,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),

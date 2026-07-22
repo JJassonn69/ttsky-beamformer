@@ -20,7 +20,7 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
             path.relative_to(ROOT),
             Path(
                 "build/v2/postlayout_smoke/base/codebook/"
-                "selected_2_incident_3/report.json"
+                "selected_2_incident_3_startup_op/report.json"
             ),
         )
         baseline = case_report_path("base", 2, 3, input_peak_v=0.0)
@@ -28,9 +28,21 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
             baseline.relative_to(ROOT),
             Path(
                 "build/v2/postlayout_smoke/base/codebook/"
-                "selected_2_incident_3_vin_0nv/report.json"
+                "selected_2_incident_3_vin_0nv_startup_op/report.json"
             ),
         )
+        uic = case_report_path("base", 2, 3, startup="uic")
+        self.assertEqual(
+            uic.relative_to(ROOT),
+            Path(
+                "build/v2/postlayout_smoke/base/codebook/"
+                "selected_2_incident_3/report.json"
+            ),
+        )
+
+    def test_case_report_rejects_unknown_startup(self) -> None:
+        with self.assertRaises(ValueError):
+            case_report_path("base", 2, 3, startup="unknown")
 
     def test_idealized_ten_to_one_diagonal_has_twenty_db_rejection(self) -> None:
         matrix = [

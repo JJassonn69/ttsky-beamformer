@@ -23,10 +23,15 @@ def case_report_path(
     selected_beam: int,
     incident_beam: int,
     input_peak_v: float = 0.005,
+    startup: str = "op",
 ) -> Path:
+    if startup not in ("uic", "op"):
+        raise ValueError("startup must be 'uic' or 'op'")
     case_label = f"selected_{selected_beam}_incident_{incident_beam}"
     if input_peak_v != 0.005:
         case_label += f"_vin_{round(input_peak_v * 1e9):d}nv"
+    if startup == "op":
+        case_label += "_startup_op"
     return (
         BUILD / view / "codebook"
         / case_label
@@ -116,6 +121,7 @@ def run_case(
     input_peak_v: float,
     ngspice: str,
     timeout: int,
+    startup: str,
 ) -> tuple[int, int, float, int, str]:
     command = [
         sys.executable,
@@ -126,6 +132,7 @@ def run_case(
         "--input-peak-v", str(input_peak_v),
         "--ngspice", ngspice,
         "--timeout", str(timeout),
+        "--startup", startup,
     ]
     completed = subprocess.run(
         command,
@@ -145,6 +152,15 @@ def main() -> int:
     parser.add_argument("--timeout", type=int, default=900)
     parser.add_argument("--jobs", type=int, default=3)
     parser.add_argument("--minimum-rejection-db", type=float, default=6.0)
+    parser.add_argument(
+        "--startup",
+        choices=("uic", "op"),
+        default="op",
+        help=(
+            "exact DC operating-point startup (release default) or ramped UIC "
+            "startup for diagnostic smoke testing"
+        ),
+    )
     args = parser.parse_args()
     if not 1 <= args.jobs <= 4:
         raise SystemExit("--jobs must be between one and four")
@@ -169,6 +185,7 @@ def main() -> int:
                 input_peak_v,
                 args.ngspice,
                 args.timeout,
+                args.startup,
             )
             for selected, incident, input_peak_v in cases
         ]
@@ -186,7 +203,13 @@ def main() -> int:
     errors: list[str] = []
     reports: dict[tuple[int, int, float], dict[str, Any]] = {}
     for selected, incident, input_peak_v, returncode, output in executions:
-        path = case_report_path(args.view, selected, incident, input_peak_v)
+        path = case_report_path(
+            args.view,
+            selected,
+            incident,
+            input_peak_v,
+            startup=args.startup,
+        )
         if returncode:
             errors.append(
                 f"selected beam {selected}, incident beam {incident} failed: "
@@ -207,20 +230,28 @@ def main() -> int:
     raw_matrix: list[list[float]] = []
     background_iq: list[list[float]] = []
     if len(reports) == 20:
-        matrix, raw_matrix, background_iq = corrected_response_matrices(reports)
-        metrics, matrix_errors = evaluate_matrix(matrix, args.minimum_rejection_db)
+        corrected_matrix, raw_matrix, background_iq = corrected_response_matrices(reports)
+        # Release acceptance is deliberately based on the uncorrected response.
+        # A zero-input subtraction is useful for diagnosis, but silicon cannot
+        # perform that subtraction unless cancellation hardware is implemented.
+        matrix = raw_matrix
+        metrics, matrix_errors = evaluate_matrix(raw_matrix, args.minimum_rejection_db)
         metrics["raw_response_matrix_v_rms"] = raw_matrix
+        metrics["baseline_corrected_response_matrix_v_rms"] = corrected_matrix
         metrics["zero_input_background_iq_v"] = background_iq
+        metrics["acceptance_basis"] = "raw_unsubtracted_response"
         errors.extend(matrix_errors)
     else:
         metrics = {"response_matrix_v_rms": matrix}
 
-    result_path = BUILD / args.view / "codebook" / "summary.json"
+    summary_name = "summary_startup_op.json" if args.startup == "op" else "summary_uic.json"
+    result_path = BUILD / args.view / "codebook" / summary_name
     result_path.parent.mkdir(parents=True, exist_ok=True)
     result = {
         "status": "pass" if not errors else "fail",
         "errors": errors,
         "view": args.view,
+        "startup": args.startup,
         "jobs": args.jobs,
         "case_count": len(reports),
         "signal_case_count": sum(key[2] == 0.005 for key in reports),

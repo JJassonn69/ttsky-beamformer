@@ -150,6 +150,15 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 input_peak_v=-1e-3,
             )
 
+    def test_operating_point_startup_uses_dc_vdd_and_drops_uic(self) -> None:
+        text = deck_text(
+            Path("view.spice"), "netlist-hash", "gds-hash",
+            operating_point_startup=True,
+        )
+        self.assertIn("VDD_SOURCE VDPWR 0 {VDD}", text)
+        self.assertIn(".tran 2n 4u 2u\n", text)
+        self.assertNotIn(".tran 2n 4u 2u uic", text)
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))
