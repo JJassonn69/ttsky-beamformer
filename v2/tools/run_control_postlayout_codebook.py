@@ -114,6 +114,36 @@ def corrected_response_matrices(
     return corrected_matrix, raw_matrix, background_iq
 
 
+def validate_case_identity(
+    report: dict[str, Any],
+    *,
+    view: str,
+    startup: str,
+    selected_beam: int,
+    incident_beam: int,
+    input_peak_v: float,
+) -> list[str]:
+    """Reject stale case reports that do not describe the requested run."""
+    expected = {
+        "view": view,
+        "startup": startup,
+        "selected_beam": selected_beam,
+        "incident_beam": incident_beam,
+        "input_peak_v": input_peak_v,
+    }
+    errors: list[str] = []
+    for field, value in expected.items():
+        if report.get(field) != value:
+            errors.append(
+                f"case identity {field}={report.get(field)!r}, expected {value!r}"
+            )
+    for field in ("gds_sha256", "netlist_sha256", "spiceinit_sha256"):
+        value = report.get(field)
+        if not isinstance(value, str) or len(value) != 64:
+            errors.append(f"case identity lacks a valid {field}")
+    return errors
+
+
 def run_case(
     view: str,
     selected_beam: int,
@@ -220,6 +250,18 @@ def main() -> int:
             continue
         report = json.loads(path.read_text(encoding="utf-8"))
         reports[(selected, incident, input_peak_v)] = report
+        identity_errors = validate_case_identity(
+            report,
+            view=args.view,
+            startup=args.startup,
+            selected_beam=selected,
+            incident_beam=incident,
+            input_peak_v=input_peak_v,
+        )
+        errors.extend(
+            f"selected beam {selected}, incident beam {incident}: {message}"
+            for message in identity_errors
+        )
         if report.get("status") != "pass":
             errors.append(
                 f"selected beam {selected}, incident beam {incident} "
@@ -230,6 +272,21 @@ def main() -> int:
     raw_matrix: list[list[float]] = []
     background_iq: list[list[float]] = []
     if len(reports) == 20:
+        gds_hashes = sorted({str(report.get("gds_sha256")) for report in reports.values()})
+        netlist_hashes = sorted(
+            {str(report.get("netlist_sha256")) for report in reports.values()}
+        )
+        spiceinit_hashes = sorted(
+            {str(report.get("spiceinit_sha256")) for report in reports.values()}
+        )
+        if len(gds_hashes) != 1:
+            errors.append(f"case reports use multiple GDS hashes: {gds_hashes}")
+        if len(netlist_hashes) != 1:
+            errors.append(f"case reports use multiple netlist hashes: {netlist_hashes}")
+        if len(spiceinit_hashes) != 1:
+            errors.append(
+                f"case reports use multiple ngspice startup hashes: {spiceinit_hashes}"
+            )
         corrected_matrix, raw_matrix, background_iq = corrected_response_matrices(reports)
         # Release acceptance is deliberately based on the uncorrected response.
         # A zero-input subtraction is useful for diagnosis, but silicon cannot
@@ -240,6 +297,11 @@ def main() -> int:
         metrics["baseline_corrected_response_matrix_v_rms"] = corrected_matrix
         metrics["zero_input_background_iq_v"] = background_iq
         metrics["acceptance_basis"] = "raw_unsubtracted_response"
+        metrics["artifact_hashes"] = {
+            "gds_sha256": gds_hashes,
+            "netlist_sha256": netlist_hashes,
+            "spiceinit_sha256": spiceinit_hashes,
+        }
         errors.extend(matrix_errors)
     else:
         metrics = {"response_matrix_v_rms": matrix}

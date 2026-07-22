@@ -10,6 +10,7 @@ from run_control_postlayout_codebook import (
     case_report_path,
     corrected_response_matrices,
     evaluate_matrix,
+    validate_case_identity,
 )
 
 
@@ -91,6 +92,41 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
         self.assertAlmostEqual(corrected[0][1], 0.1 * 2 ** 0.5)
         self.assertEqual(raw[0][0], 9.0)
         self.assertEqual(background[0], [2.0, -1.0])
+
+    def test_case_identity_binds_startup_and_artifact_hashes(self) -> None:
+        report = {
+            "view": "base",
+            "startup": "op",
+            "selected_beam": 2,
+            "incident_beam": 3,
+            "input_peak_v": 0.005,
+            "gds_sha256": "a" * 64,
+            "netlist_sha256": "b" * 64,
+            "spiceinit_sha256": "c" * 64,
+        }
+        self.assertEqual(
+            validate_case_identity(
+                report,
+                view="base",
+                startup="op",
+                selected_beam=2,
+                incident_beam=3,
+                input_peak_v=0.005,
+            ),
+            [],
+        )
+        report["startup"] = "uic"
+        report["gds_sha256"] = "short"
+        errors = validate_case_identity(
+            report,
+            view="base",
+            startup="op",
+            selected_beam=2,
+            incident_beam=3,
+            input_peak_v=0.005,
+        )
+        self.assertTrue(any("startup" in error for error in errors))
+        self.assertTrue(any("gds_sha256" in error for error in errors))
 
 
 if __name__ == "__main__":
