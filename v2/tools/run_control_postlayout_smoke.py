@@ -161,6 +161,8 @@ def deck_text(
     input_peak_v: float = 0.005,
     distributed_rc: bool = False,
     operating_point_startup: bool = False,
+    analysis_start_us: float = 2.0,
+    analysis_stop_us: float = 4.0,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -168,6 +170,13 @@ def deck_text(
         raise ValueError("beam must be between zero and three")
     if input_peak_v < 0.0:
         raise ValueError("input peak voltage cannot be negative")
+    if analysis_start_us <= 0.0 or analysis_stop_us <= analysis_start_us:
+        raise ValueError("analysis window must have positive, increasing times")
+    window_us = analysis_stop_us - analysis_start_us
+    if abs(window_us - round(window_us)) > 1e-9:
+        raise ValueError("analysis window must span an integer number of 1 MHz cycles")
+    start = f"{analysis_start_us:g}u"
+    stop = f"{analysis_stop_us:g}u"
     output_p_node = "ch0_out_p.n0" if distributed_rc else "ch0_out_p"
     output_n_node = "ch0_out_n.n0" if distributed_rc else "ch0_out_n"
     controls = [
@@ -201,13 +210,15 @@ def deck_text(
         if operating_point_startup
         else "VDD_SOURCE VDPWR 0 pulse(0 {VDD} 0 20n 20n 100u 200u)"
     )
-    transient = ".tran 2n 4u 2u" + ("" if operating_point_startup else " uic")
+    transient = f".tran 2n {stop} {start}" + (
+        "" if operating_point_startup else " uic"
+    )
     phase_measures = "\n".join(
-        f".measure tran phase{index}_min min v({node}) from=2u to=4u\n"
-        f".measure tran phase{index}_max max v({node}) from=2u to=4u\n"
+        f".measure tran phase{index}_min min v({node}) from={start} to={stop}\n"
+        f".measure tran phase{index}_max max v({node}) from={start} to={stop}\n"
         f".measure tran phase{index}_period "
-        f"trig v({node}) val=0.9 rise=1 td=2u "
-        f"targ v({node}) val=0.9 rise=2 td=2u"
+        f"trig v({node}) val=0.9 rise=1 td={start} "
+        f"targ v({node}) val=0.9 rise=2 td={start}"
         for index, node in enumerate(phase_nodes)
     )
     rc_leaf_saves = ""
@@ -218,12 +229,12 @@ def deck_text(
         )
         rc_leaf_measures = "\n".join(
             f".measure tran phase{phase}_ch{channel}_min min v({leaf}) "
-            f"from=2u to=4u\n"
+            f"from={start} to={stop}\n"
             f".measure tran phase{phase}_ch{channel}_max max v({leaf}) "
-            f"from=2u to=4u\n"
+            f"from={start} to={stop}\n"
             f".measure tran phase{phase}_ch{channel}_delay "
-            f"trig v({RC_PHASE_ROOT_NODES[phase]}) val=0.9 rise=1 td=2u "
-            f"targ v({leaf}) val=0.9 rise=1 td=2u"
+            f"trig v({RC_PHASE_ROOT_NODES[phase]}) val=0.9 rise=1 td={start} "
+            f"targ v({leaf}) val=0.9 rise=1 td={start}"
             for phase, leaves in enumerate(RC_PHASE_LEAF_NODES)
             for channel, leaf in enumerate(leaves)
         )
@@ -268,13 +279,13 @@ CF2 filtered 0 79.577p
 + {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
 {transient}
-.measure tran output_rms rms v(filtered) from=2u to=4u
-.measure tran output_avg avg v(filtered) from=2u to=4u
-.measure tran common_mode_avg avg v(common_mode) from=2u to=4u
-.measure tran vcm_avg avg v(ch0_vcm) from=2u to=4u
-.measure tran supply_avg avg i(VDD_SOURCE) from=2u to=4u
-.measure tran tone_i_avg avg v(tone_i) from=2u to=4u
-.measure tran tone_q_avg avg v(tone_q) from=2u to=4u
+.measure tran output_rms rms v(filtered) from={start} to={stop}
+.measure tran output_avg avg v(filtered) from={start} to={stop}
+.measure tran common_mode_avg avg v(common_mode) from={start} to={stop}
+.measure tran vcm_avg avg v(ch0_vcm) from={start} to={stop}
+.measure tran supply_avg avg i(VDD_SOURCE) from={start} to={stop}
+.measure tran tone_i_avg avg v(tone_i) from={start} to={stop}
+.measure tran tone_q_avg avg v(tone_q) from={start} to={stop}
 .measure tran output_tone_rms param='sqrt(2*(tone_i_avg*tone_i_avg+tone_q_avg*tone_q_avg))'
 {phase_measures}
 {rc_leaf_measures}
@@ -404,6 +415,8 @@ def main() -> int:
         default="uic",
         help="fast ramped UIC startup or exact DC operating-point startup",
     )
+    parser.add_argument("--analysis-start-us", type=float, default=2.0)
+    parser.add_argument("--analysis-stop-us", type=float, default=4.0)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -412,6 +425,11 @@ def main() -> int:
         raise SystemExit("--channel-mask must be a four-bit value")
     if args.input_peak_v < 0.0:
         raise SystemExit("--input-peak-v cannot be negative")
+    if args.analysis_start_us <= 0.0 or args.analysis_stop_us <= args.analysis_start_us:
+        raise SystemExit("analysis window must have positive, increasing times")
+    window_us = args.analysis_stop_us - args.analysis_start_us
+    if abs(window_us - round(window_us)) > 1e-9:
+        raise SystemExit("analysis window must span an integer number of 1 MHz cycles")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -423,7 +441,16 @@ def main() -> int:
         if args.incident_beam is not None
         else (0.0, 0.0, 0.0, 0.0)
     )
-    if args.beam == 0 and args.incident_beam is None and args.channel_mask == 0xF:
+    default_case = (
+        args.beam == 0
+        and args.incident_beam is None
+        and args.channel_mask == 0xF
+        and args.input_peak_v == 0.005
+        and args.startup == "uic"
+        and args.analysis_start_us == 2.0
+        and args.analysis_stop_us == 4.0
+    )
+    if default_case:
         work = BUILD / args.view
     else:
         incident_label = (
@@ -438,6 +465,11 @@ def main() -> int:
             case_label += f"_vin_{round(args.input_peak_v * 1e9):d}nv"
         if args.startup == "op":
             case_label += "_startup_op"
+        if args.analysis_start_us != 2.0 or args.analysis_stop_us != 4.0:
+            case_label += (
+                f"_window_{args.analysis_start_us:g}us_"
+                f"{args.analysis_stop_us:g}us"
+            ).replace(".", "p")
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -452,6 +484,8 @@ def main() -> int:
             input_peak_v=args.input_peak_v,
             distributed_rc=args.view == "rc",
             operating_point_startup=args.startup == "op",
+            analysis_start_us=args.analysis_start_us,
+            analysis_stop_us=args.analysis_stop_us,
         ),
         encoding="utf-8",
     )
@@ -498,6 +532,7 @@ def main() -> int:
         "input_phases_deg": input_phases,
         "input_peak_v": args.input_peak_v,
         "startup": args.startup,
+        "analysis_window_us": [args.analysis_start_us, args.analysis_stop_us],
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),

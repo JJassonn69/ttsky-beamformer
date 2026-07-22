@@ -159,6 +159,30 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         self.assertIn(".tran 2n 4u 2u\n", text)
         self.assertNotIn(".tran 2n 4u 2u uic", text)
 
+    def test_late_window_supports_physical_startup_settling_checks(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            analysis_start_us=14.0,
+            analysis_stop_us=16.0,
+        )
+        self.assertIn(".tran 2n 16u 14u uic", text)
+        self.assertIn("from=14u to=16u", text)
+        self.assertIn("rise=1 td=14u", text)
+
+    def test_analysis_window_is_coherent_and_increasing(self) -> None:
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                analysis_start_us=4.0, analysis_stop_us=2.0,
+            )
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                analysis_start_us=2.0, analysis_stop_us=4.5,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))
