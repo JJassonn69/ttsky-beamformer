@@ -65,6 +65,16 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
         _, errors = evaluate_matrix(matrix, minimum_rejection_db=6.0)
         self.assertEqual(len(errors), 4)
 
+    def test_nominal_constructive_spread_above_three_db_fails(self) -> None:
+        matrix = [
+            [1.5 if row == column == 0 else 1.0 if row == column else 0.01
+             for column in range(4)]
+            for row in range(4)
+        ]
+        metrics, errors = evaluate_matrix(matrix)
+        self.assertGreater(metrics["constructive_spread_db"], 3.0)
+        self.assertTrue(any("constructive spread" in error for error in errors))
+
     def test_matrix_shape_is_strict(self) -> None:
         with self.assertRaises(ValueError):
             evaluate_matrix([[1.0]])

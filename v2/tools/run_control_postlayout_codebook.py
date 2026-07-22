@@ -40,7 +40,9 @@ def case_report_path(
 
 
 def evaluate_matrix(
-    matrix_v_rms: list[list[float]], minimum_rejection_db: float = 6.0
+    matrix_v_rms: list[list[float]],
+    minimum_rejection_db: float = 6.0,
+    maximum_constructive_spread_db: float = 3.0,
 ) -> tuple[dict[str, Any], list[str]]:
     if len(matrix_v_rms) != 4 or any(len(row) != 4 for row in matrix_v_rms):
         raise ValueError("codebook response matrix must be 4x4")
@@ -68,12 +70,18 @@ def evaluate_matrix(
         errors.append("at least one constructive diagonal response is zero")
     else:
         diagonal_spread_db = 20.0 * math.log10(max(diagonal) / min(diagonal))
+        if diagonal_spread_db > maximum_constructive_spread_db:
+            errors.append(
+                f"constructive spread {diagonal_spread_db:.3f} dB exceeds "
+                f"{maximum_constructive_spread_db:.3f} dB"
+            )
     return {
         "response_matrix_v_rms": matrix_v_rms,
         "constructive_diagonal_v_rms": diagonal,
         "row_rejection_db": row_rejection_db,
         "minimum_rejection_db": min(row_rejection_db),
         "constructive_spread_db": diagonal_spread_db,
+        "maximum_constructive_spread_db": maximum_constructive_spread_db,
     }, errors
 
 
@@ -228,6 +236,11 @@ def main() -> int:
     parser.add_argument("--jobs", type=int, default=3)
     parser.add_argument("--minimum-rejection-db", type=float, default=6.0)
     parser.add_argument(
+        "--maximum-constructive-spread-db",
+        type=float,
+        default=3.0,
+    )
+    parser.add_argument(
         "--startup",
         choices=("uic", "op"),
         default="op",
@@ -353,7 +366,11 @@ def main() -> int:
         # A zero-input subtraction is useful for diagnosis, but silicon cannot
         # perform that subtraction unless cancellation hardware is implemented.
         matrix = raw_matrix
-        metrics, matrix_errors = evaluate_matrix(raw_matrix, args.minimum_rejection_db)
+        metrics, matrix_errors = evaluate_matrix(
+            raw_matrix,
+            args.minimum_rejection_db,
+            args.maximum_constructive_spread_db,
+        )
         metrics["raw_response_matrix_v_rms"] = raw_matrix
         metrics["baseline_corrected_response_matrix_v_rms"] = corrected_matrix
         metrics["zero_input_background_iq_v"] = background_iq
@@ -384,6 +401,7 @@ def main() -> int:
         "signal_case_count": sum(key[2] == 0.005 for key in reports),
         "baseline_case_count": sum(key[2] == 0.0 for key in reports),
         "functional_rejection_gate_db": args.minimum_rejection_db,
+        "constructive_spread_gate_db": args.maximum_constructive_spread_db,
         "metrics": metrics,
     }
     result_path.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n")
