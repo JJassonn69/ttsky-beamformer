@@ -46,6 +46,12 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         self.assertIn("BTONEI tone_i 0 v=v(differential)*cos(2*pi*FOUT*time)", text)
         self.assertIn("BTONEQ tone_q 0 v=v(differential)*sin(2*pi*FOUT*time)", text)
         self.assertIn(".measure tran output_tone_rms param=", text)
+        self.assertIn(".measure tran core_lo_rms param=", text)
+        self.assertIn(".measure tran core_cm_lo_rms param=", text)
+        self.assertIn(".measure tran vcm_rf_rms param=", text)
+        self.assertIn(".measure tran vcm_lo_rms param=", text)
+        self.assertIn(".measure tran ch0_gm_p_min", text)
+        self.assertIn(".measure tran ch3_tail_max", text)
         self.assertIn("VINPK=0.005", text)
 
     def test_smoke_window_is_short_enough_for_iterative_signoff(self) -> None:
@@ -259,6 +265,92 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 "gds-hash",
                 vbias_bypass_pf=-1.0,
             )
+
+    def test_output_damping_experiment_is_symmetric_at_core_outputs(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            output_damping_pf=10.0,
+        )
+        self.assertIn("CDAMPP ch0_out_p VDPWR 10p", text)
+        self.assertIn("CDAMPN ch0_out_n VDPWR 10p", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                output_damping_pf=0.0,
+            )
+
+    def test_vcm_bypass_experiment_targets_shared_reference(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            vcm_bypass_pf=10.0,
+        )
+        self.assertIn("CVCM_BYPASS ch0_vcm 0 10p", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                vcm_bypass_pf=-1.0,
+            )
+
+    def test_vcm_varactor_experiment_uses_foundry_model_and_shared_reference(self) -> None:
+        model = Path("build/v2/varactor_study/cap_var_lvt.model.spice")
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            vcm_varactor_model=model,
+            vcm_varactor_w_um=25.0,
+            vcm_varactor_l_um=25.0,
+            vcm_varactor_m=2,
+        )
+        self.assertIn(f'.include "{model.as_posix()}"', text)
+        self.assertIn(
+            "XVCM_VAR ch0_vcm 0 0 sky130_fd_pr__cap_var_lvt w=25 l=25 vm=2",
+            text,
+        )
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                vcm_bypass_pf=5.0,
+                vcm_varactor_model=model,
+            )
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                vcm_varactor_model=model,
+                vcm_varactor_w_um=0.0,
+            )
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "netlist-hash", "gds-hash",
+                vcm_varactor_model=model,
+                vcm_varactor_m=0,
+            )
+
+    def test_physical_varactor_model_closure_does_not_add_a_duplicate_device(self) -> None:
+        model = Path("v2/spice/sky130_fd_pr__cap_var_lvt.model.spice")
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            extracted_varactor_model=model,
+        )
+        self.assertIn(f'.include "{model.as_posix()}"', text)
+        self.assertNotIn("XVCM_VAR ch0_vcm", text)
+
+    def test_rc_output_damping_uses_extracted_output_endpoints(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            distributed_rc=True,
+            output_damping_pf=5.0,
+        )
+        self.assertIn("CDAMPP ch0_out_p.n0 VDPWR 5p", text)
+        self.assertIn("CDAMPN ch0_out_n.n0 VDPWR 5p", text)
 
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))

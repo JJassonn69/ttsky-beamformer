@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prove final routing adds no markers to the full independent KLayout deck."""
+"""Classify the exact KLayout marker delta against the frozen trim-route GDS."""
 
 from __future__ import annotations
 
@@ -69,6 +69,7 @@ def sha256(path: Path) -> str:
 def audit(
     source: Path, candidate: Path,
     source_gds: Path | None = None, candidate_gds: Path | None = None,
+    expected_added_categories: dict[str, int] | None = None,
 ) -> dict[str, Any]:
     source_markers = markers(source)
     candidate_markers = markers(candidate)
@@ -79,10 +80,19 @@ def audit(
         or (source.stat().st_mtime_ns >= source_gds.stat().st_mtime_ns
             and candidate.stat().st_mtime_ns >= candidate_gds.stat().st_mtime_ns)
     )
-    passed = not added and not removed and reports_fresh
+    expected_added_categories = expected_added_categories or {}
+    actual_added_categories = category_counts(added)
+    passed = (
+        actual_added_categories == expected_added_categories
+        and not removed
+        and reports_fresh
+    )
     result = {
         "status": "pass" if passed else "fail",
-        "policy": "final routing must preserve the exact normalized marker multiset of the frozen routed source",
+        "policy": (
+            "the hash-frozen user trim-route source may gain only the explicitly "
+            "classified foundry-PCell markers; no inherited marker may move or disappear"
+        ),
         "source_report": str(source),
         "candidate_report": str(candidate),
         "source_marker_count": sum(source_markers.values()),
@@ -91,7 +101,8 @@ def audit(
         "candidate_category_counts": category_counts(candidate_markers),
         "added_marker_count": sum(added.values()),
         "removed_marker_count": sum(removed.values()),
-        "added_category_counts": category_counts(added),
+        "added_category_counts": actual_added_categories,
+        "expected_added_category_counts": expected_added_categories,
         "removed_category_counts": category_counts(removed),
         "reports_newer_than_checked_gds": reports_fresh,
     }
@@ -107,7 +118,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--source", type=Path,
-        default=Path("build/v2/control_routing/direct/current_internal_klayout_full_drc.xml"),
+        default=Path("build/v2/varactor_eco/pre_varactor_klayout_full_drc.xml"),
     )
     parser.add_argument(
         "--candidate", type=Path,
@@ -119,10 +130,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--source-gds", type=Path,
-        default=Path(
-            "build/v2/control_routing/openroad_internal/direct/"
-            "v2_control_internal_routed.gds"
-        ),
+        default=Path("build/v2/varactor_eco/v2_control_quadrature_pre_varactor.gds"),
     )
     parser.add_argument(
         "--candidate-gds", type=Path,
@@ -131,7 +139,13 @@ def main() -> None:
         ),
     )
     args = parser.parse_args()
-    report = audit(args.source, args.candidate, args.source_gds, args.candidate_gds)
+    report = audit(
+        args.source,
+        args.candidate,
+        args.source_gds,
+        args.candidate_gds,
+        expected_added_categories={"ct.2": 10},
+    )
     args.report.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(json.dumps(report, indent=2, sort_keys=True))
     if report["status"] != "pass":

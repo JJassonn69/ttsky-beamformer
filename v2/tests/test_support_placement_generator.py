@@ -26,6 +26,7 @@ class SupportPlacementGeneratorTests(unittest.TestCase):
         self.assertEqual(count, 6)
         self.assertEqual(text.count("\nidentify "), 6)
         self.assertIn("identify CVCM", text)
+        self.assertNotIn("identify CVCM_VAR", text)
         self.assertIn("identify BIAS_DIODE_A", text)
         self.assertIn("identify BIAS_DIODE_B", text)
         self.assertIn("SUPPORT_PLACEMENT_DRC_COUNT", text)

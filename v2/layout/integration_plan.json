@@ -124,6 +124,43 @@
       "orientation_reason": "puts C1 toward the channel bus and C2 toward the grounded divider column"
     },
     {
+      "name": "CVCM_VAR0",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 15.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR1",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 36.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR2",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 57.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR3",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 78.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"},
+      "placement_reason": "four identical single-device tiles form one compact symmetric column; no long matching detours are permitted"
+    },
+    {
       "name": "RBIAS",
       "pcell": "r2r_unit_guarded",
       "center": [172.5, 130.0],

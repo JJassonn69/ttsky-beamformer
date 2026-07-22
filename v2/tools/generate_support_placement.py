@@ -21,6 +21,8 @@ def fmt(value: float) -> str:
 def generate(plan: dict[str, Any], dimensions: dict[str, Any], output: Path) -> int:
     commands: list[str] = []
     for component in plan["analog_support_components"]:
+        if component.get("implementation_stage") == "vcm_varactor_eco":
+            continue
         orientation = component["orientation"]
         if orientation not in MAGIC_TRANSFORM:
             raise ValueError(

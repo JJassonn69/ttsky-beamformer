@@ -26,6 +26,7 @@ class PortCatalogTests(unittest.TestCase):
             "input_bias_resistor_guarded",
             "output_load_resistor_guarded",
             "vcm_mim_capacitor",
+            "vcm_varactor_lvt",
         ):
             self.assertIn(name, analog)
             self.assertTrue(analog[name]["ports"])
@@ -52,6 +53,10 @@ class PortCatalogTests(unittest.TestCase):
         self.assertTrue({"C1", "C2"}.issubset(
             analog["vcm_mim_capacitor"]["ports"]
         ))
+        self.assertEqual(
+            set(analog["vcm_varactor_lvt"]["ports"]),
+            {"B", "D", "G", "S"},
+        )
 
 
 if __name__ == "__main__":

@@ -182,6 +182,20 @@
       "bbox_um": [-12.08, -11.20, 12.08, 11.20],
       "width_um": 24.16,
       "height_um": 22.40
+    },
+    "vcm_varactor_lvt": {
+      "generated_cell": "sky130_fd_pr__cap_var_lvt_88578Y",
+      "parameters": {
+        "width": 17.68,
+        "length": 17.68,
+        "m": 1,
+        "nf": 1,
+        "guard": 1,
+        "full_metal": 1
+      },
+      "bbox_um": [-10.055, -9.845, 10.055, 9.845],
+      "width_um": 20.11,
+      "height_um": 19.69
     }
   },
   "placement_assumptions": {

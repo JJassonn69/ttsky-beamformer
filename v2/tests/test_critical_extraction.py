@@ -95,6 +95,11 @@ XTOP n1 n2 child
             support["XRVCM_TOP"], ["VGND", "RVCM_TOP/R1", "ch0_vcm"]
         )
         self.assertEqual(support["XCVCM"], ["VGND", "ch0_vcm", "VGND"])
+        for index in range(4):
+            self.assertEqual(
+                support[f"XCVCM_VAR{index}"],
+                ["ch0_vcm", "VGND", "VGND"],
+            )
         self.assertEqual(support["XRBIAS"], ["VGND", "RBIAS/R1", "ch0_vbias"])
         for name in ("XBIAS_DIODE_A", "XBIAS_DIODE_B"):
             self.assertEqual(

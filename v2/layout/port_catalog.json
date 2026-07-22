@@ -1406,6 +1406,51 @@
       },
       "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__cap_mim_m3_1_2SELCQ.mag"
     },
+    "vcm_varactor_lvt": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -9.58
+            ]
+          }
+        ],
+        "D": [
+          {
+            "label": "D",
+            "layer": "nsubdiffcont",
+            "point_um": [
+              -9.18,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "label": "G",
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              9.115
+            ]
+          }
+        ],
+        "S": [
+          {
+            "label": "S",
+            "layer": "nsubdiffcont",
+            "point_um": [
+              9.18,
+              0.0
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__cap_var_lvt_88578Y.mag"
+    },
     "vcm_top_resistor_guarded": {
       "ports": {
         "B": [

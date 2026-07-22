@@ -24,6 +24,9 @@ DEFAULT_BASE = Path(
 DEFAULT_RC = Path(
     "build/v2/control_routing/final_rc/control_final_rc.spice"
 )
+DEFAULT_VARACTOR_MODEL = Path(
+    "v2/spice/sky130_fd_pr__cap_var_lvt.model.spice"
+)
 BUILD = Path("build/v2/postlayout_smoke")
 SPICE_INIT = """* Isolated large-SKY130 ngspice configuration.
 set ngbehavior=hsa
@@ -85,7 +88,7 @@ def netlist_has_node(text: str, node: str) -> bool:
 
 
 def validate_extracted_netlist(text: str) -> None:
-    expected_models = {
+    base_models = {
         "sky130_fd_pr__cap_mim_m3_1",
         "sky130_fd_pr__nfet_01v8",
         "sky130_fd_pr__pfet_01v8_hvt",
@@ -93,11 +96,15 @@ def validate_extracted_netlist(text: str) -> None:
         "sky130_fd_pr__res_xhigh_po_1p41",
         "sky130_fd_pr__special_nfet_01v8",
     }
+    expected_model_sets = (
+        base_models,
+        base_models | {"sky130_fd_pr__cap_var_lvt"},
+    )
     found = extracted_model_names(text)
-    if found != expected_models:
+    if found not in expected_model_sets:
         raise ValueError(
             f"extracted model set changed: found={sorted(found)}, "
-            f"expected={sorted(expected_models)}"
+            f"expected one of={[sorted(item) for item in expected_model_sets]}"
         )
     required_nodes = {
         "VDPWR", GROUND, "ch0_input", "ch1_input", "ch2_input",
@@ -167,6 +174,13 @@ def deck_text(
     enable_delay_us: float = 0.0,
     output_shunt_ohms: float | None = None,
     vbias_bypass_pf: float | None = None,
+    output_damping_pf: float | None = None,
+    vcm_bypass_pf: float | None = None,
+    vcm_varactor_model: Path | None = None,
+    extracted_varactor_model: Path | None = None,
+    vcm_varactor_w_um: float = 25.0,
+    vcm_varactor_l_um: float = 25.0,
+    vcm_varactor_m: int = 1,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -187,6 +201,17 @@ def deck_text(
         raise ValueError("output shunt resistance must be positive")
     if vbias_bypass_pf is not None and vbias_bypass_pf <= 0.0:
         raise ValueError("VBIAS bypass capacitance must be positive")
+    if output_damping_pf is not None and output_damping_pf <= 0.0:
+        raise ValueError("output damping capacitance must be positive")
+    if vcm_bypass_pf is not None and vcm_bypass_pf <= 0.0:
+        raise ValueError("VCM bypass capacitance must be positive")
+    if vcm_varactor_model is not None:
+        if vcm_bypass_pf is not None:
+            raise ValueError("choose either an ideal VCM bypass or a VCM varactor")
+        if vcm_varactor_w_um <= 0.0 or vcm_varactor_l_um <= 0.0:
+            raise ValueError("VCM varactor dimensions must be positive")
+        if vcm_varactor_m <= 0:
+            raise ValueError("VCM varactor multiplicity must be positive")
     start = f"{analysis_start_us:g}u"
     stop = f"{analysis_stop_us:g}u"
     step = f"{transient_step_ns:g}n"
@@ -203,6 +228,33 @@ def deck_text(
         if vbias_bypass_pf is not None
         else ""
     )
+    vcm_bypass = (
+        f"CVCM_BYPASS ch0_vcm 0 {vcm_bypass_pf:.12g}p"
+        if vcm_bypass_pf is not None
+        else ""
+    )
+    vcm_varactor_include = ""
+    vcm_varactor = ""
+    model_path = extracted_varactor_model or vcm_varactor_model
+    if model_path is not None:
+        vcm_varactor_include = f'''* Nominal model closure for the SKY130 LVT accumulation varactor.
+.param MC_MM_SWITCH=0
+.param cnwvc_tox=41.6503 cnwvc_cdepmult=1 cnwvc_cintmult=1
+.param cnwvc_vt1=0.3333 cnwvc_vt2=0.2380952 cnwvc_vtr=0.16
+.param cnwvc_dwc=0 cnwvc_dlc=0 cnwvc_dld=0
+.include "{model_path.as_posix()}"'''
+    if vcm_varactor_model is not None:
+        vcm_varactor = (
+            "XVCM_VAR ch0_vcm 0 0 sky130_fd_pr__cap_var_lvt "
+            f"w={vcm_varactor_w_um:.12g} l={vcm_varactor_l_um:.12g} "
+            f"vm={vcm_varactor_m}"
+        )
+    output_damping = ""
+    if output_damping_pf is not None:
+        output_damping = (
+            f"CDAMPP {output_p_node} VDPWR {output_damping_pf:.12g}p\n"
+            f"CDAMPN {output_n_node} VDPWR {output_damping_pf:.12g}p"
+        )
     ena_source = (
         f"VENA {CONTROL_NODES['ena']} 0 "
         f"pulse(0 {{VDD}} {enable_delay_us:g}u 200p 200p 100u 200u)"
@@ -280,12 +332,15 @@ def deck_text(
 .include "third_party/sky130_fd_pr_hvt/sky130_fd_pr__pfet_01v8_hvt__mismatch.corner.spice"
 .include "spice/sky130/sky130_passives_tt.inc"
 .include "v2/spice/extracted_model_aliases.inc"
+{vcm_varactor_include}
 .include "{netlist.as_posix()}"
 
-.param VDD=1.8 FIN=5meg FOUT=1meg VINPK={input_peak_v:.12g}
+.param VDD=1.8 FIN=5meg FOUT=1meg FLO=4meg VINPK={input_peak_v:.12g}
 {vdd_source}
 VSS_SOURCE {GROUND} 0 0
 {vbias_bypass}
+{vcm_bypass}
+{vcm_varactor}
 {chr(10).join(controls)}
 
 {chr(10).join(input_source(index, phase) for index, phase in enumerate(input_phases_deg))}
@@ -293,21 +348,35 @@ VSS_SOURCE {GROUND} 0 0
 ROUTP {output_p_node} outp_pad 500
 ROUTN {output_n_node} outn_pad 500
 {output_shunts}
+{output_damping}
 COUTP outp_pad 0 10p
 COUTN outn_pad 0 10p
 RLOADP outp_pad 0 1meg
 RLOADN outn_pad 0 1meg
 EDIFF differential 0 outp_pad outn_pad 1
 BCM common_mode 0 v=(v(outp_pad)+v(outn_pad))/2
+ECORE_DIFF core_differential 0 {output_p_node} {output_n_node} 1
+BCORE_CM core_common_mode 0 v=(v({output_p_node})+v({output_n_node}))/2
 BTONEI tone_i 0 v=v(differential)*cos(2*pi*FOUT*time)
 BTONEQ tone_q 0 v=v(differential)*sin(2*pi*FOUT*time)
+BLOI lo_i 0 v=v(core_differential)*cos(2*pi*FLO*time)
+BLOQ lo_q 0 v=v(core_differential)*sin(2*pi*FLO*time)
+BCMLOI cm_lo_i 0 v=v(core_common_mode)*cos(2*pi*FLO*time)
+BCMLOQ cm_lo_q 0 v=v(core_common_mode)*sin(2*pi*FLO*time)
+BVCMRFI vcm_rf_i 0 v=v(ch0_vcm)*cos(2*pi*FIN*time)
+BVCMRFQ vcm_rf_q 0 v=v(ch0_vcm)*sin(2*pi*FIN*time)
+BVCMLOI vcm_lo_i 0 v=v(ch0_vcm)*cos(2*pi*FLO*time)
+BVCMLOQ vcm_lo_q 0 v=v(ch0_vcm)*sin(2*pi*FLO*time)
 RF1 differential filt1 1k
 CF1 filt1 0 79.577p
 RF2 filt1 filtered 1k
 CF2 filtered 0 79.577p
 
 .save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm) v(ch0_vbias)
-+ v(tone_i) v(tone_q) i(VDD_SOURCE)
++ v(core_differential) v(core_common_mode) v(tone_i) v(tone_q)
++ v(lo_i) v(lo_q) v(cm_lo_i) v(cm_lo_q) i(VDD_SOURCE)
++ v(vcm_rf_i) v(vcm_rf_q) v(vcm_lo_i) v(vcm_lo_q)
++ {" ".join(f"v(ch{channel}_{node})" for channel in range(4) for node in ("gm_p", "gm_n", "tail"))}
 + {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
 {transient}
@@ -324,6 +393,23 @@ CF2 filtered 0 79.577p
 .measure tran tone_i_avg avg v(tone_i) from={start} to={stop}
 .measure tran tone_q_avg avg v(tone_q) from={start} to={stop}
 .measure tran output_tone_rms param='sqrt(2*(tone_i_avg*tone_i_avg+tone_q_avg*tone_q_avg))'
+.measure tran core_output_p_min min v({output_p_node}) from={start} to={stop}
+.measure tran core_output_p_max max v({output_p_node}) from={start} to={stop}
+.measure tran core_output_n_min min v({output_n_node}) from={start} to={stop}
+.measure tran core_output_n_max max v({output_n_node}) from={start} to={stop}
+.measure tran core_lo_i_avg avg v(lo_i) from={start} to={stop}
+.measure tran core_lo_q_avg avg v(lo_q) from={start} to={stop}
+.measure tran core_lo_rms param='sqrt(2*(core_lo_i_avg*core_lo_i_avg+core_lo_q_avg*core_lo_q_avg))'
+.measure tran core_cm_lo_i_avg avg v(cm_lo_i) from={start} to={stop}
+.measure tran core_cm_lo_q_avg avg v(cm_lo_q) from={start} to={stop}
+.measure tran core_cm_lo_rms param='sqrt(2*(core_cm_lo_i_avg*core_cm_lo_i_avg+core_cm_lo_q_avg*core_cm_lo_q_avg))'
+.measure tran vcm_rf_i_avg avg v(vcm_rf_i) from={start} to={stop}
+.measure tran vcm_rf_q_avg avg v(vcm_rf_q) from={start} to={stop}
+.measure tran vcm_rf_rms param='sqrt(2*(vcm_rf_i_avg*vcm_rf_i_avg+vcm_rf_q_avg*vcm_rf_q_avg))'
+.measure tran vcm_lo_i_avg avg v(vcm_lo_i) from={start} to={stop}
+.measure tran vcm_lo_q_avg avg v(vcm_lo_q) from={start} to={stop}
+.measure tran vcm_lo_rms param='sqrt(2*(vcm_lo_i_avg*vcm_lo_i_avg+vcm_lo_q_avg*vcm_lo_q_avg))'
+{chr(10).join(f'.measure tran ch{channel}_{node}_min min v(ch{channel}_{node}) from={start} to={stop}' + chr(10) + f'.measure tran ch{channel}_{node}_max max v(ch{channel}_{node}) from={start} to={stop}' for channel in range(4) for node in ("gm_p", "gm_n", "tail"))}
 {phase_measures}
 {rc_leaf_measures}
 .end
@@ -427,7 +513,19 @@ def analyze(
         "output_tone_i_v": values.get("tone_i_avg", 0.0),
         "output_tone_q_v": values.get("tone_q_avg", 0.0),
         "output_common_mode_v": values.get("common_mode_avg", 0.0),
+        "core_lo_feedthrough_rms_v": values.get("core_lo_rms", 0.0),
+        "core_common_mode_lo_rms_v": values.get("core_cm_lo_rms", 0.0),
+        "core_output_p_range_v": [
+            values.get("core_output_p_min", 0.0),
+            values.get("core_output_p_max", 0.0),
+        ],
+        "core_output_n_range_v": [
+            values.get("core_output_n_min", 0.0),
+            values.get("core_output_n_max", 0.0),
+        ],
         "vcm_v": values.get("vcm_avg", 0.0),
+        "vcm_rf_rms_v": values.get("vcm_rf_rms", 0.0),
+        "vcm_lo_rms_v": values.get("vcm_lo_rms", 0.0),
         "vcm_peak_to_peak_v": (
             values.get("vcm_max", 0.0) - values.get("vcm_min", 0.0)
         ),
@@ -471,6 +569,16 @@ def main() -> int:
     parser.add_argument("--enable-delay-us", type=float, default=0.0)
     parser.add_argument("--output-shunt-ohms", type=float)
     parser.add_argument("--vbias-bypass-pf", type=float)
+    parser.add_argument("--output-damping-pf", type=float)
+    parser.add_argument("--vcm-bypass-pf", type=float)
+    parser.add_argument(
+        "--vcm-varactor-model",
+        type=Path,
+        help="experimental SKY130 LVT varactor model used as the VCM bypass",
+    )
+    parser.add_argument("--vcm-varactor-w-um", type=float, default=25.0)
+    parser.add_argument("--vcm-varactor-l-um", type=float, default=25.0)
+    parser.add_argument("--vcm-varactor-m", type=int, default=1)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -492,10 +600,40 @@ def main() -> int:
         raise SystemExit("--output-shunt-ohms must be positive")
     if args.vbias_bypass_pf is not None and args.vbias_bypass_pf <= 0.0:
         raise SystemExit("--vbias-bypass-pf must be positive")
-    for path in (args.gds, netlist):
+    if args.output_damping_pf is not None and args.output_damping_pf <= 0.0:
+        raise SystemExit("--output-damping-pf must be positive")
+    if args.vcm_bypass_pf is not None and args.vcm_bypass_pf <= 0.0:
+        raise SystemExit("--vcm-bypass-pf must be positive")
+    if args.vcm_varactor_model is not None:
+        if args.vcm_bypass_pf is not None:
+            raise SystemExit("choose either --vcm-bypass-pf or --vcm-varactor-model")
+        if args.vcm_varactor_w_um <= 0.0 or args.vcm_varactor_l_um <= 0.0:
+            raise SystemExit("VCM varactor dimensions must be positive")
+        if args.vcm_varactor_m <= 0:
+            raise SystemExit("VCM varactor multiplicity must be positive")
+    required_paths = [args.gds, netlist]
+    if args.vcm_varactor_model is not None:
+        required_paths.append(args.vcm_varactor_model)
+    for path in required_paths:
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
-    validate_extracted_netlist(netlist.read_text(encoding="utf-8", errors="replace"))
+    netlist_text = netlist.read_text(encoding="utf-8", errors="replace")
+    validate_extracted_netlist(netlist_text)
+    extracted_varactor_model = (
+        DEFAULT_VARACTOR_MODEL
+        if "sky130_fd_pr__cap_var_lvt" in extracted_model_names(netlist_text)
+        else None
+    )
+    if extracted_varactor_model is not None:
+        if args.vcm_varactor_model is not None:
+            raise SystemExit(
+                "the extracted layout already contains VCM varactors; "
+                "refusing to add an experimental duplicate"
+            )
+        if not extracted_varactor_model.is_file():
+            raise SystemExit(
+                f"missing extracted-varactor model: {extracted_varactor_model}"
+            )
     gds_hash = sha256(args.gds)
     netlist_hash = sha256(netlist)
     input_phases = (
@@ -515,6 +653,9 @@ def main() -> int:
         and args.enable_delay_us == 0.0
         and args.output_shunt_ohms is None
         and args.vbias_bypass_pf is None
+        and args.output_damping_pf is None
+        and args.vcm_bypass_pf is None
+        and args.vcm_varactor_model is None
     )
     if default_case:
         work = BUILD / args.view
@@ -544,6 +685,16 @@ def main() -> int:
             case_label += f"_shunt_{args.output_shunt_ohms:g}ohm".replace(".", "p")
         if args.vbias_bypass_pf is not None:
             case_label += f"_vbiascap_{args.vbias_bypass_pf:g}pf".replace(".", "p")
+        if args.output_damping_pf is not None:
+            case_label += f"_outcap_{args.output_damping_pf:g}pf".replace(".", "p")
+        if args.vcm_bypass_pf is not None:
+            case_label += f"_vcmcap_{args.vcm_bypass_pf:g}pf".replace(".", "p")
+        if args.vcm_varactor_model is not None:
+            case_label += (
+                f"_vcmvar_w{args.vcm_varactor_w_um:g}_l{args.vcm_varactor_l_um:g}"
+            ).replace(".", "p")
+            if args.vcm_varactor_m != 1:
+                case_label += f"_m{args.vcm_varactor_m}"
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -564,6 +715,13 @@ def main() -> int:
             enable_delay_us=args.enable_delay_us,
             output_shunt_ohms=args.output_shunt_ohms,
             vbias_bypass_pf=args.vbias_bypass_pf,
+            output_damping_pf=args.output_damping_pf,
+            vcm_bypass_pf=args.vcm_bypass_pf,
+            vcm_varactor_model=args.vcm_varactor_model,
+            extracted_varactor_model=extracted_varactor_model,
+            vcm_varactor_w_um=args.vcm_varactor_w_um,
+            vcm_varactor_l_um=args.vcm_varactor_l_um,
+            vcm_varactor_m=args.vcm_varactor_m,
         ),
         encoding="utf-8",
     )
@@ -593,6 +751,9 @@ def main() -> int:
         settled_startup=args.startup == "op",
         full_channel_operation=(
             args.channel_mask == 0xF and args.output_shunt_ohms is None
+            and args.output_damping_pf is None
+            and args.vcm_bypass_pf is None
+            and args.vcm_varactor_model is None
         ),
         require_output=(
             args.input_peak_v > 0.0
@@ -618,6 +779,16 @@ def main() -> int:
         "enable_delay_us": args.enable_delay_us,
         "output_shunt_ohms": args.output_shunt_ohms,
         "vbias_bypass_pf": args.vbias_bypass_pf,
+        "output_damping_pf": args.output_damping_pf,
+        "vcm_bypass_pf": args.vcm_bypass_pf,
+        "vcm_varactor_model": (
+            str(args.vcm_varactor_model)
+            if args.vcm_varactor_model is not None
+            else None
+        ),
+        "vcm_varactor_w_um": args.vcm_varactor_w_um,
+        "vcm_varactor_l_um": args.vcm_varactor_l_um,
+        "vcm_varactor_m": args.vcm_varactor_m,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),

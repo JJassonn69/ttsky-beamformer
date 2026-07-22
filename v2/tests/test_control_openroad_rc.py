@@ -47,7 +47,8 @@ class ControlFinalRcTest(unittest.TestCase):
         self.assertGreater(rc["resistors"], 90000)
         self.assertGreater(rc["capacitors"], base["capacitors"])
         self.assertEqual(rc["devices"], base["devices"])
-        self.assertEqual(rc["devices"], 4244)
+        # The VCM ECO adds exactly four foundry varactor devices.
+        self.assertEqual(rc["devices"], 4248)
         self.assertGreater(rc["internal_resistor_nodes"], 60000)
         self.assertGreaterEqual(
             self.report["annotation"]["spice_to_annotation_ratio"], 0.90

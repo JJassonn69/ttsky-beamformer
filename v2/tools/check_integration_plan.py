@@ -248,6 +248,46 @@ def validate(
         if not math.isclose(axis, 172.5, abs_tol=1e-9):
             errors.append(f"bias-diode pair axis moved to {axis}")
 
+    varactors = sorted(
+        (
+            component for component in plan["analog_support_components"]
+            if component["name"].startswith("CVCM_VAR")
+        ),
+        key=lambda component: component["name"],
+    )
+    if len(varactors) != 4:
+        errors.append(f"VCM bypass requires four varactor tiles, found {len(varactors)}")
+    elif varactors:
+        reference = varactors[0]
+        x_centres = [float(component["center"][0]) for component in varactors]
+        y_centres = [float(component["center"][1]) for component in varactors]
+        expected_nets = {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+        for component in varactors:
+            if (
+                component["pcell"] != reference["pcell"]
+                or component["orientation"] != reference["orientation"]
+            ):
+                errors.append("VCM varactor tiles do not use identical PCell/orientation")
+                break
+            if component["nets"] != expected_nets:
+                errors.append(f"{component['name']} terminal mapping changed")
+        if any(
+            not math.isclose(x, x_centres[0], abs_tol=1e-9)
+            for x in x_centres[1:]
+        ):
+            errors.append("VCM varactor tiles do not share one placement column")
+        if y_centres != sorted(y_centres):
+            errors.append("VCM varactor instance order is not bottom-to-top")
+        pitches = [
+            y_centres[index + 1] - y_centres[index]
+            for index in range(len(y_centres) - 1)
+        ]
+        if pitches and any(
+            not math.isclose(pitch, pitches[0], abs_tol=1e-9)
+            for pitch in pitches[1:]
+        ):
+            errors.append("VCM varactor tile pitch is not uniform")
+
     channels = {int(item["index"]): item for item in floorplan["channels"]}
     vcm_x = [float(item["center_x"]) + 8.34 for item in channels.values()]
     vbias_x = [float(item["center_x"]) + 6.30 for item in channels.values()]

@@ -23,6 +23,7 @@ from v2.tools.check_magic_rc_log import FATAL_PATTERNS
 
 
 MINIMUM_RESISTOR_EMISSION_RATIO = 0.90
+MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS = 120
 OUTPUT_PAD_INTERNAL_COORDINATES = {
     "sum_p": (14996, 100),  # ua[4] at 74.98 um, 0.50 um
     "sum_n": (11132, 100),  # ua[5] at 55.66 um, 0.50 um
@@ -131,9 +132,15 @@ def audit(
         ),
         "base_is_resistance_free_reference": len(base["R"]) == 0,
         "resistance_annotation_exists": rnodes > 0 and annotated > 0,
+        # Magic writes the resistance annotation during extresist, then may
+        # rewrite the companion .ext while ext2spice emits its two views.  The
+        # files therefore need to belong to the same extraction window; their
+        # ordering is not a valid freshness test.
         "resistance_annotation_is_fresh": (
             top_ext.is_file()
-            and res_ext_path.stat().st_mtime_ns >= top_ext.stat().st_mtime_ns
+            and abs(
+                res_ext_path.stat().st_mtime_ns - top_ext.stat().st_mtime_ns
+            ) <= MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS * 1_000_000_000
         ),
         "explicit_resistors_emitted": (
             annotated > 0 and emitted_ratio >= MINIMUM_RESISTOR_EMISSION_RATIO
@@ -168,6 +175,13 @@ def audit(
             "rnodes": rnodes, "resistors": annotated,
             "spice_to_annotation_ratio": emitted_ratio,
             "minimum_spice_to_annotation_ratio": MINIMUM_RESISTOR_EMISSION_RATIO,
+            "artifact_mtime_skew_seconds": (
+                abs(res_ext_path.stat().st_mtime_ns - top_ext.stat().st_mtime_ns)
+                / 1_000_000_000 if top_ext.is_file() else None
+            ),
+            "maximum_artifact_mtime_skew_seconds": (
+                MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS
+            ),
         },
         "magic_fatal_matches": fatal,
         "magic_warnings": {

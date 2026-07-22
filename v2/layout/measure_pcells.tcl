@@ -85,6 +85,13 @@ box 470um 0um 470um 0um
 magic::gencell sky130::sky130_fd_pr__cap_mim_m3_1 XVCM_CAP \
     w 22.0 l 22.0 nx 1 ny 1 doports 1
 
+# Four identical compact LVT varactors provide the added VCM RF bypass.  The
+# tiled implementation has materially higher simulated Q than one large square
+# for the same aggregate capacitance, and preserves a symmetric placement.
+box 550um 0um 550um 0um
+magic::gencell sky130::sky130_fd_pr__cap_var_lvt XVCM_VAR \
+    w 17.68 l 17.68 m 1 nf 1 guard 1 full_metal 1 doports 1
+
 # One half of the shared diode-connected bias reference.  Two identical
 # 16 um devices are placed with identical orientation and local routing.
 # Nine fingers keep the cell compact while preserving the schematic's
