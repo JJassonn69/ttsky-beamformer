@@ -79,6 +79,7 @@ Key files:
 - [final reviewed trim-route view](../build/v2/control_routing/review/beamformer-v2-control-final-trim-detail.png)
 - [final phase/quadrature-handoff view](../build/v2/control_routing/review/beamformer-v2-control-final-handoff-detail.png)
 - [final output-load power detail](../build/v2/control_routing/review/beamformer-v2-control-final-load-power-detail.png)
+- [open the frozen `2db23e3` GDS in the TinyTapeout viewer](https://gds-viewer.tinytapeout.com/?pdk=sky130A&model=https%3A%2F%2Fraw.githubusercontent.com%2FJJassonn69%2Fttsky-beamformer%2F2db23e3%2Fbuild%2Fv2%2Fcontrol_routing%2Fdirect%2Fv2_control_quadrature_routed.gds)
 
 This freezes the production control-routing checkpoint, not the full V2 chip.
 No V2 geometry replaces the V1 release until the remaining analog/top-level
