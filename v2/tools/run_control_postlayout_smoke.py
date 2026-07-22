@@ -563,7 +563,9 @@ def main() -> int:
         values,
         distributed_rc=args.view == "rc",
         settled_startup=args.startup == "op",
-        full_channel_operation=args.channel_mask == 0xF,
+        full_channel_operation=(
+            args.channel_mask == 0xF and args.output_shunt_ohms is None
+        ),
         require_output=(
             args.input_peak_v > 0.0
             and (args.incident_beam is None or args.beam == args.incident_beam)
