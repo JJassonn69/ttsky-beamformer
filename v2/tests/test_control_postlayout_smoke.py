@@ -201,6 +201,28 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 transient_step_ns=20.0,
             )
 
+    def test_staged_enable_keeps_mixers_blanked_during_bias_charge(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            analysis_start_us=46.0,
+            analysis_stop_us=48.0,
+            transient_step_ns=5.0,
+            enable_delay_us=40.0,
+        )
+        self.assertIn("VENA R067 0 pulse(0 {VDD} 40u", text)
+        self.assertNotIn("BENA R067 0 v=v(VDPWR)", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"),
+                "netlist-hash",
+                "gds-hash",
+                analysis_start_us=46.0,
+                analysis_stop_us=48.0,
+                enable_delay_us=50.0,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))

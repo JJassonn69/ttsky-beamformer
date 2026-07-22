@@ -164,6 +164,7 @@ def deck_text(
     analysis_start_us: float = 2.0,
     analysis_stop_us: float = 4.0,
     transient_step_ns: float = 2.0,
+    enable_delay_us: float = 0.0,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -178,11 +179,19 @@ def deck_text(
         raise ValueError("analysis window must span an integer number of 1 MHz cycles")
     if not 0.5 <= transient_step_ns <= 10.0:
         raise ValueError("transient step must be between 0.5 and 10 ns")
+    if enable_delay_us < 0.0 or enable_delay_us >= analysis_stop_us:
+        raise ValueError("enable delay must be nonnegative and before analysis stop")
     start = f"{analysis_start_us:g}u"
     stop = f"{analysis_stop_us:g}u"
     step = f"{transient_step_ns:g}n"
     output_p_node = "ch0_out_p.n0" if distributed_rc else "ch0_out_p"
     output_n_node = "ch0_out_n.n0" if distributed_rc else "ch0_out_n"
+    ena_source = (
+        f"VENA {CONTROL_NODES['ena']} 0 "
+        f"pulse(0 {{VDD}} {enable_delay_us:g}u 200p 200p 100u 200u)"
+        if enable_delay_us > 0.0
+        else f"BENA {CONTROL_NODES['ena']} 0 v=v(VDPWR)"
+    )
     controls = [
         f"VBEAM0 {CONTROL_NODES['beam_select[0]']} 0 "
         + ("{VDD}" if beam & 1 else "0"),
@@ -191,7 +200,7 @@ def deck_text(
         f"VCFGCLK {CONTROL_NODES['cfg_clk']} 0 0",
         f"VCFGDATA {CONTROL_NODES['cfg_data']} 0 0",
         f"VCFGLATCH {CONTROL_NODES['cfg_latch']} 0 0",
-        f"BENA {CONTROL_NODES['ena']} 0 v=v(VDPWR)",
+        ena_source,
         f"VMANUAL {CONTROL_NODES['manual_mode']} 0 0",
         f"VRST {CONTROL_NODES['rst_n']} 0 "
         "pulse(0 {VDD} 250n 200p 200p 100u 200u)",
@@ -428,6 +437,7 @@ def main() -> int:
     parser.add_argument("--analysis-start-us", type=float, default=2.0)
     parser.add_argument("--analysis-stop-us", type=float, default=4.0)
     parser.add_argument("--transient-step-ns", type=float, default=2.0)
+    parser.add_argument("--enable-delay-us", type=float, default=0.0)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -443,6 +453,8 @@ def main() -> int:
         raise SystemExit("analysis window must span an integer number of 1 MHz cycles")
     if not 0.5 <= args.transient_step_ns <= 10.0:
         raise SystemExit("--transient-step-ns must be between 0.5 and 10")
+    if args.enable_delay_us < 0.0 or args.enable_delay_us >= args.analysis_stop_us:
+        raise SystemExit("--enable-delay-us must be nonnegative and before analysis stop")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -463,6 +475,7 @@ def main() -> int:
         and args.analysis_start_us == 2.0
         and args.analysis_stop_us == 4.0
         and args.transient_step_ns == 2.0
+        and args.enable_delay_us == 0.0
     )
     if default_case:
         work = BUILD / args.view
@@ -486,6 +499,8 @@ def main() -> int:
             ).replace(".", "p")
         if args.transient_step_ns != 2.0:
             case_label += f"_step_{args.transient_step_ns:g}ns".replace(".", "p")
+        if args.enable_delay_us > 0.0:
+            case_label += f"_enable_{args.enable_delay_us:g}us".replace(".", "p")
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -503,6 +518,7 @@ def main() -> int:
             analysis_start_us=args.analysis_start_us,
             analysis_stop_us=args.analysis_stop_us,
             transient_step_ns=args.transient_step_ns,
+            enable_delay_us=args.enable_delay_us,
         ),
         encoding="utf-8",
     )
@@ -552,6 +568,7 @@ def main() -> int:
         "startup": args.startup,
         "analysis_window_us": [args.analysis_start_us, args.analysis_stop_us],
         "transient_step_ns": args.transient_step_ns,
+        "enable_delay_us": args.enable_delay_us,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),
