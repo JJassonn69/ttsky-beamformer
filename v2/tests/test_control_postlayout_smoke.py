@@ -223,6 +223,23 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 enable_delay_us=50.0,
             )
 
+    def test_output_shunt_models_lower_impedance_summing_load(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            output_shunt_ohms=5000.0,
+        )
+        self.assertIn("RSHUNTP ch0_out_p VDPWR 5000", text)
+        self.assertIn("RSHUNTN ch0_out_n VDPWR 5000", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"),
+                "netlist-hash",
+                "gds-hash",
+                output_shunt_ohms=0.0,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))

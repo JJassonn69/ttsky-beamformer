@@ -165,6 +165,7 @@ def deck_text(
     analysis_stop_us: float = 4.0,
     transient_step_ns: float = 2.0,
     enable_delay_us: float = 0.0,
+    output_shunt_ohms: float | None = None,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -181,11 +182,19 @@ def deck_text(
         raise ValueError("transient step must be between 0.5 and 10 ns")
     if enable_delay_us < 0.0 or enable_delay_us >= analysis_stop_us:
         raise ValueError("enable delay must be nonnegative and before analysis stop")
+    if output_shunt_ohms is not None and output_shunt_ohms <= 0.0:
+        raise ValueError("output shunt resistance must be positive")
     start = f"{analysis_start_us:g}u"
     stop = f"{analysis_stop_us:g}u"
     step = f"{transient_step_ns:g}n"
     output_p_node = "ch0_out_p.n0" if distributed_rc else "ch0_out_p"
     output_n_node = "ch0_out_n.n0" if distributed_rc else "ch0_out_n"
+    output_shunts = ""
+    if output_shunt_ohms is not None:
+        output_shunts = (
+            f"RSHUNTP {output_p_node} VDPWR {output_shunt_ohms:.12g}\n"
+            f"RSHUNTN {output_n_node} VDPWR {output_shunt_ohms:.12g}"
+        )
     ena_source = (
         f"VENA {CONTROL_NODES['ena']} 0 "
         f"pulse(0 {{VDD}} {enable_delay_us:g}u 200p 200p 100u 200u)"
@@ -274,6 +283,7 @@ VSS_SOURCE {GROUND} 0 0
 
 ROUTP {output_p_node} outp_pad 500
 ROUTN {output_n_node} outn_pad 500
+{output_shunts}
 COUTP outp_pad 0 10p
 COUTN outn_pad 0 10p
 RLOADP outp_pad 0 1meg
@@ -438,6 +448,7 @@ def main() -> int:
     parser.add_argument("--analysis-stop-us", type=float, default=4.0)
     parser.add_argument("--transient-step-ns", type=float, default=2.0)
     parser.add_argument("--enable-delay-us", type=float, default=0.0)
+    parser.add_argument("--output-shunt-ohms", type=float)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -455,6 +466,8 @@ def main() -> int:
         raise SystemExit("--transient-step-ns must be between 0.5 and 10")
     if args.enable_delay_us < 0.0 or args.enable_delay_us >= args.analysis_stop_us:
         raise SystemExit("--enable-delay-us must be nonnegative and before analysis stop")
+    if args.output_shunt_ohms is not None and args.output_shunt_ohms <= 0.0:
+        raise SystemExit("--output-shunt-ohms must be positive")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -476,6 +489,7 @@ def main() -> int:
         and args.analysis_stop_us == 4.0
         and args.transient_step_ns == 2.0
         and args.enable_delay_us == 0.0
+        and args.output_shunt_ohms is None
     )
     if default_case:
         work = BUILD / args.view
@@ -501,6 +515,8 @@ def main() -> int:
             case_label += f"_step_{args.transient_step_ns:g}ns".replace(".", "p")
         if args.enable_delay_us > 0.0:
             case_label += f"_enable_{args.enable_delay_us:g}us".replace(".", "p")
+        if args.output_shunt_ohms is not None:
+            case_label += f"_shunt_{args.output_shunt_ohms:g}ohm".replace(".", "p")
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -519,6 +535,7 @@ def main() -> int:
             analysis_stop_us=args.analysis_stop_us,
             transient_step_ns=args.transient_step_ns,
             enable_delay_us=args.enable_delay_us,
+            output_shunt_ohms=args.output_shunt_ohms,
         ),
         encoding="utf-8",
     )
@@ -569,6 +586,7 @@ def main() -> int:
         "analysis_window_us": [args.analysis_start_us, args.analysis_stop_us],
         "transient_step_ns": args.transient_step_ns,
         "enable_delay_us": args.enable_delay_us,
+        "output_shunt_ohms": args.output_shunt_ohms,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),
