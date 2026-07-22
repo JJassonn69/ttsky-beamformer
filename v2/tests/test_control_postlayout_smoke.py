@@ -15,6 +15,7 @@ from run_control_postlayout_smoke import (
     RC_PHASE_ROOT_NODES,
     SPICE_INIT,
     analyze,
+    codebook_input_phases,
     deck_text,
     netlist_has_node,
     prepare_runtime,
@@ -117,6 +118,25 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         for index, node in enumerate(("R038", "R039", "R040", "R041")):
             self.assertIn(f"BCH{index} {node} 0 v=v(VDPWR)", text)
 
+    def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
+        self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
+        self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))
+        self.assertEqual(codebook_input_phases(2), (0.0, 180.0, 0.0, 180.0))
+        self.assertEqual(codebook_input_phases(3), (0.0, 270.0, 180.0, 90.0))
+        with self.assertRaises(ValueError):
+            codebook_input_phases(4)
+
+    def test_nonzero_beam_and_incident_phases_reach_the_deck(self) -> None:
+        text = deck_text(
+            Path("view.spice"), "netlist-hash", "gds-hash",
+            beam=3,
+            input_phases_deg=codebook_input_phases(3),
+        )
+        self.assertIn("VBEAM0 R025 0 {VDD}", text)
+        self.assertIn("VBEAM1 R026 0 {VDD}", text)
+        self.assertIn("VIN1 source1 0 sin(0 {VINPK} {FIN} 0 0 270)", text)
+        self.assertIn("VIN2 source2 0 sin(0 {VINPK} {FIN} 0 0 180)", text)
+
     def test_uic_smoke_rejects_rail_stuck_vcm_but_allows_rc_startup(self) -> None:
         values = {
             "output_rms": 8e-4,
@@ -134,6 +154,21 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         values["vcm_avg"] = 0.0
         _, errors = analyze(values)
         self.assertIn("VCM appears stuck at a supply rail during startup", errors)
+
+    def test_off_beam_case_may_reach_an_ideal_null(self) -> None:
+        values = {
+            "output_rms": 0.0,
+            "output_avg": 0.0,
+            "common_mode_avg": 1.79,
+            "vcm_avg": 0.5,
+            "supply_avg": -155e-6,
+        }
+        for index in range(4):
+            values[f"phase{index}_min"] = 0.0
+            values[f"phase{index}_max"] = 1.8
+            values[f"phase{index}_period"] = 250e-9
+        _, errors = analyze(values, require_output=False)
+        self.assertEqual(errors, [])
 
 
 if __name__ == "__main__":

@@ -141,6 +141,16 @@ def input_source(channel: int, phase_deg: float) -> str:
     )
 
 
+def codebook_input_phases(incident_beam: int) -> tuple[float, float, float, float]:
+    """Return the four incident phases for one ideal transmit-array beam."""
+    if not 0 <= incident_beam <= 3:
+        raise ValueError("incident beam must be between zero and three")
+    return tuple(
+        float(90 * ((channel * incident_beam) % 4))
+        for channel in range(4)
+    )  # type: ignore[return-value]
+
+
 def deck_text(
     netlist: Path,
     netlist_hash: str,
@@ -259,7 +269,8 @@ def parse_measures(text: str) -> dict[str, float]:
 
 
 def analyze(
-    values: dict[str, float], distributed_rc: bool = False
+    values: dict[str, float], distributed_rc: bool = False,
+    require_output: bool = True,
 ) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
     required = {
@@ -302,7 +313,7 @@ def analyze(
         if abs(values["supply_avg"]) < 1e-6:
             errors.append("extracted chip draws no measurable supply current")
         ac_rms = max(values["output_rms"] ** 2 - values["output_avg"] ** 2, 0.0) ** 0.5
-        if ac_rms < 1e-6:
+        if require_output and ac_rms < 1e-6:
             errors.append("beamformed 1 MHz output is below the smoke-test floor")
     else:
         ac_rms = 0.0
@@ -344,6 +355,8 @@ def main() -> int:
     parser.add_argument("--base-netlist", type=Path, default=DEFAULT_BASE)
     parser.add_argument("--rc-netlist", type=Path, default=DEFAULT_RC)
     parser.add_argument("--timeout", type=int, default=900)
+    parser.add_argument("--beam", type=int, choices=range(4), default=0)
+    parser.add_argument("--incident-beam", type=int, choices=range(4))
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -354,7 +367,22 @@ def main() -> int:
     validate_extracted_netlist(netlist.read_text(encoding="utf-8", errors="replace"))
     gds_hash = sha256(args.gds)
     netlist_hash = sha256(netlist)
-    work = BUILD / args.view
+    input_phases = (
+        codebook_input_phases(args.incident_beam)
+        if args.incident_beam is not None
+        else (0.0, 0.0, 0.0, 0.0)
+    )
+    if args.beam == 0 and args.incident_beam is None:
+        work = BUILD / args.view
+    else:
+        incident_label = (
+            str(args.incident_beam)
+            if args.incident_beam is not None
+            else "custom"
+        )
+        work = BUILD / args.view / "codebook" / (
+            f"selected_{args.beam}_incident_{incident_label}"
+        )
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
     log = work / "ngspice.log"
@@ -362,6 +390,8 @@ def main() -> int:
     deck.write_text(
         deck_text(
             netlist, netlist_hash, gds_hash,
+            beam=args.beam,
+            input_phases_deg=input_phases,
             distributed_rc=args.view == "rc",
         ),
         encoding="utf-8",
@@ -386,7 +416,13 @@ def main() -> int:
     elapsed_s = time.monotonic() - started
     log_text = log.read_text(encoding="utf-8", errors="replace") if log.exists() else ""
     values = parse_measures(log_text)
-    analysis, errors = analyze(values, distributed_rc=args.view == "rc")
+    analysis, errors = analyze(
+        values,
+        distributed_rc=args.view == "rc",
+        require_output=(
+            args.incident_beam is None or args.beam == args.incident_beam
+        ),
+    )
     if timed_out:
         errors.append(f"ngspice exceeded the {args.timeout} second timeout")
     elif returncode:
@@ -395,6 +431,9 @@ def main() -> int:
         "status": "pass" if not errors else "fail",
         "errors": errors,
         "view": args.view,
+        "selected_beam": args.beam,
+        "incident_beam": args.incident_beam,
+        "input_phases_deg": input_phases,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),
