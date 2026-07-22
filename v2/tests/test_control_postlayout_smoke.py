@@ -183,6 +183,24 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 analysis_start_us=2.0, analysis_stop_us=4.5,
             )
 
+    def test_coarser_startup_step_remains_explicit_and_bounded(self) -> None:
+        text = deck_text(
+            Path("view.spice"),
+            "netlist-hash",
+            "gds-hash",
+            analysis_start_us=46.0,
+            analysis_stop_us=48.0,
+            transient_step_ns=5.0,
+        )
+        self.assertIn(".tran 5n 48u 46u uic", text)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"),
+                "netlist-hash",
+                "gds-hash",
+                transient_step_ns=20.0,
+            )
+
     def test_four_ideal_incident_beams_match_the_dft_codebook(self) -> None:
         self.assertEqual(codebook_input_phases(0), (0.0, 0.0, 0.0, 0.0))
         self.assertEqual(codebook_input_phases(1), (0.0, 90.0, 180.0, 270.0))

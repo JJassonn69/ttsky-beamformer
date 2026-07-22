@@ -163,6 +163,7 @@ def deck_text(
     operating_point_startup: bool = False,
     analysis_start_us: float = 2.0,
     analysis_stop_us: float = 4.0,
+    transient_step_ns: float = 2.0,
 ) -> str:
     if not 0 <= channel_mask <= 0xF:
         raise ValueError("channel mask must be a four-bit value")
@@ -175,8 +176,11 @@ def deck_text(
     window_us = analysis_stop_us - analysis_start_us
     if abs(window_us - round(window_us)) > 1e-9:
         raise ValueError("analysis window must span an integer number of 1 MHz cycles")
+    if not 0.5 <= transient_step_ns <= 10.0:
+        raise ValueError("transient step must be between 0.5 and 10 ns")
     start = f"{analysis_start_us:g}u"
     stop = f"{analysis_stop_us:g}u"
+    step = f"{transient_step_ns:g}n"
     output_p_node = "ch0_out_p.n0" if distributed_rc else "ch0_out_p"
     output_n_node = "ch0_out_n.n0" if distributed_rc else "ch0_out_n"
     controls = [
@@ -210,7 +214,7 @@ def deck_text(
         if operating_point_startup
         else "VDD_SOURCE VDPWR 0 pulse(0 {VDD} 0 20n 20n 100u 200u)"
     )
-    transient = f".tran 2n {stop} {start}" + (
+    transient = f".tran {step} {stop} {start}" + (
         "" if operating_point_startup else " uic"
     )
     phase_measures = "\n".join(
@@ -423,6 +427,7 @@ def main() -> int:
     )
     parser.add_argument("--analysis-start-us", type=float, default=2.0)
     parser.add_argument("--analysis-stop-us", type=float, default=4.0)
+    parser.add_argument("--transient-step-ns", type=float, default=2.0)
     args = parser.parse_args()
     if not shutil.which(args.ngspice):
         raise SystemExit(f"ngspice not found: {args.ngspice}")
@@ -436,6 +441,8 @@ def main() -> int:
     window_us = args.analysis_stop_us - args.analysis_start_us
     if abs(window_us - round(window_us)) > 1e-9:
         raise SystemExit("analysis window must span an integer number of 1 MHz cycles")
+    if not 0.5 <= args.transient_step_ns <= 10.0:
+        raise SystemExit("--transient-step-ns must be between 0.5 and 10")
     for path in (args.gds, netlist):
         if not path.is_file():
             raise SystemExit(f"missing required artifact: {path}")
@@ -455,6 +462,7 @@ def main() -> int:
         and args.startup == "uic"
         and args.analysis_start_us == 2.0
         and args.analysis_stop_us == 4.0
+        and args.transient_step_ns == 2.0
     )
     if default_case:
         work = BUILD / args.view
@@ -476,6 +484,8 @@ def main() -> int:
                 f"_window_{args.analysis_start_us:g}us_"
                 f"{args.analysis_stop_us:g}us"
             ).replace(".", "p")
+        if args.transient_step_ns != 2.0:
+            case_label += f"_step_{args.transient_step_ns:g}ns".replace(".", "p")
         work = BUILD / args.view / "codebook" / case_label
     work.mkdir(parents=True, exist_ok=True)
     deck = work / "smoke.spice"
@@ -492,6 +502,7 @@ def main() -> int:
             operating_point_startup=args.startup == "op",
             analysis_start_us=args.analysis_start_us,
             analysis_stop_us=args.analysis_stop_us,
+            transient_step_ns=args.transient_step_ns,
         ),
         encoding="utf-8",
     )
@@ -540,6 +551,7 @@ def main() -> int:
         "input_peak_v": args.input_peak_v,
         "startup": args.startup,
         "analysis_window_us": [args.analysis_start_us, args.analysis_stop_us],
+        "transient_step_ns": args.transient_step_ns,
         "gds": str(args.gds),
         "gds_sha256": gds_hash,
         "netlist": str(netlist),
