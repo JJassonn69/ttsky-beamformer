@@ -1,5 +1,6 @@
 import hashlib
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -9,9 +10,14 @@ sys.path.insert(0, str(ROOT / "v2/tools"))
 
 from run_control_postlayout_smoke import (
     CONTROL_NODES,
+    PHASE_NODES,
     RC_PHASE_LEAF_NODES,
     RC_PHASE_ROOT_NODES,
+    SPICE_INIT,
+    analyze,
     deck_text,
+    netlist_has_node,
+    prepare_runtime,
     validate_extracted_netlist,
 )
 
@@ -35,12 +41,40 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         self.assertIn(f"final_gds_sha256={gds_hash}", text)
         self.assertIn('.include "v2/spice/extracted_model_aliases.inc"', text)
         self.assertIn('.include "build/v2/control_routing/final_rc/control_final_base.spice"', text)
+        self.assertIn(".measure tran vcm_avg avg v(ch0_vcm)", text)
 
     def test_smoke_window_is_short_enough_for_iterative_signoff(self) -> None:
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
-        self.assertIn(".tran 2n 4u 2u", text)
+        self.assertIn(".tran 2n 4u 2u uic", text)
+        self.assertIn(".option klu", text)
         self.assertIn("from=2u to=4u", text)
         self.assertNotIn("from=6u to=10u", text)
+        self.assertIn(
+            "VDD_SOURCE VDPWR 0 pulse(0 {VDD} 0 20n 20n 100u 200u)",
+            text,
+        )
+        self.assertIn("VCLK R046 0 pulse(0 {VDD} 100n", text)
+
+    def test_runtime_uses_isolated_large_sky130_configuration(self) -> None:
+        for directive in (
+            "set ngbehavior=hsa",
+            "set skywaterpdk",
+            "set ng_nomodcheck",
+            "set num_threads=8",
+            "option noinit",
+            "option klu",
+        ):
+            self.assertIn(directive, SPICE_INIT)
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            runtime = prepare_runtime(Path(temporary_directory))
+            self.assertEqual(
+                (runtime / ".spiceinit").read_text(encoding="utf-8"),
+                SPICE_INIT,
+            )
+            for name in ("build", "spice", "third_party", "v2"):
+                link = runtime / name
+                self.assertTrue(link.is_symlink())
+                self.assertEqual(link.resolve(), (ROOT / name).resolve())
 
     def test_special_nfet_alias_population_is_frozen_in_both_views(self) -> None:
         token = "sky130_fd_pr__special_nfet_01v8"
@@ -64,19 +98,42 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
         for node in CONTROL_NODES.values():
             self.assertIn(f" {node} 0 ", text)
-        for node in ("phase_0", "phase_90", "phase_180", "phase_270"):
+        for node in PHASE_NODES:
             self.assertIn(f"v({node})", text)
         self.assertIn("ch0_input", text)
         self.assertIn("ch3_input", text)
         self.assertIn("ch0_out_p", text)
         self.assertIn("ch0_out_n", text)
 
+    def test_extracted_node_validation_does_not_accept_substrings(self) -> None:
+        self.assertTrue(netlist_has_node("X1 ch0_phase_0_leaf 0 model\n", "ch0_phase_0_leaf"))
+        self.assertTrue(netlist_has_node("R1 ch0_phase_0_leaf.t0 n1 1\n", "ch0_phase_0_leaf"))
+        self.assertFalse(netlist_has_node("X1 ch0_phase_0_leaf 0 model\n", "phase_0"))
+
     def test_default_case_is_beam_zero_with_all_four_channels_enabled(self) -> None:
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
         self.assertIn("VBEAM0 R025 0 0", text)
         self.assertIn("VBEAM1 R026 0 0", text)
         for index, node in enumerate(("R038", "R039", "R040", "R041")):
-            self.assertIn(f"VCH{index} {node} 0 {{VDD}}", text)
+            self.assertIn(f"BCH{index} {node} 0 v=v(VDPWR)", text)
+
+    def test_uic_smoke_rejects_rail_stuck_vcm_but_allows_rc_startup(self) -> None:
+        values = {
+            "output_rms": 8e-4,
+            "output_avg": 0.0,
+            "common_mode_avg": 1.79,
+            "vcm_avg": 0.5,
+            "supply_avg": -155e-6,
+        }
+        for index in range(4):
+            values[f"phase{index}_min"] = 0.0
+            values[f"phase{index}_max"] = 1.8
+            values[f"phase{index}_period"] = 250e-9
+        _, errors = analyze(values)
+        self.assertEqual(errors, [])
+        values["vcm_avg"] = 0.0
+        _, errors = analyze(values)
+        self.assertIn("VCM appears stuck at a supply rail during startup", errors)
 
 
 if __name__ == "__main__":

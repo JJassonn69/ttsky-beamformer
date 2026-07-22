@@ -25,6 +25,14 @@ DEFAULT_RC = Path(
     "build/v2/control_routing/final_rc/control_final_rc.spice"
 )
 BUILD = Path("build/v2/postlayout_smoke")
+SPICE_INIT = """* Isolated large-SKY130 ngspice configuration.
+set ngbehavior=hsa
+set skywaterpdk
+set ng_nomodcheck
+set num_threads=8
+option noinit
+option klu
+"""
 GROUND = "sky130_fd_sc_hd__fill_1_2190.VNB"
 CONTROL_NODES = {
     "beam_select[0]": "R025",
@@ -41,7 +49,12 @@ CONTROL_NODES = {
     "manual_mode": "R068",
     "rst_n": "R157",
 }
-PHASE_NODES = ("phase_0", "phase_90", "phase_180", "phase_270")
+PHASE_NODES = (
+    "ch0_phase_0_leaf",
+    "ch0_phase_90_leaf",
+    "ch0_phase_180_leaf",
+    "ch0_phase_270_leaf",
+)
 RC_PHASE_ROOT_NODES = tuple(
     f"v2_control_openroad_routes_0.R{route}"
     for route in (151, 152, 153, 154)
@@ -65,6 +78,12 @@ def extracted_model_names(text: str) -> set[str]:
     return set(re.findall(r"\b(sky130_fd_pr__[^\s]+)", text))
 
 
+def netlist_has_node(text: str, node: str) -> bool:
+    """Match a base node or its Magic distributed-RC segment as a token."""
+    pattern = rf"(?<!\S){re.escape(node)}(?:\.(?:t|n)\d+)?(?!\S)"
+    return re.search(pattern, text) is not None
+
+
 def validate_extracted_netlist(text: str) -> None:
     expected_models = {
         "sky130_fd_pr__cap_mim_m3_1",
@@ -85,11 +104,29 @@ def validate_extracted_netlist(text: str) -> None:
         "ch3_input", "ch0_out_p", "ch0_out_n", *CONTROL_NODES.values(),
         *PHASE_NODES,
     }
-    missing = sorted(node for node in required_nodes if node not in text)
+    missing = sorted(node for node in required_nodes if not netlist_has_node(text, node))
     if missing:
         raise ValueError(f"extracted netlist lacks required nodes: {missing}")
     if re.search(r"^\.subckt\b", text, re.MULTILINE):
         raise ValueError("expected a flattened top-level extracted netlist")
+
+
+def prepare_runtime(work: Path) -> Path:
+    """Create a local ngspice startup sandbox without changing user config."""
+    runtime = work / "runtime"
+    runtime.mkdir(parents=True, exist_ok=True)
+    for name in ("build", "spice", "third_party", "v2"):
+        link = runtime / name
+        target = (ROOT / name).resolve()
+        if link.is_symlink():
+            if link.resolve() != target:
+                raise RuntimeError(f"runtime link points at the wrong target: {link}")
+        elif link.exists():
+            raise RuntimeError(f"runtime path blocks required link: {link}")
+        else:
+            link.symlink_to(target, target_is_directory=True)
+    (runtime / ".spiceinit").write_text(SPICE_INIT, encoding="utf-8")
+    return runtime
 
 
 def input_source(channel: int, phase_deg: float) -> str:
@@ -125,25 +162,31 @@ def deck_text(
         f"VCFGCLK {CONTROL_NODES['cfg_clk']} 0 0",
         f"VCFGDATA {CONTROL_NODES['cfg_data']} 0 0",
         f"VCFGLATCH {CONTROL_NODES['cfg_latch']} 0 0",
-        f"VENA {CONTROL_NODES['ena']} 0 {{VDD}}",
+        f"BENA {CONTROL_NODES['ena']} 0 v=v(VDPWR)",
         f"VMANUAL {CONTROL_NODES['manual_mode']} 0 0",
         f"VRST {CONTROL_NODES['rst_n']} 0 "
         "pulse(0 {VDD} 250n 200p 200p 100u 200u)",
         f"VCLK {CONTROL_NODES['clk']} 0 "
-        "pulse(0 {VDD} 0 200p 200p 31.05n 62.5n)",
+        "pulse(0 {VDD} 100n 200p 200p 31.05n 62.5n)",
     ]
     controls.extend(
-        f"VCH{channel} {CONTROL_NODES[f'channel_enable[{channel}]']} 0 "
-        + ("{VDD}" if channel_mask & (1 << channel) else "0")
+        (
+            f"BCH{channel} {CONTROL_NODES[f'channel_enable[{channel}]']} 0 "
+            "v=v(VDPWR)"
+            if channel_mask & (1 << channel)
+            else f"VCH{channel} "
+            f"{CONTROL_NODES[f'channel_enable[{channel}]']} 0 0"
+        )
         for channel in range(4)
     )
+    phase_nodes = RC_PHASE_ROOT_NODES if distributed_rc else PHASE_NODES
     phase_measures = "\n".join(
         f".measure tran phase{index}_min min v({node}) from=2u to=4u\n"
         f".measure tran phase{index}_max max v({node}) from=2u to=4u\n"
         f".measure tran phase{index}_period "
         f"trig v({node}) val=0.9 rise=1 td=2u "
         f"targ v({node}) val=0.9 rise=2 td=2u"
-        for index, node in enumerate(PHASE_NODES)
+        for index, node in enumerate(phase_nodes)
     )
     rc_leaf_saves = ""
     rc_leaf_measures = ""
@@ -165,6 +208,7 @@ def deck_text(
     return f"""* V2 full-chip post-layout nominal smoke test.
 * extracted_netlist_sha256={netlist_hash}
 * final_gds_sha256={gds_hash}
+.option klu
 .option scale=1e-6
 .option method=gear reltol=1e-3 vabstol=1e-6 iabstol=1e-12
 .temp 27
@@ -176,7 +220,7 @@ def deck_text(
 .include "{netlist.as_posix()}"
 
 .param VDD=1.8 FIN=5meg VINPK=5m
-VDD_SOURCE VDPWR 0 {{VDD}}
+VDD_SOURCE VDPWR 0 pulse(0 {{VDD}} 0 20n 20n 100u 200u)
 VSS_SOURCE {GROUND} 0 0
 {chr(10).join(controls)}
 
@@ -195,13 +239,14 @@ CF1 filt1 0 79.577p
 RF2 filt1 filtered 1k
 CF2 filtered 0 79.577p
 
-.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) i(VDD_SOURCE)
-+ v(phase_0) v(phase_90) v(phase_180) v(phase_270)
+.save v(filtered) v(outp_pad) v(outn_pad) v(common_mode) v(ch0_vcm) i(VDD_SOURCE)
++ {" ".join(f"v({node})" for node in phase_nodes)}
 {rc_leaf_saves}
-.tran 2n 4u 2u
+.tran 2n 4u 2u uic
 .measure tran output_rms rms v(filtered) from=2u to=4u
 .measure tran output_avg avg v(filtered) from=2u to=4u
 .measure tran common_mode_avg avg v(common_mode) from=2u to=4u
+.measure tran vcm_avg avg v(ch0_vcm) from=2u to=4u
 .measure tran supply_avg avg i(VDD_SOURCE) from=2u to=4u
 {phase_measures}
 {rc_leaf_measures}
@@ -217,7 +262,9 @@ def analyze(
     values: dict[str, float], distributed_rc: bool = False
 ) -> tuple[dict[str, Any], list[str]]:
     errors: list[str] = []
-    required = {"output_rms", "output_avg", "common_mode_avg", "supply_avg"}
+    required = {
+        "output_rms", "output_avg", "common_mode_avg", "vcm_avg", "supply_avg"
+    }
     required.update(
         f"phase{index}_{field}"
         for index in range(4) for field in ("min", "max", "period")
@@ -246,6 +293,12 @@ def analyze(
                 errors.append(f"phase {index} period {period} is not nominal 250 ns")
         if not 0.5 < values["common_mode_avg"] < 1.82:
             errors.append("differential output common mode is outside a plausible range")
+        # UIC intentionally skips the expensive DC solution, and the high-value
+        # divider cannot fully charge the PDK MIM subcircuit in this 4 us smoke
+        # window.  The frozen full-chip DC operating-point check is responsible
+        # for the nominal 1.2 V criterion; here we only reject a hard rail short.
+        if not 0.1 < values["vcm_avg"] < 1.7:
+            errors.append("VCM appears stuck at a supply rail during startup")
         if abs(values["supply_avg"]) < 1e-6:
             errors.append("extracted chip draws no measurable supply current")
         ac_rms = max(values["output_rms"] ** 2 - values["output_avg"] ** 2, 0.0) ** 0.5
@@ -313,12 +366,17 @@ def main() -> int:
         ),
         encoding="utf-8",
     )
+    runtime = prepare_runtime(work)
+    spiceinit_hash = hashlib.sha256(SPICE_INIT.encode()).hexdigest()
     started = time.monotonic()
     timed_out = False
     try:
         completed = subprocess.run(
-            [args.ngspice, "-b", "-o", str(log), str(deck)],
-            cwd=ROOT, text=True, capture_output=True, check=False,
+            [
+                args.ngspice, "-b", "-o", str(log.resolve()),
+                str(deck.resolve()),
+            ],
+            cwd=runtime, text=True, capture_output=True, check=False,
             timeout=args.timeout,
         )
         returncode = completed.returncode
@@ -342,6 +400,7 @@ def main() -> int:
         "netlist": str(netlist),
         "netlist_sha256": netlist_hash,
         "ngspice": args.ngspice,
+        "spiceinit_sha256": spiceinit_hash,
         "ngspice_returncode": returncode,
         "timed_out": timed_out,
         "elapsed_s": elapsed_s,
