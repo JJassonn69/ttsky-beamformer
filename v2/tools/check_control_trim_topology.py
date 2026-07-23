@@ -69,15 +69,27 @@ def audit(
             ],
         }
         for role, matches in expected_roles.items():
+            expected_instances = (
+                [f"XCH{index // 4}_TINV{index % 4}"]
+                if role == "analog_trim_inverter_a"
+                else []
+            )
+            actual_instances = sorted(item[0] for item in matches)
             checks.append({
                 "net": net,
                 "physical_label": physical or "",
                 "role": role,
                 "match_count": str(len(matches)),
-                "instances": ",".join(item[0] for item in matches),
+                "instances": ",".join(actual_instances),
+                "expected_instances": ",".join(expected_instances),
             })
             if len(matches) != 1:
                 errors.append(f"{net}: extracted {len(matches)} {role} attachments, expected one")
+            if expected_instances and actual_instances != expected_instances:
+                errors.append(
+                    f"{net}: extracted {role} attachment {actual_instances}, "
+                    f"expected exact channel/bit sink {expected_instances}"
+                )
 
     fatal = {
         name: pattern.search(log).group(0)
@@ -99,6 +111,11 @@ def audit(
         "status": "pass" if not errors else "fail",
         "errors": errors,
         "verified_trim_role_count": sum(item["match_count"] == "1" for item in checks),
+        "verified_exact_analog_sink_count": sum(
+            item["role"] == "analog_trim_inverter_a"
+            and item["instances"] == item["expected_instances"]
+            for item in checks
+        ),
         "pin_checks": checks,
         "magic_log_fatal_matches": fatal,
         "magic_exttospice_completion_count": log.count("exttospice finished."),

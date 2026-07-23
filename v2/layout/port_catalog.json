@@ -171,7 +171,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_XBH7H5.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_XBH7H5.mag"
     },
     "dac_driver_nfet_guarded": {
       "ports": {
@@ -216,7 +216,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_64ZA3S.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_64ZA3S.mag"
     },
     "dac_driver_pfet_guarded": {
       "ports": {
@@ -261,7 +261,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__pfet_01v8_PVH9F5.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__pfet_01v8_PVH9F5.mag"
     },
     "gm_nfet_guarded": {
       "ports": {
@@ -370,7 +370,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_KQNXXW.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_KQNXXW.mag"
     },
     "input_bias_resistor_guarded": {
       "ports": {
@@ -405,7 +405,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_KKLLRZ.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_xhigh_po_1p41_KKLLRZ.mag"
     },
     "mixer_nfet_guarded": {
       "ports": {
@@ -514,7 +514,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_Q8P3CQ.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_Q8P3CQ.mag"
     },
     "output_load_resistor_guarded": {
       "ports": {
@@ -549,7 +549,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_WFQE74.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_high_po_1p41_WFQE74.mag"
     },
     "r2r_unit_guarded": {
       "ports": {
@@ -584,7 +584,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_HMPGGH.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_high_po_1p41_HMPGGH.mag"
     },
     "r2r_unit_shared_guard": {
       "ports": {
@@ -609,7 +609,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_high_po_1p41_KAE7ZM.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_high_po_1p41_KAE7ZM.mag"
     },
     "tail_nfet_guarded": {
       "ports": {
@@ -782,7 +782,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_V8VEZM.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_V8VEZM.mag"
     },
     "trim_bit1_nfet_shared_guard": {
       "ports": {
@@ -817,7 +817,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_MRT496.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_MRT496.mag"
     },
     "trim_bit2_nfet_shared_guard": {
       "ports": {
@@ -827,6 +827,15 @@
             "layer": "ndiffc",
             "point_um": [
               -0.79,
+              0.0
+            ]
+          },
+          {
+            "access_basis": "real symmetric outer ndiffc contact omitted by the pinned Magic even-finger PCell port labels",
+            "label": "D2_physical_outer_contact",
+            "layer": "ndiffc",
+            "point_um": [
+              0.79,
               0.0
             ]
           }
@@ -860,7 +869,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_JT58GU.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_JT58GU.mag"
     },
     "trim_bit4_nfet_shared_guard": {
       "ports": {
@@ -878,6 +887,15 @@
             "layer": "ndiffc",
             "point_um": [
               0.0,
+              0.0
+            ]
+          },
+          {
+            "access_basis": "real symmetric outer ndiffc contact omitted by the pinned Magic even-finger PCell port labels",
+            "label": "D4_physical_outer_contact",
+            "layer": "ndiffc",
+            "point_um": [
+              1.58,
               0.0
             ]
           }
@@ -935,7 +953,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_UBS4ZY.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_UBS4ZY.mag"
     },
     "trim_bit8_nfet_shared_guard": {
       "ports": {
@@ -969,6 +987,15 @@
             "layer": "ndiffc",
             "point_um": [
               1.58,
+              0.0
+            ]
+          },
+          {
+            "access_basis": "real symmetric outer ndiffc contact omitted by the pinned Magic even-finger PCell port labels",
+            "label": "D8_physical_outer_contact",
+            "layer": "ndiffc",
+            "point_um": [
+              3.16,
               0.0
             ]
           }
@@ -1074,7 +1101,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_KNL8QH.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_KNL8QH.mag"
     },
     "trim_main_third_nfet_shared_guard": {
       "ports": {
@@ -1083,7 +1110,7 @@
             "label": "D0",
             "layer": "ndiffc",
             "point_um": [
-              -5.53,
+              -4.74,
               0.0
             ]
           },
@@ -1091,7 +1118,7 @@
             "label": "D2",
             "layer": "ndiffc",
             "point_um": [
-              -3.95,
+              -3.16,
               0.0
             ]
           },
@@ -1099,7 +1126,7 @@
             "label": "D4",
             "layer": "ndiffc",
             "point_um": [
-              -2.37,
+              -1.58,
               0.0
             ]
           },
@@ -1107,7 +1134,7 @@
             "label": "D6",
             "layer": "ndiffc",
             "point_um": [
-              -0.79,
+              0.0,
               0.0
             ]
           },
@@ -1115,7 +1142,7 @@
             "label": "D8",
             "layer": "ndiffc",
             "point_um": [
-              0.79,
+              1.58,
               0.0
             ]
           },
@@ -1123,28 +1150,21 @@
             "label": "D10",
             "layer": "ndiffc",
             "point_um": [
-              2.37,
+              3.16,
               0.0
             ]
           },
           {
-            "label": "D12",
+            "access_basis": "real symmetric outer ndiffc contact omitted by the pinned Magic even-finger PCell port labels",
+            "label": "D12_physical_outer_contact",
             "layer": "ndiffc",
             "point_um": [
-              3.95,
+              4.74,
               0.0
             ]
           }
         ],
         "G": [
-          {
-            "label": "G",
-            "layer": "polycont",
-            "point_um": [
-              -5.135,
-              0.905
-            ]
-          },
           {
             "label": "G",
             "layer": "polycont",
@@ -1240,14 +1260,6 @@
               4.345,
               0.905
             ]
-          },
-          {
-            "label": "G",
-            "layer": "polycont",
-            "point_um": [
-              5.135,
-              0.905
-            ]
           }
         ],
         "S": [
@@ -1255,7 +1267,7 @@
             "label": "S1",
             "layer": "ndiffc",
             "point_um": [
-              -4.74,
+              -3.95,
               0.0
             ]
           },
@@ -1263,7 +1275,7 @@
             "label": "S3",
             "layer": "ndiffc",
             "point_um": [
-              -3.16,
+              -2.37,
               0.0
             ]
           },
@@ -1271,7 +1283,7 @@
             "label": "S5",
             "layer": "ndiffc",
             "point_um": [
-              -1.58,
+              -0.79,
               0.0
             ]
           },
@@ -1279,7 +1291,7 @@
             "label": "S7",
             "layer": "ndiffc",
             "point_um": [
-              0.0,
+              0.79,
               0.0
             ]
           },
@@ -1287,7 +1299,7 @@
             "label": "S9",
             "layer": "ndiffc",
             "point_um": [
-              1.58,
+              2.37,
               0.0
             ]
           },
@@ -1295,21 +1307,13 @@
             "label": "S11",
             "layer": "ndiffc",
             "point_um": [
-              3.16,
-              0.0
-            ]
-          },
-          {
-            "label": "S13",
-            "layer": "ndiffc",
-            "point_um": [
-              4.74,
+              3.95,
               0.0
             ]
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_7YVVGW.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_GMLTWK.mag"
     },
     "trim_switch_nfet_shared_guard": {
       "ports": {
@@ -1344,7 +1348,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__nfet_01v8_WSWNGM.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_WSWNGM.mag"
     },
     "vcm_bottom_resistor_guarded": {
       "ports": {
@@ -1379,7 +1383,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_D7FUNJ.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_xhigh_po_1p41_D7FUNJ.mag"
     },
     "vcm_mim_capacitor": {
       "ports": {
@@ -1404,7 +1408,42 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__cap_mim_m3_1_2SELCQ.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__cap_mim_m3_1_2SELCQ.mag"
+    },
+    "vcm_top_resistor_guarded": {
+      "ports": {
+        "B": [
+          {
+            "label": "B",
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -26.145
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "label": "R1",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              25.405
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "label": "R2",
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -25.405
+            ]
+          }
+        ]
+      },
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__res_xhigh_po_1p41_Q4KKKZ.mag"
     },
     "vcm_varactor_lvt": {
       "ports": {
@@ -1449,42 +1488,7 @@
           }
         ]
       },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__cap_var_lvt_88578Y.mag"
-    },
-    "vcm_top_resistor_guarded": {
-      "ports": {
-        "B": [
-          {
-            "label": "B",
-            "layer": "psubdiffcont",
-            "point_um": [
-              0.0,
-              -26.145
-            ]
-          }
-        ],
-        "R1": [
-          {
-            "label": "R1",
-            "layer": "xpolycontact",
-            "point_um": [
-              0.0,
-              25.405
-            ]
-          }
-        ],
-        "R2": [
-          {
-            "label": "R2",
-            "layer": "xpolycontact",
-            "point_um": [
-              0.0,
-              -25.405
-            ]
-          }
-        ]
-      },
-      "source": "build/v2/pcell_bbox_remote/sky130_fd_pr__res_xhigh_po_1p41_Q4KKKZ.mag"
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__cap_var_lvt_88578Y.mag"
     }
   },
   "coordinate_contract": {

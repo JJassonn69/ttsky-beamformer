@@ -29,9 +29,9 @@
   "components": [
     {"name": "RINPUT", "pcell": "input_bias_resistor_guarded", "x": -7.465, "y": 46.16, "orientation": "R0", "role": "input_bias"},
 
-    {"name": "TMAIN0", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 31.00, "orientation": "R0", "role": "trim_fixed_14"},
-    {"name": "TMAIN1", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 34.14, "orientation": "R0", "role": "trim_fixed_14"},
-    {"name": "TMAIN2", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 37.28, "orientation": "R0", "role": "trim_fixed_14"},
+    {"name": "TMAIN0", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 31.00, "orientation": "R0", "role": "trim_fixed_12"},
+    {"name": "TMAIN1", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 34.14, "orientation": "R0", "role": "trim_fixed_12"},
+    {"name": "TMAIN2", "pcell": "trim_main_third_nfet_shared_guard", "x": 0.92, "y": 37.28, "orientation": "R0", "role": "trim_fixed_12"},
     {"name": "TTRIM8", "pcell": "trim_bit8_nfet_shared_guard", "x": 0.92, "y": 40.42, "orientation": "R0", "role": "trim_binary_8"},
     {"name": "TTRIM4", "pcell": "trim_bit4_nfet_shared_guard", "x": -1.555, "y": 43.56, "orientation": "R0", "role": "trim_binary_4"},
     {"name": "TTRIM2", "pcell": "trim_bit2_nfet_shared_guard", "x": 2.105, "y": 43.56, "orientation": "R0", "role": "trim_binary_2"},

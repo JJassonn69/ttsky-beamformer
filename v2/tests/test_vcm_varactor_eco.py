@@ -1,4 +1,5 @@
 import json
+import hashlib
 import sys
 import tempfile
 import unittest
@@ -10,6 +11,7 @@ sys.path.insert(0, str(ROOT / "v2/tools"))
 
 from assemble_control_placement_gds import records, split_library, structure_name
 from assemble_vcm_varactor_eco_gds import (
+    EXPECTED_OUTPUT_SHA256,
     SOURCE_SHA256,
     SOURCE_TOP,
     VARACTOR_CELL,
@@ -23,7 +25,7 @@ class VcmVaractorEcoTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.plan = json.loads(
-            (ROOT / "v2/layout/integration_plan.json").read_text()
+            (ROOT / "v2/layout/vcm_varactor_eco.json").read_text()
         )
         cls.dimensions = json.loads(
             (ROOT / "v2/layout/pcell_dimensions.json").read_text()
@@ -52,6 +54,23 @@ class VcmVaractorEcoTests(unittest.TestCase):
         self.assertIn("build/v2/pcell_bbox_remote", text)
         self.assertNotIn("SOURCE_GDS", text)
         self.assertNotIn("support_routed", text)
+
+    def test_tracked_user_source_and_final_candidate_are_hash_bound(self) -> None:
+        source = ROOT / self.plan["source_checkpoint"]["gds"]
+        candidate = ROOT / self.plan["output_checkpoint"]["gds"]
+        self.assertEqual(
+            hashlib.sha256(source.read_bytes()).hexdigest(), SOURCE_SHA256
+        )
+        self.assertEqual(
+            hashlib.sha256(candidate.read_bytes()).hexdigest(),
+            EXPECTED_OUTPUT_SHA256,
+        )
+        self.assertEqual(
+            self.plan["source_checkpoint"]["sha256"], SOURCE_SHA256
+        )
+        self.assertEqual(
+            self.plan["output_checkpoint"]["sha256"], EXPECTED_OUTPUT_SHA256
+        )
 
     def test_final_gds_contains_exactly_four_direct_varactor_references(self) -> None:
         candidate = (

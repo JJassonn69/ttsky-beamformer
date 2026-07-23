@@ -23,7 +23,10 @@ from v2.tools.check_magic_rc_log import FATAL_PATTERNS
 
 
 MINIMUM_RESISTOR_EMISSION_RATIO = 0.90
-MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS = 120
+DEFAULT_FRESHNESS_SOURCES = (
+    ROOT / "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    ROOT / "build/v2/control_routing/final_rc/force_attributes.tcl",
+)
 OUTPUT_PAD_INTERNAL_COORDINATES = {
     "sum_p": (14996, 100),  # ua[4] at 74.98 um, 0.50 um
     "sum_n": (11132, 100),  # ua[5] at 55.66 um, 0.50 um
@@ -80,6 +83,7 @@ def audit(
     res_ext_path: Path,
     geometry: dict[str, Any],
     log: str,
+    freshness_sources: tuple[Path, ...] = DEFAULT_FRESHNESS_SOURCES,
 ) -> dict[str, Any]:
     base = spice_elements(base_path)
     rc = spice_elements(rc_path)
@@ -119,6 +123,13 @@ def audit(
             "CONTROL_FINAL_RES_EXT",
         )
     )
+    extraction_artifacts = (base_path, rc_path, res_ext_path, top_ext)
+    source_bound_freshness = (
+        all(path.is_file() for path in freshness_sources)
+        and all(path.is_file() for path in extraction_artifacts)
+        and min(path.stat().st_mtime_ns for path in extraction_artifacts)
+        >= max(path.stat().st_mtime_ns for path in freshness_sources)
+    )
     checks = {
         "all_206_router_labels_present": len(control_labels) == 206,
         "magic_drc_clean": marker(log, "CONTROL_FINAL_RC_DRC_COUNT") == 0,
@@ -132,16 +143,11 @@ def audit(
         ),
         "base_is_resistance_free_reference": len(base["R"]) == 0,
         "resistance_annotation_exists": rnodes > 0 and annotated > 0,
-        # Magic writes the resistance annotation during extresist, then may
-        # rewrite the companion .ext while ext2spice emits its two views.  The
-        # files therefore need to belong to the same extraction window; their
-        # ordering is not a valid freshness test.
-        "resistance_annotation_is_fresh": (
-            top_ext.is_file()
-            and abs(
-                res_ext_path.stat().st_mtime_ns - top_ext.stat().st_mtime_ns
-            ) <= MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS * 1_000_000_000
-        ),
+        # extresist and the two ext2spice passes can legitimately take several
+        # minutes on the complete flattened chip.  Bind every output to the
+        # exact GDS and generated force-attribute inputs instead of imposing a
+        # brittle maximum duration between intermediate files.
+        "resistance_annotation_is_fresh": source_bound_freshness,
         "explicit_resistors_emitted": (
             annotated > 0 and emitted_ratio >= MINIMUM_RESISTOR_EMISSION_RATIO
         ),
@@ -179,9 +185,11 @@ def audit(
                 abs(res_ext_path.stat().st_mtime_ns - top_ext.stat().st_mtime_ns)
                 / 1_000_000_000 if top_ext.is_file() else None
             ),
-            "maximum_artifact_mtime_skew_seconds": (
-                MAXIMUM_EXTRACTION_ARTIFACT_SKEW_SECONDS
-            ),
+            "freshness_basis": "all RC outputs are newer than exact GDS and force attributes",
+            "freshness_source_paths": [str(path) for path in freshness_sources],
+            "freshness_source_sha256": {
+                str(path): sha256(path) for path in freshness_sources if path.is_file()
+            },
         },
         "magic_fatal_matches": fatal,
         "magic_warnings": {

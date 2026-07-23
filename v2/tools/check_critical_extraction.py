@@ -119,7 +119,9 @@ def expected_output_load_nodes() -> dict[str, list[str]]:
     }
 
 
-def expected_support_nodes() -> dict[str, list[str]]:
+def expected_support_nodes(
+    include_vcm_varactors: bool = False,
+) -> dict[str, list[str]]:
     """Exact shared VCM and bias-reference topology.
 
     The upper ends of the VCM divider and RBIAS intentionally remain private
@@ -130,18 +132,20 @@ def expected_support_nodes() -> dict[str, list[str]]:
         "VGND", "ch0_vbias", "ch0_vbias", "VGND", "ch0_vbias", "VGND",
         "ch0_vbias", "VGND", "ch0_vbias", "VGND", "ch0_vbias", "VGND",
     ]
-    return {
+    expected = {
         "XRVCM_BOTTOM": ["VGND", "ch0_vcm", "VGND"],
         "XRVCM_TOP": ["VGND", "RVCM_TOP/R1", "ch0_vcm"],
         "XCVCM": ["VGND", "ch0_vcm", "VGND"],
-        "XCVCM_VAR0": ["ch0_vcm", "VGND", "VGND"],
-        "XCVCM_VAR1": ["ch0_vcm", "VGND", "VGND"],
-        "XCVCM_VAR2": ["ch0_vcm", "VGND", "VGND"],
-        "XCVCM_VAR3": ["ch0_vcm", "VGND", "VGND"],
         "XRBIAS": ["VGND", "RBIAS/R1", "ch0_vbias"],
         "XBIAS_DIODE_A": bias,
         "XBIAS_DIODE_B": bias,
     }
+    if include_vcm_varactors:
+        expected.update({
+            f"XCVCM_VAR{index}": ["ch0_vcm", "VGND", "VGND"]
+            for index in range(4)
+        })
+    return expected
 
 
 def expected_local_trim_nodes(
@@ -155,22 +159,24 @@ def expected_local_trim_nodes(
     vbias = "ch0_vbias" if shared_vbias else net("vbias")
     expected: dict[str, list[str]] = {}
 
-    # Each 14-finger fixed-bank PCell exposes alternating D/S diffusion ports,
-    # one common gate, and the substrate body as its last port.
-    main_nodes = [tail, vbias] + [ground, tail] * 6 + [ground, ground]
+    # The corrected parent collector exposes all seven drain-side diffusion
+    # nodes for each 12-finger bank.  The resulting support-checkpoint port
+    # order contains 15 nodes, including the promoted outer drain contact.
+    # check_control_tail_bank_flat.py independently counts all 12 physical MOS
+    # statements, so this hierarchical check cannot mask a missing finger.
+    main_nodes = [tail, vbias] + [ground, tail] * 6 + [ground]
     for index in range(3):
         expected[f"X{prefix}_TMAIN{index}"] = main_nodes
 
-    trim_fingers = {8: 8, 4: 4, 2: 2}
-    for weight, fingers in trim_fingers.items():
-        gate = f"{prefix}_TTRIM{weight}/G"
+    trim_gate = lambda weight: f"{prefix}_TTRIM{weight}/G"
+    for weight in (8, 4, 2):
         expected[f"X{prefix}_TTRIM{weight}"] = (
-            [tail, gate] + [ground, tail] * (fingers // 2 - 1)
-            + [ground, ground]
+            [tail, trim_gate(weight)] + [ground, tail] * (weight // 2)
+            + [ground]
         )
-    # The one-finger cell's extracted port order is D, S, G, B.
+    # The one-finger support-checkpoint port order is D, S, G, B.
     expected[f"X{prefix}_TTRIM1"] = [
-        tail, ground, f"{prefix}_TTRIM1/G", ground,
+        tail, ground, trim_gate(1), ground,
     ]
 
     weight_for_bit = {3: 8, 2: 4, 1: 2, 0: 1}
@@ -246,6 +252,7 @@ def check(
     include_global_phase_tree: bool = False,
     include_output_summing: bool = False,
     include_support_network: bool = False,
+    include_vcm_varactors: bool = False,
 ) -> dict[str, object]:
     hierarchical_text = hierarchical.read_text(encoding="utf-8")
     flat_text = flat.read_text(encoding="utf-8")
@@ -290,7 +297,9 @@ def check(
                 )
 
     if include_support_network:
-        for name, expected in expected_support_nodes().items():
+        for name, expected in expected_support_nodes(
+            include_vcm_varactors
+        ).items():
             actual = instances.get(name)
             checked_instances += 1
             if actual is None:
@@ -369,6 +378,7 @@ def check(
         "included_global_phase_tree": include_global_phase_tree,
         "included_output_summing": include_output_summing,
         "included_support_network": include_support_network,
+        "included_vcm_varactors": include_vcm_varactors,
         "failures": failures,
     }
     if failures:
@@ -386,6 +396,7 @@ def main() -> None:
     parser.add_argument("--include-global-phase-tree", action="store_true")
     parser.add_argument("--include-output-summing", action="store_true")
     parser.add_argument("--include-support-network", action="store_true")
+    parser.add_argument("--include-vcm-varactors", action="store_true")
     parser.add_argument("--report", type=Path)
     args = parser.parse_args()
     report = check(
@@ -397,6 +408,7 @@ def main() -> None:
         args.include_global_phase_tree,
         args.include_output_summing,
         args.include_support_network,
+        args.include_vcm_varactors,
     )
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)

@@ -68,6 +68,11 @@ class CriticalSignalRouteGeneratorTests(unittest.TestCase):
             text = output.read_text()
         self.assertIn("sky130::subconn_guard_draw", text)
         self.assertIn("CH0.TMAIN0.D -> ch0_tail", text)
+        # Twelve-finger fixed and even binary banks must collect their
+        # otherwise-unlabelled right-hand drain contact.  These coordinates
+        # are real diffusion/LI contacts, not abstract net aliases.
+        self.assertIn("paint_rect viali 157.0450 30.9150 157.2150 31.0850", text)
+        self.assertIn("paint_rect viali 155.0700 43.4750 155.2400 43.6450", text)
         self.assertIn("CH0.TSW2_ON.G -> ch0_trim_b2", text)
         self.assertIn("CH0.TSW2_OFF.G -> ch0_trim_b2_b", text)
         self.assertIn("CH0.TSW2_OFF.S -> VGND", text)

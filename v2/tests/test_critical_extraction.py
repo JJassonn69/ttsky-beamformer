@@ -49,6 +49,19 @@ XTOP n1 n2 child
         )
         self.assertEqual(len(expected), 19)
 
+    def test_even_finger_banks_include_promoted_outer_drain(self) -> None:
+        expected = expected_local_trim_nodes(0, shared_vbias=True)
+        self.assertEqual(len(expected["XCH0_TMAIN0"]), 15)
+        self.assertEqual(expected["XCH0_TMAIN0"].count("ch0_tail"), 7)
+        self.assertEqual(expected["XCH0_TMAIN0"].count("VGND"), 7)
+        self.assertEqual(expected["XCH0_TTRIM8"], [
+            "ch0_tail", "CH0_TTRIM8/G", "VGND", "ch0_tail",
+            "VGND", "ch0_tail", "VGND", "ch0_tail", "VGND",
+            "ch0_tail", "VGND",
+        ])
+        self.assertEqual(expected["XCH0_TTRIM4"].count("ch0_tail"), 3)
+        self.assertEqual(expected["XCH0_TTRIM2"].count("ch0_tail"), 2)
+
     def test_phase_selector_keeps_complementary_second_stage_inputs(self) -> None:
         expected = expected_phase_selector_nodes(1)
         self.assertEqual(
@@ -89,7 +102,7 @@ XTOP n1 n2 child
         })
 
     def test_support_network_joins_vcm_and_vbias_without_premature_vdd(self) -> None:
-        support = expected_support_nodes()
+        support = expected_support_nodes(include_vcm_varactors=True)
         self.assertEqual(support["XRVCM_BOTTOM"], ["VGND", "ch0_vcm", "VGND"])
         self.assertEqual(
             support["XRVCM_TOP"], ["VGND", "RVCM_TOP/R1", "ch0_vcm"]

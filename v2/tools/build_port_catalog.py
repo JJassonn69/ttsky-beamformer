@@ -46,6 +46,52 @@ def mag_ports(path: Path, database_units_per_um: float = 200.0) -> dict[str, Any
     return {"source": str(path), "ports": ports}
 
 
+def add_even_finger_outer_drain(
+    record: dict[str, Any], cell: dict[str, Any]
+) -> None:
+    """Expose the final drain contact omitted by the SKY130 PCell labels.
+
+    The pinned Magic MOS PCell draws ``nf + 1`` alternating diffusion
+    contacts, but for an even ``nf`` its automatic port labels stop at the
+    final source and omit the right-hand drain.  The contact geometry is
+    present.  Without this access point, a parent-level drain collector leaves
+    one unit finger floating (14 becomes 13, 8 becomes 7, and so on).
+
+    Add a measured, symmetric access record for route generation.  The route
+    then lands on the real ``ndiffc``/LI contact and flat extraction proves
+    electrical continuity; this is not a schematic-only alias.
+    """
+    parameters = cell.get("parameters", {})
+    fingers = int(parameters.get("fingers", 0))
+    ports = record["ports"]
+    drains = ports.get("D", [])
+    sources = ports.get("S", [])
+    if fingers <= 0 or fingers % 2 or not drains or not sources:
+        return
+    expected_drains = fingers // 2 + 1
+    if len(drains) == expected_drains:
+        return
+    if len(drains) != fingers // 2 or len(sources) != fingers // 2:
+        raise ValueError(
+            f"unexpected even-finger port population: nf={fingers}, "
+            f"D={len(drains)}, S={len(sources)}"
+        )
+    left = min(drains, key=lambda item: item["point_um"][0])
+    x, y = left["point_um"]
+    drains.append(
+        {
+            "label": f"D{fingers}_physical_outer_contact",
+            "layer": left["layer"],
+            "point_um": [-float(x), float(y)],
+            "access_basis": (
+                "real symmetric outer ndiffc contact omitted by the pinned "
+                "Magic even-finger PCell port labels"
+            ),
+        }
+    )
+    drains.sort(key=lambda item: item["point_um"][0])
+
+
 def lef_ports(path: Path) -> dict[str, Any]:
     ports: dict[str, list[dict[str, Any]]] = {}
     pin: str | None = None
@@ -100,6 +146,7 @@ def build_catalog(
             errors.append(f"{name}: missing MAG {mag}")
             continue
         analog[name] = mag_ports(mag)
+        add_even_finger_outer_drain(analog[name], cell)
     return {
         "schema_version": 1,
         "status": "pass" if not errors else "fail",

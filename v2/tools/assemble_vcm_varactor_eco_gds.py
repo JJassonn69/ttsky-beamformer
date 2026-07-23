@@ -24,7 +24,8 @@ from assemble_control_placement_gds import (
 SOURCE_TOP = "v2_control_quadrature_routed"
 OVERLAY_TOP = "v2_vcm_varactor_eco_overlay"
 VARACTOR_CELL = "sky130_fd_pr__cap_var_lvt_88578Y"
-SOURCE_SHA256 = "d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130"
+SOURCE_SHA256 = "145804737243ea220ab26892a8a67b3df63920857544461b040aab0ead06532b"
+EXPECTED_OUTPUT_SHA256 = "8747ab04e6a39da780584a59f365c7506cc34b1e7d5f9e7fe56563a10a10ad9d"
 
 
 def sha256(data: bytes) -> str:
@@ -44,12 +45,17 @@ def sref_targets(structure: list[bytes]) -> list[str]:
     return result
 
 
-def assemble(source: bytes, overlay: bytes) -> tuple[bytes, dict[str, Any]]:
+def compose_structurally_checked(
+    source: bytes, overlay: bytes
+) -> tuple[bytes, dict[str, Any]]:
+    """Compose a candidate after enforcing every structural ECO invariant.
+
+    Hash freezing stays in :func:`assemble`.  Keeping composition separate
+    lets a newly regenerated, structurally valid source produce its proposed
+    output hash once; that hash is then reviewed, frozen above, and proved by
+    the normal assembler path.
+    """
     source_hash = sha256(source)
-    if source_hash != SOURCE_SHA256:
-        raise ValueError(
-            f"ECO source hash {source_hash} != user-routed source {SOURCE_SHA256}"
-        )
     source_header, source_structures, source_endlib = split_library(records(source))
     source_names = {structure_name(item) for item in source_structures}
     if SOURCE_TOP not in source_names:
@@ -106,6 +112,7 @@ def assemble(source: bytes, overlay: bytes) -> tuple[bytes, dict[str, Any]]:
     output += b"".join(record for structure in rewritten for record in structure)
     output += b"".join(record for structure in imported for record in structure)
     output += source_endlib
+    output_hash = sha256(output)
     return output, {
         "status": "pass",
         "source_sha256": source_hash,
@@ -116,10 +123,26 @@ def assemble(source: bytes, overlay: bytes) -> tuple[bytes, dict[str, Any]]:
         "varactor_cell": VARACTOR_CELL,
         "varactor_reference_count_added": len(targets),
         "imported_structure_count": len(imported),
-        "output_sha256": sha256(output),
+        "output_sha256": output_hash,
         "output_top": SOURCE_TOP,
         "output_bytes": len(output),
     }
+
+
+def assemble(source: bytes, overlay: bytes) -> tuple[bytes, dict[str, Any]]:
+    source_hash = sha256(source)
+    if source_hash != SOURCE_SHA256:
+        raise ValueError(
+            f"ECO source hash {source_hash} != user-routed source {SOURCE_SHA256}"
+        )
+    output, report = compose_structurally_checked(source, overlay)
+    output_hash = report["output_sha256"]
+    if output_hash != EXPECTED_OUTPUT_SHA256:
+        raise ValueError(
+            f"ECO output hash {output_hash} != frozen candidate "
+            f"{EXPECTED_OUTPUT_SHA256}"
+        )
+    return output, report
 
 
 def main() -> None:

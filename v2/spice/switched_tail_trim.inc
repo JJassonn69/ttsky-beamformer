@@ -1,6 +1,6 @@
 * Four-bit local tail-current trim for one V2 channel.
-* Code 8 is nominal.  The fixed sink contributes 84% of nominal current and
-* four binary-weighted sinks contribute 2%, 4%, 8%, and 16%.
+* Code 8 is nominal.  The fixed sink contributes 81.818% of nominal current;
+* four binary-weighted sinks provide the 1/2/4/8-unit adjustment around it.
 
 .subckt v2_trim_gate_switch code code_b gate vbias vss
 * Static NMOS selectors are adequate here: vbias is about 0.7 V while the
@@ -15,10 +15,10 @@ XU tail gate vss vss sky130_fd_pr__nfet_01v8 w=1.26 l=0.50
 .ends v2_tail_unit
 
 .subckt v2_switched_tail_trim tail vbias c0 c0b c1 c1b c2 c2b c3 c3b vss
-* All 57 current-sink fingers use the same 1.26 x 0.50 um unit geometry.
-* Forty-two always-on units establish the 84% endpoint.  At the default code
-* 8, eight more units are active, for exactly 50 nominal units.  Physical
-* PCells may group adjacent fingers, but extraction must recover 57 equal
+* All 51 current-sink fingers use the same 1.26 x 0.50 um unit geometry.
+* Thirty-six always-on units establish the lower endpoint.  At default code
+* 8, eight more units are active, for exactly 44 nominal units.  Physical
+* PCells may group adjacent fingers, but extraction must recover 51 equal
 * fingers rather than four unrelated transistor widths.
 XM00 tail vbias vss v2_tail_unit
 XM01 tail vbias vss v2_tail_unit
@@ -56,13 +56,6 @@ XM32 tail vbias vss v2_tail_unit
 XM33 tail vbias vss v2_tail_unit
 XM34 tail vbias vss v2_tail_unit
 XM35 tail vbias vss v2_tail_unit
-XM36 tail vbias vss v2_tail_unit
-XM37 tail vbias vss v2_tail_unit
-XM38 tail vbias vss v2_tail_unit
-XM39 tail vbias vss v2_tail_unit
-XM40 tail vbias vss v2_tail_unit
-XM41 tail vbias vss v2_tail_unit
-
 XS0 c0 c0b g0 vbias vss v2_trim_gate_switch
 XS1 c1 c1b g1 vbias vss v2_trim_gate_switch
 XS2 c2 c2b g2 vbias vss v2_trim_gate_switch

@@ -35,6 +35,7 @@ class ControlTrimTopologyTests(unittest.TestCase):
         )
         self.assertEqual(report["status"], "pass", report["errors"])
         self.assertEqual(report["verified_trim_role_count"], 48)
+        self.assertEqual(report["verified_exact_analog_sink_count"], 16)
         self.assertEqual(report["magic_exttospice_completion_count"], 2)
 
     def test_disconnected_endpoint_role_is_rejected(self) -> None:
@@ -50,6 +51,26 @@ class ControlTrimTopologyTests(unittest.TestCase):
         )
         self.assertEqual(report["status"], "fail")
         self.assertTrue(any("active_trim_codes[0]" in item for item in report["errors"]))
+
+    def test_wrong_channel_or_bit_sink_is_rejected(self) -> None:
+        physical0 = next(
+            label for label, net in self.geometry["label_net_map"].items()
+            if net == "active_trim_codes[0]"
+        )
+        physical1 = next(
+            label for label, net in self.geometry["label_net_map"].items()
+            if net == "active_trim_codes[1]"
+        )
+        marker = "TRIM_SWAP_TEST"
+        mutated = self.spice.replace(physical0, marker)
+        mutated = mutated.replace(physical1, physical0)
+        mutated = mutated.replace(marker, physical1)
+        report = audit(
+            mutated, self.mapping, self.geometry, self.log,
+            "v2_control_quadrature_routed", "CONTROL_QUADRATURE",
+        )
+        self.assertEqual(report["status"], "fail")
+        self.assertTrue(any("exact channel/bit sink" in item for item in report["errors"]))
 
 
 if __name__ == "__main__":

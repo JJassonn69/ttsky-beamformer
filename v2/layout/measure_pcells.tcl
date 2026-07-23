@@ -41,9 +41,13 @@ magic::gencell sky130::sky130_fd_pr__res_high_po_1p41 XR_UNIT \
 
 # Production-candidate local switched-tail bank.  These use a shared channel
 # guard ring in the final placement, so the individual PCells are unguarded.
+# Three identical 12-finger fixed groups provide 36 always-on units.  Together
+# with the binary 1/2/4/8 bank, reset code 8 gives 44 active units.  Exact
+# extracted-SPICE comparison against the prior 42+2 operating point showed
+# 0.905 V output common mode while preserving coherent gain.
 box 250um 0um 250um 0um
 magic::gencell sky130::sky130_fd_pr__nfet_01v8 XTRIM_MAIN_THIRD \
-    w 1.26 l 0.50 nf 14 m 1 guard 0 conn_gates 1 full_metal 1 doports 1
+    w 1.26 l 0.50 nf 12 m 1 guard 0 conn_gates 1 full_metal 1 doports 1
 
 box 280um 0um 280um 0um
 magic::gencell sky130::sky130_fd_pr__nfet_01v8 XTRIM_B8 \

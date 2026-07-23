@@ -30,19 +30,23 @@ class ControlServiceRcTest(unittest.TestCase):
             (ROOT / "build/v2/control_routing/openroad/openroad_jobs.json").read_text()
         )
         power = json.loads((ROOT / "build/v2/control_power/control_power_geometry.json").read_text())
+        control = json.loads(
+            (ROOT / "build/v2/control_routing/openroad_route_geometry.json").read_text()
+        )
         with tempfile.TemporaryDirectory() as directory:
             output = Path(directory) / "force.tcl"
             counts = generate(
-                allocation, jobs, power, list(DEFAULT_ROUTES), output
+                allocation, jobs, power, control, list(DEFAULT_ROUTES), output
             )
             self.assertEqual(counts, {
                 "analog_routes": 31,
+                "control_routes": 206,
                 "external_inputs": 13,
                 "external_supplies": 2,
-                "total_points": 46,
+                "total_points": 252,
             })
             text = output.read_text()
-            self.assertEqual(text.count("label {res:force@}"), 38)
+            self.assertEqual(text.count("label {res:force@}"), 244)
             self.assertEqual(text.count("label {res:drive@}"), 46)
             external_inputs = {
                 item["net"] for item in allocation["nets"]
@@ -55,6 +59,8 @@ class ControlServiceRcTest(unittest.TestCase):
                 self.assertIn(f"force external supply {net}", text)
             for net in ("ch0_input", "ch3_lon", "phase_270", "vcm"):
                 self.assertIn(f"force critical analog route {net}", text)
+            for label in ("R025", "R030", "R038", "R157"):
+                self.assertIn(f"retain routed control mesh {label}", text)
             for net in ("sum_p", "sum_n"):
                 section = text.split(f"force critical analog route {net}", 1)[1]
                 section = section.split("# force", 1)[0]

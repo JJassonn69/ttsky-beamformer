@@ -77,6 +77,12 @@ def anchor_catalog(
         for channel in trim["channel_order"]
         for bit in trim["bit_order_within_channel"]
     ]
+    expected_slots = [(index // 4, index % 4) for index in range(16)]
+    if trim_slots != expected_slots:
+        raise ValueError(
+            "trim_control_bus must map active_trim_codes[4*channel+bit] "
+            "to the same CH/channel trim bit; got " + repr(trim_slots)
+        )
     for index, (channel, bit) in enumerate(trim_slots):
         add(
             f"active_trim_codes[{index}]",

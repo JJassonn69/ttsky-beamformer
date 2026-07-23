@@ -31,6 +31,12 @@ class SupportPlacementGeneratorTests(unittest.TestCase):
         self.assertIn("identify BIAS_DIODE_B", text)
         self.assertIn("SUPPORT_PLACEMENT_DRC_COUNT", text)
         self.assertIn("gds read $SOURCE_GDS", text)
+        self.assertIn(
+            "build/v2/output_summing_routes/magic/v2_four_channel_output_routed.gds",
+            text,
+        )
+        self.assertIn("load v2_four_channel_output_routed", text)
+        self.assertNotIn("build/v2/support_routes/magic", text)
         self.assertNotIn("load v2_four_channel_support_placed -silent", text)
 
 

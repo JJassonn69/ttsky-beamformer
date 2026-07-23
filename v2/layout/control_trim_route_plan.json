@@ -15,7 +15,7 @@
   },
   "allocation_checkpoint": {
     "json": "build/v2/control_routing/control_route_allocation.json",
-    "sha256": "c66ba77cb0ed9ef30818a055e3ee7a542fc2483d129cbc52a1092132d9d17428"
+    "sha256": "2e85c28078d9ba32adfe2427d654f2b411c24978b857d73759fcdf77c34bec7f"
   },
   "overlay_top": "v2_control_trim_routes_overlay",
   "output_top": "v2_control_trim_routed",

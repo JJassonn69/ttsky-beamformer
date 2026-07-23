@@ -39,10 +39,10 @@
       "height_um": 3.88
     },
     "trim_main_third_nfet_shared_guard": {
-      "generated_cell": "sky130_fd_pr__nfet_01v8_7YVVGW",
-      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 14, "guard": 0},
-      "bbox_um": [-5.675, -1.07, 5.675, 1.07],
-      "width_um": 11.35,
+      "generated_cell": "sky130_fd_pr__nfet_01v8_GMLTWK",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 12, "guard": 0},
+      "bbox_um": [-4.885, -1.07, 4.885, 1.07],
+      "width_um": 9.77,
       "height_um": 2.14
     },
     "trim_bit8_nfet_shared_guard": {
@@ -202,7 +202,7 @@
     "minimum_device_gap_um": 1.0,
     "minimum_resistor_column_gap_um": 0.5,
     "trim_fixed_groups_per_channel": 3,
-    "trim_fixed_fingers_per_group": 14,
+    "trim_fixed_fingers_per_group": 12,
     "trim_binary_fingers": [1, 2, 4, 8],
     "trim_rows_per_channel": 5,
     "trim_shared_guard_margin_um": 1.0,

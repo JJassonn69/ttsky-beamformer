@@ -185,7 +185,9 @@ quit -noprompt
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--plan", type=Path, default=Path("v2/layout/integration_plan.json"))
+    parser.add_argument(
+        "--plan", type=Path, default=Path("v2/layout/vcm_varactor_eco.json")
+    )
     parser.add_argument("--dimensions", type=Path, default=Path("v2/layout/pcell_dimensions.json"))
     parser.add_argument("--catalog", type=Path, default=Path("v2/layout/port_catalog.json"))
     parser.add_argument(

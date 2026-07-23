@@ -11,7 +11,7 @@ from xml.sax.saxutils import escape
 
 ROLE_COLORS = {
     "input_bias": "#4d908e",
-    "trim_fixed_14": "#577590",
+    "trim_fixed_12": "#577590",
     "trim_binary_8": "#577590",
     "trim_binary_4": "#577590",
     "trim_binary_2": "#577590",
@@ -147,7 +147,7 @@ def main() -> None:
     )
     legend = [
         ("Input bias resistor", ROLE_COLORS["input_bias"]),
-        ("Equal-unit tail trim", ROLE_COLORS["trim_fixed_14"]),
+        ("Equal-unit tail trim", ROLE_COLORS["trim_fixed_12"]),
         ("GM signal / reference ABBA", ROLE_COLORS["gm_signal"]),
         ("Mixer output P / N common centroid", ROLE_COLORS["mixer_out_p"]),
         ("Pinned local phase-selector cells", "#f4a261"),

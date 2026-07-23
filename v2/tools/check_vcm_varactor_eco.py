@@ -14,7 +14,7 @@ from check_critical_extraction import top_instances
 
 TOP = "v2_control_quadrature_routed"
 VARACTOR_MODEL = "sky130_fd_pr__cap_var_lvt_88578Y"
-USER_ROUTED_SOURCE_SHA256 = "d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130"
+USER_ROUTED_SOURCE_SHA256 = "145804737243ea220ab26892a8a67b3df63920857544461b040aab0ead06532b"
 
 
 def check(

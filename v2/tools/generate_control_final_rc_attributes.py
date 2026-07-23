@@ -30,6 +30,7 @@ def generate(
     allocation: dict[str, Any],
     jobs: dict[str, Any],
     power_geometry: dict[str, Any],
+    control_geometry: dict[str, Any],
     analog_routes: list[Path],
     output: Path,
 ) -> dict[str, int]:
@@ -82,6 +83,31 @@ def generate(
             f"label {{res:force@}} FreeSans 0.10u -{layer}",
             f"label {{res:drive@}} FreeSans 0.10u -{layer}",
         ))
+
+    # OpenROAD emits one deterministic Rxxx label on every routed control net.
+    # Anchor distributed-resistance extraction at those exact track locations,
+    # rather than relying only on a top-pin label that can sit on a prunable
+    # access branch.  ``res:force@`` affects only Magic's temporary extraction
+    # cell: it adds no manufactured geometry and does not invent a driver for
+    # device-driven internal nets.
+    control_labels = control_geometry["labels"]
+    if len(control_labels) != len(control_geometry["label_net_map"]):
+        raise ValueError("control geometry must contain one point per Rxxx label")
+    seen_control_labels: set[str] = set()
+    for item in sorted(control_labels, key=lambda value: value["gds_label"]):
+        label = str(item["gds_label"])
+        if label in seen_control_labels:
+            raise ValueError(f"duplicate control route label {label}")
+        seen_control_labels.add(label)
+        if control_geometry["label_net_map"].get(label) != item["net"]:
+            raise ValueError(f"{label}: label/net map disagrees with geometry")
+        x, y = map(float, item["point_um"])
+        layer = str(item["layer"]).replace("metal", "met")
+        lines.extend((
+            f"# retain routed control mesh {label} ({item['net']})",
+            f"box {x:.6f}um {y:.6f}um {x:.6f}um {y:.6f}um",
+            f"label {{res:force@}} FreeSans 0.10u -{layer}",
+        ))
     analog_labels = collect_labels(analog_routes)
     for net, x1, y1, x2, y2, layer in analog_labels:
         lines.extend((
@@ -101,8 +127,12 @@ def generate(
     return {
         "external_inputs": len(external_points),
         "external_supplies": len(power_points),
+        "control_routes": len(control_labels),
         "analog_routes": len(analog_labels),
-        "total_points": len(external_points) + len(power_points) + len(analog_labels),
+        "total_points": (
+            len(external_points) + len(power_points)
+            + len(control_labels) + len(analog_labels)
+        ),
     }
 
 
@@ -121,6 +151,10 @@ def main() -> None:
         default=Path("build/v2/control_power/control_power_geometry.json"),
     )
     parser.add_argument(
+        "--control-geometry", type=Path,
+        default=Path("build/v2/control_routing/openroad_route_geometry.json"),
+    )
+    parser.add_argument(
         "--analog-routes", nargs="*", type=Path, default=list(DEFAULT_ROUTES),
     )
     parser.add_argument(
@@ -132,6 +166,7 @@ def main() -> None:
         json.loads(args.allocation.read_text()),
         json.loads(args.jobs.read_text()),
         json.loads(args.power_geometry.read_text()),
+        json.loads(args.control_geometry.read_text()),
         args.analog_routes,
         args.output,
     )
