@@ -20,6 +20,7 @@ jobs:
 
       - name: Rebuild active V2 submission artifacts
         run: |
+          python3 v2/tools/fetch_tt_2x2_template.py
           python3 v2/tools/generate_submission_gds.py
           python3 tools/generate_submission_lef.py
           git diff --exit-code -- gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef

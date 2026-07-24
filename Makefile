@@ -3,7 +3,7 @@ IVERILOG ?= iverilog
 BUILD_DIR := build
 TOP := tt_um_jjassonn69_beamformer
 
-.PHONY: test test-v2 test-submission datasheet-figures submission-gds submission-lef submission-artifacts v2-tail-screen v2-gate3 v2-gate4 v2-gate5 freeze-release-evidence release-check
+.PHONY: test test-v2 test-submission datasheet-figures template-def submission-gds submission-lef submission-artifacts v2-tail-screen v2-gate3 v2-gate4 v2-gate5 freeze-release-evidence release-check
 
 # The unqualified targets operate on the active four-channel V2 submission.
 test: test-v2
@@ -22,7 +22,10 @@ datasheet-figures:
 submission-gds:
 	$(PYTHON) v2/tools/generate_submission_gds.py
 
-submission-lef:
+template-def:
+	$(PYTHON) v2/tools/fetch_tt_2x2_template.py
+
+submission-lef: template-def
 	$(PYTHON) tools/generate_submission_lef.py
 
 submission-artifacts: submission-gds submission-lef test-submission

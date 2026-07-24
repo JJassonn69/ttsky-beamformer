@@ -64,6 +64,20 @@ class SubmissionArtifactsTest(unittest.TestCase):
         self.assertIn("PIN VGND", lef)
         self.assertNotIn("PIN VAPWR", lef)
 
+    def test_clean_ci_fetches_pinned_def_before_lef_regeneration(self) -> None:
+        workflow = (ROOT / ".github/workflows/gds.yaml").read_text()
+        fetch = "python3 v2/tools/fetch_tt_2x2_template.py"
+        generate = "python3 tools/generate_submission_lef.py"
+        self.assertIn(fetch, workflow)
+        self.assertIn(generate, workflow)
+        self.assertLess(workflow.index(fetch), workflow.index(generate))
+
+        fetch_script = (ROOT / "v2/tools/fetch_tt_2x2_template.py").read_text()
+        lock = (ROOT / "submission/template.lock").read_text()
+        def_sha = re.search(r'^def_sha256=(\w+)$', lock, re.MULTILINE)
+        self.assertIsNotNone(def_sha)
+        self.assertIn(f'SHA256 = "{def_sha.group(1)}"', fetch_script)
+
     def test_info_yaml_is_v2_submission_metadata(self) -> None:
         info = (ROOT / "info.yaml").read_text()
         for fragment in (
