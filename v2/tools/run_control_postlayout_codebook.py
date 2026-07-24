@@ -604,6 +604,10 @@ def main() -> int:
         spiceinit_hashes = sorted(
             {str(report.get("spiceinit_sha256")) for report in reports.values()}
         )
+        varactor_model_hashes = sorted({
+            str(report.get("extracted_varactor_model_sha256"))
+            for report in reports.values()
+        })
         if len(gds_hashes) != 1:
             errors.append(f"case reports use multiple GDS hashes: {gds_hashes}")
         if len(netlist_hashes) != 1:
@@ -611,6 +615,11 @@ def main() -> int:
         if len(spiceinit_hashes) != 1:
             errors.append(
                 f"case reports use multiple ngspice startup hashes: {spiceinit_hashes}"
+            )
+        if len(varactor_model_hashes) != 1 or varactor_model_hashes == ["None"]:
+            errors.append(
+                "case reports lack one consistent extracted-varactor model hash: "
+                f"{varactor_model_hashes}"
             )
         corrected_matrix, raw_matrix, background_iq = corrected_response_matrices(reports)
         # Release acceptance is deliberately based on the uncorrected response.
@@ -630,6 +639,7 @@ def main() -> int:
             "gds_sha256": gds_hashes,
             "netlist_sha256": netlist_hashes,
             "spiceinit_sha256": spiceinit_hashes,
+            "extracted_varactor_model_sha256": varactor_model_hashes,
         }
         metrics["settled_operating_ranges"] = operating_ranges(
             reports, args.supply_voltage_v
@@ -676,6 +686,9 @@ def main() -> int:
             "gds_sha256": report.get("gds_sha256"),
             "netlist_sha256": report.get("netlist_sha256"),
             "spiceinit_sha256": report.get("spiceinit_sha256"),
+            "extracted_varactor_model_sha256": report.get(
+                "extracted_varactor_model_sha256"
+            ),
         })
     result = {
         "status": "pass" if not errors else "fail",

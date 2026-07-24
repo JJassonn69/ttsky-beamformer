@@ -5,6 +5,21 @@ set WORKDIR [file join $PROJECT_ROOT build v2 control_routing final_rc]
 set SOURCE_TOP v2_control_quadrature_routed
 set TOP v2_control_final_rc_flat
 set FORCE_ATTRIBUTES [file join $WORKDIR force_attributes.tcl]
+if {[info exists ::env(BF_RC_GDS)]} {
+    set INPUT_GDS [file normalize $::env(BF_RC_GDS)]
+}
+if {[info exists ::env(BF_RC_WORKDIR)]} {
+    set WORKDIR [file normalize $::env(BF_RC_WORKDIR)]
+}
+if {[info exists ::env(BF_RC_SOURCE_TOP)]} {
+    set SOURCE_TOP $::env(BF_RC_SOURCE_TOP)
+}
+if {[info exists ::env(BF_RC_FLAT_TOP)]} {
+    set TOP $::env(BF_RC_FLAT_TOP)
+}
+if {[info exists ::env(BF_RC_ATTRIBUTES)]} {
+    set FORCE_ATTRIBUTES [file normalize $::env(BF_RC_ATTRIBUTES)]
+}
 file mkdir $WORKDIR
 if {![file exists $INPUT_GDS]} { error "missing exact complete V2 GDS" }
 if {![file exists $FORCE_ATTRIBUTES]} { error "missing final RC force attributes" }

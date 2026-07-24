@@ -27,6 +27,9 @@ DEFAULT_RC = Path(
 DEFAULT_VARACTOR_MODEL = Path(
     "v2/spice/sky130_fd_pr__cap_var_lvt.model.spice"
 )
+DEFAULT_LINEARIZED_VARACTOR_MODEL = Path(
+    "v2/spice/sky130_fd_pr__cap_var_lvt.linearized_1p2v.spice"
+)
 BUILD = Path("build/v2/postlayout_smoke")
 SPICE_INIT = """* Isolated large-SKY130 ngspice configuration.
 set ngbehavior=hsa
@@ -35,6 +38,10 @@ set ng_nomodcheck
 set num_threads=8
 option noinit
 option klu
+* Anchor capacitively coupled, otherwise isolated metal-fill islands at DC.
+* 1 POhm is negligible versus their MHz capacitive impedance but prevents a
+* singular operating-point matrix in exact flattened submission extraction.
+option rshunt=1e15
 """
 GROUND = "sky130_fd_sc_hd__fill_1_2190.VNB"
 CONTROL_NODES = {
@@ -883,6 +890,16 @@ def main() -> int:
         type=Path,
         help="experimental SKY130 LVT varactor model used as the VCM bypass",
     )
+    parser.add_argument(
+        "--extracted-varactor-model",
+        type=Path,
+        default=DEFAULT_VARACTOR_MODEL,
+        help=(
+            "model closure for physical varactors already present in the "
+            "extracted netlist; the 1.2 V linearized closure is available "
+            "for numerically stiff distributed-RC checks"
+        ),
+    )
     parser.add_argument("--vcm-varactor-w-um", type=float, default=25.0)
     parser.add_argument("--vcm-varactor-l-um", type=float, default=25.0)
     parser.add_argument("--vcm-varactor-m", type=int, default=1)
@@ -949,7 +966,7 @@ def main() -> int:
             raise SystemExit("VCM varactor dimensions must be positive")
         if args.vcm_varactor_m <= 0:
             raise SystemExit("VCM varactor multiplicity must be positive")
-    required_paths = [args.gds, netlist]
+    required_paths = [args.gds, netlist, args.extracted_varactor_model]
     if args.vcm_varactor_model is not None:
         required_paths.append(args.vcm_varactor_model)
     for path in required_paths:
@@ -958,7 +975,7 @@ def main() -> int:
     netlist_text = netlist.read_text(encoding="utf-8", errors="replace")
     validate_extracted_netlist(netlist_text)
     extracted_varactor_model = (
-        DEFAULT_VARACTOR_MODEL
+        args.extracted_varactor_model
         if "sky130_fd_pr__cap_var_lvt" in extracted_model_names(netlist_text)
         else None
     )
@@ -995,6 +1012,7 @@ def main() -> int:
         and args.output_damping_pf is None
         and args.vcm_bypass_pf is None
         and args.vcm_varactor_model is None
+        and args.extracted_varactor_model == DEFAULT_VARACTOR_MODEL
         and args.process_corner == "tt"
         and args.passive_corner == "tt"
         and args.supply_voltage_v == 1.8
@@ -1043,6 +1061,11 @@ def main() -> int:
             ).replace(".", "p")
             if args.vcm_varactor_m != 1:
                 case_label += f"_m{args.vcm_varactor_m}"
+        if args.extracted_varactor_model != DEFAULT_VARACTOR_MODEL:
+            model_label = re.sub(
+                r"[^A-Za-z0-9]+", "_", args.extracted_varactor_model.stem
+            ).strip("_")
+            case_label += f"_extracted_varmodel_{model_label}"
         if (
             args.process_corner != "tt"
             or args.supply_voltage_v != 1.8
@@ -1168,6 +1191,16 @@ def main() -> int:
         "vcm_varactor_model": (
             str(args.vcm_varactor_model)
             if args.vcm_varactor_model is not None
+            else None
+        ),
+        "extracted_varactor_model": (
+            str(extracted_varactor_model)
+            if extracted_varactor_model is not None
+            else None
+        ),
+        "extracted_varactor_model_sha256": (
+            sha256(extracted_varactor_model)
+            if extracted_varactor_model is not None
             else None
         ),
         "vcm_varactor_w_um": args.vcm_varactor_w_um,

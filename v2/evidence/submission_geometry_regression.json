@@ -1,0 +1,100 @@
+{
+  "as_of": "2026-07-25",
+  "base_codebook": {
+    "case_count": 20,
+    "constructive_diagonal_v_rms": [
+      0.0236514,
+      0.0242467,
+      0.0242771,
+      0.02423
+    ],
+    "constructive_spread_db": 0.2267990830463008,
+    "minimum_rejection_db": 55.22777152712678,
+    "report": {
+      "bytes": 18020,
+      "path": "build/v2/submission/final_regression/base_codebook_summary.json",
+      "sha256": "919943a6f98175f03811211a68b40db2af6de253f16fac430b075263d07d1f53"
+    }
+  },
+  "distributed_rc_nominal": {
+    "base_to_rc_loss_db": 0.10875865932945775,
+    "maximum_phase_tree_skew_s": 8.870000000000951e-17,
+    "minimum_headroom_v": 0.09764593,
+    "output_common_mode_v": 0.9434556,
+    "output_tone_rms_v": 0.0233571,
+    "report": {
+      "bytes": 8284,
+      "path": "build/v2/submission/final_regression/rc_nominal_report.json",
+      "sha256": "04af803f049f47780939e45ef884b5b4e2bb1dbcae4eaa38f6fd728afaefcf5b"
+    },
+    "vcm_v": 1.198971
+  },
+  "errors": [],
+  "extraction": {
+    "base_counts": {
+      "all_resistors_positive": 1,
+      "capacitors": 29254,
+      "devices": 4208,
+      "resistors": 0
+    },
+    "base_netlist": {
+      "bytes": 1684954,
+      "path": "build/v2/submission/final_regression/control_final_base_normalized.spice",
+      "sha256": "1bae2edc045ba11dbdd9a86889044deb5f513757df60c499af25f62586c47954"
+    },
+    "distributed_rc_counts": {
+      "all_resistors_positive": 1,
+      "capacitors": 31189,
+      "devices": 4208,
+      "resistors": 80129
+    },
+    "distributed_rc_netlist": {
+      "bytes": 8612826,
+      "path": "build/v2/submission/final_regression/control_final_rc_normalized.spice",
+      "sha256": "2fd11312d71ea1d82e5ccc0ed91f9a8018d355b391b8dc928a2c2ca1dc5603e5"
+    },
+    "extraction_feedback_count": 0,
+    "log": {
+      "bytes": 146511,
+      "path": "build/v2/submission/final_regression/extraction.log",
+      "sha256": "e503343f46b5d87975ca86e8c9345b2f31d280cf8cd37fb5d565abb68e47eda0"
+    },
+    "magic_drc_count": 0
+  },
+  "models": {
+    "linearization_scope": "distributed-RC convergence only; 2.604860136 pF and 1097.313346 ohm per physical varactor at VCM=1.2 V",
+    "linearized_varactor_1p2v": {
+      "bytes": 673,
+      "path": "v2/spice/sky130_fd_pr__cap_var_lvt.linearized_1p2v.spice",
+      "sha256": "f7b5be60c57dda54e9b4a21517b3d3f5873b8c71c46206b4352928c39f84d123"
+    },
+    "nonlinear_varactor": {
+      "bytes": 4828,
+      "path": "v2/spice/sky130_fd_pr__cap_var_lvt.model.spice",
+      "sha256": "cebe98a46f6cb7e7c1c4830eef47888a588f72ac8032c0f1237b601689f7df04"
+    }
+  },
+  "rerun_policy": {
+    "not_repeated": [
+      "60-seed device mismatch",
+      "full trim calibration",
+      "broad PVT matrix"
+    ],
+    "reason": "transistor/passive instances and normalized extracted topology are unchanged; those campaigns test device statistics and architecture, not the repaired wire geometry",
+    "repeated": [
+      "official physical precheck",
+      "Magic DRC",
+      "extracted topology",
+      "exact-final base 20-case codebook",
+      "exact-final distributed-RC nominal"
+    ]
+  },
+  "schema_version": 1,
+  "scope": "targeted geometry-sensitive regression after topology-preserving official-precheck repair; device mismatch and broad PVT evidence remain bound to the electrically equivalent frozen candidate",
+  "status": "pass",
+  "submission_gds": {
+    "bytes": 1790204,
+    "path": "gds/tt_um_jjassonn69_beamformer.gds",
+    "sha256": "320e9b448ac66377691698ab5d351cebd90da2f2a532019675e213205625933e"
+  }
+}

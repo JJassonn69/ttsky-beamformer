@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-24",
+  "as_of": "2026-07-25",
   "candidate": {
     "bytes": 1846764,
     "final_eco": "four foundry cap_var_lvt devices, G=VCM and D=S=B=VGND",
@@ -127,13 +127,22 @@
     "bounded_electrical_gate4": "pass",
     "characterization_gate5": "pass_with_documented_noise_residual",
     "official_tinytapeout": {
-      "commit": null,
-      "run_url": null,
-      "status": "pending"
+      "commit": "053cfe118ad701c447fe62d0a5d6b7804ab58661",
+      "run_url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30129235841",
+      "status": "pass"
     },
     "physical_gate3": "pass"
   },
   "headline_metrics": {
+    "exact_submission_geometry_regression": {
+      "base_case_count": 20,
+      "base_constructive_spread_db": 0.2267990830463008,
+      "base_minimum_rejection_db": 55.22777152712678,
+      "base_to_distributed_rc_loss_db": 0.10875865932945775,
+      "distributed_rc_maximum_phase_tree_skew_s": 8.870000000000951e-17,
+      "distributed_rc_output_tone_rms_v": 0.0233571,
+      "distributed_rc_resistor_count": 80129
+    },
     "gate4": {
       "base_corrected_constructive_rms_v": 0.023808223798559812,
       "base_to_rc_constructive_delta_db": 0.1122669130826494,
@@ -202,7 +211,7 @@
     "package_board_and_antenna": "requires first-silicon measurement",
     "production_yield": "open-PDK coefficient mismatch campaign is not foundry-qualified yield"
   },
-  "release_status": "local_signoff_passed_official_tinytapeout_workflow_pending",
+  "release_status": "fab_ready_research_prototype",
   "schema_version": 3,
   "submission": {
     "gds": {
@@ -238,6 +247,11 @@
     "bytes": 2018,
     "path": "v2/evidence/submission_physical_signoff.json",
     "sha256": "12873b950d18c5f91297cf343dd3285ff177f5ca31d660c0ba56ea63f3929a28"
+  },
+  "submission_geometry_regression": {
+    "bytes": 3524,
+    "path": "v2/evidence/submission_geometry_regression.json",
+    "sha256": "300ab47cd8b20ec77c4f21aeb019446a41f1f6590076ce6323cac48d0edf9e8f"
   },
   "visual_review": {
     "images": [

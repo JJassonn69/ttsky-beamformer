@@ -138,6 +138,49 @@ def main() -> int:
         "submission topology equivalence is not passing",
     )
 
+    geometry_path = check_file(
+        evidence["submission_geometry_regression"],
+        "submission geometry regression",
+    )
+    geometry = json.loads(geometry_path.read_text(encoding="utf-8"))
+    require(
+        geometry.get("schema_version") == 1 and geometry.get("status") == "pass",
+        "submission geometry regression is not passing",
+    )
+    require(
+        geometry["submission_gds"].get("sha256") == submission_gds["sha256"]
+        and geometry["submission_gds"].get("bytes") == submission_gds["bytes"],
+        "geometry regression is bound to a different submission GDS",
+    )
+    geometry_extraction = geometry["extraction"]
+    base_counts = geometry_extraction["base_counts"]
+    rc_counts = geometry_extraction["distributed_rc_counts"]
+    require(
+        geometry_extraction.get("magic_drc_count") == 0
+        and geometry_extraction.get("extraction_feedback_count") == 0
+        and base_counts.get("resistors") == 0
+        and rc_counts.get("resistors", 0) > 0
+        and rc_counts.get("all_resistors_positive") == 1
+        and base_counts.get("devices") == rc_counts.get("devices"),
+        "exact-final extraction or distributed resistance differs",
+    )
+    geometry_codebook = geometry["base_codebook"]
+    require(
+        geometry_codebook.get("case_count") == 20
+        and geometry_codebook.get("minimum_rejection_db", 0.0) >= 6.0
+        and geometry_codebook.get("constructive_spread_db", 99.0) <= 3.0,
+        "exact-final base codebook gate failed",
+    )
+    geometry_rc = geometry["distributed_rc_nominal"]
+    require(
+        geometry_rc.get("base_to_rc_loss_db", 99.0) < 1.0
+        and 1.10 <= geometry_rc.get("vcm_v", 0.0) <= 1.30
+        and geometry_rc.get("output_common_mode_v", 0.0) >= 0.8
+        and geometry_rc.get("minimum_headroom_v", 0.0) > 0.0
+        and geometry_rc.get("maximum_phase_tree_skew_s", 1.0) < 1e-12,
+        "exact-final distributed-RC nominal gate failed",
+    )
+
     checkpoint_path = check_file(evidence["checkpoint"], "routing checkpoint")
     checkpoint = json.loads(checkpoint_path.read_text(encoding="utf-8"))
     require(checkpoint.get("schema_version") == 7, "routing checkpoint schema")

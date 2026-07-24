@@ -192,6 +192,7 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
             "set num_threads=8",
             "option noinit",
             "option klu",
+            "option rshunt=1e15",
         ):
             self.assertIn(directive, SPICE_INIT)
         with tempfile.TemporaryDirectory() as temporary_directory:
@@ -478,6 +479,24 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         )
         self.assertIn(f'.include "{model.as_posix()}"', text)
         self.assertNotIn("XVCM_VAR ch0_vcm", text)
+
+    def test_varactor_models_are_numerically_safe_and_linearization_is_explicit(self) -> None:
+        nonlinear = (
+            ROOT / "v2/spice/sky130_fd_pr__cap_var_lvt.model.spice"
+        ).read_text(encoding="utf-8")
+        active_model = "\n".join(
+            line for line in nonlinear.splitlines()
+            if not line.lstrip().startswith("*")
+        )
+        self.assertNotIn("log(cosh(", active_model)
+        self.assertIn("log(1+exp(-2*abs(", active_model)
+
+        linearized = (
+            ROOT / "v2/spice/sky130_fd_pr__cap_var_lvt.linearized_1p2v.spice"
+        ).read_text(encoding="utf-8")
+        self.assertIn("2.604860136214599p", linearized)
+        self.assertIn("1097.313345683077", linearized)
+        self.assertIn("used only for distributed-RC convergence checks", linearized)
 
     def test_rc_output_damping_uses_extracted_output_endpoints(self) -> None:
         text = deck_text(

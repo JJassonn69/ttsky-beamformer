@@ -70,7 +70,10 @@
 + tref=30.0
 + cmin='cm0+cm1*ld+cm2*wd+cm3*wd*(ld-ldd)+cx3*wd*ldd'
 + cmax='cx0+cx1*ld+cx2*wd+cx3*wd*ld'
-cg c0 p2 q='cmin*vm*(v(c0)-v(p2))+((0.5*(cmax+cmin)-cmin)*(v(c0)-v(p2))+0.5*(cmax-cmin)*(1/1.9)*(cnwvc_slope1*log(cosh((v(c0)-v(p2)-cnwvc_vt1)/cnwvc_slope1))+0.9*cnwvc_slope2*log(cosh((v(c0)-v(p2)-cnwvc_vt2)/cnwvc_slope2))))*vm'
+* log(cosh(x)) is evaluated as the exactly equivalent expression below so
+* Newton trial voltages cannot overflow cosh() in large distributed-RC decks.
+* abs(x) + log(1 + exp(-2*abs(x))) - log(2) == log(cosh(x)).
+cg c0 p2 q='cmin*vm*(v(c0)-v(p2))+((0.5*(cmax+cmin)-cmin)*(v(c0)-v(p2))+0.5*(cmax-cmin)*(1/1.9)*(cnwvc_slope1*(abs((v(c0)-v(p2)-cnwvc_vt1)/cnwvc_slope1)+log(1+exp(-2*abs((v(c0)-v(p2)-cnwvc_vt1)/cnwvc_slope1)))-log(2))+0.9*cnwvc_slope2*(abs((v(c0)-v(p2)-cnwvc_vt2)/cnwvc_slope2)+log(1+exp(-2*abs((v(c0)-v(p2)-cnwvc_vt2)/cnwvc_slope2)))-log(2))))*vm'
 c3 c0 b c='0.15e-15'
 c4 c1 b c='0.15e-15'
 * Resistance Model Parameters
