@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "production unified-control detailed-route contract with reviewed trim-route optimization",
+  "source_checkpoint": {
+    "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
+    "top": "v2_four_channel_control_powered",
+    "sha256": "44dca37059bceb73535a3856eeade7b1be723a9a84c6507cf14f3a28edacd31d"
+  },
+  "route_checkpoint": {
+    "jobs": "build/v2/control_routing/openroad/openroad_jobs.json",
+    "jobs_sha256": "b1c79c247911e858d38d238bfd1fc07f6b46fed91312a2531ed64934bf0e4947",
+    "audit": "build/v2/control_routing/openroad/route_audit.json",
+    "audit_sha256": "43700de57345f6ffa75392a09eb188cf47eeb0fe8e1d2b851a94f71bcdb7d304",
+    "routed_def": "build/v2/control_routing/openroad/digital_control/routed.def",
+    "routed_def_sha256": "dc2edf1060bc6602b427757feb09486b7dad046bbefb78075cad2b68cbd0271d",
+    "wire_length": "build/v2/control_routing/openroad/digital_control/wire_length.csv",
+    "wire_length_sha256": "37c004cfc85e119f89b99d877ae8579ff20fc0b23112091ad0b953432ddcfe55",
+    "placement": "build/v2/control_placement/control_placement.json",
+    "placement_sha256": "f12b8d75a6b7874bdaea6a772c7c0126b86bc5778cc97d1d5424eb1632c74a7c",
+    "mapping": "build/v2/control_mapping/physical_netlist.json",
+    "mapping_sha256": "e328f8ba9ef2a6b9bbd17efe645e4ebfb85641b17b2b93c72b031644211da4bd"
+  },
+  "route_geometry_override": {
+    "json": "v2/layout/control_trim_internal_route_override.json",
+    "sha256": "7509c50a767d40a8a52d7d07590fbdd48e72f7cc4b8314a04d2a1acaf2e1a9b7",
+    "scope": "R008:R023 / active_trim_codes[0:15] only",
+    "policy": "restore the reviewed KLayout straight paths while preserving every logical label and OpenROAD top-pin rectangle"
+  },
+  "overlay_top": "v2_control_openroad_routes",
+  "output_top": "v2_control_internal_routed",
+  "routed_classes": [
+    "local_direct",
+    "regional_trunk",
+    "trim_handoff",
+    "quadrature_handoff",
+    "direct_boundary",
+    "service_tree",
+    "phase_handoff",
+    "external_input"
+  ],
+  "expected_route_count": 206,
+  "maximum_route_layer": "met4",
+  "wire_widths": {
+    "li1": 0.17,
+    "met1": 0.14,
+    "met2": 0.14,
+    "met3": 0.3,
+    "met4": 0.3
+  },
+  "via_geometries": {
+    "L1M1": [
+      ["li1", [-0.085, -0.085, 0.085, 0.085]],
+      ["mcon", [-0.085, -0.085, 0.085, 0.085]],
+      ["met1", [-0.145, -0.115, 0.145, 0.115]]
+    ],
+    "M1M2": [
+      ["met1", [-0.16, -0.13, 0.16, 0.13]],
+      ["via", [-0.075, -0.075, 0.075, 0.075]],
+      ["met2", [-0.13, -0.16, 0.13, 0.16]]
+    ],
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.1, -0.1, 0.1, 0.1]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ],
+    "M3M4": [
+      ["met3", [-0.19, -0.16, 0.19, 0.16]],
+      ["via3", [-0.1, -0.1, 0.1, 0.1]],
+      ["met4", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "policy": {
+    "placement_is_fixed": true,
+    "global_phase_and_trim_banks_share_one_bounded_route_job": true,
+    "all_206_digital_internal_handoff_direct_service_and_external_input_nets_are_router_owned": true,
+    "trim_handoffs_terminate_on_fixed_m3_boundary_pins": true,
+    "quadrature_handoffs_terminate_on_fixed_m3_boundary_pins": true,
+    "phase_handoffs_terminate_on_fixed_m2_boundary_pins": true,
+    "direct_cross_bank_trees_are_detailed_router_owned": true,
+    "service_trees_and_all_thirteen_external_control_pins_are_detailed_router_owned": true,
+    "foundry_lef_pin_access_is_mandatory": true,
+    "power_geometry_and_analog_keepouts_are_blockages": true,
+    "route_centerlines_and_vias_are_reproduced_from_routed_def": true,
+    "reviewed_trim_route_optimization_is_frozen_in_a_hash_locked_endpoint_preserving_override": true,
+    "metal4_is_used_only_by_the_thirteen_external_input_routes": true,
+    "metal5_used": false
+  },
+  "release_gates": [
+    "FastRoute routes all 206 internal, handoff, direct cross-bank, service-tree, and external-input nets without congestion overflow",
+    "TritonRoute reaches zero final detailed-route violations",
+    "every DEF route is a loop-free tree after transformed LEF pin conductors are included",
+    "every route leaf lands inside its named foundry LEF pin polygon",
+    "only the thirteen intentional external-input routes rise to metal4 and no orphan via or dead branch exists",
+    "Magic full-chip DRC and complete terminal-aware extraction pass on the assembled GDS"
+  ]
+}

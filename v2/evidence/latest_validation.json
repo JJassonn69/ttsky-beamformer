@@ -1,0 +1,271 @@
+{
+  "as_of": "2026-07-25",
+  "candidate": {
+    "bytes": 1846764,
+    "final_eco": "four foundry cap_var_lvt devices, G=VCM and D=S=B=VGND",
+    "path": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "pre_varactor_user_route_source": {
+      "bytes": 1796808,
+      "path": "v2/reference/v2_control_quadrature_user_routed.gds",
+      "sha256": "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c",
+      "top": "v2_control_quadrature_routed"
+    },
+    "sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "top": "v2_control_quadrature_routed"
+  },
+  "checkpoint": {
+    "bytes": 5707,
+    "path": "v2/layout/control_routing_checkpoint.json",
+    "sha256": "67c528a4d52cca6d7a567dffd063b40bbb02ac5ee1a01fb666700a01fce77e32"
+  },
+  "datasheet_figures": {
+    "bytes": 19151,
+    "count": 6,
+    "path": "v2/evidence/datasheet_figures.json",
+    "sha256": "2dd7ef36ced3f4fa2900020cf9b149ab649643f943935d41ef99ce166e7d73de"
+  },
+  "fabrication_scope": "ready for a TinyTapeout research shuttle after the official workflow passes; not production-qualified or measured silicon",
+  "frozen_evidence": {
+    "clock": {
+      "bytes": 2630,
+      "path": "v2/evidence/frozen/clock.json",
+      "sha256": "c9373fef0f718f8b8cc450ce5af53a36d073517dc2325c762b39b56c49772663",
+      "source_sha256": "7879e553d580c8d6be5069c03c7b2fd57928090b79a6e4db5d34ab84cf80e933"
+    },
+    "extraction": {
+      "bytes": 327526,
+      "path": "v2/evidence/frozen/extraction.json",
+      "sha256": "bf13fc7dc70f05d4815fb70a18c2463146e03719638e059fa3df6b47076aa81e",
+      "source_sha256": "3663be17d419aee133426ebc6bf1bc6049b73c5914967e1febe51347f20016f1"
+    },
+    "fast_high_cold": {
+      "bytes": 8951,
+      "path": "v2/evidence/frozen/fast_high_cold.json",
+      "sha256": "b11b18903ea8099280b1cf09a0ab31e68582dd3f232d8d0bfb0fc306cc22e957",
+      "source_sha256": "786e89e7b4f549a73dd7288243225cd06b738333696eeb6536fe5cc0f280321e"
+    },
+    "fs_nominal": {
+      "bytes": 8951,
+      "path": "v2/evidence/frozen/fs_nominal.json",
+      "sha256": "a6f4b31c254b08b31d2214499c96f525aa70fddea186428a6d8a61bd6e5f48da",
+      "source_sha256": "43c641084ee87a869664f38669417fe48231718334e572e89cb1d3c75414da49"
+    },
+    "gate3": {
+      "bytes": 4960,
+      "path": "v2/evidence/frozen/gate3.json",
+      "sha256": "3dbb9cce566874dea45826f5b9a5a467f245d709f8b7d55968ddc1945960e21b",
+      "source_sha256": "0536fa6237d075389e4031e09571875de94591876122b9bf521a1f461287ae75"
+    },
+    "gate4": {
+      "bytes": 3852,
+      "path": "v2/evidence/frozen/gate4.json",
+      "sha256": "6609b34cfcb66c19c44df77ef37e5bc1aa9dd3679f868acf6778c40f487d492a",
+      "source_sha256": "65cd27f01f71d5f736c1b72d20e088cbc4f400e5d39f67acee4ca23bbfdafe90"
+    },
+    "gate5": {
+      "bytes": 2472,
+      "path": "v2/evidence/frozen/gate5.json",
+      "sha256": "3a175406648caa146ebc515fcb94a3c5b278f3d2fc8406715e34548fe5c214c5",
+      "source_sha256": "cd4e641c5d01d35036ccdcfa69051f2373a2706ad01047396b4c8680c8e2f575"
+    },
+    "heavy_load": {
+      "bytes": 8930,
+      "path": "v2/evidence/frozen/heavy_load.json",
+      "sha256": "bdee3ffddccdaa6483c373416e9329374fd0ce6ce0732838f86ed3282ba38e7b",
+      "source_sha256": "3cca62efe4e59fe90d91bf06463de2909eb953984190cb8dc5334b938157be78"
+    },
+    "mismatch": {
+      "bytes": 55725,
+      "path": "v2/evidence/frozen/mismatch.json",
+      "sha256": "02d88718be2a0bf4e2f423f00ff96a079bcbabf3e4084efa5a63fd7ae9d53009",
+      "source_sha256": "41ed54eff2ee063471f555cec0e55da0b54f3a6154623f765f8b9c324f375f12"
+    },
+    "rc_codebook": {
+      "bytes": 16691,
+      "path": "v2/evidence/frozen/rc_codebook.json",
+      "sha256": "4264c6306b62e33724c7dbb250b42833c00e309d85c01526c650d776f6b1c1b3",
+      "source_sha256": "b55be2a5f34c800c41f32c4f645ef185fb4f3dc2e756510f403abebfb98e1515"
+    },
+    "sensitivity": {
+      "bytes": 4132,
+      "path": "v2/evidence/frozen/sensitivity.json",
+      "sha256": "3fe0b97746e7216b2b2baba2dc8fd1fdabde627fbb05d13dd2d0dbe9ea1af05e",
+      "source_sha256": "33a339abff56839fa92794a88c98d410c3d96f7562d596b74942cc88cd8e3177"
+    },
+    "sf_nominal": {
+      "bytes": 8938,
+      "path": "v2/evidence/frozen/sf_nominal.json",
+      "sha256": "a25f31082c3fc80a564a251a427d13870ca5438850b7a71e0a5c218ec3d26894",
+      "source_sha256": "65ea5db31d3ac5ec36dd30415acfeb6a1c4eedea1ea6b3fac766cb82b57002b8"
+    },
+    "slow_low_hot": {
+      "bytes": 8956,
+      "path": "v2/evidence/frozen/slow_low_hot.json",
+      "sha256": "64c99c26db57f2c9b39d602754b539b9999db6ec043b4867faefe39d2b787e96",
+      "source_sha256": "333c81368e5d95a01d885e924cb749b3475709f30b97b0d67c1c8f7834c58cdb"
+    },
+    "startup": {
+      "bytes": 1297,
+      "path": "v2/evidence/frozen/startup.json",
+      "sha256": "71daaed53233a78d50d72a1ca7c3bb781bfe52b1fe10f75de347535ce8cf1a03",
+      "source_sha256": "81abad9fd83d1b52ed8cf2e9e0d7691ff87f3a60077a65aa08395c3d8ca59a57"
+    },
+    "trim": {
+      "bytes": 15908,
+      "path": "v2/evidence/frozen/trim.json",
+      "sha256": "646b0fd62198e522d4953756ee54bed2cf472e166ba517814352ec5b37c109bd",
+      "source_sha256": "46c74df6fdc61842e89981b3a15899607c8ef01684d075fcdc0dfd756c74f033"
+    },
+    "twotone": {
+      "bytes": 2045,
+      "path": "v2/evidence/frozen/twotone.json",
+      "sha256": "4c4259d7aa1d8ad6a5fd2d7277af5573698d29cb7586931aa75edba095795002",
+      "source_sha256": "882c23ee9e9a693f639a0e1f3672f536b8db9425e267545ff38626a583e21584"
+    }
+  },
+  "gates": {
+    "bounded_electrical_gate4": "pass",
+    "characterization_gate5": "pass_with_documented_noise_residual",
+    "official_tinytapeout": {
+      "commit": "053cfe118ad701c447fe62d0a5d6b7804ab58661",
+      "run_url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30129235841",
+      "status": "pass"
+    },
+    "physical_gate3": "pass"
+  },
+  "headline_metrics": {
+    "exact_submission_geometry_regression": {
+      "base_case_count": 20,
+      "base_constructive_spread_db": 0.2267990830463008,
+      "base_minimum_rejection_db": 55.22777152712678,
+      "base_to_distributed_rc_loss_db": 0.10875865932945775,
+      "distributed_rc_maximum_phase_tree_skew_s": 8.870000000000951e-17,
+      "distributed_rc_output_tone_rms_v": 0.0233571,
+      "distributed_rc_resistor_count": 80129
+    },
+    "gate4": {
+      "base_corrected_constructive_rms_v": 0.023808223798559812,
+      "base_to_rc_constructive_delta_db": 0.1122669130826494,
+      "rc_corrected_constructive_rms_v": 0.02350247777256871,
+      "rc_corrected_null_rms_v": 4.652130074204933e-06,
+      "rc_representative_rejection_db": 74.06923602922994
+    },
+    "gate5": {
+      "codebook_constructive_spread_db": 0.24351285052462948,
+      "fifty_mv_peak_compression_db": 0.3704520161924094,
+      "minimum_codebook_rejection_db": 61.04947702699859,
+      "minimum_mismatch_rejection_db": 36.489527528344915,
+      "mismatch_seed_count": 60,
+      "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
+      "ten_mv_per_tone_im3_separation_db": 49.19991349667463
+    },
+    "nominal_rc_codebook": {
+      "constructive_diagonal_v_rms": [
+        0.0234875,
+        0.024096,
+        0.0241553,
+        0.0240973
+      ],
+      "constructive_spread_db": 0.24351285052462948,
+      "minimum_rejection_db": 61.04947702699859,
+      "settled_operating_ranges": {
+        "estimated_power_w": [
+          0.00123710436,
+          0.00123717402
+        ],
+        "output_common_mode_v": [
+          0.9722154,
+          0.9722194
+        ],
+        "supply_current_a": [
+          0.0006872802,
+          0.0006873189
+        ],
+        "vcm_v": [
+          1.199097,
+          1.1991
+        ]
+      }
+    },
+    "startup": {
+      "recommended_enable_delay_us": 120.0,
+      "vcm_1p10_v_first_us": 60.9887,
+      "vcm_1p17_v_first_us": 97.45739999999999,
+      "vcm_final_avg_v": 1.184191
+    },
+    "trim": {
+      "default_spread_db": 0.00698248190624473,
+      "minimum_adjacent_step_db": 0.1188982064402381,
+      "span_db_by_channel": [
+        2.3365673679109324,
+        2.343274870560247,
+        2.3372620381509805,
+        2.342500850769867
+      ],
+      "stress_calibrated_spread_db": 0.059429965910311126
+    }
+  },
+  "known_characterization_residuals": {
+    "independent_foundry_lvs": "not available in the open local flow",
+    "noise": "known_characterization_gap_not_structural_fabrication_blocker_for_a_research_prototype",
+    "package_board_and_antenna": "requires first-silicon measurement",
+    "production_yield": "open-PDK coefficient mismatch campaign is not foundry-qualified yield"
+  },
+  "release_status": "fab_ready_research_prototype",
+  "schema_version": 3,
+  "submission": {
+    "gds": {
+      "bytes": 1790204,
+      "electrical_repaired_sha256": "54281f763eec7b24cc995865b0a812fcb6ab1e1932d8062e55e77a31c74f6eb2",
+      "geometry_records_changed_from_candidate": "deterministic_official_precheck_repair_and_pin_packaging",
+      "path": "gds/tt_um_jjassonn69_beamformer.gds",
+      "sha256": "320e9b448ac66377691698ab5d351cebd90da2f2a532019675e213205625933e",
+      "source_candidate_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+      "top": "tt_um_jjassonn69_beamformer"
+    },
+    "info_yaml": {
+      "bytes": 1090,
+      "path": "info.yaml",
+      "sha256": "b92508ef770775fe97f03c075b66ea8a1b5fbc1e770c2b337cb7425da1c8ac44"
+    },
+    "lef": {
+      "analog_pin_count": 6,
+      "bytes": 8498,
+      "height_um": 225.76,
+      "path": "lef/tt_um_jjassonn69_beamformer.lef",
+      "sha256": "8e2af16c69851e916af08d2ba211a26840798296ddeea5f4110819ab8fbad15b",
+      "uses_vapwr": false,
+      "width_um": 334.88
+    },
+    "project_verilog": {
+      "bytes": 1133,
+      "path": "src/project.v",
+      "sha256": "3f160a1a3a6ed43a13c1744204b70ce9c8f72ab1f38ce91e01529087521287ac"
+    }
+  },
+  "submission_physical_signoff": {
+    "bytes": 2018,
+    "path": "v2/evidence/submission_physical_signoff.json",
+    "sha256": "12873b950d18c5f91297cf343dd3285ff177f5ca31d660c0ba56ea63f3929a28"
+  },
+  "submission_geometry_regression": {
+    "bytes": 3524,
+    "path": "v2/evidence/submission_geometry_regression.json",
+    "sha256": "300ab47cd8b20ec77c4f21aeb019446a41f1f6590076ce6323cac48d0edf9e8f"
+  },
+  "visual_review": {
+    "images": [
+      {
+        "bytes": 357117,
+        "path": "v2/evidence/images/beamformer-v2-exact-final-overview.png",
+        "sha256": "34d5d58aa7c3069c6102c12dbc4287f9833b650a4c243eda47e8eb7784a8ce73"
+      },
+      {
+        "bytes": 135396,
+        "path": "v2/evidence/images/beamformer-v2-exact-final-varactor-detail.png",
+        "sha256": "49401e35a1216564b559b781416cae9d8507842779e9be10d88df65eb0bdbb4d"
+      }
+    ],
+    "source_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741"
+  }
+}

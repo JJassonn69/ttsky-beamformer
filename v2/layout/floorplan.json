@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "pre-placement constraint baseline",
+  "template": {
+    "repository": "https://github.com/TinyTapeout/tt-support-tools",
+    "commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+    "path": "tech/sky130A/def/analog/tt_analog_2x2.def",
+    "sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
+    "die": {"width": 334.88, "height": 225.76},
+    "forbidden_signal_layers": ["metal5"]
+  },
+  "analog_pins": {
+    "ua[0]": {"center": [152.26, 0.50], "size": [0.90, 1.00], "function": "element_0"},
+    "ua[1]": {"center": [132.94, 0.50], "size": [0.90, 1.00], "function": "element_1"},
+    "ua[2]": {"center": [113.62, 0.50], "size": [0.90, 1.00], "function": "element_2"},
+    "ua[3]": {"center": [94.30, 0.50], "size": [0.90, 1.00], "function": "element_3"},
+    "ua[4]": {"center": [74.98, 0.50], "size": [0.90, 1.00], "function": "combined_p"},
+    "ua[5]": {"center": [55.66, 0.50], "size": [0.90, 1.00], "function": "combined_n"}
+  },
+  "digital_reference_pins": {
+    "clk": [143.98, 225.26],
+    "rst_n": [141.22, 225.26],
+    "ena": [146.74, 225.26],
+    "ui_in[0]": [138.46, 225.26],
+    "ui_in[1]": [135.70, 225.26],
+    "ui_in[2]": [132.94, 225.26],
+    "ui_in[3]": [130.18, 225.26],
+    "ui_in[4]": [127.42, 225.26],
+    "ui_in[5]": [124.66, 225.26],
+    "ui_in[6]": [121.90, 225.26],
+    "ui_in[7]": [119.14, 225.26],
+    "uio_in[0]": [116.38, 225.26],
+    "uio_in[1]": [113.62, 225.26],
+    "uio_in[2]": [110.86, 225.26]
+  },
+  "zones": [
+    {"name": "shared_bias_and_vcm", "bbox": [12.0, 18.0, 78.0, 155.0], "noise_class": "quiet_analog"},
+    {"name": "four_channel_analog", "bbox": [84.0, 8.0, 162.0, 90.0], "noise_class": "critical_analog"},
+    {"name": "differential_sum_corridor", "bbox": [50.0, 90.0, 162.0, 100.0], "noise_class": "critical_analog"},
+    {"name": "differential_load_pair", "bbox": [105.0, 98.0, 142.0, 117.0], "noise_class": "critical_analog"},
+    {"name": "local_phase_selectors", "bbox": [84.0, 118.0, 162.0, 151.0], "noise_class": "clock"},
+    {"name": "phase_tree_corridor", "bbox": [84.0, 151.0, 163.0, 175.0], "noise_class": "clock"},
+    {"name": "clock_and_control", "bbox": [90.0, 175.0, 165.0, 220.0], "noise_class": "digital_clock"},
+    {"name": "quiet_support_and_decap", "bbox": [180.0, 20.0, 320.0, 166.0], "noise_class": "quiet_mixed_signal"},
+    {"name": "static_configuration_corridor", "bbox": [180.0, 174.0, 320.0, 215.0], "noise_class": "static_digital"}
+  ],
+  "keepouts": [
+    {"name": "combined_n_vertical_trunk", "bbox": [54.76, 0.0, 56.56, 112.5], "permitted_nets": ["ua[5]", "VGND_shield"]},
+    {"name": "combined_p_vertical_trunk", "bbox": [74.08, 0.0, 75.88, 112.5], "permitted_nets": ["ua[4]", "VGND_shield"]},
+    {"name": "analog_boundary_escape", "bbox": [50.0, 0.0, 163.0, 4.0], "permitted_nets": ["ua[0]", "ua[1]", "ua[2]", "ua[3]", "ua[4]", "ua[5]", "VGND_shield"]}
+  ],
+  "channels": [
+    {
+      "index": 0,
+      "pin": "ua[0]",
+      "center_x": 152.26,
+      "slice_bbox": [143.26, 8.0, 161.26, 90.0],
+      "input_entry": [152.26, 8.0],
+      "phase_selector_bbox": [143.26, 118.0, 161.26, 151.0],
+      "phase_leaf": [152.26, 154.0],
+      "baseline_orientation": "R0"
+    },
+    {
+      "index": 1,
+      "pin": "ua[1]",
+      "center_x": 132.94,
+      "slice_bbox": [123.94, 8.0, 141.94, 90.0],
+      "input_entry": [132.94, 8.0],
+      "phase_selector_bbox": [123.94, 118.0, 141.94, 151.0],
+      "phase_leaf": [132.94, 154.0],
+      "baseline_orientation": "R0"
+    },
+    {
+      "index": 2,
+      "pin": "ua[2]",
+      "center_x": 113.62,
+      "slice_bbox": [104.62, 8.0, 122.62, 90.0],
+      "input_entry": [113.62, 8.0],
+      "phase_selector_bbox": [104.62, 118.0, 122.62, 151.0],
+      "phase_leaf": [113.62, 154.0],
+      "baseline_orientation": "R0"
+    },
+    {
+      "index": 3,
+      "pin": "ua[3]",
+      "center_x": 94.30,
+      "slice_bbox": [85.30, 8.0, 103.30, 90.0],
+      "input_entry": [94.30, 8.0],
+      "phase_selector_bbox": [85.30, 118.0, 103.30, 151.0],
+      "phase_leaf": [94.30, 154.0],
+      "baseline_orientation": "R0"
+    }
+  ],
+  "clock_tree": {
+    "topology": "two-level balanced H-tree",
+    "root": [123.28, 174.0],
+    "pair_branches": {
+      "left": [103.96, 160.0],
+      "right": [142.60, 160.0]
+    },
+    "leaves": [
+      {"channel": 3, "branch": "left", "point": [94.30, 154.0]},
+      {"channel": 2, "branch": "left", "point": [113.62, 154.0]},
+      {"channel": 1, "branch": "right", "point": [132.94, 154.0]},
+      {"channel": 0, "branch": "right", "point": [152.26, 154.0]}
+    ],
+    "phase_bus_order": ["lo_0", "lo_90", "lo_270", "lo_180"],
+    "phase_tracks": [
+      {"name": "lo_0", "net": "phase_0", "selector_suffix": "phase_0_leaf", "x_offset": -2.20, "root_branch_y": 172.0, "leaf_branch_y": 159.0},
+      {"name": "lo_90", "net": "phase_90", "selector_suffix": "phase_90_leaf", "x_offset": 0.1975, "root_branch_y": 170.2, "leaf_branch_y": 159.9},
+      {"name": "lo_270", "net": "phase_270", "selector_suffix": "phase_270_leaf", "x_offset": 1.6425, "root_branch_y": 168.4, "leaf_branch_y": 160.8},
+      {"name": "lo_180", "net": "phase_180", "selector_suffix": "phase_180_leaf", "x_offset": 4.04, "root_branch_y": 166.6, "leaf_branch_y": 161.7}
+    ],
+    "preferred_layers": {"horizontal": "metal4", "vertical": "metal3"},
+    "wire_width": 0.50,
+    "shield": "VGND",
+    "max_drawn_path_mismatch_percent": 0.10,
+    "max_extracted_leaf_skew_ps": 100.0,
+    "equal_via_sites": ["via2", "via3"],
+    "allow_meanders": false,
+    "allow_u_turns": false
+  },
+  "output_pair": {
+    "load_p_center": [133.86, 107.0],
+    "load_n_center": [114.54, 107.0],
+    "load_p": [133.86, 99.29],
+    "load_n": [114.54, 99.29],
+    "pin_p": "ua[4]",
+    "pin_n": "ua[5]",
+    "routes": {
+      "p": [
+        {"from": [133.86, 99.29], "to": [133.86, 88.0], "layer": "metal3"},
+        {"from": [133.86, 88.0], "to": [74.98, 88.0], "layer": "metal4"},
+        {"from": [74.98, 88.0], "to": [74.98, 8.0], "layer": "metal3"},
+        {"from": [74.98, 8.0], "to": [74.98, 0.50], "layer": "metal4"}
+      ],
+      "n": [
+        {"from": [114.54, 99.29], "to": [114.54, 86.8], "layer": "metal3"},
+        {"from": [114.54, 86.8], "to": [55.66, 86.8], "layer": "metal4"},
+        {"from": [55.66, 86.8], "to": [55.66, 8.0], "layer": "metal3"},
+        {"from": [55.66, 8.0], "to": [55.66, 0.50], "layer": "metal4"}
+      ]
+    },
+    "wire_width": 0.80,
+    "max_drawn_length_mismatch_percent": 0.10,
+    "max_extracted_rc_mismatch_percent": 1.0,
+    "equal_via_sites": ["via2", "via3"],
+    "required_via3_sites_per_net": 3,
+    "terminal_source": "measured output_load_resistor_guarded.R2 from v2/layout/port_catalog.json",
+    "same_layer_crossings_allowed": false
+  },
+  "gain_trim": {
+    "architecture": "channel-local binary-weighted switched tail-current bank",
+    "bits_per_channel": 4,
+    "default_code": 8,
+    "fixed_unit_fingers": 32,
+    "binary_unit_fingers": [1, 2, 4, 8],
+    "unit_device": {"type": "nfet_01v8", "finger_width": 1.26, "length": 0.50},
+    "fixed_grouping": [10, 12, 10],
+    "nominal_relative_range": [0.8, 1.175],
+    "placement_rule": "all current fingers and their selectors remain inside the owning channel slice",
+    "routing_rule": "only static complementary digital enables enter the trim bank; no analog trim net crosses a channel boundary",
+    "required_features": ["shared_channel_guard_ring", "equal_unit_fingers", "end_dummies", "local_source_ground_strap", "local_tail_drain_collection"]
+  },
+  "r2r_trade_study": {
+    "status": "excluded from V2A production placement",
+    "reason": "the passive bias blend loaded the shared bias and coupled channel settings; a buffer would add offset, power, area, and four long analog routes",
+    "verified_uses_for_future_research": ["standalone voltage trim", "vector-modulator control", "programmable common-mode reference"]
+  },
+  "orientation_policy": {
+    "allowed_channel_orientations_for_study": ["R0", "MY"],
+    "forbidden_without_extracted_equivalence": ["MX", "R90", "R180", "R270"],
+    "resistor_unit_orientation": "R0",
+    "load_pair_orientation": "identical",
+    "selection_rule": "orientation may reduce local routes only if pin mapping, well contacts, device stress direction, DRC, LVS, and extracted parasitics remain equivalent"
+  },
+  "net_classes": {
+    "element_inputs": {
+      "layers": ["metal3", "metal4"],
+      "width": 0.40,
+      "max_direction_reversals": 0,
+      "max_pin_to_slice_entry_length": 8.0,
+      "equal_via_sites": ["via2", "via3"]
+    },
+    "local_gm_and_mixer": {
+      "layers": ["locali", "metal1", "metal2", "metal3"],
+      "width_upper_metal": 0.40,
+      "max_direction_reversals": 0,
+      "leave_channel_slice": false
+    },
+    "differential_sum_and_output": {
+      "layers": ["metal3", "metal4"],
+      "width": 0.80,
+      "max_direction_reversals": 0,
+      "matched_route_topology": true
+    },
+    "phase_distribution": {
+      "layers": ["metal3", "metal4"],
+      "width": 0.50,
+      "max_direction_reversals": 0,
+      "branch_only_vias": true
+    },
+    "trim_controls": {
+      "layers": ["metal2", "metal3"],
+      "width": 0.40,
+      "max_direction_reversals": 0,
+      "shield": "VGND",
+      "signal_type": "static complementary digital enable",
+      "analog_trim_routes_crossing_channel_boundaries": false,
+      "signals_are_static_during_measurement": true
+    }
+  },
+  "global_route_invariants": {
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "same_net_dead_end_landings_allowed": false,
+    "unrelated_routes_inside_passive_keepouts_allowed": false,
+    "route_regeneration_starts_from_clean_placement": true,
+    "length_matching_with_u_bends_allowed": false,
+    "via_stacks_only_at_endpoints_or_named_branch_points": true,
+    "empty_area_policy": "leave electrically quiet; add only required foundry density structures or extracted grounded shielding"
+  }
+}

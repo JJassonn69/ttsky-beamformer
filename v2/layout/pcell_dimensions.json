@@ -1,0 +1,222 @@
+{
+  "schema_version": 1,
+  "status": "measured with pinned physical environment",
+  "provenance": {
+    "magic_version": "8.3.676",
+    "sky130_precheck_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005",
+    "generator": "v2/layout/measure_pcells.tcl",
+    "coordinate_conversion": "Magic .mag internal coordinates divided by 200 give micrometres"
+  },
+  "pcells": {
+    "gm_nfet_guarded": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KQNXXW",
+      "parameters": {"finger_width": 1.6, "length": 0.30, "fingers": 5},
+      "bbox_um": [-2.31, -1.85, 2.31, 1.85],
+      "terminal_x_um": {"D": [-1.475, -0.295, 0.885], "S": [-0.885, 0.295, 1.475], "G": [-1.18, -0.59, 0.0, 0.59, 1.18]},
+      "width_um": 4.62,
+      "height_um": 3.70
+    },
+    "mixer_nfet_guarded": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_Q8P3CQ",
+      "parameters": {"finger_width": 1.6, "length": 0.15, "fingers": 5},
+      "bbox_um": [-2.035, -1.85, 2.035, 1.85],
+      "terminal_x_um": {"D": [-1.20, -0.24, 0.72], "S": [-0.72, 0.24, 1.20], "G": [-0.96, -0.48, 0.0, 0.48, 0.96]},
+      "width_um": 4.07,
+      "height_um": 3.70
+    },
+    "tail_nfet_guarded": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_V8VEZM",
+      "parameters": {"finger_width": 2.111111111, "length": 0.50, "fingers": 9},
+      "bbox_um": [-4.39, -2.105, 4.39, 2.105],
+      "width_um": 8.78,
+      "height_um": 4.21
+    },
+    "bias_diode_nfet_guarded": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_XBH7H5",
+      "parameters": {"total_width": 16.0, "finger_width": 1.7777777778, "length": 0.50, "fingers": 9},
+      "bbox_um": [-4.39, -1.94, 4.39, 1.94],
+      "width_um": 8.78,
+      "height_um": 3.88
+    },
+    "trim_main_third_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_GMLTWK",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 12, "guard": 0},
+      "bbox_um": [-4.885, -1.07, 4.885, 1.07],
+      "width_um": 9.77,
+      "height_um": 2.14
+    },
+    "trim_main_outer_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_4DYN95",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 10, "guard": 0},
+      "bbox_um": [-4.095, -1.07, 4.095, 1.07],
+      "width_um": 8.19,
+      "height_um": 2.14
+    },
+    "trim_bit8_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KNL8QH",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 8, "guard": 0},
+      "bbox_um": [-3.305, -1.07, 3.305, 1.07],
+      "width_um": 6.61,
+      "height_um": 2.14
+    },
+    "trim_bit4_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_UBS4ZY",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 4, "guard": 0},
+      "bbox_um": [-1.725, -1.07, 1.725, 1.07],
+      "width_um": 3.45,
+      "height_um": 2.14
+    },
+    "trim_bit2_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_JT58GU",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 2, "guard": 0},
+      "bbox_um": [-0.935, -1.07, 0.935, 1.07],
+      "width_um": 1.87,
+      "height_um": 2.14
+    },
+    "trim_bit1_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_MRT496",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 1, "guard": 0},
+      "bbox_um": [-0.54, -1.07, 0.54, 1.07],
+      "width_um": 1.08,
+      "height_um": 2.14
+    },
+    "trim_switch_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_WSWNGM",
+      "parameters": {"finger_width": 1.26, "length": 0.15, "fingers": 1, "guard": 0},
+      "bbox_um": [-0.365, -1.07, 0.365, 1.07],
+      "width_um": 0.73,
+      "height_um": 2.14
+    },
+    "sc_hd_mux2_1": {
+      "source": "official LEF at pinned sky130_fd_sc_hd commit",
+      "generated_cell": "sky130_fd_sc_hd__mux2_1",
+      "parameters": {"drive": 1},
+      "bbox_um": [0.0, 0.0, 4.14, 2.72],
+      "width_um": 4.14,
+      "height_um": 2.72
+    },
+    "sc_hd_and2_1": {
+      "source": "official LEF at pinned sky130_fd_sc_hd commit",
+      "generated_cell": "sky130_fd_sc_hd__and2_1",
+      "parameters": {"drive": 1},
+      "bbox_um": [0.0, 0.0, 2.30, 2.72],
+      "width_um": 2.30,
+      "height_um": 2.72
+    },
+    "sc_hd_buf_4": {
+      "source": "official LEF at pinned sky130_fd_sc_hd commit",
+      "generated_cell": "sky130_fd_sc_hd__buf_4",
+      "parameters": {"drive": 4},
+      "bbox_um": [0.0, 0.0, 2.76, 2.72],
+      "width_um": 2.76,
+      "height_um": 2.72
+    },
+    "sc_hd_inv_1": {
+      "source": "official LEF at pinned sky130_fd_sc_hd commit",
+      "generated_cell": "sky130_fd_sc_hd__inv_1",
+      "parameters": {"drive": 1},
+      "bbox_um": [0.0, 0.0, 1.38, 2.72],
+      "width_um": 1.38,
+      "height_um": 2.72
+    },
+    "sc_hd_tapvpwrvgnd_1": {
+      "source": "official LEF at pinned sky130_fd_sc_hd commit",
+      "generated_cell": "sky130_fd_sc_hd__tapvpwrvgnd_1",
+      "parameters": {"class": "WELLTAP"},
+      "bbox_um": [0.0, 0.0, 0.46, 2.72],
+      "width_um": 0.46,
+      "height_um": 2.72
+    },
+    "dac_driver_nfet_guarded": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_64ZA3S",
+      "parameters": {"finger_width": 2.52, "length": 0.15, "fingers": 1},
+      "bbox_um": [-1.055, -2.31, 1.055, 2.31],
+      "width_um": 2.11,
+      "height_um": 4.62
+    },
+    "dac_driver_pfet_guarded": {
+      "generated_cell": "sky130_fd_pr__pfet_01v8_PVH9F5",
+      "parameters": {"finger_width": 4.0, "length": 0.15, "fingers": 1},
+      "bbox_um": [-1.055, -3.095, 1.055, 3.095],
+      "width_um": 2.11,
+      "height_um": 6.19
+    },
+    "r2r_unit_guarded": {
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_HMPGGH",
+      "parameters": {"width": 1.41, "length": 44.9768, "guard": 1},
+      "bbox_um": [-1.535, -25.40, 1.535, 25.40],
+      "width_um": 3.07,
+      "height_um": 50.80
+    },
+    "r2r_unit_shared_guard": {
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_KAE7ZM",
+      "parameters": {"width": 1.41, "length": 44.9768, "guard": 0},
+      "bbox_um": [-0.705, -24.57, 0.705, 24.57],
+      "width_um": 1.41,
+      "height_um": 49.14
+    },
+    "input_bias_resistor_guarded": {
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_KKLLRZ",
+      "parameters": {"width": 1.41, "length": 70.5, "guard": 1},
+      "bbox_um": [-1.535, -38.16, 1.535, 38.16],
+      "width_um": 3.07,
+      "height_um": 76.32
+    },
+    "output_load_resistor_guarded": {
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_WFQE74",
+      "parameters": {"width": 1.41, "length": 11.6117, "guard": 1},
+      "bbox_um": [-1.535, -8.715, 1.535, 8.715],
+      "width_um": 3.07,
+      "height_um": 17.43
+    },
+    "vcm_top_resistor_guarded": {
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_Q4KKKZ",
+      "parameters": {"width": 1.41, "length": 47.0, "guard": 1},
+      "bbox_um": [-1.535, -26.41, 1.535, 26.41],
+      "width_um": 3.07,
+      "height_um": 52.82
+    },
+    "vcm_bottom_resistor_guarded": {
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_D7FUNJ",
+      "parameters": {"width": 1.41, "length": 94.0, "guard": 1},
+      "bbox_um": [-1.535, -49.91, 1.535, 49.91],
+      "width_um": 3.07,
+      "height_um": 99.82
+    },
+    "vcm_mim_capacitor": {
+      "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+      "parameters": {"width": 22.0, "length": 22.0, "nx": 1, "ny": 1},
+      "bbox_um": [-12.08, -11.20, 12.08, 11.20],
+      "width_um": 24.16,
+      "height_um": 22.40
+    },
+    "vcm_varactor_lvt": {
+      "generated_cell": "sky130_fd_pr__cap_var_lvt_88578Y",
+      "parameters": {
+        "width": 17.68,
+        "length": 17.68,
+        "m": 1,
+        "nf": 1,
+        "guard": 1,
+        "full_metal": 1
+      },
+      "bbox_um": [-10.055, -9.845, 10.055, 9.845],
+      "width_um": 20.11,
+      "height_um": 19.69
+    }
+  },
+  "placement_assumptions": {
+    "minimum_device_gap_um": 1.0,
+    "minimum_resistor_column_gap_um": 0.5,
+    "trim_fixed_groups_per_channel": 3,
+    "trim_fixed_fingers_per_group": 12,
+    "trim_binary_fingers": [1, 2, 4, 8],
+    "trim_rows_per_channel": 5,
+    "trim_shared_guard_margin_um": 1.0,
+    "input_resistor_and_device_gap_um": 1.0,
+    "standard_cell_site_width_um": 0.46,
+    "standard_cell_row_height_um": 2.72,
+    "standard_cell_source_commit": "ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1",
+    "r2r_status": "characterized research option; excluded from V2A production placement"
+  }
+}

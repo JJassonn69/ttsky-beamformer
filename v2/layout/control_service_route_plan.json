@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "retired historical service-tree overlay; do not regenerate into the release candidate",
+  "superseded_by": "v2/layout/control_openroad_route_plan.json",
+  "retired_reason": "all six service trees are owned by the unified 206-net OpenROAD route; this sequential overlay retains stale checkpoints only as design history",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "top": "v2_control_quadrature_routed",
+    "sha256": "bb81be6df5a9d7a7039dae134823b00026adb9bb058dfbd1409a2399a0e945bd"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "799fed192f74eeda9367bf085c90e51f4a5e3afa40c69a0e205017057cc2529f"
+  },
+  "pin_access_checkpoint": {
+    "json": "build/v2/control_routing/control_pin_access_catalog.json",
+    "sha256": "ff672191e40d970c7aada7293a4091f172980a78105aeea1a717695b49fa6bbc"
+  },
+  "service_access_checkpoint": {
+    "json": "build/v2/control_routing/service_pin_access_reservations.json",
+    "sha256": "ae9f69bf98aacc991c8e8304794b074e990e32d0e4ec162c8a639176d9f8e4af"
+  },
+  "overlay_top": "v2_control_service_routes",
+  "output_top": "v2_control_service_routed",
+  "policy": {
+    "service_spines": "six straight M3 spines with grounded M3 shields on both sides",
+    "pin_escape": "every service pin lifts directly from its legal LEF access to M2 with zero lateral M1 routing; only M2 may sidestep toward a short leaf",
+    "phase_and_global_fanout": "one compact M4 branch per adjacent row pair eliminates rejected full-bank drops while allowing same-net sharing",
+    "trim_fanout": "one compact M4 branch per two-row group avoids long clock/reset/control leaves",
+    "power_moat_crossing": "every regional M4 branch drops to M2 at x=254um, crosses beneath the M3 VDPWR and M4 VGND spines, and rises only to its assigned M3 service spine",
+    "metal5_used": false,
+    "artificial_meanders": false,
+    "source_gds_is_exact_obstacle_map": true,
+    "lower_metal_access_is_frozen_before_direct_routing": true,
+    "direct_boundary_owner": "OpenROAD; the obsolete hand-routed direct-boundary overlay is not instantiated"
+  },
+  "rules": {
+    "locali_half_width": 0.085,
+    "metal1_pad_half_width": 0.16,
+    "metal1_width": 0.17,
+    "via1_half_width": 0.13,
+    "metal2_landing_half_width": 0.20,
+    "metal2_width": 0.32,
+    "via2_half_width": 0.20,
+    "metal3_landing_half_x": 0.31,
+    "metal3_landing_half_y": 0.20,
+    "metal3_width": 0.40,
+    "via3_half_width": 0.20,
+    "metal4_landing_half_width": 0.20,
+    "metal4_width": 0.40,
+    "minimum_metal1_clearance": 0.14,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_metal4_clearance": 0.30,
+    "maximum_m1_escape_manhattan": 0.00,
+    "maximum_m2_leaf_escape": 4.60,
+    "maximum_wrong_way_m2_vertical": 4.00,
+    "wrong_way_m2_penalty_um": 0.23,
+    "pin_escape_search_pitch": 0.23,
+    "m1_escape_search_steps": 0,
+    "m2_leaf_search_steps": 20
+  },
+  "spines": {
+    "cfg_clk": 260.0,
+    "cfg_latch": 260.8,
+    "serial_phase_to_trim": 261.6,
+    "apply_config": 262.4,
+    "clk": 263.2,
+    "rst_n": 264.0
+  },
+  "spine_y_range": [20.0, 224.6],
+  "ground_shields_x": [259.2, 264.8],
+  "ground_bridge": {"y_um": 100.0, "source_m3_x_um": 257.2},
+  "power_moat_bridge": {
+    "left_transition_x_um": 254.0,
+    "forbidden_m3_power_x_um": 255.6,
+    "forbidden_m4_ground_x_um": 257.2
+  },
+  "row_branch_allocator": {
+    "track_pitch_um": 0.70,
+    "net_order": ["apply_config", "serial_phase_to_trim", "clk", "rst_n", "cfg_latch", "cfg_clk"],
+    "phase_configuration_bank": {"lower_y_um": 181.8, "upper_y_um": 192.3},
+    "global_control_core": {"lower_y_um": 196.2, "upper_y_um": 223.0}
+  },
+  "row_branch_track_overrides": {
+    "global_control_core|0|clk": 199.91,
+    "global_control_core|0|rst_n": 200.61,
+    "global_control_core|1|rst_n": 202.74,
+    "global_control_core|1|clk": 205.20
+  },
+  "trim_pair_tracks": {
+    "pair_origin_y_um": 24.0,
+    "pair_height_um": 5.44,
+    "offset_y_um": {
+      "cfg_latch": 1.3,
+      "clk": 2.0,
+      "rst_n": 2.7,
+      "cfg_clk": 3.4,
+      "apply_config": 4.1
+    },
+    "serial_phase_to_trim_last_pair_offset_y_um": 4.8
+  },
+  "external_top_tracks_y_um": {
+    "cfg_latch": 224.5,
+    "cfg_clk": 223.8,
+    "rst_n": 223.1,
+    "clk": 222.4
+  }
+}

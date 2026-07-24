@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "production integration placement and routing contract",
+  "base_checkpoint": {
+    "gds": "build/v2/support_routes/magic/v2_four_channel_support_routed.gds",
+    "sha256": "e664eb4513ee21f9b88dc9b050a549d34ad3b461c8b8e714883632e80d05ab46",
+    "top": "v2_four_channel_support_routed"
+  },
+  "synthesis_checkpoint": {
+    "stats": "build/v2/control_synthesis/generic_stats.json",
+    "phase_storage_primitives": 16,
+    "trim_storage_primitives": 32,
+    "global_sequential_primitives": 31,
+    "global_combinational_primitives": 57,
+    "total_primitives": 136
+  },
+  "physical_mapping_checkpoint": {
+    "netlist": "build/v2/control_mapping/physical_netlist.json",
+    "total_standard_cells": 194,
+    "signal_nets": 207,
+    "cells_by_region": {
+      "phase_configuration_bank": 49,
+      "global_control_core": 81,
+      "trim_configuration_bank": 64
+    },
+    "enabled_flop_implementation": "one mux2_1 plus one dfrtp_1 or dfstp_1",
+    "library_commit": "ac7fb61f06e6470b94e8afdf7c25268f62fbd7b1"
+  },
+  "rules": {
+    "die_bbox": [0.0, 0.0, 334.88, 225.76],
+    "site_width": 0.46,
+    "row_height": 2.72,
+    "placement_grid": 0.005,
+    "minimum_component_gap": 1.0,
+    "minimum_capm_to_unrelated_met3": 1.34,
+    "minimum_met2_spacing": 0.14,
+    "minimum_met3_met4_spacing": 0.30,
+    "maximum_standard_cell_utilization": 0.55,
+    "phase_shift_even_row_offset_sites": 16,
+    "maximum_phase_shift_bit_hpwl_um": 21.0,
+    "maximum_cfg_data_hpwl_um": 60.0,
+    "maximum_local_pair_hpwl_um": 3.0,
+    "maximum_static_trim_enabled_hpwl_um": 12.3,
+    "expected_static_trim_enabled_tradeoff_count": 16,
+    "maximum_welltap_pitch": 13.80,
+    "maximum_route_direction_reversals": 0,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "length_matching_u_bends_allowed": false,
+    "metal5_project_signals_allowed": false,
+    "empty_area_policy": "electrically quiet unless grounded density or shielding passes extracted comparison"
+  },
+  "placement_regions": [
+    {
+      "name": "phase_configuration_bank",
+      "bbox": [84.18, 176.80, 192.74, 193.12],
+      "noise_class": "static_digital",
+      "mapped_standard_cell_count": 49,
+      "mapped_cell_width_um": 266.34,
+      "row_count": 6,
+      "placement_policy": "bottom two rows hold channel-local output decode; the next two hold active phase bits aligned to their owning selectors; the upper two form one compact folded shift chain"
+    },
+    {
+      "name": "global_control_core",
+      "bbox": [84.18, 195.84, 250.24, 223.04],
+      "noise_class": "clocked_digital",
+      "mapped_standard_cell_count": 81,
+      "mapped_cell_width_um": 425.04,
+      "row_count": 10,
+      "placement_policy": "quadrature logic stays above the phase roots; paired input synchronizers align below their top pins; commit/configuration logic faces the right-hand service corridor"
+    },
+    {
+      "name": "trim_configuration_bank",
+      "bbox": [184.0, 24.0, 254.0, 91.0],
+      "noise_class": "static_digital",
+      "mapped_standard_cell_count": 64,
+      "mapped_cell_width_um": 430.56,
+      "row_count": 16,
+      "placement_policy": "one active pair and one shift pair per row; sixteen staggered active-Q access columns face the trim bus while the folded shift chain stays beside the service corridor"
+    },
+    {
+      "name": "control_service_corridor",
+      "bbox": [259.0, 20.0, 267.0, 222.0],
+      "noise_class": "digital_route_only",
+      "placement_policy": "six vertical M3 controls between two grounded shields; no standard cells"
+    },
+    {
+      "name": "conditional_decap_region",
+      "bbox": [276.0, 24.0, 320.0, 166.0],
+      "noise_class": "quiet_power",
+      "placement_policy": "reserved only; populate after extracted supply-impedance and coupling comparison"
+    }
+  ],
+  "standard_cell_area_upper_bounds": {
+    "sequential_cell": [12.88, 2.72],
+    "combinational_cell": [6.44, 2.72],
+    "basis": "deliberately conservative bound for the pinned SKY130 HD cells before final technology mapping"
+  },
+  "analog_support_components": [
+    {
+      "name": "RVCM_BOTTOM",
+      "pcell": "vcm_bottom_resistor_guarded",
+      "center": [25.0, 55.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "nets": {"R1": "vcm", "R2": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "RVCM_TOP",
+      "pcell": "vcm_top_resistor_guarded",
+      "center": [25.0, 132.5],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "nets": {"R1": "VDPWR", "R2": "vcm", "B": "VGND"}
+    },
+    {
+      "name": "CVCM",
+      "pcell": "vcm_mim_capacitor",
+      "center": [40.0, 130.0],
+      "orientation": "MY",
+      "region": "vcm_reference",
+      "nets": {"C1": "vcm", "C2": "VGND"},
+      "orientation_reason": "puts C1 toward the channel bus and C2 toward the grounded divider column"
+    },
+    {
+      "name": "RBIAS",
+      "pcell": "r2r_unit_guarded",
+      "center": [172.5, 130.0],
+      "orientation": "R0",
+      "region": "bias_reference",
+      "nets": {"R1": "VDPWR", "R2": "vbias", "B": "VGND"}
+    },
+    {
+      "name": "BIAS_DIODE_A",
+      "pcell": "bias_diode_nfet_guarded",
+      "center": [167.5, 96.5],
+      "orientation": "R0",
+      "region": "bias_reference",
+      "nets": {"D": "vbias", "G": "vbias", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "BIAS_DIODE_B",
+      "pcell": "bias_diode_nfet_guarded",
+      "center": [177.5, 96.5],
+      "orientation": "R0",
+      "region": "bias_reference",
+      "nets": {"D": "vbias", "G": "vbias", "S": "VGND", "B": "VGND"}
+    }
+  ],
+  "analog_support_regions": {
+    "vcm_reference": [12.0, 4.0, 53.0, 160.0],
+    "bias_reference": [162.0, 92.0, 183.0, 157.0]
+  },
+  "shared_analog_routes": [
+    {
+      "net": "vcm",
+      "layer": "metal4",
+      "from": [53.88, 83.765],
+      "to": [160.60, 83.765],
+      "width": 0.40,
+      "direction_reversals": 0,
+      "purpose": "one straight reference bus reached from CVCM.C1 at the capacitor's clear right edge and joining all four local VCM anchors"
+    },
+    {
+      "net": "vbias",
+      "layer": "metal4",
+      "from": [100.60, 50.0],
+      "to": [172.105, 50.0],
+      "width": 0.40,
+      "direction_reversals": 0,
+      "purpose": "one straight quiet-bias bus above the completed trim-control columns"
+    }
+  ],
+  "phase_control_handoffs": {
+    "transition_y": 176.0,
+    "selector_interface_y": 151.0,
+    "routes": [
+      {"channel": 3, "signal": "phase_select0", "layer": "metal3", "x": 90.90},
+      {"channel": 3, "signal": "phase_select1", "layer": "metal3", "x": 99.54},
+      {"channel": 3, "signal": "phase_enable", "layer": "metal3", "x": 101.30, "interface_layer": "metal4"},
+      {"channel": 2, "signal": "phase_select0", "layer": "metal3", "x": 110.22},
+      {"channel": 2, "signal": "phase_select1", "layer": "metal3", "x": 118.86},
+      {"channel": 2, "signal": "phase_enable", "layer": "metal3", "x": 120.62, "interface_layer": "metal4"},
+      {"channel": 1, "signal": "phase_select0", "layer": "metal3", "x": 129.54},
+      {"channel": 1, "signal": "phase_select1", "layer": "metal3", "x": 138.18},
+      {"channel": 1, "signal": "phase_enable", "layer": "metal3", "x": 139.94, "interface_layer": "metal4"},
+      {"channel": 0, "signal": "phase_select0", "layer": "metal3", "x": 148.86},
+      {"channel": 0, "signal": "phase_select1", "layer": "metal3", "x": 157.50},
+      {"channel": 0, "signal": "phase_enable", "layer": "metal3", "x": 159.26, "interface_layer": "metal4"}
+    ]
+  },
+  "quadrature_root_handoffs": [
+    {"signal": "phase_0", "control_net": "phase_wave[0]", "point": [121.08, 174.0], "layer": "metal3"},
+    {"signal": "phase_90", "control_net": "phase_wave[1]", "point": [123.4775, 174.0], "layer": "metal3"},
+    {"signal": "phase_270", "control_net": "phase_wave[3]", "point": [124.9225, 174.0], "layer": "metal3"},
+    {"signal": "phase_180", "control_net": "phase_wave[2]", "point": [127.32, 174.0], "layer": "metal3"}
+  ],
+  "trim_control_bus": {
+    "layer": "metal2",
+    "width": 0.32,
+    "first_track_y": 9.60,
+    "track_pitch": 0.64,
+    "track_count": 16,
+    "last_track_y": 19.20,
+    "source_region_x": 184.0,
+    "sink_policy": "logical track i is active_trim_codes[i], where i=4*channel+bit; each track terminates at that exact owning non-complement trim-control column and rises only on M3",
+    "channel_order": [0, 1, 2, 3],
+    "bit_order_within_channel": [0, 1, 2, 3],
+    "sink_local_x": {"2": -3.385, "3": -1.230, "1": 2.370, "0": 3.995},
+    "sink_transition_y": 23.835,
+    "transition_layers": ["metal2", "via2", "metal3"],
+    "forbidden_transition_layer": "metal4",
+    "reason": "logical ownership is explicit and monotonic at the source; M3 rises cross the parallel M2 rows without shorts and do not cross the existing M4 ground strap"
+  },
+  "control_service_bundle": {
+    "layer": "metal3",
+    "width": 0.40,
+    "track_pitch": 0.80,
+    "x_tracks": [260.0, 260.8, 261.6, 262.4, 263.2, 264.0],
+    "signals": ["cfg_clk", "cfg_latch", "serial_phase_to_trim", "apply_config", "clk", "rst_n"],
+    "ground_shields_x": [259.2, 264.8],
+    "maximum_direction_reversals": 0
+  },
+  "power_strategy": {
+    "macro_pins": {
+      "VDPWR": [1.0, 5.0, 3.0, 220.76],
+      "VGND": [4.0, 5.0, 6.0, 220.76]
+    },
+    "analog_ground_bus": {"layer": "metal4", "center_y": 20.0, "extend_to_x": 5.0},
+    "top_control": "M1 row rails, M3 horizontal supply trunks, and M4 signal drops",
+    "trim_control": "M1 row rails, M3 horizontal supply trunks, and M4 internal signal drops",
+    "rule": "power trunks are placed before signal detail and every standard-cell row receives both a well tap and at least two redundant upper-metal contacts"
+  },
+  "pin_assignment": {
+    "clk": "clk",
+    "rst_n": "rst_n",
+    "ena": "ena",
+    "ui_in[1:0]": "beam_select[1:0]",
+    "ui_in[2]": "reserved_rx_direction_low",
+    "ui_in[3]": "manual_mode",
+    "ui_in[7:4]": "channel_enable[3:0]",
+    "uio_in[0]": "cfg_clk",
+    "uio_in[1]": "cfg_data",
+    "uio_in[2]": "cfg_latch"
+  },
+  "routing_order": [
+    "place and locally route matched VCM and bias references",
+    "place phase storage and quadrature state directly over their handoffs",
+    "place trim storage with active outputs facing left",
+    "build power rails and well taps",
+    "route VCM and VBIAS before any digital service bundle",
+    "route sixteen monotonic M2 trim rows and local M3 rises",
+    "route phase-select and enable handoffs on their reserved M3 columns",
+    "route clock/config service bundle at the far-right shielded corridor",
+    "route remaining slow direct controls inside the top control region",
+    "add decap or grounded fill only after comparative distributed-RC extraction"
+  ]
+}

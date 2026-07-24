@@ -40,15 +40,18 @@ as a differential voltage for a high-impedance external receiver.
 - Beamformed output center frequency: 1 MHz.
 - Initial useful modulation bandwidth: 100 kHz.
 - Input amplitude: 10 to 30 mV peak-to-peak per channel.
-- Nominal internal input common mode: approximately 0.9 V.
+- Nominal internal input common mode: approximately two-thirds of `VDPWR`
+  (approximately 1.20 V at 1.80 V).
 - External inputs are AC coupled and phase coherent.
 - Output is measured differentially with a high-impedance load; a 50-ohm load
   is not a v1 operating condition.
 - The 2 MHz two-pole filter used by the simulation measurement fixture is
   external. A large on-chip IF capacitor is not part of v1.
 
-The stretch experiment is a 30 MHz input, 29 MHz LO and 1 MHz output. It is
-not a v1 signoff requirement.
+The stretch experiment is a 31 MHz input, 30 MHz LO and 1 MHz output. The
+intermediate 10 and 20 MHz LO points likewise keep the input 1 MHz above the
+LO. These higher-clock modes are characterized against the 20 dB release
+floor but are not v1 operating ratings.
 
 ## Architecture
 
@@ -89,8 +92,56 @@ verify beamforming robustness.
 - Nominal destructive combining produces at least a 20 dB null.
 - Typical or externally calibrated null target is at least 25 dB.
 - Output is stable for 0 to 10 pF external load.
+- Across the deterministic supply sweep, output common mode remains above
+  1.0 V and at least 0.10 V below the active VDPWR value; a fixed absolute
+  ceiling is not used for the intentional 1.62-to-1.98 V characterization.
 - Total active supply current target is below 5 mA.
 - The binary phase-select transition must not create destructive current.
+
+## Physical constraint contract
+
+These requirements are release gates, not placement suggestions:
+
+- matching-critical channel MOS devices use equal split halves in A/B; B/A
+  common-centroid placement with equal device geometry, orientation, contact
+  style, and local breakout direction;
+- equal input-bias and differential-load resistors use mirrored pair placement
+  about their corresponding axes; the unequal VCM divider preserves its
+  intentional 1:2 top/bottom resistance ratio and symmetric local breakout;
+- local device escape is 0.32 um M2 and named signal tracks/risers are 0.40 um
+  M3/M4; widening a signal requires a new extracted-capacitance comparison;
+- aggregate M3/M4 route-length mismatch is at most 2% for `ua[0]`/`ua[1]`
+  and at most 1% for `ua[2]`/`ua[3]`, with equal via-1/2/3 site counts;
+- each upper/lower input-to-GM endpoint, differential output-load endpoint,
+  and switch-drain-to-output endpoint pair is at most 2% total M3/M4 length
+  mismatch with equal via-site counts;
+- matched internal GM and tail nets are at most 2% total M3/M4 length
+  mismatch; explicitly listed via-3 deltas may be at most two sites for GM and
+  one site for the tail tree where legal local branches are asymmetric;
+- same-layer overlap between different named nets and a via cut overlapping
+  another net's adjacent metal are always fatal;
+- every named generated route is one connected nonzero-area metal/via
+  component; a same-net floating stub, landing, or via island is always fatal;
+- ordinary M4 routes maintain at least 0.30 um physical clearance from every
+  top-edge TinyTapeout M4 pin rectangle; only the named `clk` and select routes
+  may intentionally enter their own pins;
+- unrelated M3/M4 routes may not enter the full two-dimensional MIM-capacitor
+  footprint; the capm/via-3 overlap emitted inside the PDK PCell is intentional;
+- every route run starts from clean placement, and every extraction consumes a
+  route generated from the current manifest, because Magic paint is additive;
+- 4/10/20/30 MHz extracted clock checks require less than 50 ps paired-channel
+  skew, less than 150 ps complementary skew, and less than 250 ps edge time;
+  aggregate LO Manhattan length remains diagnostic rather than a substitute for
+  the electrical timing gate; and
+- post-layout electrical signoff consumes a zero-pruning distributed-RC view
+  produced by `extract do resistance` and `ext2spice extresist on`. A separate
+  gate must prove fresh `.res.ext` annotations, positive explicit resistor
+  segments, internal RC nodes, preserved devices, distributed capacitance, and
+  resistor-graph participation by every manifest electrical net.
+
+The flattened emitted GDS must additionally have zero project-audit markers for
+M3/M4 spacing, M4 minimum width and connected area, and capm-to-unrelated-M3
+interaction before it enters the official TinyTapeout precheck.
 
 ## Verification gates
 
@@ -98,7 +149,8 @@ verify beamforming robustness.
 2. The ideal-SPICE architecture matches the golden null calculations.
 3. Each transistor-level block passes DC, AC and transient characterization.
 4. Full schematic passes PVT, mismatch and interconnect regressions.
-5. Layout is DRC clean and LVS equivalent.
+5. Layout is DRC clean and extractor-topology equivalent; independent
+   foundry-qualified LVS remains an explicit open risk until completed.
 6. Extracted blocks and representative full-tile cases pass the same metrics.
 7. A hardware emulator runs the same phase sweep and automated measurement
    sequence intended for silicon.

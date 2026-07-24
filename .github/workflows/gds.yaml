@@ -2,21 +2,36 @@ name: gds
 
 on:
   push:
+  pull_request:
   workflow_dispatch:
 
 jobs:
   gds:
     runs-on: ubuntu-24.04
     steps:
-      - name: checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Read top module name
+      - name: Read top-module name
         id: top_module
+        run: echo "TOP_MODULE=$(yq '.project.top_module' info.yaml)" | tee "$GITHUB_OUTPUT"
+
+      - name: Rebuild active V2 submission artifacts
         run: |
-          echo TOP_MODULE=`yq '.project.top_module' info.yaml` | tee $GITHUB_OUTPUT
+          python3 v2/tools/fetch_tt_2x2_template.py
+          python3 v2/tools/generate_submission_gds.py
+          python3 tools/generate_submission_lef.py
+          git diff --exit-code -- gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
+
+      - name: Check V2 submission contract
+        run: python3 -m unittest v2.tests.test_submission_artifacts -v
+
+      - name: Check flattened upper-metal geometry
+        run: |
+          python3 -m unittest tests.test_gds_flat_rules -v
+          python3 tools/check_gds_flat_rules.py gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
 
       - name: Create and publish the GDS artifact
         uses: TinyTapeout/tt-gds-action/custom_gds@ttsky26c
@@ -31,8 +46,18 @@ jobs:
     needs: gds
     runs-on: ubuntu-24.04
     steps:
-      - name: Run Tiny Tapeout Precheck
+      - name: Run Tiny Tapeout precheck
         uses: TinyTapeout/tt-gds-action/precheck@ttsky26c
+
+  validation-evidence:
+    needs: precheck
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout current V2 evidence
+        uses: actions/checkout@v4
+
+      - name: Check artifact-bound validation status
+        run: python3 v2/tools/check_latest_validation.py
 
   viewer:
     needs: gds

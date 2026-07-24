@@ -1,0 +1,64 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "frozen local-lane plan before detailed geometry",
+  "coordinate_system": "single-channel coordinates relative to channel center",
+  "critical_symmetry_axis_x": 0.92,
+  "rules": {
+    "minimum_same_layer_clearance_um": 0.30,
+    "minimum_track_pitch_um": 0.70,
+    "route_from_measured_ports_only": true,
+    "clean_placement_regeneration": true,
+    "direction_reversals_per_branch": 0,
+    "length_matching_u_bends_allowed": false,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "via_sites": "terminal access, tree branch, or intentional layer transition only"
+  },
+  "layer_policy": {
+    "metal1": "existing PCell/std-cell pin metal and short terminal escape only",
+    "metal2": "horizontal terminal ladders and shortest local branches",
+    "metal3": "straight vertical local buses and current collectors",
+    "metal4": "boundary escape, global phase trunks, output trunks, and static-control crossings",
+    "metal5": "forbidden by TinyTapeout analog template"
+  },
+  "local_vertical_tracks": [
+    {"name": "input", "net": "input", "layer": "metal3", "x": -6.50, "y_span": [8.0, 58.7], "width": 0.40, "class": "high_impedance_input", "mirror_group": "input_reference"},
+    {"name": "VGND_shield", "net": "VGND_shield", "layer": "metal3", "x": -5.60, "y_span": [28.0, 81.0], "width": 0.40, "class": "shield_and_body"},
+    {"name": "lop_outer", "net": "lop", "layer": "metal3", "x": -3.78, "y_span": [65.8, 120.5], "width": 0.50, "class": "local_clock", "mirror_group": "local_lo_outer"},
+    {"name": "lop_inner", "net": "lop", "layer": "metal3", "x": -2.98, "y_span": [79.9, 120.5], "width": 0.50, "class": "local_clock", "mirror_group": "local_lo_inner"},
+    {"name": "out_p", "net": "out_p", "layer": "metal3", "x": -1.08, "y_span": [64.3, 90.0], "width": 0.50, "class": "differential_sum", "mirror_group": "mixer_outputs"},
+    {"name": "gm_p", "net": "gm_p", "layer": "metal3", "x": -0.08, "y_span": [51.8, 79.4], "width": 0.40, "class": "high_impedance_gm", "mirror_group": "gm_branches"},
+    {"name": "tail", "net": "tail", "layer": "metal3", "x": 0.92, "y_span": [30.3, 56.3], "width": 0.50, "class": "local_analog_current", "centered": true},
+    {"name": "gm_n", "net": "gm_n", "layer": "metal3", "x": 1.92, "y_span": [51.8, 79.4], "width": 0.40, "class": "high_impedance_gm", "mirror_group": "gm_branches"},
+    {"name": "out_n", "net": "out_n", "layer": "metal3", "x": 2.92, "y_span": [64.3, 90.0], "width": 0.50, "class": "differential_sum", "mirror_group": "mixer_outputs"},
+    {"name": "lon_inner", "net": "lon", "layer": "metal3", "x": 4.82, "y_span": [75.2, 120.5], "width": 0.50, "class": "local_clock", "mirror_group": "local_lo_inner"},
+    {"name": "lon_outer", "net": "lon", "layer": "metal3", "x": 5.62, "y_span": [70.5, 120.5], "width": 0.50, "class": "local_clock", "mirror_group": "local_lo_outer"},
+    {"name": "vbias", "net": "vbias", "layer": "metal3", "x": 6.30, "y_span": [30.3, 47.8], "width": 0.40, "class": "quiet_analog_bias"},
+    {"name": "vcm", "net": "vcm", "layer": "metal3", "x": 8.34, "y_span": [52.8, 83.5], "width": 0.40, "class": "quiet_analog_reference", "mirror_group": "input_reference"}
+  ],
+  "mirror_groups": [
+    {"name": "input_reference", "nets": ["input", "vcm"], "require_equal_axis_offset": true, "require_equal_width": true},
+    {"name": "local_lo_outer", "tracks": ["lop_outer", "lon_outer"], "require_equal_axis_offset": true, "require_equal_width": true, "require_equal_via_count": true},
+    {"name": "local_lo_inner", "tracks": ["lop_inner", "lon_inner"], "require_equal_axis_offset": true, "require_equal_width": true, "require_equal_via_count": true},
+    {"name": "mixer_outputs", "nets": ["out_p", "out_n"], "require_equal_axis_offset": true, "require_equal_width": true, "require_equal_via_count": true},
+    {"name": "gm_branches", "nets": ["gm_p", "gm_n"], "require_equal_axis_offset": true, "require_equal_width": true, "require_equal_via_count": true}
+  ],
+  "trim_bit_alignment": {
+    "bit_to_current_device": {"0": "TTRIM1", "1": "TTRIM2", "2": "TTRIM4", "3": "TTRIM8"},
+    "required_left_to_right_bit_order": [2, 3, 1, 0],
+    "maximum_switch_to_inverter_manhattan_um": 40.0,
+    "reason": "the current group, switch pair, and inverter use the same physical order, eliminating control crossings by placement"
+  },
+  "routing_sequence": [
+    "terminal access and shared guard",
+    "tail, bias, ground, and GM current nodes",
+    "mixer outputs and local LO pair",
+    "input and VCM",
+    "local trim controls",
+    "phase selector internals",
+    "four-channel sum bus and matched loads",
+    "balanced global phase tree",
+    "power, shielding, and boundary integration"
+  ]
+}

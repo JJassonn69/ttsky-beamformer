@@ -8,7 +8,7 @@ MACRO tt_um_jjassonn69_beamformer
   CLASS BLOCK ;
   FOREIGN tt_um_jjassonn69_beamformer 0.000 0.000 ;
   ORIGIN 0.000 0.000 ;
-  SIZE 161.000 BY 225.760 ;
+  SIZE 334.880 BY 225.760 ;
   PIN clk
     DIRECTION INPUT ;
     USE SIGNAL ;
@@ -435,13 +435,13 @@ MACRO tt_um_jjassonn69_beamformer
   END VGND
   OBS
     LAYER li1 ;
-      RECT 0.000 0.000 161.000 225.760 ;
+      RECT 0.000 0.000 334.880 225.760 ;
     LAYER met1 ;
-      RECT 0.000 0.000 161.000 225.760 ;
+      RECT 0.000 0.000 334.880 225.760 ;
     LAYER met2 ;
-      RECT 0.000 0.000 161.000 225.760 ;
+      RECT 0.000 0.000 334.880 225.760 ;
     LAYER met3 ;
-      RECT 0.000 0.000 161.000 225.760 ;
+      RECT 0.000 0.000 334.880 225.760 ;
   END
 END tt_um_jjassonn69_beamformer
 END LIBRARY

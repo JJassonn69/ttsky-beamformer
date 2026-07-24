@@ -1,0 +1,55 @@
+{
+  "payload": {
+    "analysis": {
+      "errors": [],
+      "points": {
+        "tone_10mvpk": {
+          "components_rms_v": {
+            "fund_high": 0.04703554674227262,
+            "fund_low": 0.04741342622439164,
+            "im3_high": 0.00016219486494872825,
+            "im3_low": 0.00016374501727100952
+          },
+          "fundamental_to_worst_im3_db": 49.19991349667463,
+          "input_iip3_dbv_rms_per_tone": -18.410343208302496
+        },
+        "tone_2mvpk": {
+          "components_rms_v": {
+            "fund_high": 0.009482972909298074,
+            "fund_low": 0.009560901133708721,
+            "im3_high": 4.051749626938961e-06,
+            "im3_low": 5.14042880361162e-06
+          },
+          "fundamental_to_worst_im3_db": 65.35444640340954,
+          "input_iip3_dbv_rms_per_tone": -24.312476841655418
+        }
+      },
+      "status": "pass"
+    },
+    "cases": {
+      "background": {
+        "report": "build/v2/gate5_twotone_pilot/base/background/report.json",
+        "report_sha256": "7d8bb749ab86d2926ada579bf07aacc0669dad3b1f2262a192065fa3d052b20f"
+      },
+      "tone_10mvpk": {
+        "report": "build/v2/gate5_twotone_pilot/base/tone_10000uvpk/report.json",
+        "report_sha256": "bee371938b00507e1a37836b5275fc2fc86581919e7e319ecffdc63af7277079"
+      },
+      "tone_2mvpk": {
+        "report": "build/v2/gate5_twotone_pilot/base/tone_2000uvpk/report.json",
+        "report_sha256": "9e7fec13f95d621da2540a19db316da85a5bed36e78e93ad6534887c6256a2af"
+      }
+    },
+    "errors": [],
+    "gate": 5,
+    "gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+    "schema_version": 1,
+    "scope": "bounded two-tone IIP3 pilot; not a production guarantee",
+    "status": "pass",
+    "view": "base"
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/gate5_twotone_pilot/base_summary.json",
+  "source_sha256": "882c23ee9e9a693f639a0e1f3672f536b8db9425e267545ff38626a583e21584"
+}

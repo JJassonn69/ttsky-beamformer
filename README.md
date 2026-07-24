@@ -1,86 +1,82 @@
-# Tiny Tapeout Beamformer
+# Tiny Tapeout four-channel beamformer
 
 [![gds](../../actions/workflows/gds.yaml/badge.svg)](../../actions/workflows/gds.yaml)
 [![docs](../../actions/workflows/docs.yaml/badge.svg)](../../actions/workflows/docs.yaml)
 
-A deliberately small two-channel low-IF beamformer for the SKY130 Tiny
-Tapeout analog flow. Two phase-coherent 5 MHz inputs are commutated by an
-on-chip 4 MHz complementary LO and summed into a differential 1 MHz output.
-`ui_in[0]` selects a 0- or 180-degree channel-two weight.
+This repository's active submission is a four-channel quadrature low-IF
+receive beamformer for the SKY130 Tiny Tapeout analog flow. Four coherent
+5 MHz element inputs are weighted by selectable 0, 90, 180, or 270 degree LO
+phases and summed into one differential 1 MHz output. A nominal 16 MHz master
+clock generates the four 4 MHz switching phases on chip.
 
-This first silicon iteration intentionally leaves impedance matching, the LNA,
-RF phase shifting, and the output filter off-chip. The analog inputs are
-high-impedance, AC-coupled IF inputs; they are not 50-ohm RF ports.
+The design provides four selectable beam codes, per-channel enable, manual
+phase override, and four independent 4-bit switched-tail gain trims. The trim
+network corrects channel-to-channel gain error; it is not used to synthesize
+phase. The analog ports are high-impedance low-IF ports, not 50-ohm RF ports,
+so matching and a 50-ohm output driver remain off chip.
 
-The detailed [engineering datasheet and iteration handoff](docs/datasheet.md)
-records the architecture, pin behavior, results, physical flow, bench plan,
-known risks, and recommended iteration-two roadmap.
+The detailed [V2 engineering datasheet](v2/docs/datasheet.md),
+[architecture contract](v2/spec/beamformer_v2.md), and
+[physical-design record](v2/spec/physical_design.md) are the authoritative
+design documents.
 
-## Release-candidate implementation
+## Active submission artifacts
 
-- official 1x2 analog boundary: 161.00 x 225.76 um;
-- 47 placed SKY130 devices: 39 MOSFETs, seven PDK resistors, and one MIM
-  capacitor;
-- 239 extracted MOS fingers and eight extracted passives;
-- deterministic M2/M3/M4 routing with 26 named tracks;
-- real, uncompressed GDSII and an exact TinyTapeout-pin LEF;
-- Magic placement, routed, extraction, and final DRC counts: zero;
-- Magic GDS writer geometry-feedback count: zero;
-- extracted nominal result: 14.705 mVrms constructive output, 42.56 dB null,
-  1.539 V output common mode, and approximately 298 uA core current;
-- full parasitic-extracted PVT result: 45/45 cases passed, with a 29.09 dB
-  worst-case null against the 20 dB release requirement; and
-- all locally runnable checks from the official TinyTapeout precheck pass,
-  including exact DEF/LEF/GDS pin geometry, analog-pad connectivity, boundary,
-  layers, power ports, cell names, and Verilog syntax.
+- Tiny Tapeout allocation: 2x2 tiles, 334.88 x 225.76 um.
+- Power: `VDPWR`/`VGND` at 1.8 V; `VAPWR` is not used.
+- Analog pins: `ua[0:3]` element inputs and `ua[4:5]` differential output.
+- Digital control: two beam-select bits, four channel enables, manual mode,
+  a reserved direction input, and a three-wire configuration interface.
+- Physical candidate:
+  `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`, SHA-256
+  `1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
+- Tiny Tapeout wrapper:
+  `gds/tt_um_jjassonn69_beamformer.gds`, SHA-256
+  `f9aa5cd4e26b77975625daa47a17dc7d086b132f22660ea22bc026435fbc0eaf`.
 
-The analog core is always active while `VDPWR` is present. `ena` and `rst_n`
-are boundary-compatible reserved inputs in this minimal revision; shutdown,
-gain control, and multi-bit phase weights are planned for later iterations.
+The wrapper is a deterministic one-record top-cell rename. It changes no
+geometry and is checked against the exact physical candidate in CI.
 
-## Reproduce electrical verification
+## Current validation state
 
-The behavioral and SPICE regressions require Python, ngspice, and the sparse
-pinned SKY130 model checkout described in `third_party/README.md`.
+The current candidate has zero Magic full-chip DRC errors and zero Magic GDS
+import/extraction feedback. Its direct-GDS topology and route checks reject
+floating via stubs, malformed cuts, missing enclosures, unintended route
+islands, and signal-to-power shorts.
+
+The selected 32-fixed-unit plus reset-code-8 tail-current architecture has
+been physically regenerated and frozen. Current-hash Magic DRC, extracted
+topology, complete distributed-RC coverage, cold start, 64-case trim transfer,
+bounded load/amplitude/frequency/clock sensitivity, two-tone linearity, and
+representative PVT endpoints pass. The final signoff campaign additionally
+passes every one of 60 modeled MOS-mismatch samples and every one of the 20
+distributed-RC beam/codebook cases. Worst raw codebook rejection is 61.05 dB,
+constructive spread is 0.244 dB, and worst modeled-mismatch rejection is
+36.49 dB. Compact local release evidence is frozen only after these reports,
+their transforms, and their exact artifact hashes are rechecked together.
+
+This is a TinyTapeout research prototype, not a production-qualified radio.
+Periodically switched mixer noise figure requires a periodic-noise simulator
+or first-silicon measurement; foundry mismatch yield, package/board effects,
+and measured beam patterns remain explicit residuals. The official TinyTapeout
+workflow is the final fabrication handoff gate. See
+[the pre-silicon plan](docs/presilicon_plan.md) for the exact distinction.
+
+## Reproduce the submission checks
 
 ```sh
-make verify
-make pvt
-make layout-sim
-make layout-pvt
+make submission-artifacts
+make test
+make release-check
 ```
 
-The full deterministic PVT grid is five process corners, three supplies
-(1.62/1.80/1.98 V), and three temperatures (-40/27/125 C). Generated logs and
-JSON reports are written below `build/`.
+The GDS workflow regenerates the wrapper artifacts, rejects any diff, runs the
+V2 submission-contract tests, compiles the boundary Verilog, then invokes the
+pinned Tiny Tapeout custom-GDS and precheck actions.
 
-## Reproduce physical signoff
+## Repository history
 
-The layout flow uses the exact TinyTapeout DEF, SKY130 PCells, Magic 8.3.676,
-and the precheck PDK revision recorded in `submission/template.lock`.
-
-```sh
-make layout-scripts
-make layout-place
-make layout-route
-make layout-extract
-make layout-signoff
-```
-
-Set `PDK_ROOT` to the directory containing `sky130A` and `MAGIC_BIN` if Magic
-is not on `PATH`. The release files are
-`gds/tt_um_jjassonn69_beamformer.gds` and
-`lef/tt_um_jjassonn69_beamformer.lef`.
-
-The GitHub `gds` workflow uses TinyTapeout's pinned `ttsky26c` custom-GDS and
-precheck actions. A green precheck confirms submission compatibility, not
-manufacturing yield; the remaining electrical risks and bench plan are kept
-explicit in `docs/presilicon_plan.md`.
-
-## Fabrication layout
-
-![KLayout rendering of the final beamformer GDS](docs/images/beamformer-gds.png)
-
-This is a mask-layer rendering of the exact committed GDSII stream, not a
-post-fabrication microscope photograph. The image can be regenerated from the
-GDS with KLayout and the pinned SKY130A layer-properties file.
+The original two-channel experiment is retained only as explicitly named
+legacy material, principally `spec/beamformer_v1.md`, the original behavioral
+and SPICE models, and their tests. Those files are useful provenance but are
+not read by the active V2 submission workflow.

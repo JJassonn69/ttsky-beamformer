@@ -1,0 +1,13 @@
+* Small-signal linearization of sky130_fd_pr__cap_var_lvt at VCM = 1.2 V.
+*
+* For the extracted W=L=17.68 um devices at the nominal passive corner, the
+* published nonlinear model evaluates to C=dQ/dV=2.604860136214599 pF and
+* Rg=1097.313345683077 ohm.  The original 0.15 fF terminal-to-bulk terms are
+* retained.  This closure is used only for distributed-RC convergence checks;
+* base extraction, startup, and mismatch keep the nonlinear PDK expression.
+.subckt sky130_fd_pr__cap_var_lvt c0 c1 b w=17.68 l=17.68 vm=1
+CVAR_LINEAR c0 p2 2.604860136214599p
+RVAR_LINEAR p2 c1 1097.313345683077
+CVAR_C0_BULK c0 b 0.15f
+CVAR_C1_BULK c1 b 0.15f
+.ends sky130_fd_pr__cap_var_lvt
