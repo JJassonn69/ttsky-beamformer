@@ -7,6 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "v2/tools"))
+sys.path.insert(0, str(ROOT / "tools"))
 
 from assemble_control_placement_gds import (  # noqa: E402
     STRNAME,
@@ -16,13 +17,20 @@ from assemble_control_placement_gds import (  # noqa: E402
     structure_name,
 )
 from generate_submission_gds import (  # noqa: E402
+    LANDING_PLAN,
+    MET4_DRAW,
+    MET4_PIN,
     OUTPUT,
+    RELOCATION_PLAN,
     SOURCE,
     SOURCE_SHA256,
     SOURCE_TOP,
     SUBMISSION_TOP,
+    TEMPLATE_DEF,
     package,
 )
+from check_gds_flat_rules import parse_gds  # noqa: E402
+from template_pins import submission_pins  # noqa: E402
 
 
 def sha256(data: bytes) -> str:
@@ -30,28 +38,77 @@ def sha256(data: bytes) -> str:
 
 
 class SubmissionArtifactsTest(unittest.TestCase):
-    def test_submission_gds_is_only_a_top_name_change(self) -> None:
+    def test_submission_gds_adds_exact_official_pin_purposes(self) -> None:
         source = SOURCE.read_bytes()
         self.assertEqual(sha256(source), SOURCE_SHA256)
-        expected, report = package(source)
+        expected, report = package(SOURCE)
         self.assertEqual(OUTPUT.read_bytes(), expected)
-        self.assertEqual(report["changed_gds_records"], 1)
-        self.assertEqual(report["geometry_records_changed"], 0)
+        repeated, repeated_report = package(SOURCE)
+        self.assertEqual(repeated, expected)
+        self.assertEqual(repeated_report, report)
+        self.assertEqual(report["changed_existing_gds_records"], 1)
+        self.assertEqual(report["added_pin_polygon_count"], 53)
+        self.assertEqual(report["added_signal_pin_drawing_polygon_count"], 51)
+        self.assertEqual(report["added_gds_records"], 520)
 
-        _, source_structures, _ = split_library(records(source))
         _, output_structures, _ = split_library(records(expected))
-        self.assertEqual(len(source_structures), len(output_structures))
-        for before, after in zip(source_structures, output_structures):
-            before_name = structure_name(before)
-            after_name = structure_name(after)
-            if before_name != SOURCE_TOP:
-                self.assertEqual(before, after)
-                self.assertEqual(before_name, after_name)
-                continue
-            self.assertEqual(after_name, SUBMISSION_TOP)
-            stripped_before = [item for item in before if record_type(item) != STRNAME]
-            stripped_after = [item for item in after if record_type(item) != STRNAME]
-            self.assertEqual(stripped_before, stripped_after)
+        self.assertNotIn(SOURCE_TOP, {
+            structure_name(item) for item in output_structures
+        })
+        self.assertEqual(report["electrical_repaired_sha256"],
+                         "54281f763eec7b24cc995865b0a812fcb6ab1e1932d8062e55e77a31c74f6eb2")
+        self.assertEqual(report["landing_plan_sha256"],
+                         hashlib.sha256(LANDING_PLAN.read_bytes()).hexdigest())
+        self.assertEqual(report["relocation_plan_sha256"],
+                         hashlib.sha256(RELOCATION_PLAN.read_bytes()).hexdigest())
+        repair = report["official_precheck_repair"]
+        self.assertEqual(repair["redundant_top_mcon_removed"], 692)
+        self.assertEqual(repair["redundant_top_m1_landings_removed"], 470)
+        self.assertEqual(repair["dense_via1_m1_landings_narrowed"], 132)
+        self.assertEqual(repair["dense_via1_landings_relocated"], 132)
+        self.assertEqual(repair["mixer_via2_cuts_relocated"], 8)
+
+        structures, database_um = parse_gds(OUTPUT)
+        pin_polygons = [
+            polygon
+            for layer, polygon in structures[SUBMISSION_TOP].polygons
+            if layer == MET4_PIN
+        ]
+        actual = {
+            tuple(
+                round(value * database_um * 1000)
+                for value in (
+                    min(point[0] for point in polygon),
+                    min(point[1] for point in polygon),
+                    max(point[0] for point in polygon),
+                    max(point[1] for point in polygon),
+                )
+            )
+            for polygon in pin_polygons
+        }
+        _, _, pins = submission_pins(TEMPLATE_DEF)
+        expected_rectangles = {pin.rect_nm for pin in pins}
+        self.assertEqual(len(pin_polygons), 53)
+        self.assertEqual(actual, expected_rectangles)
+
+        drawing_rectangles = {
+            tuple(
+                round(value * database_um * 1000)
+                for value in (
+                    min(point[0] for point in polygon),
+                    min(point[1] for point in polygon),
+                    max(point[0] for point in polygon),
+                    max(point[1] for point in polygon),
+                )
+            )
+            for layer, polygon in structures[SUBMISSION_TOP].polygons
+            if layer == MET4_DRAW
+        }
+        expected_signal_rectangles = {
+            pin.rect_nm for pin in pins if pin.use == "SIGNAL"
+        }
+        self.assertEqual(len(expected_signal_rectangles), 51)
+        self.assertTrue(expected_signal_rectangles <= drawing_rectangles)
 
     def test_lef_matches_the_2x2_template_and_power_contract(self) -> None:
         lef = (ROOT / f"lef/{SUBMISSION_TOP}.lef").read_text()

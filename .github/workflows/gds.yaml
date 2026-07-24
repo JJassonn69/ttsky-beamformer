@@ -28,6 +28,11 @@ jobs:
       - name: Check V2 submission contract
         run: python3 -m unittest v2.tests.test_submission_artifacts -v
 
+      - name: Check flattened upper-metal geometry
+        run: |
+          python3 -m unittest tests.test_gds_flat_rules -v
+          python3 tools/check_gds_flat_rules.py gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
+
       - name: Create and publish the GDS artifact
         uses: TinyTapeout/tt-gds-action/custom_gds@ttsky26c
         with:

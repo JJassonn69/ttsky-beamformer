@@ -118,6 +118,16 @@ class GdsRuleUnitTests(unittest.TestCase):
         ]
         self.assertEqual(minimum_width_violations(fragments, 0.30), [])
 
+    def test_staggered_magic_wire_fractures_are_checked_locally(self) -> None:
+        # The supporting rectangles step at x=4 but remain 0.40 um wide on
+        # both sides.  This is one legal conductor, not a 0.20 um stub.
+        fragments = [
+            (0.0, 0.0, 4.0, 0.2),
+            (0.0, 0.2, 5.0, 0.4),
+            (4.0, 0.4, 5.0, 0.6),
+        ]
+        self.assertEqual(minimum_width_violations(fragments, 0.30), [])
+
     def test_real_narrow_attached_stub_remains_a_width_violation(self) -> None:
         geometry = [
             (0.0, 0.0, 1.0, 1.0),

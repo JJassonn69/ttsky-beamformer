@@ -1,0 +1,48 @@
+{
+  "as_of": "2026-07-25",
+  "exact_precheck": {
+    "beol_markers": 0,
+    "feol_markers": 0,
+    "klayout_version": "0.30.9",
+    "magic_drc_markers": 0,
+    "magic_version": "8.3.676",
+    "offgrid_markers": 0,
+    "pin_purpose_overlap_markers": 0,
+    "status": "pass",
+    "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+    "zero_area_markers": 0
+  },
+  "extracted_topology": {
+    "expected_submission_aliases": {
+      "sum_n": "ch0_out_n",
+      "sum_p": "ch0_out_p",
+      "tt_um_jjassonn69_beamformer": "v2_control_quadrature_routed"
+    },
+    "ext2spice_completion_count": 2,
+    "extraction_feedback_count": 0,
+    "flat_netlist_normalized_sha256": "35403a7d8ad530025c6e697111479d3df0bde6ec2a92f2ae6d2e5b48b69ec59f",
+    "import_feedback_count": 0,
+    "repaired_candidate_flat_netlist_sha256": "35403a7d8ad530025c6e697111479d3df0bde6ec2a92f2ae6d2e5b48b69ec59f",
+    "status": "pass",
+    "submission_flat_netlist_raw_sha256": "571708e5cf39ca6a5cd5e5374bf0e63f75bf6aa05b0e4d0ab5484345d2b38281",
+    "submission_magic_drc_count": 0
+  },
+  "repair": {
+    "electrical_repaired_sha256": "54281f763eec7b24cc995865b0a812fcb6ab1e1932d8062e55e77a31c74f6eb2",
+    "generator_path": "v2/tools/generate_submission_gds.py",
+    "generator_sha256": "f9c4a10f57d8f8459e4096add662250fe85ae5c9055d8d465b2b1fb590f61add",
+    "landing_plan_sha256": "f849d10ba22ec55efc89d9deb3f0021152dea5e1001b0087c52d05f335722ffb",
+    "relocation_plan_sha256": "d2af3147e82929c2c20d5f127ce9d022409db29eebd0e1d35fea44212e8bc506",
+    "source_candidate_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "status": "pass",
+    "varactor_master_sha256": "ee9f06b5f6d1d60d86306e551faadeda9acb8bd2733b34794722d67a5039a78d"
+  },
+  "schema_version": 1,
+  "status": "pass",
+  "submission": {
+    "bytes": 1790204,
+    "path": "gds/tt_um_jjassonn69_beamformer.gds",
+    "sha256": "320e9b448ac66377691698ab5d351cebd90da2f2a532019675e213205625933e",
+    "top": "tt_um_jjassonn69_beamformer"
+  }
+}

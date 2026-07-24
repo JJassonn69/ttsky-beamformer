@@ -65,9 +65,15 @@ def main() -> int:
         ("project_verilog", "project Verilog"),
     ):
         check_file(submission[key], label)
+    submission_gds = submission["gds"]
     require(
-        submission["gds"]["geometry_records_changed_from_candidate"] == 0,
-        "submission wrapper changed geometry",
+        submission_gds.get("geometry_records_changed_from_candidate")
+        == "deterministic_official_precheck_repair_and_pin_packaging",
+        "submission repair provenance differs",
+    )
+    require(
+        submission_gds.get("source_candidate_sha256") == frozen_hash,
+        "submission repair is not bound to the simulated candidate",
     )
     require(
         submission["lef"]["width_um"] == 334.88
@@ -75,6 +81,61 @@ def main() -> int:
         and submission["lef"]["analog_pin_count"] == 6
         and submission["lef"]["uses_vapwr"] is False,
         "submission LEF contract differs",
+    )
+
+    physical_path = check_file(
+        evidence["submission_physical_signoff"], "submission physical signoff"
+    )
+    physical = json.loads(physical_path.read_text(encoding="utf-8"))
+    require(
+        physical.get("schema_version") == 1 and physical.get("status") == "pass",
+        "submission physical signoff is not passing",
+    )
+    require(
+        physical["submission"].get("sha256") == submission_gds["sha256"]
+        and physical["submission"].get("bytes") == submission_gds["bytes"]
+        and physical["submission"].get("top") == submission_gds["top"],
+        "physical signoff is bound to a different submission GDS",
+    )
+    repair = physical["repair"]
+    require(
+        repair.get("status") == "pass"
+        and repair.get("source_candidate_sha256") == frozen_hash
+        and repair.get("electrical_repaired_sha256")
+        == submission_gds.get("electrical_repaired_sha256"),
+        "deterministic repair evidence differs",
+    )
+    for path, expected in (
+        (ROOT / repair["generator_path"], repair["generator_sha256"]),
+        (ROOT / "v2/layout/official_precheck_landing_plan.json",
+         repair["landing_plan_sha256"]),
+        (ROOT / "v2/layout/official_precheck_relocation_plan.json",
+         repair["relocation_plan_sha256"]),
+        (ROOT / "third_party/sky130_custom_cells/sky130_fd_pr__cap_var_lvt_88578Y.gds",
+         repair["varactor_master_sha256"]),
+    ):
+        require(path.is_file() and sha256(path) == expected,
+                f"physical repair input differs: {path}")
+    exact = physical["exact_precheck"]
+    require(
+        exact.get("status") == "pass"
+        and all(exact.get(name) == 0 for name in (
+            "feol_markers", "beol_markers", "offgrid_markers",
+            "zero_area_markers", "pin_purpose_overlap_markers",
+            "magic_drc_markers",
+        )),
+        "exact local Tiny Tapeout precheck replication is not clean",
+    )
+    topology = physical["extracted_topology"]
+    require(
+        topology.get("status") == "pass"
+        and topology.get("submission_magic_drc_count") == 0
+        and topology.get("import_feedback_count") == 0
+        and topology.get("extraction_feedback_count") == 0
+        and topology.get("ext2spice_completion_count") >= 2
+        and topology.get("flat_netlist_normalized_sha256")
+        == topology.get("repaired_candidate_flat_netlist_sha256"),
+        "submission topology equivalence is not passing",
     )
 
     checkpoint_path = check_file(evidence["checkpoint"], "routing checkpoint")

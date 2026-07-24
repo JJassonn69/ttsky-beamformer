@@ -384,6 +384,57 @@ def minimum_width_violations(
     legal only when the union covers a full minimum-width band along its
     complete long dimension; a true narrow wire or attached stub still fails.
     """
+    def has_minimum_cross_section(rectangle: Rect, horizontal: bool) -> bool:
+        """Check every serialization slab against the merged local conductor.
+
+        A legal wide wire may be fractured into staggered rectangles.  Its
+        supporting metal can therefore change at an intermediate x/y edge;
+        requiring one enclosing band across the complete fragment creates a
+        false marker at that step.  Split at every relevant edge and prove the
+        merged cross-section independently in every slab instead.
+        """
+        x1, y1, x2, y2 = rectangle
+        if horizontal:
+            start, stop = x1, x2
+            center = (y1 + y2) / 2.0
+            breakpoints = {start, stop}
+            for other in rectangles:
+                if other[2] > start and other[0] < stop:
+                    breakpoints.update((max(start, other[0]), min(stop, other[2])))
+        else:
+            start, stop = y1, y2
+            center = (x1 + x2) / 2.0
+            breakpoints = {start, stop}
+            for other in rectangles:
+                if other[3] > start and other[1] < stop:
+                    breakpoints.update((max(start, other[1]), min(stop, other[3])))
+
+        edges = sorted(breakpoints)
+        for slab_start, slab_stop in zip(edges, edges[1:]):
+            if slab_stop - slab_start <= 1e-12:
+                continue
+            probe = (slab_start + slab_stop) / 2.0
+            intervals = sorted(
+                (other[1], other[3]) if horizontal else (other[0], other[2])
+                for other in rectangles
+                if ((other[0] < probe < other[2]) if horizontal
+                    else (other[1] < probe < other[3]))
+            )
+            merged: list[list[float]] = []
+            for low, high in intervals:
+                if not merged or low > merged[-1][1] + 1e-9:
+                    merged.append([low, high])
+                else:
+                    merged[-1][1] = max(merged[-1][1], high)
+            containing = next(
+                ((low, high) for low, high in merged
+                 if low - 1e-9 <= center <= high + 1e-9),
+                None,
+            )
+            if containing is None or containing[1] - containing[0] < minimum - 1e-9:
+                return False
+        return True
+
     violations: list[float] = []
     for rectangle in rectangles:
         x1, y1, x2, y2 = rectangle
@@ -391,18 +442,15 @@ def minimum_width_violations(
         narrow = min(width, height)
         if narrow >= minimum - 1e-9:
             continue
-        candidates: list[Rect] = []
-        if height < minimum - 1e-9:
-            candidates.extend((
-                (x1, y2 - minimum, x2, y2),
-                (x1, y1, x2, y1 + minimum),
-            ))
-        if width < minimum - 1e-9:
-            candidates.extend((
-                (x2 - minimum, y1, x2, y2),
-                (x1, y1, x1 + minimum, y2),
-            ))
-        if not any(enclosure_deficit(target, rectangles) <= 1e-9 for target in candidates):
+        horizontal_ok = (
+            height >= minimum - 1e-9
+            or has_minimum_cross_section(rectangle, horizontal=True)
+        )
+        vertical_ok = (
+            width >= minimum - 1e-9
+            or has_minimum_cross_section(rectangle, horizontal=False)
+        )
+        if not horizontal_ok or not vertical_ok:
             violations.append(narrow)
     return violations
 

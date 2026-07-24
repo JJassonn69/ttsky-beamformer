@@ -206,10 +206,12 @@
   "schema_version": 3,
   "submission": {
     "gds": {
-      "bytes": 1846764,
-      "geometry_records_changed_from_candidate": 0,
+      "bytes": 1790204,
+      "electrical_repaired_sha256": "54281f763eec7b24cc995865b0a812fcb6ab1e1932d8062e55e77a31c74f6eb2",
+      "geometry_records_changed_from_candidate": "deterministic_official_precheck_repair_and_pin_packaging",
       "path": "gds/tt_um_jjassonn69_beamformer.gds",
-      "sha256": "f9aa5cd4e26b77975625daa47a17dc7d086b132f22660ea22bc026435fbc0eaf",
+      "sha256": "320e9b448ac66377691698ab5d351cebd90da2f2a532019675e213205625933e",
+      "source_candidate_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
       "top": "tt_um_jjassonn69_beamformer"
     },
     "info_yaml": {
@@ -231,6 +233,11 @@
       "path": "src/project.v",
       "sha256": "3f160a1a3a6ed43a13c1744204b70ce9c8f72ab1f38ce91e01529087521287ac"
     }
+  },
+  "submission_physical_signoff": {
+    "bytes": 2018,
+    "path": "v2/evidence/submission_physical_signoff.json",
+    "sha256": "12873b950d18c5f91297cf343dd3285ff177f5ca31d660c0ba56ea63f3929a28"
   },
   "visual_review": {
     "images": [
