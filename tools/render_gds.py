@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Render the signed-off hierarchical GDS without depending on a GUI viewer.
+"""Legacy V1 renderer for the historical two-channel GDS.
 
-The renderer intentionally consumes the release GDS (not Magic source) so the
-documentation images show the exact geometry submitted to fabrication.
+The active V2 renderer is ``v2/tools/render_gds_preview.rb``.
 """
 
 from __future__ import annotations

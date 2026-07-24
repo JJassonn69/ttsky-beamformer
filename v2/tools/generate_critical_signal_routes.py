@@ -424,7 +424,7 @@ def generate_trim_channel(
     )
     commands.extend(via2_stack(ground_x, guard_pickup_y))
 
-    # Fixed 36-unit bank.  Source/drain/gate lanes are monotonically ordered
+    # Fixed 32-unit 10/12/10 bank.  Source/drain/gate lanes are monotonically ordered
     # below, at, and above each row; no alternating diffusion is collected on
     # the same M2 line before its short M1 escape.
     for name in ("TMAIN0", "TMAIN1", "TMAIN2"):

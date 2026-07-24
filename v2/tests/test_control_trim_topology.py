@@ -38,6 +38,13 @@ class ControlTrimTopologyTests(unittest.TestCase):
         self.assertEqual(report["verified_exact_analog_sink_count"], 16)
         self.assertEqual(report["magic_exttospice_completion_count"], 2)
 
+    def test_wrong_top_cell_is_rejected(self) -> None:
+        with self.assertRaisesRegex(ValueError, "top subcircuit"):
+            audit(
+                self.spice, self.mapping, self.geometry, self.log,
+                "v2_control_trim_routed", "CONTROL_QUADRATURE",
+            )
+
     def test_disconnected_endpoint_role_is_rejected(self) -> None:
         physical = next(
             label for label, net in self.geometry["label_net_map"].items()

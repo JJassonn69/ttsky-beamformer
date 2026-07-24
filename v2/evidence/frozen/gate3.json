@@ -1,0 +1,119 @@
+{
+  "payload": {
+    "candidate": "32-fixed-unit tail bank with reset trim code 8",
+    "direct_flat_rule_counts": {
+      "capm-to-unrelated-met3 spacing": 0,
+      "met3 spacing": 0,
+      "met4 minimum area": 0,
+      "met4 spacing": 0,
+      "via-only met3 island": 0,
+      "via3 enclosure": 0
+    },
+    "errors": [],
+    "evidence": [
+      {
+        "path": "build/v2/control_placement/control_placement_audit.json",
+        "sha256": "071a7fb9f3b04627c0c7a49ae0cf6858fa7dfaa9687822555ee9565f51798c4d",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_power/control_power_audit.json",
+        "sha256": "5eb64f161c9467d644b0b35478d15d17abc7bfc2538137eb36f5313f8ce51563",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/openroad/route_audit.json",
+        "sha256": "43700de57345f6ffa75392a09eb188cf47eeb0fe8e1d2b851a94f71bcdb7d304",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/control_trim_route_audit.json",
+        "sha256": "203e0bcc4ca9ff07801d067a0eb942b8503238502ee98abafc150e1007053278",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/phase_route_audit.json",
+        "sha256": "e8b2073c411be6d570d2fb181cfafd0f634553e0bd61641bd43db638775a75f3",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_route_audit.json",
+        "sha256": "6ce661ad3dad3c04eeb203c9f8109433231ff2556382e9b5bc3b6264e41071aa",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/service_route_audit.json",
+        "sha256": "fe94216298cfdd0c1740a04e210db33de5b15d74fab0ea7ae3b214b15ea44e4d",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/final_signal_topology_audit.json",
+        "sha256": "cfa3545678c8588e2645484fba2db7e065f985b2954cbe30c5d8afb5f6469bd0",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/service_topology_audit.json",
+        "sha256": "95509634d096b179bbc5e952a0dc8964a7eaad1bcce1d1bdaeb901f9b1c4e406",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/phase_topology_audit.json",
+        "sha256": "91ddc22307fd7944f6ada9d4b00b9c8728623c1f870d514c984ce8ff65fc0be3",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/power_topology_audit.json",
+        "sha256": "de5972d8b8ae5dfe3f0b8056bef41a540f3b1c170dc42e848e33725a80d0de5f",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/quadrature_topology_audit.json",
+        "sha256": "6af155a115828a98c8104afdd4daaef66af6b16b1dd669891ef0047eec7cc5bc",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/tail_bank_flat_audit.json",
+        "sha256": "f224ffe0091f2f6fb6af02b9d7742329e3b757916adba09a457995a2040e66ec",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/trim_topology_audit.json",
+        "sha256": "5a127aa0d655851a491df56f8c8d18385eba39bee404cd28cea09394687a2588",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/quadrature_extraction/vcm_varactor_audit.json",
+        "sha256": "8e573f76a8ae7b1bd580782de408f80a16bb687319d5f9a1c0095428acb6c487",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/varactor_eco/topology_audit.json",
+        "sha256": "48bd22e8de955fa57f4bd650961cc5a9fd7eb32ca3b65df42481d0ae756f31c6",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/varactor_eco/gds_assembly_audit.json",
+        "sha256": "9fffd0c2c3b524720c17a3fb812485ca8623e0c78dbc37ac0c1649bebe537f16",
+        "status": "pass"
+      },
+      {
+        "path": "build/v2/control_routing/direct/final_klayout_delta_audit.json",
+        "sha256": "f5b36abe9a65d0deda54262d1490de649f88cdabbdc08ee2ed0ba794844e348b",
+        "status": "pass"
+      }
+    ],
+    "frozen_candidate_gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "frozen_candidate_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "frozen_source_gds": "v2/reference/v2_control_quadrature_user_routed.gds",
+    "frozen_source_sha256": "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313",
+    "gate": 3,
+    "inherited_met4_minimum_width_marker_count": 1,
+    "klayout_policy": "full-deck PCell marker baseline is accepted only by exact source-to-candidate delta; the ECO adds ten classified ct.2 markers and removes none",
+    "magic_drc_count": 0,
+    "schema_version": 1,
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/signoff/gate3_manifest.json",
+  "source_sha256": "995d5ed6504c7fd2837e34767deef9e93ea7b4a1ba61005d6440cb5cf44e72d0"
+}

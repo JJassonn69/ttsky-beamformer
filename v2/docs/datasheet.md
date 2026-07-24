@@ -1,4 +1,4 @@
-# TinyTapeout four-channel beamformer V2A datasheet
+# TinyTapeout four-channel beamformer V2 datasheet
 
 Document status: engineering datasheet for the locally validated V2A physical
 candidate. It records the intended interface, architecture, simulations,
@@ -10,12 +10,13 @@ Frozen local layout candidate:
 - process: SKY130A;
 - top cell: `v2_control_quadrature_routed`;
 - file: `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`;
-- SHA-256: `d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130`;
+- SHA-256: `90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`;
 - physical envelope: 334.88 um by 225.76 um TinyTapeout 2x2 analog template;
-- release role: V2A four-channel receive beamformer; and
-- release blockers: post-layout analog/phase-code simulation, independent
-  foundry-qualified LVS where available, final TinyTapeout wrapper, and the
-  official GitHub workflow.
+- release role: four-channel receive beamformer research prototype; and
+- release boundary: local physical and bounded electrical signoff plus the
+  official TinyTapeout GitHub workflow. Periodically switched mixer noise,
+  package/board behavior, and foundry yield remain explicitly outside the
+  pre-silicon claim.
 
 ## 1. What the chip does
 
@@ -93,7 +94,7 @@ limits.
 | Analog output | differential, high impedance | architecture contract |
 | On-chip 50-ohm termination | none | architecture inspection |
 | Gain-trim reset code | 8 per channel | RTL and block simulation |
-| Gain-trim relative range | 0.840 at code 0 to 1.140 at code 15 | schematic PVT sweep |
+| Tail-current trim relative range | 0.818 at code 0 to 1.159 at code 15 | equal-unit bank ratio; extracted gain calibration is reported separately |
 
 The phase-selector block was also simulated at a 30 MHz LO, but that is not a
 chip rating. A 30 MHz LO needs a 120 MHz master clock. The global clock tree,
@@ -123,9 +124,11 @@ electrically matched pair and must be measured differentially.
 
 ### 4.2 Digital pins
 
-This is the frozen integration mapping. The final TinyTapeout top-level
-wrapper that binds it to a submission template remains to be generated and
-verified.
+This is the frozen integration mapping. The Tiny Tapeout top-level wrapper is
+generated and locally verified. It renames only the physical candidate's top
+cell to `tt_um_jjassonn69_beamformer`, preserves every geometry record, and is
+paired with the exact 2x2-template LEF. The official GitHub action remains a
+separate release gate.
 
 | Pin | Name | Function |
 | --- | --- | --- |
@@ -214,13 +217,18 @@ While `rst_n=0`:
 
 Recommended start-up sequence:
 
-1. Hold `rst_n=0`, `ena=0`, all channel enables low, and direction low.
-2. Apply the nominal supply and a stable master clock.
-3. Release `rst_n`.
-4. Optionally load and latch trim/manual values.
-5. Set the desired beam or manual mode.
-6. Assert the wanted `channel_enable` bits.
-7. Set `ena=1` and wait at least the synchronization plus blanking interval
+1. Hold `rst_n=0`, `ena=0`, all channel enables low, direction low, and the
+   master clock low.
+2. Apply the nominal supply.
+3. Keep the signal channels disabled while the analog bias and shared VCM
+   reference settle for at least 120 us. The current-hash distributed-RC cold
+   start reached 1.10 V after 60.989 us and 1.17 V after 97.456 us; 120 us is
+   the conservative first-silicon enable delay, not a production guarantee.
+4. Apply a stable master clock and release `rst_n`.
+5. Optionally load and latch trim/manual values.
+6. Set the desired beam or manual mode.
+7. Assert the wanted `channel_enable` bits.
+8. Set `ena=1` and wait at least the synchronization plus blanking interval
    before measuring the analog output.
 
 ## 8. Analog channel and calibration architecture
@@ -231,10 +239,28 @@ same logical load to all channels. Their differential currents join at a
 short, centered summing structure and then drive the matched P/N load pair.
 
 The gain trim uses equal current-source unit fingers rather than four unrelated
-wide devices. Forty-two units are always on. Binary groups of 1, 2, 4, and 8
-identical units are selected by the four-bit code, giving 42 units at code 0,
-50 at the default code 8, and 57 at code 15. Keeping the switch bank inside
+wide devices. Thirty-two units are always on. Binary groups of 1, 2, 4, and 8
+identical units are selected by the four-bit code, giving 32 units at code 0,
+40 at the default code 8, and 47 at code 15. Keeping the switch bank inside
 each channel avoids long analog DAC-voltage routes.
+
+The fixed count was first reduced from 42 to 36 after complete outer-drain
+connectivity increased the real current. The 36+8 GDS passed nominal testing,
+but its SF/1.8 V/27 C common mode remained only 0.775 V. A focused extracted
+screen selected 32+8, after which the transistor array was physically
+regenerated, rerouted, re-extracted, and assigned a new GDS hash. The frozen
+candidate therefore has 32 fixed equal units plus reset code 8, or 40 active
+units per channel. No result from the predecessor GDS is accepted as release
+evidence for this geometry.
+
+The current-hash extracted-device/capacitance calibration completed all 64
+single-channel code cases. Each channel is monotonic, the code-0-to-15 span is
+2.342 to 2.344 dB, and the smallest adjacent step is 0.115 dB. The four reset
+code responses differ by only 0.00364 dB, below the 0.01 dB numerical
+significance floor, so the nominal selector remains `[8,8,8,8]`. A deterministic
+-0.6/-0.2/+0.2/+0.6 dB injected stress was reduced from 1.197 dB spread to
+0.054 dB using codes `[14,11,8,6]`; this demonstrates calibration range but is
+not a substitute for foundry mismatch Monte Carlo.
 
 The schematic trim sweep covered 27 combinations of TT/FF/SS process,
 1.62/1.80/1.98 V, and -40/27/85 C. It was monotonic in every case. Worst
@@ -305,8 +331,8 @@ Final control-route metrics:
 | Routed control nets | 206 of 206 physical nets |
 | Observation-only nets intentionally omitted | 1 (`mixers_blank`) |
 | Verified final terminal attachments | 790 |
-| Router wire length | 7,552.55 um |
-| Router vias | 1,466 |
+| Router wire length | 7,557.34 um |
+| Router vias | 1,478 |
 | Highest signal layer | metal4 |
 | Nets using metal4 | 13 |
 | Route cycles | 0 |
@@ -322,7 +348,11 @@ pin, branch point, or valid handoff.
 ## 11. Layout verification evidence
 
 All results in this section refer to exact GDS SHA-256
-`d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130`.
+`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+The direct user-routed source before the common-mode ECO is separately frozen
+at SHA-256
+`d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313`.
+The final assembly adds exactly four foundry `cap_var_lvt` VCM-to-VGND devices.
 
 | Gate | Result |
 | --- | --- |
@@ -338,14 +368,15 @@ All results in this section refer to exact GDS SHA-256
 | Analog resistor terminal triplets | 4/4 |
 | Unexpected signal-to-power shorts | 0 |
 | Unexpected via-only M3 islands | 0 |
-| KLayout full-deck delta | 2,776 source / 2,776 candidate; 0 added, 0 removed |
+| KLayout full-deck delta | 2,770 source / 2,780 candidate; 10 classified `ct.2` additions, 0 removed |
 
 The KLayout result is intentionally a delta, not a false zero-marker claim.
-The generic open_pdks deck reports 2,776 inherited foundry-library/PCell
-markers in both the routed source and the candidate. The normalized marker
-multiset must remain identical. Pinned Magic is the foundry-aware physical DRC
-authority for this local checkpoint; the official submission flow is still
-required.
+The generic open_pdks deck reports 2,770 inherited foundry-library/PCell
+markers in the routed source. The only final delta is ten `ct.2` markers
+introduced inside the four foundry varactor PCells; the gate rejects any other
+addition, removal, or moved marker. Pinned Magic is the foundry-aware physical
+DRC authority for this local checkpoint; the official submission flow is
+still required.
 
 Every cut is checked directly in GDS: 21,504 `mcon` cuts are 0.17 by 0.17 um,
 `via1` cuts are 0.15 by 0.15 um, and `via2`/`via3` cuts are 0.20 by 0.20 um.
@@ -360,12 +391,12 @@ and lumped capacitance:
 
 | Extracted item | Count |
 | --- | ---: |
-| Explicit resistors | 91,671 |
-| Capacitors | 34,316 |
-| Devices | 4,244 |
-| Internal resistor nodes | 60,984 |
+| Explicit resistors | 95,133 |
+| Capacitors | 34,048 |
+| Extracted devices | 4,208 |
+| Internal resistor nodes | 63,073 |
 | Required named routes with RC coverage | 254/254 |
-| SPICE/annotation resistor ratio | 0.94466, minimum accepted 0.90 |
+| SPICE/annotation resistor ratio | 0.94694, minimum accepted 0.90 |
 
 Magic emits one classified message that a `viali` contact is smaller than the
 configured extraction meshing section. Magic's `extresist` implementation
@@ -374,7 +405,117 @@ The message is bounded to one occurrence. Any new or unclassified extraction
 warning fails the gate, while cut dimensions, DRC, and the independent
 KLayout delta remain separately checked.
 
-## 13. What is and is not proven
+## 13. Electrical characterization plots
+
+These figures are deterministic transformations of hash-bound JSON reports.
+They show useful operating behavior, not only pass/fail gates. The plot
+manifest records every source-report and figure SHA-256 in
+`v2/evidence/datasheet_figures.json`.
+
+### 13.1 Beam response matrix
+
+The diagonal cells are the four intended beam/incident combinations. The
+off-diagonal cells show how far the other ideal codebook directions are
+rejected relative to that row's constructive output. This is the exact
+distributed-RC response at the nominal 5 MHz input and 4 MHz LO point without
+background subtraction.
+
+| Selected beam | Incident 0 | Incident 1 | Incident 2 | Incident 3 |
+| --- | ---: | ---: | ---: | ---: |
+| 0 | **23.4875 mV** | 0.020689 mV | 0.018125 mV | 0.020264 mV |
+| 1 | 0.000132 mV | **24.1040 mV** | 0.000823 mV | 0.021351 mV |
+| 2 | 0.000236 mV | 0.004718 mV | **24.1557 mV** | 0.004566 mV |
+| 3 | 0.000648 mV | 0.021008 mV | 0.000738 mV | **24.1067 mV** |
+
+All entries are differential output RMS voltage. The constructive diagonal
+spans only 0.244 dB, and the worst row's diagonal-to-largest-off-diagonal
+ratio is 61.05 dB. These are ideal four-code incident vectors; continuous
+angle response, antenna spacing, package, and board effects remain
+first-silicon measurements.
+
+![Extracted-RC four-beam response matrix](../evidence/images/beam-codebook-response.svg)
+
+### 13.2 Gain-trim transfer and calibration range
+
+The upper plot is the measured per-channel transfer relative to reset code 8.
+The lower plots expose the current cost and common-mode movement that accompany
+increased code. The calibration inset is a deterministic stress experiment,
+not random mismatch yield evidence.
+
+![Four-channel gain-trim characterization](../evidence/images/trim-characterization.svg)
+
+### 13.3 MOS mismatch sensitivity
+
+The 60-seed plot shows every modeled circuit, not only a best or average case.
+Each transistor receives reproducible independent Gaussian factors derived
+from published geometry-scaled SKY130 coefficients. The graph reports
+background-corrected wanted-to-null rejection, output common mode, and the
+minimum time-aligned GM drain-to-tail margin. This is useful sensitivity
+evidence, but it excludes passive mismatch, spatial correlation and gradient,
+package variation, and proprietary foundry statistics; it is not a silicon
+yield claim. All 60 samples pass both the 6 dB functional gate and the 12 dB
+engineering target. Worst rejection is 36.53 dB, minimum headroom is 37.3 mV,
+and the exact one-sided 95% zero-failure pass-probability lower bound is
+95.13% for this model only.
+
+Each sample is frozen by its transform-manifest hash and transformed-netlist
+hash. Final aggregation validates those manifests and the three case reports
+without regenerating Gaussian values; this avoids silently changing
+last-bit floating-point samples when reports are produced on different Python
+runtimes.
+
+![MOS mismatch campaign](../evidence/images/mismatch-campaign.svg)
+
+### 13.4 Amplitude, load, frequency, and clock sensitivity
+
+This figure collects the bounded sweeps around the nominal operating point.
+At 50 mV peak input the simulated compression is 0.369 dB. A 30 pF total
+output load costs 0.973 dB; a deliberately heavy 60 pF total load costs
+3.091 dB but remains stable in the correlated distributed-RC run. Moving the
+RF input to 4.5 or 6 MHz while retaining the 4 MHz LO changes conversion gain
+by +0.127 or -0.496 dB. Clock duty changes to 40/60% and deterministic
+500/1000 ps edge jitter move gain by no more than 0.018 dB in the bounded
+pilot.
+
+![Electrical sensitivity](../evidence/images/electrical-sensitivity.svg)
+
+### 13.5 Two-tone linearity
+
+The two-tone transient uses 4.9 and 5.1 MHz RF tones and measures the 0.9 and
+1.1 MHz IF fundamentals plus their IM3 products. At 10 mV peak per input tone,
+the fundamental-to-worst-IM3 separation is 49.26 dB; at 2 mV it is 68.52 dB.
+This characterizes two operating points and is not a guaranteed production
+IIP3 limit.
+
+![Two-tone linearity](../evidence/images/two-tone-linearity.svg)
+
+### 13.6 Cold-start timing
+
+The cold-start figure reports measured threshold events and the final 5 us
+window. It deliberately does not draw an invented waveform between the
+measurements. At 120 us the VCM average is 1.184193 V and its final-window range
+is 1.182922 to 1.185394 V.
+
+![Distributed-RC cold-start timing](../evidence/images/cold-start-timing.svg)
+
+### 13.7 Distributed-RC operating endpoints
+
+These endpoint runs keep the complete extracted metal-resistance and
+capacitance network. The headroom column is the minimum time-aligned voltage
+from any GM drain to its tail node; every endpoint remains positive.
+
+| Endpoint | Output RMS | Output CM | Min. GM-to-tail headroom | Power |
+| --- | ---: | ---: | ---: | ---: |
+| SS, 1.62 V, 85 C, passive LL | 16.452 mV | 0.9951 V | 172.5 mV | 0.9680 mW |
+| FF, 1.98 V, -40 C, passive HH | 27.046 mV | 0.9060 V | 57.7 mV | 1.5561 mW |
+| FS, 1.80 V, 27 C, passive LL | 20.173 mV | 1.0675 V | 54.9 mV | 1.2865 mW |
+| SF, 1.80 V, 27 C, passive HH | 22.958 mV | 0.8605 V | 115.1 mV | 1.2181 mW |
+| TT, 1.80 V, 27 C, 60 pF total load | 16.380 mV | 0.9727 V | 84.1 mV | 1.2371 mW |
+
+These are deliberately selected boundary and split-corner checks, not an
+exhaustive production PVT guarantee.
+
+## 14. What is and is not proven
 
 Proven locally for the frozen candidate:
 
@@ -383,26 +524,41 @@ Proven locally for the frozen candidate:
 - pinned Magic DRC and clean import/extraction;
 - extracted signal, power, body, analog-resistor, and handoff topology;
 - complete distributed-RC coverage;
+- exact distributed-RC 20-case beam codebook without background subtraction,
+  with all report identities and GDS/netlist hashes checked before aggregation;
+- current-hash 120 us distributed-RC quiet cold start: 1.10 V at 60.989 us,
+  1.17 V at 97.456 us, and 1.184193 V final-window average;
+- current-hash 64-case extracted-device/capacitance trim transfer: 2.342 to
+  2.344 dB span, 0.115 dB minimum step, and 0.00364 dB reset-code channel
+  spread;
+- 60-seed open-PDK coefficient MOS mismatch sensitivity campaign, requiring
+  every sample to meet the hard functional checks and the 12 dB rejection
+  engineering target;
+- bounded amplitude, RF-frequency, output-load, and clock duty/jitter pilots;
+- two-tone transient characterization at 2 and 10 mV peak per tone;
+- distributed-RC heavy-load and process/voltage/temperature endpoints;
 - RTL codebook, configuration mapping, synchronization, and safe blanking;
 - schematic phase-selector PVT/frequency/load sweep; and
 - schematic switched-tail trim PVT monotonicity.
 
 Not yet proven:
 
-- complete post-layout four-channel gain, phase, beam isolation, and
-  cancellation across PVT;
-- random device-mismatch Monte Carlo before and after calibration;
-- noise figure, compression, IIP3, absolute conversion gain, and LO
-  feedthrough of the final extracted chip;
+- foundry-qualified mismatch yield, including passive mismatch, spatial
+  correlation, gradients, and package effects;
+- periodically switched mixer noise figure from a PSS/PNOISE-capable simulator
+  or measured silicon;
+- guaranteed production limits outside the explicitly simulated amplitude,
+  frequency, load, clock, and PVT points;
 - pad, package, PCB, and antenna-array interaction;
 - independent foundry-qualified LVS/signoff beyond the current open checks;
-- final TinyTapeout wrapper and official GitHub Actions attestation; or
+- official GitHub Actions/TinyTapeout attestation for the exact wrapper until
+  a passing run is linked in the tracked validation record; or
 - measured silicon behavior.
 
 No fabrication decision should infer these missing results from a clean GDS
 render or a zero Magic DRC count.
 
-## 14. First-silicon test plan
+## 15. First-silicon test plan
 
 1. Confirm supply current with reset asserted and all channels disabled.
 2. Check the divided quadrature sequence indirectly through one enabled
@@ -428,7 +584,7 @@ Raw results must record board revision, chip identifier, instruments, cable
 calibration, clock amplitude, supply at the die/board, temperature, packet,
 beam selection, channel mask, and exact GDS/repository revision.
 
-## 15. Release and reproducibility records
+## 16. Release and reproducibility records
 
 Machine-readable records:
 
@@ -440,18 +596,24 @@ Machine-readable records:
 - final topology: `build/v2/control_routing/quadrature_extraction/all_routes_topology_audit.json`;
 - power/analog topology: `build/v2/control_routing/quadrature_extraction/power_topology_audit.json`;
 - KLayout delta: `build/v2/control_routing/direct/final_klayout_delta_audit.json`;
-- distributed RC: `build/v2/control_routing/final_rc/coverage_audit.json`; and
+- distributed RC: `build/v2/control_routing/final_rc/control_final_rc_audit.json`;
+- nominal distributed-RC codebook:
+  `build/v2/postlayout_smoke/rc/codebook/summary_startup_op_step_5ns.json`;
+- tracked compact signoff payloads: `v2/evidence/frozen/`;
+- compact current validation record: `v2/evidence/latest_validation.json`;
+- datasheet plot data and source hashes: `v2/evidence/datasheet_figures.json`; and
 - final GDS: `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`.
 
 Visual review files:
 
-![Final V2 control-routing overview](../../build/v2/control_routing/review/beamformer-v2-control-final-overview.png)
+![Exact-final V2 overview](../evidence/images/beamformer-v2-exact-final-overview.png)
 
-![Reviewed trim-code routing detail](../../build/v2/control_routing/review/beamformer-v2-control-final-trim-detail.png)
+![Exact-final VCM varactor detail](../evidence/images/beamformer-v2-exact-final-varactor-detail.png)
 
-![Phase and quadrature handoff detail](../../build/v2/control_routing/review/beamformer-v2-control-final-handoff-detail.png)
-
-![Output-load and power detail](../../build/v2/control_routing/review/beamformer-v2-control-final-load-power-detail.png)
+The six electrical figures are embedded once in Section 13 and are regenerated
+from the hash-bound plot manifest rather than copied by hand. Run
+`make datasheet-figures` after placing current simulation summaries at the
+documented source paths; the generator rejects stale GDS or netlist hashes.
 
 Before submission, freeze the final wrapper plus GDS, regenerate every report,
 replace this local checkpoint with the exact submission artifact hash, run the

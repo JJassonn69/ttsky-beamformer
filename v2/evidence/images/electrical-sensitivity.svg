@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="900" viewBox="0 0 1500 900" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">Bounded electrical sensitivity summary</title>
+<desc id="svg-desc">Compression, output loading, RF frequency, and master-clock sensitivity.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:26px;font-weight:600}.subtitle{font-size:15px;fill:#5b6475}.axis{font-size:14px;fill:#5b6475}.tick{font-size:13px;fill:#667085}.value{font-size:14px;font-weight:600}.small{font-size:12px;fill:#667085}.cell{font-size:18px;font-weight:600}.cellsub{font-size:12px}.label{font-size:15px;font-weight:600}</style>
+<rect width="1500" height="900" fill="#ffffff"/>
+<text x="60.00" y="48.00" text-anchor="start" class="title">Bounded electrical sensitivity</text>
+<text x="60.00" y="76.00" text-anchor="start" class="subtitle">Base-extracted sweeps around the 5 MHz RF / 4 MHz LO / 1 MHz IF operating point</text>
+<rect x="60.00" y="110.00" width="680.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="80.00" y="144.00" text-anchor="start" class="label">Gain compression versus input peak</text>
+<line x1="105.00" y1="354.36" x2="720.00" y2="354.36" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<rect x="108.00" y="342.64" width="165.00" height="11.72" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="190.50" y="334.64" text-anchor="middle" class="small" style="fill:#27884a">+0.063</text>
+<text x="190.50" y="403.00" text-anchor="middle" class="small">20 mV</text>
+<rect x="408.00" y="285.60" width="165.00" height="68.77" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="490.50" y="277.60" text-anchor="middle" class="small" style="fill:#27884a">+0.369</text>
+<text x="490.50" y="403.00" text-anchor="middle" class="small">50 mV</text>
+<text x="722.00" y="144.00" text-anchor="end" class="small">dB</text>
+<rect x="770.00" y="110.00" width="670.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="790.00" y="144.00" text-anchor="start" class="label">Conversion-gain change versus output load</text>
+<line x1="815.00" y1="193.62" x2="1420.00" y2="193.62" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<rect x="818.00" y="193.62" width="108.17" height="5.97" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="872.08" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.116</text>
+<text x="872.08" y="403.00" text-anchor="middle" class="small">100 kΩ</text>
+<rect x="1014.67" y="193.62" width="108.17" height="49.86" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1068.75" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.973</text>
+<text x="1068.75" y="403.00" text-anchor="middle" class="small">30 pF</text>
+<rect x="1211.33" y="193.62" width="108.17" height="158.44" fill="#aa6a00" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1265.42" y="185.62" text-anchor="middle" class="small" style="fill:#aa6a00">-3.091</text>
+<text x="1265.42" y="403.00" text-anchor="middle" class="small">60 pF</text>
+<text x="1422.00" y="144.00" text-anchor="end" class="small">dB</text>
+<rect x="60.00" y="460.00" width="680.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="80.00" y="494.00" text-anchor="start" class="label">RF-frequency gain change (LO fixed at 4 MHz)</text>
+<line x1="105.00" y1="586.33" x2="720.00" y2="586.33" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<rect x="108.00" y="569.04" width="165.00" height="17.29" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="190.50" y="561.04" text-anchor="middle" class="small" style="fill:#27884a">+0.127</text>
+<text x="190.50" y="753.00" text-anchor="middle" class="small">4.5 MHz</text>
+<rect x="408.00" y="586.33" width="165.00" height="67.85" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="490.50" y="578.33" text-anchor="middle" class="small" style="fill:#27884a">-0.496</text>
+<text x="490.50" y="753.00" text-anchor="middle" class="small">6 MHz</text>
+<text x="722.00" y="494.00" text-anchor="end" class="small">dB</text>
+<rect x="770.00" y="460.00" width="670.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="790.00" y="494.00" text-anchor="start" class="label">Master-clock duty/jitter gain change</text>
+<line x1="815.00" y1="654.67" x2="1420.00" y2="654.67" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<rect x="818.00" y="652.42" width="81.12" height="2.25" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="858.56" y="644.42" text-anchor="middle" class="small" style="fill:#27884a">+0.002</text>
+<text x="858.56" y="753.00" text-anchor="middle" class="small">40%</text>
+<rect x="965.50" y="649.18" width="81.12" height="5.49" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1006.06" y="641.18" text-anchor="middle" class="small" style="fill:#27884a">+0.004</text>
+<text x="1006.06" y="753.00" text-anchor="middle" class="small">60%</text>
+<rect x="1113.00" y="638.91" width="81.12" height="15.76" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1153.56" y="630.91" text-anchor="middle" class="small" style="fill:#27884a">+0.012</text>
+<text x="1153.56" y="753.00" text-anchor="middle" class="small">500 ps</text>
+<rect x="1260.50" y="630.84" width="81.12" height="23.83" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1301.06" y="622.84" text-anchor="middle" class="small" style="fill:#27884a">+0.017</text>
+<text x="1301.06" y="753.00" text-anchor="middle" class="small">1 ns</text>
+<text x="1422.00" y="494.00" text-anchor="end" class="small">dB</text>
+<text x="60.00" y="825.00" text-anchor="start" class="small" style="fill:#aa6a00">The 60 pF total load is intentionally shown as a warning point: it costs about 3.09 dB but remains electrically stable.</text>
+<text x="1458.00" y="878.00" text-anchor="end" class="small">GDS 90b51a5f37fd | source 999e40065baa | bounded simulation, not guaranteed limits</text>
+</svg>

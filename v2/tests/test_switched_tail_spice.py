@@ -28,9 +28,9 @@ class V2SwitchedTailSpiceTests(unittest.TestCase):
         summary = json.loads(output.read_text(encoding="utf-8"))
         self.assertEqual(summary["status"], "pass", summary["failures"])
         case = summary["cases"][0]
-        self.assertAlmostEqual(case["code_0_relative"], 36.0 / 44.0, places=4)
+        self.assertAlmostEqual(case["code_0_relative"], 32.0 / 40.0, places=4)
         self.assertAlmostEqual(case["code_8_relative"], 1.00, places=6)
-        self.assertAlmostEqual(case["code_15_relative"], 51.0 / 44.0, places=4)
+        self.assertAlmostEqual(case["code_15_relative"], 47.0 / 40.0, places=4)
 
 
 if __name__ == "__main__":

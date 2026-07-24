@@ -104,15 +104,15 @@ extracted interconnect must independently close at 120/30 MHz.
 
 V2A uses one four-bit, channel-local switched tail-current bank per channel.
 It does not route an analog DAC voltage across the macro. Every current-source
-finger is the same 1.26 by 0.50 um NMOS unit. Forty-two units are always on;
+finger is the same 1.26 by 0.50 um NMOS unit. Thirty-two units are always on;
 binary groups of 1, 2, 4, and 8 units are selected by the trim code. Code 8
-therefore enables 50 units and is the nominal point.
+therefore enables 40 units and is the nominal point.
 
 Verified schematic-level tail-current behavior:
 
 - four-bit unsigned code, default code 8;
-- relative current from 0.84 at code 0 through 1.00 at code 8 to 1.14 at code
-  15;
+- relative current from 0.8000 at code 0 through 1.00 at code 8 to 1.1750 at
+  code 15;
 - monotonic in all 27 combinations of TT/FF/SS, 1.62/1.80/1.98 V, and
   -40/27/85 C;
 - worst endpoint-fit DNL and INL below 0.00047 LSB in that deterministic PVT
@@ -120,10 +120,20 @@ Verified schematic-level tail-current behavior:
 - static codes during beam measurements; and
 - code changes committed while the channel is blanked.
 
-The fixed bank is physically split into three identical 14-finger groups.
+The fixed bank is physically split into a symmetric 10/12/10 grouping.
 The binary groups use the same unit finger geometry and remain inside the
-owning channel guard ring. Extraction must recover 57 equal current fingers,
+owning channel guard ring. Extraction must recover 47 equal current fingers,
 not four unrelated transistor widths.
+
+This 32-unit fixed-bank sizing supersedes the 36-unit and earlier 42-unit
+candidates. Once omitted outer diffusion contacts were promoted, the true
+42+8 default pulled output common mode to about 0.786 V; the regenerated 36+8
+layout later exposed the same SF-corner margin problem at 0.775 V. A focused
+extracted architecture screen found that the equivalent 32+8 operating point
+restored SF common mode to 0.866 V with only a 0.041 dB wanted-tone change
+relative to 36+8. The authoritative generator therefore uses 40 active units
+at reset code 8. Those measurements select the architecture; fresh physical
+and post-layout signoff is required on the regenerated 32-unit GDS.
 
 The R-2R study remains in `v2/spice/r2r_4bit.inc` as characterized research.
 The standalone ladder was monotonic across the exercised PVT and load sweep,
@@ -161,8 +171,9 @@ controls pass through two flip-flops. Both paths are applied only at the
 defined phase-state boundary and blank all channels for one complete LO
 period. Reset selects zero-degree manual phase, trim code 8 on all channels,
 and disables every channel. All unused outputs remain static to minimize
-digital-to-analog coupling. The final TinyTapeout wrapper still has to bind
-this contract to the submission template.
+digital-to-analog coupling. The generated Tiny Tapeout wrapper now binds this
+contract to the exact 2x2 submission template; its official workflow
+attestation remains a release gate.
 
 ## Physical architecture contract
 

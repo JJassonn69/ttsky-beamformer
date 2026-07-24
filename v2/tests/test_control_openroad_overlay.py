@@ -24,7 +24,7 @@ class ControlOpenroadOverlayTest(unittest.TestCase):
     def test_all_audited_routes_are_reproduced(self):
         self.assertEqual(self.geometry["counts"]["routes"], 206)
         self.assertEqual(self.geometry["counts"]["labels"], 206)
-        self.assertEqual(self.geometry["counts"]["vias"], 1466)
+        self.assertEqual(self.geometry["counts"]["vias"], 1478)
         self.assertEqual(self.geometry["counts"]["patches"], 3)
         self.assertEqual(self.geometry["counts"]["by_layer"]["met4"], 39)
         self.assertNotIn("met5", self.geometry["counts"]["by_layer"])
@@ -86,7 +86,7 @@ class ControlOpenroadOverlayTest(unittest.TestCase):
                 for element in labels
             }
             self.assertEqual(names, {f"R{index:03d}" for index in range(206)})
-            self.assertEqual(first_report["boundary_count"], 6223)
+            self.assertEqual(first_report["boundary_count"], 6085)
             self.assertEqual(first_report["label_count"], 206)
 
 

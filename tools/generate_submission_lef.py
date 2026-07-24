@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Generate the deliberately small TinyTapeout abstract LEF.
+"""Generate the exact Tiny Tapeout V2 2x2 abstract LEF.
 
 Magic's generic LEF writer exports every shape connected to a port.  That is a
 useful routing abstract for some flows, but TinyTapeout's precheck requires each
 template signal pin to have exactly the rectangle from the official DEF.  This
 script treats that pinned DEF as the source of truth and adds the two full-height
-power stripes drawn by ``generate_layout_scripts.py``.
+power ports present in the frozen V2 candidate.
 """
 
 from __future__ import annotations
@@ -17,7 +17,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TOP = "tt_um_jjassonn69_beamformer"
-TEMPLATE_DEF = ROOT / "build/layout/tt_analog_1x2.def"
+TEMPLATE_DEF = ROOT / "build/v2/tt_analog_2x2.def"
 OUTPUT = ROOT / f"lef/{TOP}.lef"
 
 
@@ -102,7 +102,7 @@ def main() -> None:
     if len(names) != len(set(names)):
         raise ValueError("duplicate signal pins in template DEF")
 
-    # These match the 2 um-wide stripes drawn from y=5 to y=220.76 um.
+    # These match the 2 um-wide V2 stripes drawn from y=5 to y=220.76 um.
     # Each spans to within 10 um of both edges, as TinyTapeout requires.
     power_pins = [
         Pin("VDPWR", "INOUT", "POWER", "met4", (1000, 5000, 3000, 220760)),

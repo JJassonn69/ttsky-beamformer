@@ -4,7 +4,7 @@
   "status": "production integration placement and routing contract",
   "base_checkpoint": {
     "gds": "build/v2/support_routes/magic/v2_four_channel_support_routed.gds",
-    "sha256": "aad00304db53a3089ea455426babdf49a64945b979f3942358e723c0714979fb",
+    "sha256": "e664eb4513ee21f9b88dc9b050a549d34ad3b461c8b8e714883632e80d05ab46",
     "top": "v2_four_channel_support_routed"
   },
   "synthesis_checkpoint": {

@@ -5,7 +5,20 @@
   "source_checkpoint": {
     "gds": "build/v2/control_placement/direct/v2_four_channel_control_placed.gds",
     "top": "v2_four_channel_control_placed",
-    "sha256": "a3836d142a2d053560d5f5f17a005795195097097136c7d2659f5b908d75e4a9"
+    "sha256": "ef57f36e9a90806aeb1b09eec9041d1a2e036025aeca0c26a7cde2815b6842dc"
+  },
+  "regeneration_policy": "frozen_artifact_only after the candidate-specific checkpoint hashes below are refreshed and audited",
+  "geometry_checkpoint": {
+    "path": "build/v2/control_power/control_power_geometry.json",
+    "sha256": "528ae30d6986a908bc33e4c2b2dd387936e6ea4d7cab560dd357eebb18784b89"
+  },
+  "overlay_gds_checkpoint": {
+    "path": "build/v2/control_power/overlay/magic/v2_control_power_overlay.gds",
+    "sha256": "44b440e4ec9989ab01d27c184de7c4ebfdefce45b1fdad63186d58856127747b"
+  },
+  "powered_gds_checkpoint": {
+    "path": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
+    "sha256": "44dca37059bceb73535a3856eeade7b1be723a9a84c6507cf14f3a28edacd31d"
   },
   "output_top": "v2_four_channel_control_powered",
   "policy": {

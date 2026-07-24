@@ -1103,6 +1103,43 @@
       },
       "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_KNL8QH.mag"
     },
+    "trim_main_outer_nfet_shared_guard": {
+      "ports": {
+        "D": [
+          {"label": "D0", "layer": "ndiffc", "point_um": [-3.95, 0.0]},
+          {"label": "D2", "layer": "ndiffc", "point_um": [-2.37, 0.0]},
+          {"label": "D4", "layer": "ndiffc", "point_um": [-0.79, 0.0]},
+          {"label": "D6", "layer": "ndiffc", "point_um": [0.79, 0.0]},
+          {"label": "D8", "layer": "ndiffc", "point_um": [2.37, 0.0]},
+          {
+            "access_basis": "real symmetric outer ndiffc contact omitted by the pinned Magic even-finger PCell port labels",
+            "label": "D10_physical_outer_contact",
+            "layer": "ndiffc",
+            "point_um": [3.95, 0.0]
+          }
+        ],
+        "G": [
+          {"label": "G", "layer": "polycont", "point_um": [-3.555, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [-2.765, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [-1.975, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [-1.185, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [-0.395, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [0.395, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [1.185, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [1.975, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [2.765, 0.905]},
+          {"label": "G", "layer": "polycont", "point_um": [3.555, 0.905]}
+        ],
+        "S": [
+          {"label": "S1", "layer": "ndiffc", "point_um": [-3.16, 0.0]},
+          {"label": "S3", "layer": "ndiffc", "point_um": [-1.58, 0.0]},
+          {"label": "S5", "layer": "ndiffc", "point_um": [0.0, 0.0]},
+          {"label": "S7", "layer": "ndiffc", "point_um": [1.58, 0.0]},
+          {"label": "S9", "layer": "ndiffc", "point_um": [3.16, 0.0]}
+        ]
+      },
+      "source": "build/v2/pcell_bbox_switched_tail_r5/sky130_fd_pr__nfet_01v8_4DYN95.mag"
+    },
     "trim_main_third_nfet_shared_guard": {
       "ports": {
         "D": [

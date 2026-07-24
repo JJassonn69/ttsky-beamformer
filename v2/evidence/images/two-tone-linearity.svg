@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1250" height="660" viewBox="0 0 1250 660" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">Two-tone intermodulation pilot</title>
+<desc id="svg-desc">Fundamental-to-worst-IM3 separation at two input amplitudes.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:26px;font-weight:600}.subtitle{font-size:15px;fill:#5b6475}.axis{font-size:14px;fill:#5b6475}.tick{font-size:13px;fill:#667085}.value{font-size:14px;font-weight:600}.small{font-size:12px;fill:#667085}.cell{font-size:18px;font-weight:600}.cellsub{font-size:12px}.label{font-size:15px;font-weight:600}</style>
+<rect width="1250" height="660" fill="#ffffff"/>
+<text x="60.00" y="48.00" text-anchor="start" class="title">Two-tone intermodulation pilot</text>
+<text x="60.00" y="76.00" text-anchor="start" class="subtitle">4.9 and 5.1 MHz RF tones produce 0.9 and 1.1 MHz IF fundamentals</text>
+<rect x="95.00" y="125.00" width="680.00" height="390.00" fill="#ffffff" stroke="#d9dee8" stroke-width="1" rx="0" opacity="1"/>
+<line x1="95.00" y1="515.00" x2="775.00" y2="515.00" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="520.00" text-anchor="end" class="tick">0</text>
+<line x1="95.00" y1="417.50" x2="775.00" y2="417.50" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="422.50" text-anchor="end" class="tick">20</text>
+<line x1="95.00" y1="320.00" x2="775.00" y2="320.00" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="325.00" text-anchor="end" class="tick">40</text>
+<line x1="95.00" y1="222.50" x2="775.00" y2="222.50" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="227.50" text-anchor="end" class="tick">60</text>
+<line x1="95.00" y1="125.00" x2="775.00" y2="125.00" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="130.00" text-anchor="end" class="tick">80</text>
+<line x1="163.00" y1="515.00" x2="163.00" y2="521.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="163.00" y="538.00" text-anchor="middle" class="tick">2</text>
+<line x1="707.00" y1="515.00" x2="707.00" y2="521.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="707.00" y="538.00" text-anchor="middle" class="tick">10</text>
+<text x="435.00" y="565.00" text-anchor="middle" class="axis">Peak input per tone (mV)</text>
+<text x="33.00" y="320.00" text-anchor="middle" class="axis" transform="rotate(-90.00 33.00 320.00)">Fundamental / worst IM3 separation (dB)</text>
+<circle cx="163.00" cy="180.96" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
+<text x="163.00" y="162.96" text-anchor="middle" class="value" style="fill:#27884a">68.52 dB</text>
+<circle cx="707.00" cy="274.87" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
+<text x="707.00" y="256.87" text-anchor="middle" class="value" style="fill:#27884a">49.26 dB</text>
+<line x1="95.00" y1="320.00" x2="775.00" y2="320.00" stroke="#aa6a00" stroke-width="2" stroke-dasharray="7 5" opacity="1"/>
+<text x="767.00" y="311.00" text-anchor="end" class="small" style="fill:#aa6a00">40 dB pilot gate</text>
+<rect x="830.00" y="125.00" width="355.00" height="390.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="854.00" y="165.00" text-anchor="start" class="label">Input IIP3 estimates</text>
+<text x="854.00" y="225.00" text-anchor="start" class="small">2 mV peak/tone</text>
+<text x="854.00" y="259.00" text-anchor="start" class="value">-22.73 dBV RMS</text>
+<text x="854.00" y="288.00" text-anchor="start" class="small">fundamental ≈ 9.480 mV RMS</text>
+<text x="854.00" y="311.00" text-anchor="start" class="small">worst IM3 ≈ 0.0036 mV RMS</text>
+<text x="854.00" y="345.00" text-anchor="start" class="small">10 mV peak/tone</text>
+<text x="854.00" y="379.00" text-anchor="start" class="value">-18.38 dBV RMS</text>
+<text x="854.00" y="408.00" text-anchor="start" class="small">fundamental ≈ 47.035 mV RMS</text>
+<text x="854.00" y="431.00" text-anchor="start" class="small">worst IM3 ≈ 0.1627 mV RMS</text>
+<text x="95.00" y="600.00" text-anchor="start" class="small" style="fill:#aa6a00">Pilot result characterizes this operating point; it is not a production linearity guarantee.</text>
+<text x="1208.00" y="638.00" text-anchor="end" class="small">GDS 90b51a5f37fd | source 8cceeb08078b | base-extracted two-tone transient</text>
+</svg>

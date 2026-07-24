@@ -12,6 +12,7 @@ from xml.sax.saxutils import escape
 ROLE_COLORS = {
     "input_bias": "#4d908e",
     "trim_fixed_12": "#577590",
+    "trim_fixed_10": "#577590",
     "trim_binary_8": "#577590",
     "trim_binary_4": "#577590",
     "trim_binary_2": "#577590",

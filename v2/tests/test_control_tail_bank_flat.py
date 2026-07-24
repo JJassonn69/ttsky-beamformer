@@ -15,7 +15,7 @@ def valid_flat_view() -> str:
     index = 0
     for channel in range(4):
         tail = f"ch{channel}_tail"
-        for _ in range(36):
+        for _ in range(32):
             lines.append(device(str(index), tail, "ch0_vbias", "VGND"))
             index += 1
         for weight in (1, 2, 4, 8):
@@ -28,10 +28,10 @@ def valid_flat_view() -> str:
 
 
 class ControlTailBankFlatTests(unittest.TestCase):
-    def test_exact_36_plus_binary_fingers_pass(self) -> None:
+    def test_exact_32_plus_binary_fingers_pass(self) -> None:
         report = audit(valid_flat_view())
         self.assertEqual(report["status"], "pass", report["errors"])
-        self.assertEqual(report["verified_fixed_finger_count"], 144)
+        self.assertEqual(report["verified_fixed_finger_count"], 128)
         self.assertEqual(report["verified_binary_trim_finger_count"], 60)
         for channel in report["channels"]:
             self.assertEqual(

@@ -51,9 +51,11 @@ XTOP n1 n2 child
 
     def test_even_finger_banks_include_promoted_outer_drain(self) -> None:
         expected = expected_local_trim_nodes(0, shared_vbias=True)
-        self.assertEqual(len(expected["XCH0_TMAIN0"]), 15)
-        self.assertEqual(expected["XCH0_TMAIN0"].count("ch0_tail"), 7)
-        self.assertEqual(expected["XCH0_TMAIN0"].count("VGND"), 7)
+        self.assertEqual(len(expected["XCH0_TMAIN0"]), 13)
+        self.assertEqual(expected["XCH0_TMAIN0"].count("ch0_tail"), 6)
+        self.assertEqual(expected["XCH0_TMAIN0"].count("VGND"), 6)
+        self.assertEqual(len(expected["XCH0_TMAIN1"]), 15)
+        self.assertEqual(len(expected["XCH0_TMAIN2"]), 13)
         self.assertEqual(expected["XCH0_TTRIM8"], [
             "ch0_tail", "CH0_TTRIM8/G", "VGND", "ch0_tail",
             "VGND", "ch0_tail", "VGND", "ch0_tail", "VGND",

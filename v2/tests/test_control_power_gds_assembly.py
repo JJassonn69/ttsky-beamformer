@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import unittest
@@ -12,6 +13,10 @@ from assemble_control_power_gds import STRING, TEXT, assemble
 from check_magic_rc_log import FATAL_PATTERNS
 
 
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
 class ControlPowerGDSAssemblyTests(unittest.TestCase):
     source = ROOT / "build/v2/control_placement/direct/v2_four_channel_control_placed.gds"
     # The exact overlay emitted by the pinned remote Magic run lives under
@@ -21,6 +26,31 @@ class ControlPowerGDSAssemblyTests(unittest.TestCase):
     output = ROOT / "build/v2/control_power/direct/v2_four_channel_control_powered.gds"
 
     def test_assembly_is_byte_deterministic(self) -> None:
+        plan = json.loads((ROOT / "v2/layout/control_power_plan.json").read_text())
+        if sha256(self.source) != plan["source_checkpoint"]["sha256"]:
+            # Preserve the exact powered GDS used by the active unified route;
+            # its historical source bytes are no longer present at source path.
+            self.assertTrue(
+                plan["regeneration_policy"].startswith("frozen_artifact_only")
+            )
+            self.assertEqual(
+                sha256(self.overlay), plan["overlay_gds_checkpoint"]["sha256"]
+            )
+            self.assertEqual(
+                sha256(self.output), plan["powered_gds_checkpoint"]["sha256"]
+            )
+            audit = json.loads(
+                (ROOT / "build/v2/control_power/direct/gds_assembly_audit.json")
+                .read_text()
+            )
+            self.assertEqual(
+                audit["source_sha256"], plan["source_checkpoint"]["sha256"]
+            )
+            self.assertEqual(
+                audit["output_sha256"], plan["powered_gds_checkpoint"]["sha256"]
+            )
+            return
+
         data, report = assemble(
             self.source, "v2_four_channel_control_placed",
             self.overlay, "v2_control_power_overlay",

@@ -5,7 +5,7 @@
   "source_checkpoint": {
     "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
     "top": "v2_four_channel_control_powered",
-    "sha256": "cf25e276fcb99a6c5e8559822ded5b4ec132e616a9a9583bbce3d425db7b6f81"
+    "sha256": "44dca37059bceb73535a3856eeade7b1be723a9a84c6507cf14f3a28edacd31d"
   },
   "policy": {
     "placement_is_frozen": true,

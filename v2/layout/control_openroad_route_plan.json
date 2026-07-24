@@ -5,17 +5,17 @@
   "source_checkpoint": {
     "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
     "top": "v2_four_channel_control_powered",
-    "sha256": "cf25e276fcb99a6c5e8559822ded5b4ec132e616a9a9583bbce3d425db7b6f81"
+    "sha256": "44dca37059bceb73535a3856eeade7b1be723a9a84c6507cf14f3a28edacd31d"
   },
   "route_checkpoint": {
     "jobs": "build/v2/control_routing/openroad/openroad_jobs.json",
     "jobs_sha256": "b1c79c247911e858d38d238bfd1fc07f6b46fed91312a2531ed64934bf0e4947",
     "audit": "build/v2/control_routing/openroad/route_audit.json",
-    "audit_sha256": "b3a3a6500af08c35bd51d9512b5672a2a7841046a5a309a696760f10a4003f5f",
+    "audit_sha256": "43700de57345f6ffa75392a09eb188cf47eeb0fe8e1d2b851a94f71bcdb7d304",
     "routed_def": "build/v2/control_routing/openroad/digital_control/routed.def",
-    "routed_def_sha256": "0893d01378a1630ad86bd55885c0329e2912b550766e1371c7b9c86f0390eb3b",
+    "routed_def_sha256": "dc2edf1060bc6602b427757feb09486b7dad046bbefb78075cad2b68cbd0271d",
     "wire_length": "build/v2/control_routing/openroad/digital_control/wire_length.csv",
-    "wire_length_sha256": "5d9ba8591d1a3bfff3091bec01a0836feb937efde327d8593e11b93ac5bbefd2",
+    "wire_length_sha256": "37c004cfc85e119f89b99d877ae8579ff20fc0b23112091ad0b953432ddcfe55",
     "placement": "build/v2/control_placement/control_placement.json",
     "placement_sha256": "f12b8d75a6b7874bdaea6a772c7c0126b86bc5778cc97d1d5424eb1632c74a7c",
     "mapping": "build/v2/control_mapping/physical_netlist.json",

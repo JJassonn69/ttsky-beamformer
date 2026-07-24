@@ -2,15 +2,22 @@
 
 Status: production placement, power, and control-routing checkpoint.  The
 analog channel, local phase selector, shared support network, mapped 194-cell
-control core, fixed helper cells, and exact assembled power grid pass the
+control core, fixed helper cells, exact assembled power grid, and four-device
+VCM varactor ECO pass the
 pinned Magic full DRC with zero violations. One OpenROAD job owns all 206
 physical digital-control nets; compact deterministic overlays add the 16 trim,
 12 phase, and four quadrature analog handoffs. Final extraction verifies all
 206 route labels, 790 terminal attachments, all 968 mapped/helper power and
-body pins, and the four analog resistor terminal triplets. Post-layout analog
-and phase-code simulation, independent foundry-qualified LVS where available,
-and the official TinyTapeout workflow remain pending; this checkpoint is not
-yet a fabrication release.
+body pins, and the four analog resistor terminal triplets. The current-hash
+20-case distributed-RC codebook, 120 us cold start, and 64-case base extracted
+trim calibration pass. The earlier 36-fixed-unit layout exposed an SF
+output-headroom limit. That candidate was retired instead of exhaustively
+characterized. The committed physical root fix uses 32 fixed equal tail units
+plus the 1/2/4/8 trim bank, with reset code 8 (40 active units). Current-hash
+nominal, trim-endpoint, load, slow/low/hot, mismatch, linearity, and clock
+evidence is collected only after this exact layout and extraction were frozen.
+Independent foundry-qualified LVS remains unavailable in the open local flow;
+the official TinyTapeout workflow is the final fabrication handoff gate.
 
 The V2 layout must be derived from the real TinyTapeout 2x2 pin geometry, not
 from a visually symmetric empty rectangle. The authenticated template is
@@ -155,8 +162,8 @@ The production route is deliberately single-owner. One unified OpenROAD job
 sees all 206 physical control nets and all 763 router endpoints at once,
 including the nine direct-boundary and six high-fanout service-tree classes.
 This replaced the earlier sequential direct/service overlays that could make a
-later route depend on a stale obstacle map. The audited route has 7,552.55 um
-of wire, 1,466 vias, no cycle, no unattached leaf, and no signal above M4.
+later route depend on a stale obstacle map. The audited route has 7,557.34 um
+of wire, 1,478 vias, no cycle, no unattached leaf, and no signal above M4.
 Only 13 nets use M4. The worst route/HPWL ratio is 1.815 on `rst_n`, and the
 worst two-pin ratio is 1.592; no artificial delay or clock/reset meander is
 present.
@@ -173,7 +180,13 @@ router transition.
 The frozen local candidate is
 `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`, top
 `v2_control_quadrature_routed`, SHA-256
-`d9c9aae5771af815833668374924baee23f60a51747c7966e2517dcb6f6a6130`.
+`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+The direct user-routed source is separately frozen as
+`v2/reference/v2_control_quadrature_user_routed.gds`, SHA-256
+`d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313`.
+The final ECO adds only four foundry `cap_var_lvt` references and their
+VCM-to-VGND connections; its assembler rejects any other source or output
+hash.
 Its acceptance evidence is:
 
 - pinned Magic full-chip DRC, GDS-import feedback, and extraction feedback: 0;
@@ -185,11 +198,12 @@ Its acceptance evidence is:
   RBIAS, RVCM_TOP, LOAD_N, and LOAD_P;
 - direct-GDS flat checks find no via-only M3 island, via enclosure error,
   MIM-clearance error, stale transition, or malformed contact cut;
-- KLayout open_pdks full-deck delta: 2,776 normalized inherited markers in
-  both the routed source and final hierarchy, with zero added and zero removed;
+- KLayout open_pdks full-deck delta: 2,770 normalized inherited source markers
+  and 2,780 final markers; the only ten additions are classified `ct.2`
+  markers inside the four foundry varactor PCells, with zero removals;
   and
-- full distributed-RC extraction: 91,671 explicit resistors, 34,316
-  capacitors, 4,244 devices, and coverage for all 254 required control, analog,
+- full distributed-RC extraction: 95,133 explicit resistors, 34,048
+  capacitors, 4,208 extracted devices, and coverage for all 254 required control, analog,
   output, bias, and supply nets.
 
 Magic canonicalizes the VGND resistor graph under the flattened standard-cell
@@ -197,10 +211,10 @@ bulk node `sky130_fd_sc_hd__fill_1_2190.VNB`.  The RC gate does not waive the
 name mismatch: it parses the ordinary extraction equivalence records, proves a
 direct path from `v2_control_power_overlay_0.VGND` to that emitted resistor
 graph, and fails if either the equivalence or the graph is absent. The emitted
-SPICE contains 94.47% as many explicit resistor elements as the annotated
+SPICE contains 94.69% as many explicit resistor elements as the annotated
 `.res.ext` network after equivalent-node reduction; the gate requires at least
 90%, positive well-formed elements, preserved device count, and complete
-252-net coverage.
+254-net coverage.
 
 Magic emits one `viali ... smaller than extract section allows` message during
 `extresist`. Upstream Magic source shows that this branch falls back to one RC
@@ -213,7 +227,8 @@ warning fails the final RC gate.
 The KLayout number is deliberately reported as a delta, not as a false
 zero-marker claim.  The generic open_pdks deck reports inherited foundry
 library/PCell markers in the clean source hierarchy as well.  The final route
-must preserve that normalized marker multiset exactly, while pinned Magic is
+must preserve that normalized marker multiset except for the ten explicitly
+classified varactor-PCell `ct.2` additions, while pinned Magic is
 the foundry-aware physical-rule authority for this checkpoint.  The official
 TinyTapeout workflow and an independent foundry-qualified signoff remain
 mandatory before fabrication.
@@ -229,8 +244,9 @@ Rotation or mirroring is an optimization variable, not an aesthetic choice.
 - `MX` and 90/180/270-degree rotations are forbidden until a generated PCell
   proves identical terminal mapping, body/well contacts, stress direction,
   DRC, LVS, and extracted parasitics.
-- All tail-current units retain one absolute device orientation.  Forty-two
-  fixed units are grouped 14/14/14; binary groups contain 1/2/4/8 copies of
+- All tail-current units retain one absolute device orientation. Thirty-two
+  fixed units are grouped symmetrically as 10/12/10; binary groups contain
+  1/2/4/8 copies of
   the same 1.26 by 0.50 um unit finger.
 - The differential load pair uses identical orientation and contact style.
 
@@ -256,7 +272,7 @@ left/right ownership reverses after two rows, while the LO polarity follows a
 vertical ABBA sequence.  This gives equal centroids for the GM branches, P/N
 output devices, and LO-P/LO-N gate loads simultaneously; merely balancing the
 latter two would leave a systematic high-impedance GM routing error. Three
-14-finger fixed-tail rows and the 1/2/4/8 trim rows sit directly below the GM
+12-finger fixed-tail rows and the 1/2/4/8 trim rows sit directly below the GM
 pair inside one local substrate guard.
 
 The initial placement put the complementary trim-control inverters in the

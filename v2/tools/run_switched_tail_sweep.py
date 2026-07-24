@@ -218,7 +218,7 @@ def main() -> None:
         "failures": failures,
         "architecture": "local four-bit binary-weighted switched tail-current trim",
         "default_code": 8,
-        "nominal_relative_range": [36.0 / 44.0, 51.0 / 44.0],
+        "nominal_relative_range": [32.0 / 40.0, 47.0 / 40.0],
         "case_count": len(cases),
         "worst_abs_dnl_lsb": max(case["max_abs_dnl_lsb"] for case in cases),
         "worst_abs_inl_lsb": max(case["max_abs_inl_lsb"] for case in cases),

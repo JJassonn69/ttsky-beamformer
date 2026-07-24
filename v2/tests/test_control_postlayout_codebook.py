@@ -7,10 +7,12 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "v2/tools"))
 
 from run_control_postlayout_codebook import (
+    case_report_is_reusable,
     case_report_path,
     corrected_response_matrices,
     evaluate_matrix,
     operating_ranges,
+    summary_report_path,
     validate_case_identity,
     validate_settled_measurements,
 )
@@ -46,6 +48,37 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
     def test_case_report_rejects_unknown_startup(self) -> None:
         with self.assertRaises(ValueError):
             case_report_path("base", 2, 3, startup="unknown")
+
+    def test_pvt_case_reports_cannot_overwrite_nominal_reports(self) -> None:
+        path = case_report_path(
+            "base", 1, 2, process_corner="ss", supply_voltage_v=1.62,
+            temperature_c=85.0,
+        )
+        self.assertEqual(
+            path.name,
+            "report.json",
+        )
+        self.assertIn("_corner_ss_vdd_1p62_temp_85c", path.parent.name)
+
+    def test_calibrated_case_reports_cannot_overwrite_default_trim(self) -> None:
+        path = case_report_path("base", 0, 0, trim_codes=(7, 8, 9, 8))
+        self.assertIn("_trim_7_8_9_8", path.parent.name)
+        self.assertNotEqual(path, case_report_path("base", 0, 0))
+
+    def test_coarse_pvt_timestep_is_explicit_in_case_path(self) -> None:
+        path = case_report_path("base", 0, 0, transient_step_ns=5.0)
+        self.assertIn("_step_5ns", path.parent.name)
+
+    def test_nondefault_timestep_cannot_overwrite_default_summary(self) -> None:
+        default = summary_report_path("base")
+        coarse = summary_report_path("base", transient_step_ns=5.0)
+        self.assertEqual(default.name, "summary_startup_op.json")
+        self.assertEqual(coarse.name, "summary_startup_op_step_5ns.json")
+        self.assertNotEqual(default, coarse)
+
+    def test_passive_corner_is_explicit_in_case_path(self) -> None:
+        path = case_report_path("base", 0, 0, passive_corner="hh")
+        self.assertIn("_passives_hh", path.parent.name)
 
     def test_idealized_ten_to_one_diagonal_has_twenty_db_rejection(self) -> None:
         matrix = [
@@ -112,6 +145,10 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
             "selected_beam": 2,
             "incident_beam": 3,
             "input_peak_v": 0.005,
+            "process_corner": "tt",
+            "supply_voltage_v": 1.8,
+            "temperature_c": 27.0,
+            "transient_step_ns": 2.0,
             "gds_sha256": "a" * 64,
             "netlist_sha256": "b" * 64,
             "spiceinit_sha256": "c" * 64,
@@ -153,6 +190,40 @@ class ControlPostlayoutCodebookTests(unittest.TestCase):
         self.assertTrue(
             any("VCM" in error for error in validate_settled_measurements(report))
         )
+
+    def test_resume_reuses_only_exact_current_passing_reports(self) -> None:
+        report = {
+            "status": "pass",
+            "view": "rc",
+            "startup": "op",
+            "selected_beam": 2,
+            "incident_beam": 3,
+            "input_peak_v": 0.005,
+            "process_corner": "tt",
+            "supply_voltage_v": 1.8,
+            "temperature_c": 27.0,
+            "transient_step_ns": 2.0,
+            "gds_sha256": "a" * 64,
+            "netlist_sha256": "b" * 64,
+            "spiceinit_sha256": "c" * 64,
+            "measurements": {
+                "vcm_avg": 1.199,
+                "common_mode_avg": 0.972,
+                "supply_avg": -695e-6,
+            },
+        }
+        arguments = {
+            "view": "rc",
+            "startup": "op",
+            "selected_beam": 2,
+            "incident_beam": 3,
+            "input_peak_v": 0.005,
+            "gds_sha256": "a" * 64,
+            "netlist_sha256": "b" * 64,
+        }
+        self.assertTrue(case_report_is_reusable(report, **arguments))
+        report["netlist_sha256"] = "d" * 64
+        self.assertFalse(case_report_is_reusable(report, **arguments))
 
     def test_operating_ranges_include_power(self) -> None:
         reports = {

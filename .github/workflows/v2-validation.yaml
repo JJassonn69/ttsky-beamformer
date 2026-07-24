@@ -1,0 +1,30 @@
+name: v2-validation-evidence
+
+on:
+  push:
+    paths:
+      - ".github/workflows/v2-validation.yaml"
+      - "build/v2/control_routing/direct/v2_control_quadrature_routed.gds"
+      - "gds/tt_um_jjassonn69_beamformer.gds"
+      - "lef/tt_um_jjassonn69_beamformer.lef"
+      - "info.yaml"
+      - "v2/**"
+  pull_request:
+    paths:
+      - ".github/workflows/v2-validation.yaml"
+      - "build/v2/control_routing/direct/v2_control_quadrature_routed.gds"
+      - "gds/tt_um_jjassonn69_beamformer.gds"
+      - "lef/tt_um_jjassonn69_beamformer.lef"
+      - "info.yaml"
+      - "v2/**"
+  workflow_dispatch:
+
+jobs:
+  frozen-evidence:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout V2 candidate and evidence
+        uses: actions/checkout@v4
+
+      - name: Check tracked V2 evidence and exact artifact hashes
+        run: python3 v2/tools/check_latest_validation.py

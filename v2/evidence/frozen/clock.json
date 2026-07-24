@@ -1,0 +1,61 @@
+{
+  "payload": {
+    "base_netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
+    "baseline_report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
+    "baseline_report_sha256": "bd0d7246741315fbdd12fc04897e09fea140a0cf1a0e02b7a9df57ba381941a2",
+    "case_count": 4,
+    "cases": {
+      "duty_40pct": {
+        "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_clkduty_40pct/report.json",
+        "report_sha256": "52aab1d3f13a4acd044412725b1cf32e579aeef6789aa4cfc42ff42e5fabebd7",
+        "status": "pass"
+      },
+      "duty_60pct": {
+        "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_clkduty_60pct/report.json",
+        "report_sha256": "2a5b9b9cacf38a778a8f4f779572fea36c308e033c8b6fde3105d6a3f2cac503",
+        "status": "pass"
+      },
+      "jitter_1000ps": {
+        "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_clkjitter_1000ps/report.json",
+        "report_sha256": "7217c856e5de2b80b173173098614de57e47bf201e6f4436382377ca61a239df",
+        "status": "pass"
+      },
+      "jitter_500ps": {
+        "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_clkjitter_500ps/report.json",
+        "report_sha256": "d21752756c8a09e7513e40b068183fb174311bc54e0de410375894d420bbf07b",
+        "status": "pass"
+      }
+    },
+    "errors": [],
+    "frozen_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "gate": 5,
+    "metrics": {
+      "gain_delta_db": {
+        "duty_40pct": 0.001642762874515924,
+        "duty_60pct": 0.00401509420416879,
+        "jitter_1000ps": 0.017433934531752016,
+        "jitter_500ps": 0.011529281793025703
+      },
+      "maximum_quadrature_period_error_ppm": {
+        "duty_40pct": 67.99999999995698,
+        "duty_60pct": 80.00000000008001,
+        "jitter_1000ps": 8000.000000000007,
+        "jitter_500ps": 3999.9999999998927
+      },
+      "nominal_gain_db": 13.548817343886645,
+      "output_common_mode_v": {
+        "duty_40pct": 0.98472,
+        "duty_60pct": 0.984719,
+        "jitter_1000ps": 0.98472,
+        "jitter_500ps": 0.98472
+      }
+    },
+    "schema_version": 1,
+    "scope": "bounded base-extracted master-clock duty/jitter sensitivity pilot",
+    "status": "pass",
+    "warnings": []
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/signoff/gate5_clock_pilot.json",
+  "source_sha256": "d01774b8f85dadbe1537efdf9363241633ae545c8f12c61146bbf5b3db18a01c"
+}

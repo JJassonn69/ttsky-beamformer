@@ -15,10 +15,12 @@ from run_control_postlayout_smoke import (
     RC_PHASE_ROOT_NODES,
     SPICE_INIT,
     analyze,
+    clock_source,
     codebook_input_phases,
     deck_text,
     netlist_has_node,
     prepare_runtime,
+    serial_trim_sources,
     validate_extracted_netlist,
 )
 
@@ -51,12 +53,120 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         self.assertIn(".measure tran vcm_rf_rms param=", text)
         self.assertIn(".measure tran vcm_lo_rms param=", text)
         self.assertIn(".measure tran ch0_gm_p_min", text)
+        self.assertIn(
+            "BCH0GM_PVDS ch0_gm_p_vds_probe 0 v=v(ch0_gm_p)-v(ch0_tail)", text
+        )
+        self.assertIn(
+            ".measure tran ch0_gm_p_vds_min min v(ch0_gm_p_vds_probe)", text
+        )
+        self.assertIn(
+            ".measure tran ch3_gm_n_vds_max max v(ch3_gm_n_vds_probe)", text
+        )
         self.assertIn(".measure tran ch3_tail_max", text)
         self.assertIn("VINPK=0.005", text)
+        self.assertIn("FIN=5meg FOUT=1meg FLO=4meg", text)
+
+    def test_rf_frequency_control_keeps_rated_lo_and_tracks_difference_tone(self) -> None:
+        text = deck_text(
+            Path("view.spice"), "a", "b",
+            input_frequency_mhz=4.5,
+            analysis_start_us=2.0,
+            analysis_stop_us=4.0,
+        )
+        self.assertIn("FIN=4.5meg FOUT=0.5meg FLO=4meg", text)
+        self.assertIn("VCLK R046 0 pulse(0 {VDD} 100n", text)
+        with self.assertRaises(ValueError):
+            deck_text(Path("view.spice"), "a", "b", input_frequency_mhz=4.0)
+        with self.assertRaises(ValueError):
+            deck_text(
+                Path("view.spice"), "a", "b",
+                input_frequency_mhz=4.5,
+                analysis_start_us=2.0,
+                analysis_stop_us=3.0,
+            )
+
+    def test_clock_duty_and_jitter_stresses_are_reproducible(self) -> None:
+        self.assertIn(
+            "pulse(0 {VDD} 100n 200p 200p 31.05n 62.5n)",
+            clock_source(CONTROL_NODES["clk"]),
+        )
+        duty = clock_source(CONTROL_NODES["clk"], duty_percent=40.0)
+        self.assertIn("24.8n 62.5n", duty)
+        jitter = clock_source(
+            CONTROL_NODES["clk"], jitter_ps=1000.0, stop_us=1.0
+        )
+        self.assertIn("VCLK R046 0 pwl(0 0 99n 0 99.2n {VDD}", jitter)
+        self.assertIn("163.5n 0 163.7n {VDD}", jitter)
+        self.assertEqual(
+            jitter,
+            clock_source(CONTROL_NODES["clk"], jitter_ps=1000.0, stop_us=1.0),
+        )
+        with self.assertRaises(ValueError):
+            clock_source(CONTROL_NODES["clk"], duty_percent=70.0)
+        with self.assertRaises(ValueError):
+            clock_source(CONTROL_NODES["clk"], jitter_ps=2500.0)
+
+    def test_pvt_controls_select_matching_model_supply_and_temperature(self) -> None:
+        text = deck_text(
+            self.base.relative_to(ROOT),
+            "a" * 64,
+            "b" * 64,
+            process_corner="ss",
+            supply_voltage_v=1.62,
+            temperature_c=85,
+        )
+        self.assertIn(".temp 85", text)
+        self.assertIn("sky130_1v8_ss.inc", text)
+        self.assertIn("pfet_01v8_hvt__ss.corner.spice", text)
+        self.assertIn(".param VDD=1.62", text)
+
+    def test_pvt_controls_reject_unsupported_ranges(self) -> None:
+        with self.assertRaises(ValueError):
+            deck_text(Path("x"), "a", "b", process_corner="unknown")
+        with self.assertRaises(ValueError):
+            deck_text(Path("x"), "a", "b", supply_voltage_v=2.5)
+        with self.assertRaises(ValueError):
+            deck_text(Path("x"), "a", "b", temperature_c=150)
+        with self.assertRaises(ValueError):
+            deck_text(Path("x"), "a", "b", passive_corner="unknown")
+
+    def test_passive_corner_selects_matching_resistor_and_capacitor_models(self) -> None:
+        text = deck_text(Path("x"), "a", "b", passive_corner="hl")
+        self.assertIn("res_high__cap_low.spice", text)
+        self.assertIn("res_high__cap_low__lin.spice", text)
+        self.assertNotIn("res_typical__cap_typical.spice", text)
+
+    def test_nondefault_trim_uses_one_lsb_first_serial_commit(self) -> None:
+        sources = "\n".join(serial_trim_sources((1, 2, 4, 8)))
+        self.assertIn("VCFGCLK R030 0 pwl", sources)
+        self.assertIn("VCFGDATA R032 0 pwl(0 {VDD}", sources)
+        self.assertIn("VCFGLATCH R033 0 pwl", sources)
+        self.assertIn("825n", sources)
+        clock = serial_trim_sources((1, 2, 4, 8))[0]
+        self.assertEqual(clock.count("n {VDD}"), 50)
+        self.assertIn("830n {VDD}", clock)
+        self.assertTrue(clock.endswith("839.8n {VDD} 840n 0)"))
+        text = deck_text(
+            Path("view.spice"), "a", "b", trim_codes=(1, 2, 4, 8)
+        )
+        self.assertNotIn("VCFGCLK R030 0 0", text)
+        self.assertIn(".measure tran trim0_min min v(R008)", text)
+        self.assertIn(".measure tran trim15_max max v(R014)", text)
+        self.assertIn(".measure tran apply_config_max max v(R024) from=0 to=2u", text)
+        self.assertIn(".measure tran serial_trim_max max v(R158) from=0 to=2u", text)
+        self.assertIn(".tran 2n 4u 0", text)
+
+    def test_default_trim_stays_at_reset_code_without_serial_activity(self) -> None:
+        text = deck_text(Path("view.spice"), "a", "b")
+        self.assertIn("VCFGCLK R030 0 0", text)
+        self.assertIn("VCFGDATA R032 0 0", text)
+        self.assertIn("VCFGLATCH R033 0 0", text)
+        with self.assertRaises(ValueError):
+            deck_text(Path("view.spice"), "a", "b", trim_codes=(0, 1, 2, 16))
 
     def test_smoke_window_is_short_enough_for_iterative_signoff(self) -> None:
         text = deck_text(Path("view.spice"), "netlist-hash", "gds-hash")
-        self.assertIn(".tran 2n 4u 2u uic", text)
+        self.assertIn(".tran 2n 4u 0 uic", text)
         self.assertIn(".option klu", text)
         self.assertIn("from=2u to=4u", text)
         self.assertNotIn("from=6u to=10u", text)
@@ -65,6 +175,14 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
             text,
         )
         self.assertIn("VCLK R046 0 pulse(0 {VDD} 100n", text)
+        self.assertIn(
+            ".measure tran vcm_valid_first when v(ch0_vcm)=1.1 rise=1",
+            text,
+        )
+        self.assertIn(
+            ".measure tran vcm_valid_settled when v(ch0_vcm)=1.1 rise=last",
+            text,
+        )
 
     def test_runtime_uses_isolated_large_sky130_configuration(self) -> None:
         for directive in (
@@ -86,6 +204,26 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
                 link = runtime / name
                 self.assertTrue(link.is_symlink())
                 self.assertEqual(link.resolve(), (ROOT / name).resolve())
+
+    def test_runtime_repairs_only_a_stale_generated_symlink(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            work = Path(temporary_directory)
+            runtime = prepare_runtime(work)
+            stale = runtime / "build"
+            stale.unlink()
+            stale.symlink_to(work / "obsolete-checkout", target_is_directory=True)
+            repaired = prepare_runtime(work)
+            self.assertEqual(
+                (repaired / "build").resolve(),
+                (ROOT / "build").resolve(),
+            )
+
+    def test_runtime_does_not_replace_a_real_directory(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            work = Path(temporary_directory)
+            (work / "runtime" / "build").mkdir(parents=True)
+            with self.assertRaisesRegex(RuntimeError, "blocks required link"):
+                prepare_runtime(work)
 
     def test_special_nfet_alias_population_is_frozen_in_both_views(self) -> None:
         token = "sky130_fd_pr__special_nfet_01v8"
@@ -173,7 +311,7 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
             analysis_start_us=14.0,
             analysis_stop_us=16.0,
         )
-        self.assertIn(".tran 2n 16u 14u uic", text)
+        self.assertIn(".tran 2n 16u 0 uic", text)
         self.assertIn("from=14u to=16u", text)
         self.assertIn("rise=1 td=14u", text)
 
@@ -198,7 +336,7 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
             analysis_stop_us=48.0,
             transient_step_ns=5.0,
         )
-        self.assertIn(".tran 5n 48u 46u uic", text)
+        self.assertIn(".tran 5n 48u 0 uic", text)
         with self.assertRaises(ValueError):
             deck_text(
                 Path("view.spice"),
@@ -434,7 +572,58 @@ class ControlPostlayoutSmokeTests(unittest.TestCase):
         _, errors = analyze(
             values, settled_startup=True, full_channel_operation=True
         )
-        self.assertIn("settled VCM is outside its nominal 1.2 V window", errors)
+        self.assertIn(
+            "settled VCM is outside its supply-scaled 0.60..0.73 VDD window",
+            errors,
+        )
+
+    def test_runner_requires_every_time_aligned_headroom_probe(self) -> None:
+        values = {
+            "output_rms": 15e-3,
+            "output_avg": 0.0,
+            "output_tone_rms": 14e-3,
+            "tone_i_avg": 9e-3,
+            "tone_q_avg": 4e-3,
+            "common_mode_avg": 0.985,
+            "vcm_avg": 1.199,
+            "supply_avg": -695e-6,
+        }
+        for index in range(4):
+            values[f"phase{index}_min"] = 0.0
+            values[f"phase{index}_max"] = 1.8
+            values[f"phase{index}_period"] = 250e-9
+        _, errors = analyze(values, require_headroom_probes=True)
+        self.assertTrue(any("ch0_gm_n_vds_max" in error for error in errors))
+        for channel in range(4):
+            for branch in ("gm_p", "gm_n"):
+                values[f"ch{channel}_{branch}_vds_min"] = 0.08
+                values[f"ch{channel}_{branch}_vds_max"] = 0.4
+        analysis, errors = analyze(values, require_headroom_probes=True)
+        self.assertEqual(errors, [])
+        self.assertEqual(
+            analysis["minimum_time_aligned_gm_drain_to_tail_v"], 0.08
+        )
+
+    def test_settled_vcm_window_scales_at_low_supply_corner(self) -> None:
+        values = {
+            "output_rms": 15e-3,
+            "output_avg": 0.0,
+            "output_tone_rms": 14e-3,
+            "tone_i_avg": 9e-3,
+            "tone_q_avg": 4e-3,
+            "common_mode_avg": 1.001,
+            "vcm_avg": 1.079,
+            "supply_avg": -527e-6,
+        }
+        for index in range(4):
+            values[f"phase{index}_min"] = 0.0
+            values[f"phase{index}_max"] = 1.62
+            values[f"phase{index}_period"] = 250e-9
+        _, errors = analyze(
+            values, settled_startup=True, full_channel_operation=True,
+            supply_voltage_v=1.62,
+        )
+        self.assertEqual(errors, [])
 
     def test_partial_channel_diagnostic_allows_higher_output_common_mode(self) -> None:
         values = {

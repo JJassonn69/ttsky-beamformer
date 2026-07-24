@@ -1,0 +1,79 @@
+{
+  "payload": {
+    "case_count": 10,
+    "errors": [],
+    "evidence": [
+      {
+        "case": "base_nominal_constructive",
+        "path": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
+        "sha256": "bd0d7246741315fbdd12fc04897e09fea140a0cf1a0e02b7a9df57ba381941a2"
+      },
+      {
+        "case": "base_zero_input_background",
+        "path": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_1_vin_0nv_startup_op_step_5ns/report.json",
+        "sha256": "b29607cfe20dc0b39e2c29d5bdf5e55343d99f8365ac5fd7eabcbfd7f5b3c8dc"
+      },
+      {
+        "case": "rc_cold_start",
+        "path": "build/v2/postlayout_startup/rc/quiet_120us_step_20ns_final_5us/report.json",
+        "sha256": "3408bf113c1ffd5a850d5b2c4f05bc6c1483a3de67f2426329a10590c483d544"
+      },
+      {
+        "case": "rc_ff_headroom",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_vin_0nv_startup_op_window_2us_3us_step_10ns_corner_ff_vdd_1p98_temp_m40c_passives_hh/report.json",
+        "sha256": "b49b302aac18c130abc8ed8aa4505ef73cd1b9ec1d8fe9d57c365f9b3ac386ea"
+      },
+      {
+        "case": "rc_nominal_constructive",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
+        "sha256": "f97bf3197c9386dd96bc2386f22839a8ab19f9dddb7eb4a7d47b7d24c8eaa36e"
+      },
+      {
+        "case": "rc_representative_null",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_1_startup_op_step_5ns/report.json",
+        "sha256": "93d465b02d9650014add84c73767c66f4011d7c675d59de95b44ea577cab3ce7"
+      },
+      {
+        "case": "rc_sf_headroom",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_vin_0nv_startup_op_window_2us_3us_step_10ns_corner_sf_vdd_1p8_temp_27c_passives_hh/report.json",
+        "sha256": "8f472ba8c326d7860ed1e53a17250c1c3475ae2cd6ea2f4f159a85aca1e99da0"
+      },
+      {
+        "case": "rc_trim_high",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns_trim_15_15_15_15/report.json",
+        "sha256": "ab5a6c47635ae2aae9b9a7f7b844e3b85ab75c440f021e0ab390e906008100d8"
+      },
+      {
+        "case": "rc_trim_low",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns_trim_0_0_0_0/report.json",
+        "sha256": "12d0d3df794da92f2680ba50d04ad0bdaacb7c40ed0402942d13f1fce04429ef"
+      },
+      {
+        "case": "rc_zero_input_background",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_1_vin_0nv_startup_op_step_5ns/report.json",
+        "sha256": "f4527c701e0b5e1f970068d1e4d56c030c9c59693ee91240dab636195926f7f2"
+      }
+    ],
+    "expected_netlist_sha256": {
+      "base": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
+      "rc": "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a"
+    },
+    "frozen_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "gate": 4,
+    "manifest": "build/v2/signoff/gate4_targeted_manifest.json",
+    "manifest_sha256": "8c30d1202f11e8114281f043d5300c36b9d02d58a80cb19a569a9d99111c935f",
+    "metrics": {
+      "base_corrected_constructive_rms_v": 0.02380129316225213,
+      "base_to_rc_constructive_delta_db": 0.10973278796610607,
+      "rc_corrected_constructive_rms_v": 0.023502492037120012,
+      "rc_corrected_null_rms_v": 4.648355243075918e-06,
+      "rc_representative_rejection_db": 74.0762920660717
+    },
+    "schema_version": 1,
+    "scope": "bounded post-layout electrical closure; not exhaustive characterization",
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/signoff/gate4_audit.json",
+  "source_sha256": "04bee90cb4faccc36226c7b2d39c58ecc8fa51063ffa11cd28145c8a5fb4d091"
+}

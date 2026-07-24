@@ -20,6 +20,7 @@ class PortCatalogTests(unittest.TestCase):
             "gm_nfet_guarded",
             "mixer_nfet_guarded",
             "bias_diode_nfet_guarded",
+            "trim_main_outer_nfet_shared_guard",
             "trim_main_third_nfet_shared_guard",
             "trim_bit8_nfet_shared_guard",
             "trim_switch_nfet_shared_guard",
@@ -39,6 +40,7 @@ class PortCatalogTests(unittest.TestCase):
     def test_even_finger_tail_banks_include_the_real_outer_drain_contact(self) -> None:
         analog = self.catalog["analog_pcells"]
         expected = {
+            "trim_main_outer_nfet_shared_guard": (6, 5, "D10_physical_outer_contact"),
             "trim_main_third_nfet_shared_guard": (7, 6, "D12_physical_outer_contact"),
             "trim_bit8_nfet_shared_guard": (5, 4, "D8_physical_outer_contact"),
             "trim_bit4_nfet_shared_guard": (3, 2, "D4_physical_outer_contact"),

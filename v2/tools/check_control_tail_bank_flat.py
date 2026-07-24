@@ -16,7 +16,7 @@ except ImportError:  # direct script execution
 
 NFET_MODEL = "sky130_fd_pr__nfet_01v8"
 TRIM_WEIGHTS = (1, 2, 4, 8)
-FIXED_FINGERS = 36
+FIXED_FINGERS = 32
 
 
 def nfet_devices(text: str) -> list[dict[str, Any]]:

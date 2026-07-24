@@ -1,3 +1,4 @@
+import hashlib
 import json
 import sys
 import tempfile
@@ -10,6 +11,10 @@ sys.path.insert(0, str(ROOT / "v2/tools"))
 
 from check_control_power import validate
 from generate_control_power import generate, magic_tcl
+
+
+def sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
 class ControlPowerTests(unittest.TestCase):
@@ -26,11 +31,29 @@ class ControlPowerTests(unittest.TestCase):
         cls.geometry = json.loads(cls.geometry_path.read_text())
 
     def test_generated_geometry_is_deterministic(self) -> None:
-        result = generate(
-            self.plan, self.placement, self.integration, self.dimensions,
-            self.catalog, ROOT / self.plan["source_checkpoint"]["gds"],
+        source = ROOT / self.plan["source_checkpoint"]["gds"]
+        if sha256(source) == self.plan["source_checkpoint"]["sha256"]:
+            result = generate(
+                self.plan, self.placement, self.integration, self.dimensions,
+                self.catalog, source,
+            )
+            self.assertEqual(result, self.geometry)
+            return
+
+        # This pre-route stage is a frozen input to the authoritative unified
+        # route. Its historical placement source was later regenerated, so
+        # trying to rebuild it now would silently create a different lineage.
+        self.assertTrue(
+            self.plan["regeneration_policy"].startswith("frozen_artifact_only")
         )
-        self.assertEqual(result, self.geometry)
+        geometry = self.plan["geometry_checkpoint"]
+        powered = self.plan["powered_gds_checkpoint"]
+        self.assertEqual(sha256(ROOT / geometry["path"]), geometry["sha256"])
+        self.assertEqual(sha256(ROOT / powered["path"]), powered["sha256"])
+        active = json.loads(
+            (ROOT / "v2/layout/control_openroad_route_plan.json").read_text()
+        )
+        self.assertEqual(active["source_checkpoint"]["sha256"], powered["sha256"])
 
     def test_every_rail_has_two_upper_contacts_and_one_net_component(self) -> None:
         report = validate(self.plan, self.geometry, self.placement)

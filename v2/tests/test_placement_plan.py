@@ -19,7 +19,7 @@ class V2PlacementPlanTests(unittest.TestCase):
         )
         self.assertEqual(report["status"], "pass", report["errors"])
         self.assertEqual(report["bbox_overlap_count"], 0)
-        self.assertEqual(report["fixed_trim_fingers"], 36)
+        self.assertEqual(report["fixed_trim_fingers"], 32)
         self.assertEqual(report["binary_trim_fingers"], [1, 2, 4, 8])
         self.assertEqual(report["gm_branch_p_centroid"], report["gm_branch_n_centroid"])
 

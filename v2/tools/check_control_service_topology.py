@@ -21,7 +21,9 @@ from check_magic_rc_log import FATAL_PATTERNS
 TOP = "v2_control_service_routed"
 
 
-def parse(text: str) -> tuple[dict[str, list[str]], list[list[str]]]:
+def parse(
+    text: str, top: str = TOP,
+) -> tuple[dict[str, list[str]], list[list[str]]]:
     signatures: dict[str, list[str]] = {}
     statements: list[list[str]] = []
     active = ""
@@ -30,17 +32,18 @@ def parse(text: str) -> tuple[dict[str, list[str]], list[list[str]]]:
             tokens = line.split(); active = tokens[1]; signatures[active] = tokens[2:]
         elif line.lower() == ".ends":
             active = ""
-        elif active == TOP and line.startswith("X"):
+        elif active == top and line.startswith("X"):
             statements.append(line.split())
-    if TOP not in signatures:
-        raise ValueError(f"missing .subckt {TOP}")
+    if top not in signatures:
+        raise ValueError(f"missing .subckt {top}")
     return signatures, statements
 
 
 def audit(spice: str, mapping: dict[str, Any], routes: list[dict[str, Any]],
-          log: str) -> dict[str, Any]:
+          log: str, top: str = TOP, marker_prefix: str = "CONTROL_SERVICE",
+          physical_labels: dict[str, str] | None = None) -> dict[str, Any]:
     errors: list[str] = []
-    signatures, statements = parse(spice)
+    signatures, statements = parse(spice, top)
     attachments: dict[str, list[tuple[str, str, str]]] = {}
     for statement in statements:
         cell, nets = statement[-1], statement[1:-1]
@@ -53,11 +56,14 @@ def audit(spice: str, mapping: dict[str, Any], routes: list[dict[str, Any]],
     checks: list[dict[str, Any]] = []
     for route in sorted(routes, key=lambda item: item["net"]):
         net = route["net"]
+        extracted_net = (
+            physical_labels.get(net, net) if physical_labels is not None else net
+        )
         expected = Counter(
             (item["cell"], item["pin"]) for item in route["endpoints"]
             if item["kind"] == "standard_cell_pin"
         )
-        actual_attached = attachments.get(net, [])
+        actual_attached = attachments.get(extracted_net, [])
         actual = Counter(
             (cell, pin) for instance, cell, pin in actual_attached
             if instance.startswith("Xsky130_fd_sc_hd__") and pin not in POWER_EXPECTED
@@ -76,14 +82,15 @@ def audit(spice: str, mapping: dict[str, Any], routes: list[dict[str, Any]],
         }
         actual_drivers = sum(count for role, count in actual.items() if role in driver_roles)
         checks.append({
-            "net": net, "route_class": route["class"],
+            "net": net, "extracted_net": extracted_net,
+            "route_class": route["class"],
             "expected_driver_count": expected_drivers,
             "actual_driver_count": actual_drivers,
             "expected_mapped_roles": {f"{cell}.{pin}": count for (cell, pin), count in sorted(expected.items())},
             "actual_mapped_roles": {f"{cell}.{pin}": count for (cell, pin), count in sorted(actual.items())},
             "unexpected_helper_roles": helpers,
         })
-        if net not in attachments:
+        if extracted_net not in attachments:
             errors.append(f"{net}: named extracted net is absent")
         if actual != expected:
             errors.append(f"{net}: mapped roles {actual} != {expected}")
@@ -91,7 +98,10 @@ def audit(spice: str, mapping: dict[str, Any], routes: list[dict[str, Any]],
             errors.append(f"{net}: unexpectedly reaches analog helper roles {helpers}")
         if actual_drivers != expected_drivers:
             errors.append(f"{net}: extracted {actual_drivers} mapped drivers, expected {expected_drivers}")
-    if len({item["net"] for item in checks if item["net"] in attachments}) != len(routes):
+    if len({
+        item["extracted_net"] for item in checks
+        if item["extracted_net"] in attachments
+    }) != len(routes):
         errors.append("service/direct routes are not independent named extracted nets")
 
     expected_mapped_types = {
@@ -137,9 +147,9 @@ def audit(spice: str, mapping: dict[str, Any], routes: list[dict[str, Any]],
     if fatal:
         errors.append(f"Magic service extraction log has fatal markers: {fatal}")
     for marker in (
-        "CONTROL_SERVICE_EXTRACTION_DRC_COUNT=0",
-        "CONTROL_SERVICE_EXTRACTION_FEEDBACK_COUNT=0",
-        "CONTROL_SERVICE_HIER_SPICE=", "CONTROL_SERVICE_FLAT_SPICE=",
+        f"{marker_prefix}_EXTRACTION_DRC_COUNT=0",
+        f"{marker_prefix}_EXTRACTION_FEEDBACK_COUNT=0",
+        f"{marker_prefix}_HIER_SPICE=", f"{marker_prefix}_FLAT_SPICE=",
     ):
         if marker not in log:
             errors.append(f"Magic service extraction log lacks {marker}")
@@ -165,12 +175,23 @@ def main() -> None:
     parser.add_argument("--allocation", type=Path, default=Path("build/v2/control_routing/control_route_allocation.json"))
     parser.add_argument("--log", type=Path, default=Path("build/v2/control_routing/direct/service_magic_extraction.log"))
     parser.add_argument("--report", type=Path, default=Path("build/v2/control_routing/service_extraction/topology_audit.json"))
+    parser.add_argument("--top", default=TOP)
+    parser.add_argument("--marker-prefix", default="CONTROL_SERVICE")
+    parser.add_argument(
+        "--openroad-geometry", type=Path,
+        default=Path("build/v2/control_routing/openroad_route_geometry.json"),
+    )
     args = parser.parse_args()
     allocation = json.loads(args.allocation.read_text())
+    openroad = json.loads(args.openroad_geometry.read_text())
+    physical_labels = {
+        logical: physical for physical, logical in openroad["label_net_map"].items()
+    }
     report = audit(
         args.spice.read_text(errors="replace"), json.loads(args.mapping.read_text()),
         [item for item in allocation["nets"] if item["class"] in ("direct_boundary", "service_tree")],
-        args.log.read_text(errors="replace"),
+        args.log.read_text(errors="replace"), args.top, args.marker_prefix,
+        physical_labels,
     )
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n", encoding="utf-8")

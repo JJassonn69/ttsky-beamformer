@@ -47,10 +47,11 @@ class ControlFinalRcTest(unittest.TestCase):
         self.assertGreater(rc["resistors"], 90000)
         self.assertGreater(rc["capacitors"], base["capacitors"])
         self.assertEqual(rc["devices"], base["devices"])
-        # The VCM ECO adds exactly four foundry varactor devices.
-        # Four channels each remove one six-finger fixed-tail group (24
-        # extracted devices total) from the previous 42+8 implementation.
-        self.assertEqual(rc["devices"], 4224)
+        # The VCM ECO adds exactly four foundry varactor devices.  Moving from
+        # 36 to 32 fixed tail fingers removes four extracted MOS devices per
+        # channel, so the frozen candidate has 16 fewer devices than its
+        # immediate predecessor.
+        self.assertEqual(rc["devices"], 4208)
         self.assertGreater(rc["internal_resistor_nodes"], 60000)
         self.assertGreaterEqual(
             self.report["annotation"]["spice_to_annotation_ratio"], 0.90

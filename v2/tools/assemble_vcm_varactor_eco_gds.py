@@ -24,8 +24,8 @@ from assemble_control_placement_gds import (
 SOURCE_TOP = "v2_control_quadrature_routed"
 OVERLAY_TOP = "v2_vcm_varactor_eco_overlay"
 VARACTOR_CELL = "sky130_fd_pr__cap_var_lvt_88578Y"
-SOURCE_SHA256 = "145804737243ea220ab26892a8a67b3df63920857544461b040aab0ead06532b"
-EXPECTED_OUTPUT_SHA256 = "8747ab04e6a39da780584a59f365c7506cc34b1e7d5f9e7fe56563a10a10ad9d"
+SOURCE_SHA256 = "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313"
+EXPECTED_OUTPUT_SHA256 = "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
 
 
 def sha256(data: bytes) -> str:
@@ -151,8 +151,24 @@ def main() -> None:
     parser.add_argument("overlay", type=Path)
     parser.add_argument("output", type=Path)
     parser.add_argument("--report", type=Path)
+    parser.add_argument(
+        "--propose",
+        action="store_true",
+        help=(
+            "compose a structurally checked candidate before its source and "
+            "output hashes are frozen; release assembly must omit this flag"
+        ),
+    )
     args = parser.parse_args()
-    output, report = assemble(args.source.read_bytes(), args.overlay.read_bytes())
+    if args.propose:
+        output, report = compose_structurally_checked(
+            args.source.read_bytes(), args.overlay.read_bytes()
+        )
+        report["freeze_required"] = True
+    else:
+        output, report = assemble(
+            args.source.read_bytes(), args.overlay.read_bytes()
+        )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_bytes(output)
     text = json.dumps(report, indent=2, sort_keys=True) + "\n"

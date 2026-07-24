@@ -53,8 +53,8 @@ def rc_transfer(frequency_hz: float, path: AnalogPath) -> complex:
 def trim_scale(code: int, bits: int = 4) -> float:
     """Map the verified equal-unit switched-tail code onto relative current.
 
-    Thirty-six fixed current fingers plus the binary code give 36..51 active
-    fingers.  Code 8 activates 44 fingers and is the nominal operating point.
+    Thirty-two fixed current fingers plus the binary code give 32..47 active
+    fingers.  Code 8 activates 40 fingers and is the nominal operating point.
     Small-signal channel gain is provisionally assumed to track tail current;
     the transistor-level channel sweep must quantify any residual curvature.
     """
@@ -64,7 +64,7 @@ def trim_scale(code: int, bits: int = 4) -> float:
         raise ValueError(f"trim code must be in 0..{maximum_code}")
     if bits != 4:
         raise ValueError("V2 production trim model is fixed to the verified four-bit bank")
-    return (36.0 + code) / 44.0
+    return (32.0 + code) / 40.0
 
 
 def tx_phase_codes(beam_index: int) -> tuple[int, ...]:

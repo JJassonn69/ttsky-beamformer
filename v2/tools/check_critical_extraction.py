@@ -159,14 +159,15 @@ def expected_local_trim_nodes(
     vbias = "ch0_vbias" if shared_vbias else net("vbias")
     expected: dict[str, list[str]] = {}
 
-    # The corrected parent collector exposes all seven drain-side diffusion
-    # nodes for each 12-finger bank.  The resulting support-checkpoint port
-    # order contains 15 nodes, including the promoted outer drain contact.
-    # check_control_tail_bank_flat.py independently counts all 12 physical MOS
-    # statements, so this hierarchical check cannot mask a missing finger.
-    main_nodes = [tail, vbias] + [ground, tail] * 6 + [ground]
-    for index in range(3):
-        expected[f"X{prefix}_TMAIN{index}"] = main_nodes
+    # The corrected parent collector promotes the physical outer drain that
+    # Magic omits from even-finger PCell labels.  The outer 10-finger rows
+    # therefore expose 13 nodes and the unchanged 12-finger center row 15.
+    # The flat audit independently counts every physical MOS finger.
+    main_outer_nodes = [tail, vbias] + [ground, tail] * 5 + [ground]
+    main_center_nodes = [tail, vbias] + [ground, tail] * 6 + [ground]
+    expected[f"X{prefix}_TMAIN0"] = main_outer_nodes
+    expected[f"X{prefix}_TMAIN1"] = main_center_nodes
+    expected[f"X{prefix}_TMAIN2"] = main_outer_nodes
 
     trim_gate = lambda weight: f"{prefix}_TTRIM{weight}/G"
     for weight in (8, 4, 2):

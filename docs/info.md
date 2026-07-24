@@ -1,50 +1,37 @@
 ## How it works
 
-This project is a two-channel narrowband receive beamformer for phase-coherent
-5 MHz intermediate-frequency signals. Each analog input drives a matched NMOS
-transconductor and commutating mixer. The 4 MHz `clk` input is converted into
-complementary local-oscillator phases on chip. The mixer currents share a
-differential load, producing the 1 MHz difference-frequency signal on
-`BEAM_OUT_P` and `BEAM_OUT_N`.
+Think of the four inputs as four microphones listening to the same repeating
+wave from slightly different positions. The chip delays each channel by one of
+four quarter-cycle choices, then adds all four channels. A wave arriving from
+the selected direction lines up and adds strongly; waves with the wrong phase
+pattern mostly cancel.
 
-Set `CH2_PHASE_180` low to combine equal-phase inputs constructively. Set it
-high to exchange the channel-two LO phases and apply a 180-degree weight. The
-latter mode demonstrates spatial cancellation when the two inputs have equal
-amplitude and phase.
+The `clk` pin accepts a nominal 16 MHz master clock. On-chip digital logic
+creates four 4 MHz phases. `BEAM_SELECT_0/1` choose one of four fixed phase
+patterns. `CH0_ENABLE` through `CH3_ENABLE` can isolate channels, and the
+three-wire configuration interface loads manual phase and 4-bit per-channel
+gain-trim settings.
 
-The chip intentionally contains no 50-ohm RF match, inductor, transformer or
-large IF filter. These functions are more predictable and testable off-chip.
-
-The release operating point remains a 4 MHz clock with 5 MHz inputs. The final
-parasitic layout has additionally been characterized at 10, 20, and 30 MHz;
-for those modes keep the input 1 MHz above the clock. Higher-clock operation is
-for characterization until package and board parasitics are included.
-
-See the [complete engineering datasheet and iteration handoff](datasheet.md)
-for the circuit inventory, operating envelope, simulation results,
-physical-signoff provenance, known risks, and next-revision plan.
+The intended first operating point is four coherent 5 MHz inputs and a
+differential 1 MHz output. The ports are high impedance; use AC coupling and a
+high-impedance differential receiver. Do not terminate the output directly in
+50 ohms.
 
 ## How to test
 
-1. Apply 1.8 V to `VDPWR` and ground to `VGND`. The minimal analog core is
-   always active while powered; `ena` and `rst_n` are reserved in this revision.
-2. Drive `clk` with a 0-to-1.8 V, 4 MHz square wave.
-3. AC-couple two phase-coherent 5 MHz sine waves of 10 mVpp into
-   `IF_INPUT_1` and `IF_INPUT_2`.
-4. Measure `BEAM_OUT_P - BEAM_OUT_N` with a high-impedance differential probe
-   or instrumentation amplifier followed by an external 2 MHz low-pass
-   filter.
-5. With `CH2_PHASE_180=0`, verify a strong 1 MHz output. With
-   `CH2_PHASE_180=1`, verify cancellation. Sweep the phase of input two through
-   360 degrees and record the constructive peak and null depth.
+1. Apply 1.8 V to `VDPWR` and ground to `VGND`; do not apply a second analog
+   supply because this design does not use `VAPWR`.
+2. Hold reset active and all channels disabled during startup. Wait at least
+   120 us after applying power for the simulated common-mode reference to
+   settle, then apply a 0-to-1.8 V, 16 MHz clock and release reset.
+3. AC-couple four phase-coherent 5 MHz signals into `ua[0]` through `ua[3]`.
+4. Measure `ua[4] - ua[5]` with a high-impedance differential probe or
+   instrumentation amplifier and a low-pass filter around the 1 MHz output.
+5. Select each beam code and change the four input phases to match that code.
+   The matching code should produce the strongest output; the three other
+   codes should be substantially lower.
+6. Test one channel at a time, then use the per-channel trim codes to reduce
+   residual gain mismatch before repeating the four-channel test.
 
-Do not terminate an analog output directly in 50 ohms. Keep every pin between
-`VGND` and `VDPWR`.
-
-## External hardware
-
-- two phase-coherent, independently phase-adjustable 5 MHz signal sources;
-- one 0-to-1.8 V, 4 MHz clock source;
-- AC-coupling capacitors for both analog inputs;
-- a high-impedance differential receiver or oscilloscope probe; and
-- an external low-pass filter with approximately 2 MHz cutoff.
+The exact pin table, configuration format, limits, and validation status are
+in the [V2 datasheet](../v2/docs/datasheet.md).

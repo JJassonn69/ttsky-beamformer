@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Check that extracted trim routes join the exact mapped Q/A0 pins."""
+"""Check that final extracted trim routes join the exact mapped Q/A0 pins."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from check_control_power_topology import parse_spice
 from check_magic_rc_log import FATAL_PATTERNS
 
 
-TOP = "v2_control_trim_routed"
+TOP = "v2_control_quadrature_routed"
 
 
 def audit(
@@ -24,11 +24,7 @@ def audit(
     marker_prefix: str = "CONTROL_TRIM",
 ) -> dict[str, Any]:
     errors: list[str] = []
-    signatures, statements = parse_spice(spice.replace(
-        f".subckt {top}", ".subckt v2_four_channel_control_powered", 1
-    ))
-    # parse_spice's power checker top name is intentionally fixed.  The text
-    # replacement affects only parsing; extracted instance/net names remain exact.
+    signatures, statements = parse_spice(spice, top)
     attachments: dict[str, list[tuple[str, str, str]]] = {}
     for statement in statements:
         cell = statement[-1]
@@ -125,7 +121,7 @@ def audit(
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--spice", type=Path,
-                        default=Path("build/v2/control_routing/extraction/control_trim_hier.spice"))
+                        default=Path("build/v2/control_routing/quadrature_extraction/control_quadrature_hier.spice"))
     parser.add_argument("--mapping", type=Path,
                         default=Path("build/v2/control_mapping/physical_netlist.json"))
     parser.add_argument(
@@ -133,11 +129,11 @@ def main() -> None:
         default=Path("build/v2/control_routing/openroad_route_geometry.json"),
     )
     parser.add_argument("--log", type=Path,
-                        default=Path("build/v2/control_routing/direct/magic_extraction.log"))
+                        default=Path("build/v2/control_routing/direct/quadrature_magic_extraction.log"))
     parser.add_argument("--report", type=Path,
-                        default=Path("build/v2/control_routing/extraction/trim_topology_audit.json"))
+                        default=Path("build/v2/control_routing/quadrature_extraction/trim_topology_audit.json"))
     parser.add_argument("--top", default=TOP)
-    parser.add_argument("--marker-prefix", default="CONTROL_TRIM")
+    parser.add_argument("--marker-prefix", default="CONTROL_QUADRATURE")
     args = parser.parse_args()
     report = audit(
         args.spice.read_text(errors="replace"),

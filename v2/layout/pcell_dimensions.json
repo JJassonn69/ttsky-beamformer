@@ -45,6 +45,13 @@
       "width_um": 9.77,
       "height_um": 2.14
     },
+    "trim_main_outer_nfet_shared_guard": {
+      "generated_cell": "sky130_fd_pr__nfet_01v8_4DYN95",
+      "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 10, "guard": 0},
+      "bbox_um": [-4.095, -1.07, 4.095, 1.07],
+      "width_um": 8.19,
+      "height_um": 2.14
+    },
     "trim_bit8_nfet_shared_guard": {
       "generated_cell": "sky130_fd_pr__nfet_01v8_KNL8QH",
       "parameters": {"finger_width": 1.26, "length": 0.50, "fingers": 8, "guard": 0},

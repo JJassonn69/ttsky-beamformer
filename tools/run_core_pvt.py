@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate and run the integrated beamformer PVT regression matrix."""
+"""Legacy V1 helper: run the historical two-channel PVT matrix."""
 
 from __future__ import annotations
 

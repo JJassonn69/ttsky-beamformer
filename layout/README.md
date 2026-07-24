@@ -1,64 +1,11 @@
-# Physical layout
+# Legacy two-channel layout flow
 
-The production macro occupies TinyTapeout's SKY130 1x2 analog boundary
-(161.00 x 225.76 um) and preserves every port from the authenticated official
-DEF template.
+The files in this root directory reproduce the original 1x2 two-channel
+prototype and are retained as historical engineering provenance. They do not
+generate, extract, or sign off the active submission.
 
-The reproducible flow is:
-
-1. `tools/fetch_tt_template.py` authenticates the pinned template DEF.
-2. `tools/generate_layout_scripts.py` generates the Magic PCell placement for
-   all 70 devices, including the split common-centroid channel units, and the
-   full-height power ports.
-3. `tools/generate_route_script.py` reads actual PCell terminal labels and
-   generates deterministic local-M2/M3/M4 routing on 30 named tracks, with
-   matched breakouts, a full MIM-capacitor keep-out, and a top-edge route
-   ceiling that clears every TinyTapeout digital M4 pin by at least 0.30 um.
-4. `tools/check_generated_routes.py` rejects cross-net same-layer overlaps,
-   cross-net via-to-adjacent-metal overlaps, disconnected same-net conductor
-   islands, via-3 enclosure pads with no real M3/via-2 or M4 continuation, and
-   independently checks the exact top-pin rectangles before Magic is run.
-5. `layout/extract.tcl` requires zero DRC errors and writes three explicit
-   views: device/capacitance (`extracted.spice`), distributed route-RC
-   (`extracted_rc.spice`), and capacitance-suppressed topology/LVS
-   (`extracted_lvs.spice`). The RC view uses Magic `extract do resistance`,
-   zero network/segment thresholds, no topology simplification or resistor
-   pruning, and `ext2spice extresist on`.
-6. `tools/check_extracted_layout.py` checks device/finger/passive counts,
-   power connectivity, unexpected net equivalences, and explicitly proves that
-   all 18 XBIASA/XBIASB fingers retain the intended `D=G=vbias`,
-   `S=B=VGND` diode connection without merging the two nets.
-7. `tools/check_distributed_rc.py` rejects a capacitance-only fallback, proves
-   the `.res.ext` annotation exists, checks explicit R/C/internal-node counts,
-   preserves the device count, requires every manifest net to participate in
-   the resistor graph, and rejects any resistor component not anchored to a
-   manifest net.
-8. `layout/signoff.tcl` requires zero final DRC errors, emits uncompressed
-   GDSII, and rejects any Magic GDS-writer geometry feedback.
-9. `tools/check_gds_flat_rules.py` flattens the exact release GDS, checks the
-   escaped M3/M4/capm interaction rules, and proves every via-3 cut has complete
-   two-sided M3/M4 enclosure, including legal split-rectangle junctions.
-10. `tools/generate_submission_lef.py` creates the exact template-pin abstract
-   LEF. Magic's generic LEF output is intentionally not used because it exposes
-   internal connected geometry as extra port rectangles.
-11. `tools/render_gds.py` parses the emitted hierarchical GDSII directly and
-   regenerates the overview, matching-core, MIM/via, and top-pin-clearance
-   detail images.
-
-The Make dependency graph deliberately rebuilds clean placement before every
-route and rebuilds routing before every extraction. Magic route paint is
-additive, so this prevents two route revisions from accumulating in a stale
-`build/layout/buffered` cell and turning into an extraction-only short.
-
-Run a physical script with the pinned SKY130 PDK and Magic:
-
-```sh
-PDK_ROOT=/path/to/pdk \
-MAGIC_BIN=/path/to/magic \
-tools/run_magic_layout.sh layout/pdk_smoke.tcl
-```
-
-The release tool, PDK, template, action, and output hashes are recorded in
-`submission/template.lock`. Numeric matching, width, via, clearance, rebuild,
-and distributed-RC requirements are maintained as the physical constraint
-contract in `spec/beamformer_v1.md`.
+The active four-channel floorplan and constraints are under `v2/layout/`; its
+authoritative physical-design record is `v2/spec/physical_design.md`. The root
+submission wrapper is generated from the frozen V2 candidate by
+`v2/tools/generate_submission_gds.py` and
+`tools/generate_submission_lef.py`.

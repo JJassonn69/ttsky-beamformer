@@ -1,0 +1,55 @@
+{
+  "payload": {
+    "analysis": {
+      "errors": [],
+      "points": {
+        "tone_10mvpk": {
+          "components_rms_v": {
+            "fund_high": 0.04703538727108604,
+            "fund_low": 0.047414685663026944,
+            "im3_high": 0.00016265405279997238,
+            "im3_low": 0.00016059596553703087
+          },
+          "fundamental_to_worst_im3_db": 49.25807822061116,
+          "input_iip3_dbv_rms_per_tone": -18.381260846334232
+        },
+        "tone_2mvpk": {
+          "components_rms_v": {
+            "fund_high": 0.00947981797598006,
+            "fund_low": 0.009562177366515826,
+            "im3_high": 3.5700824569188857e-06,
+            "im3_low": 1.615437082959285e-06
+          },
+          "fundamental_to_worst_im3_db": 68.52000299549356,
+          "input_iip3_dbv_rms_per_tone": -22.72969854561341
+        }
+      },
+      "status": "pass"
+    },
+    "cases": {
+      "background": {
+        "report": "build/v2/gate5_twotone_pilot/base/background/report.json",
+        "report_sha256": "6f246e79fd8bac02790e76e8c803e51b8537a24b12697f0abce5dac89716b5eb"
+      },
+      "tone_10mvpk": {
+        "report": "build/v2/gate5_twotone_pilot/base/tone_10000uvpk/report.json",
+        "report_sha256": "fd9fb26247417e02457409bff28655558e46cc45cf7d38d059b2619bf244f6d3"
+      },
+      "tone_2mvpk": {
+        "report": "build/v2/gate5_twotone_pilot/base/tone_2000uvpk/report.json",
+        "report_sha256": "9f92231c5157e2184fb60e921ba73b65449c0157d7415904ecf55091544963ef"
+      }
+    },
+    "errors": [],
+    "gate": 5,
+    "gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
+    "schema_version": 1,
+    "scope": "bounded two-tone IIP3 pilot; not a production guarantee",
+    "status": "pass",
+    "view": "base"
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/gate5_twotone_pilot/base_summary.json",
+  "source_sha256": "8cceeb08078b23706b94e6d11d1328a306ff588a360ae37bb44a7d9436093828"
+}

@@ -1,0 +1,250 @@
+{
+  "as_of": "2026-07-24",
+  "candidate": {
+    "bytes": 1837932,
+    "final_eco": "four foundry cap_var_lvt devices, G=VCM and D=S=B=VGND",
+    "path": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "pre_varactor_user_route_source": {
+      "bytes": 1787976,
+      "path": "v2/reference/v2_control_quadrature_user_routed.gds",
+      "sha256": "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313",
+      "top": "v2_control_quadrature_routed"
+    },
+    "sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "top": "v2_control_quadrature_routed"
+  },
+  "checkpoint": {
+    "bytes": 5694,
+    "path": "v2/layout/control_routing_checkpoint.json",
+    "sha256": "9e73dc7e5717ac1d808e412d9bd5874df3fbd6f8e73aeb55cc7bb748269230a3"
+  },
+  "datasheet_figures": {
+    "bytes": 19141,
+    "count": 6,
+    "path": "v2/evidence/datasheet_figures.json",
+    "sha256": "56c3dde602fe2cfda4b5c93a533ff2249dda5768b6d0183300214ae7cefe973b"
+  },
+  "fabrication_scope": "ready for a TinyTapeout research shuttle after the official workflow passes; not production-qualified or measured silicon",
+  "frozen_evidence": {
+    "clock": {
+      "bytes": 2620,
+      "path": "v2/evidence/frozen/clock.json",
+      "sha256": "a22f46503dc6b132fb5a4a021410b99c11b90fc7c77528e8204261e13ee56122",
+      "source_sha256": "d01774b8f85dadbe1537efdf9363241633ae545c8f12c61146bbf5b3db18a01c"
+    },
+    "extraction": {
+      "bytes": 327346,
+      "path": "v2/evidence/frozen/extraction.json",
+      "sha256": "cbb62f3120564b2b55bf6c8cd1495b612b573d054a4bf7545beb526b7408b865",
+      "source_sha256": "43c99bb661957b238f93cbe585e1092ab9314c40f5fd919366bfe047b7c26801"
+    },
+    "fast_high_cold": {
+      "bytes": 8755,
+      "path": "v2/evidence/frozen/fast_high_cold.json",
+      "sha256": "df81ab77bf4985b480480a5eb194ccdd71ea702152d8efb045a85839092fcf38",
+      "source_sha256": "baad7685373b6930440454f884132235de56b3e4e47c3f193471a4f6502bdb9b"
+    },
+    "fs_nominal": {
+      "bytes": 8738,
+      "path": "v2/evidence/frozen/fs_nominal.json",
+      "sha256": "91cb54c658c870f29e602762a65c7dc1d4db968d1c9c5edc2a379684f1b2d9de",
+      "source_sha256": "79d991557e47cdf39a0ce87f645d87f884d28b163589cba2bf801c3fc4081482"
+    },
+    "gate3": {
+      "bytes": 4951,
+      "path": "v2/evidence/frozen/gate3.json",
+      "sha256": "a936dd54f0cf2370d2b5761ee39c62ecd5330bbff0b677ca15a6f717b0c4cc7d",
+      "source_sha256": "995d5ed6504c7fd2837e34767deef9e93ea7b4a1ba61005d6440cb5cf44e72d0"
+    },
+    "gate4": {
+      "bytes": 3852,
+      "path": "v2/evidence/frozen/gate4.json",
+      "sha256": "e5c5b07d3edfd8d17cf2be07fea9c662dd67aa969164a848229c83ff7a923ee9",
+      "source_sha256": "04bee90cb4faccc36226c7b2d39c58ecc8fa51063ffa11cd28145c8a5fb4d091"
+    },
+    "gate5": {
+      "bytes": 2469,
+      "path": "v2/evidence/frozen/gate5.json",
+      "sha256": "3af247e4f2c37e8b7a95e6560f040f281dadc559120765706e65b4a0a72c0acb",
+      "source_sha256": "3303c5750d95c92b27534c87b850db5da39716f82cc36d6064af05e3c8c33453"
+    },
+    "heavy_load": {
+      "bytes": 8872,
+      "path": "v2/evidence/frozen/heavy_load.json",
+      "sha256": "5c3230c7008670cbd8344a2e5909bcea554aeac2ec8c4f5e2b4f25c7e54f5f74",
+      "source_sha256": "1b8e98ad3c3927e7b0476a0082758d98e37030cd4f97cb064b7d27ee8d3d1363"
+    },
+    "mismatch": {
+      "bytes": 55501,
+      "path": "v2/evidence/frozen/mismatch.json",
+      "sha256": "c8e9f8911d3db1d0d2bf3606d05a67bec2bfd7f0ddd6b77a29b0b20a9ee2c9dd",
+      "source_sha256": "5534811e601bfacae4d1dc3bbe0899742e2746b1bd57c7bbe1534f8764278a4b"
+    },
+    "rc_codebook": {
+      "bytes": 16685,
+      "path": "v2/evidence/frozen/rc_codebook.json",
+      "sha256": "edc88c989b3605aeed34c5d4da1d576f4ef9feabae603345927fe30e9de2e1c4",
+      "source_sha256": "a69748af7f7d6b37f5de9e55ace514bff68b7a53ee6806707e5577281df63784"
+    },
+    "sensitivity": {
+      "bytes": 4141,
+      "path": "v2/evidence/frozen/sensitivity.json",
+      "sha256": "b01711547f26353f6472656eb0ff12dc14e5437006ad9301130fef2fbd905c9f",
+      "source_sha256": "ce7a81eda275afd93c49b1b64dfd9f22dd8bfdeb62798e026f6156e8472478d5"
+    },
+    "sf_nominal": {
+      "bytes": 8726,
+      "path": "v2/evidence/frozen/sf_nominal.json",
+      "sha256": "2f4a31b322b45b19805816d61ef9def1bb7336e19fa20324e507629ade5268bc",
+      "source_sha256": "d21de7c9a2025d67155283cb91c3e90b5754e104a08f92f7cf85a4039e00256a"
+    },
+    "slow_low_hot": {
+      "bytes": 8901,
+      "path": "v2/evidence/frozen/slow_low_hot.json",
+      "sha256": "ef63a205ed521b42bd73de93d64a3ec5bf0a8e7e460ea67d40c597f133eb2205",
+      "source_sha256": "b0d0c63a84d9d35079849c39552da062e2960bb47a130f46eb5859933260fe6f"
+    },
+    "startup": {
+      "bytes": 1298,
+      "path": "v2/evidence/frozen/startup.json",
+      "sha256": "76de0b06b67909b3b1dfea3c5a24c372d546902b359c298e7a6f0bd4c75572af",
+      "source_sha256": "3408bf113c1ffd5a850d5b2c4f05bc6c1483a3de67f2426329a10590c483d544"
+    },
+    "trim": {
+      "bytes": 15809,
+      "path": "v2/evidence/frozen/trim.json",
+      "sha256": "073a60eac0facef9c4cebc95cc9e23d37d78442ba81f5259cd4d96cfce3b5a80",
+      "source_sha256": "21fe79a9e6fd16c101d70b12dbd4907c316e9a407e9287962cad33039ad122f9"
+    },
+    "twotone": {
+      "bytes": 2046,
+      "path": "v2/evidence/frozen/twotone.json",
+      "sha256": "f6852ef7b90a623b62ceb9a7920d99564bd12ece82f0f30acc445e93af202ccb",
+      "source_sha256": "8cceeb08078b23706b94e6d11d1328a306ff588a360ae37bb44a7d9436093828"
+    }
+  },
+  "gates": {
+    "bounded_electrical_gate4": "pass",
+    "characterization_gate5": "pass_with_documented_noise_residual",
+    "official_tinytapeout": {
+      "commit": null,
+      "run_url": null,
+      "status": "pending"
+    },
+    "physical_gate3": "pass"
+  },
+  "headline_metrics": {
+    "gate4": {
+      "base_corrected_constructive_rms_v": 0.02380129316225213,
+      "base_to_rc_constructive_delta_db": 0.10973278796610607,
+      "rc_corrected_constructive_rms_v": 0.023502492037120012,
+      "rc_corrected_null_rms_v": 4.648355243075918e-06,
+      "rc_representative_rejection_db": 74.0762920660717
+    },
+    "gate5": {
+      "codebook_constructive_spread_db": 0.2436566834345379,
+      "fifty_mv_peak_compression_db": 0.368996275552945,
+      "minimum_codebook_rejection_db": 61.05337728105114,
+      "minimum_mismatch_rejection_db": 36.53082387190476,
+      "mismatch_seed_count": 60,
+      "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
+      "ten_mv_per_tone_im3_separation_db": 49.25807822061116
+    },
+    "nominal_rc_codebook": {
+      "constructive_diagonal_v_rms": [
+        0.0234875,
+        0.024104,
+        0.0241557,
+        0.0241067
+      ],
+      "constructive_spread_db": 0.2436566834345379,
+      "minimum_rejection_db": 61.05337728105114,
+      "settled_operating_ranges": {
+        "estimated_power_w": [
+          0.0012371247,
+          0.0012372984
+        ],
+        "output_common_mode_v": [
+          0.9722154,
+          0.9722194
+        ],
+        "supply_current_a": [
+          0.0006872915,
+          0.000687388
+        ],
+        "vcm_v": [
+          1.199097,
+          1.1991
+        ]
+      }
+    },
+    "startup": {
+      "recommended_enable_delay_us": 120.0,
+      "vcm_1p10_v_first_us": 60.9885,
+      "vcm_1p17_v_first_us": 97.4555,
+      "vcm_final_avg_v": 1.184193
+    },
+    "trim": {
+      "default_spread_db": 0.0036437864554690665,
+      "minimum_adjacent_step_db": 0.11539282504026764,
+      "span_db_by_channel": [
+        2.3441469833568327,
+        2.3432586247306815,
+        2.3421837944111332,
+        2.3431032844974222
+      ],
+      "stress_calibrated_spread_db": 0.05404094018998236
+    }
+  },
+  "known_characterization_residuals": {
+    "independent_foundry_lvs": "not available in the open local flow",
+    "noise": "known_characterization_gap_not_structural_fabrication_blocker_for_a_research_prototype",
+    "package_board_and_antenna": "requires first-silicon measurement",
+    "production_yield": "open-PDK coefficient mismatch campaign is not foundry-qualified yield"
+  },
+  "release_status": "local_signoff_passed_official_tinytapeout_workflow_pending",
+  "schema_version": 3,
+  "submission": {
+    "gds": {
+      "bytes": 1837932,
+      "geometry_records_changed_from_candidate": 0,
+      "path": "gds/tt_um_jjassonn69_beamformer.gds",
+      "sha256": "c0fe0aa6cf1fa9999c8c8e4a9804f367e8dca4371757e5e9c62f4d6e8ba6d1f2",
+      "top": "tt_um_jjassonn69_beamformer"
+    },
+    "info_yaml": {
+      "bytes": 1090,
+      "path": "info.yaml",
+      "sha256": "b92508ef770775fe97f03c075b66ea8a1b5fbc1e770c2b337cb7425da1c8ac44"
+    },
+    "lef": {
+      "analog_pin_count": 6,
+      "bytes": 8498,
+      "height_um": 225.76,
+      "path": "lef/tt_um_jjassonn69_beamformer.lef",
+      "sha256": "8e2af16c69851e916af08d2ba211a26840798296ddeea5f4110819ab8fbad15b",
+      "uses_vapwr": false,
+      "width_um": 334.88
+    },
+    "project_verilog": {
+      "bytes": 1133,
+      "path": "src/project.v",
+      "sha256": "3f160a1a3a6ed43a13c1744204b70ce9c8f72ab1f38ce91e01529087521287ac"
+    }
+  },
+  "visual_review": {
+    "images": [
+      {
+        "bytes": 357117,
+        "path": "v2/evidence/images/beamformer-v2-exact-final-overview.png",
+        "sha256": "34d5d58aa7c3069c6102c12dbc4287f9833b650a4c243eda47e8eb7784a8ce73"
+      },
+      {
+        "bytes": 135396,
+        "path": "v2/evidence/images/beamformer-v2-exact-final-varactor-detail.png",
+        "sha256": "49401e35a1216564b559b781416cae9d8507842779e9be10d88df65eb0bdbb4d"
+      }
+    ],
+    "source_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
+  }
+}

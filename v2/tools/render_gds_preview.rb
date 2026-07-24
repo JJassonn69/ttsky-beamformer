@@ -1,7 +1,8 @@
 # Render exact GDS geometry in a hidden KLayout view.
 # Usage:
 #   klayout -z -r render_gds_preview.rb -rd input=... -rd output=... \
-#     -rd width=1600 -rd height=1200 -rd lyp=optional.lyp
+#     -rd width=1600 -rd height=1200 -rd lyp=optional.lyp \
+#     -rd box=optional_x1,y1,x2,y2
 
 raise "missing -rd input=..." unless defined?($input)
 raise "missing -rd output=..." unless defined?($output)
@@ -24,6 +25,15 @@ cell_view.cell = top
 view.load_layer_props($lyp) if defined?($lyp) && !$lyp.empty?
 view.add_missing_layers
 view.max_hier
-view.zoom_fit
+if defined?($box) && !$box.empty?
+  coordinates = $box.split(",").map(&:to_f)
+  raise "-rd box requires x1,y1,x2,y2" unless coordinates.length == 4
+  raise "-rd box must have positive width and height" unless (
+    coordinates[2] > coordinates[0] && coordinates[3] > coordinates[1]
+  )
+  view.zoom_box(RBA::DBox.new(*coordinates))
+else
+  view.zoom_fit
+end
 view.save_image($output, width, height)
 puts "rendered #{$input} -> #{$output}"
