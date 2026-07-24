@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Audit service-tree connectivity, shielding, spacing, and source clearance."""
+"""Audit the historical sequential service overlay when its plan is active.
+
+The release candidate routes all service trees inside the unified OpenROAD
+network.  Its retained sequential-overlay plan is design history and must not
+be mistaken for current signoff evidence.
+"""
 
 from __future__ import annotations
 
@@ -170,9 +175,28 @@ def main() -> None:
     parser.add_argument("--source-top", default="v2_control_direct_routed")
     parser.add_argument("--report", type=Path, default=Path("build/v2/control_routing/service_route_audit.json"))
     args = parser.parse_args()
+    plan = json.loads(args.plan.read_text())
+    if str(plan.get("status", "")).startswith("retired historical"):
+        report = {
+            "status": "not_applicable",
+            "reason": plan.get("retired_reason"),
+            "replacement_evidence": [
+                "build/v2/control_routing/openroad/route_audit.json",
+                "build/v2/control_routing/quadrature_extraction/service_topology_audit.json",
+            ],
+        }
+        args.report.parent.mkdir(parents=True, exist_ok=True)
+        args.report.write_text(
+            json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        )
+        print(json.dumps(report, indent=2, sort_keys=True))
+        return
     structures, database_um = parse_gds(args.source_gds)
     source = flatten_rectangles(structures, args.source_top, database_um)
-    report = validate(json.loads(args.geometry.read_text()), json.loads(args.plan.read_text()), json.loads(args.catalog.read_text()), source)
+    report = validate(
+        json.loads(args.geometry.read_text()), plan,
+        json.loads(args.catalog.read_text()), source,
+    )
     args.report.write_text(json.dumps(report, indent=2, sort_keys=True)+"\n", encoding="utf-8")
     print(json.dumps(report, indent=2, sort_keys=True))
     if report["status"] != "pass":

@@ -8,9 +8,13 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 MANIFEST = ROOT / "v2/evidence/datasheet_figures.json"
 DATASHEET = ROOT / "v2/docs/datasheet.md"
-EXPECTED_GDS = "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
-EXPECTED_BASE = "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def"
-EXPECTED_RC = "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a"
+CONTRACT = json.loads((ROOT / "v2/layout/vcm_varactor_eco.json").read_text())
+EXTRACTION = json.loads(
+    (ROOT / "build/v2/control_routing/final_rc/coverage_audit.json").read_text()
+)
+EXPECTED_GDS = CONTRACT["output_checkpoint"]["sha256"]
+EXPECTED_BASE = EXTRACTION["sha256"]["base"]
+EXPECTED_RC = EXTRACTION["sha256"]["distributed_rc"]
 
 
 def sha256(path: Path) -> str:
@@ -77,7 +81,7 @@ class DatasheetFigureEvidenceTest(unittest.TestCase):
         )
         self.assertAlmostEqual(
             datasets["cold_start"]["measurements"]["vcm_near_nominal_first"] * 1e6,
-            97.4555,
+            97.4574,
             places=4,
         )
 

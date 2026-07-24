@@ -16,8 +16,8 @@ class ControlFinalKlayoutDeltaTest(unittest.TestCase):
         self.assertEqual(report["status"], "pass")
         self.assertEqual(report["added_marker_count"], 10)
         self.assertEqual(report["removed_marker_count"], 0)
-        self.assertEqual(report["source_marker_count"], 2770)
-        self.assertEqual(report["candidate_marker_count"], 2780)
+        self.assertEqual(report["source_marker_count"], 2768)
+        self.assertEqual(report["candidate_marker_count"], 2778)
         self.assertEqual(report["added_category_counts"], {"ct.2": 10})
         self.assertEqual(
             report["expected_added_category_counts"], {"ct.2": 10}
@@ -27,6 +27,11 @@ class ControlFinalKlayoutDeltaTest(unittest.TestCase):
         self.assertEqual(
             report["candidate_gds_sha256"],
             hashlib.sha256(candidate.read_bytes()).hexdigest(),
+        )
+        source = ROOT / report["source_gds"]
+        self.assertEqual(
+            report["source_gds_sha256"],
+            hashlib.sha256(source.read_bytes()).hexdigest(),
         )
         expected = dict(report["source_category_counts"])
         expected["ct.2"] += 10

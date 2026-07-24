@@ -54,11 +54,15 @@ class Gate5MismatchPilotTests(unittest.TestCase):
         self.assertIn("mc_pfet_01v8_hvt_vth0=", first)
 
     def test_bundle_is_hash_bound_and_documents_limitations(self) -> None:
-        with tempfile.TemporaryDirectory(dir=ROOT / "build") as temporary:
-            _include, manifest = build_model_bundle(Path(temporary))
-            self.assertIn("not foundry-qualified Monte Carlo", manifest["limitations"])
-            self.assertEqual(set(manifest["files"]), set(MODEL_SPECS))
-            self.assertEqual(len(manifest["bundle_sha256"]), 64)
+        with tempfile.TemporaryDirectory(dir=ROOT / "build") as first_directory:
+            with tempfile.TemporaryDirectory(dir=ROOT / "build") as second_directory:
+                _first_include, first = build_model_bundle(Path(first_directory))
+                _second_include, second = build_model_bundle(Path(second_directory))
+                self.assertIn("not foundry-qualified Monte Carlo", first["limitations"])
+                self.assertEqual(set(first["files"]), set(MODEL_SPECS))
+                self.assertEqual(len(first["bundle_sha256"]), 64)
+                self.assertEqual(first["bundle_sha256"], second["bundle_sha256"])
+                self.assertNotEqual(first["include_sha256"], second["include_sha256"])
 
     def test_zero_failure_campaign_bound_is_explicit(self) -> None:
         self.assertAlmostEqual(zero_failure_lower_bound(60), 0.9512970866899025)

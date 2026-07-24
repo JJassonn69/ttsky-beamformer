@@ -22,22 +22,22 @@
 <text x="707.00" y="538.00" text-anchor="middle" class="tick">10</text>
 <text x="435.00" y="565.00" text-anchor="middle" class="axis">Peak input per tone (mV)</text>
 <text x="33.00" y="320.00" text-anchor="middle" class="axis" transform="rotate(-90.00 33.00 320.00)">Fundamental / worst IM3 separation (dB)</text>
-<circle cx="163.00" cy="180.96" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
-<text x="163.00" y="162.96" text-anchor="middle" class="value" style="fill:#27884a">68.52 dB</text>
-<circle cx="707.00" cy="274.87" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
-<text x="707.00" y="256.87" text-anchor="middle" class="value" style="fill:#27884a">49.26 dB</text>
+<circle cx="163.00" cy="196.40" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
+<text x="163.00" y="178.40" text-anchor="middle" class="value" style="fill:#27884a">65.35 dB</text>
+<circle cx="707.00" cy="275.15" r="9.00" fill="#27884a" stroke="#ffffff" stroke-width="2"/>
+<text x="707.00" y="257.15" text-anchor="middle" class="value" style="fill:#27884a">49.20 dB</text>
 <line x1="95.00" y1="320.00" x2="775.00" y2="320.00" stroke="#aa6a00" stroke-width="2" stroke-dasharray="7 5" opacity="1"/>
 <text x="767.00" y="311.00" text-anchor="end" class="small" style="fill:#aa6a00">40 dB pilot gate</text>
 <rect x="830.00" y="125.00" width="355.00" height="390.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
 <text x="854.00" y="165.00" text-anchor="start" class="label">Input IIP3 estimates</text>
 <text x="854.00" y="225.00" text-anchor="start" class="small">2 mV peak/tone</text>
-<text x="854.00" y="259.00" text-anchor="start" class="value">-22.73 dBV RMS</text>
-<text x="854.00" y="288.00" text-anchor="start" class="small">fundamental ≈ 9.480 mV RMS</text>
-<text x="854.00" y="311.00" text-anchor="start" class="small">worst IM3 ≈ 0.0036 mV RMS</text>
+<text x="854.00" y="259.00" text-anchor="start" class="value">-24.31 dBV RMS</text>
+<text x="854.00" y="288.00" text-anchor="start" class="small">fundamental ≈ 9.483 mV RMS</text>
+<text x="854.00" y="311.00" text-anchor="start" class="small">worst IM3 ≈ 0.0051 mV RMS</text>
 <text x="854.00" y="345.00" text-anchor="start" class="small">10 mV peak/tone</text>
-<text x="854.00" y="379.00" text-anchor="start" class="value">-18.38 dBV RMS</text>
-<text x="854.00" y="408.00" text-anchor="start" class="small">fundamental ≈ 47.035 mV RMS</text>
-<text x="854.00" y="431.00" text-anchor="start" class="small">worst IM3 ≈ 0.1627 mV RMS</text>
+<text x="854.00" y="379.00" text-anchor="start" class="value">-18.41 dBV RMS</text>
+<text x="854.00" y="408.00" text-anchor="start" class="small">fundamental ≈ 47.036 mV RMS</text>
+<text x="854.00" y="431.00" text-anchor="start" class="small">worst IM3 ≈ 0.1637 mV RMS</text>
 <text x="95.00" y="600.00" text-anchor="start" class="small" style="fill:#aa6a00">Pilot result characterizes this operating point; it is not a production linearity guarantee.</text>
-<text x="1208.00" y="638.00" text-anchor="end" class="small">GDS 90b51a5f37fd | source 8cceeb08078b | base-extracted two-tone transient</text>
+<text x="1208.00" y="638.00" text-anchor="end" class="small">GDS 1b76aba2cf23 | source 882c23ee9e9a | base-extracted two-tone transient</text>
 </svg>

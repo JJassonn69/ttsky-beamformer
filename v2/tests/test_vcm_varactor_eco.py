@@ -18,6 +18,7 @@ from assemble_vcm_varactor_eco_gds import (
     assemble,
     sref_targets,
 )
+from check_vcm_varactor_eco import USER_ROUTED_SOURCE_SHA256
 from generate_vcm_varactor_eco import generate
 
 
@@ -71,6 +72,7 @@ class VcmVaractorEcoTests(unittest.TestCase):
         self.assertEqual(
             self.plan["output_checkpoint"]["sha256"], EXPECTED_OUTPUT_SHA256
         )
+        self.assertEqual(USER_ROUTED_SOURCE_SHA256, SOURCE_SHA256)
 
     def test_final_gds_contains_exactly_four_direct_varactor_references(self) -> None:
         candidate = (

@@ -180,10 +180,10 @@ router transition.
 The frozen local candidate is
 `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`, top
 `v2_control_quadrature_routed`, SHA-256
-`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+`1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
 The direct user-routed source is separately frozen as
 `v2/reference/v2_control_quadrature_user_routed.gds`, SHA-256
-`d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313`.
+`950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c`.
 The final ECO adds only four foundry `cap_var_lvt` references and their
 VCM-to-VGND connections; its assembler rejects any other source or output
 hash.
@@ -198,11 +198,11 @@ Its acceptance evidence is:
   RBIAS, RVCM_TOP, LOAD_N, and LOAD_P;
 - direct-GDS flat checks find no via-only M3 island, via enclosure error,
   MIM-clearance error, stale transition, or malformed contact cut;
-- KLayout open_pdks full-deck delta: 2,770 normalized inherited source markers
-  and 2,780 final markers; the only ten additions are classified `ct.2`
+- KLayout open_pdks full-deck delta: 2,768 normalized inherited source markers
+  and 2,778 final markers; the only ten additions are classified `ct.2`
   markers inside the four foundry varactor PCells, with zero removals;
   and
-- full distributed-RC extraction: 95,133 explicit resistors, 34,048
+- full distributed-RC extraction: 95,139 explicit resistors, 34,054
   capacitors, 4,208 extracted devices, and coverage for all 254 required control, analog,
   output, bias, and supply nets.
 

@@ -2,9 +2,9 @@
   "schema_version": 1,
   "status": "deferred_requires_periodic_noise_or_measurement",
   "release_classification": "known_characterization_gap_not_structural_fabrication_blocker_for_a_research_prototype",
-  "candidate_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
-  "base_netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
-  "distributed_rc_netlist_sha256": "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a",
+  "candidate_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+  "base_netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+  "distributed_rc_netlist_sha256": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126",
   "reason": "The beamformer is a periodically switched mixer. A static small-signal .noise analysis does not translate device noise through the 4 MHz switching waveform, and ngspice transient-noise sources inject explicit source noise rather than automatically generating the compact-model cyclostationary device noise needed for a mixer noise figure.",
   "simulator_capability_checked": {
     "ngspice_manual": "https://ngspice.sourceforge.io/docs/ngspice-manual.pdf",

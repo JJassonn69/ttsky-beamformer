@@ -9,12 +9,12 @@ import re
 from pathlib import Path
 from typing import Any
 
+from assemble_vcm_varactor_eco_gds import SOURCE_SHA256 as USER_ROUTED_SOURCE_SHA256
 from check_critical_extraction import top_instances
 
 
 TOP = "v2_control_quadrature_routed"
 VARACTOR_MODEL = "sky130_fd_pr__cap_var_lvt_88578Y"
-USER_ROUTED_SOURCE_SHA256 = "145804737243ea220ab26892a8a67b3df63920857544461b040aab0ead06532b"
 
 
 def check(

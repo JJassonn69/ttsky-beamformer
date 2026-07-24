@@ -1,7 +1,7 @@
 # V2 latest validation status
 
 Date: 2026-07-24<br>
-Candidate GDS SHA-256: `90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`
+Candidate GDS SHA-256: `1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`
 
 Release status: `local_signoff_passed_official_tinytapeout_workflow_pending`. Local physical and bounded electrical signoff pass.
 The official TinyTapeout workflow is pending for the exact artifacts below.
@@ -9,23 +9,23 @@ The official TinyTapeout workflow is pending for the exact artifacts below.
 ## Headline evidence
 
 - Magic full-chip DRC: 0 errors; direct flat-rule counters: all zero.
-- Distributed RC: 95,133 resistors,
-  34,048 capacitors, and
+- Distributed RC: 95,139 resistors,
+  34,054 capacitors, and
   254/
   254 named routes covered.
 - Complete nominal RC codebook: 61.05 dB
   minimum raw rejection and 0.244 dB
   constructive spread.
 - MOS mismatch sensitivity: 60/60 pass;
-  minimum corrected rejection 36.53 dB;
+  minimum corrected rejection 36.49 dB;
   one-sided 95% modeled pass-probability lower bound
   95.13%.
-- Trim span: 2.342–
-  2.344 dB; deterministic injected mismatch
-  calibrates to 0.054 dB spread.
-- 50 mV-peak compression: 0.369 dB;
+- Trim span: 2.337–
+  2.343 dB; deterministic injected mismatch
+  calibrates to 0.059 dB spread.
+- 50 mV-peak compression: 0.370 dB;
   10 mV/tone fundamental-to-worst-IM3 separation:
-  49.26 dB.
+  49.20 dB.
 - Conservative first-silicon enable delay: 120 us.
 
 ## Honest residuals

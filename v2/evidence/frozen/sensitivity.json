@@ -1,82 +1,82 @@
 {
   "payload": {
-    "base_netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
+    "base_netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
     "baseline_report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
-    "baseline_report_sha256": "bd0d7246741315fbdd12fc04897e09fea140a0cf1a0e02b7a9df57ba381941a2",
+    "baseline_report_sha256": "19b82f3c98b3ce130c9048be73acf4e2a6603be2d1ffb5e5a7bdaade71056763",
     "case_count": 8,
     "cases": {
       "amplitude_1mvpk": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_vin_1000000nv_startup_op_step_5ns/report.json",
-        "report_sha256": "26949cbfd9be45dee0196151cd75824f1598cb0a5266844f815334ebed5d7416",
+        "report_sha256": "6468322a34806ccb7855f375553f4f762828acb97c39026ee0ad428c5305f826",
         "status": "pass"
       },
       "amplitude_20mvpk": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_vin_20000000nv_startup_op_step_5ns/report.json",
-        "report_sha256": "d9e174900293305a9e30bbdfc7f2fa59be6d8fb94fe693e11935626559d644ec",
+        "report_sha256": "41e91c1438ad4c4178e6fab23dab84e8907c55dd2c9d4b05d0a866a0130f5fff",
         "status": "pass"
       },
       "amplitude_50mvpk": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_vin_50000000nv_startup_op_step_5ns/report.json",
-        "report_sha256": "eddd3b4920a40e54f063a6f86187071581730eef7dba1ed8f5d0484bbe174ee3",
+        "report_sha256": "e752153d0a7d4e994f9ad39c8f30be58de573d23716aa30069573594acec7389",
         "status": "pass"
       },
       "load_100kohm_shunt": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_shunt_100000ohm/report.json",
-        "report_sha256": "7ecb59e618fc2014083ba3ca5961517277e4cf2637a58b3751161ffd5d9f7226",
+        "report_sha256": "3a9ea8ce96dc89c8f9dd63cfa8e77a69ebb6d92c90b9036ed568e2ef88c90788",
         "status": "pass"
       },
       "load_30pf_total": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_outcap_20pf/report.json",
-        "report_sha256": "41ef8944acca98e3db6936d6cfecae1b1822c536b90ab28fda0cd24067c386f8",
+        "report_sha256": "b917f1f15e4d97d88e47052dc95426dce70aecfcbc114b871e686d5fe534874b",
         "status": "pass"
       },
       "load_60pf_total": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns_outcap_50pf/report.json",
-        "report_sha256": "52e1ba38dd41be2d52c6fd64ddd1288013557c623041a76bcb09cf59b78fba6f",
+        "report_sha256": "292d020f70f12ca4ee9ba137da5d22323974b53f82d27368cfa7cadfa791bbcc",
         "status": "pass"
       },
       "rf_4p5mhz": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_fin_4p5mhz_startup_op_step_5ns/report.json",
-        "report_sha256": "79d660b286b9c475c1036a5bfee9ef7f6fc5bbbf216f9fc3a36030542056f129",
+        "report_sha256": "73aee1c700b8e0caf79165465609f879ae02a4a10c45050b6e28f8f4d7265ce7",
         "status": "pass"
       },
       "rf_6mhz": {
         "report": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_fin_6mhz_startup_op_step_5ns/report.json",
-        "report_sha256": "3152321e5b47a50010ef9279834a4f48a0cb449f2e356d132ad4b8bf67943401",
+        "report_sha256": "9af30e9de2c5112f396fa92d93848c94e435e2559f355cff6f804de6c8b1dcdf",
         "status": "pass"
       }
     },
     "errors": [],
-    "frozen_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "frozen_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
     "gate": 5,
     "metrics": {
       "compression_db": {
-        "amplitude_20mvpk": 0.06290742362927837,
-        "amplitude_50mvpk": 0.368996275552945
+        "amplitude_20mvpk": 0.06819552227449321,
+        "amplitude_50mvpk": 0.3704520161924094
       },
       "frequency_gain_delta_db": {
-        "rf_4p5mhz": 0.12652788461958764,
-        "rf_6mhz": -0.4964652316864342
+        "rf_4p5mhz": 0.12854157159312862,
+        "rf_6mhz": -0.4955055859469262
       },
       "input_p1db_bound": ">50 mV peak",
       "load_gain_delta_db": {
-        "load_100kohm_shunt": -0.1164384235812399,
-        "load_30pf_total": -0.972949305617556,
-        "load_60pf_total": -3.0914335299539477
+        "load_100kohm_shunt": -0.11278006040376809,
+        "load_30pf_total": -0.966978193469135,
+        "load_60pf_total": -3.091294771891665
       },
-      "nominal_5mvpk_gain_db": 13.548817343886645,
-      "nominal_linearity_error_db": 0.015585187890593488,
+      "nominal_5mvpk_gain_db": 13.551336119937375,
+      "nominal_linearity_error_db": 0.01691536225951573,
       "output_common_mode_v": {
-        "amplitude_1mvpk": 0.9847208,
-        "amplitude_20mvpk": 0.9847073,
-        "amplitude_50mvpk": 0.9846301,
-        "load_100kohm_shunt": 1.007774,
-        "load_30pf_total": 0.9847216,
-        "load_60pf_total": 0.9851557,
-        "rf_4p5mhz": 0.9847198,
-        "rf_6mhz": 0.9847195
+        "amplitude_1mvpk": 0.984721,
+        "amplitude_20mvpk": 0.984708,
+        "amplitude_50mvpk": 0.984631,
+        "load_100kohm_shunt": 1.00777,
+        "load_30pf_total": 0.984721,
+        "load_60pf_total": 0.985159,
+        "rf_4p5mhz": 0.98472,
+        "rf_6mhz": 0.984719
       },
-      "small_signal_1mvpk_gain_db": 13.533232155996052
+      "small_signal_1mvpk_gain_db": 13.534420757677859
     },
     "schema_version": 1,
     "scope": "bounded base-extracted RF/amplitude/load sensitivity pilot",
@@ -87,5 +87,5 @@
   },
   "schema_version": 1,
   "source_path": "build/v2/signoff/gate5_sensitivity_pilot.json",
-  "source_sha256": "ce7a81eda275afd93c49b1b64dfd9f22dd8bfdeb62798e026f6156e8472478d5"
+  "source_sha256": "33a339abff56839fa92794a88c98d410c3d96f7562d596b74942cc88cd8e3177"
 }

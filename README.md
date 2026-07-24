@@ -29,10 +29,10 @@ design documents.
   a reserved direction input, and a three-wire configuration interface.
 - Physical candidate:
   `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`, SHA-256
-  `90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+  `1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
 - Tiny Tapeout wrapper:
   `gds/tt_um_jjassonn69_beamformer.gds`, SHA-256
-  `c0fe0aa6cf1fa9999c8c8e4a9804f367e8dca4371757e5e9c62f4d6e8ba6d1f2`.
+  `f9aa5cd4e26b77975625daa47a17dc7d086b132f22660ea22bc026435fbc0eaf`.
 
 The wrapper is a deterministic one-record top-cell rename. It changes no
 geometry and is checked against the exact physical candidate in CI.
@@ -52,7 +52,7 @@ representative PVT endpoints pass. The final signoff campaign additionally
 passes every one of 60 modeled MOS-mismatch samples and every one of the 20
 distributed-RC beam/codebook cases. Worst raw codebook rejection is 61.05 dB,
 constructive spread is 0.244 dB, and worst modeled-mismatch rejection is
-36.53 dB. Compact local release evidence is frozen only after these reports,
+36.49 dB. Compact local release evidence is frozen only after these reports,
 their transforms, and their exact artifact hashes are rechecked together.
 
 This is a TinyTapeout research prototype, not a production-qualified radio.

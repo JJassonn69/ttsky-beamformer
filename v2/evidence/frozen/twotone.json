@@ -5,23 +5,23 @@
       "points": {
         "tone_10mvpk": {
           "components_rms_v": {
-            "fund_high": 0.04703538727108604,
-            "fund_low": 0.047414685663026944,
-            "im3_high": 0.00016265405279997238,
-            "im3_low": 0.00016059596553703087
+            "fund_high": 0.04703554674227262,
+            "fund_low": 0.04741342622439164,
+            "im3_high": 0.00016219486494872825,
+            "im3_low": 0.00016374501727100952
           },
-          "fundamental_to_worst_im3_db": 49.25807822061116,
-          "input_iip3_dbv_rms_per_tone": -18.381260846334232
+          "fundamental_to_worst_im3_db": 49.19991349667463,
+          "input_iip3_dbv_rms_per_tone": -18.410343208302496
         },
         "tone_2mvpk": {
           "components_rms_v": {
-            "fund_high": 0.00947981797598006,
-            "fund_low": 0.009562177366515826,
-            "im3_high": 3.5700824569188857e-06,
-            "im3_low": 1.615437082959285e-06
+            "fund_high": 0.009482972909298074,
+            "fund_low": 0.009560901133708721,
+            "im3_high": 4.051749626938961e-06,
+            "im3_low": 5.14042880361162e-06
           },
-          "fundamental_to_worst_im3_db": 68.52000299549356,
-          "input_iip3_dbv_rms_per_tone": -22.72969854561341
+          "fundamental_to_worst_im3_db": 65.35444640340954,
+          "input_iip3_dbv_rms_per_tone": -24.312476841655418
         }
       },
       "status": "pass"
@@ -29,21 +29,21 @@
     "cases": {
       "background": {
         "report": "build/v2/gate5_twotone_pilot/base/background/report.json",
-        "report_sha256": "6f246e79fd8bac02790e76e8c803e51b8537a24b12697f0abce5dac89716b5eb"
+        "report_sha256": "7d8bb749ab86d2926ada579bf07aacc0669dad3b1f2262a192065fa3d052b20f"
       },
       "tone_10mvpk": {
         "report": "build/v2/gate5_twotone_pilot/base/tone_10000uvpk/report.json",
-        "report_sha256": "fd9fb26247417e02457409bff28655558e46cc45cf7d38d059b2619bf244f6d3"
+        "report_sha256": "bee371938b00507e1a37836b5275fc2fc86581919e7e319ecffdc63af7277079"
       },
       "tone_2mvpk": {
         "report": "build/v2/gate5_twotone_pilot/base/tone_2000uvpk/report.json",
-        "report_sha256": "9f92231c5157e2184fb60e921ba73b65449c0157d7415904ecf55091544963ef"
+        "report_sha256": "9e7fec13f95d621da2540a19db316da85a5bed36e78e93ad6534887c6256a2af"
       }
     },
     "errors": [],
     "gate": 5,
-    "gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
-    "netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
+    "gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
     "schema_version": 1,
     "scope": "bounded two-tone IIP3 pilot; not a production guarantee",
     "status": "pass",
@@ -51,5 +51,5 @@
   },
   "schema_version": 1,
   "source_path": "build/v2/gate5_twotone_pilot/base_summary.json",
-  "source_sha256": "8cceeb08078b23706b94e6d11d1328a306ff588a360ae37bb44a7d9436093828"
+  "source_sha256": "882c23ee9e9a693f639a0e1f3672f536b8db9425e267545ff38626a583e21584"
 }

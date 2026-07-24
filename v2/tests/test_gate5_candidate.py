@@ -1,3 +1,4 @@
+import json
 import sys
 import unittest
 from pathlib import Path
@@ -21,9 +22,10 @@ class Gate5CandidateTests(unittest.TestCase):
         self.assertGreaterEqual(
             report["metrics"]["mismatch_zero_failure_95pct_lower_bound"], 0.95
         )
+        contract = json.loads((ROOT / "v2/layout/vcm_varactor_eco.json").read_text())
         self.assertEqual(
             report["frozen_gds_sha256"],
-            "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+            contract["output_checkpoint"]["sha256"],
         )
 
 

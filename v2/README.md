@@ -54,19 +54,19 @@ the packaging changes only the top-cell name and no geometry.
   roles, 968/968 power/body pins, and all four analog resistor B/R1/R2
   terminal triplets, with no signal-to-power short.
 - The exact final GDS is `v2_control_quadrature_routed`, SHA-256
-  `90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+  `1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
   It is assembled from the hash-frozen user-routed source
-  `d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313`
+  `950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c`
   plus four foundry `cap_var_lvt` VCM-to-ground bypass devices.
   It passes Magic full-chip DRC and extraction feedback with zero errors. The
-  KLayout full-deck delta has 2,770 inherited source markers and 2,780 final
+  KLayout full-deck delta has 2,768 inherited source markers and 2,778 final
   markers. The only ten additions are classified `ct.2` markers inside the
   four foundry varactor PCells; nothing else is added, removed, or moved.
 - Direct-GDS checks reject malformed cuts, unenclosed vias, via-only M3
   islands, MIM-clearance errors, narrow stubs, and abandoned transitions. All
   final mcon/via1/via2/via3 cuts have their exact legal 0.17/0.15/0.20/0.20 um
   dimensions.
-- Full distributed-RC extraction contains 95,133 explicit resistors, 34,048
+- Full distributed-RC extraction contains 95,139 explicit resistors, 34,054
   capacitors, and 4,208 extracted devices, with 254/254 control, analog,
   supply, and output-pad nets
   covered. Magic's single classified `viali` message is an extresist meshing

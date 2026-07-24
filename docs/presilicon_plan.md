@@ -1,7 +1,7 @@
 # V2 pre-silicon validation plan
 
 This plan applies to the exact physical candidate with SHA-256
-`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+`1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
 Results from an older GDS or extracted netlist cannot satisfy a current gate.
 
 ## Current candidate gates already passing
@@ -108,7 +108,7 @@ The selected 32-fixed-unit tail bank with reset trim code 8 has passed the
 architecture screen, the frozen physical/topology Gate 3, and the bounded
 post-layout electrical Gate 4.  The exact final
 GDS hash is
-`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+`1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
 The local project has completed Gates 5 and the simulation portion of Gate 6
 on this frozen candidate. The official Tiny Tapeout custom-GDS/precheck run is
 the remaining fabrication handoff.

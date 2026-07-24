@@ -14,11 +14,16 @@ class Gate3CandidateTests(unittest.TestCase):
     def test_frozen_candidate_gate_passes(self) -> None:
         report = build_manifest(ROOT)
         self.assertEqual(report["status"], "pass", report["errors"])
+        contract = json.loads((ROOT / "v2/layout/vcm_varactor_eco.json").read_text())
         self.assertEqual(
             report["frozen_candidate_sha256"],
-            "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+            contract["output_checkpoint"]["sha256"],
         )
         self.assertEqual(len(report["evidence"]), 18)
+        self.assertFalse(any(
+            item["path"].endswith("service_route_audit.json")
+            for item in report["evidence"]
+        ))
         self.assertTrue(all(count == 0 for count in report["direct_flat_rule_counts"].values()))
 
     def test_nonpassing_report_is_rejected(self) -> None:

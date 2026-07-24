@@ -22,49 +22,49 @@
 <text x="477.50" y="249.20" text-anchor="middle" class="cell" style="fill:#172033">-61.1 dBc</text>
 <text x="477.50" y="278.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.02069 mV RMS</text>
 <rect x="560.00" y="170.00" width="162.00" height="162.00" fill="#bcd2e4" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="642.50" y="249.20" text-anchor="middle" class="cell" style="fill:#172033">-62.3 dBc</text>
+<text x="642.50" y="249.20" text-anchor="middle" class="cell" style="fill:#172033">-62.2 dBc</text>
 <text x="642.50" y="278.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.01813 mV RMS</text>
 <rect x="725.00" y="170.00" width="162.00" height="162.00" fill="#bad1e3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
 <text x="807.50" y="249.20" text-anchor="middle" class="cell" style="fill:#172033">-61.3 dBc</text>
 <text x="807.50" y="278.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.02026 mV RMS</text>
 <rect x="230.00" y="335.00" width="162.00" height="162.00" fill="#edf2f7" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="312.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-105.2 dBc</text>
-<text x="312.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.000132 mV RMS</text>
+<text x="312.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-99.9 dBc</text>
+<text x="312.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0002442 mV RMS</text>
 <rect x="395.00" y="335.00" width="162.00" height="162.00" fill="#1264a3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
 <text x="477.50" y="414.20" text-anchor="middle" class="cell" style="fill:#ffffff">0.00 dB</text>
 <text x="477.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#ffffff">24.1 mV RMS</text>
 <rect x="560.00" y="335.00" width="162.00" height="162.00" fill="#edf2f7" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="642.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-89.3 dBc</text>
-<text x="642.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.000823 mV RMS</text>
+<text x="642.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-97.5 dBc</text>
+<text x="642.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0003225 mV RMS</text>
 <rect x="725.00" y="335.00" width="162.00" height="162.00" fill="#b9d0e3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="807.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-61.1 dBc</text>
+<text x="807.50" y="414.20" text-anchor="middle" class="cell" style="fill:#172033">-61.0 dBc</text>
 <text x="807.50" y="443.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.02135 mV RMS</text>
 <rect x="230.00" y="500.00" width="162.00" height="162.00" fill="#edf2f7" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="312.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-100.2 dBc</text>
-<text x="312.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0002364 mV RMS</text>
-<rect x="395.00" y="500.00" width="162.00" height="162.00" fill="#dde8f1" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="477.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-74.2 dBc</text>
-<text x="477.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.004718 mV RMS</text>
+<text x="312.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-95.7 dBc</text>
+<text x="312.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0003957 mV RMS</text>
+<rect x="395.00" y="500.00" width="162.00" height="162.00" fill="#dee8f1" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
+<text x="477.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-74.4 dBc</text>
+<text x="477.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.004612 mV RMS</text>
 <rect x="560.00" y="500.00" width="162.00" height="162.00" fill="#1264a3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
 <text x="642.50" y="579.20" text-anchor="middle" class="cell" style="fill:#ffffff">0.00 dB</text>
 <text x="642.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#ffffff">24.16 mV RMS</text>
-<rect x="725.00" y="500.00" width="162.00" height="162.00" fill="#dee8f1" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="807.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-74.5 dBc</text>
-<text x="807.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.004566 mV RMS</text>
+<rect x="725.00" y="500.00" width="162.00" height="162.00" fill="#dee9f1" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
+<text x="807.50" y="579.20" text-anchor="middle" class="cell" style="fill:#172033">-74.7 dBc</text>
+<text x="807.50" y="608.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.004471 mV RMS</text>
 <rect x="230.00" y="665.00" width="162.00" height="162.00" fill="#edf2f7" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="312.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-91.4 dBc</text>
-<text x="312.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0006481 mV RMS</text>
-<rect x="395.00" y="665.00" width="162.00" height="162.00" fill="#bad1e3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="477.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-61.2 dBc</text>
-<text x="477.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.02101 mV RMS</text>
+<text x="312.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-96.9 dBc</text>
+<text x="312.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0003426 mV RMS</text>
+<rect x="395.00" y="665.00" width="162.00" height="162.00" fill="#b9d0e3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
+<text x="477.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-61.1 dBc</text>
+<text x="477.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.02135 mV RMS</text>
 <rect x="560.00" y="665.00" width="162.00" height="162.00" fill="#edf2f7" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
-<text x="642.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-90.3 dBc</text>
-<text x="642.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.0007385 mV RMS</text>
+<text x="642.50" y="744.20" text-anchor="middle" class="cell" style="fill:#172033">-98.3 dBc</text>
+<text x="642.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#172033">0.000292 mV RMS</text>
 <rect x="725.00" y="665.00" width="162.00" height="162.00" fill="#1264a3" stroke="#ffffff" stroke-width="2" rx="5" opacity="1"/>
 <text x="807.50" y="744.20" text-anchor="middle" class="cell" style="fill:#ffffff">0.00 dB</text>
-<text x="807.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#ffffff">24.11 mV RMS</text>
+<text x="807.50" y="773.90" text-anchor="middle" class="cellsub" style="fill:#ffffff">24.1 mV RMS</text>
 <text x="230.00" y="860.00" text-anchor="start" class="label">Minimum rejection  61.05 dB</text>
 <text x="580.00" y="860.00" text-anchor="start" class="label">Constructive spread  0.244 dB</text>
 <text x="930.00" y="860.00" text-anchor="start" class="label" style="fill:#27884a">PASS</text>
-<text x="1138.00" y="918.00" text-anchor="end" class="small">GDS 90b51a5f37fd | source a69748af7f7d | TT, 1.8 V, 27 C, 5 mVpk/channel</text>
+<text x="1138.00" y="918.00" text-anchor="end" class="small">GDS 1b76aba2cf23 | source b55be2a5f34c | TT, 1.8 V, 27 C, 5 mVpk/channel</text>
 </svg>

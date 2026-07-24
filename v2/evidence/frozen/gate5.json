@@ -15,19 +15,19 @@
       "twotone": "build/v2/gate5_twotone_pilot/base_summary.json"
     },
     "expected_netlist_sha256": {
-      "base": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
-      "rc": "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a"
+      "base": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+      "rc": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126"
     },
-    "frozen_gds_sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "frozen_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
     "gate": 5,
     "metrics": {
-      "codebook_constructive_spread_db": 0.2436566834345379,
-      "fifty_mv_peak_compression_db": 0.368996275552945,
-      "minimum_codebook_rejection_db": 61.05337728105114,
-      "minimum_mismatch_rejection_db": 36.53082387190476,
+      "codebook_constructive_spread_db": 0.24351285052462948,
+      "fifty_mv_peak_compression_db": 0.3704520161924094,
+      "minimum_codebook_rejection_db": 61.04947702699859,
+      "minimum_mismatch_rejection_db": 36.489527528344915,
       "mismatch_seed_count": 60,
       "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
-      "ten_mv_per_tone_im3_separation_db": 49.25807822061116
+      "ten_mv_per_tone_im3_separation_db": 49.19991349667463
     },
     "schema_version": 1,
     "scope": "bounded post-layout electrical characterization; not production-yield qualification",
@@ -38,5 +38,5 @@
   },
   "schema_version": 1,
   "source_path": "build/v2/signoff/gate5_audit.json",
-  "source_sha256": "3303c5750d95c92b27534c87b850db5da39716f82cc36d6064af05e3c8c33453"
+  "source_sha256": "cd4e641c5d01d35036ccdcfa69051f2373a2706ad01047396b4c8680c8e2f575"
 }

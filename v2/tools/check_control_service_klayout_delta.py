@@ -130,7 +130,7 @@ def main() -> None:
     )
     parser.add_argument(
         "--source-gds", type=Path,
-        default=Path("build/v2/varactor_eco/v2_control_quadrature_pre_varactor.gds"),
+        default=Path("v2/reference/v2_control_quadrature_user_routed.gds"),
     )
     parser.add_argument(
         "--candidate-gds", type=Path,

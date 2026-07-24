@@ -36,9 +36,20 @@ class ReleaseEvidenceTest(unittest.TestCase):
 
     def test_datasheet_is_bound_to_the_candidate_and_keeps_release_blockers(self) -> None:
         datasheet = (ROOT / "v2/docs/datasheet.md").read_text()
-        readme = (ROOT / "v2/README.md").read_text()
+        root_readme = (ROOT / "README.md").read_text()
+        v2_readme = (ROOT / "v2/README.md").read_text()
+        presilicon_plan = (ROOT / "docs/presilicon_plan.md").read_text()
         frozen_hash = self.checkpoint["gds"]["sha256"]
+        source_hash = self.checkpoint["gds"]["pre_varactor_user_route_source"][
+            "sha256"
+        ]
+        wrapper_hash = self.latest["submission"]["gds"]["sha256"]
         self.assertGreaterEqual(datasheet.count(frozen_hash), 2)
+        self.assertIn(frozen_hash, root_readme)
+        self.assertIn(wrapper_hash, root_readme)
+        self.assertIn(frozen_hash, v2_readme)
+        self.assertIn(source_hash, v2_readme)
+        self.assertGreaterEqual(presilicon_plan.count(frozen_hash), 2)
         self.assertIn("exact distributed-RC 20-case beam codebook", datasheet)
         self.assertIn("60-seed", datasheet)
         self.assertIn("Electrical characterization plots", datasheet)
@@ -53,7 +64,7 @@ class ReleaseEvidenceTest(unittest.TestCase):
             "cold-start-timing.svg",
         ):
             self.assertIn(filename, datasheet)
-        self.assertIn("detailed engineering datasheet", readme)
+        self.assertIn("detailed engineering datasheet", v2_readme)
 
     def test_compact_validation_record_is_bound_to_tracked_artifacts(self) -> None:
         self.assertEqual(self.latest["candidate"]["sha256"], self.checkpoint["gds"]["sha256"])

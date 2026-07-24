@@ -129,6 +129,32 @@ def audit(root: Path = ROOT) -> dict[str, Any]:
         errors.append("mismatch campaign checks a different GDS")
     if mismatch.get("source_netlist_sha256") != base_hash:
         errors.append("mismatch campaign checks a different base netlist")
+    model_manifest_relative = mismatch.get("model_manifest")
+    model_manifest_path = root / model_manifest_relative if model_manifest_relative else None
+    if model_manifest_path is None or not model_manifest_path.is_file():
+        errors.append("mismatch model manifest is missing")
+    else:
+        if sha256(model_manifest_path) != mismatch.get("model_manifest_sha256"):
+            errors.append("mismatch model manifest hash differs")
+        model_manifest = json.loads(model_manifest_path.read_text(encoding="utf-8"))
+        if model_manifest.get("bundle_sha256") != mismatch.get("model_bundle_sha256"):
+            errors.append("mismatch model manifest bundle identity differs")
+    rebinding_relative = mismatch.get("bundle_rebinding_audit")
+    if rebinding_relative:
+        rebinding_path = root / rebinding_relative
+        if not rebinding_path.is_file():
+            errors.append("mismatch bundle-rebinding audit is missing")
+        else:
+            if sha256(rebinding_path) != mismatch.get("bundle_rebinding_audit_sha256"):
+                errors.append("mismatch bundle-rebinding audit hash differs")
+            rebinding = json.loads(rebinding_path.read_text(encoding="utf-8"))
+            if (
+                rebinding.get("status") != "pass"
+                or rebinding.get("seed_count") != seed_count
+                or rebinding.get("semantic_bundle_sha256")
+                != mismatch.get("model_bundle_sha256")
+            ):
+                errors.append("mismatch bundle-rebinding audit identity differs")
     mismatch_rejection: list[float] = []
     for seed, item in sorted(mismatch.get("seeds", {}).items()):
         if item.get("status") != "pass":

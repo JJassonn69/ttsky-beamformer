@@ -10,7 +10,7 @@ Frozen local layout candidate:
 - process: SKY130A;
 - top cell: `v2_control_quadrature_routed`;
 - file: `build/v2/control_routing/direct/v2_control_quadrature_routed.gds`;
-- SHA-256: `90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`;
+- SHA-256: `1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`;
 - physical envelope: 334.88 um by 225.76 um TinyTapeout 2x2 analog template;
 - release role: four-channel receive beamformer research prototype; and
 - release boundary: local physical and bounded electrical signoff plus the
@@ -222,7 +222,7 @@ Recommended start-up sequence:
 2. Apply the nominal supply.
 3. Keep the signal channels disabled while the analog bias and shared VCM
    reference settle for at least 120 us. The current-hash distributed-RC cold
-   start reached 1.10 V after 60.989 us and 1.17 V after 97.456 us; 120 us is
+   start reached 1.10 V after 60.989 us and 1.17 V after 97.457 us; 120 us is
    the conservative first-silicon enable delay, not a production guarantee.
 4. Apply a stable master clock and release `rst_n`.
 5. Optionally load and latch trim/manual values.
@@ -255,11 +255,11 @@ evidence for this geometry.
 
 The current-hash extracted-device/capacitance calibration completed all 64
 single-channel code cases. Each channel is monotonic, the code-0-to-15 span is
-2.342 to 2.344 dB, and the smallest adjacent step is 0.115 dB. The four reset
-code responses differ by only 0.00364 dB, below the 0.01 dB numerical
+2.337 to 2.343 dB, and the smallest adjacent step is 0.119 dB. The four reset
+code responses differ by only 0.00698 dB, below the 0.01 dB numerical
 significance floor, so the nominal selector remains `[8,8,8,8]`. A deterministic
--0.6/-0.2/+0.2/+0.6 dB injected stress was reduced from 1.197 dB spread to
-0.054 dB using codes `[14,11,8,6]`; this demonstrates calibration range but is
+-0.6/-0.2/+0.2/+0.6 dB injected stress was reduced from 1.204 dB spread to
+0.059 dB using codes `[14,11,8,6]`; this demonstrates calibration range but is
 not a substitute for foundry mismatch Monte Carlo.
 
 The schematic trim sweep covered 27 combinations of TT/FF/SS process,
@@ -348,10 +348,10 @@ pin, branch point, or valid handoff.
 ## 11. Layout verification evidence
 
 All results in this section refer to exact GDS SHA-256
-`90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a`.
+`1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741`.
 The direct user-routed source before the common-mode ECO is separately frozen
 at SHA-256
-`d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313`.
+`950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c`.
 The final assembly adds exactly four foundry `cap_var_lvt` VCM-to-VGND devices.
 
 | Gate | Result |
@@ -368,10 +368,10 @@ The final assembly adds exactly four foundry `cap_var_lvt` VCM-to-VGND devices.
 | Analog resistor terminal triplets | 4/4 |
 | Unexpected signal-to-power shorts | 0 |
 | Unexpected via-only M3 islands | 0 |
-| KLayout full-deck delta | 2,770 source / 2,780 candidate; 10 classified `ct.2` additions, 0 removed |
+| KLayout full-deck delta | 2,768 source / 2,778 candidate; 10 classified `ct.2` additions, 0 removed |
 
 The KLayout result is intentionally a delta, not a false zero-marker claim.
-The generic open_pdks deck reports 2,770 inherited foundry-library/PCell
+The generic open_pdks deck reports 2,768 inherited foundry-library/PCell
 markers in the routed source. The only final delta is ten `ct.2` markers
 introduced inside the four foundry varactor PCells; the gate rejects any other
 addition, removal, or moved marker. Pinned Magic is the foundry-aware physical
@@ -391,12 +391,12 @@ and lumped capacitance:
 
 | Extracted item | Count |
 | --- | ---: |
-| Explicit resistors | 95,133 |
-| Capacitors | 34,048 |
+| Explicit resistors | 95,139 |
+| Capacitors | 34,054 |
 | Extracted devices | 4,208 |
-| Internal resistor nodes | 63,073 |
+| Internal resistor nodes | 63,083 |
 | Required named routes with RC coverage | 254/254 |
-| SPICE/annotation resistor ratio | 0.94694, minimum accepted 0.90 |
+| SPICE/annotation resistor ratio | 0.94695, minimum accepted 0.90 |
 
 Magic emits one classified message that a `viali` contact is smaller than the
 configured extraction meshing section. Magic's `extresist` implementation
@@ -422,10 +422,10 @@ background subtraction.
 
 | Selected beam | Incident 0 | Incident 1 | Incident 2 | Incident 3 |
 | --- | ---: | ---: | ---: | ---: |
-| 0 | **23.4875 mV** | 0.020689 mV | 0.018125 mV | 0.020264 mV |
-| 1 | 0.000132 mV | **24.1040 mV** | 0.000823 mV | 0.021351 mV |
-| 2 | 0.000236 mV | 0.004718 mV | **24.1557 mV** | 0.004566 mV |
-| 3 | 0.000648 mV | 0.021008 mV | 0.000738 mV | **24.1067 mV** |
+| 0 | **23.4875 mV** | 0.020691 mV | 0.018130 mV | 0.020261 mV |
+| 1 | 0.000244 mV | **24.0960 mV** | 0.000322 mV | 0.021354 mV |
+| 2 | 0.000396 mV | 0.004612 mV | **24.1553 mV** | 0.004471 mV |
+| 3 | 0.000343 mV | 0.021349 mV | 0.000292 mV | **24.0973 mV** |
 
 All entries are differential output RMS voltage. The constructive diagonal
 spans only 0.244 dB, and the worst row's diagonal-to-largest-off-diagonal
@@ -454,7 +454,7 @@ minimum time-aligned GM drain-to-tail margin. This is useful sensitivity
 evidence, but it excludes passive mismatch, spatial correlation and gradient,
 package variation, and proprietary foundry statistics; it is not a silicon
 yield claim. All 60 samples pass both the 6 dB functional gate and the 12 dB
-engineering target. Worst rejection is 36.53 dB, minimum headroom is 37.3 mV,
+engineering target. Worst rejection is 36.49 dB, minimum headroom is 37.3 mV,
 and the exact one-sided 95% zero-failure pass-probability lower bound is
 95.13% for this model only.
 
@@ -469,12 +469,12 @@ runtimes.
 ### 13.4 Amplitude, load, frequency, and clock sensitivity
 
 This figure collects the bounded sweeps around the nominal operating point.
-At 50 mV peak input the simulated compression is 0.369 dB. A 30 pF total
-output load costs 0.973 dB; a deliberately heavy 60 pF total load costs
+At 50 mV peak input the simulated compression is 0.370 dB. A 30 pF total
+output load costs 0.967 dB; a deliberately heavy 60 pF total load costs
 3.091 dB but remains stable in the correlated distributed-RC run. Moving the
 RF input to 4.5 or 6 MHz while retaining the 4 MHz LO changes conversion gain
-by +0.127 or -0.496 dB. Clock duty changes to 40/60% and deterministic
-500/1000 ps edge jitter move gain by no more than 0.018 dB in the bounded
+by +0.129 or -0.496 dB. Clock duty changes to 40/60% and deterministic
+500/1000 ps edge jitter move gain by no more than 0.016 dB in the bounded
 pilot.
 
 ![Electrical sensitivity](../evidence/images/electrical-sensitivity.svg)
@@ -483,7 +483,7 @@ pilot.
 
 The two-tone transient uses 4.9 and 5.1 MHz RF tones and measures the 0.9 and
 1.1 MHz IF fundamentals plus their IM3 products. At 10 mV peak per input tone,
-the fundamental-to-worst-IM3 separation is 49.26 dB; at 2 mV it is 68.52 dB.
+the fundamental-to-worst-IM3 separation is 49.20 dB; at 2 mV it is 65.35 dB.
 This characterizes two operating points and is not a guaranteed production
 IIP3 limit.
 
@@ -493,8 +493,8 @@ IIP3 limit.
 
 The cold-start figure reports measured threshold events and the final 5 us
 window. It deliberately does not draw an invented waveform between the
-measurements. At 120 us the VCM average is 1.184193 V and its final-window range
-is 1.182922 to 1.185394 V.
+measurements. At 120 us the VCM average is 1.184191 V and its final-window range
+is 1.182920 to 1.185393 V.
 
 ![Distributed-RC cold-start timing](../evidence/images/cold-start-timing.svg)
 
@@ -507,9 +507,9 @@ from any GM drain to its tail node; every endpoint remains positive.
 | Endpoint | Output RMS | Output CM | Min. GM-to-tail headroom | Power |
 | --- | ---: | ---: | ---: | ---: |
 | SS, 1.62 V, 85 C, passive LL | 16.452 mV | 0.9951 V | 172.5 mV | 0.9680 mW |
-| FF, 1.98 V, -40 C, passive HH | 27.046 mV | 0.9060 V | 57.7 mV | 1.5561 mW |
-| FS, 1.80 V, 27 C, passive LL | 20.173 mV | 1.0675 V | 54.9 mV | 1.2865 mW |
-| SF, 1.80 V, 27 C, passive HH | 22.958 mV | 0.8605 V | 115.1 mV | 1.2181 mW |
+| FF, 1.98 V, -40 C, passive HH | 27.013 mV | 0.9060 V | 53.0 mV | 1.5561 mW |
+| FS, 1.80 V, 27 C, passive LL | 20.152 mV | 1.0675 V | 59.0 mV | 1.2866 mW |
+| SF, 1.80 V, 27 C, passive HH | 22.942 mV | 0.8605 V | 136.9 mV | 1.2180 mW |
 | TT, 1.80 V, 27 C, 60 pF total load | 16.380 mV | 0.9727 V | 84.1 mV | 1.2371 mW |
 
 These are deliberately selected boundary and split-corner checks, not an
@@ -527,9 +527,9 @@ Proven locally for the frozen candidate:
 - exact distributed-RC 20-case beam codebook without background subtraction,
   with all report identities and GDS/netlist hashes checked before aggregation;
 - current-hash 120 us distributed-RC quiet cold start: 1.10 V at 60.989 us,
-  1.17 V at 97.456 us, and 1.184193 V final-window average;
-- current-hash 64-case extracted-device/capacitance trim transfer: 2.342 to
-  2.344 dB span, 0.115 dB minimum step, and 0.00364 dB reset-code channel
+  1.17 V at 97.457 us, and 1.184191 V final-window average;
+- current-hash 64-case extracted-device/capacitance trim transfer: 2.337 to
+  2.343 dB span, 0.119 dB minimum step, and 0.00698 dB reset-code channel
   spread;
 - 60-seed open-PDK coefficient MOS mismatch sensitivity campaign, requiring
   every sample to meet the hard functional checks and the 12 dB rejection

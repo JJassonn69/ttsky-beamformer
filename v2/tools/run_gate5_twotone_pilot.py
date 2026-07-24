@@ -168,6 +168,34 @@ def corrected_rms(report: dict[str, Any], background: dict[str, Any], name: str)
     return math.sqrt(2.0) * abs(value)
 
 
+def case_label(amplitude: float) -> str:
+    return "background" if amplitude == 0.0 else f"tone_{round(amplitude*1e6):d}uvpk"
+
+
+def reusable_report(
+    path: Path, *, view: str, amplitude: float, gds_hash: str, netlist_hash: str
+) -> dict[str, Any] | None:
+    """Return an exact passing case report for the current physical artifacts."""
+    if not path.is_file():
+        return None
+    try:
+        report = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    expected = {
+        "status": "pass",
+        "view": view,
+        "per_tone_peak_v": amplitude,
+        "gds_sha256": gds_hash,
+        "netlist_sha256": netlist_hash,
+        "ngspice_returncode": 0,
+        "timed_out": False,
+    }
+    if any(report.get(key) != value for key, value in expected.items()):
+        return None
+    return report
+
+
 def analyze_reports(reports: dict[str, dict[str, Any]]) -> dict[str, Any]:
     errors: list[str] = []
     if any(item.get("status") != "pass" for item in reports.values()):
@@ -214,6 +242,10 @@ def main() -> int:
     parser.add_argument("--base-netlist", type=Path, default=DEFAULT_BASE)
     parser.add_argument("--rc-netlist", type=Path, default=DEFAULT_RC)
     parser.add_argument("--build", type=Path, default=BUILD)
+    parser.add_argument(
+        "--resume", action="store_true",
+        help="reuse only exact passing reports bound to the current GDS and netlist",
+    )
     args = parser.parse_args()
     if args.jobs < 1 or args.jobs > 3:
         raise SystemExit("jobs must be between one and three")
@@ -223,15 +255,37 @@ def main() -> int:
     netlist = ROOT / (args.base_netlist if args.view == "base" else args.rc_netlist)
     build = ROOT / args.build
     amplitudes = (0.0, 0.002, 0.010)
+    gds_hash = sha256(gds)
+    netlist_hash = sha256(netlist)
+    items: list[dict[str, Any]] = []
+    pending: list[float] = []
+    for amplitude in amplitudes:
+        report_path = build / args.view / case_label(amplitude) / "report.json"
+        prior = reusable_report(
+            report_path,
+            view=args.view,
+            amplitude=amplitude,
+            gds_hash=gds_hash,
+            netlist_hash=netlist_hash,
+        ) if args.resume else None
+        if prior is None:
+            pending.append(amplitude)
+        else:
+            items.append({"report": relative(report_path), "result": prior})
+            print(f"{case_label(amplitude)}: reused pass", flush=True)
+    print(f"resume reused={len(items)} pending={len(pending)}", flush=True)
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.jobs) as pool:
         futures = {
             pool.submit(
                 run_case, args.view, amplitude, netlist, gds,
                 args.timeout, args.ngspice, build,
             ): amplitude
-            for amplitude in amplitudes
+            for amplitude in pending
         }
-        items = [future.result() for future in concurrent.futures.as_completed(futures)]
+        for future in concurrent.futures.as_completed(futures):
+            item = future.result()
+            items.append(item)
+            print(f"{case_label(item['result']['per_tone_peak_v'])}: {item['result']['status']}", flush=True)
     reports = {
         ("background" if item["result"]["per_tone_peak_v"] == 0 else
          f"tone_{round(item['result']['per_tone_peak_v']*1e3):d}mvpk"): item["result"]

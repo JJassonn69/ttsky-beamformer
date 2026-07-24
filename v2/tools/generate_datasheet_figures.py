@@ -17,15 +17,18 @@ from pathlib import Path
 from typing import Any, Iterable, Sequence
 
 
-EXPECTED_GDS_SHA256 = (
-    "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
+ROOT = Path(__file__).resolve().parents[2]
+_CONTRACT = json.loads(
+    (ROOT / "v2/layout/vcm_varactor_eco.json").read_text(encoding="utf-8")
 )
-EXPECTED_BASE_NETLIST_SHA256 = (
-    "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def"
+_EXTRACTION = json.loads(
+    (ROOT / "build/v2/control_routing/final_rc/coverage_audit.json").read_text(
+        encoding="utf-8"
+    )
 )
-EXPECTED_RC_NETLIST_SHA256 = (
-    "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a"
-)
+EXPECTED_GDS_SHA256 = _CONTRACT["output_checkpoint"]["sha256"]
+EXPECTED_BASE_NETLIST_SHA256 = _EXTRACTION["sha256"]["base"]
+EXPECTED_RC_NETLIST_SHA256 = _EXTRACTION["sha256"]["distributed_rc"]
 
 INK = "#172033"
 MUTED = "#5b6475"

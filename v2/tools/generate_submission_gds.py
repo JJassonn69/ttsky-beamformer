@@ -33,7 +33,9 @@ OUTPUT = ROOT / "gds/tt_um_jjassonn69_beamformer.gds"
 REPORT = ROOT / "build/v2/submission/gds_packaging.json"
 SOURCE_TOP = "v2_control_quadrature_routed"
 SUBMISSION_TOP = "tt_um_jjassonn69_beamformer"
-SOURCE_SHA256 = "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
+SOURCE_SHA256 = json.loads(
+    (ROOT / "v2/layout/vcm_varactor_eco.json").read_text(encoding="utf-8")
+)["output_checkpoint"]["sha256"]
 
 
 def sha256(data: bytes) -> str:

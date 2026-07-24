@@ -8,52 +8,52 @@
 <rect x="60.00" y="110.00" width="680.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
 <text x="80.00" y="144.00" text-anchor="start" class="label">Gain compression versus input peak</text>
 <line x1="105.00" y1="354.36" x2="720.00" y2="354.36" stroke="#5b6475" stroke-width="1" opacity="1"/>
-<rect x="108.00" y="342.64" width="165.00" height="11.72" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="190.50" y="334.64" text-anchor="middle" class="small" style="fill:#27884a">+0.063</text>
+<rect x="108.00" y="341.65" width="165.00" height="12.71" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="190.50" y="333.65" text-anchor="middle" class="small" style="fill:#27884a">+0.068</text>
 <text x="190.50" y="403.00" text-anchor="middle" class="small">20 mV</text>
-<rect x="408.00" y="285.60" width="165.00" height="68.77" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="490.50" y="277.60" text-anchor="middle" class="small" style="fill:#27884a">+0.369</text>
+<rect x="408.00" y="285.32" width="165.00" height="69.04" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="490.50" y="277.32" text-anchor="middle" class="small" style="fill:#27884a">+0.370</text>
 <text x="490.50" y="403.00" text-anchor="middle" class="small">50 mV</text>
 <text x="722.00" y="144.00" text-anchor="end" class="small">dB</text>
 <rect x="770.00" y="110.00" width="670.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
 <text x="790.00" y="144.00" text-anchor="start" class="label">Conversion-gain change versus output load</text>
 <line x1="815.00" y1="193.62" x2="1420.00" y2="193.62" stroke="#5b6475" stroke-width="1" opacity="1"/>
-<rect x="818.00" y="193.62" width="108.17" height="5.97" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="872.08" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.116</text>
+<rect x="818.00" y="193.62" width="108.17" height="5.78" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="872.08" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.113</text>
 <text x="872.08" y="403.00" text-anchor="middle" class="small">100 kΩ</text>
-<rect x="1014.67" y="193.62" width="108.17" height="49.86" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="1068.75" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.973</text>
+<rect x="1014.67" y="193.62" width="108.17" height="49.56" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1068.75" y="185.62" text-anchor="middle" class="small" style="fill:#27884a">-0.967</text>
 <text x="1068.75" y="403.00" text-anchor="middle" class="small">30 pF</text>
-<rect x="1211.33" y="193.62" width="108.17" height="158.44" fill="#aa6a00" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<rect x="1211.33" y="193.62" width="108.17" height="158.43" fill="#aa6a00" stroke="none" stroke-width="1" rx="3" opacity="1"/>
 <text x="1265.42" y="185.62" text-anchor="middle" class="small" style="fill:#aa6a00">-3.091</text>
 <text x="1265.42" y="403.00" text-anchor="middle" class="small">60 pF</text>
 <text x="1422.00" y="144.00" text-anchor="end" class="small">dB</text>
 <rect x="60.00" y="460.00" width="680.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
 <text x="80.00" y="494.00" text-anchor="start" class="label">RF-frequency gain change (LO fixed at 4 MHz)</text>
 <line x1="105.00" y1="586.33" x2="720.00" y2="586.33" stroke="#5b6475" stroke-width="1" opacity="1"/>
-<rect x="108.00" y="569.04" width="165.00" height="17.29" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="190.50" y="561.04" text-anchor="middle" class="small" style="fill:#27884a">+0.127</text>
+<rect x="108.00" y="568.77" width="165.00" height="17.57" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="190.50" y="560.77" text-anchor="middle" class="small" style="fill:#27884a">+0.129</text>
 <text x="190.50" y="753.00" text-anchor="middle" class="small">4.5 MHz</text>
-<rect x="408.00" y="586.33" width="165.00" height="67.85" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<rect x="408.00" y="586.33" width="165.00" height="67.72" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
 <text x="490.50" y="578.33" text-anchor="middle" class="small" style="fill:#27884a">-0.496</text>
 <text x="490.50" y="753.00" text-anchor="middle" class="small">6 MHz</text>
 <text x="722.00" y="494.00" text-anchor="end" class="small">dB</text>
 <rect x="770.00" y="460.00" width="670.00" height="315.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
 <text x="790.00" y="494.00" text-anchor="start" class="label">Master-clock duty/jitter gain change</text>
 <line x1="815.00" y1="654.67" x2="1420.00" y2="654.67" stroke="#5b6475" stroke-width="1" opacity="1"/>
-<rect x="818.00" y="652.42" width="81.12" height="2.25" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="858.56" y="644.42" text-anchor="middle" class="small" style="fill:#27884a">+0.002</text>
+<rect x="818.00" y="654.67" width="81.12" height="3.34" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="858.56" y="646.67" text-anchor="middle" class="small" style="fill:#27884a">-0.002</text>
 <text x="858.56" y="753.00" text-anchor="middle" class="small">40%</text>
-<rect x="965.50" y="649.18" width="81.12" height="5.49" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="1006.06" y="641.18" text-anchor="middle" class="small" style="fill:#27884a">+0.004</text>
+<rect x="965.50" y="651.37" width="81.12" height="3.29" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1006.06" y="643.37" text-anchor="middle" class="small" style="fill:#27884a">+0.002</text>
 <text x="1006.06" y="753.00" text-anchor="middle" class="small">60%</text>
-<rect x="1113.00" y="638.91" width="81.12" height="15.76" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="1153.56" y="630.91" text-anchor="middle" class="small" style="fill:#27884a">+0.012</text>
+<rect x="1113.00" y="643.10" width="81.12" height="11.57" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1153.56" y="635.10" text-anchor="middle" class="small" style="fill:#27884a">+0.008</text>
 <text x="1153.56" y="753.00" text-anchor="middle" class="small">500 ps</text>
-<rect x="1260.50" y="630.84" width="81.12" height="23.83" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
-<text x="1301.06" y="622.84" text-anchor="middle" class="small" style="fill:#27884a">+0.017</text>
+<rect x="1260.50" y="632.89" width="81.12" height="21.78" fill="#27884a" stroke="none" stroke-width="1" rx="3" opacity="1"/>
+<text x="1301.06" y="624.89" text-anchor="middle" class="small" style="fill:#27884a">+0.016</text>
 <text x="1301.06" y="753.00" text-anchor="middle" class="small">1 ns</text>
 <text x="1422.00" y="494.00" text-anchor="end" class="small">dB</text>
 <text x="60.00" y="825.00" text-anchor="start" class="small" style="fill:#aa6a00">The 60 pF total load is intentionally shown as a warning point: it costs about 3.09 dB but remains electrically stable.</text>
-<text x="1458.00" y="878.00" text-anchor="end" class="small">GDS 90b51a5f37fd | source 999e40065baa | bounded simulation, not guaranteed limits</text>
+<text x="1458.00" y="878.00" text-anchor="end" class="small">GDS 1b76aba2cf23 | source e42f9c0f6b23 | bounded simulation, not guaranteed limits</text>
 </svg>

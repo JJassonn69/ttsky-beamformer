@@ -11,55 +11,55 @@
   },
   "as_of": "2026-07-24",
   "distributed_rc": {
-    "base_netlist_sha256": "389751fb5a690666b7153770162e36ca4f6b1d2a48500f62d5b9ad2b56353def",
-    "capacitors": 34048,
+    "base_netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+    "capacitors": 34054,
     "covered_named_routes": 254,
     "devices": 4208,
-    "distributed_rc_netlist_sha256": "4a29c4ecaa4178528c68c9427785236a283171d3cecc1399cf137483c035736a",
-    "internal_resistor_nodes": 63073,
+    "distributed_rc_netlist_sha256": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126",
+    "internal_resistor_nodes": 63083,
     "required_named_routes": 254,
-    "resistors": 95133,
-    "spice_to_annotation_ratio": 0.9469456416790261,
+    "resistors": 95139,
+    "spice_to_annotation_ratio": 0.9469488100807214,
     "status": "pass"
   },
   "electrical": {
     "gate4": {
-      "base_corrected_constructive_rms_v": 0.02380129316225213,
-      "base_to_rc_constructive_delta_db": 0.10973278796610607,
-      "rc_corrected_constructive_rms_v": 0.023502492037120012,
-      "rc_corrected_null_rms_v": 4.648355243075918e-06,
-      "rc_representative_rejection_db": 74.0762920660717
+      "base_corrected_constructive_rms_v": 0.023808223798559812,
+      "base_to_rc_constructive_delta_db": 0.1122669130826494,
+      "rc_corrected_constructive_rms_v": 0.02350247777256871,
+      "rc_corrected_null_rms_v": 4.652130074204933e-06,
+      "rc_representative_rejection_db": 74.06923602922994
     },
     "gate5": {
-      "codebook_constructive_spread_db": 0.2436566834345379,
-      "fifty_mv_peak_compression_db": 0.368996275552945,
-      "minimum_codebook_rejection_db": 61.05337728105114,
-      "minimum_mismatch_rejection_db": 36.53082387190476,
+      "codebook_constructive_spread_db": 0.24351285052462948,
+      "fifty_mv_peak_compression_db": 0.3704520161924094,
+      "minimum_codebook_rejection_db": 61.04947702699859,
+      "minimum_mismatch_rejection_db": 36.489527528344915,
       "mismatch_seed_count": 60,
       "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
-      "ten_mv_per_tone_im3_separation_db": 49.25807822061116
+      "ten_mv_per_tone_im3_separation_db": 49.19991349667463
     },
     "nominal_rc_codebook": {
       "constructive_diagonal_v_rms": [
         0.0234875,
-        0.024104,
-        0.0241557,
-        0.0241067
+        0.024096,
+        0.0241553,
+        0.0240973
       ],
-      "constructive_spread_db": 0.2436566834345379,
-      "minimum_rejection_db": 61.05337728105114,
+      "constructive_spread_db": 0.24351285052462948,
+      "minimum_rejection_db": 61.04947702699859,
       "settled_operating_ranges": {
         "estimated_power_w": [
-          0.0012371247,
-          0.0012372984
+          0.00123710436,
+          0.00123717402
         ],
         "output_common_mode_v": [
           0.9722154,
           0.9722194
         ],
         "supply_current_a": [
-          0.0006872915,
-          0.000687388
+          0.0006872802,
+          0.0006873189
         ],
         "vcm_v": [
           1.199097,
@@ -69,33 +69,33 @@
     },
     "startup": {
       "recommended_enable_delay_us": 120.0,
-      "vcm_1p10_v_first_us": 60.9885,
-      "vcm_1p17_v_first_us": 97.4555,
-      "vcm_final_avg_v": 1.184193
+      "vcm_1p10_v_first_us": 60.9887,
+      "vcm_1p17_v_first_us": 97.45739999999999,
+      "vcm_final_avg_v": 1.184191
     },
     "trim": {
-      "default_spread_db": 0.0036437864554690665,
-      "minimum_adjacent_step_db": 0.11539282504026764,
+      "default_spread_db": 0.00698248190624473,
+      "minimum_adjacent_step_db": 0.1188982064402381,
       "span_db_by_channel": [
-        2.3441469833568327,
-        2.3432586247306815,
-        2.3421837944111332,
-        2.3431032844974222
+        2.3365673679109324,
+        2.343274870560247,
+        2.3372620381509805,
+        2.342500850769867
       ],
-      "stress_calibrated_spread_db": 0.05404094018998236
+      "stress_calibrated_spread_db": 0.059429965910311126
     }
   },
   "gds": {
-    "bytes": 1837932,
+    "bytes": 1846764,
     "final_eco": "four foundry cap_var_lvt devices, G=VCM and D=S=B=VGND",
     "path": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
     "pre_varactor_user_route_source": {
-      "bytes": 1787976,
+      "bytes": 1796808,
       "path": "v2/reference/v2_control_quadrature_user_routed.gds",
-      "sha256": "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313",
+      "sha256": "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c",
       "top": "v2_control_quadrature_routed"
     },
-    "sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a",
+    "sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
     "top": "v2_control_quadrature_routed"
   },
   "known_characterization_residuals": {
@@ -122,9 +122,9 @@
       "added_category_counts": {
         "ct.2": 10
       },
-      "candidate_marker_count": 2780,
+      "candidate_marker_count": 2778,
       "removed_marker_count": 0,
-      "source_marker_count": 2770,
+      "source_marker_count": 2768,
       "status": "pass"
     },
     "magic_drc_count": 0,

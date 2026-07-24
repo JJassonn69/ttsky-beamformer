@@ -46,6 +46,21 @@ from run_control_postlayout_smoke import (
 
 ROOT = Path(__file__).resolve().parents[2]
 BUILD = Path("build/v2/gate5_mismatch_pilot")
+MODEL_METHOD = (
+    "independent per-instance standard-normal MOS factors applied to published "
+    "SKY130 geometry-scaled mismatch coefficients"
+)
+MODEL_LIMITATIONS = [
+    "not foundry-qualified Monte Carlo",
+    "no passive mismatch",
+    "no spatial correlation or systematic gradient",
+    "no package variation",
+]
+LOD_PARAMETERS = Path("third_party/sky130_fd_pr/models/parameters/lod.spice")
+FIXED_MODEL_PARAMETERS = {
+    "sky130_fd_pr__nfet_01v8__dlc_rotweak": 0,
+    "sky130_fd_pr__pfet_01v8__dlc_rotweak": 0,
+}
 
 MODEL_SPECS = {
     "sky130_fd_pr__nfet_01v8": {
@@ -118,12 +133,47 @@ def patch_corner(text: str, original_pm3: Path, patched_pm3: Path) -> str:
     return text.replace(original, replacement)
 
 
+def model_bundle_semantic_identity() -> dict[str, Any]:
+    """Describe model semantics without embedding a temporary build path."""
+    models: dict[str, Any] = {}
+    for model, spec in MODEL_SPECS.items():
+        source_pm3 = ROOT / spec["pm3"]
+        source_corner = ROOT / spec["corner"]
+        patched_pm3_text = patch_pm3(
+            source_pm3.read_text(), model, spec["parameters"]
+        )
+        canonical_corner_text = patch_corner(
+            source_corner.read_text(), source_pm3,
+            Path(f"<patched_pm3:{model}>")
+        )
+        models[model] = {
+            "parameters": list(spec["parameters"]),
+            "source_pm3_sha256": sha256(source_pm3),
+            "source_corner_sha256": sha256(source_corner),
+            "mismatch_coefficients_sha256": sha256(ROOT / spec["mismatch"]),
+            "patched_pm3_semantic_sha256": hashlib.sha256(
+                patched_pm3_text.encode()
+            ).hexdigest(),
+            "patched_corner_semantic_sha256": hashlib.sha256(
+                canonical_corner_text.encode()
+            ).hexdigest(),
+        }
+    return {
+        "schema_version": 1,
+        "method": MODEL_METHOD,
+        "limitations": MODEL_LIMITATIONS,
+        "lod_parameters_sha256": sha256(ROOT / LOD_PARAMETERS),
+        "fixed_model_parameters": FIXED_MODEL_PARAMETERS,
+        "models": models,
+    }
+
+
 def build_model_bundle(build: Path) -> tuple[Path, dict[str, Any]]:
     model_dir = build / "models"
     model_dir.mkdir(parents=True, exist_ok=True)
     files: dict[str, dict[str, str]] = {}
     include_lines = [
-        '.include "third_party/sky130_fd_pr/models/parameters/lod.spice"',
+        f'.include "{LOD_PARAMETERS}"',
         ".param sky130_fd_pr__nfet_01v8__dlc_rotweak=0",
         ".param sky130_fd_pr__pfet_01v8__dlc_rotweak=0",
     ]
@@ -159,20 +209,17 @@ def build_model_bundle(build: Path) -> tuple[Path, dict[str, Any]]:
         }
     include = model_dir / "models.inc"
     include.write_text("\n".join(include_lines) + "\n", encoding="utf-8")
+    semantic_identity = model_bundle_semantic_identity()
     manifest = {
-        "schema_version": 1,
-        "method": "independent per-instance standard-normal MOS factors applied to published SKY130 geometry-scaled mismatch coefficients",
-        "limitations": [
-            "not foundry-qualified Monte Carlo",
-            "no passive mismatch",
-            "no spatial correlation or systematic gradient",
-            "no package variation",
-        ],
+        "schema_version": 2,
+        "method": MODEL_METHOD,
+        "limitations": MODEL_LIMITATIONS,
         "include": relative(include),
         "include_sha256": sha256(include),
         "files": files,
+        "semantic_identity": semantic_identity,
     }
-    manifest["bundle_sha256"] = canonical_sha256(manifest)
+    manifest["bundle_sha256"] = canonical_sha256(semantic_identity)
     (model_dir / "manifest.json").write_text(
         json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
@@ -565,6 +612,8 @@ def main() -> int:
         if passing == len(seed_reports) else None
     )
     scope_kind = "pilot" if len(seed_reports) < 60 else "campaign"
+    model_manifest_path = build / "models" / "manifest.json"
+    rebinding_audit_path = build / "bundle_rebinding_audit.json"
     summary = {
         "schema_version": 1,
         "gate": 5,
@@ -587,8 +636,15 @@ def main() -> int:
         "gds_sha256": sha256(gds),
         "source_netlist": relative(nominal),
         "source_netlist_sha256": sha256(nominal),
-        "model_manifest": relative(build / "models" / "manifest.json"),
+        "model_manifest": relative(model_manifest_path),
+        "model_manifest_sha256": sha256(model_manifest_path),
         "model_bundle_sha256": model_manifest["bundle_sha256"],
+        "bundle_rebinding_audit": (
+            relative(rebinding_audit_path) if rebinding_audit_path.is_file() else None
+        ),
+        "bundle_rebinding_audit_sha256": (
+            sha256(rebinding_audit_path) if rebinding_audit_path.is_file() else None
+        ),
         "seed_count": len(seed_reports),
         "passing_seed_count": passing,
         "zero_failure_one_sided_95pct_pass_probability_lower_bound": (
