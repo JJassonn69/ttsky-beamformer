@@ -5,7 +5,7 @@
   "source_checkpoint": {
     "gds": "build/v2/control_routing/direct/v2_control_trim_routed.gds",
     "top": "v2_control_trim_routed",
-    "sha256": "98e7901126f5185ec10efd6030ba80b88b8efaacb9dd676aaf40d7861c6368f5"
+    "sha256": "fb8a6e9cc5cc578933a47976adcc566d9c791c89b89eea0ee186be35f78fc092"
   },
   "allocation_checkpoint": {
     "json": "build/v2/control_routing/control_route_allocation.json",
@@ -13,7 +13,7 @@
   },
   "openroad_handoff_checkpoint": {
     "geometry": "build/v2/control_routing/openroad_route_geometry.json",
-    "geometry_sha256": "a248486f828bf5f3702601f01921c590d2d9a9a92e06a1b3c6d949e4c0d68481"
+    "geometry_sha256": "0393793b6a6a14772c4c88f7cfb0c2027e586456da1f41000783f20d961d1ce1"
   },
   "output_top": "v2_control_phase_routed",
   "overlay_top": "v2_control_phase_routes_overlay",

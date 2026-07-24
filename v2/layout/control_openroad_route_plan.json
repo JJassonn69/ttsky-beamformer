@@ -21,6 +21,12 @@
     "mapping": "build/v2/control_mapping/physical_netlist.json",
     "mapping_sha256": "e328f8ba9ef2a6b9bbd17efe645e4ebfb85641b17b2b93c72b031644211da4bd"
   },
+  "route_geometry_override": {
+    "json": "v2/layout/control_trim_internal_route_override.json",
+    "sha256": "7509c50a767d40a8a52d7d07590fbdd48e72f7cc4b8314a04d2a1acaf2e1a9b7",
+    "scope": "R008:R023 / active_trim_codes[0:15] only",
+    "policy": "restore the reviewed KLayout straight paths while preserving every logical label and OpenROAD top-pin rectangle"
+  },
   "overlay_top": "v2_control_openroad_routes",
   "output_top": "v2_control_internal_routed",
   "routed_classes": [
@@ -76,7 +82,7 @@
     "foundry_lef_pin_access_is_mandatory": true,
     "power_geometry_and_analog_keepouts_are_blockages": true,
     "route_centerlines_and_vias_are_reproduced_from_routed_def": true,
-    "reviewed_trim_route_optimization_is_frozen_in_the_audited_routed_def": true,
+    "reviewed_trim_route_optimization_is_frozen_in_a_hash_locked_endpoint_preserving_override": true,
     "metal4_is_used_only_by_the_thirteen_external_input_routes": true,
     "metal5_used": false
   },

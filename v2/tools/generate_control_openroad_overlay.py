@@ -218,6 +218,87 @@ def route_geometry(
     }
 
 
+def apply_route_geometry_override(
+    shapes: list[dict[str, Any]],
+    routes: list[dict[str, Any]],
+    labels: list[dict[str, Any]],
+    override: dict[str, Any],
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]]]:
+    """Apply the bounded, endpoint-preserving manual trim-route cleanup."""
+
+    override_routes = override.get("routes", [])
+    by_net = {item["net"]: item for item in override_routes}
+    if len(by_net) != len(override_routes):
+        raise ValueError("manual route override contains duplicate logical nets")
+    expected_nets = {f"active_trim_codes[{index}]" for index in range(16)}
+    if set(by_net) != expected_nets:
+        raise ValueError("manual route override is not limited to active trim codes")
+
+    route_by_net = {item["net"]: item for item in routes}
+    label_by_net = {item["net"]: item for item in labels}
+    if not expected_nets <= set(route_by_net) or not expected_nets <= set(label_by_net):
+        raise ValueError("manual route override targets absent routed nets")
+
+    for net, replacement in by_net.items():
+        route = route_by_net[net]
+        if route["gds_label"] != replacement["gds_label"]:
+            raise ValueError(f"{net}: manual override changes the physical label")
+        original_top_pins = [
+            item for item in shapes
+            if item["net"] == net and item["kind"] == "openroad_top_pin"
+        ]
+        replacement_top_pins = [
+            item for item in replacement["shapes"]
+            if item["kind"] == "openroad_top_pin"
+        ]
+        if original_top_pins != replacement_top_pins:
+            raise ValueError(f"{net}: manual override changes a frozen top pin")
+        point = replacement["label"]["point_um"]
+        layer = replacement["label"]["layer"]
+        x, y = map(float, point)
+        if layer != original_top_pins[0]["layer"]:
+            raise ValueError(f"{net}: manual label changes the top-pin layer")
+        x0, y0, x1, y1 = map(float, original_top_pins[0]["bbox_um"])
+        if not (x0 <= x <= x1 and y0 <= y <= y1):
+            raise ValueError(f"{net}: manual label misses the frozen top pin")
+        label_by_net[net] = {
+            "net": net,
+            "layer": layer,
+            "point_um": list(map(float, point)),
+            "gds_label": replacement["gds_label"],
+        }
+        route.update({
+            "shape_count": int(replacement["shape_count"]),
+            "segment_count": int(replacement["segment_count"]),
+            "via_count": int(replacement["via_count"]),
+            "patch_count": int(replacement["patch_count"]),
+            "layers": sorted(
+                {
+                    item["layer"] for item in replacement["shapes"]
+                    if item["layer"] in LAYER_ORDER
+                },
+                key=LAYER_ORDER.__getitem__,
+            ),
+            "reviewed_manual_override": True,
+        })
+
+    replaced: set[str] = set()
+    merged_shapes: list[dict[str, Any]] = []
+    for item in shapes:
+        net = item["net"]
+        if net not in by_net:
+            merged_shapes.append(item)
+            continue
+        if net in replaced:
+            continue
+        merged_shapes.extend(by_net[net]["shapes"])
+        replaced.add(net)
+    if replaced != expected_nets:
+        raise ValueError("manual route override did not replace all trim routes")
+    merged_labels = [label_by_net[item["net"]] for item in labels]
+    return merged_shapes, routes, merged_labels
+
+
 def generate(plan: dict[str, Any], root: Path) -> dict[str, Any]:
     source = root / plan["source_checkpoint"]["gds"]
     if sha256(source) != plan["source_checkpoint"]["sha256"]:
@@ -296,13 +377,37 @@ def generate(plan: dict[str, Any], root: Path) -> dict[str, Any]:
             shapes.extend(net_shapes)
             routes.append(route)
             route_index += 1
+    override_report: dict[str, Any] | None = None
+    override_checkpoint = plan.get("route_geometry_override")
+    if override_checkpoint is not None:
+        override_path = root / override_checkpoint["json"]
+        if sha256(override_path) != override_checkpoint["sha256"]:
+            raise ValueError("manual route override differs from the frozen checkpoint")
+        override = json.loads(override_path.read_text(encoding="utf-8"))
+        shapes, routes, labels = apply_route_geometry_override(
+            shapes, routes, labels, override
+        )
+        override_report = {
+            "json": override_checkpoint["json"],
+            "sha256": override_checkpoint["sha256"],
+            "route_count": len(override["routes"]),
+            "shape_count": int(override["counts"]["shapes"]),
+            "via_count": int(override["counts"]["vias"]),
+            "donor_commit": override["provenance"]["donor_commit"],
+            "donor_gds_sha256": override["provenance"]["donor_gds_sha256"],
+        }
     if len(routes) != int(plan["expected_route_count"]):
         raise ValueError(f"emitted {len(routes)} routes, expected {plan['expected_route_count']}")
     counts = Counter(item["layer"] for item in shapes)
-    return {
+    result = {
         "schema_version": 2,
         "units": "um",
-        "status": "generated from audited OpenROAD detailed routes",
+        "status": (
+            "generated from audited OpenROAD detailed routes with reviewed "
+            "endpoint-preserving trim-route override"
+            if override_report is not None
+            else "generated from audited OpenROAD detailed routes"
+        ),
         "source_checkpoint": plan["source_checkpoint"],
         "route_checkpoint": plan["route_checkpoint"],
         "top": plan["overlay_top"],
@@ -323,6 +428,9 @@ def generate(plan: dict[str, Any], root: Path) -> dict[str, Any]:
             "by_layer": dict(sorted(counts.items(), key=lambda item: LAYER_ORDER.get(item[0], 99))),
         },
     }
+    if override_report is not None:
+        result["route_geometry_override"] = override_report
+    return result
 
 
 def magic_tcl(data: dict[str, Any], output: Path) -> None:

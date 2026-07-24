@@ -5,7 +5,7 @@
   "source_checkpoint": {
     "gds": "build/v2/control_routing/direct/v2_control_phase_routed.gds",
     "top": "v2_control_phase_routed",
-    "sha256": "f86af6d84d2b1afe8076d98804612bea5c89797672753fa2b1fdc95fa3b59cb1"
+    "sha256": "dcaa3e7ace3a2133a7d4b2e402164e4d07d67d6e735c0ed1959a36a5eba621e2"
   },
   "allocation_checkpoint": {
     "json": "build/v2/control_routing/control_route_allocation.json",
@@ -13,7 +13,7 @@
   },
   "openroad_handoff_checkpoint": {
     "geometry": "build/v2/control_routing/openroad_route_geometry.json",
-    "geometry_sha256": "a248486f828bf5f3702601f01921c590d2d9a9a92e06a1b3c6d949e4c0d68481"
+    "geometry_sha256": "0393793b6a6a14772c4c88f7cfb0c2027e586456da1f41000783f20d961d1ce1"
   },
   "output_top": "v2_control_quadrature_routed",
   "overlay_top": "v2_control_quad_routes_overlay",

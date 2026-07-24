@@ -24,7 +24,7 @@ class ControlOpenroadOverlayTest(unittest.TestCase):
     def test_all_audited_routes_are_reproduced(self):
         self.assertEqual(self.geometry["counts"]["routes"], 206)
         self.assertEqual(self.geometry["counts"]["labels"], 206)
-        self.assertEqual(self.geometry["counts"]["vias"], 1478)
+        self.assertEqual(self.geometry["counts"]["vias"], 1466)
         self.assertEqual(self.geometry["counts"]["patches"], 3)
         self.assertEqual(self.geometry["counts"]["by_layer"]["met4"], 39)
         self.assertNotIn("met5", self.geometry["counts"]["by_layer"])
@@ -46,6 +46,15 @@ class ControlOpenroadOverlayTest(unittest.TestCase):
             * (item["bbox_um"][3] - item["bbox_um"][1]) > 0.240
             for item in top_pins
         ))
+        self.assertEqual(self.geometry["route_geometry_override"], {
+            "json": "v2/layout/control_trim_internal_route_override.json",
+            "sha256": "7509c50a767d40a8a52d7d07590fbdd48e72f7cc4b8314a04d2a1acaf2e1a9b7",
+            "route_count": 16,
+            "shape_count": 490,
+            "via_count": 69,
+            "donor_commit": "1dd965774182bb9647ae1337e48c0a3a24ecd211",
+            "donor_gds_sha256": "8747ab04e6a39da780584a59f365c7506cc34b1e7d5f9e7fe56563a10a10ad9d",
+        })
 
     def test_route_grid_snap_does_not_move_legal_five_nanometer_edges(self):
         self.assertEqual(snap(186.145), 186.145)
@@ -86,7 +95,7 @@ class ControlOpenroadOverlayTest(unittest.TestCase):
                 for element in labels
             }
             self.assertEqual(names, {f"R{index:03d}" for index in range(206)})
-            self.assertEqual(first_report["boundary_count"], 6085)
+            self.assertEqual(first_report["boundary_count"], 6223)
             self.assertEqual(first_report["label_count"], 206)
 
 

@@ -24,8 +24,8 @@ from assemble_control_placement_gds import (
 SOURCE_TOP = "v2_control_quadrature_routed"
 OVERLAY_TOP = "v2_vcm_varactor_eco_overlay"
 VARACTOR_CELL = "sky130_fd_pr__cap_var_lvt_88578Y"
-SOURCE_SHA256 = "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313"
-EXPECTED_OUTPUT_SHA256 = "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
+SOURCE_SHA256 = "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c"
+EXPECTED_OUTPUT_SHA256 = "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741"
 
 
 def sha256(data: bytes) -> str:

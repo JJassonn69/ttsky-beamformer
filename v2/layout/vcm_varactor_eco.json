@@ -4,13 +4,13 @@
   "source_checkpoint": {
     "gds": "v2/reference/v2_control_quadrature_user_routed.gds",
     "top": "v2_control_quadrature_routed",
-    "sha256": "d148557d7e3b793d0e907aa83e125aff6a2c5479b399b8f127a132e8b336e313",
+    "sha256": "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c",
     "preserves_user_trim_routes": true
   },
   "output_checkpoint": {
     "gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
     "top": "v2_control_quadrature_routed",
-    "sha256": "90b51a5f37fd114a8cb24afec32ba1c5364b64f15865f19fe738caa7cb8a994a"
+    "sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741"
   },
   "analog_support_components": [
     {
