@@ -148,7 +148,20 @@ python3 -m unittest v3.tests.test_floorplan -v
 ```
 
 The review image is `evidence/floorplan_review.svg`. This checkpoint does not
-instantiate devices or routes and does not authorize GDS. The next physical
-gate must measure and place the shared 64 um / 1.00 um bias reference, confirm
-that synthesized selector/control cells fit their reservations, and produce a
-transistor-level channel placement without moving the frozen channel axes.
+instantiate devices or routes and does not authorize GDS.
+
+Physical Gate 3B measured four guarded foldings of the shared 64 um / 1.00 um
+tail reference in pinned Magic 8.3.676. The selected 8-by-8 um folding is
+11.99 by 10.10 um (121.10 um2), smaller and much squarer than the 4-by-16,
+16-by-4, and 32-by-2 alternatives. Its reserved location is now shown in the
+floorplan, but the diode gate/drain strap, local guard connection, DRC, LVS,
+and extraction remain open.
+
+Each channel's 34 um-high selector reservation now also has an explicit
+nine-row standard-cell skeleton. It uses twelve 2:1 muxes, four AND gates,
+five inverted-input AND gates, and five taps per channel. Exact tracked LEF
+dimensions give 38.11 percent raw utilization; the widest row is 9.20 um in a
+15.74 um channel. The actual named cell/pin graph passes exhaustive Boolean
+checking for all phase inputs, codes, enable states, and blanking states.
+Detailed pin-access routing remains the next selector gate.
+See `evidence/selector_placement_review.svg` for an enlarged row-by-row view.

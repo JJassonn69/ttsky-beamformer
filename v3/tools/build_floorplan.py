@@ -15,6 +15,7 @@ from typing import Any
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT = PROJECT_ROOT / "v3" / "evidence" / "implementation_checkpoint.json"
+SUPPORT_STUDY = PROJECT_ROOT / "v3" / "evidence" / "support_floorplan_study.json"
 DEFAULT_OUTPUT = PROJECT_ROOT / "v3" / "layout" / "floorplan.json"
 
 CHANNEL_CENTERS = [152.26, 132.94, 113.62, 94.30]
@@ -35,8 +36,11 @@ def segment(start: list[float], end: list[float], layer: str) -> dict[str, Any]:
 
 def build_floorplan() -> dict[str, Any]:
     checkpoint = json.loads(CHECKPOINT.read_text(encoding="utf-8"))
+    support = json.loads(SUPPORT_STUDY.read_text(encoding="utf-8"))
     if not checkpoint["layout_authorized"] or checkpoint["gds_authorized"]:
         raise RuntimeError("V3 checkpoint does not authorize review floorplanning")
+    if support["status"] != "pass":
+        raise RuntimeError("V3 shared-support dimension study has not passed")
 
     analog_pins = {
         "ua[0]": {"center": [152.26, 0.50], "size": [0.90, 1.00], "function": "element_0"},
@@ -119,6 +123,8 @@ def build_floorplan() -> dict[str, Any]:
             "prelayout_checkpoint_sha256": sha256(CHECKPOINT),
             "pcell_candidate": checkpoint["pcell_dimension_gate"]["recommended_candidate"],
             "pcell_scope": checkpoint["pcell_dimension_gate"]["scope"],
+            "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
+            "support_floorplan_study_sha256": sha256(SUPPORT_STUDY),
         },
         "template": {
             "repository": "https://github.com/TinyTapeout/tt-support-tools",
@@ -224,10 +230,13 @@ def build_floorplan() -> dict[str, Any]:
         },
         "shared_support": {
             "tail_reference": "64 um / 1.00 um shared diode-connected NMOS reference",
-            "tail_reference_status": "reserved, not yet PCell-measured or placed",
+            "tail_reference_status": "measured folding reserved; diode strap and DRC/LVS pending",
+            "tail_reference_selected_folding": support["selected_candidate"],
+            "tail_reference_bbox": support["selected_placement_bbox_um"],
+            "tail_reference_orientation": support["placement_orientation"],
             "vcm": "reuse V2-qualified VCM topology only after V3 loading check",
             "power_partition": "1.8 V only; Tiny Tapeout VAPWR is unused",
-            "next_gate": "measure and place shared reference, VCM, decap, selector netlist, and power taps without moving channel axes",
+            "next_gate": "draw/extract the diode strap, place VCM/decap, and route one selector without moving channel axes",
         },
         "net_classes": {
             "element_inputs": {"layers": ["metal3", "metal4"], "width": 0.40, "max_direction_reversals": 0, "max_pin_to_macro_entry_length": 8.0},

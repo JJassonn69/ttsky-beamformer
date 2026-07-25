@@ -1,0 +1,74 @@
+{
+  "errors": [],
+  "instances_per_channel": 26,
+  "raw_cell_utilization_percent": 38.109276,
+  "role_counts_per_channel": {
+    "and2": 4,
+    "and2b": 5,
+    "mux2": 12,
+    "tap": 5
+  },
+  "row_widths_um": {
+    "0": 3.22,
+    "1": 8.74,
+    "2": 9.2,
+    "3": 8.74,
+    "4": 9.2,
+    "5": 8.74,
+    "6": 9.2,
+    "7": 8.74,
+    "8": 9.2
+  },
+  "scope": "local selector standard-cell placement skeleton; no detailed routing, DRC, extraction, or GDS",
+  "status": "pass",
+  "truth_table": [
+    {
+      "code": 0,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 6
+    },
+    {
+      "code": 1,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 6
+    },
+    {
+      "code": 2,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 6
+    },
+    {
+      "code": 3,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 6
+    },
+    {
+      "code": 0,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 9
+    },
+    {
+      "code": 1,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 9
+    },
+    {
+      "code": 2,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 9
+    },
+    {
+      "code": 3,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 9
+    }
+  ]
+}

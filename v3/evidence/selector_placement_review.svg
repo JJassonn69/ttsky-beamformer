@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="836.3" height="904.0" viewBox="0 0 836.3 904.0">
+<rect width="100%" height="100%" fill="#f7f8fa"/>
+<style>text{font-family:Inter,Arial,sans-serif}.title{font-size:18px;font-weight:700}.label{font-size:11px;font-weight:600}.small{font-size:10px}</style>
+<rect x="70.00" y="78.00" width="346.28" height="748.00" fill="#fff" stroke="#25384a" stroke-width="2"/>
+<rect x="74.40" y="78.00" width="60.50" height="748.00" fill="#d95f4f" fill-opacity=".13" stroke="#d95f4f" stroke-dasharray="5 3"/>
+<rect x="338.40" y="78.00" width="77.88" height="748.00" fill="#4b79b8" fill-opacity=".10" stroke="#4b79b8" stroke-dasharray="5 3"/>
+<rect x="142.60" y="661.44" width="10.12" height="59.84" rx="2" fill="#5f6b73" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="694.36" fill="#fff">TAP_ENABLE</text>
+<rect x="152.72" y="661.44" width="60.72" height="59.84" rx="2" fill="#7656a6" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="155.72" y="694.36" fill="#fff">ENABLE_AN</text>
+<rect x="142.60" y="601.60" width="10.12" height="59.84" rx="2" fill="#5f6b73" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="634.52" fill="#fff">TAP_G0</text>
+<rect x="152.72" y="601.60" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="155.72" y="634.52" fill="#fff">G0_M_POS</text>
+<rect x="243.80" y="601.60" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="246.80" y="634.52" fill="#fff">G0_M_NEG</text>
+<rect x="142.60" y="541.76" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="574.68" fill="#fff">G0_M_AXIS</text>
+<rect x="233.68" y="541.76" width="50.60" height="59.84" rx="2" fill="#3b8bc2" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="236.68" y="574.68" fill="#fff">G0_LO_P_A</text>
+<rect x="284.28" y="541.76" width="60.72" height="59.84" rx="2" fill="#7656a6" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="287.28" y="574.68" fill="#fff">G0_LO_N_AN</text>
+<rect x="142.60" y="481.92" width="10.12" height="59.84" rx="2" fill="#5f6b73" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="514.84" fill="#fff">TAP_G1</text>
+<rect x="152.72" y="481.92" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="155.72" y="514.84" fill="#fff">G1_M_POS</text>
+<rect x="243.80" y="481.92" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="246.80" y="514.84" fill="#fff">G1_M_NEG</text>
+<rect x="142.60" y="422.08" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="455.00" fill="#fff">G1_M_AXIS</text>
+<rect x="233.68" y="422.08" width="50.60" height="59.84" rx="2" fill="#3b8bc2" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="236.68" y="455.00" fill="#fff">G1_LO_P_A</text>
+<rect x="284.28" y="422.08" width="60.72" height="59.84" rx="2" fill="#7656a6" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="287.28" y="455.00" fill="#fff">G1_LO_N_AN</text>
+<rect x="142.60" y="362.24" width="10.12" height="59.84" rx="2" fill="#5f6b73" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="395.16" fill="#fff">TAP_G2</text>
+<rect x="152.72" y="362.24" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="155.72" y="395.16" fill="#fff">G2_M_POS</text>
+<rect x="243.80" y="362.24" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="246.80" y="395.16" fill="#fff">G2_M_NEG</text>
+<rect x="142.60" y="302.40" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="335.32" fill="#fff">G2_M_AXIS</text>
+<rect x="233.68" y="302.40" width="50.60" height="59.84" rx="2" fill="#3b8bc2" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="236.68" y="335.32" fill="#fff">G2_LO_P_A</text>
+<rect x="284.28" y="302.40" width="60.72" height="59.84" rx="2" fill="#7656a6" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="287.28" y="335.32" fill="#fff">G2_LO_N_AN</text>
+<rect x="142.60" y="242.56" width="10.12" height="59.84" rx="2" fill="#5f6b73" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="275.48" fill="#fff">TAP_G3</text>
+<rect x="152.72" y="242.56" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="155.72" y="275.48" fill="#fff">G3_M_POS</text>
+<rect x="243.80" y="242.56" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="246.80" y="275.48" fill="#fff">G3_M_NEG</text>
+<rect x="142.60" y="182.72" width="91.08" height="59.84" rx="2" fill="#e9a03b" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="145.60" y="215.64" fill="#fff">G3_M_AXIS</text>
+<rect x="233.68" y="182.72" width="50.60" height="59.84" rx="2" fill="#3b8bc2" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="236.68" y="215.64" fill="#fff">G3_LO_P_A</text>
+<rect x="284.28" y="182.72" width="60.72" height="59.84" rx="2" fill="#7656a6" fill-opacity=".78" stroke="#263238" stroke-width=".7"/>
+<text class="small" x="287.28" y="215.64" fill="#fff">G3_LO_N_AN</text>
+<text class="title" x="70.00" y="32">V3 per-channel selector placement skeleton</text>
+<text class="small" x="461.28" y="80.00" fill="#273746">Reservation: 15.74 x 34.00 um</text>
+<text class="small" x="461.28" y="105.00" fill="#273746">Raw cell utilization: 38.11%</text>
+<text class="small" x="461.28" y="130.00" fill="#273746">Nine alternating R0/MX rows</text>
+<text class="small" x="461.28" y="155.00" fill="#273746">12 mux2 + 4 and2 + 5 and2b + 5 taps</text>
+<text class="small" x="461.28" y="180.00" fill="#273746">Maximum occupied row width: 9.20 um</text>
+<text class="small" x="461.28" y="205.00" fill="#273746">Left: four-phase Metal 3 spine</text>
+<text class="small" x="461.28" y="230.00" fill="#273746">Right: eight static-code Metal 2 entries</text>
+<text class="small" x="461.28" y="255.00" fill="#273746">All four channels use this identical copy</text>
+<text class="small" x="461.28" y="280.00" fill="#273746"></text>
+<text class="label" x="461.28" y="305.00" fill="#273746">Still open:</text>
+<text class="small" x="461.28" y="330.00" fill="#273746">- detailed LEF pin-access routing</text>
+<text class="small" x="461.28" y="355.00" fill="#273746">- power straps and tap-rule signoff</text>
+<text class="small" x="461.28" y="380.00" fill="#273746">- antenna, DRC, extraction and skew</text>
+<text class="small" x="461.28" y="405.00" fill="#273746">- routed DEF/GDS generation</text>
+<rect x="461.28" y="773.00" width="16" height="12" fill="#e9a03b"/>
+<text class="small" x="484.28" y="784.00" fill="#273746">mux2</text>
+<rect x="461.28" y="795.00" width="16" height="12" fill="#3b8bc2"/>
+<text class="small" x="484.28" y="806.00" fill="#273746">and2</text>
+<rect x="461.28" y="817.00" width="16" height="12" fill="#7656a6"/>
+<text class="small" x="484.28" y="828.00" fill="#273746">and2b</text>
+<rect x="461.28" y="839.00" width="16" height="12" fill="#5f6b73"/>
+<text class="small" x="484.28" y="850.00" fill="#273746">tap</text>
+</svg>

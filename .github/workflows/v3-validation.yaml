@@ -38,8 +38,11 @@ jobs:
         run: |
           python3 v3/tools/build_floorplan.py
           python3 v3/tools/check_floorplan.py --report v3/evidence/floorplan_check.json
+          python3 v3/tools/build_selector_placement.py
+          python3 v3/tools/check_selector_placement.py --report v3/evidence/selector_placement_check.json
           python3 v3/tools/render_floorplan.py
+          python3 v3/tools/render_selector_placement.py
           python3 -m unittest v3.tests.test_floorplan -v
 
       - name: Reject uncommitted generated-evidence drift
-        run: git diff --exit-code -- v3/layout/floorplan.json v3/evidence
+        run: git diff --exit-code -- v3/layout/floorplan.json v3/layout/selector_placement.json v3/evidence

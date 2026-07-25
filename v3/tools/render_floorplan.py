@@ -91,6 +91,10 @@ def render(data: dict[str, Any]) -> str:
         svg.append(f'<rect x="{sx(x)-3:.2f}" y="{sy(y)-3:.2f}" width="6" height="6" fill="#17324d"/>')
         svg.append(f'<text class="small" x="{sx(x)-13:.2f}" y="{sy(y)+16:.2f}" fill="#17324d">{escape(name)}</text>')
 
+    reference = data["shared_support"]["tail_reference_bbox"]
+    svg.append(f'<rect x="{sx(reference[0]):.2f}" y="{sy(reference[3]):.2f}" width="{scale*(reference[2]-reference[0]):.2f}" height="{scale*(reference[3]-reference[1]):.2f}" fill="#6f5aa8" fill-opacity="0.48" stroke="#4d3d7a" stroke-width="1.5"/>')
+    svg.append(f'<text class="small" x="{sx(reference[0])+3:.2f}" y="{sy(reference[3])+12:.2f}" fill="#34275a">64um bias ref</text>')
+
     svg.append(f'<text class="title" x="{margin:.2f}" y="21" fill="#17324d">V3A four-channel floorplan — constraint review, not GDS</text>')
     svg.append(f'<text class="small" x="{canvas_w-415:.2f}" y="21" fill="#4b5966">15.74 µm channels · 3.58 µm guard gaps · matched output pin paths · balanced phase tree</text>')
     svg.append('</svg>')

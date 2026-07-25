@@ -885,14 +885,24 @@
     "pcell_candidate": "shared_guard_tall_narrow_device_row_dummies",
     "pcell_scope": "dimension-only PCell feasibility; no placement, routing, layout database, DRC, extraction, or GDS",
     "prelayout_checkpoint": "v3/evidence/implementation_checkpoint.json",
-    "prelayout_checkpoint_sha256": "32cb582fb3e3aca13e3f1d7bccbb9e807d7069c341c178ef4af85793cb1525c6"
+    "prelayout_checkpoint_sha256": "32cb582fb3e3aca13e3f1d7bccbb9e807d7069c341c178ef4af85793cb1525c6",
+    "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
+    "support_floorplan_study_sha256": "512e43a2dbf037ca39f1d6e961b1e61ce8a5f7393f02f356cb1efe2658d5e011"
   },
   "schema_version": 1,
   "shared_support": {
-    "next_gate": "measure and place shared reference, VCM, decap, selector netlist, and power taps without moving channel axes",
+    "next_gate": "draw/extract the diode strap, place VCM/decap, and route one selector without moving channel axes",
     "power_partition": "1.8 V only; Tiny Tapeout VAPWR is unused",
     "tail_reference": "64 um / 1.00 um shared diode-connected NMOS reference",
-    "tail_reference_status": "reserved, not yet PCell-measured or placed",
+    "tail_reference_bbox": [
+      188.005,
+      42.95,
+      199.995,
+      53.05
+    ],
+    "tail_reference_orientation": "R0 provisional; orient after measured terminal-access study",
+    "tail_reference_selected_folding": "XREF_8X8",
+    "tail_reference_status": "measured folding reserved; diode strap and DRC/LVS pending",
     "vcm": "reuse V2-qualified VCM topology only after V3 loading check"
   },
   "status": "review floorplan constraints; no placement database, routing, or GDS",
