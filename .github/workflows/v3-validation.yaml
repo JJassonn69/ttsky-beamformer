@@ -1,0 +1,38 @@
+name: v3-prelayout-validation
+
+on:
+  push:
+    paths:
+      - ".github/workflows/v3-validation.yaml"
+      - "v3/**"
+  pull_request:
+    paths:
+      - ".github/workflows/v3-validation.yaml"
+      - "v3/**"
+  workflow_dispatch:
+
+concurrency:
+  group: v3-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  prelayout:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout V3 sources and evidence
+        uses: actions/checkout@v4
+
+      - name: Check architecture, topology, RTL lookup, and evidence hashes
+        run: |
+          python3 -m unittest \
+            v3.tests.test_beamformer_v3 \
+            v3.tests.test_spice_topology \
+            v3.tests.test_implementation_evidence \
+            v3.tests.test_rtl.VectorControlRtlTests.test_rtl_lut_is_generated_from_the_golden_model \
+            -v
+
+      - name: Check deterministic architecture summary
+        run: python3 v3/model/beamformer_v3.py summary
+
+      - name: Reject uncommitted generated-evidence drift
+        run: git diff --exit-code -- v3/evidence

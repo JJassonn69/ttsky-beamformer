@@ -1,119 +1,312 @@
 {
-  "schema_version": 1,
-  "status": "early V3 implementation checkpoint; not layout or release signoff",
-  "v2_frozen_base_commit": "b7eae2e6ecf20b1141d15029503c345dacc71b99",
+  "amplitude_calibration_gate": {
+    "minimum_cardinal_outer_to_inner_range_db": 20.827825832440574,
+    "status": "pass",
+    "worst_inner_to_outer_phase_delta_deg": 0.00014279420855700664
+  },
   "architecture_gate_1": {
+    "guaranteed_phase_states": 8,
+    "ideal_magnitude_span_db": 0.29706926833030356,
+    "raw_words_per_channel": 256,
     "status": "pass",
     "unit_slices_per_channel": 15,
-    "raw_words_per_channel": 256,
-    "unique_nonzero_vectors": 256,
-    "guaranteed_phase_states": 8,
-    "worst_phase_error_deg": 3.814074834290352,
-    "magnitude_span_db": 0.29706926833030356,
-    "optional_16_state_worst_phase_error_deg": 3.814074834290352,
-    "optional_16_state_magnitude_span_db": 0.8364212367298702
+    "worst_ideal_phase_error_deg": 3.814074834290352
   },
-  "schematic_gate_2a": {
-    "status": "pass",
-    "scope": "TT real SKY130 gm and switch devices with ideal equal slice currents",
-    "worst_phase_error_deg": 3.821811984326075,
-    "magnitude_span_db": 0.2984716368910967,
-    "supply_current_spread_percent": 0.0
+  "evidence_artifact_sha256": {
+    "v3/evidence/periodic_noise_summary.json": "6eb00572ef1828e43c2907978ecf7514d39b80968aa9b21e0bbb721101f4bc4a",
+    "v3/evidence/periodic_noise_summary.svg": "b57c824f803b9d07bdd09aa281a860c71fcb514182f597fcec804dba1bf3aebb"
   },
-  "schematic_gate_2b": {
-    "status": "bounded five-corner pass",
-    "input_common_mode_v": 1.2,
-    "gm_width_um": 0.42,
-    "switch_width_um": 0.65,
-    "tail_sink_width_um_per_slice": 2.533333333,
-    "tail_sink_length_um": 0.5,
-    "corners": {
-      "tt_1p80v_27c": {
-        "worst_phase_error_deg": 3.803063110929884,
-        "magnitude_span_db": 0.29867387650841465,
-        "tail_current_compliance_fraction": 0.9917860080922719,
-        "minimum_commutating_gm_drain_to_tail_v": 0.02673,
-        "output_common_mode_v": 1.61007,
-        "report_sha256": "1bcc36deea56927d5871ec031a141f69b6360028b97f7cf1e041c5eebb24beb6"
-      },
-      "sf_1p80v_27c": {
-        "worst_phase_error_deg": 3.8048927550369456,
-        "magnitude_span_db": 0.2986264660652402,
-        "tail_current_compliance_fraction": 1.013945323252766,
-        "minimum_commutating_gm_drain_to_tail_v": 0.0359927,
-        "output_common_mode_v": 1.5685,
-        "report_sha256": "ed7b92d06d12051b40c7965fc835a0e794176cc6c739fb072653b548bf1d2379"
-      },
-      "fs_1p80v_27c": {
-        "worst_phase_error_deg": 3.814853090866734,
-        "magnitude_span_db": 0.29962381862631454,
-        "tail_current_compliance_fraction": 0.9666574513469162,
-        "minimum_commutating_gm_drain_to_tail_v": 0.0250296,
-        "output_common_mode_v": 1.6437,
-        "report_sha256": "0b8359466fa611a7d51686fa5908af644458b9c0968dd6cd85617586e9c7f243"
-      },
-      "ff_1p98v_minus40c": {
-        "worst_phase_error_deg": 3.8122183548218516,
-        "magnitude_span_db": 0.29886978933297137,
-        "tail_current_compliance_fraction": 1.009470937443387,
-        "minimum_commutating_gm_drain_to_tail_v": 0.0434934,
-        "output_common_mode_v": 1.75077,
-        "report_sha256": "a71d96f62bf9329ebe51025cba922c07b5221f5a56266b63025444e4eccf5f76"
-      },
-      "ss_1p62v_85c": {
-        "worst_phase_error_deg": 3.8136538233120802,
-        "magnitude_span_db": 0.2992736043885191,
-        "tail_current_compliance_fraction": 0.969884692190419,
-        "minimum_commutating_gm_drain_to_tail_v": 0.0210062,
-        "output_common_mode_v": 1.47132,
-        "report_sha256": "3e8af74fc9d40c0b60bf570733a65228c5211b2678f2ccd460c0b073a9f58efa"
-      }
-    }
+  "gds_authorized": false,
+  "global_codebook_diagnostic": {
+    "purpose": "non-gating stress test showing that one universal codebook cannot correct random per-die mismatch",
+    "status": "fail",
+    "validation_worst_gain_span_db": 0.44613123634112567,
+    "validation_worst_phase_error_deg": 5.347439876243072
   },
+  "layout_authorized": true,
   "linearity_and_loading_gate": {
-    "status": "pass with high-capacitance load limit documented",
-    "corner": "tt_1p80v_27c",
-    "nominal_output_capacitance_pf_per_pad": 10.0,
-    "worst_compression_db_at_20mv_peak": 0.024589304892156265,
-    "worst_compression_db_at_50mv_peak": 0.15482605944495062,
-    "maximum_allowed_compression_db_at_50mv_peak": 1.0,
-    "gain_loss_db_at_30pf_per_pad": 2.651373020367291,
-    "gain_loss_db_at_60pf_per_pad": 6.702830323061838,
-    "interpretation": "the unbuffered differential output is high impedance; large external capacitance is an interface load limit, not a vector-state imbalance"
+    "gain_loss_db_at_30pf_per_pad": 2.655248344802299,
+    "gain_loss_db_at_60pf_per_pad": 6.709438252728088,
+    "status": "pass with high-capacitance load limit retained",
+    "worst_compression_db_at_20mv_peak": 0.020905329024242855,
+    "worst_compression_db_at_50mv_peak": 0.13832739096701682
   },
-  "two_tone_pilot": {
+  "mismatch_gate": {
+    "calibrated_die_count": 16,
+    "calibration_and_validation_samples_are_distinct": true,
+    "calibration_input_peak_v": 0.02,
+    "codebook_is_independently_selected_per_die": true,
+    "codebook_policy": "one codebook calibrated and frozen independently per die through raw-vector mode",
+    "every_die_has_eight_unique_state_words": true,
+    "frozen_factor_values_sha256": "b9b1aa1be94734d3b24d165cfdae58003bfdbf5e192e71f8cc50c06458227bf8",
+    "independence_contract": "Calibration and validation use separate SPICE decks and signal amplitudes on the same mismatch realization. No validation result participates in code selection. Deterministic simulation does not include measurement noise.",
+    "limitations": [
+      "not foundry-qualified Monte Carlo",
+      "no passive mismatch",
+      "no spatial correlation or systematic gradient",
+      "no package variation",
+      "schematic flattened channel without passive mismatch or layout parasitics",
+      "independent Gaussian device factors omit spatial correlation and systematic gradients",
+      "calibration and validation are deterministic and omit measurement noise and drift",
+      "sixteen mismatch realizations are a bounded design screen, not a yield estimate"
+    ],
+    "method": "independent per-instance standard-normal MOS factors applied to published SKY130 geometry-scaled mismatch coefficients",
+    "selected_codebook_count": 16,
+    "selected_codebooks_sha256": "fde097d44beb530c3065c8fac13ebe3b51f715c3a5488b807de342747451cdff",
     "status": "pass",
-    "scope": "bounded TT one-channel pilot",
-    "input_tones_mhz": [4.9, 5.1],
-    "per_tone_peak_levels_v": [0.01, 0.03],
-    "fundamental_to_worst_im3_db": [57.323493449999894, 42.754260393729496],
-    "input_iip3_dbv_rms_per_tone": [-14.348553231639865, -12.09074466538182],
-    "iip3_estimate_spread_db": 2.257808566258045,
-    "report_sha256": "2efb8ce6901ea2e40a586b74d253a9b078ca352f098126d2167769ff9ba0158b"
+    "validation_input_peak_v": 0.005,
+    "validation_minimum_output_common_mode_v": 1.574187,
+    "validation_worst_gain_span_db": 0.4081671500406051,
+    "validation_worst_phase_error_deg": 4.355935347394677
   },
-  "digital_gate": {
+  "pcell_dimension_gate": {
+    "all_group_centroids_are_exactly_common": true,
+    "bias_blank_support_width_um": 1.96,
+    "estimated_height_um": 93.99,
+    "estimated_width_um": 15.74,
+    "recommended_candidate": "shared_guard_tall_narrow_device_row_dummies",
+    "scope": "dimension-only PCell feasibility; no placement, routing, layout database, DRC, extraction, or GDS",
     "status": "pass",
-    "coefficient_packet_bits": 32,
-    "automatic_beams": 8,
-    "local_group_lo_pairs": 16,
-    "safe_atomic_commit": true,
-    "tail_bias_blanked_with_lo": true
+    "width_margin_um_on_19p32um_pitch": 3.58
+  },
+  "promoted_schematic_pvt_gate": {
+    "corners": {
+      "ff": {
+        "conversion_gain_range_db": [
+          -0.7968028964649497,
+          -0.4972787561685469
+        ],
+        "magnitude_span_db": 0.2995241402964021,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0554136,
+        "output_common_mode_range_v": [
+          1.73828,
+          1.73828
+        ],
+        "tail_current_compliance_fraction": 1.0101733097145775,
+        "tone_peak_range_v_at_5mv_input": [
+          0.004561732971141559,
+          0.0047217834598058395
+        ],
+        "worst_phase_error_deg": 3.8146934837648416
+      },
+      "fs": {
+        "conversion_gain_range_db": [
+          -4.136926526459898,
+          -3.8376291191487866
+        ],
+        "magnitude_span_db": 0.2992974073111109,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0236715,
+        "output_common_mode_range_v": [
+          1.58913,
+          1.58913
+        ],
+        "tail_current_compliance_fraction": 0.9899455578732123,
+        "tone_peak_range_v_at_5mv_input": [
+          0.0031054438278667997,
+          0.003214315839257244
+        ],
+        "worst_phase_error_deg": 3.8128597937291033
+      },
+      "sf": {
+        "conversion_gain_range_db": [
+          -2.426931061071117,
+          -2.1277401056592686
+        ],
+        "magnitude_span_db": 0.29919095541184765,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0504481,
+        "output_common_mode_range_v": [
+          1.56978,
+          1.56978
+        ],
+        "tail_current_compliance_fraction": 1.0136266266387022,
+        "tone_peak_range_v_at_5mv_input": [
+          0.0037811460378123453,
+          0.003913659148525328
+        ],
+        "worst_phase_error_deg": 3.8120527329904235
+      },
+      "ss": {
+        "conversion_gain_range_db": [
+          -5.700962663463498,
+          -5.402251425135769
+        ],
+        "magnitude_span_db": 0.2987112383277284,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0233136,
+        "output_common_mode_range_v": [
+          1.42958,
+          1.42958
+        ],
+        "tail_current_compliance_fraction": 0.9944548017555296,
+        "tone_peak_range_v_at_5mv_input": [
+          0.002593712715648362,
+          0.0026844630656881834
+        ],
+        "worst_phase_error_deg": 3.8007983183318856
+      },
+      "tt": {
+        "conversion_gain_range_db": [
+          -3.229692254925528,
+          -2.930769104275848
+        ],
+        "magnitude_span_db": 0.2989231506496791,
+        "minimum_commutating_gm_drain_to_tail_v": 0.033009,
+        "output_common_mode_range_v": [
+          1.58,
+          1.58
+        ],
+        "tail_current_compliance_fraction": 1.003655679866635,
+        "tone_peak_range_v_at_5mv_input": [
+          0.003447350104894483,
+          0.00356805507318539
+        ],
+        "worst_phase_error_deg": 3.806971799852704
+      }
+    },
+    "status": "five-corner pass"
+  },
+  "remaining_before_floorplan": [],
+  "remaining_before_release": [
+    "four-channel common-centroid placement and constrained routing",
+    "DRC, LVS, antenna, density, and direct-GDS checks",
+    "post-layout extracted RC regression including selector and clock routes",
+    "package/board loading and external clock phase-noise system budget"
+  ],
+  "report_sha256": {
+    "amplitude_range": "a092b3dbee3bb6cdddd20bdd64333dada064e4396307b299043cfc1b16b9f6e9",
+    "ff": "aa83f39d04f65d1bf16811fd9e49c79f7f10825cc97c458f74cc021cba7cadfb",
+    "fs": "d09ae52a73d6371f9a4a8c4044c12014b947769b7435cb445f28b1346accb14a",
+    "load30": "894e37458c73eddc2b7ef9855ac0712e53059fc3bb49825a5ab315ef225ac1e1",
+    "load60": "99a0315bc0c462cf653a68249fa0e8b7f8de06f78577e61b35a7df083d92253a",
+    "mismatch": "8764e8db3f7d2eeff7f725898dfe79e64821ab0cb32ec42ab114c33ef0034b3f",
+    "mismatch_geometry_root_fix": "1701bccc6e2f53f7bc3cad683d8fd9067ba70e5ba405360e421d1d689a97f033",
+    "mismatch_global_codebook_diagnostic": "922b5f6e0b27f51813bdce158f7b416c31cee101f94e7060c9860344d189f7c2",
+    "noise_folding_crosscheck": "61ddfd93c3ed8409a123613fc5b5362062c09180c751453048cd2776f0e43190",
+    "pcell_dimensions": "297c20c5ff4373361ef6df535910aba9b00c6d5cc2b8d88551c83d9ca401ec13",
+    "sf": "64174891bafb0bab173c851f7831ae337c0dfd58aaa24fb18640ae8187032421",
+    "solver_crosscheck": "366c4fe95ba6a85eead3b17f95378b504820cafb817521c5b29aa1ef2b640715",
+    "spur_noise": "37c170e1c7e95cdacf2b17d2273d63a6a35c6083acc486de63b4cc01ad3511ce",
+    "ss": "283079b34f78746afad10ef178ee9fc120a841505f1a42aedb32566276db2942",
+    "transition": "e7afccd863f35521eb498300f59fa0d7661a2d1f6a3fbe43f875b6bbdd98ef7d",
+    "tt": "eef4d42a5228ece851936d03771e6c8d7d7c127ede6dc918ab20830f341e8322",
+    "two_tone": "a1721597adb7adaa661ae73a18a667f3f394be768747ead94369ca0a79d2cec4",
+    "vacask_channel_qualification": "3557e8de5717b26f363246b5a86cff5e57279d4760590bc22bd92cb580cef3a6",
+    "vacask_model_qualification": "67be4241ba7fd4df793b1dc807acb1fec25bb4c40ccd1d231d770dd03a9d8c79",
+    "vacask_noise_scale_linearity": "ba8697461fde4ffa03640a289239f7ef9fdcd070bf10e408d403a82363fc0db7",
+    "vacask_switched_noise": "b7f971f8ec6fac34a91693c4d825cd892272f1bba25e64d4dec8650c410935b1",
+    "vacask_tool_qualification": "d04826a301783f9d11b4acd5768bf8510b8e316dbb9bad0672441815898ac794",
+    "vin20": "43fe895c331f19830597e27c9cb202a6bfefbd5e7381e7530812df951326b48d",
+    "vin50": "66b19f36aaa109e20bb8561867b21ef30d4393ef787b6109518ee76d72e03081"
+  },
+  "schema_version": 3,
+  "selected_geometry": {
+    "bias_blank_pass_width_um": 2.0,
+    "bias_blank_pulldown_width_um": 1.0,
+    "gm_length_um": 0.6,
+    "gm_width_um": 0.84,
+    "selection_reason": "four-times gm/tail matching area at unchanged W/L closed the held-out mismatch gate; real bias pass/pulldown removes the ideal analog-control source",
+    "shared_bias_reference_length_um": 1.0,
+    "shared_bias_reference_width_um": 64.0,
+    "switch_length_um": 0.15,
+    "switch_width_um": 0.65,
+    "tail_length_um": 1.0,
+    "tail_width_um_per_slice": 5.066666666
+  },
+  "solver_crosscheck_gate": {
+    "case": {
+      "seed": 4001,
+      "word": 8
+    },
+    "deltas": {
+      "output_common_mode_uv": -0.9999999999177334,
+      "phase_deg": -0.006661156992827817,
+      "supply_current_percent": -0.0007137758743724909,
+      "tone_peak_percent": -0.009786237653963692
+    },
+    "scope": "one TT 20 mV-peak frozen-factor case; numerical solver cross-check only",
+    "status": "pass"
   },
   "source_sha256": {
+    "v3/layout/measure_pcells.tcl": "89df4c2cda523cc35b3f46a3b7d684e64f4afe749a648c4af87a4c89bb73d0ea",
     "v3/model/beamformer_v3.py": "f739bcb62563a584eabeb9ed2932a3126c5d1db3a03927ca1c776372eeabd298",
-    "v3/spice/vector_channel_15.inc": "330454cbb138faf7686baa6732dbbcdb128c5537c0802b28bddeefcde8a16dd7",
-    "v3/tools/run_one_channel_vector_sweep.py": "aa504bd159b5be0bba94e7661762b8de4794bd12cb6a5a64dbb6d3a5ca020cac",
-    "v3/tools/run_twotone_pilot.py": "9edd9fc2df200690a2bc070cedcfd0ea6b54d2a133f2e599eb151d0c5bbe45ca",
-    "v3/rtl/serial_config.v": "919d3b30fca77edad762d2d6d51c520c7f4f0ae7fb4b59001a06a50d87b7fbd1",
     "v3/rtl/quadrature_generator.v": "78d708c23a9825289de85ed376f6180082993073b28e6ad1b25b7b7065f7a26f",
-    "v3/rtl/vector_control_core.v": "8af8287eeb9b902f6d27c4999e463f62844e5602df1581284af27da6789cbf39"
+    "v3/rtl/serial_config.v": "919d3b30fca77edad762d2d6d51c520c7f4f0ae7fb4b59001a06a50d87b7fbd1",
+    "v3/rtl/vector_control_core.v": "8af8287eeb9b902f6d27c4999e463f62844e5602df1581284af27da6789cbf39",
+    "v3/spec/beamformer_v3.md": "5cbb871ab036f45f6f9cece055083c7ea9d8dac0f2f3ef63bc80e6aff8e314bb",
+    "v3/spice/vector_channel_15.inc": "c63608dcfe05addd7bd39757bcb61bd285a8e3ce7e2a7b4a1de3e1644b66d7e9",
+    "v3/tools/build_prelayout_checkpoint.py": "4d053a9e5c5db956c7905fd8f1b0c9e898b5aecefaa1f184c479e2e2f9360256",
+    "v3/tools/build_solver_crosscheck.py": "b4b3f9b452656bcba6378b2145c83bf41b6d33887259ad9c93de6b20f16c57b5",
+    "v3/tools/render_periodic_noise_report.py": "289d7fd048ca43f7dff60b58d6d24c09a9d9c92eff1cf26e880860b41f479911",
+    "v3/tools/run_amplitude_range.py": "f7b535d2cb1264f487f484b09f8bdaf20d9be0a17aa9237f825f56529c18575b",
+    "v3/tools/run_mismatch_calibration_split.py": "10f0a60c244654df2394ce637f23cd5627247ac50bc93856a35a57741107b4ae",
+    "v3/tools/run_mismatch_geometry_sweep.py": "f33ea743a942209915e8761c3e686b0bae1a1e81e9caaafa32055edd915771c5",
+    "v3/tools/run_noise_folding_crosscheck.py": "1f6deedbbe33e2590e37d5208658e353124736ad8ef5eab9b4a9b2019041cdef",
+    "v3/tools/run_one_channel_vector_sweep.py": "a689986c81450e9140801e6908bb49d6481b8f3bc001aac5e25b22676b9695d8",
+    "v3/tools/run_pcell_dimension_study.py": "05578426383d2c55af291e930a50441c5ad9e328734b72858caad74ae2b68658",
+    "v3/tools/run_per_die_calibration_validation.py": "c9d270dcc2d2122089f357fd802b0c64314b85d417c4d91ef702d2b59a935cae",
+    "v3/tools/run_spur_noise_characterization.py": "7b3168f53ce7476e3fa2be796d011a162e40c056223cad519b63bd26faeb9db5",
+    "v3/tools/run_transition_settling.py": "55299cc65e3c263acf8628739af5f3315850d249d56c9101ae0223612a4d517a",
+    "v3/tools/run_twotone_pilot.py": "9edd9fc2df200690a2bc070cedcfd0ea6b54d2a133f2e599eb151d0c5bbe45ca",
+    "v3/tools/run_vacask_channel_qualification.py": "c43ca2671ef8bd6eafbf9dee08c09fa6ee1b0ca01527d66135f7e8d159a8cfdb",
+    "v3/tools/run_vacask_noise_scale_linearity.py": "78c8e986700cb6840e0224939589f7f90a208e0dc64eb31832baefe250080516",
+    "v3/tools/run_vacask_sky130_qualification.py": "c30e848b32624a26c709bc3f19f353409e172ef21315f5a91c237f3ab2d7cfa6",
+    "v3/tools/run_vacask_switched_noise.py": "8b913c79ef158e0e5ed8c0c68b4b94bfe47597a844851827b077cf0ec68c284c",
+    "v3/tools/run_vacask_tool_qualification.py": "d1a684eff815c9f164b88b4e4114867f8e5a9655b90bfe3f127d55508a79dedf"
   },
-  "remaining_before_floorplan": [
-    "absolute PVT gain and calibration strategy",
-    "LO feedthrough, image and spur spectrum",
-    "selector and tail-bias code-transition settling",
-    "load and Tiny Tapeout path sensitivity",
-    "noise scope and mismatch with independent calibration/validation samples",
-    "15-slice PCell dimension and common-centroid feasibility"
-  ]
+  "spur_and_noise_gate": {
+    "conservative_worst_state_mean_v_rms_10hz_to_2mhz": 4.800641811410144e-05,
+    "folded_noise_increment_v_rms_10hz_to_10khz": 2.9640002399567246e-06,
+    "folded_noise_v_rms_10hz_to_2mhz": 3.5102091622153715e-05,
+    "folded_noise_v_rms_10khz_to_2mhz": 3.497672853237722e-05,
+    "frequency_domain_comparison": {
+      "algorithms": {
+        "zoh": {
+          "delta_db": 1.5114566707466763,
+          "mean_folded_reference_v_rms": 3.497672853237722e-05,
+          "mean_transient_noise_v_rms": 4.1624786585377304e-05,
+          "within_tolerance": true
+        }
+      },
+      "status": "pass",
+      "switched_summary_sha256": "b7f971f8ec6fac34a91693c4d825cd892272f1bba25e64d4dec8650c410935b1",
+      "tolerance_db": 3.0
+    },
+    "held_lo_noise_reason": "ngspice .noise linearizes a DC state and does not include mixer noise folding, cyclostationary noise, LO phase noise, or clock-edge noise",
+    "held_lo_noise_status": "blocked_pending_periodic_noise_tool",
+    "held_lo_output_noise_v_rms_10hz_to_2mhz": 0.0001772466,
+    "minimum_nominal_output_snr_db_at_5mv_peak": 38.60528579007437,
+    "noise_scale_linearity_r_squared": 0.9999949577117915,
+    "noise_scale_linearity_span_db": 0.08011054856968108,
+    "periodic_noise_mean_v_rms_10khz_to_2mhz": 4.1624786585377304e-05,
+    "periodic_noise_method": "TT schematic complete-channel intrinsic transient noise with driven 4 MHz quadrature switching and a numerical two-pole 2 MHz receiver",
+    "periodic_noise_post_settle_us": 100.0,
+    "periodic_noise_primary_algorithm": "zoh",
+    "periodic_noise_receiver_cutoff_hz": 2000000.0,
+    "periodic_noise_record_us": 110.0,
+    "periodic_noise_seed_count_per_state": 4,
+    "periodic_noise_source_band_hz": [
+      10000.0,
+      64000000.0
+    ],
+    "periodic_noise_state_count": 8,
+    "periodic_noise_state_span_db_10khz_to_2mhz": 2.1535595396035383,
+    "periodic_noise_status": "pass_by_crosschecked_transient_noise_equivalent",
+    "periodic_noise_worst_observed_seed_v_rms_10khz_to_2mhz": 5.0587544298548204e-05,
+    "periodic_noise_worst_state_mean_v_rms_10khz_to_2mhz": 4.7914829465661916e-05,
+    "phase_state_count": 8,
+    "raw_worst_signal_spur_dbc": -9.73611741444232,
+    "receiver_filtered_worst_signal_spur_dbc": -34.3450958420078,
+    "scope_limit": "TT schematic only; clock-source phase noise, package noise, and layout parasitics remain later physical/system gates",
+    "spur_status": "pass"
+  },
+  "status": "pre-layout electrical gates complete; floorplan authorized; not layout or release signoff",
+  "transition_gate": {
+    "bias_blank_interface": "real per-channel NMOS pass/pulldown pair",
+    "blank_duration_ns": 250.0,
+    "bounded_selector_edge_ns": 5.0,
+    "maximum_settling_time_us": 2.0,
+    "ordered_transition_count": 56,
+    "scope": "TT transistor-level analog cell with ideal safe-update controls; not extracted selector timing",
+    "status": "pass"
+  },
+  "v2_frozen_base_commit": "b7eae2e6ecf20b1141d15029503c345dacc71b99"
 }

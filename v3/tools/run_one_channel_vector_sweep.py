@@ -59,13 +59,16 @@ def deck(
     ]
     if bias == "mos":
         bias_circuit = """RBIAS vdd vbias 10.5k
-XBIAS_REF vbias vbias 0 0 sky130_fd_pr__nfet_01v8 w=32 l=0.50
-CBIAS vbias 0 2p"""
+XBIAS_REF vbias vbias 0 0 sky130_fd_pr__nfet_01v8 w=64 l=1.00
+CBIAS vbias 0 2p
+VBIAS_ENABLE bias_enable 0 {VDD}
+VBIAS_BLANK bias_blank 0 0
+XBIAS_GATE vbias bias_enable bias_blank vbias_ch 0 v3_bias_blank_switch"""
         channel = (
-            f"XCHANNEL sig ref {' '.join(group_nodes)} outp outn vbias 0 "
+            f"XCHANNEL sig ref {' '.join(group_nodes)} outp outn vbias_ch 0 "
             f"v3_vector_channel_15_mos params: wsw={switch_width_um:.12g}"
         )
-        bias_measures = """.measure tran vbias_avg avg v(vbias) from=12u to=20u
+        bias_measures = """.measure tran vbias_avg avg v(vbias_ch) from=12u to=20u
 .measure tran tail_min min v(xchannel.xg0_0.tail) from=12u to=20u
 .measure tran tail_max max v(xchannel.xg0_0.tail) from=12u to=20u
 BGM_P_VDS gm_p_vds 0 v=v(xchannel.xg0_0.gm_p)-v(xchannel.xg0_0.tail)
@@ -230,11 +233,11 @@ def run_tail_compliance(
 .param VDD={supply_v:.12g}
 VDD_SOURCE vdd 0 {{VDD}}
 RBIAS vdd vbias 10.5k
-XBIAS_REF vbias vbias 0 0 sky130_fd_pr__nfet_01v8 w=32 l=0.50
+XBIAS_REF vbias vbias 0 0 sky130_fd_pr__nfet_01v8 w=64 l=1.00
 VLOW tail_low 0 {observed_tail_min_v:.12g}
 VHIGH tail_high 0 0.30
-XLOW tail_low vbias 0 0 sky130_fd_pr__nfet_01v8 w=2.533333333 l=0.50
-XHIGH tail_high vbias 0 0 sky130_fd_pr__nfet_01v8 w=2.533333333 l=0.50
+XLOW tail_low vbias 0 0 sky130_fd_pr__nfet_01v8 w=5.066666666 l=1.00
+XHIGH tail_high vbias 0 0 sky130_fd_pr__nfet_01v8 w=5.066666666 l=1.00
 .tran 100p 2n 1n
 .measure tran ilow avg i(VLOW) from=1n to=2n
 .measure tran ihigh avg i(VHIGH) from=1n to=2n

@@ -37,9 +37,14 @@ class VectorSpiceTopologyTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"^XSW_", body, re.MULTILINE)), 4)
         self.assertEqual(len(re.findall(r"^XTAIL\b", body, re.MULTILINE)), 1)
 
+    def test_bias_blank_interface_is_a_real_pass_and_pulldown_pair(self) -> None:
+        body = subcircuit("v3_bias_blank_switch")
+        self.assertEqual(len(re.findall(r"^XPASS\b", body, re.MULTILINE)), 1)
+        self.assertEqual(len(re.findall(r"^XPULL\b", body, re.MULTILINE)), 1)
+
     def test_provisional_geometry_preserves_v2_aggregate_widths(self) -> None:
-        self.assertAlmostEqual(15 * 0.42, 6.30)
-        self.assertAlmostEqual(15 * 2.533333333, 38.0, places=6)
+        self.assertAlmostEqual(15 * 0.84, 12.60)
+        self.assertAlmostEqual(15 * 5.066666666, 76.0, places=6)
         self.assertAlmostEqual(8 * 2 * 0.65, 10.4)
 
 

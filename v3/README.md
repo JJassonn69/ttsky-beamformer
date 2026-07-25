@@ -62,8 +62,67 @@ Run the bounded nominal two-tone pilot with:
 python3 v3/tools/run_twotone_pilot.py
 ```
 
-The next electrical gate is selector/tail transition settling, absolute PVT
-gain calibration, spur/noise scope, and mismatch. Physical placement remains
-blocked until those circuit questions close.
+The first mismatch screen rejected the minimum-area 0.42/0.30 um gm and
+2.5333/0.50 um tail devices. V3 now uses 0.84/0.60 um gm devices and
+5.0667/1.00 um tail devices with a 64/1.00 um shared reference. Doubling both
+dimensions preserves W/L while providing four times the matching area.
 
-V3 is not yet a layout, submission, or fabrication candidate.
+The promoted geometry passes the bounded five-corner vector sweep, 50 mV
+compression, two-tone, all 56 ordered blanked transitions, and all-eight-state
+filtered-spur gates. The blanked analog path settles in no more than 2 us under
+its defined one-cycle measurement window. Across all eight phase states, the
+unfiltered square-wave-mixer image is approximately -9.74 dBc and the defined
+two-pole 2 MHz receiver response reduces the worst deterministic signal spur to
+approximately -34.35 dBc.
+
+The primary mismatch gate calibrates one codebook independently for each of
+16 device-mismatch realizations using a 20 mV-peak tone, freezes that codebook,
+and validates the same die with separate 5 mV-peak decks. The actual Gaussian
+device factors are frozen and hashed so Apple ARM and Ubuntu x86 build
+byte-identical inputs. The older disjoint-population global-codebook run is
+retained as a non-gating stress diagnostic because one universal codebook is
+not the intended calibration architecture. The 16-die campaign passes with
+4.356 degrees worst validated phase error, 0.408 dB worst validated gain
+ripple, and 1.574 V minimum output common mode.
+
+Dimension-only PCell measurements identify a 3x5 active common-centroid matrix
+with device-row edge dummies and one shared guard as the preferred candidate.
+Its conservative estimate is 15.74 um wide on the 19.32 um input pitch,
+leaving 3.58 um horizontal margin. This is not a placement or routing claim.
+
+Run the additional pre-layout gates with:
+
+```sh
+python3 v3/tools/run_transition_settling.py
+python3 v3/tools/run_spur_noise_characterization.py
+python3 v3/tools/run_per_die_calibration_validation.py
+python3 v3/tools/run_pcell_dimension_study.py
+```
+
+Run `run_mismatch_calibration_split.py` separately only to reproduce the
+non-gating global-codebook diagnostic.
+
+The periodic-noise gate uses a fully open-source, cross-checked equivalent
+because ordinary ngspice `.noise` only linearizes a held switch state and its
+PSS implementation does not support this driven mixer. VACASK 0.3.4.rc1 was
+first qualified against analytic noise and then against ngspice using the
+exact V3 SKY130 device geometries. It simulated the complete 15-slice channel
+with driven 4 MHz quadrature switching for four deterministic seeds in each
+of all eight required states. The 100 us post-settle records measure 41.62 uV
+RMS mean output noise from 10 kHz to 2 MHz, with a 2.154 dB span between state
+means. Reduced-amplitude noise injection was required to avoid compact-model
+timestep collapse; a separate three-scale gate passes with R-squared
+0.99999496 and 0.080 dB extrapolated spread.
+
+An independent 32-snapshot ngspice/Fourier calculation predicts 34.98 uV RMS
+over the same band and 35.10 uV RMS from 10 Hz to 2 MHz. Its +1.51 dB
+agreement with the switched transient result passes the declared +/-3 dB
+limit. Combining the noisiest driven state mean with the independently folded
+10 Hz--10 kHz increment gives a conservative 48.01 uV RMS estimate and 38.6 dB
+minimum nominal output SNR for the 5 mV-peak input case. See the
+[periodic-noise summary](evidence/periodic_noise_summary.svg).
+
+This closes the V3 pre-layout electrical gate and authorizes floorplanning.
+It is not native PNoise and excludes clock-source phase noise, extracted
+layout parasitics, package/board noise, and silicon correlation. V3 is still
+not a GDS, submission, or fabrication candidate.

@@ -1,7 +1,8 @@
 # Beamformer V3A architecture contract
 
-Status: architecture Gate 1 and bounded one-channel Gate-2B PVT/linearity
-checkpoint implemented. This is not a physical layout or fabrication claim.
+Status: architecture Gate 1 and the bounded one-channel pre-layout electrical
+checkpoint are complete. Floorplanning is authorized; physical verification,
+extracted-layout regression, GDS, and fabrication signoff remain open.
 
 ## Objective
 
@@ -123,10 +124,14 @@ No V3 floorplan may begin until one complete channel demonstrates:
 - load response through the Tiny Tapeout analog path model; and
 - mismatch using separate calibration and validation samples.
 
-The Gate-2B starting geometry uses 0.42 um unit gm devices, 0.65 um
-commutating devices, and fifteen equal 2.5333 um by 0.50 um tail sinks. The
-tail widths sum to the V2 38 um mirror output. The 0.65 um switch choice is
-provisional until LO-driver loading is included: it must preserve at least
+The rejected Gate-2B starting geometry used 0.42 um by 0.30 um unit gm
+devices and fifteen equal 2.5333 um by 0.50 um tail sinks. An open-PDK
+coefficient mismatch screen showed that this minimum-area choice missed both
+the 5-degree phase and 0.5 dB ripple targets. The promoted pre-layout geometry
+uses 0.84 um by 0.60 um gm devices, 5.0667 um by 1.00 um tail sinks, and a
+64 um by 1.00 um shared diode reference. Doubling both dimensions preserves
+W/L and mirror ratio while providing four times the mismatch area. The 0.65
+um switch is unchanged. It must preserve at least
 95% tail-current compliance at the observed minimum tail voltage and keep
 the gm drain above its source through every LO transition. Brief commutation
 at the LO crossing is not mislabeled as a static saturation proof.
@@ -135,15 +140,88 @@ The simple eight-phase hard-selector channel is the explicit fallback.  A raw
 R-2R ladder is not a valid main-path weighting solution unless a local buffer
 proves that it cannot pull VCM or shared bias.
 
+The blanked control update must hold every group LO gate and channel tail gate
+low for one complete 4 MHz LO period. At TT with behavioral group-selector
+voltages, bounded 5 ns edges, and a real NMOS bias pass/pulldown pair, the
+transistor-level analog path must return within 5% amplitude, 5 degrees phase,
+and 10 mV common mode of its final value within 2 us for all 56 ordered
+transitions between the eight required states. Final selector-cell and route
+RC must be rechecked after extraction.
+
+The square-wave mixer intentionally produces a 9 MHz sum product and odd-LO
+harmonic products. The raw 9 MHz term is not treated as LO feedthrough. The
+defined high-impedance receiver interface therefore includes the same two-pole
+2 MHz low-pass response used by the bench model; its worst deterministic signal
+spur must remain below -20 dBc. Raw and filtered spectra must both remain in
+the evidence.
+
+Small-signal `.noise` with the LO held in each of four DC states is only a
+bounded diagnostic. It does not include cyclostationary noise, mixer folding,
+LO phase noise, or clock-edge noise. The driven periodic-noise equivalent uses
+VACASK on the complete 15-slice channel with 4 MHz quadrature switching, four
+deterministic seeds per required state, a 100 us post-settle record, intrinsic
+noise from 10 kHz to 64 MHz, and the specified two-pole 2 MHz receiver. Its
+mean 10 kHz--2 MHz output noise is 41.62 uV RMS, and state means span 2.154 dB.
+The noisiest state mean is 47.91 uV RMS. A three-amplitude linearity run gates
+the required reduced-noise extrapolation at R-squared 0.99999496 and 0.080 dB
+spread.
+
+An independent ngspice held-state/Fourier-folding calculation covers all 32
+word/state snapshots and predicts 34.98 uV RMS over the directly comparable
+band. The +1.51 dB difference passes the declared +/-3 dB agreement limit.
+Its 10 Hz--2 MHz result is 35.10 uV RMS; combining only its unresolved
+10 Hz--10 kHz increment with the noisiest driven state gives a conservative
+48.01 uV RMS result and 38.6 dB minimum nominal SNR at 5 mV-peak input. This
+cross-checked equivalent closes the schematic periodic-noise gate, while
+remaining explicitly weaker than native PNoise. Clock-source phase noise,
+package/board noise, extracted-layout parasitics, and silicon correlation are
+not covered and remain later gates.
+
+Mismatch calibration is per die, not one universal factory lookup table. Each
+mismatch realization must select its own frozen eight-word codebook from a
+known 20 mV-peak calibration tone, then pass a separate 5 mV-peak validation
+transient without using validation results for selection. The calibration and
+validation decks share the same device mismatch realization because they
+represent two measurements of the same fabricated die. This deterministic
+screen does not model calibration measurement noise, temperature drift,
+passive mismatch, spatial correlation, package effects, or foundry yield. A
+disjoint-population global-codebook run is retained only as a deliberately
+harsh diagnostic; its failure does not substitute for per-die calibration.
+The actual Gaussian device-factor values, rather than only RNG seeds, are
+frozen and hashed so Apple ARM and Ubuntu x86 reproduce byte-identical decks.
+The bounded 16-die campaign passes after independent 5 mV validation with
+4.356 degrees worst phase error, 0.408 dB worst gain ripple, and 1.574 V
+minimum output common mode. This is a design-sensitivity result, not a yield
+claim.
+
 ## Architecture Gate 3: physical feasibility
 
-Before four-channel schematic promotion, use measured PCell dimensions to
+Before four-channel physical promotion, use measured PCell dimensions to
 compare 15- and 31-slice layouts.  The chosen channel must fit as one matched
 slice directly above its input pin.  Unit slices must be interdigitated with
 common-centroid assignment, edge dummies, equal contact populations, local
 grounding, and equal switch-route topology.  Additional vector hardware must
 not be placed in a distant empty region and connected by unmatched analog
 routes.
+
+The selected dimension-only candidate is a 3-column by 5-row active matrix:
+
+| Row | Left | Centre | Right |
+| --- | ---: | ---: | ---: |
+| 0 | 8 | 8 | 8 |
+| 1 | 4 | 8 | 4 |
+| 2 | 2 | 1 | 2 |
+| 3 | 4 | 8 | 4 |
+| 4 | 8 | 8 | 8 |
+
+Every binary group has centroid `(1, 2)` in unit-pitch coordinates. Use
+device-row edge dummies horizontally, conservative dummy coverage above and
+below, inversion-paired R0/MY units, and one shared guard. Pinned Magic 8.3.676
+measurements estimate this candidate at 15.74 um wide by 93.99 um high, leaving
+3.58 um on the 19.32 um input pitch. A complete dummy *unit* at each horizontal
+edge leaves only 1.02 um and is explicitly rejected. With the electrical gates
+closed, these bounds may now guide matched floorplanning; they are not a GDS
+or physical-signoff claim.
 
 ## Initial engineering targets
 
