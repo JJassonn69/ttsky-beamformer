@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "early V3 implementation checkpoint; not layout or release signoff",
+  "v2_frozen_base_commit": "b7eae2e6ecf20b1141d15029503c345dacc71b99",
+  "architecture_gate_1": {
+    "status": "pass",
+    "unit_slices_per_channel": 15,
+    "raw_words_per_channel": 256,
+    "unique_nonzero_vectors": 256,
+    "guaranteed_phase_states": 8,
+    "worst_phase_error_deg": 3.814074834290352,
+    "magnitude_span_db": 0.29706926833030356,
+    "optional_16_state_worst_phase_error_deg": 3.814074834290352,
+    "optional_16_state_magnitude_span_db": 0.8364212367298702
+  },
+  "schematic_gate_2a": {
+    "status": "pass",
+    "scope": "TT real SKY130 gm and switch devices with ideal equal slice currents",
+    "worst_phase_error_deg": 3.821811984326075,
+    "magnitude_span_db": 0.2984716368910967,
+    "supply_current_spread_percent": 0.0
+  },
+  "schematic_gate_2b": {
+    "status": "bounded five-corner pass",
+    "input_common_mode_v": 1.2,
+    "gm_width_um": 0.42,
+    "switch_width_um": 0.65,
+    "tail_sink_width_um_per_slice": 2.533333333,
+    "tail_sink_length_um": 0.5,
+    "corners": {
+      "tt_1p80v_27c": {
+        "worst_phase_error_deg": 3.803063110929884,
+        "magnitude_span_db": 0.29867387650841465,
+        "tail_current_compliance_fraction": 0.9917860080922719,
+        "minimum_commutating_gm_drain_to_tail_v": 0.02673,
+        "output_common_mode_v": 1.61007,
+        "report_sha256": "1bcc36deea56927d5871ec031a141f69b6360028b97f7cf1e041c5eebb24beb6"
+      },
+      "sf_1p80v_27c": {
+        "worst_phase_error_deg": 3.8048927550369456,
+        "magnitude_span_db": 0.2986264660652402,
+        "tail_current_compliance_fraction": 1.013945323252766,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0359927,
+        "output_common_mode_v": 1.5685,
+        "report_sha256": "ed7b92d06d12051b40c7965fc835a0e794176cc6c739fb072653b548bf1d2379"
+      },
+      "fs_1p80v_27c": {
+        "worst_phase_error_deg": 3.814853090866734,
+        "magnitude_span_db": 0.29962381862631454,
+        "tail_current_compliance_fraction": 0.9666574513469162,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0250296,
+        "output_common_mode_v": 1.6437,
+        "report_sha256": "0b8359466fa611a7d51686fa5908af644458b9c0968dd6cd85617586e9c7f243"
+      },
+      "ff_1p98v_minus40c": {
+        "worst_phase_error_deg": 3.8122183548218516,
+        "magnitude_span_db": 0.29886978933297137,
+        "tail_current_compliance_fraction": 1.009470937443387,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0434934,
+        "output_common_mode_v": 1.75077,
+        "report_sha256": "a71d96f62bf9329ebe51025cba922c07b5221f5a56266b63025444e4eccf5f76"
+      },
+      "ss_1p62v_85c": {
+        "worst_phase_error_deg": 3.8136538233120802,
+        "magnitude_span_db": 0.2992736043885191,
+        "tail_current_compliance_fraction": 0.969884692190419,
+        "minimum_commutating_gm_drain_to_tail_v": 0.0210062,
+        "output_common_mode_v": 1.47132,
+        "report_sha256": "3e8af74fc9d40c0b60bf570733a65228c5211b2678f2ccd460c0b073a9f58efa"
+      }
+    }
+  },
+  "linearity_and_loading_gate": {
+    "status": "pass with high-capacitance load limit documented",
+    "corner": "tt_1p80v_27c",
+    "nominal_output_capacitance_pf_per_pad": 10.0,
+    "worst_compression_db_at_20mv_peak": 0.024589304892156265,
+    "worst_compression_db_at_50mv_peak": 0.15482605944495062,
+    "maximum_allowed_compression_db_at_50mv_peak": 1.0,
+    "gain_loss_db_at_30pf_per_pad": 2.651373020367291,
+    "gain_loss_db_at_60pf_per_pad": 6.702830323061838,
+    "interpretation": "the unbuffered differential output is high impedance; large external capacitance is an interface load limit, not a vector-state imbalance"
+  },
+  "two_tone_pilot": {
+    "status": "pass",
+    "scope": "bounded TT one-channel pilot",
+    "input_tones_mhz": [4.9, 5.1],
+    "per_tone_peak_levels_v": [0.01, 0.03],
+    "fundamental_to_worst_im3_db": [57.323493449999894, 42.754260393729496],
+    "input_iip3_dbv_rms_per_tone": [-14.348553231639865, -12.09074466538182],
+    "iip3_estimate_spread_db": 2.257808566258045,
+    "report_sha256": "2efb8ce6901ea2e40a586b74d253a9b078ca352f098126d2167769ff9ba0158b"
+  },
+  "digital_gate": {
+    "status": "pass",
+    "coefficient_packet_bits": 32,
+    "automatic_beams": 8,
+    "local_group_lo_pairs": 16,
+    "safe_atomic_commit": true,
+    "tail_bias_blanked_with_lo": true
+  },
+  "source_sha256": {
+    "v3/model/beamformer_v3.py": "f739bcb62563a584eabeb9ed2932a3126c5d1db3a03927ca1c776372eeabd298",
+    "v3/spice/vector_channel_15.inc": "330454cbb138faf7686baa6732dbbcdb128c5537c0802b28bddeefcde8a16dd7",
+    "v3/tools/run_one_channel_vector_sweep.py": "aa504bd159b5be0bba94e7661762b8de4794bd12cb6a5a64dbb6d3a5ca020cac",
+    "v3/tools/run_twotone_pilot.py": "9edd9fc2df200690a2bc070cedcfd0ea6b54d2a133f2e599eb151d0c5bbe45ca",
+    "v3/rtl/serial_config.v": "919d3b30fca77edad762d2d6d51c520c7f4f0ae7fb4b59001a06a50d87b7fbd1",
+    "v3/rtl/quadrature_generator.v": "78d708c23a9825289de85ed376f6180082993073b28e6ad1b25b7b7065f7a26f",
+    "v3/rtl/vector_control_core.v": "8af8287eeb9b902f6d27c4999e463f62844e5602df1581284af27da6789cbf39"
+  },
+  "remaining_before_floorplan": [
+    "absolute PVT gain and calibration strategy",
+    "LO feedthrough, image and spur spectrum",
+    "selector and tail-bias code-transition settling",
+    "load and Tiny Tapeout path sensitivity",
+    "noise scope and mismatch with independent calibration/validation samples",
+    "15-slice PCell dimension and common-centroid feasibility"
+  ]
+}
