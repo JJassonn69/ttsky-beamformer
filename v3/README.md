@@ -126,3 +126,29 @@ This closes the V3 pre-layout electrical gate and authorizes floorplanning.
 It is not native PNoise and excludes clock-source phase noise, extracted
 layout parasitics, package/board noise, and silicon correlation. V3 is still
 not a GDS, submission, or fabrication candidate.
+
+## Constraint-only floorplan checkpoint
+
+The first reproducible V3 floorplan is now captured in
+`layout/floorplan.json`. It keeps the four 15.74 um channel envelopes directly
+above the official analog pins, preserves a 3.58 um gap between adjacent
+shared guards, repeats the exact 3x5 common-centroid group assignment in every
+channel, reserves one local selector region per channel, and uses a balanced
+four-phase distribution tree. The two output-pin paths are each 172.75 um and
+have identical Metal 3 and Metal 4 length budgets; all eight local channel-to-
+sum-bus taps are 6.01 um.
+
+The manifest is generated rather than hand-edited. Rebuild and check it with:
+
+```sh
+python3 v3/tools/build_floorplan.py
+python3 v3/tools/check_floorplan.py --report v3/evidence/floorplan_check.json
+python3 v3/tools/render_floorplan.py
+python3 -m unittest v3.tests.test_floorplan -v
+```
+
+The review image is `evidence/floorplan_review.svg`. This checkpoint does not
+instantiate devices or routes and does not authorize GDS. The next physical
+gate must measure and place the shared 64 um / 1.00 um bias reference, confirm
+that synthesized selector/control cells fit their reservations, and produce a
+transistor-level channel placement without moving the frozen channel axes.

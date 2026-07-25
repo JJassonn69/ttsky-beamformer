@@ -1,4 +1,4 @@
-name: v3-prelayout-validation
+name: v3-development-validation
 
 on:
   push:
@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  prelayout:
+  architecture-and-floorplan:
     runs-on: ubuntu-24.04
     steps:
       - name: Checkout V3 sources and evidence
@@ -34,5 +34,12 @@ jobs:
       - name: Check deterministic architecture summary
         run: python3 v3/model/beamformer_v3.py summary
 
+      - name: Rebuild and validate the constraint-only floorplan
+        run: |
+          python3 v3/tools/build_floorplan.py
+          python3 v3/tools/check_floorplan.py --report v3/evidence/floorplan_check.json
+          python3 v3/tools/render_floorplan.py
+          python3 -m unittest v3.tests.test_floorplan -v
+
       - name: Reject uncommitted generated-evidence drift
-        run: git diff --exit-code -- v3/evidence
+        run: git diff --exit-code -- v3/layout/floorplan.json v3/evidence
