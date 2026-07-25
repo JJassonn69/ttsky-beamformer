@@ -159,9 +159,40 @@ and extraction remain open.
 
 Each channel's 34 um-high selector reservation now also has an explicit
 nine-row standard-cell skeleton. It uses twelve 2:1 muxes, four AND gates,
-five inverted-input AND gates, and five taps per channel. Exact tracked LEF
-dimensions give 38.11 percent raw utilization; the widest row is 9.20 um in a
-15.74 um channel. The actual named cell/pin graph passes exhaustive Boolean
-checking for all phase inputs, codes, enable states, and blanking states.
-Detailed pin-access routing remains the next selector gate.
+five inverted-input AND gates, five taps, and seventeen one-site filler cells
+per channel. Exact tracked LEF dimensions give 42.08 percent raw utilization;
+the widest row is 10.12 um in a 15.74 um channel. The actual named cell/pin
+graph passes exhaustive Boolean checking for all phase inputs, codes, enable
+states, and blanking states.
 See `evidence/selector_placement_review.svg` for an enlarged row-by-row view.
+
+Physical Gate 3C routes one complete selector against the real SKY130 HD LEF
+pin geometry. Abutted functional cells produced repeatable LI pin-access
+spacing errors, so the authoritative generator now inserts one 0.46 um filler
+site at every signal-cell boundary. An attempted 0.68 um vertical row channel
+was rejected even after it routed: the same FEOL deck used by Tiny Tapeout
+reported 33 `MR_nwell.SP.1` markers. Contiguous alternating R0/MX rows with
+the horizontal fillers pass with 0 OpenROAD violations, 0 Magic DRC/import/
+extraction/GDS-writer errors, all 208 expected transistors and 22 boundary
+nets present after flat extraction, and 0 markers in the pinned Tiny Tapeout
+FEOL, BEOL, off-grid, zero-area, and pin-purpose-overlap decks. See
+`evidence/selector_route_pilot.json`.
+
+This is a pilot-geometry result, not an official submission precheck. The
+complete wrapper, project boundary, LEF/Verilog contract, power pins, analog
+pins, antenna repair, four-channel route balance, and integrated GDS remain
+mandatory later gates.
+
+With a pinned `tt-support-tools` checkout and KLayout available, repeat the
+pilot geometry subset with:
+
+```sh
+python3 v3/tools/run_selector_precheck.py \
+  --support-tools /path/to/tt-support-tools-at-d65690e
+python3 v3/tools/check_selector_route_evidence.py
+python3 -m unittest v3.tests.test_floorplan -v
+```
+
+The runner refuses a support-tools checkout at any other commit. It reads the
+KLayout report databases and fails on nonzero markers even when the underlying
+deck process itself exits successfully.

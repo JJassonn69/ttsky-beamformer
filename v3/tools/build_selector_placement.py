@@ -19,10 +19,13 @@ CELL_FILES = {
     "and2": CELL_ROOT / "sky130_fd_sc_hd__and2_1.lef",
     "and2b": CELL_ROOT / "sky130_fd_sc_hd__and2b_1.lef",
     "tap": CELL_ROOT / "sky130_fd_sc_hd__tapvpwrvgnd_1.lef",
+    "fill": CELL_ROOT / "sky130_fd_sc_hd__fill_1.lef",
 }
 SIZE_RE = re.compile(r"^\s*SIZE\s+([0-9.]+)\s+BY\s+([0-9.]+)\s*;", re.MULTILINE)
 ROW_HEIGHT = 2.72
 ROW_COUNT = 9
+ROW_GAP = 0.0
+CELL_SITE_WIDTH = 0.46
 
 
 def sha256(path: Path) -> str:
@@ -77,13 +80,13 @@ def add_instance(
 def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
     selector_width = 15.74
     selector_height = 34.0
-    used_height = ROW_COUNT * ROW_HEIGHT
+    used_height = ROW_COUNT * ROW_HEIGHT + (ROW_COUNT - 1) * ROW_GAP
     lower_margin = (selector_height - used_height) / 2.0
     instances: list[dict[str, Any]] = []
     cell_start_x = 3.30
 
     def row_y(row: int) -> float:
-        return lower_margin + row * ROW_HEIGHT
+        return lower_margin + row * (ROW_HEIGHT + ROW_GAP)
 
     def orientation(row: int) -> str:
         return "R0" if row % 2 == 0 else "MX"
@@ -91,6 +94,7 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
     # One channel-level gate generates ENABLE = channel_enable & !blank.
     x = cell_start_x
     x = add_instance(instances, cells, "TAP_ENABLE", "tap", x, row_y(0), 0, orientation(0))
+    x = add_instance(instances, cells, "FILL_ENABLE", "fill", x, row_y(0), 0, orientation(0))
     add_instance(
         instances, cells, "ENABLE_ANDNOT", "and2b", x, row_y(0), 0, orientation(0),
         connections={"A_N": "mixers_blank", "B": "channel_enable", "X": "group_enable"},
@@ -104,11 +108,13 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
         # the other chooses I-/Q-. A tap every two rows bounds well distance.
         x = cell_start_x
         x = add_instance(instances, cells, f"TAP_G{group}", "tap", x, row_y(first_row), first_row, orientation(first_row), group)
+        x = add_instance(instances, cells, f"FILL_G{group}_R0", "fill", x, row_y(first_row), first_row, orientation(first_row), group)
         x = add_instance(
             instances, cells, f"G{group}_MUX_POS", "mux2", x, row_y(first_row), first_row,
             orientation(first_row), group,
             {"A0": "phase_0", "A1": "phase_90", "S": f"group{group}_bit0", "X": f"group{group}_positive_axis"},
         )
+        x = add_instance(instances, cells, f"FILL_G{group}_R1", "fill", x, row_y(first_row), first_row, orientation(first_row), group)
         add_instance(
             instances, cells, f"G{group}_MUX_NEG", "mux2", x, row_y(first_row), first_row,
             orientation(first_row), group,
@@ -122,11 +128,13 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
             orientation(second_row), group,
             {"A0": f"group{group}_positive_axis", "A1": f"group{group}_negative_axis", "S": f"group{group}_bit1", "X": f"group{group}_selected_phase"},
         )
+        x = add_instance(instances, cells, f"FILL_G{group}_R2", "fill", x, row_y(second_row), second_row, orientation(second_row), group)
         x = add_instance(
             instances, cells, f"G{group}_LO_P_AND", "and2", x, row_y(second_row), second_row,
             orientation(second_row), group,
             {"A": f"group{group}_selected_phase", "B": "group_enable", "X": f"group{group}_lo_p"},
         )
+        x = add_instance(instances, cells, f"FILL_G{group}_R3", "fill", x, row_y(second_row), second_row, orientation(second_row), group)
         add_instance(
             instances, cells, f"G{group}_LO_N_ANDNOT", "and2b", x, row_y(second_row), second_row,
             orientation(second_row), group,
@@ -141,6 +149,9 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
         "bbox": [0.0, 0.0, selector_width, selector_height],
         "row_height_um": ROW_HEIGHT,
         "row_count": ROW_COUNT,
+        "row_gap_um": ROW_GAP,
+        "cell_gap_sites": 1,
+        "cell_site_width_um": CELL_SITE_WIDTH,
         "row_lower_margin_um": lower_margin,
         "instances": instances,
         "cell_area_um2": cell_area,
@@ -196,7 +207,7 @@ def build_selector_placement() -> dict[str, Any]:
         )
     return {
         "schema_version": 1,
-        "status": "review placement skeleton; no routed DEF/GDS or physical signoff",
+        "status": "route-informed review placement; full four-channel routing and physical signoff pending",
         "provenance": {
             "generator": "v3/tools/build_selector_placement.py",
             "floorplan": "v3/layout/floorplan.json",
@@ -208,6 +219,7 @@ def build_selector_placement() -> dict[str, Any]:
         "constraints": {
             "maximum_raw_cell_utilization_percent": 45.0,
             "maximum_row_width_um": 12.60,
+            "minimum_signal_cell_gap_sites": 1,
             "one_tap_at_least_every_rows": 2,
             "all_channels_identical": True,
             "channel_macro_orientation": "R0",
@@ -216,7 +228,7 @@ def build_selector_placement() -> dict[str, Any]:
         },
         "next_gate": [
             "synthesize the complete control core and compare mapped logic with this template",
-            "route one selector against real LEF pin obstructions",
+            "route all four selector copies and compare phase/control path lengths",
             "check power-rail abutment, tap spacing, antenna, DRC, and extracted phase skew",
         ],
     }

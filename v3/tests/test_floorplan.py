@@ -71,6 +71,33 @@ class V3FloorplanTests(unittest.TestCase):
         tracked_svg = (V3_ROOT / "evidence" / "selector_placement_review.svg").read_text(encoding="utf-8")
         self.assertEqual(tracked_svg, render_selector(placement))
 
+    def test_selector_route_pilot_evidence_is_current_and_precheck_clean(self) -> None:
+        report = json.loads((V3_ROOT / "evidence" / "selector_route_pilot.json").read_text(encoding="utf-8"))
+        self.assertEqual(report["status"], "pass", report["errors"])
+        self.assertTrue(all(report["checks"].values()), report["checks"])
+        self.assertEqual(
+            set(report["tiny_tapeout_precheck_compatible_geometry"]["marker_counts"].values()),
+            {0},
+        )
+        self.assertEqual(report["selected_constraints"]["row_gap_um"], 0.0)
+        self.assertEqual(report["selected_constraints"]["signal_cell_gap_sites"], 1)
+        placement_path = V3_ROOT / "layout" / "selector_placement.json"
+        route_generator = V3_ROOT / "tools" / "generate_selector_route_pilot.py"
+        precheck_runner = V3_ROOT / "tools" / "run_selector_precheck.py"
+        self.assertEqual(
+            hashlib.sha256(placement_path.read_bytes()).hexdigest(),
+            report["provenance"]["selector_placement_sha256"],
+        )
+        self.assertEqual(
+            hashlib.sha256(route_generator.read_bytes()).hexdigest(),
+            report["provenance"]["route_generator_sha256"],
+        )
+        self.assertEqual(
+            hashlib.sha256(precheck_runner.read_bytes()).hexdigest(),
+            report["provenance"]["precheck_runner_sha256"],
+        )
+        self.assertIn("full wrapper/pin/boundary/interface checks require", report["tiny_tapeout_precheck_compatible_geometry"]["scope_note"])
+
 
 if __name__ == "__main__":
     unittest.main()

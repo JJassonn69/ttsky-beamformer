@@ -45,11 +45,11 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
         if item["group"] is not None:
             counts = group_counts.setdefault(item["group"], {})
             counts[role] = counts.get(role, 0) + 1
-    expected_roles = {"tap": 5, "and2b": 5, "mux2": 12, "and2": 4}
+    expected_roles = {"tap": 5, "fill": 17, "and2b": 5, "mux2": 12, "and2": 4}
     if role_counts != expected_roles:
         errors.append(f"unexpected per-channel role counts: {role_counts}")
     for group in range(4):
-        if group_counts.get(group) != {"tap": 1, "mux2": 3, "and2": 1, "and2b": 1}:
+        if group_counts.get(group) != {"tap": 1, "fill": 4, "mux2": 3, "and2": 1, "and2b": 1}:
             errors.append(f"group {group} selector topology changed: {group_counts.get(group)}")
     if max(row_widths.values()) > constraints["maximum_row_width_um"]:
         errors.append(f"selector row exceeds width budget: {row_widths}")
@@ -57,6 +57,19 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
         nearest = min(abs(row - tap_row) for tap_row in taps_by_row)
         if nearest >= constraints["one_tap_at_least_every_rows"]:
             errors.append(f"row {row} is too far from a well tap")
+        ordered = sorted((item for item in instances if item["row"] == row), key=lambda item: item["bbox"][0])
+        for first, second in zip(ordered, ordered[1:]):
+            if first["cell_role"] != "fill" and second["cell_role"] != "fill":
+                errors.append(f"row {row} lacks filler pin-access spacing between {first['name']} and {second['name']}")
+    expected_gap = template["row_gap_um"]
+    row_starts = {
+        row: min(item["bbox"][1] for item in instances if item["row"] == row)
+        for row in range(template["row_count"])
+    }
+    for row in range(1, template["row_count"]):
+        observed_gap = row_starts[row] - row_starts[row - 1] - template["row_height_um"]
+        if abs(observed_gap - expected_gap) > 1e-9:
+            errors.append(f"row {row} gap changed from the route-proven value")
 
     for first_index, first in enumerate(instances):
         for second in instances[first_index + 1 :]:
@@ -73,7 +86,7 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
     # Exhaustively evaluate the actual named cell/pin graph for every phase
     # input combination, axis code, channel-enable, and blank state.
     truth_table = []
-    logical_instances = [item for item in instances if item["cell_role"] != "tap"]
+    logical_instances = [item for item in instances if item["cell_role"] not in {"tap", "fill"}]
     for phase_pattern in range(16):
         phases = {
             "phase_0": (phase_pattern >> 0) & 1,
@@ -115,7 +128,7 @@ def validate(data: dict[str, Any]) -> dict[str, Any]:
     return {
         "status": "pass" if not errors else "fail",
         "errors": errors,
-        "scope": "local selector standard-cell placement skeleton; no detailed routing, DRC, extraction, or GDS",
+        "scope": "route-informed local selector placement; full-channel routing, extraction, and GDS remain pending",
         "instances_per_channel": len(instances),
         "role_counts_per_channel": role_counts,
         "row_widths_um": {str(row): round(width, 3) for row, width in row_widths.items()},

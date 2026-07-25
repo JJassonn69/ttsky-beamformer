@@ -223,6 +223,16 @@ edge leaves only 1.02 um and is explicitly rejected. With the electrical gates
 closed, these bounds may now guide matched floorplanning; they are not a GDS
 or physical-signoff claim.
 
+The local selector route pilot fixes one additional production constraint:
+functional standard cells must be separated horizontally by one 0.46 um filler
+site, while alternating rows remain vertically contiguous. The filler sites
+remove LI pin-access conflicts and preserve row power-rail continuity.
+Vertical row channels are forbidden unless a later official-deck experiment
+proves legal well geometry; the tested 0.68 um channel created 33 n-well
+spacing markers. The selected one-channel pilot is clean in OpenROAD, Magic,
+flat extraction, and the directly applicable Tiny Tapeout KLayout geometry
+decks, but does not authorize the four-channel or submission GDS.
+
 ## Initial engineering targets
 
 | Metric | V3A target |

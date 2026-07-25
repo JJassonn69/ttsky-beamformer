@@ -11,7 +11,13 @@ from xml.sax.saxutils import escape
 
 
 ROOT = Path(__file__).resolve().parents[2]
-COLORS = {"mux2": "#e9a03b", "and2": "#3b8bc2", "and2b": "#7656a6", "tap": "#5f6b73"}
+COLORS = {
+    "mux2": "#e9a03b",
+    "and2": "#3b8bc2",
+    "and2b": "#7656a6",
+    "tap": "#5f6b73",
+    "fill": "#aab4bc",
+}
 
 
 def render(data: dict[str, Any]) -> str:
@@ -46,22 +52,32 @@ def render(data: dict[str, Any]) -> str:
         svg.append(f'<text class="small" x="{sx(x0)+3:.2f}" y="{sy((y0+y1)/2)+3:.2f}" fill="#fff">{escape(label)}</text>')
 
     info_x = sx(15.74) + 45
-    svg.append(f'<text class="title" x="{margin_x:.2f}" y="32">V3 per-channel selector placement skeleton</text>')
+    row_widths = []
+    for row in range(template["row_count"]):
+        row_items = [item for item in template["instances"] if item["row"] == row]
+        row_widths.append(max(item["bbox"][2] for item in row_items) - min(item["bbox"][0] for item in row_items))
+    row_description = (
+        "Nine contiguous alternating R0/MX rows"
+        if template["row_gap_um"] == 0
+        else f"Nine alternating R0/MX rows; {template['row_gap_um']:.2f} um gaps"
+    )
+    svg.append(f'<text class="title" x="{margin_x:.2f}" y="32">V3 route-proven per-channel selector placement</text>')
     lines = [
         "Reservation: 15.74 x 34.00 um",
         f"Raw cell utilization: {template['raw_cell_utilization_percent']:.2f}%",
-        "Nine alternating R0/MX rows",
-        "12 mux2 + 4 and2 + 5 and2b + 5 taps",
-        "Maximum occupied row width: 9.20 um",
+        row_description,
+        "12 mux2 + 4 and2 + 5 and2b + 5 taps + 17 fillers",
+        f"Maximum occupied row width: {max(row_widths):.2f} um",
+        "One 0.46 um filler site at every signal-cell boundary",
         "Left: four-phase Metal 3 spine",
         "Right: eight static-code Metal 2 entries",
         "All four channels use this identical copy",
         "",
         "Still open:",
-        "- detailed LEF pin-access routing",
-        "- power straps and tap-rule signoff",
-        "- antenna, DRC, extraction and skew",
-        "- routed DEF/GDS generation",
+        "- route and compare all four selector copies",
+        "- power straps, antenna repair and tap-rule signoff",
+        "- extracted RC timing and channel-to-channel skew",
+        "- integrated top-level DEF/GDS and official precheck",
     ]
     for index, line in enumerate(lines):
         css = "label" if line == "Still open:" else "small"
