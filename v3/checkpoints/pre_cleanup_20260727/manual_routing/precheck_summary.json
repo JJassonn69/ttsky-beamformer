@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/manual_routing/precheck_after_gap_fix/precheck_beol.xml",
+      "report_sha256": "5823c30205670757d615908403ce1ee0bb8ab0fbfde394ec6f39c969bf93909c"
+    },
+    "feol": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/manual_routing/precheck_after_gap_fix/precheck_feol.xml",
+      "report_sha256": "6efe44a98e3e6e997b840f9c005768e3cd89f48d6c460699c9381904573e8ca8"
+    },
+    "offgrid": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/manual_routing/precheck_after_gap_fix/precheck_offgrid.xml",
+      "report_sha256": "2da712215b59828e2ddebc0d012c826b5a8b1e21e73719a119967c0679510402"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/manual_routing/precheck_after_gap_fix/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "1407d52aca8e5265ce00903abff03e49ddb8844741bb6421f78eaf3b7538c43e"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/manual_routing/precheck_after_gap_fix/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/manual_routing/precheck_after_gap_fix/precheck_zero_area.xml",
+      "report_sha256": "a1107660884508738683495da84d895dc69f85924b806bb956cb119aa077e45f"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/manual_routing/beamformer_v3_manual_routing_canvas.gds",
+  "gds_sha256": "055f93997f70a8e3634a8e42f4f397a0353004e9c27f44f702f77129e3af050d",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_channel_architecture_feasibility"
+}

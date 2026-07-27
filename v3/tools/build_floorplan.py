@@ -16,6 +16,7 @@ from typing import Any
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 CHECKPOINT = PROJECT_ROOT / "v3" / "evidence" / "implementation_checkpoint.json"
 SUPPORT_STUDY = PROJECT_ROOT / "v3" / "evidence" / "support_floorplan_study.json"
+SUPPORT_SELECTION = PROJECT_ROOT / "v3" / "evidence" / "shared_support_candidate_selection.json"
 DEFAULT_OUTPUT = PROJECT_ROOT / "v3" / "layout" / "floorplan.json"
 
 CHANNEL_CENTERS = [152.26, 132.94, 113.62, 94.30]
@@ -37,10 +38,13 @@ def segment(start: list[float], end: list[float], layer: str) -> dict[str, Any]:
 def build_floorplan() -> dict[str, Any]:
     checkpoint = json.loads(CHECKPOINT.read_text(encoding="utf-8"))
     support = json.loads(SUPPORT_STUDY.read_text(encoding="utf-8"))
+    support_selection = json.loads(SUPPORT_SELECTION.read_text(encoding="utf-8"))
     if not checkpoint["layout_authorized"] or checkpoint["gds_authorized"]:
         raise RuntimeError("V3 checkpoint does not authorize review floorplanning")
     if support["status"] != "pass":
         raise RuntimeError("V3 shared-support dimension study has not passed")
+    if support_selection["status"] != "pass":
+        raise RuntimeError("V3 shared-support electrical selection has not passed")
 
     analog_pins = {
         "ua[0]": {"center": [152.26, 0.50], "size": [0.90, 1.00], "function": "element_0"},
@@ -110,7 +114,7 @@ def build_floorplan() -> dict[str, Any]:
     return {
         "schema_version": 1,
         "units": "um",
-        "status": "review floorplan constraints; no placement database, routing, or GDS",
+        "status": "constraint floorplan with passed selector/reference pilots and PVT-selected shared support; no integrated placement database, routing, or GDS",
         "authorization": {
             "floorplan_authorized": True,
             "device_placement_authorized": False,
@@ -125,6 +129,8 @@ def build_floorplan() -> dict[str, Any]:
             "pcell_scope": checkpoint["pcell_dimension_gate"]["scope"],
             "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
             "support_floorplan_study_sha256": sha256(SUPPORT_STUDY),
+            "shared_support_candidate_selection": "v3/evidence/shared_support_candidate_selection.json",
+            "shared_support_candidate_selection_sha256": sha256(SUPPORT_SELECTION),
         },
         "template": {
             "repository": "https://github.com/TinyTapeout/tt-support-tools",
@@ -147,7 +153,7 @@ def build_floorplan() -> dict[str, Any]:
             "ena": "project enable",
         },
         "zones": [
-            {"name": "shared_vcm", "bbox": [12.0, 18.0, 49.0, 156.0], "noise_class": "quiet_analog"},
+            {"name": "shared_vcm", "bbox": [12.0, 4.0, 53.0, 156.0], "noise_class": "quiet_analog"},
             {"name": "four_channel_vector_core", "bbox": [84.0, 8.0, 162.0, 102.0], "noise_class": "critical_analog"},
             {"name": "differential_sum_corridor", "bbox": [50.0, 103.0, 162.0, 112.0], "noise_class": "critical_analog"},
             {"name": "differential_load_pair", "bbox": [108.0, 113.0, 138.0, 133.0], "noise_class": "critical_analog"},
@@ -193,7 +199,7 @@ def build_floorplan() -> dict[str, Any]:
             "load_n_bbox": [112.085, 114.285, 115.155, 131.715],
             "load_p_pin": "ua[4]",
             "load_n_pin": "ua[5]",
-            "load_pcell": "V2-qualified 5 kohm output_load_resistor_guarded; re-extract in V3 context",
+            "load_pcell": "V2-qualified/V3-remeasured res_high_po_1p41 w=1.41 um l=11.6117 um; PCell nominal 2.91 kohm, schematic screen 2.925 kohm; re-extract in placed V3 context",
             "routes": output_routes,
             "sum_bus_extensions": {
                 "p": segment([132.94, 108.0], [160.13, 108.0], "metal4"),
@@ -230,13 +236,17 @@ def build_floorplan() -> dict[str, Any]:
         },
         "shared_support": {
             "tail_reference": "64 um / 1.00 um shared diode-connected NMOS reference",
-            "tail_reference_status": "measured folding reserved; diode strap and DRC/LVS pending",
+            "tail_reference_status": "physical pilot passes diode topology, DRC, direct-GDS precheck, and distributed-RC matching; top-level integration pending",
             "tail_reference_selected_folding": support["selected_candidate"],
             "tail_reference_bbox": support["selected_placement_bbox_um"],
             "tail_reference_orientation": support["placement_orientation"],
-            "vcm": "reuse V2-qualified VCM topology only after V3 loading check",
+            "tail_reference_integrated": False,
+            "vcm": "six identical 5.875 um xhigh-poly units in exact B-A-B/B-A-B common-centroid 2:4 divider with three 22x22 um MIM bypass capacitors and no varactor",
+            "vcm_status": "nominal mode screen and full five-corner MOS PVT/headroom pass; exact three-MIM Magic pilot, topology, direct-GDS, and distributed-RC gates pending",
+            "input_bias_status": "four measured 100 kohm-class V3 PCells constraint-placed with equal input branches and balanced VCM H-tree; exact channel-guard merge pending",
+            "output_load_status": "symmetric measured 2.91 kohm PCells constraint-placed; schematic screen uses 2.925 kohm; exact extraction pending",
             "power_partition": "1.8 V only; Tiny Tapeout VAPWR is unused",
-            "next_gate": "draw/extract the diode strap, place VCM/decap, and route one selector without moving channel axes",
+            "next_gate": "close the exact three-MIM VCM support pilot, then place and route one complete common-centroid channel without moving the closed reference, selector, channel, or pin axes",
         },
         "net_classes": {
             "element_inputs": {"layers": ["metal3", "metal4"], "width": 0.40, "max_direction_reversals": 0, "max_pin_to_macro_entry_length": 8.0},

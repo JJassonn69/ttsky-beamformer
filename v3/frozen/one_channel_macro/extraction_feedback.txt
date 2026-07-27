@@ -1,0 +1,27 @@
+box 7224 3968 7424 4982
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 5832 3968 6032 4982
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 4440 3968 4640 4982
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 7432 26748 7462 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 7186 26748 7216 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 6040 26748 6070 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 5794 26748 5824 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 4648 26748 4678 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale
+box 4402 26748 4432 26878
+feedback add "device missing 1 terminal;
+ connecting remainder to node VGND" pale

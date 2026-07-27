@@ -39,7 +39,7 @@
       34.0
     ],
     "cell_area_um2": 225.216,
-    "cell_gap_sites": 1,
+    "cell_gap_sites": 0,
     "cell_site_width_um": 0.46,
     "instances": [
       {
@@ -754,7 +754,52 @@
     },
     "raw_cell_utilization_percent": 42.083862770012715,
     "reserved_area_um2": 535.16,
+    "route_envelope_bbox": [
+      0.0,
+      0.0,
+      19.32,
+      34.0
+    ],
     "route_reservations": {
+      "analog_group_output_entry": {
+        "anchors": {
+          "group0_lo_n": [
+            10.87,
+            0.0
+          ],
+          "group0_lo_p": [
+            4.87,
+            0.0
+          ],
+          "group1_lo_n": [
+            18.47,
+            0.0
+          ],
+          "group1_lo_p": [
+            19.12,
+            0.0
+          ],
+          "group2_lo_n": [
+            17.17,
+            0.0
+          ],
+          "group2_lo_p": [
+            17.82,
+            0.0
+          ],
+          "group3_lo_n": [
+            15.82,
+            0.0
+          ],
+          "group3_lo_p": [
+            16.52,
+            0.0
+          ]
+        },
+        "edge": "bottom",
+        "layer": "metal2",
+        "note": "ports are vertically aligned with the closed analog group-tree roots; the 19.32 um route envelope includes the inter-channel phase-trunk corridor"
+      },
       "phase_spine": {
         "bbox": [
           0.2,
@@ -800,6 +845,40 @@
   },
   "channels": [
     {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          155.26,
+          134.0
+        ],
+        "group0_lo_p": [
+          149.26,
+          134.0
+        ],
+        "group1_lo_n": [
+          162.86,
+          134.0
+        ],
+        "group1_lo_p": [
+          163.51,
+          134.0
+        ],
+        "group2_lo_n": [
+          161.56,
+          134.0
+        ],
+        "group2_lo_p": [
+          162.21,
+          134.0
+        ],
+        "group3_lo_n": [
+          160.21,
+          134.0
+        ],
+        "group3_lo_p": [
+          160.91,
+          134.0
+        ]
+      },
       "bbox": [
         144.39,
         134.0,
@@ -1513,6 +1592,12 @@
         147.34,
         168.0
       ],
+      "route_envelope_bbox": [
+        144.39,
+        134.0,
+        163.71,
+        168.0
+      ],
       "static_code_entry_bbox": [
         156.59,
         134.0,
@@ -1521,6 +1606,40 @@
       ]
     },
     {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          135.94,
+          134.0
+        ],
+        "group0_lo_p": [
+          129.94,
+          134.0
+        ],
+        "group1_lo_n": [
+          143.54,
+          134.0
+        ],
+        "group1_lo_p": [
+          144.19,
+          134.0
+        ],
+        "group2_lo_n": [
+          142.24,
+          134.0
+        ],
+        "group2_lo_p": [
+          142.89,
+          134.0
+        ],
+        "group3_lo_n": [
+          140.89,
+          134.0
+        ],
+        "group3_lo_p": [
+          141.59,
+          134.0
+        ]
+      },
       "bbox": [
         125.07,
         134.0,
@@ -2234,6 +2353,12 @@
         128.02,
         168.0
       ],
+      "route_envelope_bbox": [
+        125.07,
+        134.0,
+        144.39,
+        168.0
+      ],
       "static_code_entry_bbox": [
         137.27,
         134.0,
@@ -2242,6 +2367,40 @@
       ]
     },
     {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          116.62,
+          134.0
+        ],
+        "group0_lo_p": [
+          110.62,
+          134.0
+        ],
+        "group1_lo_n": [
+          124.22,
+          134.0
+        ],
+        "group1_lo_p": [
+          124.87,
+          134.0
+        ],
+        "group2_lo_n": [
+          122.92,
+          134.0
+        ],
+        "group2_lo_p": [
+          123.57,
+          134.0
+        ],
+        "group3_lo_n": [
+          121.57,
+          134.0
+        ],
+        "group3_lo_p": [
+          122.27,
+          134.0
+        ]
+      },
       "bbox": [
         105.75,
         134.0,
@@ -2955,6 +3114,12 @@
         108.7,
         168.0
       ],
+      "route_envelope_bbox": [
+        105.75,
+        134.0,
+        125.07,
+        168.0
+      ],
       "static_code_entry_bbox": [
         117.95,
         134.0,
@@ -2963,6 +3128,40 @@
       ]
     },
     {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          97.3,
+          134.0
+        ],
+        "group0_lo_p": [
+          91.3,
+          134.0
+        ],
+        "group1_lo_n": [
+          104.9,
+          134.0
+        ],
+        "group1_lo_p": [
+          105.55,
+          134.0
+        ],
+        "group2_lo_n": [
+          103.6,
+          134.0
+        ],
+        "group2_lo_p": [
+          104.25,
+          134.0
+        ],
+        "group3_lo_n": [
+          102.25,
+          134.0
+        ],
+        "group3_lo_p": [
+          102.95,
+          134.0
+        ]
+      },
       "bbox": [
         86.43,
         134.0,
@@ -3676,6 +3875,12 @@
         89.38,
         168.0
       ],
+      "route_envelope_bbox": [
+        86.43,
+        134.0,
+        105.75,
+        168.0
+      ],
       "static_code_entry_bbox": [
         98.63,
         134.0,
@@ -3688,9 +3893,10 @@
     "all_channels_identical": true,
     "channel_macro_orientation": "R0",
     "detailed_routing_authorized": false,
+    "group_outputs_vertically_aligned_to_analog_roots": true,
     "maximum_raw_cell_utilization_percent": 45.0,
     "maximum_row_width_um": 12.6,
-    "minimum_signal_cell_gap_sites": 1,
+    "minimum_signal_cell_gap_sites": 0,
     "one_tap_at_least_every_rows": 2,
     "phase_spines_balanced": true
   },
@@ -3701,7 +3907,7 @@
   ],
   "provenance": {
     "floorplan": "v3/layout/floorplan.json",
-    "floorplan_sha256": "548d237925c3b4bb45e443f1988fe53312ddfb22d719da3199a651defd1a1806",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
     "generator": "v3/tools/build_selector_placement.py"
   },
   "schema_version": 1,

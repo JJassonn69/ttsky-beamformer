@@ -1,0 +1,631 @@
+{
+  "bias_tree": {
+    "all_segment_ends_are_named_nodes_or_leaves": true,
+    "branch_paths": {
+      "0": {
+        "branch_via_count": 0,
+        "channel": 0,
+        "drawn_length_um": 37.98,
+        "segments": [
+          {
+            "from": [
+              123.28,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              142.6,
+              111.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              142.6,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              142.6,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              142.6,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              152.26,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              152.26,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              152.26,
+              102.0
+            ],
+            "width_um": 0.8
+          }
+        ],
+        "side": "right"
+      },
+      "1": {
+        "branch_via_count": 0,
+        "channel": 1,
+        "drawn_length_um": 37.98,
+        "segments": [
+          {
+            "from": [
+              123.28,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              142.6,
+              111.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              142.6,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              142.6,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              142.6,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              132.94,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              132.94,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              132.94,
+              102.0
+            ],
+            "width_um": 0.8
+          }
+        ],
+        "side": "right"
+      },
+      "2": {
+        "branch_via_count": 0,
+        "channel": 2,
+        "drawn_length_um": 37.98,
+        "segments": [
+          {
+            "from": [
+              123.28,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              103.96,
+              111.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              103.96,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              103.96,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              103.96,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              113.62,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              113.62,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              113.62,
+              102.0
+            ],
+            "width_um": 0.8
+          }
+        ],
+        "side": "left"
+      },
+      "3": {
+        "branch_via_count": 0,
+        "channel": 3,
+        "drawn_length_um": 37.98,
+        "segments": [
+          {
+            "from": [
+              123.28,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              103.96,
+              111.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              103.96,
+              111.0
+            ],
+            "layer": "metal2",
+            "to": [
+              103.96,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              103.96,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              94.3,
+              109.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              94.3,
+              109.0
+            ],
+            "layer": "metal2",
+            "to": [
+              94.3,
+              102.0
+            ],
+            "width_um": 0.8
+          }
+        ],
+        "side": "left"
+      }
+    },
+    "drawn_branch_mismatch_percent": 0.0,
+    "layer": "metal2",
+    "leaves": {
+      "0": [
+        152.26,
+        102.0
+      ],
+      "1": [
+        132.94,
+        102.0
+      ],
+      "2": [
+        113.62,
+        102.0
+      ],
+      "3": [
+        94.3,
+        102.0
+      ]
+    },
+    "net": "vbias_ref",
+    "no_length_tuning_stubs": true,
+    "no_orphan_vias": true,
+    "pair_nodes": {
+      "left": [
+        103.96,
+        111.0
+      ],
+      "right": [
+        142.6,
+        111.0
+      ]
+    },
+    "pair_rails": {
+      "left": [
+        103.96,
+        109.0
+      ],
+      "right": [
+        142.6,
+        109.0
+      ]
+    },
+    "root": [
+      123.28,
+      111.0
+    ],
+    "segments": [
+      {
+        "from": [
+          123.28,
+          111.0
+        ],
+        "layer": "metal2",
+        "to": [
+          103.96,
+          111.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          103.96,
+          111.0
+        ],
+        "layer": "metal2",
+        "to": [
+          103.96,
+          109.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          94.3,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          113.62,
+          109.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          94.3,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          94.3,
+          102.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          113.62,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          113.62,
+          102.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          123.28,
+          111.0
+        ],
+        "layer": "metal2",
+        "to": [
+          142.6,
+          111.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          142.6,
+          111.0
+        ],
+        "layer": "metal2",
+        "to": [
+          142.6,
+          109.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          132.94,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          152.26,
+          109.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          132.94,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          132.94,
+          102.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          152.26,
+          109.0
+        ],
+        "layer": "metal2",
+        "to": [
+          152.26,
+          102.0
+        ],
+        "width_um": 0.8
+      }
+    ],
+    "topology": "two-level balanced binary tree",
+    "wire_width_um": 0.8
+  },
+  "common_route": {
+    "intermediate_metal3_landing_um": [
+      0.6,
+      0.6
+    ],
+    "note": "common impedance is upstream of the named star and therefore does not create channel-to-channel branch mismatch",
+    "root": [
+      123.28,
+      111.0
+    ],
+    "segments": [
+      {
+        "from": [
+          194.0,
+          52.2
+        ],
+        "layer": "metal4",
+        "to": [
+          194.0,
+          111.0
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          194.0,
+          111.0
+        ],
+        "layer": "metal4",
+        "to": [
+          123.28,
+          111.0
+        ],
+        "width_um": 0.5
+      }
+    ],
+    "start": [
+      194.0,
+      52.2
+    ],
+    "via_stack_at_root": [
+      "via3",
+      "via2"
+    ],
+    "via_stack_at_start": [
+      "via2",
+      "via3"
+    ]
+  },
+  "layout_policy": {
+    "load_pair_keepout_starts_y_um": 113.0,
+    "metal5_used": false,
+    "reason_for_flattening": "the even-finger PCell leaves the outer D8 diffusion without a child port label; flat parent strapping is required to prove every drain is connected",
+    "reference_device_flattened_before_parent_strapping": true,
+    "tree_crosses_output_corridor_only_on_metal2": true,
+    "tree_max_y_um": 111.4
+  },
+  "next_gate": [
+    "place and requalify the shared VCM generator and local decoupling",
+    "place the symmetric differential load pair and preserve its no-crossing corridor",
+    "integrate the closed reference/tree geometry without changing its named star or leaves",
+    "repeat topology, direct-GDS, and distributed-RC gates on the integrated top level"
+  ],
+  "provenance": {
+    "floorplan": "v3/layout/floorplan.json",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
+    "generator": "v3/tools/build_bias_distribution.py",
+    "magic_version": "8.3.676",
+    "sky130_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005",
+    "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
+    "support_floorplan_study_sha256": "512e43a2dbf037ca39f1d6e961b1e61ce8a5f7393f02f356cb1efe2658d5e011"
+  },
+  "reference": {
+    "bbox_um": [
+      188.005,
+      42.95,
+      199.995,
+      53.05
+    ],
+    "center_um": [
+      194.0,
+      48.0
+    ],
+    "gencell_anchor_note": "Magic's nfet PCell anchor is +5.73/+4.785 um from the fixed-bbox center for this exact folding",
+    "gencell_anchor_um": [
+      188.27,
+      43.215
+    ],
+    "name": "XREF",
+    "parameters": {
+      "aggregate_width_um": 64.0,
+      "body_metal_coverage_percent": 100,
+      "connected_gates": 1,
+      "finger_width_um": 8.0,
+      "fingers": 8,
+      "guard": 1,
+      "length_um": 1.0
+    },
+    "pcell": "sky130_fd_pr__nfet_01v8",
+    "required_extracted_device_signature": {
+      "body": "VGND",
+      "count": 8,
+      "diffusions": [
+        "VGND",
+        "vbias_ref"
+      ],
+      "finger_width_um": 8.0,
+      "gate": "vbias_ref",
+      "length_um": 1.0,
+      "model": "sky130_fd_pr__nfet_01v8"
+    },
+    "straps": {
+      "VGND": {
+        "bbox_um": [
+          188.68,
+          42.9,
+          199.32,
+          44.32
+        ],
+        "layer": "metal2"
+      },
+      "vbias_ref": {
+        "bbox_um": [
+          188.68,
+          51.68,
+          199.32,
+          52.48
+        ],
+        "layer": "metal2"
+      }
+    },
+    "terminal_access": {
+      "body_via1_centers_um": [
+        [
+          189.0,
+          43.215
+        ],
+        [
+          194.0,
+          43.215
+        ],
+        [
+          199.0,
+          43.215
+        ]
+      ],
+      "drain_via1_centers_um": [
+        [
+          188.84,
+          51.86
+        ],
+        [
+          191.42,
+          51.86
+        ],
+        [
+          194.0,
+          51.86
+        ],
+        [
+          196.58,
+          51.86
+        ],
+        [
+          199.16,
+          51.86
+        ]
+      ],
+      "gate_via1_centers_um": [
+        [
+          189.485,
+          52.32
+        ],
+        [
+          190.775,
+          52.32
+        ],
+        [
+          192.065,
+          52.32
+        ],
+        [
+          193.355,
+          52.32
+        ],
+        [
+          194.645,
+          52.32
+        ],
+        [
+          195.935,
+          52.32
+        ],
+        [
+          197.225,
+          52.32
+        ],
+        [
+          198.515,
+          52.32
+        ]
+      ],
+      "source_via1_centers_um": [
+        [
+          190.13,
+          44.14
+        ],
+        [
+          192.71,
+          44.14
+        ],
+        [
+          195.29,
+          44.14
+        ],
+        [
+          197.87,
+          44.14
+        ]
+      ],
+      "via1_box_um": [
+        0.32,
+        0.32
+      ]
+    }
+  },
+  "schema_version": 1,
+  "scope": "shared 64/1 um diode reference strap and four-leaf matched bias tree; VCM, decap, bias resistor, channel devices, and top-level integration remain outside this manifest",
+  "status": "physical pilot pass; top-level integration pending"
+}

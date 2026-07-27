@@ -1,0 +1,47 @@
+{
+  "gates": {
+    "four_mim_is_unnecessary_for_gate": true,
+    "lower_resistance_only_rejected": true,
+    "nominal_cap_screen_passed": true,
+    "selected_three_mim_full_pvt_passed": true,
+    "three_mim_worst_corner_diagnostic_passed": true,
+    "two_mim_candidate_rejected_at_pvt": true
+  },
+  "next_gate": "regenerate the three-MIM support placement, then run exact Magic DRC, topology extraction, direct-GDS flat checks, and distributed RC before the complete-channel pilot",
+  "provenance": {
+    "generator": "v3/tools/select_shared_support_candidate.py",
+    "generator_sha256": "a5223d89c624c8684adf554fc8d44b0ca85c788bb9e78154d1e93b9db5b3c319",
+    "inputs": {
+      "v3/evidence/four_channel_support_pvt.json": "5549eb46c6b960db4baf8cee44a7926db6a12700396b9bbaa3c079ddc07b208d",
+      "v3/evidence/four_channel_support_pvt_mim2_rejected.json": "d5a28c827047247a222183dbda0a2e94dbe29cc0c3eb7d69b3f4480a47ec4fa6",
+      "v3/evidence/support_pvt_mim3_fs.json": "05e662c84af5156d8b7025a0267232dd6626c9afdd7bc948edf78d4e3b02e844",
+      "v3/evidence/support_pvt_mim4_fs.json": "edc078bfa127c9b819dc76794565af11f46c9bfc97ecf6fe596f383a2ba670fd",
+      "v3/evidence/vcm_cap_tradeoff.json": "569774f7009a03b98735ebf0c7d5dacccf89a1e0e2cba4952fe27a78744b1eef",
+      "v3/evidence/vcm_resistor_type_tradeoff.json": "a1321472dba108a4ccf9777b53ef19b4432e9d0cd2b3efa12ee3cdd83df55875"
+    }
+  },
+  "rejected_or_unselected": {
+    "four_mim_worst_fs_diagnostic_ripple_v": 0.008921999999999874,
+    "lower_resistance_best_ripple_v": 0.023309000000000024,
+    "three_mim_worst_fs_diagnostic_ripple_v": 0.011335000000000095,
+    "two_mim_maximum_pvt_ripple_v": 0.01585700000000001
+  },
+  "schema_version": 1,
+  "scope": "hierarchical schematic-level selection of shared VCM divider, bypass count, and output load before exact physical routing",
+  "selected_candidate": {
+    "divider_scale_vs_v2": 0.25,
+    "divider_topology": "six identical xhigh-poly units in exact B-A-B / B-A-B common-centroid assignment",
+    "divider_unit_cell": "XVCM_UNIT_SCALE_0P25",
+    "divider_unit_count": 6,
+    "divider_unit_length_um": 5.875,
+    "measured_pcell_nominal_vcm_bypass_pf": 2.95416,
+    "modeled_vcm_bypass_pf": 2.94,
+    "output_load_pcell": "XOUTPUT_LOAD",
+    "output_load_pcell_nominal_ohm": 2910.0,
+    "output_load_simulation_ohm": 2925.0,
+    "vcm_mim_count": 3,
+    "vcm_varactor_count": 0
+  },
+  "selection_reason": "two MIMs are nominally sufficient but miss the FS PVT ripple limit; three are the minimum PVT-clean choice; lower divider resistance alone does not close the gate and four MIMs add area without being required",
+  "status": "pass"
+}

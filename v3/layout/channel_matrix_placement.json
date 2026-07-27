@@ -1,0 +1,4453 @@
+{
+  "active_array_bbox": [
+    0.39,
+    8.0,
+    15.35,
+    100.365
+  ],
+  "channel_bbox": [
+    0.0,
+    0.0,
+    19.32,
+    112.99
+  ],
+  "constraints": {
+    "group_1_orientation_exemption": "single central unit cannot form an inversion pair",
+    "maximum_channel_height_um": 112.99,
+    "maximum_channel_width_um": 19.32,
+    "maximum_direction_reversals": 0,
+    "minimum_unit_bbox_spacing_um": 0.3,
+    "orientation_balance_required_for_multiunit_groups": true,
+    "required_common_centroid_unit_pitch": [
+      1.0,
+      2.0
+    ],
+    "required_group_counts": {
+      "1": 1,
+      "2": 2,
+      "4": 4,
+      "8": 8
+    }
+  },
+  "local_lo_contract": {
+    "floating_stubs_allowed": false,
+    "group_roots": {
+      "1": {
+        "lon": [
+          {
+            "layer": "metal3",
+            "point": [
+              7.87,
+              61.15
+            ],
+            "unit": "U_R2_C1_G1"
+          }
+        ],
+        "lop": [
+          {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              61.95
+            ],
+            "unit": "U_R2_C1_G1"
+          }
+        ]
+      },
+      "2": {
+        "lon": [
+          {
+            "layer": "metal3",
+            "point": [
+              2.67,
+              61.15
+            ],
+            "unit": "U_R2_C0_G2"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              13.07,
+              61.15
+            ],
+            "unit": "U_R2_C2_G2"
+          }
+        ],
+        "lop": [
+          {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              61.95
+            ],
+            "unit": "U_R2_C0_G2"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              61.95
+            ],
+            "unit": "U_R2_C2_G2"
+          }
+        ]
+      },
+      "4": {
+        "lon": [
+          {
+            "layer": "metal3",
+            "point": [
+              2.67,
+              81.15
+            ],
+            "unit": "U_R1_C0_G4"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              13.07,
+              81.15
+            ],
+            "unit": "U_R1_C2_G4"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              2.67,
+              41.15
+            ],
+            "unit": "U_R3_C0_G4"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              13.07,
+              41.15
+            ],
+            "unit": "U_R3_C2_G4"
+          }
+        ],
+        "lop": [
+          {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              81.95
+            ],
+            "unit": "U_R1_C0_G4"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              81.95
+            ],
+            "unit": "U_R1_C2_G4"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              41.95
+            ],
+            "unit": "U_R3_C0_G4"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              41.95
+            ],
+            "unit": "U_R3_C2_G4"
+          }
+        ]
+      },
+      "8": {
+        "lon": [
+          {
+            "layer": "metal3",
+            "point": [
+              2.67,
+              101.15
+            ],
+            "unit": "U_R0_C0_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              7.87,
+              101.15
+            ],
+            "unit": "U_R0_C1_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              13.07,
+              101.15
+            ],
+            "unit": "U_R0_C2_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              7.87,
+              81.15
+            ],
+            "unit": "U_R1_C1_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              7.87,
+              41.15
+            ],
+            "unit": "U_R3_C1_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              2.67,
+              21.15
+            ],
+            "unit": "U_R4_C0_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              7.87,
+              21.15
+            ],
+            "unit": "U_R4_C1_G8"
+          },
+          {
+            "layer": "metal3",
+            "point": [
+              13.07,
+              21.15
+            ],
+            "unit": "U_R4_C2_G8"
+          }
+        ],
+        "lop": [
+          {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              101.95
+            ],
+            "unit": "U_R0_C0_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              101.95
+            ],
+            "unit": "U_R0_C1_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              101.95
+            ],
+            "unit": "U_R0_C2_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              81.95
+            ],
+            "unit": "U_R1_C1_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              41.95
+            ],
+            "unit": "U_R3_C1_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              21.95
+            ],
+            "unit": "U_R4_C0_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              21.95
+            ],
+            "unit": "U_R4_C1_G8"
+          },
+          {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              21.95
+            ],
+            "unit": "U_R4_C2_G8"
+          }
+        ]
+      }
+    },
+    "lon_layer": "metal3",
+    "lop_layer": "metal4",
+    "one_root_per_unit_per_polarity": true,
+    "orphan_vias_allowed": false,
+    "reason": "separate layers resolve each unit's diagonal LO crossover without a meander",
+    "u_turns_allowed": false,
+    "via3_only_at_lop_source_ports": true
+  },
+  "matrix": {
+    "column_origins": [
+      1.24,
+      6.44,
+      11.64
+    ],
+    "column_pitch_um": 5.2,
+    "groups_top_to_bottom": [
+      [
+        8,
+        8,
+        8
+      ],
+      [
+        4,
+        8,
+        4
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        4,
+        8,
+        4
+      ],
+      [
+        8,
+        8,
+        8
+      ]
+    ],
+    "instances": [
+      {
+        "bbox": [
+          0.39,
+          88.0,
+          4.95,
+          100.365
+        ],
+        "column_left_to_right": 0,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              2.67,
+              101.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  4.75,
+                  100.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  4.75,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  101.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                98.035
+              ],
+              [
+                4.75,
+                100.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              2.67,
+              101.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.59,
+                  100.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  0.59,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  101.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                100.065
+              ],
+              [
+                4.75,
+                98.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                0.59,
+                100.065
+              ],
+              [
+                4.75,
+                98.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R0_C0_G8",
+        "orientation": "R0",
+        "origin": [
+          1.24,
+          88.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              3.44,
+              88.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              98.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              100.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              100.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              98.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              3.02,
+              100.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              2.32,
+              100.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              3.95,
+              88.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              1.39,
+              88.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              88.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 0
+      },
+      {
+        "bbox": [
+          5.59,
+          88.0,
+          10.15,
+          100.365
+        ],
+        "column_left_to_right": 1,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              7.87,
+              101.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  9.95,
+                  100.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.95,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  101.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                98.035
+              ],
+              [
+                9.95,
+                100.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              7.87,
+              101.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  5.79,
+                  100.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  5.79,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  101.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                100.065
+              ],
+              [
+                9.95,
+                98.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                5.79,
+                100.065
+              ],
+              [
+                9.95,
+                98.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R0_C1_G8",
+        "orientation": "R0",
+        "origin": [
+          6.44,
+          88.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              8.64,
+              88.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              98.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              100.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              100.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              98.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              8.22,
+              100.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              7.52,
+              100.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              9.15,
+              88.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              6.59,
+              88.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              88.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 0
+      },
+      {
+        "bbox": [
+          10.79,
+          88.0,
+          15.35,
+          100.365
+        ],
+        "column_left_to_right": 2,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              13.07,
+              101.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  15.15,
+                  100.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  15.15,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  11.84,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  98.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  11.84,
+                  101.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  101.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  101.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                10.99,
+                98.035
+              ],
+              [
+                15.15,
+                100.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              13.07,
+              101.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  10.99,
+                  100.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  10.99,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  14.3,
+                  98.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  98.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  14.3,
+                  101.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  101.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  101.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                10.99,
+                100.065
+              ],
+              [
+                15.15,
+                98.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                10.99,
+                100.065
+              ],
+              [
+                15.15,
+                98.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R0_C2_G8",
+        "orientation": "R0",
+        "origin": [
+          11.64,
+          88.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              13.84,
+              88.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              98.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              100.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              100.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              98.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              13.42,
+              100.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              12.72,
+              100.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              14.35,
+              88.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              11.79,
+              88.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              88.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 0
+      },
+      {
+        "bbox": [
+          0.39,
+          68.0,
+          4.95,
+          80.365
+        ],
+        "column_left_to_right": 0,
+        "group_weight": 4,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              2.67,
+              81.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  4.75,
+                  80.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  4.75,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  81.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                78.035
+              ],
+              [
+                4.75,
+                80.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              2.67,
+              81.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.59,
+                  80.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  0.59,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  81.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                80.065
+              ],
+              [
+                4.75,
+                78.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                0.59,
+                80.065
+              ],
+              [
+                4.75,
+                78.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R1_C0_G4",
+        "orientation": "R0",
+        "origin": [
+          1.24,
+          68.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              3.44,
+              68.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              78.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              80.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              80.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              78.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              3.02,
+              80.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              2.32,
+              80.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              3.95,
+              68.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              1.39,
+              68.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              68.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 1
+      },
+      {
+        "bbox": [
+          5.59,
+          68.0,
+          10.15,
+          80.365
+        ],
+        "column_left_to_right": 1,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              7.87,
+              81.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  9.95,
+                  80.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.95,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  81.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                78.035
+              ],
+              [
+                9.95,
+                80.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              7.87,
+              81.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  5.79,
+                  80.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  5.79,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  81.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                80.065
+              ],
+              [
+                9.95,
+                78.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                5.79,
+                80.065
+              ],
+              [
+                9.95,
+                78.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R1_C1_G8",
+        "orientation": "R0",
+        "origin": [
+          6.44,
+          68.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              8.64,
+              68.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              78.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              80.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              80.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              78.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              8.22,
+              80.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              7.52,
+              80.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              9.15,
+              68.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              6.59,
+              68.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              68.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 1
+      },
+      {
+        "bbox": [
+          10.79,
+          68.0,
+          15.35,
+          80.365
+        ],
+        "column_left_to_right": 2,
+        "group_weight": 4,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              13.07,
+              81.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  15.15,
+                  80.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  15.15,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  11.84,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  78.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  11.84,
+                  81.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  81.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  81.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                10.99,
+                78.035
+              ],
+              [
+                15.15,
+                80.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              13.07,
+              81.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  10.99,
+                  80.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  10.99,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  14.3,
+                  78.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  78.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  14.3,
+                  81.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  81.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  81.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                10.99,
+                80.065
+              ],
+              [
+                15.15,
+                78.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                10.99,
+                80.065
+              ],
+              [
+                15.15,
+                78.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R1_C2_G4",
+        "orientation": "R0",
+        "origin": [
+          11.64,
+          68.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              13.84,
+              68.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              78.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              80.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              80.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              78.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              13.42,
+              80.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              12.72,
+              80.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              14.35,
+              68.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              11.79,
+              68.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              68.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 1
+      },
+      {
+        "bbox": [
+          0.39,
+          48.0,
+          4.95,
+          60.365
+        ],
+        "column_left_to_right": 0,
+        "group_weight": 2,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              2.67,
+              61.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  4.75,
+                  60.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  4.75,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  1.44,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  61.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                58.035
+              ],
+              [
+                4.75,
+                60.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              2.67,
+              61.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.59,
+                  60.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  0.59,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  3.9,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  61.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                0.59,
+                60.065
+              ],
+              [
+                4.75,
+                58.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                0.59,
+                60.065
+              ],
+              [
+                4.75,
+                58.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R2_C0_G2",
+        "orientation": "R0",
+        "origin": [
+          1.24,
+          48.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              3.44,
+              48.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              58.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              60.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              60.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              58.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              3.02,
+              60.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              2.32,
+              60.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              3.95,
+              48.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              1.39,
+              48.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              48.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 2
+      },
+      {
+        "bbox": [
+          5.59,
+          48.0,
+          10.15,
+          60.365
+        ],
+        "column_left_to_right": 1,
+        "group_weight": 1,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              7.87,
+              61.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  9.95,
+                  60.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.95,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  6.64,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  61.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                58.035
+              ],
+              [
+                9.95,
+                60.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              7.87,
+              61.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  5.79,
+                  60.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  5.79,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.1,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  61.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                5.79,
+                60.065
+              ],
+              [
+                9.95,
+                58.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                5.79,
+                60.065
+              ],
+              [
+                9.95,
+                58.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R2_C1_G1",
+        "orientation": "R0",
+        "origin": [
+          6.44,
+          48.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              8.64,
+              48.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              58.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              60.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              60.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              58.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              8.22,
+              60.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              7.52,
+              60.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              9.15,
+              48.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              6.59,
+              48.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              48.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 2
+      },
+      {
+        "bbox": [
+          10.79,
+          48.0,
+          15.35,
+          60.365
+        ],
+        "column_left_to_right": 2,
+        "group_weight": 2,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              13.07,
+              61.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  10.99,
+                  60.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  10.99,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  58.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  61.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  61.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  61.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                58.035
+              ],
+              [
+                10.99,
+                60.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              13.07,
+              61.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  15.15,
+                  60.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  15.15,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  58.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  58.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  61.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  61.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  61.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                60.065
+              ],
+              [
+                10.99,
+                58.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                15.15,
+                60.065
+              ],
+              [
+                10.99,
+                58.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R2_C2_G2",
+        "orientation": "MY",
+        "origin": [
+          11.64,
+          48.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              12.3,
+              48.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              58.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              60.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              60.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              58.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              12.72,
+              60.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              13.42,
+              60.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              11.79,
+              48.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              14.35,
+              48.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              48.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 2
+      },
+      {
+        "bbox": [
+          0.39,
+          28.0,
+          4.95,
+          40.365
+        ],
+        "column_left_to_right": 0,
+        "group_weight": 4,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              2.67,
+              41.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.59,
+                  40.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  0.59,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  3.9,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  3.9,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  41.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                4.75,
+                38.035
+              ],
+              [
+                0.59,
+                40.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              2.67,
+              41.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  4.75,
+                  40.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  4.75,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  1.44,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  1.44,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  41.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                4.75,
+                40.065
+              ],
+              [
+                0.59,
+                38.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                4.75,
+                40.065
+              ],
+              [
+                0.59,
+                38.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R3_C0_G4",
+        "orientation": "MY",
+        "origin": [
+          1.24,
+          28.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              1.9,
+              28.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              38.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              40.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              40.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              38.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              2.32,
+              40.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              3.02,
+              40.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              1.39,
+              28.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              3.95,
+              28.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              28.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 3
+      },
+      {
+        "bbox": [
+          5.59,
+          28.0,
+          10.15,
+          40.365
+        ],
+        "column_left_to_right": 1,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              7.87,
+              41.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  5.79,
+                  40.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  5.79,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.1,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.1,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  41.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                9.95,
+                38.035
+              ],
+              [
+                5.79,
+                40.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              7.87,
+              41.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  9.95,
+                  40.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.95,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  6.64,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  6.64,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  41.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                9.95,
+                40.065
+              ],
+              [
+                5.79,
+                38.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                9.95,
+                40.065
+              ],
+              [
+                5.79,
+                38.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R3_C1_G8",
+        "orientation": "MY",
+        "origin": [
+          6.44,
+          28.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              7.1,
+              28.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              38.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              40.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              40.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              38.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              7.52,
+              40.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              8.22,
+              40.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              6.59,
+              28.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              9.15,
+              28.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              28.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 3
+      },
+      {
+        "bbox": [
+          10.79,
+          28.0,
+          15.35,
+          40.365
+        ],
+        "column_left_to_right": 2,
+        "group_weight": 4,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              13.07,
+              41.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  10.99,
+                  40.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  10.99,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  38.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  41.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  41.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  41.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                38.035
+              ],
+              [
+                10.99,
+                40.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              13.07,
+              41.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  15.15,
+                  40.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  15.15,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  38.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  38.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  41.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  41.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  41.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                40.065
+              ],
+              [
+                10.99,
+                38.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                15.15,
+                40.065
+              ],
+              [
+                10.99,
+                38.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R3_C2_G4",
+        "orientation": "MY",
+        "origin": [
+          11.64,
+          28.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              12.3,
+              28.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              38.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              40.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              40.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              38.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              12.72,
+              40.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              13.42,
+              40.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              11.79,
+              28.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              14.35,
+              28.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              28.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 3
+      },
+      {
+        "bbox": [
+          0.39,
+          8.0,
+          4.95,
+          20.365
+        ],
+        "column_left_to_right": 0,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              2.67,
+              21.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  0.59,
+                  20.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  0.59,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  3.9,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  3.9,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  3.9,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  2.67,
+                  21.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                4.75,
+                18.035
+              ],
+              [
+                0.59,
+                20.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              2.67,
+              21.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  4.75,
+                  20.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  4.75,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  4.75,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  0.59,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  1.44,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  1.44,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  1.44,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  2.67,
+                  21.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                4.75,
+                20.065
+              ],
+              [
+                0.59,
+                18.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                4.75,
+                20.065
+              ],
+              [
+                0.59,
+                18.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R4_C0_G8",
+        "orientation": "MY",
+        "origin": [
+          1.24,
+          8.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              1.9,
+              8.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              18.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              20.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              4.75,
+              20.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              0.59,
+              18.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              2.32,
+              20.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              3.02,
+              20.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              1.39,
+              8.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              3.95,
+              8.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              2.67,
+              8.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 4
+      },
+      {
+        "bbox": [
+          5.59,
+          8.0,
+          10.15,
+          20.365
+        ],
+        "column_left_to_right": 1,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              7.87,
+              21.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  5.79,
+                  20.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  5.79,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.1,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  9.1,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.1,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  7.87,
+                  21.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                9.95,
+                18.035
+              ],
+              [
+                5.79,
+                20.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              7.87,
+              21.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  9.95,
+                  20.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  9.95,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  9.95,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  5.79,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  6.64,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  6.64,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  6.64,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  7.87,
+                  21.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                9.95,
+                20.065
+              ],
+              [
+                5.79,
+                18.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                9.95,
+                20.065
+              ],
+              [
+                5.79,
+                18.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R4_C1_G8",
+        "orientation": "MY",
+        "origin": [
+          6.44,
+          8.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              7.1,
+              8.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              18.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              20.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              9.95,
+              20.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              5.79,
+              18.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              7.52,
+              20.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              8.22,
+              20.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              6.59,
+              8.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              9.15,
+              8.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              7.87,
+              8.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 4
+      },
+      {
+        "bbox": [
+          10.79,
+          8.0,
+          15.35,
+          20.365
+        ],
+        "column_left_to_right": 2,
+        "group_weight": 8,
+        "local_lo_routes": {
+          "lon": {
+            "layer": "metal3",
+            "lower_port_escape_um": 0.85,
+            "net": "lon",
+            "root": [
+              13.07,
+              21.15
+            ],
+            "segments": [
+              {
+                "from": [
+                  10.99,
+                  20.065
+                ],
+                "layer": "metal3",
+                "to": [
+                  10.99,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  18.035
+                ],
+                "layer": "metal3",
+                "to": [
+                  14.3,
+                  21.15
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  14.3,
+                  21.15
+                ],
+                "layer": "metal3",
+                "to": [
+                  13.07,
+                  21.15
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                18.035
+              ],
+              [
+                10.99,
+                20.065
+              ]
+            ],
+            "via3_at_source_ports": [],
+            "width_um": 0.4
+          },
+          "lop": {
+            "layer": "metal4",
+            "lower_port_escape_um": 0.85,
+            "net": "lop",
+            "root": [
+              13.07,
+              21.95
+            ],
+            "segments": [
+              {
+                "from": [
+                  15.15,
+                  20.065
+                ],
+                "layer": "metal4",
+                "to": [
+                  15.15,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  15.15,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  10.99,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  18.035
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  18.035
+                ],
+                "layer": "metal4",
+                "to": [
+                  11.84,
+                  21.95
+                ],
+                "width_um": 0.4
+              },
+              {
+                "from": [
+                  11.84,
+                  21.95
+                ],
+                "layer": "metal4",
+                "to": [
+                  13.07,
+                  21.95
+                ],
+                "width_um": 0.4
+              }
+            ],
+            "source_ports": [
+              [
+                15.15,
+                20.065
+              ],
+              [
+                10.99,
+                18.035
+              ]
+            ],
+            "via3_at_source_ports": [
+              [
+                15.15,
+                20.065
+              ],
+              [
+                10.99,
+                18.035
+              ]
+            ],
+            "width_um": 0.4
+          }
+        },
+        "mirror_axis_local_x_um": 1.43,
+        "name": "U_R4_C2_G8",
+        "orientation": "MY",
+        "origin": [
+          11.64,
+          8.0
+        ],
+        "ports": {
+          "VGND": {
+            "layer": "metal3",
+            "point": [
+              12.3,
+              8.0
+            ]
+          },
+          "lon_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              18.035
+            ]
+          },
+          "lon_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              20.065
+            ]
+          },
+          "lop_left": {
+            "layer": "metal3",
+            "point": [
+              15.15,
+              20.065
+            ]
+          },
+          "lop_right": {
+            "layer": "metal3",
+            "point": [
+              10.99,
+              18.035
+            ]
+          },
+          "outn": {
+            "layer": "metal3",
+            "point": [
+              12.72,
+              20.23
+            ]
+          },
+          "outp": {
+            "layer": "metal3",
+            "point": [
+              13.42,
+              20.23
+            ]
+          },
+          "ref": {
+            "layer": "metal4",
+            "point": [
+              11.79,
+              8.0
+            ]
+          },
+          "sig": {
+            "layer": "metal4",
+            "point": [
+              14.35,
+              8.0
+            ]
+          },
+          "vbias": {
+            "layer": "metal4",
+            "point": [
+              13.07,
+              8.0
+            ]
+          }
+        },
+        "row_top_to_bottom": 4
+      }
+    ],
+    "orientations_top_to_bottom": [
+      [
+        "R0",
+        "R0",
+        "R0"
+      ],
+      [
+        "R0",
+        "R0",
+        "R0"
+      ],
+      [
+        "R0",
+        "R0",
+        "MY"
+      ],
+      [
+        "MY",
+        "MY",
+        "MY"
+      ],
+      [
+        "MY",
+        "MY",
+        "MY"
+      ]
+    ],
+    "row_origins_top_to_bottom": [
+      88.0,
+      68.0,
+      48.0,
+      28.0,
+      8.0
+    ],
+    "row_pitch_um": 20.0
+  },
+  "provenance": {
+    "generator": "v3/tools/build_channel_matrix_placement.py",
+    "generator_sha256": "0725f4d40df0f52890fc330b3066fccc989a450ddde2853b088d3b1f7118f7be"
+  },
+  "routing_reservations": {
+    "bottom_dummy_and_input_band": [
+      0.0,
+      0.0,
+      19.32,
+      8.0
+    ],
+    "edge_dummy_physical_status": "pending exact transistor-row dummy pilot",
+    "group_tree_physical_status": "pending exact route allocation",
+    "group_tree_strategy": "balanced group-local H-trees; promote only at named roots and branches",
+    "inter_row_channels": [
+      [
+        0.39,
+        20.365,
+        15.35,
+        28.0
+      ],
+      [
+        0.39,
+        40.365,
+        15.35,
+        48.0
+      ],
+      [
+        0.39,
+        60.365,
+        15.35,
+        68.0
+      ],
+      [
+        0.39,
+        80.365,
+        15.35,
+        88.0
+      ]
+    ],
+    "local_merge_physical_status": "exact R0/MY row and full 15-unit matrix pilots pass Magic topology plus direct-GDS geometry",
+    "narrow_column_gaps_are_not_global_trunk_corridors": true,
+    "output_collection_physical_status": "reserved before group-tree planning",
+    "shared_guard_physical_status": "pending full-channel pilot",
+    "top_dummy_and_output_band": [
+      0.0,
+      106.5,
+      19.32,
+      112.99
+    ]
+  },
+  "schema_version": 1,
+  "status": "exact-unit matrix placement and local LO merge physically closed in row and full-matrix pilots; group H-trees pending",
+  "unit_reference": {
+    "gds": "build/v3/vector_unit_pilot/v3_vector_unit_pilot.gds",
+    "gds_sha256": "bd8f43a2f1ac55efe957ebef1663d7345967e96d0c944f9c37c27e4f2d2c0abd",
+    "manifest": "v3/layout/vector_unit_placement.json",
+    "manifest_sha256": "01c411a8579c5f7ae0fa046ebb3b2e60b32557ee42afcb699d8ea12a7a597b9d",
+    "physical_gate": "v3/evidence/vector_unit_physical_gate.json",
+    "physical_gate_sha256": "a61f127bc51b00b28e3085fbb3fb97613df52a9c3d9e19a682e8ae8040095773",
+    "tile_bbox": [
+      -0.85,
+      0.0,
+      3.71,
+      12.365
+    ]
+  },
+  "units": "um"
+}

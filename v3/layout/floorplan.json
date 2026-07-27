@@ -674,7 +674,7 @@
       132.94,
       115.29
     ],
-    "load_pcell": "V2-qualified 5 kohm output_load_resistor_guarded; re-extract in V3 context",
+    "load_pcell": "V2-qualified/V3-remeasured res_high_po_1p41 w=1.41 um l=11.6117 um; PCell nominal 2.91 kohm, schematic screen 2.925 kohm; re-extract in placed V3 context",
     "max_drawn_pin_path_mismatch_percent": 0.1,
     "max_extracted_rc_mismatch_percent": 1.0,
     "note": "pin paths are length matched; full branched-net RC must be matched after extraction",
@@ -885,13 +885,17 @@
     "pcell_candidate": "shared_guard_tall_narrow_device_row_dummies",
     "pcell_scope": "dimension-only PCell feasibility; no placement, routing, layout database, DRC, extraction, or GDS",
     "prelayout_checkpoint": "v3/evidence/implementation_checkpoint.json",
-    "prelayout_checkpoint_sha256": "cadddd5bf7cd43805980db9002c99c346ef309c769ca054bdbc36d39e31d2b5d",
+    "prelayout_checkpoint_sha256": "d308622d288d2e917d45956d4852ed6bb0a73fe0d9e811252d953d04863efdaa",
+    "shared_support_candidate_selection": "v3/evidence/shared_support_candidate_selection.json",
+    "shared_support_candidate_selection_sha256": "67ad1977478e511c09681ec8174ad88affed5aa029acf97b52274d34c29bd0d2",
     "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
     "support_floorplan_study_sha256": "512e43a2dbf037ca39f1d6e961b1e61ce8a5f7393f02f356cb1efe2658d5e011"
   },
   "schema_version": 1,
   "shared_support": {
-    "next_gate": "draw/extract the diode strap, place VCM/decap, and route one selector without moving channel axes",
+    "input_bias_status": "four measured 100 kohm-class V3 PCells constraint-placed with equal input branches and balanced VCM H-tree; exact channel-guard merge pending",
+    "next_gate": "close the exact three-MIM VCM support pilot, then place and route one complete common-centroid channel without moving the closed reference, selector, channel, or pin axes",
+    "output_load_status": "symmetric measured 2.91 kohm PCells constraint-placed; schematic screen uses 2.925 kohm; exact extraction pending",
     "power_partition": "1.8 V only; Tiny Tapeout VAPWR is unused",
     "tail_reference": "64 um / 1.00 um shared diode-connected NMOS reference",
     "tail_reference_bbox": [
@@ -900,12 +904,14 @@
       199.995,
       53.05
     ],
+    "tail_reference_integrated": false,
     "tail_reference_orientation": "R0 provisional; orient after measured terminal-access study",
     "tail_reference_selected_folding": "XREF_8X8",
-    "tail_reference_status": "measured folding reserved; diode strap and DRC/LVS pending",
-    "vcm": "reuse V2-qualified VCM topology only after V3 loading check"
+    "tail_reference_status": "physical pilot passes diode topology, DRC, direct-GDS precheck, and distributed-RC matching; top-level integration pending",
+    "vcm": "six identical 5.875 um xhigh-poly units in exact B-A-B/B-A-B common-centroid 2:4 divider with three 22x22 um MIM bypass capacitors and no varactor",
+    "vcm_status": "nominal mode screen and full five-corner MOS PVT/headroom pass; exact three-MIM Magic pilot, topology, direct-GDS, and distributed-RC gates pending"
   },
-  "status": "review floorplan constraints; no placement database, routing, or GDS",
+  "status": "constraint floorplan with passed selector/reference pilots and PVT-selected shared support; no integrated placement database, routing, or GDS",
   "template": {
     "commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
     "die": {
@@ -924,8 +930,8 @@
     {
       "bbox": [
         12.0,
-        18.0,
-        49.0,
+        4.0,
+        53.0,
         156.0
       ],
       "name": "shared_vcm",

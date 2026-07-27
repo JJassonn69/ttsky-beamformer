@@ -1,0 +1,58 @@
+{
+  "checks": {
+    "direct_gds_precheck_zero": true,
+    "exactly_three_seven_device_units": true,
+    "exactly_twenty_one_nmos": true,
+    "magic_drc_zero": true,
+    "magic_extraction_feedback_zero": true,
+    "magic_gds_feedback_zero": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true,
+    "row_topology_exact": true
+  },
+  "device_count": 21,
+  "device_counts_by_unit": {
+    "u0": 7,
+    "u1": 7,
+    "u2": 7
+  },
+  "gds": "build/v3/channel_row_pilot/v3_channel_row_pilot.gds",
+  "gds_sha256": "f22ebc3da77b68ac9d4aadaad302336a135b6bf6afe62d6be5b3c7ed35b06997",
+  "inferred_internal_nodes": {
+    "u0": {
+      "gm_nodes": {
+        "ref": "a_4672_5822#",
+        "sig": "a_4248_5378#"
+      },
+      "tail_node": "a_4376_4088#"
+    },
+    "u1": {
+      "gm_nodes": {
+        "ref": "a_5712_5822#",
+        "sig": "a_5288_5378#"
+      },
+      "tail_node": "a_5416_4088#"
+    },
+    "u2": {
+      "gm_nodes": {
+        "ref": "a_6328_5378#",
+        "sig": "a_6752_5822#"
+      },
+      "tail_node": "a_6506_5378#"
+    }
+  },
+  "next_gate": "allocate and close balanced 1/2/4/8 group H-trees before full 15-unit replication",
+  "schema_version": 1,
+  "scope": "exact three-unit centre-row pilot: R0/MY abutment, local LON/LOP merges, shared substrate, topology, and direct-GDS geometry",
+  "sha256": {
+    "auditor": "ec0b52beefafbc79a71caf9b7460061388f50198e0358619d9b7f3c1c3321228",
+    "generator": "6691d7dfb703eb0964922e5dd61fed785e21dc45ab84843989289ed297af0552",
+    "magic_log": "f1a6f6fafdf7b0c7148fef8fea1629e39283d3e2daae875273813084733e6f61",
+    "matrix_manifest": "6a35defe83289d51cc285f3b14da3b78531d33f2849c94e6e5764e5149046f00",
+    "precheck_summary": "59cc283a608c0a5a908d615063b7f94fc9cb7e70b7aa1c416c465114471d3734",
+    "spice": "b50e8d7500d3538239bd117cb2f8013cd413effa89320a1e3bd27c820be7aee0"
+  },
+  "status": "pass",
+  "topology_errors": [],
+  "unexpected_magic_warnings": []
+}

@@ -1,0 +1,1962 @@
+{
+  "channel_bbox": [
+    0.0,
+    0.0,
+    19.32,
+    93.99
+  ],
+  "constraints": {
+    "allow_floating_stubs": false,
+    "allow_orphan_vias": false,
+    "allow_u_turns": false,
+    "balance_definition": "common-centroid mirror pairs plus extracted RC/edge-skew closure; no artificial meanders",
+    "grid_um": 0.05,
+    "maximum_extracted_leaf_skew_ps": 100.0,
+    "route_width_um": 0.4,
+    "same_layer_spacing_um": 0.3
+  },
+  "schema_version": 1,
+  "source": {
+    "matrix_manifest": "v3/layout/channel_matrix_placement.json",
+    "matrix_manifest_sha256": "c9f1d4e391cd1de314303a0a302581fe0b5efe5f5b78ce07b5fdea5e812360fb",
+    "obstacle_gds": "build/v3/channel_matrix_pilot/v3_channel_matrix_pilot.gds",
+    "obstacle_gds_sha256": "0f06730366750a4c89151cfbed41e27d3a0b879d33b0d29a27c2a74360c06799",
+    "planner": "v3/tools/plan_group_phase_trees.py",
+    "planner_sha256": "4d13bd7f9cb9f0a25355d3354be7803b9bc0503353c876a67b4c9856e8cd4dd8"
+  },
+  "status": "detailed route candidate; physical pilot pending",
+  "tree_order": [
+    "g1_lop",
+    "g1_lon",
+    "g2_lon",
+    "g2_lop",
+    "g4_lon",
+    "g4_lop",
+    "g8_lop",
+    "g8_lon"
+  ],
+  "trees": {
+    "g1_lon": {
+      "fixed_segments": [],
+      "grid_point_count": 892,
+      "group": 1,
+      "paths": [
+        {
+          "role": "internal_single-leaf_tree",
+          "segments": [
+            {
+              "from": [
+                10.87,
+                93.05
+              ],
+              "layer": "metal4",
+              "to": [
+                10.27,
+                93.05
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.27,
+                93.05
+              ],
+              "layer": "metal4",
+              "to": [
+                10.27,
+                82.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.27,
+                82.75
+              ],
+              "layer": "metal4",
+              "to": [
+                10.67,
+                82.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.67,
+                82.75
+              ],
+              "layer": "metal4",
+              "to": [
+                10.67,
+                70.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.67,
+                70.7
+              ],
+              "layer": "metal4",
+              "to": [
+                10.27,
+                70.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.27,
+                70.7
+              ],
+              "layer": "metal4",
+              "to": [
+                10.27,
+                66.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.27,
+                66.75
+              ],
+              "layer": "metal4",
+              "to": [
+                10.67,
+                66.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.67,
+                66.75
+              ],
+              "layer": "metal4",
+              "to": [
+                10.67,
+                53.15
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.67,
+                53.15
+              ],
+              "layer": "metal4",
+              "to": [
+                10.17,
+                53.15
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                53.15
+              ],
+              "layer": "metal3",
+              "to": [
+                10.17,
+                53.15
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              7.87,
+              53.85
+            ],
+            "layer": 0,
+            "local_root": [
+              7.87,
+              53.15
+            ],
+            "unit": "U_R2_C1_G1"
+          },
+          "via3_points": [
+            [
+              10.17,
+              53.15
+            ]
+          ]
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        10.87,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            7.87,
+            53.85
+          ],
+          "layer": 0,
+          "local_root": [
+            7.87,
+            53.15
+          ],
+          "unit": "U_R2_C1_G1"
+        }
+      ]
+    },
+    "g1_lop": {
+      "fixed_segments": [],
+      "grid_point_count": 883,
+      "group": 1,
+      "paths": [
+        {
+          "role": "internal_single-leaf_tree",
+          "segments": [
+            {
+              "from": [
+                4.87,
+                93.05
+              ],
+              "layer": "metal4",
+              "to": [
+                4.87,
+                82.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.87,
+                82.75
+              ],
+              "layer": "metal4",
+              "to": [
+                5.47,
+                82.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.47,
+                82.75
+              ],
+              "layer": "metal4",
+              "to": [
+                5.47,
+                70.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.47,
+                70.7
+              ],
+              "layer": "metal4",
+              "to": [
+                5.07,
+                70.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.07,
+                70.7
+              ],
+              "layer": "metal4",
+              "to": [
+                5.07,
+                66.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.07,
+                66.75
+              ],
+              "layer": "metal4",
+              "to": [
+                5.47,
+                66.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.47,
+                66.75
+              ],
+              "layer": "metal4",
+              "to": [
+                5.47,
+                54.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.47,
+                54.7
+              ],
+              "layer": "metal4",
+              "to": [
+                4.87,
+                54.7
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.87,
+                54.7
+              ],
+              "layer": "metal4",
+              "to": [
+                4.87,
+                53.95
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                53.95
+              ],
+              "layer": "metal4",
+              "to": [
+                4.87,
+                53.95
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              7.87,
+              54.65
+            ],
+            "layer": 1,
+            "local_root": [
+              7.87,
+              53.95
+            ],
+            "unit": "U_R2_C1_G1"
+          },
+          "via3_points": []
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        4.87,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            7.87,
+            54.65
+          ],
+          "layer": 1,
+          "local_root": [
+            7.87,
+            53.95
+          ],
+          "unit": "U_R2_C1_G1"
+        }
+      ]
+    },
+    "g2_lon": {
+      "fixed_segments": [
+        {
+          "from": [
+            18.47,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            18.47,
+            53.85
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 1132,
+      "group": 2,
+      "paths": [
+        {
+          "role": "fixed_pair_branch",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                53.9
+              ],
+              "layer": "metal3",
+              "to": [
+                18.47,
+                53.9
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                53.15
+              ],
+              "layer": "metal3",
+              "to": [
+                2.67,
+                53.9
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                53.15
+              ],
+              "layer": "metal3",
+              "to": [
+                13.07,
+                53.9
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": "symmetric_outer_pair",
+          "via3_points": [
+            [
+              18.47,
+              53.9
+            ]
+          ]
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        18.47,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            53.85
+          ],
+          "layer": 0,
+          "local_root": [
+            2.67,
+            53.15
+          ],
+          "unit": "U_R2_C0_G2"
+        },
+        {
+          "escape": [
+            13.07,
+            53.85
+          ],
+          "layer": 0,
+          "local_root": [
+            13.07,
+            53.15
+          ],
+          "unit": "U_R2_C2_G2"
+        }
+      ]
+    },
+    "g2_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            19.12,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            19.12,
+            54.65
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 1128,
+      "group": 2,
+      "paths": [
+        {
+          "role": "fixed_pair_branch",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                54.6
+              ],
+              "layer": "metal3",
+              "to": [
+                19.12,
+                54.6
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                53.95
+              ],
+              "layer": "metal4",
+              "to": [
+                2.67,
+                54.6
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                53.95
+              ],
+              "layer": "metal4",
+              "to": [
+                13.07,
+                54.6
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": "symmetric_outer_pair",
+          "via3_points": [
+            [
+              19.12,
+              54.6
+            ],
+            [
+              2.67,
+              54.6
+            ],
+            [
+              13.07,
+              54.6
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        19.12,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            54.65
+          ],
+          "layer": 1,
+          "local_root": [
+            2.67,
+            53.95
+          ],
+          "unit": "U_R2_C0_G2"
+        },
+        {
+          "escape": [
+            13.07,
+            54.65
+          ],
+          "layer": 1,
+          "local_root": [
+            13.07,
+            53.95
+          ],
+          "unit": "U_R2_C2_G2"
+        }
+      ]
+    },
+    "g4_lon": {
+      "fixed_segments": [
+        {
+          "from": [
+            17.17,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            17.17,
+            37.85
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 1743,
+      "group": 4,
+      "paths": [
+        {
+          "role": "fixed_symmetric_row_pair",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                37.85
+              ],
+              "layer": "metal3",
+              "to": [
+                17.17,
+                37.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                37.15
+              ],
+              "layer": "metal3",
+              "to": [
+                2.67,
+                37.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                37.15
+              ],
+              "layer": "metal3",
+              "to": [
+                13.07,
+                37.85
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                37.85
+              ],
+              "layer": 0,
+              "local_root": [
+                2.67,
+                37.15
+              ],
+              "unit": "U_R3_C0_G4"
+            },
+            {
+              "escape": [
+                13.07,
+                37.85
+              ],
+              "layer": 0,
+              "local_root": [
+                13.07,
+                37.15
+              ],
+              "unit": "U_R3_C2_G4"
+            }
+          ],
+          "via3_points": [
+            [
+              17.17,
+              37.85
+            ]
+          ]
+        },
+        {
+          "role": "fixed_symmetric_row_pair",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                69.85
+              ],
+              "layer": "metal3",
+              "to": [
+                17.17,
+                69.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                69.15
+              ],
+              "layer": "metal3",
+              "to": [
+                2.67,
+                69.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                69.15
+              ],
+              "layer": "metal3",
+              "to": [
+                13.07,
+                69.85
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                69.85
+              ],
+              "layer": 0,
+              "local_root": [
+                2.67,
+                69.15
+              ],
+              "unit": "U_R1_C0_G4"
+            },
+            {
+              "escape": [
+                13.07,
+                69.85
+              ],
+              "layer": 0,
+              "local_root": [
+                13.07,
+                69.15
+              ],
+              "unit": "U_R1_C2_G4"
+            }
+          ],
+          "via3_points": [
+            [
+              17.17,
+              69.85
+            ]
+          ]
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        17.17,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            37.85
+          ],
+          "layer": 0,
+          "local_root": [
+            2.67,
+            37.15
+          ],
+          "unit": "U_R3_C0_G4"
+        },
+        {
+          "escape": [
+            13.07,
+            37.85
+          ],
+          "layer": 0,
+          "local_root": [
+            13.07,
+            37.15
+          ],
+          "unit": "U_R3_C2_G4"
+        },
+        {
+          "escape": [
+            2.67,
+            69.85
+          ],
+          "layer": 0,
+          "local_root": [
+            2.67,
+            69.15
+          ],
+          "unit": "U_R1_C0_G4"
+        },
+        {
+          "escape": [
+            13.07,
+            69.85
+          ],
+          "layer": 0,
+          "local_root": [
+            13.07,
+            69.15
+          ],
+          "unit": "U_R1_C2_G4"
+        }
+      ]
+    },
+    "g4_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            17.82,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            17.82,
+            38.65
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 1750,
+      "group": 4,
+      "paths": [
+        {
+          "role": "fixed_symmetric_row_pair",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                38.55
+              ],
+              "layer": "metal3",
+              "to": [
+                17.82,
+                38.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                37.95
+              ],
+              "layer": "metal4",
+              "to": [
+                2.67,
+                38.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                37.95
+              ],
+              "layer": "metal4",
+              "to": [
+                13.07,
+                38.55
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                38.65
+              ],
+              "layer": 1,
+              "local_root": [
+                2.67,
+                37.95
+              ],
+              "unit": "U_R3_C0_G4"
+            },
+            {
+              "escape": [
+                13.07,
+                38.65
+              ],
+              "layer": 1,
+              "local_root": [
+                13.07,
+                37.95
+              ],
+              "unit": "U_R3_C2_G4"
+            }
+          ],
+          "via3_points": [
+            [
+              17.82,
+              38.55
+            ],
+            [
+              2.67,
+              38.55
+            ],
+            [
+              13.07,
+              38.55
+            ]
+          ]
+        },
+        {
+          "role": "fixed_symmetric_row_pair",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                70.55
+              ],
+              "layer": "metal3",
+              "to": [
+                17.82,
+                70.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                69.95
+              ],
+              "layer": "metal4",
+              "to": [
+                2.67,
+                70.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                69.95
+              ],
+              "layer": "metal4",
+              "to": [
+                13.07,
+                70.55
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                70.65
+              ],
+              "layer": 1,
+              "local_root": [
+                2.67,
+                69.95
+              ],
+              "unit": "U_R1_C0_G4"
+            },
+            {
+              "escape": [
+                13.07,
+                70.65
+              ],
+              "layer": 1,
+              "local_root": [
+                13.07,
+                69.95
+              ],
+              "unit": "U_R1_C2_G4"
+            }
+          ],
+          "via3_points": [
+            [
+              17.82,
+              70.55
+            ],
+            [
+              2.67,
+              70.55
+            ],
+            [
+              13.07,
+              70.55
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        17.82,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            38.65
+          ],
+          "layer": 1,
+          "local_root": [
+            2.67,
+            37.95
+          ],
+          "unit": "U_R3_C0_G4"
+        },
+        {
+          "escape": [
+            13.07,
+            38.65
+          ],
+          "layer": 1,
+          "local_root": [
+            13.07,
+            37.95
+          ],
+          "unit": "U_R3_C2_G4"
+        },
+        {
+          "escape": [
+            2.67,
+            70.65
+          ],
+          "layer": 1,
+          "local_root": [
+            2.67,
+            69.95
+          ],
+          "unit": "U_R1_C0_G4"
+        },
+        {
+          "escape": [
+            13.07,
+            70.65
+          ],
+          "layer": 1,
+          "local_root": [
+            13.07,
+            69.95
+          ],
+          "unit": "U_R1_C2_G4"
+        }
+      ]
+    },
+    "g8_lon": {
+      "fixed_segments": [
+        {
+          "from": [
+            15.82,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            15.82,
+            21.85
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 2043,
+      "group": 8,
+      "paths": [
+        {
+          "compact_via3_points": [
+            [
+              15.87,
+              21.85
+            ]
+          ],
+          "role": "fixed_symmetric_outer_row",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                21.85
+              ],
+              "layer": "metal3",
+              "to": [
+                15.87,
+                21.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                21.15
+              ],
+              "layer": "metal3",
+              "to": [
+                2.67,
+                21.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                21.15
+              ],
+              "layer": "metal3",
+              "to": [
+                13.07,
+                21.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                21.15
+              ],
+              "layer": "metal3",
+              "to": [
+                7.87,
+                21.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                15.87,
+                21.85
+              ],
+              "layer": "metal4",
+              "to": [
+                15.82,
+                21.85
+              ],
+              "width_um": 0.3
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                21.85
+              ],
+              "layer": 0,
+              "local_root": [
+                2.67,
+                21.15
+              ],
+              "unit": "U_R4_C0_G8"
+            },
+            {
+              "escape": [
+                13.07,
+                21.85
+              ],
+              "layer": 0,
+              "local_root": [
+                13.07,
+                21.15
+              ],
+              "unit": "U_R4_C2_G8"
+            },
+            {
+              "escape": [
+                7.87,
+                21.85
+              ],
+              "layer": 0,
+              "local_root": [
+                7.87,
+                21.15
+              ],
+              "unit": "U_R4_C1_G8"
+            }
+          ],
+          "via3_points": []
+        },
+        {
+          "compact_via3_points": [
+            [
+              15.87,
+              85.85
+            ]
+          ],
+          "role": "fixed_symmetric_outer_row",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                85.85
+              ],
+              "layer": "metal3",
+              "to": [
+                15.87,
+                85.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                85.15
+              ],
+              "layer": "metal3",
+              "to": [
+                2.67,
+                85.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                85.15
+              ],
+              "layer": "metal3",
+              "to": [
+                13.07,
+                85.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                85.15
+              ],
+              "layer": "metal3",
+              "to": [
+                7.87,
+                85.85
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                15.87,
+                85.85
+              ],
+              "layer": "metal4",
+              "to": [
+                15.82,
+                85.85
+              ],
+              "width_um": 0.3
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                85.85
+              ],
+              "layer": 0,
+              "local_root": [
+                2.67,
+                85.15
+              ],
+              "unit": "U_R0_C0_G8"
+            },
+            {
+              "escape": [
+                13.07,
+                85.85
+              ],
+              "layer": 0,
+              "local_root": [
+                13.07,
+                85.15
+              ],
+              "unit": "U_R0_C2_G8"
+            },
+            {
+              "escape": [
+                7.87,
+                85.85
+              ],
+              "layer": 0,
+              "local_root": [
+                7.87,
+                85.15
+              ],
+              "unit": "U_R0_C1_G8"
+            }
+          ],
+          "via3_points": []
+        },
+        {
+          "compact_via2_points": [
+            [
+              15.87,
+              37.15
+            ]
+          ],
+          "compact_via3_points": [
+            [
+              15.87,
+              37.15
+            ]
+          ],
+          "role": "named_m2_centre_tap_bridge",
+          "segments": [
+            {
+              "from": [
+                7.87,
+                37.15
+              ],
+              "layer": "metal2",
+              "to": [
+                15.87,
+                37.15
+              ],
+              "width_um": 0.3
+            },
+            {
+              "from": [
+                15.87,
+                37.15
+              ],
+              "layer": "metal4",
+              "to": [
+                15.82,
+                37.15
+              ],
+              "width_um": 0.3
+            }
+          ],
+          "terminal": {
+            "escape": [
+              7.87,
+              37.85
+            ],
+            "layer": 0,
+            "local_root": [
+              7.87,
+              37.15
+            ],
+            "unit": "U_R3_C1_G8"
+          },
+          "via2_points": [
+            [
+              7.87,
+              37.15
+            ]
+          ],
+          "via3_points": []
+        },
+        {
+          "compact_via2_points": [
+            [
+              15.87,
+              69.15
+            ]
+          ],
+          "compact_via3_points": [
+            [
+              15.87,
+              69.15
+            ]
+          ],
+          "role": "named_m2_centre_tap_bridge",
+          "segments": [
+            {
+              "from": [
+                7.87,
+                69.15
+              ],
+              "layer": "metal2",
+              "to": [
+                15.87,
+                69.15
+              ],
+              "width_um": 0.3
+            },
+            {
+              "from": [
+                15.87,
+                69.15
+              ],
+              "layer": "metal4",
+              "to": [
+                15.82,
+                69.15
+              ],
+              "width_um": 0.3
+            }
+          ],
+          "terminal": {
+            "escape": [
+              7.87,
+              69.85
+            ],
+            "layer": 0,
+            "local_root": [
+              7.87,
+              69.15
+            ],
+            "unit": "U_R1_C1_G8"
+          },
+          "via2_points": [
+            [
+              7.87,
+              69.15
+            ]
+          ],
+          "via3_points": []
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        15.82,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            21.85
+          ],
+          "layer": 0,
+          "local_root": [
+            2.67,
+            21.15
+          ],
+          "unit": "U_R4_C0_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            21.85
+          ],
+          "layer": 0,
+          "local_root": [
+            7.87,
+            21.15
+          ],
+          "unit": "U_R4_C1_G8"
+        },
+        {
+          "escape": [
+            13.07,
+            21.85
+          ],
+          "layer": 0,
+          "local_root": [
+            13.07,
+            21.15
+          ],
+          "unit": "U_R4_C2_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            37.85
+          ],
+          "layer": 0,
+          "local_root": [
+            7.87,
+            37.15
+          ],
+          "unit": "U_R3_C1_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            69.85
+          ],
+          "layer": 0,
+          "local_root": [
+            7.87,
+            69.15
+          ],
+          "unit": "U_R1_C1_G8"
+        },
+        {
+          "escape": [
+            2.67,
+            85.85
+          ],
+          "layer": 0,
+          "local_root": [
+            2.67,
+            85.15
+          ],
+          "unit": "U_R0_C0_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            85.85
+          ],
+          "layer": 0,
+          "local_root": [
+            7.87,
+            85.15
+          ],
+          "unit": "U_R0_C1_G8"
+        },
+        {
+          "escape": [
+            13.07,
+            85.85
+          ],
+          "layer": 0,
+          "local_root": [
+            13.07,
+            85.15
+          ],
+          "unit": "U_R0_C2_G8"
+        }
+      ]
+    },
+    "g8_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            16.52,
+            93.05
+          ],
+          "layer": "metal4",
+          "role": "reserved_vertical_trunk",
+          "to": [
+            16.52,
+            22.65
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "grid_point_count": 2457,
+      "group": 8,
+      "paths": [
+        {
+          "role": "fixed_outer_row_or_centre_tap",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                22.65
+              ],
+              "layer": "metal3",
+              "to": [
+                16.52,
+                22.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                21.95
+              ],
+              "layer": "metal4",
+              "to": [
+                2.67,
+                22.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                21.95
+              ],
+              "layer": "metal4",
+              "to": [
+                13.07,
+                22.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                21.95
+              ],
+              "layer": "metal4",
+              "to": [
+                7.87,
+                22.65
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                22.65
+              ],
+              "layer": 1,
+              "local_root": [
+                2.67,
+                21.95
+              ],
+              "unit": "U_R4_C0_G8"
+            },
+            {
+              "escape": [
+                13.07,
+                22.65
+              ],
+              "layer": 1,
+              "local_root": [
+                13.07,
+                21.95
+              ],
+              "unit": "U_R4_C2_G8"
+            },
+            {
+              "escape": [
+                7.87,
+                22.65
+              ],
+              "layer": 1,
+              "local_root": [
+                7.87,
+                21.95
+              ],
+              "unit": "U_R4_C1_G8"
+            }
+          ],
+          "via3_points": [
+            [
+              16.52,
+              22.65
+            ],
+            [
+              2.67,
+              22.65
+            ],
+            [
+              13.07,
+              22.65
+            ],
+            [
+              7.87,
+              22.65
+            ]
+          ]
+        },
+        {
+          "role": "fixed_outer_row_or_centre_tap",
+          "segments": [
+            {
+              "from": [
+                7.87,
+                39.25
+              ],
+              "layer": "metal3",
+              "to": [
+                16.52,
+                39.25
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                37.95
+              ],
+              "layer": "metal4",
+              "to": [
+                7.87,
+                39.25
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                7.87,
+                38.65
+              ],
+              "layer": 1,
+              "local_root": [
+                7.87,
+                37.95
+              ],
+              "unit": "U_R3_C1_G8"
+            }
+          ],
+          "via3_points": [
+            [
+              16.52,
+              39.25
+            ],
+            [
+              7.87,
+              39.25
+            ]
+          ]
+        },
+        {
+          "role": "fixed_outer_row_or_centre_tap",
+          "segments": [
+            {
+              "from": [
+                7.87,
+                71.25
+              ],
+              "layer": "metal3",
+              "to": [
+                16.52,
+                71.25
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                69.95
+              ],
+              "layer": "metal4",
+              "to": [
+                7.87,
+                71.25
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                7.87,
+                70.65
+              ],
+              "layer": 1,
+              "local_root": [
+                7.87,
+                69.95
+              ],
+              "unit": "U_R1_C1_G8"
+            }
+          ],
+          "via3_points": [
+            [
+              16.52,
+              71.25
+            ],
+            [
+              7.87,
+              71.25
+            ]
+          ]
+        },
+        {
+          "role": "fixed_outer_row_or_centre_tap",
+          "segments": [
+            {
+              "from": [
+                2.67,
+                86.65
+              ],
+              "layer": "metal3",
+              "to": [
+                16.52,
+                86.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.67,
+                85.95
+              ],
+              "layer": "metal4",
+              "to": [
+                2.67,
+                86.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.07,
+                85.95
+              ],
+              "layer": "metal4",
+              "to": [
+                13.07,
+                86.65
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.87,
+                85.95
+              ],
+              "layer": "metal4",
+              "to": [
+                7.87,
+                86.65
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": [
+            {
+              "escape": [
+                2.67,
+                86.65
+              ],
+              "layer": 1,
+              "local_root": [
+                2.67,
+                85.95
+              ],
+              "unit": "U_R0_C0_G8"
+            },
+            {
+              "escape": [
+                13.07,
+                86.65
+              ],
+              "layer": 1,
+              "local_root": [
+                13.07,
+                85.95
+              ],
+              "unit": "U_R0_C2_G8"
+            },
+            {
+              "escape": [
+                7.87,
+                86.65
+              ],
+              "layer": 1,
+              "local_root": [
+                7.87,
+                85.95
+              ],
+              "unit": "U_R0_C1_G8"
+            }
+          ],
+          "via3_points": [
+            [
+              16.52,
+              86.65
+            ],
+            [
+              2.67,
+              86.65
+            ],
+            [
+              13.07,
+              86.65
+            ],
+            [
+              7.87,
+              86.65
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        16.52,
+        93.05
+      ],
+      "root_layer": "metal4",
+      "terminals": [
+        {
+          "escape": [
+            2.67,
+            22.65
+          ],
+          "layer": 1,
+          "local_root": [
+            2.67,
+            21.95
+          ],
+          "unit": "U_R4_C0_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            22.65
+          ],
+          "layer": 1,
+          "local_root": [
+            7.87,
+            21.95
+          ],
+          "unit": "U_R4_C1_G8"
+        },
+        {
+          "escape": [
+            13.07,
+            22.65
+          ],
+          "layer": 1,
+          "local_root": [
+            13.07,
+            21.95
+          ],
+          "unit": "U_R4_C2_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            38.65
+          ],
+          "layer": 1,
+          "local_root": [
+            7.87,
+            37.95
+          ],
+          "unit": "U_R3_C1_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            70.65
+          ],
+          "layer": 1,
+          "local_root": [
+            7.87,
+            69.95
+          ],
+          "unit": "U_R1_C1_G8"
+        },
+        {
+          "escape": [
+            2.67,
+            86.65
+          ],
+          "layer": 1,
+          "local_root": [
+            2.67,
+            85.95
+          ],
+          "unit": "U_R0_C0_G8"
+        },
+        {
+          "escape": [
+            7.87,
+            86.65
+          ],
+          "layer": 1,
+          "local_root": [
+            7.87,
+            85.95
+          ],
+          "unit": "U_R0_C1_G8"
+        },
+        {
+          "escape": [
+            13.07,
+            86.65
+          ],
+          "layer": 1,
+          "local_root": [
+            13.07,
+            85.95
+          ],
+          "unit": "U_R0_C2_G8"
+        }
+      ]
+    }
+  },
+  "units": "um"
+}

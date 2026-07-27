@@ -42,7 +42,7 @@ def boundary_nets() -> list[str]:
     ]
 
 
-def summarize(build: Path) -> dict[str, Any]:
+def summarize(build: Path, route_generator: Path = ROUTE_GENERATOR) -> dict[str, Any]:
     placement = json.loads(PLACEMENT.read_text(encoding="utf-8"))
     input_summary = json.loads((build / "input_summary.json").read_text(encoding="utf-8"))
     openroad_log = (build / "openroad.log").read_text(encoding="utf-8", errors="replace")
@@ -117,7 +117,10 @@ def summarize(build: Path) -> dict[str, Any]:
             "row_gap_um": placement["channel_template"]["row_gap_um"],
             "row_gap_routing_tracks": round(placement["channel_template"]["row_gap_um"] / 0.34),
             "signal_cell_gap_sites": placement["channel_template"]["cell_gap_sites"],
-            "signal_cell_gap_um": placement["channel_template"]["cell_site_width_um"],
+            "signal_cell_gap_um": (
+                placement["channel_template"]["cell_gap_sites"]
+                * placement["channel_template"]["cell_site_width_um"]
+            ),
             "filler_cells_per_channel": role_counts["fill"],
         },
         "design_counts": {
@@ -154,12 +157,12 @@ def summarize(build: Path) -> dict[str, Any]:
         },
         "checks": checks,
         "rejected_or_diagnostic_candidates": [
-            {"row_gap_um": 0.00, "cell_gap_sites": 0, "result": "10 LI spacing violations before bounded run was stopped", "disposition": "rejected"},
+            {"row_gap_um": 0.00, "cell_gap_sites": 0, "result": "root-aligned reroute: 0 OpenROAD/Magic/FEOL/BEOL/off-grid/zero-area/pin-overlap markers", "disposition": "selected"},
             {"row_gap_um": 0.68, "cell_gap_sites": 0, "result": "7 LI spacing violations", "disposition": "rejected"},
             {"row_gap_um": 1.00, "cell_gap_sites": 0, "result": "off 0.34 um routing grid", "disposition": "invalid and stopped"},
             {"row_gap_um": 1.02, "cell_gap_sites": 0, "result": "vertical spacing did not target horizontal abutment failures", "disposition": "diagnostic and stopped"},
             {"row_gap_um": 0.68, "cell_gap_sites": 1, "result": "route/Magic clean but 33 official MR_nwell.SP.1 FEOL markers", "disposition": "rejected"},
-            {"row_gap_um": 0.00, "cell_gap_sites": 1, "result": "0 route/Magic/FEOL/BEOL/off-grid/zero-area/pin-overlap markers", "disposition": "selected"},
+            {"row_gap_um": 0.00, "cell_gap_sites": 1, "result": "44 official MR_nwell.SP.1 markers on the root-aligned reroute", "disposition": "rejected"},
         ],
         "provenance": {
             "openroad_version": "v2.0-17598-ga008522d8",
@@ -170,8 +173,8 @@ def summarize(build: Path) -> dict[str, Any]:
             "tiny_tapeout_support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
             "selector_placement": "v3/layout/selector_placement.json",
             "selector_placement_sha256": sha256(PLACEMENT),
-            "route_generator": "v3/tools/generate_selector_route_pilot.py",
-            "route_generator_sha256": sha256(ROUTE_GENERATOR),
+            "route_generator": str(route_generator.resolve().relative_to(ROOT)),
+            "route_generator_sha256": sha256(route_generator),
             "precheck_runner": "v3/tools/run_selector_precheck.py",
             "precheck_runner_sha256": sha256(PRECHECK_RUNNER),
             "artifacts": {
@@ -193,8 +196,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--build", type=Path, default=DEFAULT_BUILD)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument("--route-generator", type=Path, default=ROUTE_GENERATOR)
     args = parser.parse_args()
-    report = summarize(args.build)
+    report = summarize(args.build, args.route_generator)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
     print(json.dumps(report, indent=2, sort_keys=True))

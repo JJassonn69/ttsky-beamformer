@@ -1,0 +1,731 @@
+{
+  "channel_gds_origin_um": [
+    20.0,
+    20.0
+  ],
+  "constraints": {
+    "all_drawn_vertical_lengths_equal": true,
+    "all_external_interface_nets_promoted_without_added_signal_routes": true,
+    "expected_join_count": 8,
+    "input_bias_geometry_frozen": true,
+    "maximum_direction_reversals": 0,
+    "minimum_transition_y_spacing_um": 0.8,
+    "no_floating_stubs": true,
+    "no_horizontal_fanout": true,
+    "phase_tree_geometry_frozen": true,
+    "required_via2_per_join": 1,
+    "required_via3_per_join": 1,
+    "selector_ground_joins_shared_analog_guard": true,
+    "selector_power_rails_all_tapped": true
+  },
+  "joins": [
+    {
+      "analog_net": "g1_lop",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            7.94,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            7.94,
+            116.0
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            7.94,
+            116.0
+          ],
+          "layer": "metal4",
+          "to": [
+            7.94,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group0_lo_p",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 116.0,
+      "transitions": [
+        {
+          "at": [
+            7.94,
+            116.0
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            7.94,
+            116.0
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 7.94
+    },
+    {
+      "analog_net": "g1_lon",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            7.22,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            7.22,
+            116.8
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            7.22,
+            116.8
+          ],
+          "layer": "metal4",
+          "to": [
+            7.22,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group0_lo_n",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 116.8,
+      "transitions": [
+        {
+          "at": [
+            7.22,
+            116.8
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            7.22,
+            116.8
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 7.22
+    },
+    {
+      "analog_net": "g2_lop",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            9.38,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            9.38,
+            117.6
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            9.38,
+            117.6
+          ],
+          "layer": "metal4",
+          "to": [
+            9.38,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group1_lo_p",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 117.6,
+      "transitions": [
+        {
+          "at": [
+            9.38,
+            117.6
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            9.38,
+            117.6
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 9.38
+    },
+    {
+      "analog_net": "g2_lon",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            8.66,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            8.66,
+            118.4
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            8.66,
+            118.4
+          ],
+          "layer": "metal4",
+          "to": [
+            8.66,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group1_lo_n",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 118.4,
+      "transitions": [
+        {
+          "at": [
+            8.66,
+            118.4
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            8.66,
+            118.4
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 8.66
+    },
+    {
+      "analog_net": "g4_lop",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            10.82,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            10.82,
+            119.2
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            10.82,
+            119.2
+          ],
+          "layer": "metal4",
+          "to": [
+            10.82,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group2_lo_p",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 119.2,
+      "transitions": [
+        {
+          "at": [
+            10.82,
+            119.2
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            10.82,
+            119.2
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 10.82
+    },
+    {
+      "analog_net": "g4_lon",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            10.1,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            10.1,
+            120.0
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            10.1,
+            120.0
+          ],
+          "layer": "metal4",
+          "to": [
+            10.1,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group2_lo_n",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 120.0,
+      "transitions": [
+        {
+          "at": [
+            10.1,
+            120.0
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            10.1,
+            120.0
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 10.1
+    },
+    {
+      "analog_net": "g8_lop",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            12.26,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            12.26,
+            120.8
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            12.26,
+            120.8
+          ],
+          "layer": "metal4",
+          "to": [
+            12.26,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group3_lo_p",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 120.8,
+      "transitions": [
+        {
+          "at": [
+            12.26,
+            120.8
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            12.26,
+            120.8
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 12.26
+    },
+    {
+      "analog_net": "g8_lon",
+      "analog_root_y_um": 110.83,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 12.59,
+      "segments": [
+        {
+          "from": [
+            11.54,
+            123.42
+          ],
+          "layer": "metal2",
+          "to": [
+            11.54,
+            121.6
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            11.54,
+            121.6
+          ],
+          "layer": "metal4",
+          "to": [
+            11.54,
+            110.83
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "selector_net": "group3_lo_n",
+      "selector_pin_center_y_um": 123.42,
+      "transition_y_um": 121.6,
+      "transitions": [
+        {
+          "at": [
+            11.54,
+            121.6
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            11.54,
+            121.6
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 11.54
+    }
+  ],
+  "provenance": {
+    "analog_gate_sha256": "12bb41836b325e67c9d1fb3e6cbb01961cee0dbf6ed60c40f0c0b651160af614",
+    "generator": "v3/tools/build_channel_selector_join_late_promotion.py",
+    "generator_sha256": "cdd2c782f46d00b42095de57f0ddad974ade8e52aee2b559a2d1bfc59b0a1e95",
+    "phase_trees_sha256": "9aae5f2cb555ae504251b85142ceab894ba435666537696e194e7499cdc2bb0d",
+    "selector_gate_sha256": "f42b4066c8231185ae40079e2301ce4a7075cb57dc839d8c3b3d4a593b190434",
+    "selector_summary_sha256": "38fce7abf4f8064c95a372ccba8a1bc391f82fc7d82a8977d51ee66538fde70c"
+  },
+  "schema_version": 1,
+  "selector_instance_origin_um": [
+    20.0,
+    143.0
+  ],
+  "selector_power": {
+    "rail_tap_x_um": 3.53,
+    "strap_layer": "metal4",
+    "strap_width_um": 0.4,
+    "top_row_well_tap": {
+      "cell": "sky130_fd_sc_hd__tapvpwrvgnd_1",
+      "orientation": "N",
+      "origin_um": [
+        13.42,
+        26.52
+      ],
+      "purpose": "tie the otherwise unshared PMOS well of the final N-oriented selector row to VPWR"
+    },
+    "vgnd_guard_join": "one Via-3 landing from the isolated M4 ground strap onto the existing grounded top-dummy M3 bus",
+    "vgnd_guard_join_y_absolute_um": 134.065,
+    "vgnd_rail_y_um": [
+      4.76,
+      10.2,
+      15.64,
+      21.08,
+      26.52
+    ],
+    "vgnd_strap_x_um": 4.81,
+    "vpwr_external_port": true,
+    "vpwr_rail_y_um": [
+      7.48,
+      12.92,
+      18.36,
+      23.8,
+      29.24
+    ],
+    "vpwr_strap_x_um": 2.25
+  },
+  "status": "exact late-promotion selector/channel join contract",
+  "top_level_ports": [
+    {
+      "at_um": [
+        32.44,
+        128.7
+      ],
+      "direction": "input",
+      "domain": "analog",
+      "layer": "metal2_label",
+      "name": "element_input"
+    },
+    {
+      "at_um": [
+        33.84,
+        128.7
+      ],
+      "direction": "input",
+      "domain": "analog",
+      "layer": "metal2_label",
+      "name": "ref"
+    },
+    {
+      "at_um": [
+        33.14,
+        128.7
+      ],
+      "direction": "input",
+      "domain": "analog",
+      "layer": "metal2_label",
+      "name": "vbias"
+    },
+    {
+      "at_um": [
+        25.53,
+        128.7
+      ],
+      "direction": "output",
+      "domain": "analog",
+      "layer": "metal2_label",
+      "name": "row_outp"
+    },
+    {
+      "at_um": [
+        26.33,
+        128.7
+      ],
+      "direction": "output",
+      "domain": "analog",
+      "layer": "metal2_label",
+      "name": "row_outn"
+    },
+    {
+      "at_um": [
+        20.42,
+        176.0
+      ],
+      "direction": "input",
+      "domain": "clock",
+      "layer": "metal3_label",
+      "name": "phase_0"
+    },
+    {
+      "at_um": [
+        20.42,
+        175.2
+      ],
+      "direction": "input",
+      "domain": "clock",
+      "layer": "metal3_label",
+      "name": "phase_90"
+    },
+    {
+      "at_um": [
+        20.42,
+        174.4
+      ],
+      "direction": "input",
+      "domain": "clock",
+      "layer": "metal3_label",
+      "name": "phase_180"
+    },
+    {
+      "at_um": [
+        20.42,
+        173.6
+      ],
+      "direction": "input",
+      "domain": "clock",
+      "layer": "metal3_label",
+      "name": "phase_270"
+    },
+    {
+      "at_um": [
+        35.32,
+        171.8
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group0_bit0"
+    },
+    {
+      "at_um": [
+        35.32,
+        171.0
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group0_bit1"
+    },
+    {
+      "at_um": [
+        35.32,
+        170.2
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group1_bit0"
+    },
+    {
+      "at_um": [
+        35.32,
+        169.4
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group1_bit1"
+    },
+    {
+      "at_um": [
+        35.32,
+        168.6
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group2_bit0"
+    },
+    {
+      "at_um": [
+        35.32,
+        167.8
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group2_bit1"
+    },
+    {
+      "at_um": [
+        35.32,
+        167.0
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group3_bit0"
+    },
+    {
+      "at_um": [
+        35.32,
+        166.2
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "group3_bit1"
+    },
+    {
+      "at_um": [
+        35.32,
+        164.6
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "channel_enable"
+    },
+    {
+      "at_um": [
+        35.32,
+        163.8
+      ],
+      "direction": "input",
+      "domain": "digital",
+      "layer": "metal3_label",
+      "name": "mixers_blank"
+    },
+    {
+      "at_um": [
+        22.25,
+        172.24
+      ],
+      "direction": "inout",
+      "domain": "power",
+      "layer": "metal4_label",
+      "name": "VPWR"
+    },
+    {
+      "at_um": [
+        24.81,
+        169.52
+      ],
+      "direction": "inout",
+      "domain": "power",
+      "layer": "metal4_label",
+      "name": "VGND"
+    }
+  ],
+  "units": "um"
+}

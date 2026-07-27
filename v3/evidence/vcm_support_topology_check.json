@@ -1,0 +1,27 @@
+{
+  "all_capacitors_connect_vcm_to_ground": true,
+  "all_resistor_bodies_grounded": true,
+  "bottom_series_unit_count": 4,
+  "capacitor_count": 3,
+  "errors": [],
+  "internal_resistor_node_degrees": {
+    "a_4259_24172#": 2,
+    "a_4259_27772#": 2,
+    "a_6359_24172#": 2,
+    "a_8459_24172#": 2
+  },
+  "provenance": {
+    "gds": "build/v3/vcm_support_pilot/v3_vcm_support_pilot.gds",
+    "gds_sha256": "83dc59e454a5f06eb52788d2207cfd85b9852153a15d5d7ffc6f8115552d0135",
+    "generator": "v3/tools/check_vcm_support_extraction.py",
+    "generator_sha256": "02bfb9824a6c48d7626fd858e1aca7511d09b4b8997e776cd24f573afda922e3",
+    "manifest": "v3/layout/shared_support_placement.json",
+    "manifest_sha256": "4e7fc8386102a4a423694296149489f30da73807b29cedbfada0c9c4562e3cda",
+    "netlist": "build/v3/vcm_support_pilot/v3_vcm_support_pilot_flat.spice",
+    "netlist_sha256": "3382fe39b2532dfc73bfefe6b4f978e4f51bfbdbea86081de23ff364178a5db2"
+  },
+  "resistor_count": 6,
+  "schema_version": 1,
+  "status": "pass",
+  "top_series_unit_count": 2
+}

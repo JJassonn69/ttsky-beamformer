@@ -1,0 +1,55 @@
+
+Magic 8.3 revision 676 - Compiled on Sun Jul 19 19:34:30 EEST 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "v3/layout/readback_channel_selector_late_promotion.tcl" from command line.
+No such cell "v3_channel_selector_late_promotion"
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: v3_selector_route_pilot
+Reading "sky130_fd_sc_hd__and2_1".
+Reading "sky130_fd_sc_hd__tapvpwrvgnd_1".
+CIF file read warning: CIF style sky130(): units rescaled by factor of 5 / 1
+Reading "sky130_fd_sc_hd__mux2_1".
+Reading "sky130_fd_sc_hd__fill_1".
+Reading "sky130_fd_sc_hd__and2b_1".
+Reading "v3_selector_route_pilot".
+Reading "v3_channel_input_bias_late_promotion".
+Reading "v3_channel_selector_late_promotion".
+DRC style is now "drc(full)"
+V3_CHANNEL_SELECTOR_LATE_READBACK_DRC_COUNT=0
+Warning:  Extract option "do unique" disabled because "extract unique" was run.
+Processing sky130_fd_sc_hd__and2_1
+Processing sky130_fd_sc_hd__and2b_1
+Processing sky130_fd_sc_hd__fill_1
+Processing sky130_fd_sc_hd__mux2_1
+Processing sky130_fd_sc_hd__tapvpwrvgnd_1
+Processing v3_selector_route_pilot
+Processing v3_channel_input_bias_late_promotion
+Processing v3_channel_selector_late_promotion
+Extracting sky130_fd_sc_hd__and2_1 into sky130_fd_sc_hd__and2_1.ext:
+Extracting sky130_fd_sc_hd__and2b_1 into sky130_fd_sc_hd__and2b_1.ext:
+Extracting sky130_fd_sc_hd__fill_1 into sky130_fd_sc_hd__fill_1.ext:
+Extracting sky130_fd_sc_hd__mux2_1 into sky130_fd_sc_hd__mux2_1.ext:
+Extracting sky130_fd_sc_hd__tapvpwrvgnd_1 into sky130_fd_sc_hd__tapvpwrvgnd_1.ext:
+Extracting v3_selector_route_pilot into v3_selector_route_pilot.ext:
+Extracting v3_channel_input_bias_late_promotion into v3_channel_input_bias_late_promotion.ext:
+v3_channel_input_bias_late_promotion: 9 warnings
+Extracting v3_channel_selector_late_promotion into v3_channel_selector_late_promotion.ext:
+Total of 9 warnings.
+V3_CHANNEL_SELECTOR_LATE_READBACK_EXTRACTION_FEEDBACK_COUNT=9
+exttospice finished.
+V3_CHANNEL_SELECTOR_LATE_READBACK_FEEDBACK_AFTER_CLEAR=0

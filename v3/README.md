@@ -1,5 +1,18 @@
 # Beamformer V3 workspace
 
+## Current physical-design input
+
+The only approved V3 channel macro is
+`frozen/one_channel_macro/v3_channel_selector_late_promotion.gds`, with
+SHA-256 `4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274`.
+`CURRENT.json` is the machine-readable authority. Run
+`python3 v3/tools/assert_current_channel.py` before using a channel GDS in the
+four-channel floorplan. Pilot, manual-canvas, and pre-late-promotion GDS files
+are historical and must not be used as physical inputs.
+
+The next physical stage places four immutable copies of this macro and routes
+their shared phase, bias, power, control, input, and output infrastructure.
+
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
 of the active Tiny Tapeout submission artifacts, is modified by the initial V3
@@ -154,8 +167,15 @@ Physical Gate 3B measured four guarded foldings of the shared 64 um / 1.00 um
 tail reference in pinned Magic 8.3.676. The selected 8-by-8 um folding is
 11.99 by 10.10 um (121.10 um2), smaller and much squarer than the 4-by-16,
 16-by-4, and 32-by-2 alternatives. Its reserved location is now shown in the
-floorplan, but the diode gate/drain strap, local guard connection, DRC, LVS,
-and extraction remain open.
+floorplan. The completed physical pilot proves all eight 8/1 um fingers are
+diode-connected with D/G=`vbias_ref` and S/B=`VGND`, clears Magic DRC and all
+applicable direct-GDS Tiny Tapeout geometry decks, and contains no orphan via
+or route stub. Endpoint-rooted distributed extraction reports 22.3824 ohm of
+common upstream resistance and four identical 9.1564 ohm post-star branches
+(0.0 percent mismatch against a 1.0 percent limit). See
+`evidence/tail_reference_physical_gate.json`. This closes the isolated
+reference/tree pilot; VCM, decoupling, loads, channel devices, and integrated
+top-level requalification remain open.
 
 Each channel's 34 um-high selector reservation now also has an explicit
 nine-row standard-cell skeleton. It uses twelve 2:1 muxes, four AND gates,

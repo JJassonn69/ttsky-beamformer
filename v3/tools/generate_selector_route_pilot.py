@@ -15,6 +15,21 @@ PLACEMENT = ROOT / "v3" / "layout" / "selector_placement.json"
 DBU = 1000
 ROUTING_PITCH_UM = 0.34
 CELL_SITE_WIDTH_UM = 0.46
+ROUTE_ENVELOPE_WIDTH_UM = 19.32
+# The selector output ports land directly above the already-closed analog
+# group-tree roots.  Keeping this mapping here makes the OpenROAD boundary
+# contract authoritative and eliminates the otherwise unavoidable fanout
+# jogs between the digital selector and the analog clock trees.
+OUTPUT_ROOT_X_UM = {
+    "group0_lo_p": 4.87,   # weight-1 LOP
+    "group0_lo_n": 10.87,  # weight-1 LON
+    "group1_lo_p": 19.12,  # weight-2 LOP
+    "group1_lo_n": 18.47,  # weight-2 LON
+    "group2_lo_p": 17.82,  # weight-4 LOP
+    "group2_lo_n": 17.17,  # weight-4 LON
+    "group3_lo_p": 16.52,  # weight-8 LOP
+    "group3_lo_n": 15.82,  # weight-8 LON
+}
 MACROS = {
     "mux2": "sky130_fd_sc_hd__mux2_1",
     "and2": "sky130_fd_sc_hd__and2_1",
@@ -53,9 +68,9 @@ def boundary_pins() -> dict[str, dict[str, Any]]:
             "direction": "INPUT", "layer": "met3", "fixed": [15.74, 21.6 - 0.8 * index],
             "rect": [-0.84, -0.15, 0.0, 0.15],
         }
-    for index, name in enumerate(f"group{group}_lo_{side}" for group in range(4) for side in ("p", "n")):
+    for name in (f"group{group}_lo_{side}" for group in range(4) for side in ("p", "n")):
         pins[name] = {
-            "direction": "OUTPUT", "layer": "met2", "fixed": [3.8 + 1.4 * index, 0.0],
+            "direction": "OUTPUT", "layer": "met2", "fixed": [OUTPUT_ROOT_X_UM[name], 0.0],
             "rect": [-0.15, 0.0, 0.15, 0.84],
         }
     return pins
@@ -86,16 +101,16 @@ def build_def(
         'BUSBITCHARS "[]" ;',
         "DESIGN v3_selector_route_pilot ;",
         "UNITS DISTANCE MICRONS 1000 ;",
-        "DIEAREA ( 0 0 ) ( 15740 34000 ) ;",
-        "TRACKS X 230 DO 34 STEP 460 LAYER li1 ;",
+        f"DIEAREA ( 0 0 ) ( {q(ROUTE_ENVELOPE_WIDTH_UM)} 34000 ) ;",
+        "TRACKS X 230 DO 42 STEP 460 LAYER li1 ;",
         "TRACKS Y 170 DO 100 STEP 340 LAYER li1 ;",
-        "TRACKS X 170 DO 46 STEP 340 LAYER met1 ;",
+        "TRACKS X 170 DO 57 STEP 340 LAYER met1 ;",
         "TRACKS Y 170 DO 100 STEP 340 LAYER met1 ;",
-        "TRACKS X 230 DO 34 STEP 460 LAYER met2 ;",
+        "TRACKS X 230 DO 42 STEP 460 LAYER met2 ;",
         "TRACKS Y 230 DO 74 STEP 460 LAYER met2 ;",
-        "TRACKS X 340 DO 23 STEP 680 LAYER met3 ;",
+        "TRACKS X 340 DO 28 STEP 680 LAYER met3 ;",
         "TRACKS Y 340 DO 50 STEP 680 LAYER met3 ;",
-        "TRACKS X 460 DO 17 STEP 920 LAYER met4 ;",
+        "TRACKS X 460 DO 21 STEP 920 LAYER met4 ;",
         "TRACKS Y 460 DO 37 STEP 920 LAYER met4 ;",
         f"COMPONENTS {len(instances)} ;",
     ]
@@ -140,6 +155,11 @@ def build_def(
         "row_gap_um": row_gap_um,
         "cell_gap_sites": cell_gap_sites,
         "cell_gap_um": cell_gap_sites * CELL_SITE_WIDTH_UM,
+        "route_envelope_bbox": [0.0, 0.0, ROUTE_ENVELOPE_WIDTH_UM, 34.0],
+        "output_root_alignment": {
+            name: {"selector_x_um": pin["fixed"][0], "analog_root_x_um": OUTPUT_ROOT_X_UM[name]}
+            for name, pin in pins.items() if name in OUTPUT_ROOT_X_UM
+        },
         "pins": pins,
         "net_endpoints": {net: [[instance, pin] for instance, pin in endpoints] for net, endpoints in sorted(nets.items())},
     }

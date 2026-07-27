@@ -1,0 +1,64 @@
+{
+  "checks": {
+    "active_and_dummy_counts_exact": true,
+    "active_topology_unchanged": true,
+    "direct_gds_precheck_zero": true,
+    "final_no_port_short_warning": true,
+    "final_readback_drc_zero": true,
+    "final_readback_feedback_cleared": true,
+    "final_readback_nine_dummy_markers": true,
+    "frozen_edge_and_phase_routing_preserved": true,
+    "mask_repair_preserves_exact_netlist": true,
+    "one_resistor_connects_ref_to_element_input": true,
+    "precheck_and_repair_bind_final_gds": true,
+    "raw_and_final_gds_are_distinct": true,
+    "raw_magic_markers_exact": true,
+    "raw_no_port_short_warning": true
+  },
+  "gds": "build/v3/channel_input_bias_late_promotion/v3_channel_input_bias_late_promotion.gds",
+  "gds_sha256": "5e1ef697aac3cce968ebccf77a479efdae3f477548f2891a154632b4d83c7e77",
+  "next_gate": "place the rebuilt root-aligned selector and add only eight short vertical phase joins",
+  "resistor_line": [
+    "X11 ref element_input VGND sky130_fd_pr__res_xhigh_po_0p35 l=17.36"
+  ],
+  "schema_version": 1,
+  "scope": "connected element-input-to-ref bias resistor beneath the frozen phase/dummy channel with common grounded guard",
+  "sha256": {
+    "checker": "434e4db20d29b1f6633228ab6358b92af9b37ea67a6ab6364bf2c21c99653db6",
+    "frozen_routing": "9b836433d0e1f4f209892a818ee529e23b074baed526a6a87a5bb734f277d19d",
+    "generator": "fccce5f08abd1ad9eaaea01d3c0605724bc6c3a4c4531a69f92373a297a1229a",
+    "placement": "0a9acc7c8f8431e250311844aed10ee02eff6681460fe95946398b502fb61a68",
+    "precheck": "c7d3a9bc7acf0be24f3e593aa3b755764b9633cb3013e38c853fe57a4a09cf50",
+    "raw_magic_gds": "d27f993a890985f294742cd6ce0a720db635709aff643bd2e9b7adcb5ffa95f2",
+    "raw_magic_log": "38fab89b71a58871a82e7356f21e6c5a3aee516695acc5cd01f743c97356fd54",
+    "raw_spice": "b16731ca1d219eaac94cb9e47558ebdca5808c35a2b76f5050c477a10b43dace",
+    "readback_log": "33fe98e7d11a9f655aa453d62f007ead69d7e4c84d46b86a4b28555afbdad39f",
+    "readback_spice": "b16731ca1d219eaac94cb9e47558ebdca5808c35a2b76f5050c477a10b43dace",
+    "repair": "0af7efefa2f9a7cec4e308822bc87b722b9a8d0923572830b38f8df22a9cc8fa"
+  },
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 30,
+      "switch": 60,
+      "tail": 15
+    },
+    "switch_gate_counts": {
+      "g1_lon": 2,
+      "g1_lop": 2,
+      "g2_lon": 4,
+      "g2_lop": 4,
+      "g4_lon": 8,
+      "g4_lop": 8,
+      "g8_lon": 16,
+      "g8_lop": 16
+    },
+    "units_by_group": {
+      "1": 1,
+      "2": 2,
+      "4": 4,
+      "8": 8
+    }
+  },
+  "topology_errors": []
+}

@@ -231,7 +231,7 @@
     "v3/rtl/quadrature_generator.v": "78d708c23a9825289de85ed376f6180082993073b28e6ad1b25b7b7065f7a26f",
     "v3/rtl/serial_config.v": "919d3b30fca77edad762d2d6d51c520c7f4f0ae7fb4b59001a06a50d87b7fbd1",
     "v3/rtl/vector_control_core.v": "8af8287eeb9b902f6d27c4999e463f62844e5602df1581284af27da6789cbf39",
-    "v3/spec/beamformer_v3.md": "bd027611f7339c4cb93fd136f195530fe08cc1955d99ddd4b0b215b5e72bcd00",
+    "v3/spec/beamformer_v3.md": "a2e312b9e666de7c948264c1c578ae0afee77a5c269d2a901bf6d646e27cb832",
     "v3/spice/vector_channel_15.inc": "c63608dcfe05addd7bd39757bcb61bd285a8e3ce7e2a7b4a1de3e1644b66d7e9",
     "v3/tools/build_prelayout_checkpoint.py": "4d053a9e5c5db956c7905fd8f1b0c9e898b5aecefaa1f184c479e2e2f9360256",
     "v3/tools/build_solver_crosscheck.py": "b4b3f9b452656bcba6378b2145c83bf41b6d33887259ad9c93de6b20f16c57b5",

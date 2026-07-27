@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PINNED_SUPPORT_COMMIT = "d65690eeb1d4afd26aef795c805a23d9d9daf9d1"
 DEFAULT_GDS = ROOT / "build" / "v3" / "selector_route_pilot" / "v3_selector_route_pilot.gds"
 DEFAULT_REPORT_DIR = ROOT / "build" / "v3" / "selector_route_pilot"
-TOP = "v3_selector_route_pilot"
+DEFAULT_TOP = "v3_selector_route_pilot"
 
 
 def sha256(path: Path) -> str:
@@ -60,8 +60,10 @@ def main() -> None:
     parser.add_argument("--klayout", type=Path)
     parser.add_argument("--gds", type=Path, default=DEFAULT_GDS)
     parser.add_argument("--report-dir", type=Path, default=DEFAULT_REPORT_DIR)
+    parser.add_argument("--top", default=DEFAULT_TOP)
     args = parser.parse_args()
     klayout = resolve_klayout(args.klayout)
+    args.report_dir = args.report_dir.resolve()
     observed_commit = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=args.support_tools, text=True,
         capture_output=True, check=True,
@@ -79,7 +81,7 @@ def main() -> None:
         "zero_area": (deck_dir / "zeroarea.rb.drc", []),
         "pin_purpose_overlap": (
             deck_dir / "pin_label_purposes_overlapping_drawing.rb.drc",
-            ["pin_label_purposes_overlapping_drawing=true", f"top_cell_name={TOP}", "threads=1"],
+            ["pin_label_purposes_overlapping_drawing=true", f"top_cell_name={args.top}", "threads=1"],
         ),
     }
     results: dict[str, object] = {}
@@ -95,7 +97,7 @@ def main() -> None:
     flat = subprocess.run(
         [
             "python3", str(ROOT / "tools" / "check_gds_flat_rules.py"),
-            str(gds), "--top", TOP,
+            str(gds), "--top", args.top,
         ], cwd=ROOT, text=True, capture_output=True, check=False,
     )
     flat_log = args.report_dir / "precheck_flat_rules.log"
@@ -112,7 +114,7 @@ def main() -> None:
         "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
         "gds": str(gds.relative_to(ROOT)),
         "gds_sha256": sha256(gds),
-        "top": TOP,
+        "top": args.top,
         "support_tools_commit": observed_commit,
         "klayout_binary": str(klayout),
         "klayout_binary_sha256": sha256(klayout),

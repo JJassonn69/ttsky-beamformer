@@ -1,0 +1,89 @@
+{
+  "artifacts": {
+    "distributed_rc": "build/v3/channel_architecture_row_late_promotion/distributed_rc_audit.json",
+    "gds": "build/v3/channel_architecture_row_late_promotion/v3_channel_architecture_row_late_promotion.gds",
+    "precheck": "build/v3/channel_architecture_row_late_promotion/precheck_summary.json",
+    "spice": "build/v3/channel_architecture_row_late_promotion/v3_channel_architecture_row_late_promotion_flat.spice"
+  },
+  "checks": {
+    "distributed_rc_gate_passes": true,
+    "distributed_rc_matches_exact_gds": true,
+    "exactly_twenty_one_nmos": true,
+    "magic_and_export_markers_zero": true,
+    "named_net_topology_exact": true,
+    "pinned_direct_gds_precheck_pass": true,
+    "precheck_matches_exact_gds": true
+  },
+  "device_count": 21,
+  "distributed_rc": {
+    "maximum_gate_path_ohm": 249.68999000000002,
+    "maximum_sig_ref_pair_mismatch_percent": 0.9296117102802546
+  },
+  "gds_sha256": "482b033c3b848c7b809905b98eb4082f381bee56f8cbf62d0ee91c5f9d621498",
+  "next_gate": "replicate the accepted late-promotion access into all five rows; retain an explicit bottom-row guard-safe exception",
+  "physical_markers": {
+    "V3_CHANNEL_ARCHITECTURE_ROW_LATE_DRC_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_ROW_LATE_EXTRACTION_FEEDBACK_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_ROW_LATE_GDS_FEEDBACK_COUNT": 0
+  },
+  "schema_version": 1,
+  "scope": "three-unit all-net row with M1 analog collection, M2 drops/spines, and unchanged M2/M3 output plus M3/M4 phase routing",
+  "sha256": {
+    "baseline_unit": "01c411a8579c5f7ae0fa046ebb3b2e60b32557ee42afcb699d8ea12a7a597b9d",
+    "checker": "0e70b8f40add6ea58ce267ea0f0ed4484fee26d1120221f7e9fb4dabe3d5e928",
+    "distributed_rc": "bef4a1ef6a4a6a17c7a92445d79f801dfca3aff6c9543a0406207a406308bc10",
+    "late_unit": "d123dd2945791c0196116560610308c4e53408a17df30c30ade9868368ea3ed0",
+    "late_unit_builder": "420aca004cde133f291d504d6f87510b77641f61c8d6bcab029c3a2be8040284",
+    "physical_markers": "d53b756f9246adcf007ed660fd972b0cad3dde1d08cf49e97db2626f854fb65c",
+    "precheck": "a56b60e9cc00d4ba686f491076bc7690e1e415655ffdb93a323d91942700d218",
+    "rc_auditor": "675a29453c3f9bb09010ef61d786bc8980a5e8099252e3ca70ecfe08c9f47580",
+    "rc_extractor": "60aabd70ae3278d38f320a026ffc8c3936cfd1163f20b6d28ab404b8e00cba22",
+    "row_generator": "61703dcdbe6a664f8fa453e11cc728e3212279d46bd64d3198a721c0ac0724ef",
+    "spice": "d81c6dc69c5ea49871b38db9c1cfa936c31fb4e1bde1cc2333d2ef4540ab61b3"
+  },
+  "stale_evidence_policy": "regenerate after any source, manifest, GDS, SPICE, marker, precheck, or distributed-RC change",
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 6,
+      "switch": 12,
+      "tail": 3
+    },
+    "gate_counts": {
+      "g1_lon": 2,
+      "g1_lop": 2,
+      "g2_lon": 4,
+      "g2_lop": 4,
+      "ref": 3,
+      "sig": 3,
+      "vbias": 3
+    },
+    "units": [
+      {
+        "gm_nodes": {
+          "ref": "a_4678_7422#",
+          "sig": "a_4254_6978#"
+        },
+        "group": "g2",
+        "tail_node": "a_4382_5688#"
+      },
+      {
+        "gm_nodes": {
+          "ref": "a_6070_7422#",
+          "sig": "a_5646_6978#"
+        },
+        "group": "g1",
+        "tail_node": "a_5774_5688#"
+      },
+      {
+        "gm_nodes": {
+          "ref": "a_7038_6978#",
+          "sig": "a_7462_7422#"
+        },
+        "group": "g2",
+        "tail_node": "a_7216_6978#"
+      }
+    ]
+  },
+  "topology_errors": []
+}

@@ -1,0 +1,22 @@
+{
+  "bias_branch_lengths_um": [
+    37.98,
+    37.98,
+    37.98,
+    37.98
+  ],
+  "drawn_branch_mismatch_percent": 0.0,
+  "errors": [],
+  "manifest_sha256": "05207661c5caa05757204545848254a852f61f788344571bb693851a44bfbe3d",
+  "post_star_branch_vias": [
+    0,
+    0,
+    0,
+    0
+  ],
+  "reference_fingers": 8,
+  "schema_version": 1,
+  "scope": "geometric bias-tree contract; physical DRC/LVS/precheck and extracted RC remain separate gates",
+  "status": "pass",
+  "tree_segment_count": 10
+}

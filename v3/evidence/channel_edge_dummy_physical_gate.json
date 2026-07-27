@@ -1,0 +1,47 @@
+{
+  "active_device_count": 105,
+  "checks": {
+    "active_device_count_unchanged": true,
+    "active_unit_topology_unchanged": true,
+    "direct_gds_precheck_zero": true,
+    "dummy_manifest_matches_extraction": true,
+    "exactly_nine_classified_dummy_extraction_markers": true,
+    "magic_drc_zero": true,
+    "magic_gds_feedback_zero_after_classification": true,
+    "nine_grounded_dummy_devices_extract": true,
+    "phase_switch_populations_unchanged": true,
+    "precheck_is_for_exact_gds": true
+  },
+  "classified_extraction_marker": "one missing-terminal marker per intentionally D=G=S=B=VGND dummy; exact count required and cleared before GDS export",
+  "dummy_device_count": 9,
+  "dummy_device_types": {
+    "switch_w0p65_l0p15": 6,
+    "tail_w5p07_l1": 3
+  },
+  "gds": "build/v3/channel_edge_dummy_pilot/v3_channel_edge_dummy_pilot.gds",
+  "gds_sha256": "c7ee560b9e2d067e195fa7f571f826483ff144e36fdea3a60cf3b61ed99e69b9",
+  "next_gate": "integrate a compact 100 kohm-class input-bias path below the closed channel without moving phase roots or dummy devices",
+  "phase_switch_counts": {
+    "g1_lon": 2,
+    "g1_lop": 2,
+    "g2_lon": 4,
+    "g2_lop": 4,
+    "g4_lon": 8,
+    "g4_lop": 8,
+    "g8_lon": 16,
+    "g8_lop": 16
+  },
+  "schema_version": 1,
+  "scope": "exact 15-unit/eight-phase-tree channel plus type-matched top/bottom grounded edge dummies and enlarged shared guard",
+  "sha256": {
+    "auditor": "b0d53115e2c68e234077d91e0b4945a994b71705b4de8cc77aecbd0bf0714b02",
+    "dummy_manifest": "0ad5f95ae6a27c296baa04ca782eb643fee54d05a58db0fe2e1c44ec561a03e0",
+    "extraction_feedback": "41167864ce3afe049cb9aadb8939ab88a479fa0f59e785ae987d82b387b6a420",
+    "generator": "3375a8f53074fcbf410c0a3e8d5fed09164f3d4b88c9a8113c3d3620f961673a",
+    "magic_log": "e8219d72e044ded41a39b6d69122832365c17640b6eb4d2240444707d894a3b8",
+    "precheck_summary": "46d596a79eb85c7e702a9cd1b67cf989c42a8aa13aeeb8abfe06e36bd0777d4c",
+    "spice": "7b2b99bfafb955a9ade63c2cf414a5ccaba313d4aa44e610944ecb29522704ed"
+  },
+  "status": "pass",
+  "topology_errors": []
+}

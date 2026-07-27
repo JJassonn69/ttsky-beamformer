@@ -1,0 +1,126 @@
+{
+  "baseline": {
+    "path": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/channel_architecture_row_routing/v3_channel_architecture_row_routing.gds",
+    "sha256": "601de3fe1e416992145aadbdf82d0533eb89edd300ad4fd6527211d8120e1f83",
+    "top": "v3_channel_architecture_row_routing"
+  },
+  "candidate": {
+    "path": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/channel_architecture_row_late_promotion/v3_channel_architecture_row_late_promotion.gds",
+    "sha256": "482b033c3b848c7b809905b98eb4082f381bee56f8cbf62d0ee91c5f9d621498",
+    "top": "v3_channel_architecture_row_late_promotion"
+  },
+  "designed_analog_route_change": {
+    "analog_via_delta": {
+      "via1": 12,
+      "via2": -12,
+      "via3": -18
+    },
+    "baseline_m3_centerline_um": 41.76,
+    "baseline_m4_centerline_um": 79.275,
+    "candidate_m1_centerline_um": 119.445,
+    "candidate_m2_drop_centerline_um": 11.25,
+    "note": "centerline and via figures are exact from the three-unit generators; GDS areas also contain unchanged devices, guard, output, ground, and phase geometry"
+  },
+  "layers": {
+    "met1": {
+      "baseline": {
+        "area_um2": 24.8446,
+        "merged_polygons": 85
+      },
+      "candidate": {
+        "area_um2": 51.380275,
+        "merged_polygons": 88
+      },
+      "delta": {
+        "area_um2": 26.535675,
+        "merged_polygons": 3
+      }
+    },
+    "met2": {
+      "baseline": {
+        "area_um2": 93.1444,
+        "merged_polygons": 51
+      },
+      "candidate": {
+        "area_um2": 95.4391,
+        "merged_polygons": 51
+      },
+      "delta": {
+        "area_um2": 2.2947,
+        "merged_polygons": 0
+      }
+    },
+    "met3": {
+      "baseline": {
+        "area_um2": 70.316,
+        "merged_polygons": 32
+      },
+      "candidate": {
+        "area_um2": 51.586,
+        "merged_polygons": 20
+      },
+      "delta": {
+        "area_um2": -18.73,
+        "merged_polygons": -12
+      }
+    },
+    "met4": {
+      "baseline": {
+        "area_um2": 51.6846,
+        "merged_polygons": 14
+      },
+      "candidate": {
+        "area_um2": 19.98,
+        "merged_polygons": 5
+      },
+      "delta": {
+        "area_um2": -31.7046,
+        "merged_polygons": -9
+      }
+    },
+    "via1": {
+      "baseline": {
+        "area_um2": 1.44,
+        "merged_polygons": 64
+      },
+      "candidate": {
+        "area_um2": 1.71,
+        "merged_polygons": 76
+      },
+      "delta": {
+        "area_um2": 0.27,
+        "merged_polygons": 12
+      }
+    },
+    "via2": {
+      "baseline": {
+        "area_um2": 2.0,
+        "merged_polygons": 50
+      },
+      "candidate": {
+        "area_um2": 1.52,
+        "merged_polygons": 38
+      },
+      "delta": {
+        "area_um2": -0.48,
+        "merged_polygons": -12
+      }
+    },
+    "via3": {
+      "baseline": {
+        "area_um2": 1.16,
+        "merged_polygons": 29
+      },
+      "candidate": {
+        "area_um2": 0.44,
+        "merged_polygons": 11
+      },
+      "delta": {
+        "area_um2": -0.72,
+        "merged_polygons": -18
+      }
+    }
+  },
+  "schema_version": 1,
+  "scope": "direct flattened-GDS conductor/cut comparison; lower-layer area includes the late-row pilot's intentionally enlarged guard"
+}

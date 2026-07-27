@@ -26,6 +26,17 @@ ROW_HEIGHT = 2.72
 ROW_COUNT = 9
 ROW_GAP = 0.0
 CELL_SITE_WIDTH = 0.46
+ROUTE_ENVELOPE_WIDTH = 19.32
+GROUP_OUTPUT_ROOT_X = {
+    "group0_lo_p": 4.87,
+    "group0_lo_n": 10.87,
+    "group1_lo_p": 19.12,
+    "group1_lo_n": 18.47,
+    "group2_lo_p": 17.82,
+    "group2_lo_n": 17.17,
+    "group3_lo_p": 16.52,
+    "group3_lo_n": 15.82,
+}
 
 
 def sha256(path: Path) -> str:
@@ -147,10 +158,14 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
     )
     return {
         "bbox": [0.0, 0.0, selector_width, selector_height],
+        "route_envelope_bbox": [0.0, 0.0, ROUTE_ENVELOPE_WIDTH, selector_height],
         "row_height_um": ROW_HEIGHT,
         "row_count": ROW_COUNT,
         "row_gap_um": ROW_GAP,
-        "cell_gap_sites": 1,
+        # The cells intentionally abut so their n-wells merge.  A one-site
+        # whitespace gap creates 0.08 um n-well slivers that violate the
+        # direct shuttle MR_nwell.SP.1 deck even though Magic reports clean.
+        "cell_gap_sites": 0,
         "cell_site_width_um": CELL_SITE_WIDTH,
         "row_lower_margin_um": lower_margin,
         "instances": instances,
@@ -170,6 +185,14 @@ def build_channel_template(cells: dict[str, dict[str, Any]]) -> dict[str, Any]:
                 "preferred_layer": "metal2",
                 "tracks": [f"group{group}_bit{bit}" for group in range(4) for bit in range(2)],
                 "note": "tracks may cross cell footprints on legal upper-metal resources; detailed pin access remains a routing gate",
+            },
+            "analog_group_output_entry": {
+                "layer": "metal2",
+                "edge": "bottom",
+                "anchors": {
+                    name: [x, 0.0] for name, x in GROUP_OUTPUT_ROOT_X.items()
+                },
+                "note": "ports are vertically aligned with the closed analog group-tree roots; the 19.32 um route envelope includes the inter-channel phase-trunk corridor",
             },
         },
         "logic_contract": {
@@ -203,6 +226,11 @@ def build_selector_placement() -> dict[str, Any]:
                 ],
                 "phase_spine_bbox": translated_bbox(template["route_reservations"]["phase_spine"]["bbox"], dx, dy),
                 "static_code_entry_bbox": translated_bbox(template["route_reservations"]["static_code_entry"]["bbox"], dx, dy),
+                "route_envelope_bbox": translated_bbox(template["route_envelope_bbox"], dx, dy),
+                "analog_group_output_anchors": {
+                    name: [round(dx + point[0], 3), round(dy + point[1], 3)]
+                    for name, point in template["route_reservations"]["analog_group_output_entry"]["anchors"].items()
+                },
             }
         )
     return {
@@ -219,11 +247,12 @@ def build_selector_placement() -> dict[str, Any]:
         "constraints": {
             "maximum_raw_cell_utilization_percent": 45.0,
             "maximum_row_width_um": 12.60,
-            "minimum_signal_cell_gap_sites": 1,
+            "minimum_signal_cell_gap_sites": 0,
             "one_tap_at_least_every_rows": 2,
             "all_channels_identical": True,
             "channel_macro_orientation": "R0",
             "phase_spines_balanced": True,
+            "group_outputs_vertically_aligned_to_analog_roots": True,
             "detailed_routing_authorized": False,
         },
         "next_gate": [

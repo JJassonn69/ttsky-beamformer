@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "all_unit_topologies_exact": true,
+    "binary_group_population_exact": true,
+    "direct_gds_precheck_zero": true,
+    "exactly_fifteen_seven_device_units": true,
+    "exactly_one_hundred_five_nmos": true,
+    "magic_drc_zero": true,
+    "magic_extraction_feedback_zero": true,
+    "magic_gds_feedback_zero": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true
+  },
+  "device_count": 105,
+  "device_counts_by_unit": {
+    "u00": 7,
+    "u01": 7,
+    "u02": 7,
+    "u03": 7,
+    "u04": 7,
+    "u05": 7,
+    "u06": 7,
+    "u07": 7,
+    "u08": 7,
+    "u09": 7,
+    "u10": 7,
+    "u11": 7,
+    "u12": 7,
+    "u13": 7,
+    "u14": 7
+  },
+  "gds": "build/v3/channel_matrix_pilot/v3_channel_matrix_pilot.gds",
+  "gds_sha256": "0f06730366750a4c89151cfbed41e27d3a0b879d33b0d29a27c2a74360c06799",
+  "group_counts": {
+    "1": 1,
+    "2": 2,
+    "4": 4,
+    "8": 8
+  },
+  "inferred_private_node_count": 45,
+  "next_gate": "allocate eight balanced group phase trees with named layer transitions, then regenerate this exact matrix with those routes",
+  "schema_version": 1,
+  "scope": "exact 15-unit V3 matrix: repeated topology, R0/MY transforms, local LO merges, shared guard, and direct-GDS geometry; group H-trees absent",
+  "sha256": {
+    "auditor": "213aea0d8b65772d1ea5d38fcd3d1aa251096912708bf742c340c7e3feb2b29b",
+    "generator": "fa4de193479cc54c66148df42d3b9d2a9f43796ef71cd6e1023b76ae31845bf4",
+    "magic_log": "25b5f403d6a666d591129e56b07f7125e40d540fd0f48eaa4d65a2291b797be4",
+    "matrix_manifest": "6a35defe83289d51cc285f3b14da3b78531d33f2849c94e6e5764e5149046f00",
+    "precheck_summary": "b8bea0a49e80a1f8353744a397a7c8be94a8e109155184110c286744f23ef4b3",
+    "spice": "5ab6d723e337a0932b79e45bc79a339e97940c0733dee3acc8e2a65a1209d9a7"
+  },
+  "status": "pass",
+  "topology_errors": [],
+  "unexpected_magic_warnings": []
+}

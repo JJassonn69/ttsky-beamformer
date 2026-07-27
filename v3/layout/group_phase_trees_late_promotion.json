@@ -1,0 +1,2928 @@
+{
+  "channel_bbox": [
+    0.0,
+    0.0,
+    19.32,
+    112.99
+  ],
+  "constraints": {
+    "allow_floating_stubs": false,
+    "allow_orphan_vias": false,
+    "allow_u_turns": false,
+    "balance_definition": "common-centroid physical placement plus extracted root-to-leaf RC closure; no artificial meanders",
+    "bend_cost_grid_units": 8.0,
+    "grid_um": 0.04,
+    "local_escape_um": 0.72,
+    "route_width_um": 0.4,
+    "same_layer_spacing_um": 0.3,
+    "via_cost_grid_units": 60.0
+  },
+  "schema_version": 1,
+  "source": {
+    "matrix_manifest": "v3/layout/channel_matrix_late_promotion.json",
+    "matrix_manifest_sha256": "667d3557bc4bf0c993b9afb300f65d8a159371ae0faa9d1dbca589fe23e2ba0f",
+    "obstacle_gds": "build/v3/channel_architecture_service_late_promotion/v3_channel_architecture_service_late_promotion.gds",
+    "obstacle_gds_sha256": "a8654bebb10855cf49d263a7966ed076302967b61d36cd740fc863b878ebfcfe",
+    "planner": "v3/tools/plan_group_phase_trees_late_promotion.py",
+    "planner_sha256": "3d2f7947168882dac4d8542f9d5aad0fddf09d4ac79ab63dc4e9a8d36adc3b31"
+  },
+  "status": "obstacle-aware late-promotion phase-tree candidate; physical pilot pending",
+  "tree_order": [
+    "g1_lon",
+    "g1_lop",
+    "g2_lon",
+    "g2_lop",
+    "g4_lon",
+    "g4_lop",
+    "g8_lon",
+    "g8_lop"
+  ],
+  "trees": {
+    "g1_lon": {
+      "dedicated_trunk_normalization": {
+        "m4_x_um": 5.48
+      },
+      "fixed_segments": [
+        {
+          "from": [
+            9.66,
+            61.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            61.87
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 1323,
+      "group": 1,
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                61.87
+              ],
+              "layer": "metal3",
+              "to": [
+                5.48,
+                61.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.48,
+                61.87
+              ],
+              "layer": "metal4",
+              "to": [
+                5.48,
+                110.83
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.48,
+                110.83
+              ],
+              "layer": "metal4",
+              "to": [
+                7.22,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              61.87
+            ],
+            "layer": 0,
+            "local_root": [
+              9.66,
+              61.15
+            ],
+            "unit": "U_R2_C1_G1"
+          },
+          "via3_points": [
+            [
+              5.48,
+              61.87
+            ]
+          ]
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        7.22,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        52.12
+      ],
+      "terminals": [
+        {
+          "escape": [
+            9.66,
+            61.87
+          ],
+          "layer": 0,
+          "local_root": [
+            9.66,
+            61.15
+          ],
+          "unit": "U_R2_C1_G1"
+        }
+      ]
+    },
+    "g1_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            9.66,
+            61.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            62.67
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 1406,
+      "group": 1,
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                62.67
+              ],
+              "layer": "metal4",
+              "to": [
+                12.46,
+                62.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                12.46,
+                62.67
+              ],
+              "layer": "metal4",
+              "to": [
+                12.46,
+                103.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                12.46,
+                103.39
+              ],
+              "layer": "metal4",
+              "to": [
+                7.94,
+                103.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.94,
+                103.39
+              ],
+              "layer": "metal4",
+              "to": [
+                7.94,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              62.67
+            ],
+            "layer": 1,
+            "local_root": [
+              9.66,
+              61.95
+            ],
+            "unit": "U_R2_C1_G1"
+          },
+          "via3_points": []
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        7.94,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        55.48
+      ],
+      "terminals": [
+        {
+          "escape": [
+            9.66,
+            62.67
+          ],
+          "layer": 1,
+          "local_root": [
+            9.66,
+            61.95
+          ],
+          "unit": "U_R2_C1_G1"
+        }
+      ]
+    },
+    "g2_lon": {
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            61.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            61.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            61.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            61.87
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 1775,
+      "group": 2,
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                61.87
+              ],
+              "layer": "metal3",
+              "to": [
+                13.82,
+                61.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.82,
+                61.87
+              ],
+              "layer": "metal4",
+              "to": [
+                13.82,
+                104.11
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.82,
+                104.11
+              ],
+              "layer": "metal4",
+              "to": [
+                8.66,
+                104.11
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                8.66,
+                104.11
+              ],
+              "layer": "metal4",
+              "to": [
+                8.66,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              61.87
+            ],
+            "layer": 0,
+            "local_root": [
+              16.62,
+              61.15
+            ],
+            "unit": "U_R2_C2_G2"
+          },
+          "via3_points": [
+            [
+              13.82,
+              61.87
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                61.87
+              ],
+              "layer": "metal3",
+              "to": [
+                2.7,
+                62.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                62.59
+              ],
+              "layer": "metal3",
+              "to": [
+                13.82,
+                62.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.82,
+                62.59
+              ],
+              "layer": "metal3",
+              "to": [
+                13.82,
+                61.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              61.87
+            ],
+            "layer": 0,
+            "local_root": [
+              2.7,
+              61.15
+            ],
+            "unit": "U_R2_C0_G2"
+          },
+          "via3_points": []
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        8.66,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        56.92,
+        12.56
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            61.87
+          ],
+          "layer": 0,
+          "local_root": [
+            2.7,
+            61.15
+          ],
+          "unit": "U_R2_C0_G2"
+        },
+        {
+          "escape": [
+            16.62,
+            61.87
+          ],
+          "layer": 0,
+          "local_root": [
+            16.62,
+            61.15
+          ],
+          "unit": "U_R2_C2_G2"
+        }
+      ]
+    },
+    "g2_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            61.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            62.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            61.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            62.67
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 1876,
+      "group": 2,
+      "normalizations": [
+        {
+          "from": [
+            16.62,
+            68.91
+          ],
+          "to": [
+            16.5,
+            68.91
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                62.67
+              ],
+              "layer": "metal4",
+              "to": [
+                16.62,
+                68.91
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                16.5,
+                68.91
+              ],
+              "layer": "metal3",
+              "to": [
+                13.7,
+                68.91
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.7,
+                68.91
+              ],
+              "layer": "metal3",
+              "to": [
+                13.7,
+                82.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.7,
+                82.67
+              ],
+              "layer": "metal3",
+              "to": [
+                14.54,
+                82.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                82.67
+              ],
+              "layer": "metal4",
+              "to": [
+                14.54,
+                88.91
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                88.91
+              ],
+              "layer": "metal3",
+              "to": [
+                13.7,
+                88.91
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.7,
+                88.91
+              ],
+              "layer": "metal3",
+              "to": [
+                13.7,
+                102.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.7,
+                102.67
+              ],
+              "layer": "metal3",
+              "to": [
+                14.54,
+                102.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                102.67
+              ],
+              "layer": "metal4",
+              "to": [
+                14.54,
+                104.83
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                104.83
+              ],
+              "layer": "metal4",
+              "to": [
+                9.38,
+                104.83
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                9.38,
+                104.83
+              ],
+              "layer": "metal4",
+              "to": [
+                9.38,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              62.67
+            ],
+            "layer": 1,
+            "local_root": [
+              16.62,
+              61.95
+            ],
+            "unit": "U_R2_C2_G2"
+          },
+          "via3_points": [
+            [
+              16.5,
+              68.91
+            ],
+            [
+              14.54,
+              82.67
+            ],
+            [
+              14.54,
+              88.91
+            ],
+            [
+              14.54,
+              102.67
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                62.67
+              ],
+              "layer": "metal4",
+              "to": [
+                2.7,
+                63.31
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                63.31
+              ],
+              "layer": "metal3",
+              "to": [
+                14.54,
+                63.31
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                63.31
+              ],
+              "layer": "metal4",
+              "to": [
+                16.62,
+                63.31
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              62.67
+            ],
+            "layer": 1,
+            "local_root": [
+              2.7,
+              61.95
+            ],
+            "unit": "U_R2_C0_G2"
+          },
+          "via3_points": [
+            [
+              2.7,
+              63.31
+            ],
+            [
+              14.54,
+              63.31
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        9.38,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        58.76,
+        14.56
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            62.67
+          ],
+          "layer": 1,
+          "local_root": [
+            2.7,
+            61.95
+          ],
+          "unit": "U_R2_C0_G2"
+        },
+        {
+          "escape": [
+            16.62,
+            62.67
+          ],
+          "layer": 1,
+          "local_root": [
+            16.62,
+            61.95
+          ],
+          "unit": "U_R2_C2_G2"
+        }
+      ]
+    },
+    "g4_lon": {
+      "dedicated_trunk_normalization": {
+        "m4_x_um": 6.18
+      },
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            41.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            41.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            41.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            41.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            2.7,
+            81.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            81.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            81.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            81.87
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 2690,
+      "group": 4,
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                41.87
+              ],
+              "layer": "metal3",
+              "to": [
+                16.62,
+                42.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                16.62,
+                42.59
+              ],
+              "layer": "metal3",
+              "to": [
+                6.18,
+                42.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                6.18,
+                42.59
+              ],
+              "layer": "metal4",
+              "to": [
+                6.18,
+                106.07
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                6.18,
+                106.07
+              ],
+              "layer": "metal3",
+              "to": [
+                10.1,
+                106.07
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.1,
+                106.07
+              ],
+              "layer": "metal4",
+              "to": [
+                10.1,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              41.87
+            ],
+            "layer": 0,
+            "local_root": [
+              16.62,
+              41.15
+            ],
+            "unit": "U_R3_C2_G4"
+          },
+          "via3_points": [
+            [
+              6.18,
+              42.59
+            ],
+            [
+              6.18,
+              106.07
+            ],
+            [
+              10.1,
+              106.07
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                41.87
+              ],
+              "layer": "metal3",
+              "to": [
+                2.7,
+                42.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                42.59
+              ],
+              "layer": "metal3",
+              "to": [
+                6.18,
+                42.59
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              41.87
+            ],
+            "layer": 0,
+            "local_root": [
+              2.7,
+              41.15
+            ],
+            "unit": "U_R3_C0_G4"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                81.87
+              ],
+              "layer": "metal3",
+              "to": [
+                16.62,
+                83.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                16.62,
+                83.39
+              ],
+              "layer": "metal3",
+              "to": [
+                6.18,
+                83.39
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              81.87
+            ],
+            "layer": 0,
+            "local_root": [
+              16.62,
+              81.15
+            ],
+            "unit": "U_R1_C2_G4"
+          },
+          "via3_points": [
+            [
+              6.18,
+              83.39
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                81.87
+              ],
+              "layer": "metal3",
+              "to": [
+                2.7,
+                83.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                83.39
+              ],
+              "layer": "metal3",
+              "to": [
+                6.18,
+                83.39
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              81.87
+            ],
+            "layer": 0,
+            "local_root": [
+              2.7,
+              81.15
+            ],
+            "unit": "U_R1_C0_G4"
+          },
+          "via3_points": []
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        10.1,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        83.4,
+        4.16,
+        12.0,
+        4.96
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            41.87
+          ],
+          "layer": 0,
+          "local_root": [
+            2.7,
+            41.15
+          ],
+          "unit": "U_R3_C0_G4"
+        },
+        {
+          "escape": [
+            16.62,
+            41.87
+          ],
+          "layer": 0,
+          "local_root": [
+            16.62,
+            41.15
+          ],
+          "unit": "U_R3_C2_G4"
+        },
+        {
+          "escape": [
+            2.7,
+            81.87
+          ],
+          "layer": 0,
+          "local_root": [
+            2.7,
+            81.15
+          ],
+          "unit": "U_R1_C0_G4"
+        },
+        {
+          "escape": [
+            16.62,
+            81.87
+          ],
+          "layer": 0,
+          "local_root": [
+            16.62,
+            81.15
+          ],
+          "unit": "U_R1_C2_G4"
+        }
+      ]
+    },
+    "g4_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            41.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            42.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            41.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            42.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            2.7,
+            81.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            82.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            81.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            82.67
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 2931,
+      "group": 4,
+      "junction_fill_rectangles": [
+        {
+          "bbox": [
+            16.82,
+            82.15,
+            16.94,
+            82.47
+          ],
+          "layer": "metal4",
+          "role": "solid_T_junction"
+        }
+      ],
+      "normalizations": [
+        {
+          "from": [
+            14.54,
+            62.59
+          ],
+          "to": [
+            14.66,
+            62.59
+          ]
+        }
+      ],
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                42.67
+              ],
+              "layer": "metal4",
+              "to": [
+                13.82,
+                42.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.82,
+                42.67
+              ],
+              "layer": "metal4",
+              "to": [
+                13.82,
+                58.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                13.82,
+                58.75
+              ],
+              "layer": "metal4",
+              "to": [
+                14.54,
+                58.75
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.54,
+                58.75
+              ],
+              "layer": "metal4",
+              "to": [
+                14.54,
+                62.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                14.66,
+                62.59
+              ],
+              "layer": "metal3",
+              "to": [
+                17.34,
+                62.59
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.34,
+                62.59
+              ],
+              "layer": "metal3",
+              "to": [
+                17.34,
+                62.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.34,
+                62.67
+              ],
+              "layer": "metal4",
+              "to": [
+                17.34,
+                69.63
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.34,
+                69.63
+              ],
+              "layer": "metal4",
+              "to": [
+                17.14,
+                69.63
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.14,
+                69.63
+              ],
+              "layer": "metal4",
+              "to": [
+                17.14,
+                91.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.14,
+                91.71
+              ],
+              "layer": "metal4",
+              "to": [
+                17.7,
+                91.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.7,
+                91.71
+              ],
+              "layer": "metal3",
+              "to": [
+                17.7,
+                98.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.7,
+                98.87
+              ],
+              "layer": "metal3",
+              "to": [
+                18.58,
+                98.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                18.58,
+                98.87
+              ],
+              "layer": "metal4",
+              "to": [
+                18.58,
+                105.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                18.58,
+                105.55
+              ],
+              "layer": "metal4",
+              "to": [
+                10.82,
+                105.55
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.82,
+                105.55
+              ],
+              "layer": "metal4",
+              "to": [
+                10.82,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              42.67
+            ],
+            "layer": 1,
+            "local_root": [
+              16.62,
+              41.95
+            ],
+            "unit": "U_R3_C2_G4"
+          },
+          "via3_points": [
+            [
+              14.66,
+              62.59
+            ],
+            [
+              17.34,
+              62.67
+            ],
+            [
+              17.7,
+              91.71
+            ],
+            [
+              18.58,
+              98.87
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                42.67
+              ],
+              "layer": "metal4",
+              "to": [
+                2.7,
+                43.31
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                43.31
+              ],
+              "layer": "metal3",
+              "to": [
+                10.38,
+                43.31
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                10.38,
+                43.31
+              ],
+              "layer": "metal4",
+              "to": [
+                13.82,
+                43.31
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              42.67
+            ],
+            "layer": 1,
+            "local_root": [
+              2.7,
+              41.95
+            ],
+            "unit": "U_R3_C0_G4"
+          },
+          "via3_points": [
+            [
+              2.7,
+              43.31
+            ],
+            [
+              10.38,
+              43.31
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                82.67
+              ],
+              "layer": "metal4",
+              "to": [
+                17.14,
+                82.67
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              82.67
+            ],
+            "layer": 1,
+            "local_root": [
+              16.62,
+              81.95
+            ],
+            "unit": "U_R1_C2_G4"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                82.67
+              ],
+              "layer": "metal4",
+              "to": [
+                2.7,
+                86.07
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                2.7,
+                86.07
+              ],
+              "layer": "metal3",
+              "to": [
+                15.26,
+                86.07
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                15.26,
+                86.07
+              ],
+              "layer": "metal4",
+              "to": [
+                17.14,
+                86.07
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              82.67
+            ],
+            "layer": 1,
+            "local_root": [
+              2.7,
+              81.95
+            ],
+            "unit": "U_R1_C0_G4"
+          },
+          "via3_points": [
+            [
+              2.7,
+              86.07
+            ],
+            [
+              15.26,
+              86.07
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        10.82,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        83.88,
+        11.76,
+        0.52,
+        17.84
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            42.67
+          ],
+          "layer": 1,
+          "local_root": [
+            2.7,
+            41.95
+          ],
+          "unit": "U_R3_C0_G4"
+        },
+        {
+          "escape": [
+            16.62,
+            42.67
+          ],
+          "layer": 1,
+          "local_root": [
+            16.62,
+            41.95
+          ],
+          "unit": "U_R3_C2_G4"
+        },
+        {
+          "escape": [
+            2.7,
+            82.67
+          ],
+          "layer": 1,
+          "local_root": [
+            2.7,
+            81.95
+          ],
+          "unit": "U_R1_C0_G4"
+        },
+        {
+          "escape": [
+            16.62,
+            82.67
+          ],
+          "layer": 1,
+          "local_root": [
+            16.62,
+            81.95
+          ],
+          "unit": "U_R1_C2_G4"
+        }
+      ]
+    },
+    "g8_lon": {
+      "dedicated_trunk_normalization": {
+        "backbone_via3_count_after": 3,
+        "backbone_via3_count_before": 9,
+        "m4_x_um": 6.88
+      },
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            21.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            21.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            21.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            21.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            21.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            21.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            41.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            41.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            81.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            81.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            2.7,
+            101.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            101.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            101.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            101.87
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            101.15
+          ],
+          "layer": "metal3",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            101.87
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 3617,
+      "group": 8,
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                21.87
+              ],
+              "layer": "metal3",
+              "to": [
+                6.88,
+                21.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                6.88,
+                21.87
+              ],
+              "layer": "metal4",
+              "to": [
+                6.88,
+                106.79
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                6.88,
+                106.79
+              ],
+              "layer": "metal3",
+              "to": [
+                11.54,
+                106.79
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                11.54,
+                106.79
+              ],
+              "layer": "metal4",
+              "to": [
+                11.54,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              21.87
+            ],
+            "layer": 0,
+            "local_root": [
+              16.62,
+              21.15
+            ],
+            "unit": "U_R4_C2_G8"
+          },
+          "via3_points": [
+            [
+              6.88,
+              21.87
+            ],
+            [
+              6.88,
+              106.79
+            ],
+            [
+              11.54,
+              106.79
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                21.87
+              ],
+              "layer": "metal3",
+              "to": [
+                6.86,
+                21.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              21.87
+            ],
+            "layer": 0,
+            "local_root": [
+              2.7,
+              21.15
+            ],
+            "unit": "U_R4_C0_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [],
+          "terminal": {
+            "escape": [
+              9.66,
+              21.87
+            ],
+            "layer": 0,
+            "local_root": [
+              9.66,
+              21.15
+            ],
+            "unit": "U_R4_C1_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                41.87
+              ],
+              "layer": "metal3",
+              "to": [
+                7.7,
+                41.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.7,
+                41.87
+              ],
+              "layer": "metal4",
+              "to": [
+                6.88,
+                41.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              41.87
+            ],
+            "layer": 0,
+            "local_root": [
+              9.66,
+              41.15
+            ],
+            "unit": "U_R3_C1_G8"
+          },
+          "via3_points": [
+            [
+              7.7,
+              41.87
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                81.87
+              ],
+              "layer": "metal3",
+              "to": [
+                6.88,
+                81.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              81.87
+            ],
+            "layer": 0,
+            "local_root": [
+              9.66,
+              81.15
+            ],
+            "unit": "U_R1_C1_G8"
+          },
+          "via3_points": [
+            [
+              6.88,
+              81.87
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                101.87
+              ],
+              "layer": "metal3",
+              "to": [
+                17.82,
+                101.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.82,
+                101.87
+              ],
+              "layer": "metal3",
+              "to": [
+                17.82,
+                106.79
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                17.82,
+                106.79
+              ],
+              "layer": "metal3",
+              "to": [
+                11.54,
+                106.79
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              101.87
+            ],
+            "layer": 0,
+            "local_root": [
+              16.62,
+              101.15
+            ],
+            "unit": "U_R0_C2_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                101.87
+              ],
+              "layer": "metal3",
+              "to": [
+                6.88,
+                101.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              101.87
+            ],
+            "layer": 0,
+            "local_root": [
+              2.7,
+              101.15
+            ],
+            "unit": "U_R0_C0_G8"
+          },
+          "via3_points": [
+            [
+              6.88,
+              101.87
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                101.87
+              ],
+              "layer": "metal3",
+              "to": [
+                6.88,
+                101.87
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              101.87
+            ],
+            "layer": 0,
+            "local_root": [
+              9.66,
+              101.15
+            ],
+            "unit": "U_R0_C1_G8"
+          },
+          "via3_points": []
+        }
+      ],
+      "polarity": "lon",
+      "root": [
+        11.54,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        107.08,
+        4.16,
+        0,
+        2.8,
+        4.24,
+        12.4,
+        2.72,
+        5.0
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            21.87
+          ],
+          "layer": 0,
+          "local_root": [
+            2.7,
+            21.15
+          ],
+          "unit": "U_R4_C0_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            21.87
+          ],
+          "layer": 0,
+          "local_root": [
+            9.66,
+            21.15
+          ],
+          "unit": "U_R4_C1_G8"
+        },
+        {
+          "escape": [
+            16.62,
+            21.87
+          ],
+          "layer": 0,
+          "local_root": [
+            16.62,
+            21.15
+          ],
+          "unit": "U_R4_C2_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            41.87
+          ],
+          "layer": 0,
+          "local_root": [
+            9.66,
+            41.15
+          ],
+          "unit": "U_R3_C1_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            81.87
+          ],
+          "layer": 0,
+          "local_root": [
+            9.66,
+            81.15
+          ],
+          "unit": "U_R1_C1_G8"
+        },
+        {
+          "escape": [
+            2.7,
+            101.87
+          ],
+          "layer": 0,
+          "local_root": [
+            2.7,
+            101.15
+          ],
+          "unit": "U_R0_C0_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            101.87
+          ],
+          "layer": 0,
+          "local_root": [
+            9.66,
+            101.15
+          ],
+          "unit": "U_R0_C1_G8"
+        },
+        {
+          "escape": [
+            16.62,
+            101.87
+          ],
+          "layer": 0,
+          "local_root": [
+            16.62,
+            101.15
+          ],
+          "unit": "U_R0_C2_G8"
+        }
+      ]
+    },
+    "g8_lop": {
+      "fixed_segments": [
+        {
+          "from": [
+            2.7,
+            21.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            22.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            21.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            22.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            21.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            22.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            41.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            42.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            81.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            82.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            2.7,
+            101.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            2.7,
+            102.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            9.66,
+            101.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            9.66,
+            102.67
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            16.62,
+            101.95
+          ],
+          "layer": "metal4",
+          "role": "local_root_escape",
+          "to": [
+            16.62,
+            102.67
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "grid_point_count": 3734,
+      "group": 8,
+      "junction_fill_rectangles": [
+        {
+          "bbox": [
+            2.9,
+            102.15,
+            3.02,
+            102.47
+          ],
+          "layer": "metal4",
+          "role": "solid_T_junction"
+        }
+      ],
+      "paths": [
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                22.67
+              ],
+              "layer": "metal4",
+              "to": [
+                9.66,
+                22.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                9.66,
+                22.67
+              ],
+              "layer": "metal4",
+              "to": [
+                9.66,
+                51.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                9.66,
+                51.71
+              ],
+              "layer": "metal3",
+              "to": [
+                3.94,
+                51.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.94,
+                51.71
+              ],
+              "layer": "metal3",
+              "to": [
+                3.94,
+                58.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.94,
+                58.87
+              ],
+              "layer": "metal3",
+              "to": [
+                4.66,
+                58.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.66,
+                58.87
+              ],
+              "layer": "metal4",
+              "to": [
+                4.66,
+                71.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.66,
+                71.71
+              ],
+              "layer": "metal4",
+              "to": [
+                3.94,
+                71.71
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.94,
+                71.71
+              ],
+              "layer": "metal3",
+              "to": [
+                3.94,
+                78.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.94,
+                78.87
+              ],
+              "layer": "metal3",
+              "to": [
+                4.66,
+                78.87
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.66,
+                78.87
+              ],
+              "layer": "metal4",
+              "to": [
+                4.66,
+                86.79
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.66,
+                86.79
+              ],
+              "layer": "metal4",
+              "to": [
+                3.22,
+                86.79
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.22,
+                86.79
+              ],
+              "layer": "metal4",
+              "to": [
+                3.22,
+                107.51
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                3.22,
+                107.51
+              ],
+              "layer": "metal3",
+              "to": [
+                12.26,
+                107.51
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                12.26,
+                107.51
+              ],
+              "layer": "metal4",
+              "to": [
+                12.26,
+                110.83
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              22.67
+            ],
+            "layer": 1,
+            "local_root": [
+              16.62,
+              21.95
+            ],
+            "unit": "U_R4_C2_G8"
+          },
+          "via3_points": [
+            [
+              9.66,
+              51.71
+            ],
+            [
+              4.66,
+              58.87
+            ],
+            [
+              3.94,
+              71.71
+            ],
+            [
+              4.66,
+              78.87
+            ],
+            [
+              3.22,
+              107.51
+            ],
+            [
+              12.26,
+              107.51
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                22.67
+              ],
+              "layer": "metal4",
+              "to": [
+                5.5,
+                22.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.5,
+                22.67
+              ],
+              "layer": "metal4",
+              "to": [
+                5.5,
+                21.15
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                5.5,
+                21.15
+              ],
+              "layer": "metal4",
+              "to": [
+                7.58,
+                21.15
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.58,
+                21.15
+              ],
+              "layer": "metal4",
+              "to": [
+                7.58,
+                22.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                7.58,
+                22.67
+              ],
+              "layer": "metal4",
+              "to": [
+                9.66,
+                22.67
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              22.67
+            ],
+            "layer": 1,
+            "local_root": [
+              2.7,
+              21.95
+            ],
+            "unit": "U_R4_C0_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [],
+          "terminal": {
+            "escape": [
+              9.66,
+              22.67
+            ],
+            "layer": 1,
+            "local_root": [
+              9.66,
+              21.95
+            ],
+            "unit": "U_R4_C1_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [],
+          "terminal": {
+            "escape": [
+              9.66,
+              42.67
+            ],
+            "layer": 1,
+            "local_root": [
+              9.66,
+              41.95
+            ],
+            "unit": "U_R3_C1_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                82.67
+              ],
+              "layer": "metal3",
+              "to": [
+                4.7,
+                82.67
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.7,
+                82.67
+              ],
+              "layer": "metal4",
+              "to": [
+                4.66,
+                82.67
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              82.67
+            ],
+            "layer": 1,
+            "local_root": [
+              9.66,
+              81.95
+            ],
+            "unit": "U_R1_C1_G8"
+          },
+          "via3_points": [
+            [
+              9.66,
+              82.67
+            ],
+            [
+              4.7,
+              82.67
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                16.62,
+                102.67
+              ],
+              "layer": "metal4",
+              "to": [
+                16.62,
+                103.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                16.62,
+                103.39
+              ],
+              "layer": "metal3",
+              "to": [
+                4.7,
+                103.39
+              ],
+              "width_um": 0.4
+            },
+            {
+              "from": [
+                4.7,
+                103.39
+              ],
+              "layer": "metal4",
+              "to": [
+                3.22,
+                103.39
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              16.62,
+              102.67
+            ],
+            "layer": 1,
+            "local_root": [
+              16.62,
+              101.95
+            ],
+            "unit": "U_R0_C2_G8"
+          },
+          "via3_points": [
+            [
+              16.62,
+              103.39
+            ],
+            [
+              4.7,
+              103.39
+            ]
+          ]
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                2.7,
+                102.67
+              ],
+              "layer": "metal4",
+              "to": [
+                3.22,
+                102.67
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              2.7,
+              102.67
+            ],
+            "layer": 1,
+            "local_root": [
+              2.7,
+              101.95
+            ],
+            "unit": "U_R0_C0_G8"
+          },
+          "via3_points": []
+        },
+        {
+          "role": "obstacle_aware_tree_branch",
+          "segments": [
+            {
+              "from": [
+                9.66,
+                102.67
+              ],
+              "layer": "metal3",
+              "to": [
+                9.66,
+                103.39
+              ],
+              "width_um": 0.4
+            }
+          ],
+          "terminal": {
+            "escape": [
+              9.66,
+              102.67
+            ],
+            "layer": 1,
+            "local_root": [
+              9.66,
+              101.95
+            ],
+            "unit": "U_R0_C1_G8"
+          },
+          "via3_points": [
+            [
+              9.66,
+              102.67
+            ]
+          ]
+        }
+      ],
+      "polarity": "lop",
+      "root": [
+        12.26,
+        110.83
+      ],
+      "root_layer": "metal4",
+      "searched_branch_lengths_um": [
+        113.48,
+        10.0,
+        0,
+        0,
+        5.0,
+        14.12,
+        0.52,
+        0.72
+      ],
+      "terminals": [
+        {
+          "escape": [
+            2.7,
+            22.67
+          ],
+          "layer": 1,
+          "local_root": [
+            2.7,
+            21.95
+          ],
+          "unit": "U_R4_C0_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            22.67
+          ],
+          "layer": 1,
+          "local_root": [
+            9.66,
+            21.95
+          ],
+          "unit": "U_R4_C1_G8"
+        },
+        {
+          "escape": [
+            16.62,
+            22.67
+          ],
+          "layer": 1,
+          "local_root": [
+            16.62,
+            21.95
+          ],
+          "unit": "U_R4_C2_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            42.67
+          ],
+          "layer": 1,
+          "local_root": [
+            9.66,
+            41.95
+          ],
+          "unit": "U_R3_C1_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            82.67
+          ],
+          "layer": 1,
+          "local_root": [
+            9.66,
+            81.95
+          ],
+          "unit": "U_R1_C1_G8"
+        },
+        {
+          "escape": [
+            2.7,
+            102.67
+          ],
+          "layer": 1,
+          "local_root": [
+            2.7,
+            101.95
+          ],
+          "unit": "U_R0_C0_G8"
+        },
+        {
+          "escape": [
+            9.66,
+            102.67
+          ],
+          "layer": 1,
+          "local_root": [
+            9.66,
+            101.95
+          ],
+          "unit": "U_R0_C1_G8"
+        },
+        {
+          "escape": [
+            16.62,
+            102.67
+          ],
+          "layer": 1,
+          "local_root": [
+            16.62,
+            101.95
+          ],
+          "unit": "U_R0_C2_G8"
+        }
+      ]
+    }
+  },
+  "units": "um"
+}

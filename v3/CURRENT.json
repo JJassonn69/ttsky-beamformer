@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "frozen one-channel macro; only valid V3 physical-design input",
+  "frozen_at": "2026-07-27",
+  "top_cell": "v3_channel_selector_late_promotion",
+  "gds": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion.gds",
+  "gds_sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
+  "flat_spice": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion_flat.spice",
+  "flat_spice_sha256": "5bf0cccffad9550f06939c0cda27fb64de0bed0ccb60e102750652d78b491451",
+  "signoff_evidence": {
+    "physical_topology": "v3/evidence/channel_selector_late_promotion_gate.json",
+    "distributed_rc": "v3/evidence/channel_selector_late_promotion_rc.json",
+    "direct_gds_precheck": "v3/frozen/one_channel_macro/precheck_summary.json",
+    "frozen_route_containment": "v3/frozen/one_channel_macro/frozen_routing_subset.json"
+  },
+  "validated_results": {
+    "magic_drc_markers": 0,
+    "direct_gds_precheck_markers": 0,
+    "extracted_devices": 323,
+    "active_analog_nmos": 105,
+    "grounded_edge_dummies": 9,
+    "external_ports": 21,
+    "worst_distributed_rc_edge_bound_ps": 58.534213072911975
+  },
+  "next_stage": "place four immutable copies and connect shared phase, bias, power, control, input, and output infrastructure",
+  "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
+}

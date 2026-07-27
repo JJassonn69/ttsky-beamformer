@@ -1,0 +1,82 @@
+{
+  "artifacts": {
+    "gds": "build/v3/channel_architecture_row_routing/v3_channel_architecture_row_routing.gds",
+    "precheck": "build/v3/channel_architecture_row_routing/precheck_summary.json",
+    "spice": "build/v3/channel_architecture_row_routing/v3_channel_architecture_row_routing_flat.spice"
+  },
+  "checks": {
+    "exactly_twenty_one_nmos": true,
+    "magic_and_export_markers_zero": true,
+    "named_net_topology_exact": true,
+    "pinned_direct_gds_precheck_pass": true,
+    "precheck_matches_exact_gds": true
+  },
+  "device_count": 21,
+  "gds_sha256": "601de3fe1e416992145aadbdf82d0533eb89edd300ad4fd6527211d8120e1f83",
+  "next_gate": "promote the passing corridor/row pattern into the complete 15-unit channel and route the balanced G4/G8 trees against the same reserved tracks",
+  "physical_markers": {
+    "V3_CHANNEL_ARCHITECTURE_ROW_DRC_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_ROW_EXTRACTION_FEEDBACK_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_ROW_GDS_FEEDBACK_COUNT": 0
+  },
+  "schema_version": 1,
+  "scope": "exact centre row with three vector units, both service corridors, all phase/output/analog/ground handoffs, named-net topology, and pinned direct-GDS geometry decks",
+  "sha256": {
+    "architecture": "89f24513ba23efffe7bc48f7622b0695b786aa89d35c4fd2bb2651e1150f6624",
+    "architecture_planner": "66cdb523ef6c415ee1c16ebe8ad7141d8dce90a1da2d268e0972b13945905816",
+    "checker": "c336bf98d784802998b01b2a8aa59c08ff02a7a980d3d6708fd590a78929d2bd",
+    "feasibility_matrix": "88f2717afa218307090167007b625e43e593e26f4154dc7b786117a5cd3e45dd",
+    "physical_markers": "f1bd90257d2f604e0ed89279377d60a8e4a3e7e873851150312adadb062f0798",
+    "precheck": "57953084fa1bcd1af5833125c9661a1178164c52843376c35c23eecdc974ffe4",
+    "row_generator": "72ffcf760e1082896f6312d956f2c5501fc5e9bb4100245335ff4d45127063c3",
+    "service_row_generator": "423d9f8eecd41218e4ca7970ab5d6c7ff6952bf9b15ed05b136606ac7ed4ea8b",
+    "spice": "9e16df4feed84cf47c15f0577c2db21443641eb8f9f97300c3d729ba8456dfb3",
+    "unit_generator": "8bb8aee4a2aef11aeff8840afff45f1124477b5cccf8f36d11f827ed074fd342",
+    "unit_manifest": "01c411a8579c5f7ae0fa046ebb3b2e60b32557ee42afcb699d8ea12a7a597b9d"
+  },
+  "stale_evidence_policy": "promotion requires this report to be regenerated after any hashed manifest, generator, GDS, SPICE, marker, or precheck change",
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 6,
+      "switch": 12,
+      "tail": 3
+    },
+    "gate_counts": {
+      "g1_lon": 2,
+      "g1_lop": 2,
+      "g2_lon": 4,
+      "g2_lop": 4,
+      "ref": 3,
+      "sig": 3,
+      "vbias": 3
+    },
+    "units": [
+      {
+        "gm_nodes": {
+          "ref": "a_4678_7422#",
+          "sig": "a_4254_6978#"
+        },
+        "group": "g2",
+        "tail_node": "a_4382_5688#"
+      },
+      {
+        "gm_nodes": {
+          "ref": "a_6070_7422#",
+          "sig": "a_5646_6978#"
+        },
+        "group": "g1",
+        "tail_node": "a_5774_5688#"
+      },
+      {
+        "gm_nodes": {
+          "ref": "a_7038_6978#",
+          "sig": "a_7462_7422#"
+        },
+        "group": "g2",
+        "tail_node": "a_7216_6978#"
+      }
+    ]
+  },
+  "topology_errors": []
+}

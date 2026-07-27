@@ -233,6 +233,16 @@ spacing markers. The selected one-channel pilot is clean in OpenROAD, Magic,
 flat extraction, and the directly applicable Tiny Tapeout KLayout geometry
 decks, but does not authorize the four-channel or submission GDS.
 
+The isolated shared-reference pilot is also closed. Its 8-by-8 um folding
+extracts as eight diode-connected 8/1 um fingers, and the exact GDS passes
+Magic DRC plus the directly applicable Tiny Tapeout geometry decks. The
+balanced M2 tree has four 37.98 um drawn branches and endpoint-rooted Magic
+`extresist` gives 9.1564 ohm for every post-star branch, or 0.0 percent
+mismatch against the 1.0 percent limit. The 22.3824 ohm common route is
+upstream of the named star and therefore affects absolute bias settling, not
+channel-to-channel matching. These results authorize integration of the
+unchanged reference/tree pilot; they do not authorize the top-level GDS.
+
 ## Initial engineering targets
 
 | Metric | V3A target |
