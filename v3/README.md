@@ -12,6 +12,9 @@ are historical and must not be used as physical inputs.
 
 The next physical stage places four immutable copies of this macro and routes
 their shared phase, bias, power, control, input, and output infrastructure.
+The complete state before generated-artifact cleanup, including the manual
+routing canvas, is recoverable from Git tag
+`v3-one-channel-precleanup-20260727`. It is not an active design input.
 
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
