@@ -49,6 +49,17 @@ root-to-load/pad route must add 2.0 um to P and prove electrical equality with
 distributed RC. See `evidence/four_channel_output_collection_gate.json` and
 `evidence/four_channel_output_collection_review.png`.
 
+The four shared phase inputs are now joined by four balanced H-trees above the
+channel tops. Each phase uses a non-crossing M3 staircase and an M4 H-tree.
+The staircase pitch is 1.0 um so via-3 landings retain 0.49 um clearance. The
+tree heights compensate the original 0.8 um phase-port pitch, giving exactly
+37.97 um from every one of the sixteen channel phase ports to its shared root.
+Direct shuttle geometry, Magic DRC, and flat extraction pass; each shared
+phase reaches exactly 32 selector terminals while the two output collectors
+remain at 120 terminals each. See
+`evidence/four_channel_phase_distribution_gate.json` and
+`evidence/four_channel_phase_distribution_review.png`.
+
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
 of the active Tiny Tapeout submission artifacts, is modified by the initial V3

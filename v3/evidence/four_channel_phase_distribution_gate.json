@@ -1,0 +1,51 @@
+{
+  "checks": {
+    "all_sixteen_phase_paths_are_geometrically_equal": true,
+    "device_population_unchanged": true,
+    "direct_gds_precheck_zero": true,
+    "each_shared_phase_reaches_exactly_32_selector_terminals": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "model_population_unchanged": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_hierarchical_phase_nodes_remain": true,
+    "no_unexpected_unprefixed_nodes": true,
+    "only_nine_hierarchical_dummy_feedback_markers": true,
+    "other_channel_interfaces_remain_isolated": true,
+    "output_collector_remains_exactly_120_per_polarity": true,
+    "source_is_exact_gated_output_collector": true
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1292,
+  "gds": "build/v3/four_channel_phase_distribution/v3_four_channel_phase_distribution.gds",
+  "gds_sha256": "42c6477590792b5748b3b79301a96231161d30c6034f4920225ea4464d3493ed",
+  "hierarchical_phase_nodes": [],
+  "next_gate": "place shared bias/reference support and route symmetric ref/vbias trees without entering the closed output or phase corridors",
+  "output_terminal_hits": {
+    "n": 120,
+    "p": 120
+  },
+  "phase_path_lengths_um": {
+    "phase_0": 37.97,
+    "phase_180": 37.97,
+    "phase_270": 37.97,
+    "phase_90": 37.97
+  },
+  "phase_terminal_hits": {
+    "phase_0": 32,
+    "phase_180": 32,
+    "phase_270": 32,
+    "phase_90": 32
+  },
+  "schema_version": 1,
+  "scope": "four shared phase inputs: matched top-corridor H-trees, direct geometry, and flat topology",
+  "sha256": {
+    "auditor": "e77462b0c3497939436e3ef323da05e0dc636d433864c5040b597877f70a4d43",
+    "flat_spice": "e1f8115819d97f2aa5d78badd05a82e4535acca72e438e4eaf71d43560a6fc1c",
+    "magic_log": "0ce677b0608004589beae7517a79280cdc54961ba94db450a951a04145b8f264",
+    "manifest": "e017dbff4b333cc504b8d853aee918cd40bfde0e9f825ad0feaf9d309e2bf117",
+    "precheck": "fd7dd632209d1d363070458cf26ef2fdd3a87cfb47bd6db5be7ef967fe8dee61"
+  },
+  "status": "pass",
+  "unexpected_unprefixed_nodes": []
+}

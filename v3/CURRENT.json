@@ -26,13 +26,14 @@
     "channel_selector_late_promotion",
     "channel_selector_late_promotion_readback",
     "four_channel_placement",
-    "four_channel_output_collection"
+    "four_channel_output_collection",
+    "four_channel_phase_distribution"
   ],
   "recovery_checkpoint": {
     "commit": "19b181c",
     "tag": "v3-one-channel-precleanup-20260727",
     "contents": "all pre-cleanup V3 sources and evidence, including the manual-routing canvas"
   },
-  "next_stage": "connect matched output roots to loads/pads with 2.0 um P compensation, then add shared phase, bias, power, control, and input infrastructure",
+  "next_stage": "place shared bias/reference support and connect symmetric ref/vbias trees, then output loads/pads, power, control, and inputs",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }
