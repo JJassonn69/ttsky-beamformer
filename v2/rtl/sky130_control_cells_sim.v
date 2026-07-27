@@ -6,6 +6,10 @@
 module sky130_fd_sc_hd__inv_1(input wire A, output wire Y, input wire VPWR, VGND);
     assign Y = ~A;
 endmodule
+
+module sky130_fd_sc_hd__buf_4(input wire A, output wire X, input wire VPWR, VGND);
+    assign X = A;
+endmodule
 module sky130_fd_sc_hd__and2_1(input wire A, B, output wire X, input wire VPWR, VGND);
     assign X = A & B;
 endmodule

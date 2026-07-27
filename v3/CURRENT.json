@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "status": "frozen one-channel macro plus frozen four-channel shared-power top",
-  "frozen_at": "2026-07-27",
+  "status": "frozen four-channel analog/power top plus placed and signal-routed centralized controller",
+  "frozen_at": "2026-07-28",
   "top_cell": "v3_channel_selector_late_promotion",
   "gds": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion.gds",
   "gds_sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
@@ -35,7 +35,11 @@
     "output_load_pair_block",
     "output_compensation_cap_block",
     "four_channel_output_load_integration",
-    "four_channel_power_integration"
+    "four_channel_power_integration",
+    "control_synthesis",
+    "control_mapping",
+    "control_placement",
+    "control_routing"
   ],
   "recovery_checkpoint": {
     "commit": "19b181c",
@@ -70,18 +74,20 @@
     "shared_support_integration": "v3/evidence/four_channel_shared_support_integration_gate.json",
     "output_load_integration": "v3/evidence/four_channel_output_load_integration_gate.json",
     "output_distributed_rc": "v3/evidence/four_channel_output_load_rc.json",
-    "shared_power_integration": "v3/evidence/four_channel_power_integration_gate.json"
+    "shared_power_integration": "v3/evidence/four_channel_power_integration_gate.json",
+    "centralized_control_signal_routing": "v3/evidence/physical_control_signal_routing_gate.json"
   },
   "current_top_level": {
-    "status": "frozen four-channel phase/bias/output/power integration; only valid source for the next top-level stage",
-    "top_cell": "v3_four_channel_power_integration",
-    "gds": "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration.gds",
-    "gds_sha256": "edeab1f4e3f79dbe8dd318df6e3a503669a0a16be8e54ea0a0f1e53b9acc6ddf",
-    "flat_spice": "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration_flat.spice",
-    "flat_spice_sha256": "45d81eeb7644a59114544db4282afab6605b0aa8c75fe5f884de3c061fd9bfcc",
-    "physical_gate": "v3/evidence/four_channel_power_integration_gate.json",
-    "review_image": "v3/frozen/four_channel_power_integration/full_routing.png"
+    "status": "frozen centralized-controller internal signal routing; only valid source for controller-power integration",
+    "top_cell": "v3_four_channel_ctrl_sig_routed",
+    "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+    "gds_sha256": "04d12ed4bf9d4618b1502b974839b071c50e1c02c9270e6b4cdb84663bc10c4e",
+    "flat_spice": "v3/frozen/controller_signal_routing/v3_four_channel_ctrl_sig_routed_flat.spice",
+    "flat_spice_sha256": "10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d",
+    "physical_gate": "v3/evidence/physical_control_signal_routing_gate.json",
+    "review_image": "v3/frozen/controller_signal_routing/04_all_controller_routes.png",
+    "integration_closeup": "v3/frozen/controller_signal_routing/05_m3_frozen_trunk_detour_closeup.png"
   },
-  "next_stage": "integrate centralized static control and four matched analog-input pad escapes around the frozen shared-power top",
+  "next_stage": "integrate controller VDPWR/VGND without disturbing the frozen 305-net signal route, then connect external handoffs and four matched analog-input pad escapes",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }

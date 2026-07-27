@@ -326,6 +326,31 @@ def map_netlist(source: dict[str, Any], top: str, cell_dir: Path) -> dict[str, A
                     instance, short_cell, pins, generic_type, cell_role(instance)
                 )
                 continue
+            if generic_type == "$_XNOR_":
+                # The deliberately small vendored physical library includes
+                # xor2_1 and inv_1 but not xnor2_1.  Preserve the exact generic
+                # function as a two-cell cone instead of introducing an
+                # untracked library dependency.
+                xor_net = f"{instance}/xor"
+                add_physical(
+                    f"{instance}/xor2",
+                    "xor2",
+                    {
+                        "A": connections["A"][0],
+                        "B": connections["B"][0],
+                        "X": xor_net,
+                    },
+                    generic_type,
+                    cell_role(instance),
+                )
+                add_physical(
+                    f"{instance}/inv",
+                    "inv",
+                    {"A": xor_net, "Y": connections["Y"][0]},
+                    generic_type,
+                    cell_role(instance),
+                )
+                continue
             if match := DFF_RE.match(generic_type):
                 reset_value = match.group(1)
                 short_cell = "dfrtp" if reset_value == "0" else "dfstp"

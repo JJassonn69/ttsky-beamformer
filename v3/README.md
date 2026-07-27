@@ -313,3 +313,31 @@ python3 -m unittest v3.tests.test_floorplan -v
 The runner refuses a support-tools checkout at any other commit. It reads the
 KLayout report databases and fails on nonzero markers even when the underlying
 deck process itself exits successfully.
+
+## Current integrated controller checkpoint
+
+The centralized four-channel controller is now physically placed and all 305
+of its internal signal nets are routed against the exact frozen analog and
+shared-power GDS.  The implementation contains 291 functional cells, 208 well
+taps, and 1507 fillers in 17 contiguous alternating rows.  Signal routing is
+limited to LI through Metal 3, leaving Metal 4 available for controller power
+and later top-level handoffs.
+
+The first controller-only route looked clean to OpenROAD but was correctly
+rejected by full-chip extraction: 21 nominally separate nets touched a frozen
+vertical Metal 3 ground spine that the controller-only DEF did not describe.
+The input generator now derives routing obstructions from the hash-locked
+frozen GDS itself.  The corrected route crosses that spine on Metal 2 and has
+zero extracted contacts to it.
+
+The frozen corrected checkpoint passes zero OpenROAD detailed-route
+violations, zero Magic DRC markers, and zero applicable direct-GDS Tiny
+Tapeout geometry markers.  More importantly, the complete flat extraction
+contains the exact 6037 expected devices and retains all 305 route labels as
+305 distinct electrical groups, each incident on at least two device lines.
+This closes internal signal routing; it does not yet close controller power,
+external handoffs, antenna repair, post-layout timing/RC, or the packaged
+Tiny Tapeout submission checks.
+
+See `evidence/physical_control_signal_routing_gate.json` and the immutable
+artifacts in `frozen/controller_signal_routing/`.

@@ -1,0 +1,9 @@
+# Technology-independent synthesis for V3 physical-control sizing and mapping.
+read_verilog v3/rtl/quadrature_generator.v
+read_verilog v3/rtl/physical_control_core.v
+hierarchy -check -top v3_physical_control_core
+synth -top v3_physical_control_core
+check
+tee -o build/v3/control_synthesis/generic_stats.json stat -json
+write_verilog -noattr build/v3/control_synthesis/generic_netlist.v
+write_json build/v3/control_synthesis/generic_netlist.json
