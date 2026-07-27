@@ -1,0 +1,387 @@
+{
+  "compensation_cap_block": {
+    "bbox_um": [
+      61.82,
+      101.7,
+      68.18,
+      106.3
+    ],
+    "gds": "build/v3/output_compensation_cap_block/v3_output_compensation_cap_block.gds",
+    "gds_sha256": "64baa294549a0887fcfcd3096d7ce3602ac1f4a0c68b9ddbac958f3c421932f1",
+    "ground_terminal_um": [
+      67.92,
+      104.0
+    ],
+    "magic_log": "build/v3/output_compensation_cap_block/magic_build.log",
+    "magic_log_sha256": "1e8e228c830234945d2e8f2cbfafc79f682eb21078c5b0bc2c8547316946276c",
+    "output_terminal_um": [
+      64.12,
+      104.0
+    ],
+    "precheck": "build/v3/output_compensation_cap_block/precheck/precheck_summary.json",
+    "precheck_sha256": "43c72eb17e8bff927d7bb770d73340e1728f1d2edaaef1327035a1248a4e6599",
+    "size_um": [
+      4.2,
+      4.2
+    ],
+    "top_cell": "v3_output_compensation_cap_block",
+    "translation_um": [
+      0.0,
+      0.0
+    ],
+    "typical_model_capacitance_ff": 38.03425,
+    "typical_model_formula": "2.00*(w-0.025)*(l-0.025) + 0.19*2*((w-0.025)+(l-0.025)) fF"
+  },
+  "compensation_routes": {
+    "VGND": [
+      {
+        "from": [
+          67.92,
+          104.0
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "to": [
+          67.92,
+          85.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          67.92,
+          85.0
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "to": [
+          45.2,
+          85.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          45.2,
+          85.0
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "to": [
+          45.2,
+          78.0
+        ],
+        "width_um": 0.8
+      }
+    ],
+    "combined_p": [
+      {
+        "from": [
+          74.98,
+          99.0
+        ],
+        "layer": "metal4",
+        "net": "combined_p",
+        "to": [
+          64.12,
+          99.0
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          64.12,
+          99.0
+        ],
+        "layer": "metal4",
+        "net": "combined_p",
+        "to": [
+          64.12,
+          104.0
+        ],
+        "width_um": 0.5
+      }
+    ]
+  },
+  "constraints": {
+    "analog_pin_max_width_um": 0.9,
+    "compensation_cap_block_is_exact_hash_bound": true,
+    "first_order_resistance_mismatch_limit_percent": 1.0,
+    "frozen_source_geometry_modified": false,
+    "full_rc_mismatch_limit_percent": 1.0,
+    "gds_timestamps_canonicalized": true,
+    "load_block_is_exact_hash_bound": true,
+    "maximum_direction_reversals": 0,
+    "source_is_exact_frozen_stage_input": true
+  },
+  "matching": {
+    "compensation_strategy": "one foundry MIM capacitor from combined_p to the existing VCM VGND trunk; exact size tuned by re-extraction",
+    "distributed_capacitance_matched": false,
+    "distributed_rc_gate_required": true,
+    "method": "first-order series sheet-resistance compensation without meanders",
+    "metric_definition": "collector_length/0.4 + sum(each escape segment length/its width)",
+    "metric_mismatch_percent": 0.221469,
+    "uncompensated_capacitance_mismatch_percent": 12.614393,
+    "uncompensated_extracted_capacitance_ff": {
+      "n": 342.11402,
+      "p": 301.51883
+    }
+  },
+  "output_load_block": {
+    "bbox_um": [
+      54.125,
+      114.285,
+      76.515,
+      131.715
+    ],
+    "gds": "build/v3/output_load_pair_block/v3_output_load_pair_block.gds",
+    "gds_sha256": "5d1c660c5912d46778f0c6aa1d4db8e4bb6b60d2470b815b53943d310f855f42",
+    "magic_log": "build/v3/output_load_pair_block/magic_build.log",
+    "magic_log_sha256": "14a11f6ff4d3a2abbb829fbd68345b31975604c7f774a4cc2288ba2c026fbf54",
+    "precheck": "build/v3/output_load_pair_block/precheck_summary.json",
+    "precheck_sha256": "5bbf34de8f7cb022e6117b8940ff9b8a669facd1294479d814b8194714db7b53",
+    "top_cell": "v3_output_load_pair_block",
+    "translation_um": [
+      0.0,
+      0.0
+    ]
+  },
+  "provenance": {
+    "composer": "v3/tools/compose_four_channel_output_load_integration.py",
+    "composer_sha256": "02cb2c3a851653990d41d66569c98923bae434316c0806f1bb434e9ef72fd6bd",
+    "generator": "v3/tools/build_four_channel_output_load_integration.py",
+    "generator_sha256": "ce447856b9bb5651c9cd72b5767a661bd73c6ae95701f9fb5b2aa2e952b65a78"
+  },
+  "routes": {
+    "n": {
+      "analog_pin": "ua[5]",
+      "analog_pin_um": [
+        55.66,
+        0.5
+      ],
+      "collector_root_um": [
+        117.17,
+        147.3
+      ],
+      "collector_source_to_root_length_um": 32.37,
+      "direction_reversals": 0,
+      "first_order_sheet_resistance_metric": 358.45,
+      "load_port_um": [
+        55.66,
+        115.29
+      ],
+      "net": "combined_n",
+      "pad_size_um": [
+        0.9,
+        1.0
+      ],
+      "root_to_pad_length_um": 208.31,
+      "segments": [
+        {
+          "from": [
+            117.17,
+            147.3
+          ],
+          "layer": "metal3",
+          "net": "combined_n",
+          "to": [
+            84.0,
+            147.3
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            84.0,
+            147.3
+          ],
+          "layer": "metal3",
+          "net": "combined_n",
+          "to": [
+            58.5,
+            147.3
+          ],
+          "width_um": 0.9
+        },
+        {
+          "from": [
+            58.5,
+            147.3
+          ],
+          "layer": "metal3",
+          "net": "combined_n",
+          "to": [
+            58.5,
+            115.29
+          ],
+          "width_um": 0.9
+        },
+        {
+          "from": [
+            58.5,
+            115.29
+          ],
+          "layer": "metal3",
+          "net": "combined_n",
+          "to": [
+            55.66,
+            115.29
+          ],
+          "width_um": 0.9
+        },
+        {
+          "from": [
+            55.66,
+            115.29
+          ],
+          "layer": "metal4",
+          "net": "combined_n",
+          "to": [
+            55.66,
+            0.5
+          ],
+          "width_um": 0.9
+        }
+      ],
+      "via2_points_um": [
+        [
+          55.66,
+          115.29
+        ]
+      ],
+      "via3_points_um": [
+        [
+          55.66,
+          115.29
+        ]
+      ],
+      "width_um": 0.9
+    },
+    "p": {
+      "analog_pin": "ua[4]",
+      "analog_pin_um": [
+        74.98,
+        0.5
+      ],
+      "collector_root_um": [
+        116.37,
+        145.3
+      ],
+      "collector_source_to_root_length_um": 30.37,
+      "direction_reversals": 0,
+      "first_order_sheet_resistance_metric": 359.244737,
+      "load_port_um": [
+        74.98,
+        115.29
+      ],
+      "net": "combined_p",
+      "pad_size_um": [
+        0.9,
+        1.0
+      ],
+      "root_to_pad_length_um": 186.19,
+      "segments": [
+        {
+          "from": [
+            116.37,
+            145.3
+          ],
+          "layer": "metal3",
+          "net": "combined_p",
+          "to": [
+            84.0,
+            145.3
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            84.0,
+            145.3
+          ],
+          "layer": "metal3",
+          "net": "combined_p",
+          "to": [
+            77.5,
+            145.3
+          ],
+          "width_um": 0.76
+        },
+        {
+          "from": [
+            77.5,
+            145.3
+          ],
+          "layer": "metal3",
+          "net": "combined_p",
+          "to": [
+            77.5,
+            115.29
+          ],
+          "width_um": 0.76
+        },
+        {
+          "from": [
+            77.5,
+            115.29
+          ],
+          "layer": "metal3",
+          "net": "combined_p",
+          "to": [
+            74.98,
+            115.29
+          ],
+          "width_um": 0.76
+        },
+        {
+          "from": [
+            74.98,
+            115.29
+          ],
+          "layer": "metal4",
+          "net": "combined_p",
+          "to": [
+            74.98,
+            0.5
+          ],
+          "width_um": 0.76
+        }
+      ],
+      "via2_points_um": [
+        [
+          74.98,
+          115.29
+        ]
+      ],
+      "via3_points_um": [
+        [
+          74.98,
+          115.29
+        ]
+      ],
+      "width_um": 0.76
+    }
+  },
+  "routing_decisions": {
+    "compensation_ground": "M3 dogleg below the REF crossing into the existing VCM VGND trunk",
+    "compensation_top_plate": "M4 approaches C1 vertically from below the capacitor bbox and never crosses the C2 Via-3 strip",
+    "load_placement": "west-side clear corridor; the old nominal load box is occupied by the final channel macro",
+    "metal3": "direct collector-to-load paths stay outside load resistor bodies",
+    "metal4": "one straight drop from each load terminal to its analog pin",
+    "no_floating_stubs": true,
+    "no_meanders": true,
+    "no_orphan_vias": true,
+    "no_u_turns": true
+  },
+  "schema_version": 1,
+  "source": {
+    "current_manifest": "v3/CURRENT.json",
+    "current_manifest_sha256": "e4cc6068508d111043eed7ced07c7a966b6e85137709e81fe23b7df2fdd04d1c",
+    "gds": "v3/frozen/four_channel_integration/v3_four_channel_shared_support_integration.gds",
+    "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228",
+    "top_cell": "v3_four_channel_shared_support_integration"
+  },
+  "status": "output-load integration candidate; exact GDS and distributed-RC checks pending",
+  "top_cell": "v3_four_channel_output_load_integration",
+  "units": "um"
+}

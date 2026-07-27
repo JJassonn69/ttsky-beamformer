@@ -11,9 +11,10 @@ four-channel floorplan. Pilot, manual-canvas, and pre-late-promotion GDS files
 are historical and must not be used as physical inputs.
 
 Four immutable copies of this macro are now placed. Their differential output
-collectors, four phase trees, balanced REF/VBIAS trees, exact VCM block, and
-complete tail-reference block are integrated and hash-gated. Power, digital
-control, analog-input pad escapes, and final output load/pad routing remain.
+collectors, four phase trees, balanced REF/VBIAS trees, exact VCM block,
+complete tail-reference block, differential output loads, capacitance
+compensation, and direct output-pad escapes are integrated and hash-gated.
+Power, static digital control, and four analog-input pad escapes remain.
 The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
@@ -80,6 +81,19 @@ two C1 terminals. Integrated extraction now reports 1,312 devices, one 69-hit
 REF net, one 79-hit VBIAS net, five correctly polarized MIM capacitors, zero
 Magic DRC markers, and zero direct-GDS precheck markers. See
 `evidence/four_channel_shared_support_integration_gate.json`.
+
+The output stage adds two exact high-poly load resistors tied to the future
+shared VDPWR rail and routes the differential sum directly to `ua[4]` and
+`ua[5]`. The initially legal geometry had 12.61% extracted output-capacitance
+mismatch, so it was rejected. The frozen replacement uses a compact 4.20 um
+P-side MIM as deliberate compensation while keeping both signal routes direct;
+it does not use a delay meander. Pad-to-mixer distributed extraction reports
+0.3334% mean route-resistance mismatch, 0.1852% effective capacitance mismatch,
+and 0.1652% estimated time-constant mismatch. Magic DRC and every pinned
+direct-GDS shuttle precheck remain at zero markers. See
+`evidence/four_channel_output_load_integration_gate.json`,
+`evidence/four_channel_output_load_rc.json`, and
+`frozen/four_channel_output_load_integration/README.md`.
 
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
