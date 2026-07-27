@@ -150,7 +150,7 @@
     "composer": "v3/tools/compose_four_channel_output_load_integration.py",
     "composer_sha256": "02cb2c3a851653990d41d66569c98923bae434316c0806f1bb434e9ef72fd6bd",
     "generator": "v3/tools/build_four_channel_output_load_integration.py",
-    "generator_sha256": "ce447856b9bb5651c9cd72b5767a661bd73c6ae95701f9fb5b2aa2e952b65a78"
+    "generator_sha256": "a1929352193469073136bcacef793bd332098942fe1661bd050f6cf5cb80fd63"
   },
   "routes": {
     "n": {
@@ -376,9 +376,9 @@
   "schema_version": 1,
   "source": {
     "current_manifest": "v3/CURRENT.json",
-    "current_manifest_sha256": "e4cc6068508d111043eed7ced07c7a966b6e85137709e81fe23b7df2fdd04d1c",
     "gds": "v3/frozen/four_channel_integration/v3_four_channel_shared_support_integration.gds",
     "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228",
+    "stage_binding_sha256": "72019714208cf8d1488793f141899f17ba562c4686e5fa4321753aaf90d512a5",
     "top_cell": "v3_four_channel_shared_support_integration"
   },
   "status": "output-load integration candidate; exact GDS and distributed-RC checks pending",

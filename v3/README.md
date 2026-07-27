@@ -13,8 +13,9 @@ are historical and must not be used as physical inputs.
 Four immutable copies of this macro are now placed. Their differential output
 collectors, four phase trees, balanced REF/VBIAS trees, exact VCM block,
 complete tail-reference block, differential output loads, capacitance
-compensation, and direct output-pad escapes are integrated and hash-gated.
-Power, static digital control, and four analog-input pad escapes remain.
+compensation, direct output-pad escapes, and one shared 1.8 V power/ground
+network are integrated and hash-gated. Static digital control and four
+analog-input pad escapes remain.
 The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
@@ -94,6 +95,20 @@ direct-GDS shuttle precheck remain at zero markers. See
 `evidence/four_channel_output_load_integration_gate.json`,
 `evidence/four_channel_output_load_rc.json`, and
 `frozen/four_channel_output_load_integration/README.md`.
+
+The shared-power stage joins the four channel `VPWR` ports, the VCM divider,
+the tail-bias block, and both output loads to one external `VDPWR` rail. It
+also joins the channel guards/substrates and support grounds to one `VGND`
+rail. A first candidate passed geometry DRC but shorted these rails where two
+orthogonal Metal-4 trunks crossed. It was rejected by flat extraction. The
+frozen replacement moves the west supply crossing to Metal 3 and extracts as
+exactly two separate rails: 740 `VDPWR` and 1,360 `VGND` terminal occurrences,
+with no residual hierarchical supply nodes. Magic DRC and every pinned
+direct-GDS precheck report zero markers. A generator-level regression now
+rejects any same-layer overlap between new supply and ground routes, pin
+shapes, or via landings. See
+`evidence/four_channel_power_integration_gate.json` and
+`frozen/four_channel_power_integration/README.md`.
 
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "frozen one-channel macro plus frozen four-channel output-integrated top",
+  "status": "frozen one-channel macro plus frozen four-channel shared-power top",
   "frozen_at": "2026-07-27",
   "top_cell": "v3_channel_selector_late_promotion",
   "gds": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion.gds",
@@ -34,7 +34,8 @@
     "four_channel_shared_support_integration",
     "output_load_pair_block",
     "output_compensation_cap_block",
-    "four_channel_output_load_integration"
+    "four_channel_output_load_integration",
+    "four_channel_power_integration"
   ],
   "recovery_checkpoint": {
     "commit": "19b181c",
@@ -47,6 +48,18 @@
       "top_cell": "v3_four_channel_shared_support_integration",
       "gds": "v3/frozen/four_channel_integration/v3_four_channel_shared_support_integration.gds",
       "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228"
+    },
+    "four_channel_power_integration": {
+      "status": "immutable upstream input reserved for shared-power integration",
+      "top_cell": "v3_four_channel_output_load_integration",
+      "gds": "v3/frozen/four_channel_output_load_integration/v3_four_channel_output_load_integration.gds",
+      "gds_sha256": "16c045e05f05168008237a1179d9b89af0c5cbc1120ef431507e42f1786f52f9"
+    },
+    "four_channel_control_integration": {
+      "status": "immutable upstream input reserved for centralized static-control integration",
+      "top_cell": "v3_four_channel_power_integration",
+      "gds": "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration.gds",
+      "gds_sha256": "edeab1f4e3f79dbe8dd318df6e3a503669a0a16be8e54ea0a0f1e53b9acc6ddf"
     }
   },
   "four_channel_integration": {
@@ -56,19 +69,19 @@
     "bias_reference_distribution": "v3/evidence/four_channel_bias_reference_distribution_gate.json",
     "shared_support_integration": "v3/evidence/four_channel_shared_support_integration_gate.json",
     "output_load_integration": "v3/evidence/four_channel_output_load_integration_gate.json",
-    "output_distributed_rc": "v3/evidence/four_channel_output_load_rc.json"
+    "output_distributed_rc": "v3/evidence/four_channel_output_load_rc.json",
+    "shared_power_integration": "v3/evidence/four_channel_power_integration_gate.json"
   },
   "current_top_level": {
-    "status": "frozen four-channel phase/bias/output-load/pad integration; only valid source for the next top-level stage",
-    "top_cell": "v3_four_channel_output_load_integration",
-    "gds": "v3/frozen/four_channel_output_load_integration/v3_four_channel_output_load_integration.gds",
-    "gds_sha256": "16c045e05f05168008237a1179d9b89af0c5cbc1120ef431507e42f1786f52f9",
-    "flat_spice": "v3/frozen/four_channel_output_load_integration/v3_four_channel_output_load_integration_flat.spice",
-    "flat_spice_sha256": "a35db9f1c1345b1644b454875d930439fbd393f1ffdd987c63bf5347358be0e8",
-    "physical_gate": "v3/evidence/four_channel_output_load_integration_gate.json",
-    "distributed_rc_gate": "v3/evidence/four_channel_output_load_rc.json",
-    "review_image": "v3/frozen/four_channel_output_load_integration/full_routing.png"
+    "status": "frozen four-channel phase/bias/output/power integration; only valid source for the next top-level stage",
+    "top_cell": "v3_four_channel_power_integration",
+    "gds": "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration.gds",
+    "gds_sha256": "edeab1f4e3f79dbe8dd318df6e3a503669a0a16be8e54ea0a0f1e53b9acc6ddf",
+    "flat_spice": "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration_flat.spice",
+    "flat_spice_sha256": "45d81eeb7644a59114544db4282afab6605b0aa8c75fe5f884de3c061fd9bfcc",
+    "physical_gate": "v3/evidence/four_channel_power_integration_gate.json",
+    "review_image": "v3/frozen/four_channel_power_integration/full_routing.png"
   },
-  "next_stage": "close shared power, static control, and four analog-input pad escapes around the frozen four-channel output-integrated top",
+  "next_stage": "integrate centralized static control and four matched analog-input pad escapes around the frozen shared-power top",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }

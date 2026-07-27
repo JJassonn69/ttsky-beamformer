@@ -25,6 +25,12 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def record_sha256(record: dict[str, Any]) -> str:
+    """Hash only the immutable stage binding, not the evolving CURRENT file."""
+    payload = json.dumps(record, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def marker(text: str, name: str) -> int | None:
     match = re.search(rf"^{re.escape(name)}=(\d+)$", text, flags=re.MULTILINE)
     return int(match.group(1)) if match else None
@@ -127,7 +133,7 @@ def build() -> dict[str, Any]:
             "gds_sha256": source["gds_sha256"],
             "top_cell": source["top_cell"],
             "current_manifest": str(CURRENT.relative_to(ROOT)),
-            "current_manifest_sha256": sha256(CURRENT),
+            "stage_binding_sha256": record_sha256(source),
         },
         "output_load_block": {
             "gds": str(BLOCK_GDS.relative_to(ROOT)),

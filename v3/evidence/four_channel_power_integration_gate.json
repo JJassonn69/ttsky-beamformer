@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "control_and_input_interfaces_remain_isolated": true,
+    "device_population_is_exact": true,
+    "direct_gds_precheck_zero": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "model_population_is_exact": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_stale_hierarchical_power_nodes_remain": true,
+    "no_unexpected_unprefixed_nodes": true,
+    "one_unified_vdpwr_reaches_every_expected_terminal": true,
+    "one_unified_vgnd_reaches_every_expected_terminal": true,
+    "only_nine_qualified_dummy_feedback_markers": true,
+    "output_topology_is_preserved": true,
+    "phase_trees_remain_exactly_32_terminals_each": true,
+    "ref_and_vbias_topology_is_preserved": true,
+    "source_is_exact_frozen_upstream_top": true,
+    "uses_only_the_1v8_supply_domain": true,
+    "vdpwr_and_vgnd_are_not_equivalent": true
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1315,
+  "gds": "build/v3/four_channel_power_integration/v3_four_channel_power_integration.gds",
+  "gds_sha256": "edeab1f4e3f79dbe8dd318df6e3a503669a0a16be8e54ea0a0f1e53b9acc6ddf",
+  "model_population": {
+    "sky130_fd_pr__cap_mim_m3_1": 6,
+    "sky130_fd_pr__nfet_01v8": 880,
+    "sky130_fd_pr__pfet_01v8_hvt": 416,
+    "sky130_fd_pr__res_high_po_1p41": 3,
+    "sky130_fd_pr__res_xhigh_po_0p35": 4,
+    "sky130_fd_pr__res_xhigh_po_1p41": 6
+  },
+  "next_gate": "freeze shared power, then integrate static control and four analog-input pad escapes",
+  "output_terminal_hits": {
+    "combined_n": 121,
+    "combined_p": 122
+  },
+  "phase_terminal_hits": {
+    "phase_0": 32,
+    "phase_180": 32,
+    "phase_270": 32,
+    "phase_90": 32
+  },
+  "power_terminal_hits": {
+    "VDPWR": 740,
+    "VGND": 1360
+  },
+  "rail_equivalences": [],
+  "schema_version": 1,
+  "scope": "exact shared VDPWR/VGND routing, rail isolation, and preserved four-channel topology",
+  "sha256": {
+    "auditor": "589ecc6013f61077cedfa97c97ee19996b62699960bcae5abe085b6082bc7d0c",
+    "flat_spice": "45d81eeb7644a59114544db4282afab6605b0aa8c75fe5f884de3c061fd9bfcc",
+    "magic_ext": "52cc68b502f6bea928f57990dc95a7da19a1a225b5fb799ca7b3ac5d379c8f73",
+    "magic_log": "58c85f5f5ebd72af283a93175266271f68e81fa6f56a170d0e9ca1e8216698da",
+    "manifest": "5d0fb80932339bd66a0309561915639519197d5f6c1e9bf952a69fd19c6f0081",
+    "precheck": "0123844267748963d481fa160b7b3e38ac4ae713616540dd3e51ced7bb2b934b"
+  },
+  "stale_hierarchical_power_nodes": [],
+  "status": "pass",
+  "support_terminal_hits": {
+    "ref": 69,
+    "vbias": 79
+  },
+  "unexpected_unprefixed_nodes": []
+}
