@@ -166,7 +166,6 @@ def build() -> dict[str, Any]:
         "provenance": {
             "generator": "v3/tools/build_four_channel_placement.py",
             "generator_sha256": sha256(Path(__file__)),
-            "current_manifest_sha256": sha256(CURRENT),
         },
     }
 

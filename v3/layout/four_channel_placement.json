@@ -967,9 +967,8 @@
     "reason": "the 19.32 um macro width exactly equals the analog-pin pitch"
   },
   "provenance": {
-    "current_manifest_sha256": "42325bfa6071d0cb7c2b63cee32aa4533b134f5f4ee94c958e2181e9627f659a",
     "generator": "v3/tools/build_four_channel_placement.py",
-    "generator_sha256": "381a8d9bfe325586c306de462a1b5eca2b2671b1f7d60571539a153386247362"
+    "generator_sha256": "472bd77da78e7f91543b6cbf0c343a8e47dd37210216c0ad577d0459958794fd"
   },
   "routing_sequence": [
     "prove exact-abutment DRC and no hierarchy/port aliasing",

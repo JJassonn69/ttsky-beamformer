@@ -1,0 +1,54 @@
+{
+  "checks": {
+    "all_paths_equal_within_each_polarity": true,
+    "both_collectors_reach_exactly_120_output_terminals": true,
+    "collectors_touch_only_0p65um_nfet_switches": true,
+    "device_population_unchanged": true,
+    "direct_gds_precheck_zero": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "model_population_unchanged": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_per_channel_output_nodes_remain": true,
+    "no_unexpected_unprefixed_nodes": true,
+    "only_nine_hierarchical_dummy_feedback_markers": true,
+    "other_channel_interfaces_remain_isolated": true,
+    "p_root_compensation_is_explicit": true,
+    "source_is_exact_gated_placement": true
+  },
+  "combined_terminal_hits": {
+    "combined_n_internal": 120,
+    "combined_p_internal": 120
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1292,
+  "gds": "build/v3/four_channel_output_collection/v3_four_channel_output_collection.gds",
+  "gds_sha256": "d6d7ead0a113df8a532468fe6554a79bfebe0e684189b99fbe15c3fd74845a70",
+  "models": {
+    "sky130_fd_pr__nfet_01v8": 872,
+    "sky130_fd_pr__pfet_01v8_hvt": 416,
+    "sky130_fd_pr__res_xhigh_po_0p35": 4
+  },
+  "next_gate": "connect matched root-to-load/pad escapes while adding 2.0 um to P, then run distributed conductor RC",
+  "p_root_compensation_required_um": 2.0,
+  "path_lengths_um": {
+    "n": 32.37,
+    "p": 30.37
+  },
+  "rejected_candidate": {
+    "architecture": "N collector promoted to Metal 4 inside the channel corridor",
+    "reason": "Magic extracted combined_n on 352 terminals because the vertical M4 escapes crossed selector phase conductors"
+  },
+  "schema_version": 1,
+  "scope": "four-channel differential current-summing H-trees: direct geometry, flat topology, and namespace isolation",
+  "sha256": {
+    "auditor": "7447e1d3609dc06202c73bcd04b1e8446b647409137e0df602f3b54e5ccf73cc",
+    "flat_spice": "57ad4eaadb1577d7961c839ec467899de4b79b6df0bbee1e0b9ea715af86d7aa",
+    "magic_log": "212593b678c652122224a80422c62c0e713f6f88a868aede7bc2d1610deabc18",
+    "manifest": "2eeca67e551574cb07c0e12de11a4522cec209686a833855cebb3eb69c151328",
+    "precheck": "bd939087f2d713b3fea697a7459497d21378191811e3d927bf2defd238fc1af2"
+  },
+  "stale_output_nodes": [],
+  "status": "pass",
+  "unexpected_unprefixed_nodes": []
+}

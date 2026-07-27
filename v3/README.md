@@ -37,6 +37,18 @@ The placement GDS contains no new shared conductors. The next routing gate is
 the differential output collector; it is reserved first because its symmetry
 and loading directly set beam-sum gain and phase balance.
 
+The first output-collector trial intentionally demonstrated why geometry-only
+DRC is insufficient: an N tree promoted through M4 passed DRC but crossed the
+selector phase network and reached 352 device terminals. That candidate was
+rejected. The closed collector keeps both polarities in a verified empty M3
+corridor, on separate vertical levels. Magic now finds exactly 120 intended
+mixer-output terminals on each of `combined_p_internal` and
+`combined_n_internal`, with all other interfaces isolated. The N tree is 2.0
+um longer because of the vertically separated differential bands; the final
+root-to-load/pad route must add 2.0 um to P and prove electrical equality with
+distributed RC. See `evidence/four_channel_output_collection_gate.json` and
+`evidence/four_channel_output_collection_review.png`.
+
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
 of the active Tiny Tapeout submission artifacts, is modified by the initial V3
