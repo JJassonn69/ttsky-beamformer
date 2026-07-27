@@ -24,13 +24,14 @@
   },
   "active_generated_build_entries": [
     "channel_selector_late_promotion",
-    "channel_selector_late_promotion_readback"
+    "channel_selector_late_promotion_readback",
+    "four_channel_placement"
   ],
   "recovery_checkpoint": {
     "commit": "19b181c",
     "tag": "v3-one-channel-precleanup-20260727",
     "contents": "all pre-cleanup V3 sources and evidence, including the manual-routing canvas"
   },
-  "next_stage": "place four immutable copies and connect shared phase, bias, power, control, input, and output infrastructure",
+  "next_stage": "validate the four-copy abutment placement, then connect shared phase, bias, power, control, input, and output infrastructure",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }

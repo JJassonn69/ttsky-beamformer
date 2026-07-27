@@ -16,6 +16,27 @@ The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
 
+## Four-channel placement gate
+
+`layout/four_channel_placement.json` places four immutable R0 copies of the
+frozen macro as adjacent 19.32 um columns. The array is 77.28 um by 184.21 um,
+and the four `element_input` axes land exactly on `ua[0]` through `ua[3]`.
+The generated placement GDS has SHA-256
+`16908591b0896d5bc9dbe0eed99eec564c5f538a650e8e85d4a6db04078c8f33`.
+
+The exact-abutment pilot passes the pinned Tiny Tapeout FEOL, BEOL, off-grid,
+zero-area, pin-purpose, project-flat, and Magic DRC checks. Flat extraction
+finds 1,292 devices: four equal 314-device non-dummy channel populations plus
+36 grounded edge dummies. Every analog, phase, output, bias, power, and control
+interface remains in four independent channel namespaces; only the intended
+substrate/ground node is shared before top-level routing. See
+`evidence/four_channel_placement_gate.json` and
+`evidence/four_channel_placement_review.png`.
+
+The placement GDS contains no new shared conductors. The next routing gate is
+the differential output collector; it is reserved first because its symmetry
+and loading directly set beam-sum gain and phase balance.
+
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
 of the active Tiny Tapeout submission artifacts, is modified by the initial V3

@@ -1,0 +1,1058 @@
+{
+  "constraints": {
+    "channel_count": 4,
+    "floating_stubs_allowed": false,
+    "inter_macro_gap_um": 0.0,
+    "inter_macro_overlap_allowed": false,
+    "macro_mutation_allowed": false,
+    "maximum_direction_reversals_per_escape": 0,
+    "orientation_locked": "R0",
+    "orphan_vias_allowed": false,
+    "shared_routing_added_in_this_stage": false
+  },
+  "die_bbox_um": [
+    0.0,
+    0.0,
+    334.88,
+    225.76
+  ],
+  "frozen_macro": {
+    "bbox_um": [
+      20.0,
+      -7.21,
+      39.32,
+      177.0
+    ],
+    "gds": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion.gds",
+    "gds_sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
+    "interface_manifest": "v3/layout/channel_selector_join_late_promotion.json",
+    "interface_manifest_sha256": "a5a697cbd4ccd062012894726bcf6eae3ec8bdfcf6a1c22b2b4f238515cf58e6",
+    "top_cell": "v3_channel_selector_late_promotion"
+  },
+  "instances": [
+    {
+      "analog_input_pin": "ua[0]",
+      "bbox_um": [
+        139.82,
+        8.0,
+        159.14,
+        192.21
+      ],
+      "channel": 0,
+      "name": "XCHANNEL0",
+      "orientation": "R0",
+      "ports": {
+        "VGND": {
+          "at_um": [
+            144.63,
+            184.73
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VGND"
+        },
+        "VPWR": {
+          "at_um": [
+            142.07,
+            187.45
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VPWR"
+        },
+        "channel_enable": {
+          "at_um": [
+            155.14,
+            179.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "channel_enable"
+        },
+        "element_input": {
+          "at_um": [
+            152.26,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "element_input"
+        },
+        "group0_bit0": {
+          "at_um": [
+            155.14,
+            187.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit0"
+        },
+        "group0_bit1": {
+          "at_um": [
+            155.14,
+            186.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit1"
+        },
+        "group1_bit0": {
+          "at_um": [
+            155.14,
+            185.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit0"
+        },
+        "group1_bit1": {
+          "at_um": [
+            155.14,
+            184.61
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit1"
+        },
+        "group2_bit0": {
+          "at_um": [
+            155.14,
+            183.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit0"
+        },
+        "group2_bit1": {
+          "at_um": [
+            155.14,
+            183.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit1"
+        },
+        "group3_bit0": {
+          "at_um": [
+            155.14,
+            182.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit0"
+        },
+        "group3_bit1": {
+          "at_um": [
+            155.14,
+            181.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit1"
+        },
+        "mixers_blank": {
+          "at_um": [
+            155.14,
+            179.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "mixers_blank"
+        },
+        "phase_0": {
+          "at_um": [
+            140.24,
+            191.21
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_0"
+        },
+        "phase_180": {
+          "at_um": [
+            140.24,
+            189.61
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_180"
+        },
+        "phase_270": {
+          "at_um": [
+            140.24,
+            188.81
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_270"
+        },
+        "phase_90": {
+          "at_um": [
+            140.24,
+            190.41
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_90"
+        },
+        "ref": {
+          "at_um": [
+            153.66,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "ref"
+        },
+        "row_outn": {
+          "at_um": [
+            146.15,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outn"
+        },
+        "row_outp": {
+          "at_um": [
+            145.35,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outp"
+        },
+        "vbias": {
+          "at_um": [
+            152.96,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "vbias"
+        }
+      },
+      "translation_um": [
+        119.82,
+        15.21
+      ]
+    },
+    {
+      "analog_input_pin": "ua[1]",
+      "bbox_um": [
+        120.5,
+        8.0,
+        139.82,
+        192.21
+      ],
+      "channel": 1,
+      "name": "XCHANNEL1",
+      "orientation": "R0",
+      "ports": {
+        "VGND": {
+          "at_um": [
+            125.31,
+            184.73
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VGND"
+        },
+        "VPWR": {
+          "at_um": [
+            122.75,
+            187.45
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VPWR"
+        },
+        "channel_enable": {
+          "at_um": [
+            135.82,
+            179.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "channel_enable"
+        },
+        "element_input": {
+          "at_um": [
+            132.94,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "element_input"
+        },
+        "group0_bit0": {
+          "at_um": [
+            135.82,
+            187.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit0"
+        },
+        "group0_bit1": {
+          "at_um": [
+            135.82,
+            186.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit1"
+        },
+        "group1_bit0": {
+          "at_um": [
+            135.82,
+            185.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit0"
+        },
+        "group1_bit1": {
+          "at_um": [
+            135.82,
+            184.61
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit1"
+        },
+        "group2_bit0": {
+          "at_um": [
+            135.82,
+            183.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit0"
+        },
+        "group2_bit1": {
+          "at_um": [
+            135.82,
+            183.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit1"
+        },
+        "group3_bit0": {
+          "at_um": [
+            135.82,
+            182.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit0"
+        },
+        "group3_bit1": {
+          "at_um": [
+            135.82,
+            181.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit1"
+        },
+        "mixers_blank": {
+          "at_um": [
+            135.82,
+            179.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "mixers_blank"
+        },
+        "phase_0": {
+          "at_um": [
+            120.92,
+            191.21
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_0"
+        },
+        "phase_180": {
+          "at_um": [
+            120.92,
+            189.61
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_180"
+        },
+        "phase_270": {
+          "at_um": [
+            120.92,
+            188.81
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_270"
+        },
+        "phase_90": {
+          "at_um": [
+            120.92,
+            190.41
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_90"
+        },
+        "ref": {
+          "at_um": [
+            134.34,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "ref"
+        },
+        "row_outn": {
+          "at_um": [
+            126.83,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outn"
+        },
+        "row_outp": {
+          "at_um": [
+            126.03,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outp"
+        },
+        "vbias": {
+          "at_um": [
+            133.64,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "vbias"
+        }
+      },
+      "translation_um": [
+        100.5,
+        15.21
+      ]
+    },
+    {
+      "analog_input_pin": "ua[2]",
+      "bbox_um": [
+        101.18,
+        8.0,
+        120.5,
+        192.21
+      ],
+      "channel": 2,
+      "name": "XCHANNEL2",
+      "orientation": "R0",
+      "ports": {
+        "VGND": {
+          "at_um": [
+            105.99,
+            184.73
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VGND"
+        },
+        "VPWR": {
+          "at_um": [
+            103.43,
+            187.45
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VPWR"
+        },
+        "channel_enable": {
+          "at_um": [
+            116.5,
+            179.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "channel_enable"
+        },
+        "element_input": {
+          "at_um": [
+            113.62,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "element_input"
+        },
+        "group0_bit0": {
+          "at_um": [
+            116.5,
+            187.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit0"
+        },
+        "group0_bit1": {
+          "at_um": [
+            116.5,
+            186.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit1"
+        },
+        "group1_bit0": {
+          "at_um": [
+            116.5,
+            185.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit0"
+        },
+        "group1_bit1": {
+          "at_um": [
+            116.5,
+            184.61
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit1"
+        },
+        "group2_bit0": {
+          "at_um": [
+            116.5,
+            183.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit0"
+        },
+        "group2_bit1": {
+          "at_um": [
+            116.5,
+            183.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit1"
+        },
+        "group3_bit0": {
+          "at_um": [
+            116.5,
+            182.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit0"
+        },
+        "group3_bit1": {
+          "at_um": [
+            116.5,
+            181.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit1"
+        },
+        "mixers_blank": {
+          "at_um": [
+            116.5,
+            179.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "mixers_blank"
+        },
+        "phase_0": {
+          "at_um": [
+            101.6,
+            191.21
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_0"
+        },
+        "phase_180": {
+          "at_um": [
+            101.6,
+            189.61
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_180"
+        },
+        "phase_270": {
+          "at_um": [
+            101.6,
+            188.81
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_270"
+        },
+        "phase_90": {
+          "at_um": [
+            101.6,
+            190.41
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_90"
+        },
+        "ref": {
+          "at_um": [
+            115.02,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "ref"
+        },
+        "row_outn": {
+          "at_um": [
+            107.51,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outn"
+        },
+        "row_outp": {
+          "at_um": [
+            106.71,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outp"
+        },
+        "vbias": {
+          "at_um": [
+            114.32,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "vbias"
+        }
+      },
+      "translation_um": [
+        81.18,
+        15.21
+      ]
+    },
+    {
+      "analog_input_pin": "ua[3]",
+      "bbox_um": [
+        81.86,
+        8.0,
+        101.18,
+        192.21
+      ],
+      "channel": 3,
+      "name": "XCHANNEL3",
+      "orientation": "R0",
+      "ports": {
+        "VGND": {
+          "at_um": [
+            86.67,
+            184.73
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VGND"
+        },
+        "VPWR": {
+          "at_um": [
+            84.11,
+            187.45
+          ],
+          "direction": "inout",
+          "domain": "power",
+          "layer": "metal4_label",
+          "name": "VPWR"
+        },
+        "channel_enable": {
+          "at_um": [
+            97.18,
+            179.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "channel_enable"
+        },
+        "element_input": {
+          "at_um": [
+            94.3,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "element_input"
+        },
+        "group0_bit0": {
+          "at_um": [
+            97.18,
+            187.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit0"
+        },
+        "group0_bit1": {
+          "at_um": [
+            97.18,
+            186.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group0_bit1"
+        },
+        "group1_bit0": {
+          "at_um": [
+            97.18,
+            185.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit0"
+        },
+        "group1_bit1": {
+          "at_um": [
+            97.18,
+            184.61
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group1_bit1"
+        },
+        "group2_bit0": {
+          "at_um": [
+            97.18,
+            183.81
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit0"
+        },
+        "group2_bit1": {
+          "at_um": [
+            97.18,
+            183.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group2_bit1"
+        },
+        "group3_bit0": {
+          "at_um": [
+            97.18,
+            182.21
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit0"
+        },
+        "group3_bit1": {
+          "at_um": [
+            97.18,
+            181.41
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "group3_bit1"
+        },
+        "mixers_blank": {
+          "at_um": [
+            97.18,
+            179.01
+          ],
+          "direction": "input",
+          "domain": "digital",
+          "layer": "metal3_label",
+          "name": "mixers_blank"
+        },
+        "phase_0": {
+          "at_um": [
+            82.28,
+            191.21
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_0"
+        },
+        "phase_180": {
+          "at_um": [
+            82.28,
+            189.61
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_180"
+        },
+        "phase_270": {
+          "at_um": [
+            82.28,
+            188.81
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_270"
+        },
+        "phase_90": {
+          "at_um": [
+            82.28,
+            190.41
+          ],
+          "direction": "input",
+          "domain": "clock",
+          "layer": "metal3_label",
+          "name": "phase_90"
+        },
+        "ref": {
+          "at_um": [
+            95.7,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "ref"
+        },
+        "row_outn": {
+          "at_um": [
+            88.19,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outn"
+        },
+        "row_outp": {
+          "at_um": [
+            87.39,
+            143.91
+          ],
+          "direction": "output",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "row_outp"
+        },
+        "vbias": {
+          "at_um": [
+            95.0,
+            143.91
+          ],
+          "direction": "input",
+          "domain": "analog",
+          "layer": "metal2_label",
+          "name": "vbias"
+        }
+      },
+      "translation_um": [
+        61.86,
+        15.21
+      ]
+    }
+  ],
+  "placed_array_bbox_um": [
+    81.86,
+    8.0,
+    159.14,
+    192.21
+  ],
+  "placement_strategy": {
+    "channel_geometry_is_immutable": true,
+    "input_axes_are_pad_aligned": true,
+    "inter_macro_gaps_um": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "orientation": "four R0 vertical columns",
+    "physical_left_to_right_channels": [
+      3,
+      2,
+      1,
+      0
+    ],
+    "reason": "the 19.32 um macro width exactly equals the analog-pin pitch"
+  },
+  "provenance": {
+    "current_manifest_sha256": "42325bfa6071d0cb7c2b63cee32aa4533b134f5f4ee94c958e2181e9627f659a",
+    "generator": "v3/tools/build_four_channel_placement.py",
+    "generator_sha256": "381a8d9bfe325586c306de462a1b5eca2b2671b1f7d60571539a153386247362"
+  },
+  "routing_sequence": [
+    "prove exact-abutment DRC and no hierarchy/port aliasing",
+    "reserve differential output collection before any shared clock/control trunk",
+    "route four straight pad-aligned element inputs as independent matched branches",
+    "route shared ref and vbias as symmetric trees",
+    "route four phase nets as matched top-corridor trees",
+    "route VPWR/VGND straps and substrate continuity",
+    "route per-channel control from the digital selector/serial register",
+    "extract topology and distributed RC after each net class closes"
+  ],
+  "schema_version": 1,
+  "shared_net_plan": {
+    "bias": [
+      "ref",
+      "vbias"
+    ],
+    "differential_current_sum": [
+      "row_outp",
+      "row_outn"
+    ],
+    "per_channel_analog_inputs": [
+      "element_input[0]",
+      "element_input[1]",
+      "element_input[2]",
+      "element_input[3]"
+    ],
+    "per_channel_control_bits": [
+      "channel0_group0_bit0",
+      "channel0_group0_bit1",
+      "channel0_group1_bit0",
+      "channel0_group1_bit1",
+      "channel0_group2_bit0",
+      "channel0_group2_bit1",
+      "channel0_group3_bit0",
+      "channel0_group3_bit1",
+      "channel1_group0_bit0",
+      "channel1_group0_bit1",
+      "channel1_group1_bit0",
+      "channel1_group1_bit1",
+      "channel1_group2_bit0",
+      "channel1_group2_bit1",
+      "channel1_group3_bit0",
+      "channel1_group3_bit1",
+      "channel2_group0_bit0",
+      "channel2_group0_bit1",
+      "channel2_group1_bit0",
+      "channel2_group1_bit1",
+      "channel2_group2_bit0",
+      "channel2_group2_bit1",
+      "channel2_group3_bit0",
+      "channel2_group3_bit1",
+      "channel3_group0_bit0",
+      "channel3_group0_bit1",
+      "channel3_group1_bit0",
+      "channel3_group1_bit1",
+      "channel3_group2_bit0",
+      "channel3_group2_bit1",
+      "channel3_group3_bit0",
+      "channel3_group3_bit1"
+    ],
+    "per_channel_safety_controls": [
+      "channel0_channel_enable",
+      "channel0_mixers_blank",
+      "channel1_channel_enable",
+      "channel1_mixers_blank",
+      "channel2_channel_enable",
+      "channel2_mixers_blank",
+      "channel3_channel_enable",
+      "channel3_mixers_blank"
+    ],
+    "phase": [
+      "phase_0",
+      "phase_90",
+      "phase_180",
+      "phase_270"
+    ],
+    "power": [
+      "VPWR",
+      "VGND"
+    ]
+  },
+  "status": "placement pilot; no shared conductors added yet",
+  "top_cell": "v3_four_channel_placement",
+  "units": "um"
+}
