@@ -1,0 +1,55 @@
+{
+  "checks": {
+    "device_population_unchanged": true,
+    "direct_gds_precheck_zero": true,
+    "each_support_tree_has_four_equal_geometric_paths": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "model_population_unchanged": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_hierarchical_ref_or_vbias_nodes_remain": true,
+    "no_unexpected_unprefixed_nodes": true,
+    "only_nine_hierarchical_dummy_feedback_markers": true,
+    "other_channel_interfaces_remain_isolated": true,
+    "output_collector_remains_exactly_120_per_polarity": true,
+    "phase_trees_remain_exactly_32_terminals_each": true,
+    "ref_reaches_exactly_64_device_terminals": true,
+    "source_is_exact_gated_phase_distribution": true,
+    "vbias_reaches_exactly_60_device_terminals": true
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1292,
+  "gds": "build/v3/four_channel_bias_reference_distribution/v3_four_channel_bias_reference_distribution.gds",
+  "gds_sha256": "a36cfa7b226d16bfb5384e188c552626d316d472c47a765544534693477b3e35",
+  "hierarchical_support_nodes": [],
+  "next_gate": "place the exact shared VCM and tail-reference support blocks and connect their roots without altering either balanced tree",
+  "output_terminal_hits": {
+    "n": 120,
+    "p": 120
+  },
+  "phase_terminal_hits": {
+    "phase_0": 32,
+    "phase_180": 32,
+    "phase_270": 32,
+    "phase_90": 32
+  },
+  "schema_version": 1,
+  "scope": "balanced four-channel VBIAS/REF distribution, direct geometry, and flat topology",
+  "sha256": {
+    "auditor": "fd063cbab46c13a8768af8c5f214ed264ab4ffc025d75ef64589f39c8f7b2e1a",
+    "flat_spice": "92915a934e3a1ae34ebb4c034052c6b0091f3c51913cb1bb737c4eb1149fd093",
+    "magic_log": "118b05963dcd67cb34cedb0dbd44483ac59ead6310015da57375a0b8c3dc41d5",
+    "manifest": "1adbe49c6cc91218bd172063e25f0d591aa890593818ee904314e02c0414ac5c",
+    "precheck": "b34d52d1c774abb5d2e967141d17d54c3a30b0f928c780c0b8e0461da6ddc120"
+  },
+  "shared_terminal_hits": {
+    "ref": 64,
+    "vbias": 60
+  },
+  "status": "pass",
+  "support_path_lengths_um": {
+    "ref": 47.27,
+    "vbias": 44.07
+  },
+  "unexpected_unprefixed_nodes": []
+}

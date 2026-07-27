@@ -27,13 +27,34 @@
     "channel_selector_late_promotion_readback",
     "four_channel_placement",
     "four_channel_output_collection",
-    "four_channel_phase_distribution"
+    "four_channel_phase_distribution",
+    "four_channel_bias_reference_distribution",
+    "vcm_support_block",
+    "tail_bias_support_block",
+    "four_channel_shared_support_integration"
   ],
   "recovery_checkpoint": {
     "commit": "19b181c",
     "tag": "v3-one-channel-precleanup-20260727",
     "contents": "all pre-cleanup V3 sources and evidence, including the manual-routing canvas"
   },
-  "next_stage": "place shared bias/reference support and connect symmetric ref/vbias trees, then output loads/pads, power, control, and inputs",
+  "four_channel_integration": {
+    "placement": "v3/evidence/four_channel_placement_gate.json",
+    "output_collection": "v3/evidence/four_channel_output_collection_gate.json",
+    "phase_distribution": "v3/evidence/four_channel_phase_distribution_gate.json",
+    "bias_reference_distribution": "v3/evidence/four_channel_bias_reference_distribution_gate.json",
+    "shared_support_integration": "v3/evidence/four_channel_shared_support_integration_gate.json"
+  },
+  "current_top_level": {
+    "status": "frozen shared-phase/bias/output-collector integration; only valid source for the next top-level stage",
+    "top_cell": "v3_four_channel_shared_support_integration",
+    "gds": "v3/frozen/four_channel_integration/v3_four_channel_shared_support_integration.gds",
+    "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228",
+    "flat_spice": "v3/frozen/four_channel_integration/v3_four_channel_shared_support_integration_flat.spice",
+    "flat_spice_sha256": "3390614e23ff01c9b0dd7cadcc8429dab40ff160cd3ebeaf05f7e5cdf5b5b175",
+    "physical_gate": "v3/evidence/four_channel_shared_support_integration_gate.json",
+    "review_image": "v3/frozen/four_channel_integration/full_routing.png"
+  },
+  "next_stage": "add matched differential output loads and pad escapes, then close shared power, control, and analog-input routing",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }

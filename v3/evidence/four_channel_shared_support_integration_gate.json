@@ -1,0 +1,70 @@
+{
+  "checks": {
+    "both_support_blocks_are_hash_bound": true,
+    "device_population_is_exact": true,
+    "direct_gds_precheck_zero": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "model_population_is_exact": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_unexpected_unprefixed_nodes": true,
+    "one_shared_ref_node_reaches_channels_and_vcm": true,
+    "one_shared_vbias_node_reaches_channels_and_tail_support": true,
+    "only_nine_hierarchical_dummy_feedback_markers": true,
+    "other_channel_interfaces_remain_isolated": true,
+    "output_collector_remains_exactly_120_per_polarity": true,
+    "phase_trees_remain_exactly_32_terminals_each": true,
+    "source_is_exact_gated_bias_reference_distribution": true,
+    "support_power_inputs_remain_two_named_nodes_until_power_stage": true
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1312,
+  "gds": "build/v3/four_channel_shared_support_integration/v3_four_channel_shared_support_integration.gds",
+  "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228",
+  "model_population": {
+    "sky130_fd_pr__cap_mim_m3_1": 5,
+    "sky130_fd_pr__nfet_01v8": 880,
+    "sky130_fd_pr__pfet_01v8_hvt": 416,
+    "sky130_fd_pr__res_high_po_1p41": 1,
+    "sky130_fd_pr__res_xhigh_po_0p35": 4,
+    "sky130_fd_pr__res_xhigh_po_1p41": 6
+  },
+  "next_gate": "add matched differential output loads and pad escapes, then close shared power, control, and analog-input routing",
+  "output_terminal_hits": {
+    "n": 120,
+    "p": 120
+  },
+  "phase_terminal_hits": {
+    "phase_0": 32,
+    "phase_180": 32,
+    "phase_270": 32,
+    "phase_90": 32
+  },
+  "schema_version": 1,
+  "scope": "exact VCM/tail-bias block placement, edge routes, direct geometry, and flat topology",
+  "sha256": {
+    "auditor": "9cb6cc8e4f391fa63f0000056301c4bd2db2d52c1febee528e0fd3d009259433",
+    "flat_spice": "3390614e23ff01c9b0dd7cadcc8429dab40ff160cd3ebeaf05f7e5cdf5b5b175",
+    "magic_log": "6607f6da894ab74492c360019f7018959415d3af0397dca3f8fd4e44fbe8ae57",
+    "manifest": "07137621fef0c6c48cb4d753ddbe9101e9f574911cf41f88c343ee5035cc6bc4",
+    "precheck": "eba5962613f235a948d9b6a7f5c5cb6f0d0281a37da36605c620a233487d4150"
+  },
+  "shared_nodes": {
+    "ref": [
+      "v3_vcm_support_block_0/ref"
+    ],
+    "vbias": [
+      "v3_tail_bias_support_block_0/vbias"
+    ]
+  },
+  "shared_terminal_hits": {
+    "ref": 69,
+    "vbias": 79
+  },
+  "status": "pass",
+  "support_vdpwr_nodes": [
+    "v3_tail_bias_support_block_0/VDPWR",
+    "v3_vcm_support_block_0/VDPWR"
+  ],
+  "unexpected_unprefixed_nodes": []
+}

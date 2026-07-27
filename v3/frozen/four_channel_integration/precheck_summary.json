@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/four_channel_shared_support_integration/precheck_beol.xml",
+      "report_sha256": "0f857671bef92577e588b8a5396d820ab97b8ab2e9fd060653361ce2c85fb02d"
+    },
+    "feol": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/four_channel_shared_support_integration/precheck_feol.xml",
+      "report_sha256": "aedfc7a561e49a1f4ff1fe978147a10f6bb11b440f1f0df869b29c3fac81a12f"
+    },
+    "offgrid": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/four_channel_shared_support_integration/precheck_offgrid.xml",
+      "report_sha256": "0faa587bf18b21ff1b82a384672c4e3b95ffb5962e2a7ac1c8d76d10151cbc9a"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/four_channel_shared_support_integration/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "a6fae645ffd9c94d449523d558324414b3a268d47bc9e0d895d98812a7e6ab89"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/four_channel_shared_support_integration/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/four_channel_shared_support_integration/precheck_zero_area.xml",
+      "report_sha256": "34698f12fd2ecd6a4a2f2e77da4beedd5b2f3c75bba8a7c4992568e538b30edd"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/four_channel_shared_support_integration/v3_four_channel_shared_support_integration.gds",
+  "gds_sha256": "165150fa12c5ba4ac5191d5c2452b9ced901104dd71d522c156feed7fe213228",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_four_channel_shared_support_integration"
+}

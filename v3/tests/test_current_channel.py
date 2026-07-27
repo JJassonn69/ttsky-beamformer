@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "v3/tools"))
 
 from assert_current_channel import audit_generated_build_entries, validate_channel  # noqa: E402
+from assert_current_top import validate_top  # noqa: E402
 
 
 class CurrentChannelFreezeTests(unittest.TestCase):
@@ -40,6 +41,19 @@ class CurrentChannelFreezeTests(unittest.TestCase):
             candidate.write_bytes(source.read_bytes() + b"not-current")
             with self.assertRaisesRegex(RuntimeError, "refusing non-current"):
                 validate_channel(candidate)
+
+    def test_frozen_four_channel_top_is_hash_bound_and_wrong_top_is_rejected(self) -> None:
+        top = self.current["current_top_level"]
+        gds = ROOT / top["gds"]
+        spice = ROOT / top["flat_spice"]
+        self.assertEqual(hashlib.sha256(gds.read_bytes()).hexdigest(), top["gds_sha256"])
+        self.assertEqual(hashlib.sha256(spice.read_bytes()).hexdigest(), top["flat_spice_sha256"])
+        self.assertEqual(validate_top()["status"], "pass")
+        with tempfile.TemporaryDirectory() as temporary_directory:
+            candidate = Path(temporary_directory) / "candidate.gds"
+            candidate.write_bytes(gds.read_bytes() + b"not-current")
+            with self.assertRaisesRegex(RuntimeError, "refusing non-current"):
+                validate_top(candidate)
 
     def test_generated_build_directory_contains_only_registered_entries(self) -> None:
         self.assertEqual(

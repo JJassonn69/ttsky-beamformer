@@ -10,8 +10,10 @@ SHA-256 `4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274`.
 four-channel floorplan. Pilot, manual-canvas, and pre-late-promotion GDS files
 are historical and must not be used as physical inputs.
 
-The next physical stage places four immutable copies of this macro and routes
-their shared phase, bias, power, control, input, and output infrastructure.
+Four immutable copies of this macro are now placed. Their differential output
+collectors, four phase trees, balanced REF/VBIAS trees, exact VCM block, and
+complete tail-reference block are integrated and hash-gated. Power, digital
+control, analog-input pad escapes, and final output load/pad routing remain.
 The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
@@ -59,6 +61,25 @@ phase reaches exactly 32 selector terminals while the two output collectors
 remain at 120 terminals each. See
 `evidence/four_channel_phase_distribution_gate.json` and
 `evidence/four_channel_phase_distribution_review.png`.
+
+The two shared analog support trees now cross the congested selector-access
+band only through eight isolated M4 elevators, then form separate balanced M3
+H-trees in the verified-clear 157.51--162.17 um corridor. Flat extraction
+merges all four channels into exactly one REF node with 64 original channel
+terminal hits and one VBIAS node with 60 original channel terminal hits; no
+other channel interface is merged. See
+`evidence/four_channel_bias_reference_distribution_gate.json`.
+
+The exact VCM divider/three-MIM block is placed west of the channel array, and
+the full tail resistor/diode/two-MIM block is placed east. Their common M3
+routes stay outside the frozen channel bodies. The first inherited tail-cap
+route was rejected because it crossed the MIM bottom-plate Via-3 strip and
+shorted VBIAS to ground despite zero DRC markers. The active generator instead
+uses an M4 spine above the complete capacitor bboxes and separate drops to the
+two C1 terminals. Integrated extraction now reports 1,312 devices, one 69-hit
+REF net, one 79-hit VBIAS net, five correctly polarized MIM capacitors, zero
+Magic DRC markers, and zero direct-GDS precheck markers. See
+`evidence/four_channel_shared_support_integration_gate.json`.
 
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
