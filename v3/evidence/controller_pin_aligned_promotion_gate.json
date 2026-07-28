@@ -44,7 +44,7 @@
     "direct_gds_marker_groups_are_zero": true,
     "magic_hierarchical_and_flat_drc_are_zero": true,
     "official_wrapper_contract_is_clean": true,
-    "external_github_attestation_pending": true
+    "external_github_attestation_passed": true
   },
   "artifact_sha256": {
     "placement_generator": "5e8d3a3ffd5342d98bd242d5cd3bb1610d44f064ee2bd4a58bfc421a5a4b39aa",

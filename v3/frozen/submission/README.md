@@ -8,8 +8,8 @@ This directory is the hash-bound internal-signoff bundle for
 - PDK: SKY130A
 - allocation: Tiny Tapeout 2x2, 334.88 um x 225.76 um
 - supply: 1.8 V `VDPWR` / `VGND`; no `VAPWR`
-- current state: internal signoff passed; official GitHub custom-GDS, viewer,
-  precheck, and artifact-bound validation are pending on this exact artifact
+- current state: internal signoff and official GitHub custom-GDS, viewer,
+  precheck, and artifact-bound validation passed on this exact artifact
 
 `gds_packaging.json` proves deterministic packaging and that removing only the
 final non-electrical full-die project boundary reproduces the exact electrical
@@ -18,8 +18,8 @@ official wrapper checks. `topology_audit.json` records extracted device and net
 connectivity. `direct_precheck/` contains the pinned direct-GDS marker results.
 `magic/` contains hierarchical and flat extraction evidence. `review/`
 contains eight flattened visual-inspection views.
-`github_attestation.json` records the pending or completed official GitHub
-workflow state for this exact GDS hash.
+`github_attestation.json` records completed official GitHub workflow run
+`30341656935` for this exact GDS hash.
 
 The operator-facing circuit description, pin protocol, limits, startup
 sequence, and evidence map are in `v3/docs/datasheet.md`.

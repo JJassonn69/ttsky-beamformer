@@ -161,10 +161,10 @@ The authoritative current GDS is
 The frozen electrical source remains immutable; the deterministic packager
 adds only the official boundary/pin records and removes two redundant internal
 power text labels. `evidence/submission_gate.json` is the consolidated signoff
-authority. `frozen/submission/github_attestation.json` is pending the first
-official TinyTapeout workflow for this exact GDS hash. The remaining release
-steps are external workflow attestation and human visual review before
-fabrication submission without a geometry change.
+authority. `frozen/submission/github_attestation.json` binds official
+TinyTapeout workflow run `30341656935` to this exact GDS hash; custom-GDS,
+viewer, precheck, and artifact-bound validation all passed. Human visual review
+is the remaining step before fabrication submission without a geometry change.
 
 The complete operator-facing V3 datasheet is `docs/datasheet.md`. The bounded
 power-on matrix passes all eight factorized cases: worst VCM 90% time is 19.235

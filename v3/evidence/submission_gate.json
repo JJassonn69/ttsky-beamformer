@@ -12,7 +12,7 @@
     "v3/frozen/analog_input_escapes/input_rc_audit.json": "055986a8de00d0c08affeda16f12dcaa6570da7a9811f83937c72a0ef95f5002",
     "v3/frozen/submission/direct_precheck/precheck_summary.json": "6f5b556c8c5d742ad9829e9babb171905ebd14707559bc6413843f9681007ccc",
     "v3/frozen/submission/gds_packaging.json": "35e3c03f0720b79f882a2db5a16ecb27e0d1b77965680ed1b09d12a111f14248",
-    "v3/frozen/submission/github_attestation.json": "174ff779ff36064beb48986c9ce00d8502682727b8e2c6edffe9f44ac8e8e257",
+    "v3/frozen/submission/github_attestation.json": "ba2c64fcb7dbda08f651cff925c6c259657a9881a18fd8253f028932c19c0868",
     "v3/frozen/submission/official_contract.json": "1bd7c4087f5ac5d1b3498e5bd1b983af7c00b82a46c559a205f4385ca39e19b2",
     "v3/frozen/submission/topology_audit.json": "75857b10a50fce4fa695344a7b786805c1f1484a9e36442909154895cf60393c",
     "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9"
@@ -48,13 +48,43 @@
   },
   "errors": [],
   "external_signoff": {
-    "attested_commit": null,
+    "attested_commit": "90ec04a952155830b3ec937328593eb46729206c",
     "attested_gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
     "branch": "v3-controller-pin-aligned-candidate-b",
-    "jobs": {},
+    "jobs": {
+      "gds": {
+        "conclusion": "success",
+        "job_id": 90218387442,
+        "status": "completed"
+      },
+      "precheck": {
+        "conclusion": "success",
+        "job_id": 90221405832,
+        "status": "completed"
+      },
+      "validation-evidence": {
+        "conclusion": "success",
+        "job_id": 90221933291,
+        "status": "completed"
+      },
+      "viewer": {
+        "conclusion": "success",
+        "job_id": 90221405874,
+        "status": "completed"
+      }
+    },
     "repository": "JJassonn69/ttsky-beamformer",
-    "status": "pending",
-    "workflow": null
+    "status": "pass",
+    "workflow": {
+      "conclusion": "success",
+      "event": "push",
+      "name": "gds",
+      "run_id": 30341656935,
+      "run_number": 49,
+      "status": "completed",
+      "url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30341656935",
+      "workflow_id": 316317254
+    }
   },
   "gds": "gds/tt_um_jjassonn69_beamformer.gds",
   "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
@@ -96,7 +126,7 @@
         "status": "pass"
       },
       "controller_pin_aligned_promotion_gate.json": {
-        "artifact_sha256": "57b933d587ebd85093a75820e01e757f40f64b056957b58888ab68bf65b85eda",
+        "artifact_sha256": "702a96eaea698b9d5d670c84cd1222f55c296127eecde4a9f49c97c0a640afa5",
         "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
         "status": "pass"
       },
@@ -176,7 +206,7 @@
     "v3/frozen/submission/review/08_power_spines.png": "0ede5ba7f6c583701b87f2734ad099528f0554f9c2854282e7f30c4a1e25bfe9"
   },
   "schema_version": 1,
-  "status": "internal_signoff_pass_external_attestation_pending",
+  "status": "signoff_pass_official_github_attested",
   "top_module": "tt_um_jjassonn69_beamformer",
   "wrapper_contract": {
     "analog_pin_adjacency": {

@@ -126,7 +126,7 @@
     "physical_digital_output_tie_low": "v3/evidence/digital_output_tie_gate.json"
   },
   "current_top_level": {
-    "status": "internally signed-off pin-aligned TinyTapeout candidate pending official GitHub custom-GDS and precheck attestation",
+    "status": "internally and externally signed-off pin-aligned TinyTapeout candidate pending human visual review",
     "top_cell": "tt_um_jjassonn69_beamformer",
     "gds": "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds",
     "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",

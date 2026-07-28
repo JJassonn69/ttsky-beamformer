@@ -20,7 +20,7 @@ low-intermediate-frequency (low-IF) vector beamformer. It is not a direct
 | Analog / digital devices | 1,315 / 4,722 |
 | Frozen GDS SHA-256 | `988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9` |
 | Internal signoff | Passed |
-| External release attestation | Pending official Tiny Tapeout custom-GDS, viewer, precheck, and evidence jobs |
+| External release attestation | Passed: official Tiny Tapeout custom-GDS, viewer, precheck, and evidence jobs |
 
 The frozen candidate is
 `v3/frozen/submission/tt_um_jjassonn69_beamformer.gds`. The canonical submission
@@ -353,7 +353,7 @@ The exact frozen GDS has:
 
 The official Tiny Tapeout custom-GDS, viewer, precheck, and artifact-bound
 validation jobs passed on this exact published SHA-256 in workflow run
-`30332418438`. Any geometry change after that point invalidates the hash-bound
+`30341656935`. Any geometry change after that point invalidates the hash-bound
 physical, RC, and external evidence and must be assessed through the
 hierarchical change policy.
 
