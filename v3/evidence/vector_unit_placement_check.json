@@ -1,0 +1,84 @@
+{
+  "device_counts": {
+    "XGM_U": 2,
+    "XSW_U": 4,
+    "XTAIL_U": 1
+  },
+  "errors": [],
+  "physical_status": "pending exact Magic unit pilot",
+  "route_status": {
+    "VGND": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "gm_n": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "gm_p": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "lon_left": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 1
+    },
+    "lon_right": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 1
+    },
+    "lop_left": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 1
+    },
+    "lop_right": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 1
+    },
+    "outn": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "outp": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "ref": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "sig": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "tail": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 2
+    },
+    "vbias": {
+      "connected": true,
+      "manhattan": true,
+      "segment_count": 1
+    }
+  },
+  "schema_version": 1,
+  "status": "pass",
+  "tile_bbox": [
+    -0.85,
+    0.0,
+    3.71,
+    12.365
+  ]
+}

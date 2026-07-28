@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "all 305 centralized V3 controller internal signal nets integrated with the exact frozen four-channel analog and shared-power geometry; controller power and external handoff fanout excluded",
+  "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+  "top_cell": "v3_four_channel_ctrl_sig_routed",
+  "gds_sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
+  "flat_spice": "v3/frozen/controller_signal_routing/v3_four_channel_ctrl_sig_routed_flat.spice",
+  "flat_spice_sha256": "10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d",
+  "route_results": {
+    "expected_signal_nets": 305,
+    "connected_loop_free_trees": 305,
+    "missed_foundry_pin_shapes": 0,
+    "dead_route_leaves": 0,
+    "inaccessible_standard_cell_pins": 0,
+    "openroad_detailed_route_violations": 0,
+    "maximum_signal_layer": "met3",
+    "metal4_signal_length_um": 0,
+    "total_centerline_length_um": 10939.375,
+    "via_count": 2166,
+    "maximum_logical_endpoint_count": 17
+  },
+  "integrated_extraction": {
+    "expected_analog_devices": 1315,
+    "expected_digital_devices": 4722,
+    "extracted_devices": 6037,
+    "route_labels_expected": 305,
+    "route_labels_extracted": 305,
+    "distinct_route_merge_groups": 305,
+    "routes_with_device_incidence": 305,
+    "minimum_device_line_incidence": 2,
+    "magic_drc_markers": 0,
+    "magic_gds_import_feedback": 0,
+    "extraction_feedback_markers": 9,
+    "extraction_warning_baseline_exact": true
+  },
+  "direct_gds_precheck": {
+    "status": "pass",
+    "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+    "feol_markers": 0,
+    "beol_markers": 0,
+    "offgrid_markers": 0,
+    "zero_area_markers": 0,
+    "pin_purpose_overlap_markers": 0,
+    "project_flat_rule_markers": 0
+  },
+  "frozen_geometry_obstructions": [
+    {
+      "layer": "met3",
+      "bbox_um": [267.22, 171.36, 268.42, 208.60],
+      "source_rectangle_count": 2,
+      "result": "all controller routes detour without extracted electrical contact"
+    }
+  ],
+  "planned_power_access": {
+    "contact_columns_um": [215.66, 285.02],
+    "row_boundary_rails": 18,
+    "contacts_per_rail": 2,
+    "reserved_m2_m3_obstructions": 72,
+    "reserved_ground_underpass_obstructions": 9,
+    "maximum_nominal_m1_distance_to_nearest_contact_um": 34.68
+  },
+  "checks": {
+    "exact_frozen_analog_source_used": true,
+    "all_controller_signal_routes_are_connected": true,
+    "all_controller_signal_routes_are_acyclic": true,
+    "no_route_has_a_dead_leaf": true,
+    "all_foundry_pin_shapes_are_reached": true,
+    "all_305_route_labels_remain_distinct_after_full_chip_extraction": true,
+    "every_route_has_extracted_device_incidence": true,
+    "device_population_is_exact": true,
+    "frozen_analog_warning_baseline_is_unchanged": true,
+    "openroad_detailed_route_drc_zero": true,
+    "magic_drc_zero": true,
+    "direct_gds_geometry_precheck_zero": true,
+    "metal4_is_reserved": true
+  },
+  "sha256": {
+    "route_plan": "8f0ed44cdbf8e85affaa226b14198212bcc580df950160519dcfcbe1a8b5f167",
+    "input_summary": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
+    "route_audit": "c11b5bced6d14c4e0813529018fc76dce1cef1436de9f606467be2e925b85ec8",
+    "gds_topology_audit": "cb08678d24b7dde9df1eba289cfbff99a641310c05ad9179637e042a993ea36c",
+    "direct_gds_precheck": "1bde1092b2f989ec6e37c42c0116eecc916cebf4cd4971f3d001cc509b0e9afb",
+    "routed_def": "963deb441df10b0d57ddd22d8eb0bfdebc2aa26aa198778baa3172b2b7846ea2",
+    "openroad_log": "c9df40e88c95696310ba61b3d62eb52d5284a9c7ee4f0c69f510a652eb3f8746",
+    "detailed_route_drc": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "magic_readback_log": "643fa3c37e1e1974239d99e3c4871a80e63c96610881ed0055629d88fe66f5de",
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "route_input_generator": "e5dd7d3aa546d53226c1bf2da93653c9ed37226f8f9cb34e708b94ebb47c35c5",
+    "route_graph_checker": "8bb44109a3c5671914e271b6cf72e119adc3b35cac1ead9691aaf4c27cea9829",
+    "gds_assembler": "f4bd9f04b12eeae8dc9e74425d6e1e16847064c6783f2528560315bc0f7b47ca",
+    "full_gds_topology_checker": "cab9b364203f3b7034668c79ea298951182ed94bcaa81d0c023e248f495930d6"
+  },
+  "next_gate": "route and independently verify controller VDPWR/VGND against the frozen controller-signal GDS, then connect external handoffs and four matched analog inputs"
+}

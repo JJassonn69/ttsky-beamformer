@@ -1,0 +1,5009 @@
+{
+  "connectivity": {
+    "VDPWR": {
+      "component_sizes": [
+        146
+      ],
+      "connected_component_count": 1,
+      "orphan_vias": [],
+      "shape_count": 146
+    },
+    "VGND": {
+      "component_sizes": [
+        225
+      ],
+      "connected_component_count": 1,
+      "orphan_vias": [],
+      "shape_count": 225
+    }
+  },
+  "contacts": [
+    {
+      "boundary": 0,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        171.36
+      ]
+    },
+    {
+      "boundary": 0,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        171.36
+      ]
+    },
+    {
+      "boundary": 1,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        174.08
+      ]
+    },
+    {
+      "boundary": 1,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        174.08
+      ]
+    },
+    {
+      "boundary": 2,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        176.8
+      ]
+    },
+    {
+      "boundary": 2,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        176.8
+      ]
+    },
+    {
+      "boundary": 3,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        179.52
+      ]
+    },
+    {
+      "boundary": 3,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        179.52
+      ]
+    },
+    {
+      "boundary": 4,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        182.24
+      ]
+    },
+    {
+      "boundary": 4,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        182.24
+      ]
+    },
+    {
+      "boundary": 5,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        184.96
+      ]
+    },
+    {
+      "boundary": 5,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        184.96
+      ]
+    },
+    {
+      "boundary": 6,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        187.68
+      ]
+    },
+    {
+      "boundary": 6,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        187.68
+      ]
+    },
+    {
+      "boundary": 7,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        190.4
+      ]
+    },
+    {
+      "boundary": 7,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        190.4
+      ]
+    },
+    {
+      "boundary": 8,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        193.12
+      ]
+    },
+    {
+      "boundary": 8,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        193.12
+      ]
+    },
+    {
+      "boundary": 9,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        195.84
+      ]
+    },
+    {
+      "boundary": 9,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        195.84
+      ]
+    },
+    {
+      "boundary": 10,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        198.56
+      ]
+    },
+    {
+      "boundary": 10,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        198.56
+      ]
+    },
+    {
+      "boundary": 11,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        201.28000000000003
+      ]
+    },
+    {
+      "boundary": 11,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        201.28000000000003
+      ]
+    },
+    {
+      "boundary": 12,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        204.0
+      ]
+    },
+    {
+      "boundary": 12,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        204.0
+      ]
+    },
+    {
+      "boundary": 13,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        206.72000000000003
+      ]
+    },
+    {
+      "boundary": 13,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        206.72000000000003
+      ]
+    },
+    {
+      "boundary": 14,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        209.44000000000003
+      ]
+    },
+    {
+      "boundary": 14,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        209.44000000000003
+      ]
+    },
+    {
+      "boundary": 15,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        212.16000000000003
+      ]
+    },
+    {
+      "boundary": 15,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        212.16000000000003
+      ]
+    },
+    {
+      "boundary": 16,
+      "net": "VGND",
+      "point_um": [
+        215.66,
+        214.88000000000002
+      ]
+    },
+    {
+      "boundary": 16,
+      "net": "VGND",
+      "point_um": [
+        285.02,
+        214.88000000000002
+      ]
+    },
+    {
+      "boundary": 17,
+      "net": "VDPWR",
+      "point_um": [
+        215.66,
+        217.60000000000002
+      ]
+    },
+    {
+      "boundary": 17,
+      "net": "VDPWR",
+      "point_um": [
+        285.02,
+        217.60000000000002
+      ]
+    }
+  ],
+  "counts": {
+    "by_layer": {
+      "met1": 54,
+      "met2": 36,
+      "met3": 66,
+      "met4": 87,
+      "via": 36,
+      "via2": 36,
+      "via3": 56
+    },
+    "labels": 2,
+    "labels_on_own_conductor": 2,
+    "rails": 18,
+    "shapes": 371,
+    "upper_contacts": 36
+  },
+  "cross_net_spacing_errors": [],
+  "errors": [],
+  "labels": [
+    {
+      "gds_label": "VDPWR",
+      "layer": "met4",
+      "net": "VDPWR",
+      "point_um": [
+        300.0,
+        212.0
+      ]
+    },
+    {
+      "gds_label": "VGND",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        179.0,
+        208.0
+      ]
+    }
+  ],
+  "policy": {
+    "contacts_are_reserved_before_signal_routing": true,
+    "contacts_bound_nominal_m1_distance_to_about_35um": true,
+    "controller_power_is_separate_from_external_signal_handoffs": true,
+    "controller_signal_geometry_modified": false,
+    "existing_analog_and_controller_signal_geometry_is_a_hard_obstruction": true,
+    "floating_power_shapes_allowed": false,
+    "ground_spine_crosses_vdpwr_trunk_only_on_metal3_without_a_via_at_the_crossing": true,
+    "opposite_supply_m4_spines_are_on_opposite_controller_sides": true,
+    "orphan_vias_allowed": false,
+    "v2_coordinates_reused": false,
+    "v2_power_topology_reused": "continuous M1 row rails and two redundant upper contacts per boundary rail"
+  },
+  "rails": [
+    {
+      "boundary": 0,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 171.36
+    },
+    {
+      "boundary": 1,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 174.08
+    },
+    {
+      "boundary": 2,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 176.8
+    },
+    {
+      "boundary": 3,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 179.52
+    },
+    {
+      "boundary": 4,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 182.24
+    },
+    {
+      "boundary": 5,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 184.96
+    },
+    {
+      "boundary": 6,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 187.68
+    },
+    {
+      "boundary": 7,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 190.4
+    },
+    {
+      "boundary": 8,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 193.12
+    },
+    {
+      "boundary": 9,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 195.84
+    },
+    {
+      "boundary": 10,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 198.56
+    },
+    {
+      "boundary": 11,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 201.28000000000003
+    },
+    {
+      "boundary": 12,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 204.0
+    },
+    {
+      "boundary": 13,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 206.72000000000003
+    },
+    {
+      "boundary": 14,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 209.44000000000003
+    },
+    {
+      "boundary": 15,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 212.16000000000003
+    },
+    {
+      "boundary": 16,
+      "net": "VGND",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 214.88000000000002
+    },
+    {
+      "boundary": 17,
+      "net": "VDPWR",
+      "upper_contact_count": 2,
+      "x_span_um": [
+        181.24,
+        319.7
+      ],
+      "y_um": 217.60000000000002
+    }
+  ],
+  "schema_version": 1,
+  "scope": "centralized V3 controller VDPWR/VGND overlay only",
+  "shapes": [
+    {
+      "bbox_um": [
+        181.24,
+        171.12,
+        319.7,
+        171.6
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_00_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        171.23,
+        215.82,
+        171.49
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        171.285,
+        215.735,
+        171.435
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        171.175,
+        215.8,
+        171.545
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        171.26,
+        215.76,
+        171.46
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        171.16,
+        215.97,
+        171.56
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        171.26,
+        215.76,
+        171.46
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        171.16,
+        215.86,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        171.23,
+        285.18,
+        171.49
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        171.285,
+        285.095,
+        171.435
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        171.175,
+        285.16,
+        171.545
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        171.26,
+        285.12,
+        171.46
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        171.16,
+        285.33,
+        171.56
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        171.26,
+        285.12,
+        171.46
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        171.16,
+        285.22,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        171.06,
+        270.5,
+        171.66
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        171.16,
+        270.81,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        171.26,
+        270.6,
+        171.46
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        171.16,
+        270.7,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        170.96,
+        273.5,
+        171.76
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        171.16,
+        273.81,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        171.26,
+        273.6,
+        171.46
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        171.16,
+        273.7,
+        171.56
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        171.06,
+        285.02,
+        171.66
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_00_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        173.84,
+        319.7,
+        174.32
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        173.95,
+        215.82,
+        174.21
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        174.005,
+        215.735,
+        174.155
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        173.895,
+        215.8,
+        174.265
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        173.98,
+        215.76,
+        174.18
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        173.88,
+        215.97,
+        174.28
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        173.98,
+        215.76,
+        174.18
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        173.88,
+        215.86,
+        174.28
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        173.95,
+        285.18,
+        174.21
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        174.005,
+        285.095,
+        174.155
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        173.895,
+        285.16,
+        174.265
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        173.98,
+        285.12,
+        174.18
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        173.88,
+        285.33,
+        174.28
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        173.98,
+        285.12,
+        174.18
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        173.88,
+        285.22,
+        174.28
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        173.78,
+        324.0,
+        174.38
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_01_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        176.56,
+        319.7,
+        177.04
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_02_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        176.67,
+        215.82,
+        176.93
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        176.725,
+        215.735,
+        176.875
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        176.615,
+        215.8,
+        176.985
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        176.7,
+        215.76,
+        176.9
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        176.6,
+        215.97,
+        177.0
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        176.7,
+        215.76,
+        176.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        176.6,
+        215.86,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        176.67,
+        285.18,
+        176.93
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        176.725,
+        285.095,
+        176.875
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        176.615,
+        285.16,
+        176.985
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        176.7,
+        285.12,
+        176.9
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        176.6,
+        285.33,
+        177.0
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        176.7,
+        285.12,
+        176.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        176.6,
+        285.22,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        176.5,
+        270.5,
+        177.1
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        176.6,
+        270.81,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        176.7,
+        270.6,
+        176.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        176.6,
+        270.7,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        176.4,
+        273.5,
+        177.2
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        176.6,
+        273.81,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        176.7,
+        273.6,
+        176.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        176.6,
+        273.7,
+        177.0
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        176.5,
+        285.02,
+        177.1
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_02_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        179.28,
+        319.7,
+        179.76
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        179.39,
+        215.82,
+        179.65
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        179.445,
+        215.735,
+        179.595
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        179.335,
+        215.8,
+        179.705
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        179.42,
+        215.76,
+        179.62
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        179.32,
+        215.97,
+        179.72
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        179.42,
+        215.76,
+        179.62
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        179.32,
+        215.86,
+        179.72
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        179.39,
+        285.18,
+        179.65
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        179.445,
+        285.095,
+        179.595
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        179.335,
+        285.16,
+        179.705
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        179.42,
+        285.12,
+        179.62
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        179.32,
+        285.33,
+        179.72
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        179.42,
+        285.12,
+        179.62
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        179.32,
+        285.22,
+        179.72
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        179.22,
+        324.0,
+        179.82
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_03_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        182.0,
+        319.7,
+        182.48
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_04_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        182.11,
+        215.82,
+        182.37
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        182.165,
+        215.735,
+        182.315
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        182.055,
+        215.8,
+        182.425
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        182.14,
+        215.76,
+        182.34
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        182.04,
+        215.97,
+        182.44
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        182.14,
+        215.76,
+        182.34
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        182.04,
+        215.86,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        182.11,
+        285.18,
+        182.37
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        182.165,
+        285.095,
+        182.315
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        182.055,
+        285.16,
+        182.425
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        182.14,
+        285.12,
+        182.34
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        182.04,
+        285.33,
+        182.44
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        182.14,
+        285.12,
+        182.34
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        182.04,
+        285.22,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        181.94,
+        270.5,
+        182.54
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        182.04,
+        270.81,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        182.14,
+        270.6,
+        182.34
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        182.04,
+        270.7,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        181.84,
+        273.5,
+        182.64
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        182.04,
+        273.81,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        182.14,
+        273.6,
+        182.34
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        182.04,
+        273.7,
+        182.44
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        181.94,
+        285.02,
+        182.54
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_04_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        184.72,
+        319.7,
+        185.2
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        184.83,
+        215.82,
+        185.09
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        184.885,
+        215.735,
+        185.035
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        184.775,
+        215.8,
+        185.145
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        184.86,
+        215.76,
+        185.06
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        184.76,
+        215.97,
+        185.16
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        184.86,
+        215.76,
+        185.06
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        184.76,
+        215.86,
+        185.16
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        184.83,
+        285.18,
+        185.09
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        184.885,
+        285.095,
+        185.035
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        184.775,
+        285.16,
+        185.145
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        184.86,
+        285.12,
+        185.06
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        184.76,
+        285.33,
+        185.16
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        184.86,
+        285.12,
+        185.06
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        184.76,
+        285.22,
+        185.16
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        184.66,
+        324.0,
+        185.26
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_05_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        187.44,
+        319.7,
+        187.92
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_06_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        187.55,
+        215.82,
+        187.81
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        187.605,
+        215.735,
+        187.755
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        187.495,
+        215.8,
+        187.865
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        187.58,
+        215.76,
+        187.78
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        187.48,
+        215.97,
+        187.88
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        187.58,
+        215.76,
+        187.78
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        187.48,
+        215.86,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        187.55,
+        285.18,
+        187.81
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        187.605,
+        285.095,
+        187.755
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        187.495,
+        285.16,
+        187.865
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        187.58,
+        285.12,
+        187.78
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        187.48,
+        285.33,
+        187.88
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        187.58,
+        285.12,
+        187.78
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        187.48,
+        285.22,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        187.38,
+        270.5,
+        187.98
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        187.48,
+        270.81,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        187.58,
+        270.6,
+        187.78
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        187.48,
+        270.7,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        187.28,
+        273.5,
+        188.08
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        187.48,
+        273.81,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        187.58,
+        273.6,
+        187.78
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        187.48,
+        273.7,
+        187.88
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        187.38,
+        285.02,
+        187.98
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_06_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        190.16,
+        319.7,
+        190.64
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        190.27,
+        215.82,
+        190.53
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        190.325,
+        215.735,
+        190.475
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        190.215,
+        215.8,
+        190.585
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        190.3,
+        215.76,
+        190.5
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        190.2,
+        215.97,
+        190.6
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        190.3,
+        215.76,
+        190.5
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        190.2,
+        215.86,
+        190.6
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        190.27,
+        285.18,
+        190.53
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        190.325,
+        285.095,
+        190.475
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        190.215,
+        285.16,
+        190.585
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        190.3,
+        285.12,
+        190.5
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        190.2,
+        285.33,
+        190.6
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        190.3,
+        285.12,
+        190.5
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        190.2,
+        285.22,
+        190.6
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        190.1,
+        324.0,
+        190.7
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_07_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        192.88,
+        319.7,
+        193.36
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_08_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        192.99,
+        215.82,
+        193.25
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        193.045,
+        215.735,
+        193.195
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        192.935,
+        215.8,
+        193.305
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        193.02,
+        215.76,
+        193.22
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        192.92,
+        215.97,
+        193.32
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        193.02,
+        215.76,
+        193.22
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        192.92,
+        215.86,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        192.99,
+        285.18,
+        193.25
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        193.045,
+        285.095,
+        193.195
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        192.935,
+        285.16,
+        193.305
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        193.02,
+        285.12,
+        193.22
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        192.92,
+        285.33,
+        193.32
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        193.02,
+        285.12,
+        193.22
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        192.92,
+        285.22,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        192.82,
+        270.5,
+        193.42
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        192.92,
+        270.81,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        193.02,
+        270.6,
+        193.22
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        192.92,
+        270.7,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        192.72,
+        273.5,
+        193.52
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        192.92,
+        273.81,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        193.02,
+        273.6,
+        193.22
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        192.92,
+        273.7,
+        193.32
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        192.82,
+        285.02,
+        193.42
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_08_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        195.6,
+        319.7,
+        196.08
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        195.71,
+        215.82,
+        195.97
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        195.765,
+        215.735,
+        195.915
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        195.655,
+        215.8,
+        196.025
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        195.74,
+        215.76,
+        195.94
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        195.64,
+        215.97,
+        196.04
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        195.74,
+        215.76,
+        195.94
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        195.64,
+        215.86,
+        196.04
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        195.71,
+        285.18,
+        195.97
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        195.765,
+        285.095,
+        195.915
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        195.655,
+        285.16,
+        196.025
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        195.74,
+        285.12,
+        195.94
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        195.64,
+        285.33,
+        196.04
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        195.74,
+        285.12,
+        195.94
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        195.64,
+        285.22,
+        196.04
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        195.54,
+        324.0,
+        196.14
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_09_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        198.32,
+        319.7,
+        198.8
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_10_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        198.43,
+        215.82,
+        198.69
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        198.485,
+        215.735,
+        198.635
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        198.375,
+        215.8,
+        198.745
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        198.46,
+        215.76,
+        198.66
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        198.36,
+        215.97,
+        198.76
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        198.46,
+        215.76,
+        198.66
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        198.36,
+        215.86,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        198.43,
+        285.18,
+        198.69
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        198.485,
+        285.095,
+        198.635
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        198.375,
+        285.16,
+        198.745
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        198.46,
+        285.12,
+        198.66
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        198.36,
+        285.33,
+        198.76
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        198.46,
+        285.12,
+        198.66
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        198.36,
+        285.22,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        198.26,
+        270.5,
+        198.86
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        198.36,
+        270.81,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        198.46,
+        270.6,
+        198.66
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        198.36,
+        270.7,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        198.16,
+        273.5,
+        198.96
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        198.36,
+        273.81,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        198.46,
+        273.6,
+        198.66
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        198.36,
+        273.7,
+        198.76
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        198.26,
+        285.02,
+        198.86
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_10_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        201.04,
+        319.7,
+        201.52
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        201.15,
+        215.82,
+        201.41
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        201.205,
+        215.735,
+        201.355
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        201.095,
+        215.8,
+        201.465
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        201.18,
+        215.76,
+        201.38
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        201.08,
+        215.97,
+        201.48
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        201.18,
+        215.76,
+        201.38
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        201.08,
+        215.86,
+        201.48
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        201.15,
+        285.18,
+        201.41
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        201.205,
+        285.095,
+        201.355
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        201.095,
+        285.16,
+        201.465
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        201.18,
+        285.12,
+        201.38
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        201.08,
+        285.33,
+        201.48
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        201.18,
+        285.12,
+        201.38
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        201.08,
+        285.22,
+        201.48
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        200.98,
+        324.0,
+        201.58
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_11_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        203.76,
+        319.7,
+        204.24
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_12_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        203.87,
+        215.82,
+        204.13
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        203.925,
+        215.735,
+        204.075
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        203.815,
+        215.8,
+        204.185
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        203.9,
+        215.76,
+        204.1
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        203.8,
+        215.97,
+        204.2
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        203.9,
+        215.76,
+        204.1
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        203.8,
+        215.86,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        203.87,
+        285.18,
+        204.13
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        203.925,
+        285.095,
+        204.075
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        203.815,
+        285.16,
+        204.185
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        203.9,
+        285.12,
+        204.1
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        203.8,
+        285.33,
+        204.2
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        203.9,
+        285.12,
+        204.1
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        203.8,
+        285.22,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        203.7,
+        270.5,
+        204.3
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        203.8,
+        270.81,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        203.9,
+        270.6,
+        204.1
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        203.8,
+        270.7,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        203.6,
+        273.5,
+        204.4
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        203.8,
+        273.81,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        203.9,
+        273.6,
+        204.1
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        203.8,
+        273.7,
+        204.2
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        203.7,
+        285.02,
+        204.3
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_12_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        206.48,
+        319.7,
+        206.96
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        206.59,
+        215.82,
+        206.85
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        206.645,
+        215.735,
+        206.795
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        206.535,
+        215.8,
+        206.905
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        206.62,
+        215.76,
+        206.82
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        206.52,
+        215.97,
+        206.92
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        206.62,
+        215.76,
+        206.82
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        206.52,
+        215.86,
+        206.92
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        206.59,
+        285.18,
+        206.85
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        206.645,
+        285.095,
+        206.795
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        206.535,
+        285.16,
+        206.905
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        206.62,
+        285.12,
+        206.82
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        206.52,
+        285.33,
+        206.92
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        206.62,
+        285.12,
+        206.82
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        206.52,
+        285.22,
+        206.92
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        206.42,
+        324.0,
+        207.02
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_13_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        209.2,
+        319.7,
+        209.68
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_14_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        209.31,
+        215.82,
+        209.57
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        209.365,
+        215.735,
+        209.515
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        209.255,
+        215.8,
+        209.625
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        209.34,
+        215.76,
+        209.54
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        209.24,
+        215.97,
+        209.64
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        209.34,
+        215.76,
+        209.54
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        209.24,
+        215.86,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        209.31,
+        285.18,
+        209.57
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        209.365,
+        285.095,
+        209.515
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        209.255,
+        285.16,
+        209.625
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        209.34,
+        285.12,
+        209.54
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        209.24,
+        285.33,
+        209.64
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        209.34,
+        285.12,
+        209.54
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        209.24,
+        285.22,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        209.14,
+        270.5,
+        209.74
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        209.24,
+        270.81,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        209.34,
+        270.6,
+        209.54
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        209.24,
+        270.7,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        209.04,
+        273.5,
+        209.84
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        209.24,
+        273.81,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        209.34,
+        273.6,
+        209.54
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        209.24,
+        273.7,
+        209.64
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        209.14,
+        285.02,
+        209.74
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_14_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        211.92,
+        319.7,
+        212.4
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        212.03,
+        215.82,
+        212.29
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        212.085,
+        215.735,
+        212.235
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        211.975,
+        215.8,
+        212.345
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        212.06,
+        215.76,
+        212.26
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        211.96,
+        215.97,
+        212.36
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        212.06,
+        215.76,
+        212.26
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        211.96,
+        215.86,
+        212.36
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        212.03,
+        285.18,
+        212.29
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        212.085,
+        285.095,
+        212.235
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        211.975,
+        285.16,
+        212.345
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        212.06,
+        285.12,
+        212.26
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        211.96,
+        285.33,
+        212.36
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        212.06,
+        285.12,
+        212.26
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        211.96,
+        285.22,
+        212.36
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        211.86,
+        324.0,
+        212.46
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_15_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        214.64,
+        319.7,
+        215.12
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_16_VGND"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        214.75,
+        215.82,
+        215.01
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        214.805,
+        215.735,
+        214.955
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        214.695,
+        215.8,
+        215.065
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        214.78,
+        215.76,
+        214.98
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        214.68,
+        215.97,
+        215.08
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        214.78,
+        215.76,
+        214.98
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        214.68,
+        215.86,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        214.75,
+        285.18,
+        215.01
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        214.805,
+        285.095,
+        214.955
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        214.695,
+        285.16,
+        215.065
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        214.78,
+        285.12,
+        214.98
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        214.68,
+        285.33,
+        215.08
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        214.78,
+        285.12,
+        214.98
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        214.68,
+        285.22,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_contact_1"
+    },
+    {
+      "bbox_um": [
+        179.0,
+        214.58,
+        270.5,
+        215.18
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_finger_left"
+    },
+    {
+      "bbox_um": [
+        270.19,
+        214.68,
+        270.81,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.4,
+        214.78,
+        270.6,
+        214.98
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.3,
+        214.68,
+        270.7,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_left"
+    },
+    {
+      "bbox_um": [
+        270.5,
+        214.48,
+        273.5,
+        215.28
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass"
+    },
+    {
+      "bbox_um": [
+        273.19,
+        214.68,
+        273.81,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.4,
+        214.78,
+        273.6,
+        214.98
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.3,
+        214.68,
+        273.7,
+        215.08
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_underpass_right"
+    },
+    {
+      "bbox_um": [
+        273.5,
+        214.58,
+        285.02,
+        215.18
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "row_16_VGND_finger_right"
+    },
+    {
+      "bbox_um": [
+        181.24,
+        217.36,
+        319.7,
+        217.84
+      ],
+      "kind": "standard_cell_row_rail",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR"
+    },
+    {
+      "bbox_um": [
+        215.5,
+        217.47,
+        215.82,
+        217.73
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.585,
+        217.525,
+        215.735,
+        217.675
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.52,
+        217.415,
+        215.8,
+        217.785
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        217.5,
+        215.76,
+        217.7
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.35,
+        217.4,
+        215.97,
+        217.8
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.56,
+        217.5,
+        215.76,
+        217.7
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        215.46,
+        217.4,
+        215.86,
+        217.8
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_0"
+    },
+    {
+      "bbox_um": [
+        284.86,
+        217.47,
+        285.18,
+        217.73
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met1",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.945,
+        217.525,
+        285.095,
+        217.675
+      ],
+      "kind": "M1M2_shape",
+      "layer": "via",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.88,
+        217.415,
+        285.16,
+        217.785
+      ],
+      "kind": "M1M2_shape",
+      "layer": "met2",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        217.5,
+        285.12,
+        217.7
+      ],
+      "kind": "M2M3_shape",
+      "layer": "via2",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.71,
+        217.4,
+        285.33,
+        217.8
+      ],
+      "kind": "M2M3_shape",
+      "layer": "met3",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.92,
+        217.5,
+        285.12,
+        217.7
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        284.82,
+        217.4,
+        285.22,
+        217.8
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_contact_1"
+    },
+    {
+      "bbox_um": [
+        215.66,
+        217.3,
+        324.0,
+        217.9
+      ],
+      "kind": "row_power_finger",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "row_17_VDPWR_finger"
+    },
+    {
+      "bbox_um": [
+        323.6,
+        174.08,
+        324.4,
+        217.6
+      ],
+      "kind": "controller_power_spine",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "VDPWR_controller_spine"
+    },
+    {
+      "bbox_um": [
+        178.6,
+        171.36,
+        179.4,
+        210.7
+      ],
+      "kind": "controller_power_spine",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "VGND_controller_spine_lower"
+    },
+    {
+      "bbox_um": [
+        178.6,
+        210.7,
+        179.4,
+        213.3
+      ],
+      "kind": "opposite_supply_underpass",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "VGND_controller_spine_m3_crossing"
+    },
+    {
+      "bbox_um": [
+        178.69,
+        210.5,
+        179.31,
+        210.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "VGND_spine_lower_via3"
+    },
+    {
+      "bbox_um": [
+        178.9,
+        210.6,
+        179.1,
+        210.8
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "VGND_spine_lower_via3"
+    },
+    {
+      "bbox_um": [
+        178.8,
+        210.5,
+        179.2,
+        210.9
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "VGND_spine_lower_via3"
+    },
+    {
+      "bbox_um": [
+        178.69,
+        213.1,
+        179.31,
+        213.5
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met3",
+      "net": "VGND",
+      "owner": "VGND_spine_upper_via3"
+    },
+    {
+      "bbox_um": [
+        178.9,
+        213.2,
+        179.1,
+        213.4
+      ],
+      "kind": "M3M4_shape",
+      "layer": "via3",
+      "net": "VGND",
+      "owner": "VGND_spine_upper_via3"
+    },
+    {
+      "bbox_um": [
+        178.8,
+        213.1,
+        179.2,
+        213.5
+      ],
+      "kind": "M3M4_shape",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "VGND_spine_upper_via3"
+    },
+    {
+      "bbox_um": [
+        178.6,
+        213.3,
+        179.4,
+        217.6
+      ],
+      "kind": "controller_power_spine",
+      "layer": "met4",
+      "net": "VGND",
+      "owner": "VGND_controller_spine_upper"
+    },
+    {
+      "bbox_um": [
+        272.0,
+        211.4,
+        324.0,
+        212.6
+      ],
+      "kind": "source_connection",
+      "layer": "met4",
+      "net": "VDPWR",
+      "owner": "VDPWR_source_0_extend_existing_vdpwr_top_trunk"
+    }
+  ],
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+    "physical_gate": "v3/frozen/controller_signal_routing/route_audit.json",
+    "physical_gate_sha256": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f",
+    "sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
+    "top": "v3_four_channel_ctrl_sig_routed"
+  },
+  "source_overlap_errors": [],
+  "status": "pass",
+  "top": "v3_ctrl_power_routes"
+}

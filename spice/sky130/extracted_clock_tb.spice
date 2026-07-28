@@ -1,0 +1,45 @@
+* Parasitic-extracted complementary-clock and channel-pair timing testbench.
+.option scale=1e-6
+.save all
+.include "spice/sky130/sky130_1v8_tt.inc"
+.include "spice/sky130/sky130_passives_tt.inc"
+.include "build/layout/extracted.spice"
+
+.param VDDVAL=1.8
+.param FCLK=4meg
+.param TPER='1/FCLK'
+.param THIGH='TPER/2-1n'
+.temp 27
+
+VDD VDPWR 0 {VDDVAL}
+VSS VGND 0 0
+VCLK clk 0 pulse(0 {VDDVAL} 100n 1n 1n {THIGH} {TPER})
+* Select the 180-degree channel-two state.  In this state ch1_lop must align
+* with ch2_lon, and ch1_lon must align with ch2_lop.
+VSEL ui_in[0] 0 {VDDVAL}
+
+* Model the maximum expected TinyTapeout analog output path and bench load.
+ROP ua[2] outp_pad 500
+RON ua[3] outn_pad 500
+COP outp_pad 0 10p
+CON outn_pad 0 10p
+RPL outp_pad 0 1meg
+RNL outn_pad 0 1meg
+
+.tran {TPER/200} {12*TPER}
+.measure tran lop_delay trig v(clk) val=0.9 rise=5 targ v(lop) val=0.9 rise=5
+.measure tran lon_delay trig v(clk) val=0.9 rise=5 targ v(lon) val=0.9 fall=5
+.measure tran ch1_lop_delay trig v(clk) val=0.9 rise=5 targ v(ch1_lop) val=0.9 rise=5
+.measure tran ch2_lon_delay trig v(clk) val=0.9 rise=5 targ v(ch2_lon) val=0.9 rise=5
+.measure tran ch1_lon_delay trig v(clk) val=0.9 rise=5 targ v(ch1_lon) val=0.9 fall=5
+.measure tran ch2_lop_delay trig v(clk) val=0.9 rise=5 targ v(ch2_lop) val=0.9 fall=5
+.measure tran ch1_lop_rise trig v(ch1_lop) val=0.18 rise=5 targ v(ch1_lop) val=1.62 rise=5
+.measure tran ch2_lon_rise trig v(ch2_lon) val=0.18 rise=5 targ v(ch2_lon) val=1.62 rise=5
+.measure tran ch1_lon_fall trig v(ch1_lon) val=1.62 fall=5 targ v(ch1_lon) val=0.18 fall=5
+.measure tran ch2_lop_fall trig v(ch2_lop) val=1.62 fall=5 targ v(ch2_lop) val=0.18 fall=5
+.measure tran ch1_lop_high max v(ch1_lop) from={4*TPER} to={10*TPER}
+.measure tran ch2_lon_high max v(ch2_lon) from={4*TPER} to={10*TPER}
+.measure tran ch1_lon_low min v(ch1_lon) from={4*TPER} to={10*TPER}
+.measure tran ch2_lop_low min v(ch2_lop) from={4*TPER} to={10*TPER}
+
+.end

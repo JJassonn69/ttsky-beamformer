@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "pin-aligned controller-power contract",
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+    "top": "v3_four_channel_ctrl_sig_routed",
+    "sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
+    "physical_gate": "v3/frozen/controller_signal_routing/route_audit.json",
+    "physical_gate_sha256": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f"
+  },
+  "controller_region": {
+    "bbox_um": [181.24, 171.36, 319.70, 217.60],
+    "row_count": 17,
+    "row_height_um": 2.72,
+    "rail_extension_x_um": 319.70
+  },
+  "overlay_top": "v3_ctrl_power_routes",
+  "output_top": "v3_four_channel_ctrl_powered",
+  "supply_voltage_v": 1.8,
+  "rules": {
+    "manufacturing_grid_um": 0.005,
+    "m1_rail_width_um": 0.48,
+    "m3_bridge_width_um": 0.80,
+    "m4_finger_width_um": 0.60,
+    "m4_spine_width_um": 0.80,
+    "m4_source_width_um": 1.20,
+    "minimum_same_layer_spacing_um": 0.30,
+    "upper_contacts_per_rail": 2,
+    "metal5_allowed": false
+  },
+  "distributed_contact_columns_um": [215.66, 285.02],
+  "m4_spines": {
+    "VDPWR": {
+      "x_um": 324.00,
+      "y_span_um": [174.08, 217.60]
+    },
+    "VGND": {
+      "x_um": 179.00,
+      "lower_y_span_um": [171.36, 210.70],
+      "upper_y_span_um": [213.30, 217.60],
+      "metal3_crossing_um": [210.70, 213.30]
+    }
+  },
+  "ground_finger_underpass": {
+    "layer": "met3",
+    "x_span_um": [270.50, 273.50],
+    "width_um": 0.80,
+    "crossed_frozen_shape": {
+      "net": "VDPWR",
+      "layer": "met4",
+      "bbox_um": [271.40, 103.795, 272.60, 212.60]
+    }
+  },
+  "intentional_frozen_overlap_shapes": [
+    {
+      "net": "VDPWR",
+      "layer": "met4",
+      "bbox_um": [271.40, 103.795, 272.60, 212.60],
+      "role": "existing_east_vdpwr_spine"
+    },
+    {
+      "net": "VDPWR",
+      "layer": "met4",
+      "bbox_um": [7.40, 211.40, 272.60, 212.60],
+      "role": "existing_top_vdpwr_trunk"
+    }
+  ],
+  "source_connections": {
+    "VDPWR": [
+      {
+        "layer": "met4",
+        "from_um": [272.00, 212.00],
+        "to_um": [324.00, 212.00],
+        "width_um": 1.20,
+        "role": "extend_existing_vdpwr_top_trunk"
+      }
+    ],
+    "VGND": []
+  },
+  "port_labels": {
+    "VDPWR": {
+      "layer": "met4",
+      "point_um": [300.00, 212.00]
+    },
+    "VGND": {
+      "layer": "met4",
+      "point_um": [179.00, 208.00]
+    }
+  },
+  "via_geometries": {
+    "M1M2": [
+      ["met1", [-0.16, -0.13, 0.16, 0.13]],
+      ["via", [-0.075, -0.075, 0.075, 0.075]],
+      ["met2", [-0.14, -0.185, 0.14, 0.185]]
+    ],
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.10, -0.10, 0.10, 0.10]],
+      ["met3", [-0.31, -0.20, 0.31, 0.20]]
+    ],
+    "M3M4": [
+      ["met3", [-0.31, -0.20, 0.31, 0.20]],
+      ["via3", [-0.10, -0.10, 0.10, 0.10]],
+      ["met4", [-0.20, -0.20, 0.20, 0.20]]
+    ]
+  },
+  "policy": {
+    "v2_power_topology_reused": "continuous M1 row rails and two redundant upper contacts per boundary rail",
+    "v2_coordinates_reused": false,
+    "contacts_are_reserved_before_signal_routing": true,
+    "contacts_bound_nominal_m1_distance_to_about_35um": true,
+    "opposite_supply_m4_spines_are_on_opposite_controller_sides": true,
+    "ground_spine_crosses_vdpwr_trunk_only_on_metal3_without_a_via_at_the_crossing": true,
+    "existing_analog_and_controller_signal_geometry_is_a_hard_obstruction": true,
+    "orphan_vias_allowed": false,
+    "floating_power_shapes_allowed": false,
+    "controller_signal_geometry_modified": false,
+    "controller_power_is_separate_from_external_signal_handoffs": true
+  }
+}

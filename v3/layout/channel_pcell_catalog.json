@@ -1,0 +1,485 @@
+{
+  "cells": {
+    "XBIAS_PASS_U": {
+      "bbox_um": [
+        -0.365,
+        -1.44,
+        0.365,
+        1.44
+      ],
+      "body_connection": "shared p-substrate guard; no isolated body port on unguarded PCell",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        0.365,
+        1.44
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_8H3G5W",
+      "height_um": 2.88,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_8H3G5W.mag",
+      "mag_sha256": "3c3942a116825156e3913ae296b7f129c02b40c7ee95c139e6b5047d8eb2cb35",
+      "parameters": {
+        "fingers": 1,
+        "guard": 0,
+        "length_um": 0.15,
+        "role": "bias_pass",
+        "width_um": 2.0
+      },
+      "ports": {
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              1.275
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 0.73
+    },
+    "XBIAS_PULL_U": {
+      "bbox_um": [
+        -0.365,
+        -0.94,
+        0.365,
+        0.94
+      ],
+      "body_connection": "shared p-substrate guard; no isolated body port on unguarded PCell",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        0.365,
+        0.94
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_5QURAD",
+      "height_um": 1.88,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_5QURAD.mag",
+      "mag_sha256": "0e60c58287acf82202a4bd673cb753e42e6f4d87da89cdf9ead219b492dc853d",
+      "parameters": {
+        "fingers": 1,
+        "guard": 0,
+        "length_um": 0.15,
+        "role": "bias_pulldown",
+        "width_um": 1.0
+      },
+      "ports": {
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.775
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 0.73
+    },
+    "XGM_G": {
+      "bbox_um": [
+        -1.28,
+        -1.47,
+        1.28,
+        1.47
+      ],
+      "body_connection": "PCell guard-ring B port",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        1.28,
+        1.47
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_YEZ5D9",
+      "height_um": 2.94,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_YEZ5D9.mag",
+      "mag_sha256": "b4f85581a55a4407344f8776e5277a5b6efa7a78e5028662c695bb9300380a3b",
+      "parameters": {
+        "fingers": 1,
+        "guard": 1,
+        "length_um": 0.6,
+        "role": "gm",
+        "width_um": 0.84
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.205
+            ]
+          }
+        ],
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.445,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.695
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.445,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 2.56
+    },
+    "XGM_U": {
+      "bbox_um": [
+        -0.59,
+        -0.86,
+        0.59,
+        0.86
+      ],
+      "body_connection": "shared p-substrate guard; no isolated body port on unguarded PCell",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        0.59,
+        0.86
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_V788AE",
+      "height_um": 1.72,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_V788AE.mag",
+      "mag_sha256": "a00fc9d3c7ea2d43ccdb97bb467fdfeffb84ce5db9d139a08aafbfdc78e52051",
+      "parameters": {
+        "fingers": 1,
+        "guard": 0,
+        "length_um": 0.6,
+        "role": "gm",
+        "width_um": 0.84
+      },
+      "ports": {
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.445,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.695
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.445,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 1.18
+    },
+    "XSW_G": {
+      "bbox_um": [
+        -1.055,
+        -1.375,
+        1.055,
+        1.375
+      ],
+      "body_connection": "PCell guard-ring B port",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        1.055,
+        1.375
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_3QCTPY",
+      "height_um": 2.75,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_3QCTPY.mag",
+      "mag_sha256": "522afd79f057c1e3ea25fafbbeca8f99ac9587bcdbe4f940a19f500479b2e85d",
+      "parameters": {
+        "fingers": 1,
+        "guard": 1,
+        "length_um": 0.15,
+        "role": "switch",
+        "width_um": 0.65
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -1.11
+            ]
+          }
+        ],
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.6
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 2.11
+    },
+    "XSW_U": {
+      "bbox_um": [
+        -0.365,
+        -0.765,
+        0.365,
+        0.765
+      ],
+      "body_connection": "shared p-substrate guard; no isolated body port on unguarded PCell",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        0.365,
+        0.765
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "height_um": 1.53,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_KTSK5Q.mag",
+      "mag_sha256": "1f9a0fb916c356bb61be7ce4daeffb69d4f0823441e5a3d921daa71c374d2dc0",
+      "parameters": {
+        "fingers": 1,
+        "guard": 0,
+        "length_um": 0.15,
+        "role": "switch",
+        "width_um": 0.65
+      },
+      "ports": {
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.22,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              0.6
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.22,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 0.73
+    },
+    "XTAIL_G": {
+      "bbox_um": [
+        -1.48,
+        -3.585,
+        1.48,
+        3.585
+      ],
+      "body_connection": "PCell guard-ring B port",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        1.48,
+        3.585
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_W5UBQ5",
+      "height_um": 7.17,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_W5UBQ5.mag",
+      "mag_sha256": "e521a05c384d707896177aed749d42be3fc067aff33aca2071f944511ef4bfeb",
+      "parameters": {
+        "fingers": 1,
+        "guard": 1,
+        "length_um": 1.0,
+        "role": "tail",
+        "width_um": 5.066666666
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -3.32
+            ]
+          }
+        ],
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.645,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              2.81
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.645,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 2.96
+    },
+    "XTAIL_U": {
+      "bbox_um": [
+        -0.79,
+        -2.975,
+        0.79,
+        2.975
+      ],
+      "body_connection": "shared p-substrate guard; no isolated body port on unguarded PCell",
+      "gencell_anchor": "lower_left",
+      "gencell_anchor_offset_um": [
+        0.79,
+        2.975
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_QS2BNM",
+      "height_um": 5.95,
+      "mag": "build/v3/pcell_dimensions/remote_mag/sky130_fd_pr__nfet_01v8_QS2BNM.mag",
+      "mag_sha256": "92689bd9bcc590cfc1ac32414adc37ab75b0e54d861450ae2dd48772526a909f",
+      "parameters": {
+        "fingers": 1,
+        "guard": 0,
+        "length_um": 1.0,
+        "role": "tail",
+        "width_um": 5.066666666
+      },
+      "ports": {
+        "D": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              -0.645,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              2.81
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "ndiffc",
+            "point_um": [
+              0.645,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 1.58
+    }
+  },
+  "errors": [],
+  "provenance": {
+    "dimension_summary": "build/v3/pcell_dimensions/summary.json",
+    "dimension_summary_sha256": "297c20c5ff4373361ef6df535910aba9b00c6d5cc2b8d88551c83d9ca401ec13",
+    "generator": "v3/tools/build_channel_pcell_catalog.py",
+    "generator_sha256": "46b816cd96320bcc882dcffd38cdf9b4e7fb3e660b2c623f5a7d75ecd0340d90",
+    "magic_version": "8.3.676",
+    "measurement_tcl": "v3/layout/measure_pcells.tcl",
+    "measurement_tcl_sha256": "89df4c2cda523cc35b3f46a3b7d684e64f4afe749a648c4af87a4c89bb73d0ea",
+    "sky130_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005"
+  },
+  "schema_version": 1,
+  "scope": "measured PCell boxes and exact D/S/G terminal coordinates; shared guard and parent routing remain separate geometry",
+  "status": "pass"
+}

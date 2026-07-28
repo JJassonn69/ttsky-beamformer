@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="660" viewBox="0 0 1400 660" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">Distributed-RC cold-start milestones</title>
+<desc id="svg-desc">Measured VCM threshold times and final settled range from a 120 microsecond quiet cold-start simulation.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:26px;font-weight:600}.subtitle{font-size:15px;fill:#5b6475}.axis{font-size:14px;fill:#5b6475}.tick{font-size:13px;fill:#667085}.value{font-size:14px;font-weight:600}.small{font-size:12px;fill:#667085}.cell{font-size:18px;font-weight:600}.cellsub{font-size:12px}.label{font-size:15px;font-weight:600}</style>
+<rect width="1400" height="660" fill="#ffffff"/>
+<text x="60.00" y="48.00" text-anchor="start" class="title">Distributed-RC cold-start milestones</text>
+<text x="60.00" y="76.00" text-anchor="start" class="subtitle">Threshold measurements and final window; connecting line indicates elapsed time, not a reconstructed waveform</text>
+<line x1="115.00" y1="250.00" x2="1310.00" y2="250.00" stroke="#8591a3" stroke-width="6" opacity="1"/>
+<line x1="115.00" y1="240.00" x2="115.00" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="115.00" y="288.00" text-anchor="middle" class="tick">0</text>
+<line x1="314.17" y1="240.00" x2="314.17" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="314.17" y="288.00" text-anchor="middle" class="tick">20</text>
+<line x1="513.33" y1="240.00" x2="513.33" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="513.33" y="288.00" text-anchor="middle" class="tick">40</text>
+<line x1="712.50" y1="240.00" x2="712.50" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="712.50" y="288.00" text-anchor="middle" class="tick">60</text>
+<line x1="911.67" y1="240.00" x2="911.67" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="911.67" y="288.00" text-anchor="middle" class="tick">80</text>
+<line x1="1110.83" y1="240.00" x2="1110.83" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="1110.83" y="288.00" text-anchor="middle" class="tick">100</text>
+<line x1="1310.00" y1="240.00" x2="1310.00" y2="260.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="1310.00" y="288.00" text-anchor="middle" class="tick">120</text>
+<text x="712.50" y="318.00" text-anchor="middle" class="axis">Elapsed time after supply application (us)</text>
+<circle cx="115.00" cy="250.00" r="10.00" fill="#5b6475" stroke="#ffffff" stroke-width="3"/>
+<line x1="115.00" y1="238.00" x2="115.00" y2="184.00" stroke="#5b6475" stroke-width="2" opacity="1"/>
+<text x="115.00" y="170.00" text-anchor="middle" class="label" style="fill:#5b6475">Supply applied</text>
+<text x="115.00" y="194.00" text-anchor="middle" class="small">0 us</text>
+<circle cx="722.35" cy="250.00" r="10.00" fill="#177ddc" stroke="#ffffff" stroke-width="3"/>
+<line x1="722.35" y1="262.00" x2="722.35" y2="316.00" stroke="#177ddc" stroke-width="2" opacity="1"/>
+<text x="722.35" y="330.00" text-anchor="middle" class="label" style="fill:#177ddc">VCM reaches 1.10 V</text>
+<text x="722.35" y="354.00" text-anchor="middle" class="small">60.989 us</text>
+<circle cx="1085.51" cy="250.00" r="10.00" fill="#7c3aed" stroke="#ffffff" stroke-width="3"/>
+<line x1="1085.51" y1="238.00" x2="1085.51" y2="184.00" stroke="#7c3aed" stroke-width="2" opacity="1"/>
+<text x="1085.51" y="170.00" text-anchor="middle" class="label" style="fill:#7c3aed">VCM reaches 1.17 V</text>
+<text x="1085.51" y="194.00" text-anchor="middle" class="small">97.457 us</text>
+<circle cx="1310.00" cy="250.00" r="10.00" fill="#27884a" stroke="#ffffff" stroke-width="3"/>
+<line x1="1310.00" y1="262.00" x2="1310.00" y2="316.00" stroke="#27884a" stroke-width="2" opacity="1"/>
+<text x="1310.00" y="330.00" text-anchor="middle" class="label" style="fill:#27884a">Final measurement</text>
+<text x="1310.00" y="354.00" text-anchor="middle" class="small">120 us</text>
+<rect x="175.00" y="430.00" width="1050.00" height="145.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="203.00" y="468.00" text-anchor="start" class="label">Final 5 us window</text>
+<text x="203.00" y="506.00" text-anchor="start" class="value">VCM average  1.184191 V</text>
+<text x="565.00" y="506.00" text-anchor="start" class="value">range  1.182920 to 1.185393 V</text>
+<text x="203.00" y="540.00" text-anchor="start" class="small">Observed window movement  2.473 mV</text>
+<text x="765.00" y="540.00" text-anchor="start" class="small" style="fill:#aa6a00">Bench recommendation: wait at least 120 us before enabling</text>
+<text x="1358.00" y="638.00" text-anchor="end" class="small">GDS 1b76aba2cf23 | source 81abad9fd83d | quiet cold start, 20 ns max step</text>
+</svg>

@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "pin-aligned TinyTapeout controller-input boundary contract",
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
+    "top": "v3_four_ch_ctrl_analog_handoff",
+    "sha256": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071",
+    "physical_gate": "v3/frozen/controller_analog_handoffs/assembly_report.json",
+    "physical_gate_sha256": "4f9f5ba634d2ca21c354b31177b1be6a0f630f017c859a55a00f39aca9eafe07"
+  },
+  "endpoint_sources": {
+    "controller_boundary_manifest": "v3/frozen/controller_signal_routing/input_summary.json",
+    "controller_boundary_manifest_sha256": "bc7f1339fb85c4f5449eb772d8bb1430311f698abb66a21406d716f4806b8632",
+    "tinytapeout_template_def": "build/v2/tt_analog_2x2.def",
+    "tinytapeout_template_def_sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f"
+  },
+  "route_region_bbox_um": [100.0, 200.0, 306.0, 225.76],
+  "pin_mapping": {
+    "clk": "clk",
+    "rst_n": "rst_n",
+    "ena": "ena",
+    "beam_select[0]": "ui_in[0]",
+    "beam_select[1]": "ui_in[1]",
+    "beam_select[2]": "ui_in[2]",
+    "raw_mode": "ui_in[3]",
+    "channel_enable[0]": "ui_in[4]",
+    "channel_enable[1]": "ui_in[5]",
+    "channel_enable[2]": "ui_in[6]",
+    "channel_enable[3]": "ui_in[7]",
+    "cfg_clk": "uio_in[0]",
+    "cfg_data": "uio_in[1]",
+    "cfg_latch": "uio_in[2]"
+  },
+  "route_classes": {
+    "clock": 2,
+    "reset": 1,
+    "control_input": 11
+  },
+  "expected_net_count": 14,
+  "expected_pin_count": 28,
+  "routing_layers": ["met2", "met3", "met4"],
+  "wire_widths": {
+    "met2": 0.14,
+    "met3": 0.30,
+    "met4": 0.30
+  },
+  "via_geometries": {
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.10, -0.10, 0.10, 0.10]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ],
+    "M3M4": [
+      ["met3", [-0.19, -0.16, 0.19, 0.16]],
+      ["via3", [-0.10, -0.10, 0.10, 0.10]],
+      ["met4", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "policy": {
+    "source_gds_is_exact_m2_m3_m4_obstacle_map": true,
+    "only_declared_pin_windows_are_removed_from_blockages": true,
+    "all_closed_internal_geometry_is_immutable": true,
+    "all_14_boundary_handoffs_are_router_owned": true,
+    "official_template_pin_rectangles_are_exact": true,
+    "metal5_allowed": false,
+    "manual_preroutes_allowed": false,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false
+  }
+}

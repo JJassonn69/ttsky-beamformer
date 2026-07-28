@@ -1,0 +1,596 @@
+{
+  "constraints": {
+    "branch_width_um": 0.8,
+    "frozen_source_geometry_modified": false,
+    "gds_timestamps_canonicalized": true,
+    "main_trunk_width_um": 1.2,
+    "metal5_forbidden": true,
+    "source_is_exact_frozen_stage_input": true,
+    "supply_voltage_v": 1.8,
+    "uses_vapwr": false
+  },
+  "endpoints": {
+    "VDPWR": {
+      "channels": [
+        {
+          "at_um": [
+            84.11,
+            187.45
+          ],
+          "channel": 0,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            103.43,
+            187.45
+          ],
+          "channel": 1,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            122.75,
+            187.45
+          ],
+          "channel": 2,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            142.07,
+            187.45
+          ],
+          "channel": 3,
+          "layer": "metal4"
+        }
+      ],
+      "output_load_pair": {
+        "at_um": [
+          65.32,
+          130.71
+        ],
+        "layer": "metal2"
+      },
+      "tail_bias": {
+        "at_um": [
+          210.0,
+          104.395
+        ],
+        "layer": "metal2"
+      },
+      "vcm": {
+        "at_um": [
+          32.5,
+          140.845
+        ],
+        "layer": "metal2"
+      }
+    },
+    "VGND": {
+      "channels": [
+        {
+          "at_um": [
+            86.67,
+            184.73
+          ],
+          "channel": 0,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            105.99,
+            184.73
+          ],
+          "channel": 1,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            125.31,
+            184.73
+          ],
+          "channel": 2,
+          "layer": "metal4"
+        },
+        {
+          "at_um": [
+            144.63,
+            184.73
+          ],
+          "channel": 3,
+          "layer": "metal4"
+        }
+      ],
+      "tail_bias": {
+        "at_um": [
+          267.82,
+          30.0
+        ],
+        "layer": "metal4"
+      },
+      "vcm_and_compensation": {
+        "at_um": [
+          15.0,
+          5.0
+        ],
+        "layer": "metal4"
+      }
+    }
+  },
+  "external_power_pins": {
+    "VDPWR": {
+      "bbox_um": [
+        1.0,
+        5.0,
+        3.0,
+        220.76
+      ],
+      "label_at_um": [
+        2.0,
+        112.88
+      ],
+      "layer": "metal4"
+    },
+    "VGND": {
+      "bbox_um": [
+        4.0,
+        5.0,
+        6.0,
+        220.76
+      ],
+      "label_at_um": [
+        5.0,
+        112.88
+      ],
+      "layer": "metal4"
+    }
+  },
+  "provenance": {
+    "composer": "v3/tools/compose_four_channel_power_integration.py",
+    "composer_sha256": "236736a986e066cbbe13c46dfbcb354a8317d5fbaccaa3a4d765a657074bcc9e",
+    "generator": "v3/tools/build_four_channel_power_integration.py",
+    "generator_sha256": "fd09b09d15bcd858871617849476ac6a782e78720182a89f5f636085c0a7804a"
+  },
+  "routes": {
+    "VDPWR": [
+      {
+        "from": [
+          2.0,
+          212.0
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "source_bridge_beneath_vgnd",
+        "to": [
+          8.0,
+          212.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          8.0,
+          212.0
+        ],
+        "layer": "metal4",
+        "net": "VDPWR",
+        "role": "main_top_trunk",
+        "to": [
+          272.0,
+          212.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          8.0,
+          145.0
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "west_distribution_spine_beneath_vgnd",
+        "to": [
+          8.0,
+          212.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          8.0,
+          145.0
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "passive_supply_branch_west",
+        "to": [
+          50.0,
+          145.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          50.0,
+          145.0
+        ],
+        "layer": "metal4",
+        "net": "VDPWR",
+        "role": "passive_supply_crossover",
+        "to": [
+          61.0,
+          145.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          61.0,
+          145.0
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "passive_supply_branch_east",
+        "to": [
+          65.32,
+          145.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          32.5,
+          140.845
+        ],
+        "layer": "metal2",
+        "net": "VDPWR",
+        "role": "vcm_supply_escape_below_existing_m3",
+        "to": [
+          32.5,
+          145.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          65.32,
+          145.0
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "output_load_supply_drop",
+        "to": [
+          65.32,
+          130.71
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          210.0,
+          104.395
+        ],
+        "layer": "metal4",
+        "net": "VDPWR",
+        "role": "tail_supply_exit",
+        "to": [
+          272.0,
+          104.395
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          272.0,
+          104.395
+        ],
+        "layer": "metal4",
+        "net": "VDPWR",
+        "role": "east_distribution_spine",
+        "to": [
+          272.0,
+          212.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          84.11,
+          187.45
+        ],
+        "layer": "metal4",
+        "net": "VDPWR",
+        "role": "four_channel_vpwr_bus",
+        "to": [
+          174.0,
+          187.45
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          174.0,
+          187.45
+        ],
+        "layer": "metal3",
+        "net": "VDPWR",
+        "role": "channel_vpwr_spine",
+        "to": [
+          174.0,
+          212.0
+        ],
+        "width_um": 0.8
+      }
+    ],
+    "VGND": [
+      {
+        "from": [
+          5.0,
+          5.0
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "vcm_ground_to_external_source",
+        "to": [
+          15.0,
+          5.0
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          5.0,
+          208.0
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "main_top_trunk",
+        "to": [
+          267.82,
+          208.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          267.82,
+          30.0
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "role": "tail_and_control_ground_spine",
+        "to": [
+          267.82,
+          208.0
+        ],
+        "width_um": 1.2
+      },
+      {
+        "from": [
+          86.67,
+          184.73
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "channel_vgnd_bus_0",
+        "to": [
+          102.5,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          102.5,
+          184.73
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "role": "vpwr_strap_crossover_0",
+        "to": [
+          105.99,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          105.99,
+          184.73
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "channel_vgnd_bus_1",
+        "to": [
+          121.8,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          121.8,
+          184.73
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "role": "vpwr_strap_crossover_1",
+        "to": [
+          125.31,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          125.31,
+          184.73
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "channel_vgnd_bus_2",
+        "to": [
+          141.1,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          141.1,
+          184.73
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "role": "vpwr_strap_crossover_2",
+        "to": [
+          144.63,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          144.63,
+          184.73
+        ],
+        "layer": "metal4",
+        "net": "VGND",
+        "role": "channel_vgnd_bus_3",
+        "to": [
+          170.0,
+          184.73
+        ],
+        "width_um": 0.8
+      },
+      {
+        "from": [
+          170.0,
+          184.73
+        ],
+        "layer": "metal3",
+        "net": "VGND",
+        "role": "channel_vgnd_spine",
+        "to": [
+          170.0,
+          208.0
+        ],
+        "width_um": 0.8
+      }
+    ]
+  },
+  "routing_decisions": {
+    "channel_power": "one straight VPWR Metal-4 bus touches all four collinear ports; the VGND bus uses three short Metal-3 crossovers beneath the intervening vertical VPWR straps, then each rail exits beside the array on its own Metal-3 spine",
+    "future_control_power": "east VDPWR/VGND spines are reserved as the supply boundary for the centralized control block",
+    "no_floating_stubs": true,
+    "no_orphan_vias": true,
+    "no_signal_meanders": true,
+    "passive_branch": "VCM escapes its terminal on Metal 2, then the shared branch promotes to Metal 4 only while crossing the REF and N-output Metal-3 trunks",
+    "source_crossing": "VDPWR crosses beneath the full-height VGND Metal-4 stripe and the orthogonal VGND top trunk only on Metal 3",
+    "top_trunks": "separate 1.20 um Metal-4 trunks above all four phase trees"
+  },
+  "schema_version": 1,
+  "source": {
+    "current_manifest": "v3/CURRENT.json",
+    "gds": "v3/frozen/four_channel_output_load_integration/v3_four_channel_output_load_integration.gds",
+    "gds_sha256": "16c045e05f05168008237a1179d9b89af0c5cbc1120ef431507e42f1786f52f9",
+    "stage_binding_sha256": "80fbed19e3ae04c7d9baa02c7211deb1261b1e12c8b2f57e352afb19cd9b4a9c",
+    "status": "immutable upstream input reserved for shared-power integration",
+    "top_cell": "v3_four_channel_output_load_integration"
+  },
+  "status": "shared-power integration candidate; exact DRC and extraction pending",
+  "top_cell": "v3_four_channel_power_integration",
+  "units": "um",
+  "via2_points_um": {
+    "VDPWR": [
+      [
+        32.5,
+        145.0
+      ],
+      [
+        65.32,
+        130.71
+      ],
+      [
+        210.0,
+        104.395
+      ]
+    ],
+    "VGND": []
+  },
+  "via3_points_um": {
+    "VDPWR": [
+      [
+        2.0,
+        212.0
+      ],
+      [
+        8.0,
+        212.0
+      ],
+      [
+        50.0,
+        145.0
+      ],
+      [
+        61.0,
+        145.0
+      ],
+      [
+        210.0,
+        104.395
+      ],
+      [
+        174.0,
+        187.45
+      ],
+      [
+        174.0,
+        212.0
+      ]
+    ],
+    "VGND": [
+      [
+        267.82,
+        30.0
+      ],
+      [
+        267.82,
+        208.0
+      ],
+      [
+        102.5,
+        184.73
+      ],
+      [
+        105.99,
+        184.73
+      ],
+      [
+        121.8,
+        184.73
+      ],
+      [
+        125.31,
+        184.73
+      ],
+      [
+        141.1,
+        184.73
+      ],
+      [
+        144.63,
+        184.73
+      ],
+      [
+        170.0,
+        184.73
+      ],
+      [
+        170.0,
+        208.0
+      ]
+    ]
+  }
+}

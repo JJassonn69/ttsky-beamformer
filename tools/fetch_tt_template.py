@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch and authenticate the exact Tiny Tapeout 1x2 analog DEF template."""
+"""Legacy V1 helper: fetch the historical Tiny Tapeout 1x2 DEF."""
 
 from __future__ import annotations
 

@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "route_match_constraints": [
+    {
+      "name": "ch0_gm_branches",
+      "nets": ["ch0_gm_p", "ch0_gm_n"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_total_length_mismatch_percent": 1.0,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch0_mixer_outputs",
+      "nets": ["ch0_out_p", "ch0_out_n"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_layer_length_mismatch_percent_by_layer": {"metal1": 16.0, "metal2": 16.0},
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "ch0_local_lo",
+      "nets": ["ch0_lop", "ch0_lon"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch1_gm_branches",
+      "nets": ["ch1_gm_p", "ch1_gm_n"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_total_length_mismatch_percent": 1.0,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch1_mixer_outputs",
+      "nets": ["ch1_out_p", "ch1_out_n"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_layer_length_mismatch_percent_by_layer": {"metal1": 16.0, "metal2": 16.0},
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "ch1_local_lo",
+      "nets": ["ch1_lop", "ch1_lon"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch2_gm_branches",
+      "nets": ["ch2_gm_p", "ch2_gm_n"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_total_length_mismatch_percent": 1.0,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch2_mixer_outputs",
+      "nets": ["ch2_out_p", "ch2_out_n"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_layer_length_mismatch_percent_by_layer": {"metal1": 16.0, "metal2": 16.0},
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "ch2_local_lo",
+      "nets": ["ch2_lop", "ch2_lon"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch3_gm_branches",
+      "nets": ["ch3_gm_p", "ch3_gm_n"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_total_length_mismatch_percent": 1.0,
+      "equal_vias": ["via1", "via2"]
+    },
+    {
+      "name": "ch3_mixer_outputs",
+      "nets": ["ch3_out_p", "ch3_out_n"],
+      "layers": ["metal1", "metal2", "metal3", "metal4"],
+      "max_layer_length_mismatch_percent": 2.0,
+      "max_layer_length_mismatch_percent_by_layer": {"metal1": 16.0, "metal2": 16.0},
+      "max_total_length_mismatch_percent": 2.0,
+      "equal_vias": ["via1", "via2", "via3"]
+    },
+    {
+      "name": "ch3_local_lo",
+      "nets": ["ch3_lop", "ch3_lon"],
+      "layers": ["metal1", "metal2", "metal3"],
+      "max_layer_length_mismatch_percent": 0.1,
+      "max_total_length_mismatch_percent": 0.1,
+      "equal_vias": ["via1", "via2"]
+    }
+  ],
+  "route_endpoint_constraints": [],
+  "route_path_constraints": [],
+  "boundary_route_constraints": []
+}

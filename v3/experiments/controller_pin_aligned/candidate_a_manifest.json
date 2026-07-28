@@ -1,0 +1,19 @@
+{
+  "branch_point_commit": "0711b6af1287ce29017e8d11207aeee7a9f4a364",
+  "candidate": "A",
+  "files": {
+    "build/v3/control_placement/physical_control_placement.json": "e0dc2920a5a6c9dc99c16b318a3591a83c347ef15757016974a0eb95a1c38b0d",
+    "v3/evidence/physical_control_boundary_handoff_gate.json": "c8e11db80069959dc84cf9736af1f7e381882117e765156544a3ce25917be542",
+    "v3/evidence/physical_control_signal_routing_gate.json": "cf2cab8bbf4566907d4c91752da3f88245fa30b66d9ab1695d2cc7763e29e0d9",
+    "v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+    "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14"
+  },
+  "policy": {
+    "candidate_a_files_are_read_only": true,
+    "candidate_b_outputs_use_separate_paths": true,
+    "final_submission_is_not_repointed_by_this_experiment": true
+  },
+  "status": "immutable signed-off baseline"
+}
+

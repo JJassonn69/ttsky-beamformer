@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "exact matched four-channel analog-input escape contract on pin-aligned controller",
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
+    "top": "v3_four_ch_ctrl_boundary_handoff",
+    "sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
+    "physical_gate": "v3/frozen/controller_boundary_handoffs/assembly_report.json",
+    "physical_gate_sha256": "8baa568d63906a98b99a7fc23ac0227693cedb6b9fbd5f2f33056b2abd60deb6"
+  },
+  "endpoint_sources": {
+    "tinytapeout_template_def": "build/v2/tt_analog_2x2.def",
+    "tinytapeout_template_def_sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
+    "corridor_audit": "build/v3/analog_input_escapes/corridor_obstructions.json",
+    "corridor_audit_sha256": "10510bf284bfdf4d341b33b14cf5c4ee185cde1b8da5e5c282a2f3ad03eba8af",
+    "corridor_auditor": "v3/tools/analyze_analog_input_escape_corridors.py",
+    "corridor_auditor_sha256": "5cf26d26b9c867326dece3815b6e898fa0281c56b4b306ff9daaf723f09af8eb"
+  },
+  "overlay_top": "v3_analog_input_escape_routes",
+  "output_top": "v3_four_ch_analog_inputs",
+  "channels": [
+    {
+      "channel": 0,
+      "net": "element_input[0]",
+      "pin": "ua[0]",
+      "x": 152.26,
+      "pin_rect": [151.81, 0.0, 152.71, 1.0]
+    },
+    {
+      "channel": 1,
+      "net": "element_input[1]",
+      "pin": "ua[1]",
+      "x": 132.94,
+      "pin_rect": [132.49, 0.0, 133.39, 1.0]
+    },
+    {
+      "channel": 2,
+      "net": "element_input[2]",
+      "pin": "ua[2]",
+      "x": 113.62,
+      "pin_rect": [113.17, 0.0, 114.07, 1.0]
+    },
+    {
+      "channel": 3,
+      "net": "element_input[3]",
+      "pin": "ua[3]",
+      "x": 94.30,
+      "pin_rect": [93.85, 0.0, 94.75, 1.0]
+    }
+  ],
+  "route_geometry": {
+    "pin_center_y": 0.50,
+    "input_access_center_y": 10.235,
+    "m3_centerline_length": 9.735,
+    "m3_width": 0.40,
+    "m3_bbox_relative_to_x": [-0.20, 0.34, 0.20, 10.42],
+    "via3_bbox_relative_to_x": [-0.10, 0.40, 0.10, 0.60],
+    "via2_bbox_relative_to_x": [-0.10, 10.135, 0.10, 10.335],
+    "m2_landing_bbox_relative_to_x": [-0.14, 10.05, 0.14, 10.42],
+    "label_layer": "met3",
+    "label_y": 5.00,
+    "vias_per_route": 2,
+    "direction_reversals_per_route": 0
+  },
+  "corridor_findings": {
+    "all_four_source_corridors_are_translation_identical": true,
+    "first_m3_obstruction_y": 37.385,
+    "new_m3_route_top_y": 10.42,
+    "m3_clearance_to_first_obstruction": 26.965,
+    "existing_element_input_m2_vertical_bbox_relative_to_x": [-0.20, 10.385, 0.20, 144.01],
+    "m2_landing_overlaps_only_the_existing_element_input_access": true
+  },
+  "expected": {
+    "routes": 4,
+    "labels": 4,
+    "vias": 8,
+    "shapes": 20,
+    "m4_terminals": 4,
+    "m3_trunks": 4,
+    "m2_landings": 4,
+    "total_m3_centerline_length": 38.94
+  },
+  "policy": {
+    "source_geometry_modified": false,
+    "all_four_routes_are_exact_translations": true,
+    "all_four_routes_use_identical_layer_sequences": true,
+    "all_four_routes_use_identical_widths_and_via_counts": true,
+    "no_meanders_or_direction_reversals": true,
+    "pin_rectangles_match_official_template_exactly": true,
+    "input_routes_stop_at_the_lowest_existing_element_input_access": true,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "metal5_allowed": false
+  }
+}

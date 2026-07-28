@@ -1,0 +1,79 @@
+{
+  "payload": {
+    "case_count": 10,
+    "errors": [],
+    "evidence": [
+      {
+        "case": "base_nominal_constructive",
+        "path": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
+        "sha256": "19b82f3c98b3ce130c9048be73acf4e2a6603be2d1ffb5e5a7bdaade71056763"
+      },
+      {
+        "case": "base_zero_input_background",
+        "path": "build/v2/postlayout_smoke/base/codebook/selected_0_incident_1_vin_0nv_startup_op_step_5ns/report.json",
+        "sha256": "e698e2e5653a255d6b83052fbe4e03bd85ee40d6b7d15ef52f053103d7f4bf24"
+      },
+      {
+        "case": "rc_cold_start",
+        "path": "build/v2/postlayout_startup/rc/quiet_120us_step_20ns_final_5us/report.json",
+        "sha256": "81abad9fd83d1b52ed8cf2e9e0d7691ff87f3a60077a65aa08395c3d8ca59a57"
+      },
+      {
+        "case": "rc_ff_headroom",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_vin_0nv_startup_op_window_2us_3us_step_10ns_corner_ff_vdd_1p98_temp_m40c_passives_hh/report.json",
+        "sha256": "1efd2950eacd210cf473449d3b0022f8ebce4737ab5be3bb272415f838d15a40"
+      },
+      {
+        "case": "rc_nominal_constructive",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns/report.json",
+        "sha256": "ef48a6d2578228c151d67efa5e6a4204dd189d827c201c06b44f56ee82dc7333"
+      },
+      {
+        "case": "rc_representative_null",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_1_startup_op_step_5ns/report.json",
+        "sha256": "03f3bc1a542f4101d7b29122c1edc62badb6d008e5be000b0f53d260e4b16779"
+      },
+      {
+        "case": "rc_sf_headroom",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_vin_0nv_startup_op_window_2us_3us_step_10ns_corner_sf_vdd_1p8_temp_27c_passives_hh/report.json",
+        "sha256": "941c963458e08cb3b7bf28eea20ee3fd5400ea09c5c2f1ecf1ee83ea8cc23a95"
+      },
+      {
+        "case": "rc_trim_high",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns_trim_15_15_15_15/report.json",
+        "sha256": "9e7b6cd59370423c5415c7239c71c1c6bad4e5c167e570a5a4ea3ebe55a5e54e"
+      },
+      {
+        "case": "rc_trim_low",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns_trim_0_0_0_0/report.json",
+        "sha256": "ff0367a104dceba9a1d6e86b972965016540271d30808a474a81676cae847c83"
+      },
+      {
+        "case": "rc_zero_input_background",
+        "path": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_1_vin_0nv_startup_op_step_5ns/report.json",
+        "sha256": "f6a0741c7cb653f46a904edb86be64bf49f2202b5042f155da06b1107bb17692"
+      }
+    ],
+    "expected_netlist_sha256": {
+      "base": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+      "rc": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126"
+    },
+    "frozen_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "gate": 4,
+    "manifest": "build/v2/signoff/gate4_targeted_manifest.json",
+    "manifest_sha256": "45fc4a56a0a8fd08e4c82cfbb09b27cdc77760facf221adec2426473441a472a",
+    "metrics": {
+      "base_corrected_constructive_rms_v": 0.023808223798559812,
+      "base_to_rc_constructive_delta_db": 0.1122669130826494,
+      "rc_corrected_constructive_rms_v": 0.02350247777256871,
+      "rc_corrected_null_rms_v": 4.652130074204933e-06,
+      "rc_representative_rejection_db": 74.06923602922994
+    },
+    "schema_version": 1,
+    "scope": "bounded post-layout electrical closure; not exhaustive characterization",
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/signoff/gate4_audit.json",
+  "source_sha256": "65cd27f01f71d5f736c1b72d20e088cbc4f400e5d39f67acee4ca23bbfdafe90"
+}

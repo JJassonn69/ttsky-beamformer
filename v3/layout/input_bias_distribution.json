@@ -1,0 +1,619 @@
+{
+  "electrical_contract": {
+    "body_net": "VGND",
+    "input_coupling": "external 100 pF nominal AC coupling",
+    "nominal_resistance_ohm": 100000.0,
+    "one_resistor_per_channel": true,
+    "r1_net": "vcm",
+    "r2_net": "element input",
+    "resistor_pcell": "sky130_fd_pr__res_xhigh_po_1p41, w=1.41 um, l=70.5 um, guarded"
+  },
+  "input_branches": [
+    {
+      "channel": 0,
+      "contact_stacks": [
+        [
+          142.6,
+          9.005
+        ]
+      ],
+      "net": "element_0",
+      "segments": [
+        {
+          "from": [
+            142.6,
+            9.005
+          ],
+          "layer": "metal2",
+          "to": [
+            142.6,
+            8.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            142.6,
+            8.0
+          ],
+          "layer": "metal2",
+          "to": [
+            152.26,
+            8.0
+          ],
+          "width_um": 0.4
+        }
+      ]
+    },
+    {
+      "channel": 1,
+      "contact_stacks": [
+        [
+          123.28,
+          9.005
+        ]
+      ],
+      "net": "element_1",
+      "segments": [
+        {
+          "from": [
+            123.28,
+            9.005
+          ],
+          "layer": "metal2",
+          "to": [
+            123.28,
+            8.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            123.28,
+            8.0
+          ],
+          "layer": "metal2",
+          "to": [
+            132.94,
+            8.0
+          ],
+          "width_um": 0.4
+        }
+      ]
+    },
+    {
+      "channel": 2,
+      "contact_stacks": [
+        [
+          103.96,
+          9.005
+        ]
+      ],
+      "net": "element_2",
+      "segments": [
+        {
+          "from": [
+            103.96,
+            9.005
+          ],
+          "layer": "metal2",
+          "to": [
+            103.96,
+            8.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            103.96,
+            8.0
+          ],
+          "layer": "metal2",
+          "to": [
+            113.62,
+            8.0
+          ],
+          "width_um": 0.4
+        }
+      ]
+    },
+    {
+      "channel": 3,
+      "contact_stacks": [
+        [
+          84.64,
+          9.005
+        ]
+      ],
+      "net": "element_3",
+      "segments": [
+        {
+          "from": [
+            84.64,
+            9.005
+          ],
+          "layer": "metal2",
+          "to": [
+            84.64,
+            8.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            84.64,
+            8.0
+          ],
+          "layer": "metal2",
+          "to": [
+            94.3,
+            8.0
+          ],
+          "width_um": 0.4
+        }
+      ]
+    }
+  ],
+  "placement": {
+    "channel_pitch_um": 19.32,
+    "pcell_height_um": 76.32,
+    "pcell_width_um": 3.07,
+    "resistor_center_y_um": 46.16,
+    "resistor_offset_from_channel_axis_um": -9.66,
+    "resistors": [
+      {
+        "bbox": [
+          141.065,
+          8.0,
+          144.135,
+          84.32
+        ],
+        "center": [
+          142.6,
+          46.16
+        ],
+        "channel": 0,
+        "guard_integration": "join the resistor substrate guard to the adjacent channel shared guard; prove by exact one-channel DRC/extraction",
+        "name": "RIN_CH0",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm",
+          "R2": "element_0"
+        },
+        "orientation": "R0",
+        "pcell": "input_bias_resistor_guarded",
+        "terminals": {
+          "B": [
+            142.6,
+            8.265
+          ],
+          "R1": [
+            142.6,
+            83.315
+          ],
+          "R2": [
+            142.6,
+            9.005
+          ]
+        }
+      },
+      {
+        "bbox": [
+          121.745,
+          8.0,
+          124.815,
+          84.32
+        ],
+        "center": [
+          123.28,
+          46.16
+        ],
+        "channel": 1,
+        "guard_integration": "join the resistor substrate guard to the adjacent channel shared guard; prove by exact one-channel DRC/extraction",
+        "name": "RIN_CH1",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm",
+          "R2": "element_1"
+        },
+        "orientation": "R0",
+        "pcell": "input_bias_resistor_guarded",
+        "terminals": {
+          "B": [
+            123.28,
+            8.265
+          ],
+          "R1": [
+            123.28,
+            83.315
+          ],
+          "R2": [
+            123.28,
+            9.005
+          ]
+        }
+      },
+      {
+        "bbox": [
+          102.425,
+          8.0,
+          105.495,
+          84.32
+        ],
+        "center": [
+          103.96,
+          46.16
+        ],
+        "channel": 2,
+        "guard_integration": "join the resistor substrate guard to the adjacent channel shared guard; prove by exact one-channel DRC/extraction",
+        "name": "RIN_CH2",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm",
+          "R2": "element_2"
+        },
+        "orientation": "R0",
+        "pcell": "input_bias_resistor_guarded",
+        "terminals": {
+          "B": [
+            103.96,
+            8.265
+          ],
+          "R1": [
+            103.96,
+            83.315
+          ],
+          "R2": [
+            103.96,
+            9.005
+          ]
+        }
+      },
+      {
+        "bbox": [
+          83.105,
+          8.0,
+          86.175,
+          84.32
+        ],
+        "center": [
+          84.64,
+          46.16
+        ],
+        "channel": 3,
+        "guard_integration": "join the resistor substrate guard to the adjacent channel shared guard; prove by exact one-channel DRC/extraction",
+        "name": "RIN_CH3",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm",
+          "R2": "element_3"
+        },
+        "orientation": "R0",
+        "pcell": "input_bias_resistor_guarded",
+        "terminals": {
+          "B": [
+            84.64,
+            8.265
+          ],
+          "R1": [
+            84.64,
+            83.315
+          ],
+          "R2": [
+            84.64,
+            9.005
+          ]
+        }
+      }
+    ]
+  },
+  "promotion_gates": [
+    "four-channel support sweep selects the physical VCM bypass",
+    "one complete channel pilot proves resistor/channel guard integration with zero DRC",
+    "extraction proves four 100 kohm input-bias paths and no input-to-VCM shorts",
+    "distributed RC proves equal input branch and VCM leaf resistance within 1 percent"
+  ],
+  "provenance": {
+    "floorplan": "v3/layout/floorplan.json",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
+    "generator": "v3/tools/build_input_bias_distribution.py",
+    "measured_pcell_catalog": "v3/layout/shared_support_pcell_catalog.json",
+    "measured_pcell_catalog_sha256": "5cb5506866fc49820f7b64d7b4d8886a54f7808525ae885c231aeb7c56446dda",
+    "measurement_scope": "dimensions and terminal coordinates from V3 PCells generated by pinned Magic 8.3.676 and SKY130 commit 0536d02d875c8f67dd7cca3902ac457e62f20005; exact placed instances still require DRC/extraction"
+  },
+  "schema_version": 1,
+  "status": "constraint placement; exact channel-guard merge, DRC, extraction, and top-level VCM feed pending",
+  "units": "um",
+  "vcm_distribution": {
+    "allow_meanders": false,
+    "allow_u_turns": false,
+    "common_feed": "pending selected VCM capacitor terminal; must join only at the named root",
+    "layer": "metal3",
+    "leaves": [
+      {
+        "channel": 3,
+        "point": [
+          84.64,
+          83.315
+        ]
+      },
+      {
+        "channel": 2,
+        "point": [
+          103.96,
+          83.315
+        ]
+      },
+      {
+        "channel": 1,
+        "point": [
+          123.28,
+          83.315
+        ]
+      },
+      {
+        "channel": 0,
+        "point": [
+          142.6,
+          83.315
+        ]
+      }
+    ],
+    "local_channel_entries": [
+      {
+        "channel": 0,
+        "channel_entry": [
+          144.39,
+          83.315
+        ],
+        "contact_stacks": [
+          [
+            142.6,
+            83.315
+          ]
+        ],
+        "net": "vcm",
+        "resistor_terminal": [
+          142.6,
+          83.315
+        ],
+        "segments": [
+          {
+            "from": [
+              142.6,
+              83.315
+            ],
+            "layer": "metal3",
+            "to": [
+              144.39,
+              83.315
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "channel": 1,
+        "channel_entry": [
+          125.07,
+          83.315
+        ],
+        "contact_stacks": [
+          [
+            123.28,
+            83.315
+          ]
+        ],
+        "net": "vcm",
+        "resistor_terminal": [
+          123.28,
+          83.315
+        ],
+        "segments": [
+          {
+            "from": [
+              123.28,
+              83.315
+            ],
+            "layer": "metal3",
+            "to": [
+              125.07,
+              83.315
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "channel": 2,
+        "channel_entry": [
+          105.75,
+          83.315
+        ],
+        "contact_stacks": [
+          [
+            103.96,
+            83.315
+          ]
+        ],
+        "net": "vcm",
+        "resistor_terminal": [
+          103.96,
+          83.315
+        ],
+        "segments": [
+          {
+            "from": [
+              103.96,
+              83.315
+            ],
+            "layer": "metal3",
+            "to": [
+              105.75,
+              83.315
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "channel": 3,
+        "channel_entry": [
+          86.43,
+          83.315
+        ],
+        "contact_stacks": [
+          [
+            84.64,
+            83.315
+          ]
+        ],
+        "net": "vcm",
+        "resistor_terminal": [
+          84.64,
+          83.315
+        ],
+        "segments": [
+          {
+            "from": [
+              84.64,
+              83.315
+            ],
+            "layer": "metal3",
+            "to": [
+              86.43,
+              83.315
+            ],
+            "width_um": 0.5
+          }
+        ]
+      }
+    ],
+    "pair_roots": [
+      [
+        94.3,
+        86.5
+      ],
+      [
+        132.94,
+        86.5
+      ]
+    ],
+    "root": [
+      113.62,
+      90.0
+    ],
+    "segments": [
+      {
+        "from": [
+          94.3,
+          90.0
+        ],
+        "layer": "metal3",
+        "to": [
+          132.94,
+          90.0
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          94.3,
+          90.0
+        ],
+        "layer": "metal3",
+        "to": [
+          94.3,
+          86.5
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          132.94,
+          90.0
+        ],
+        "layer": "metal3",
+        "to": [
+          132.94,
+          86.5
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          84.64,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          103.96,
+          86.5
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          123.28,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          142.6,
+          86.5
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          84.64,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          84.64,
+          83.315
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          103.96,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          103.96,
+          83.315
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          123.28,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          123.28,
+          83.315
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          142.6,
+          86.5
+        ],
+        "layer": "metal3",
+        "to": [
+          142.6,
+          83.315
+        ],
+        "width_um": 0.5
+      }
+    ],
+    "topology": "two-level center-fed H-tree plus identical short local channel entries",
+    "wire_width_um": 0.5
+  }
+}

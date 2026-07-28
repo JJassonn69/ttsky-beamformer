@@ -1,0 +1,281 @@
+{
+  "cells": {
+    "XIN_0P35_L17P36_G": {
+      "bbox_um": [
+        -1.005,
+        -11.59,
+        1.005,
+        11.59
+      ],
+      "gencell_anchor_offset_um": [
+        0.740000000000002,
+        11.325
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_0p35_5SPXJ4",
+      "height_um": 23.18,
+      "mag_sha256": "9ee50bdd17ba68d8d699a736049a7e38b5e5f195b9a34263416fea401261da45",
+      "nominal_pcell_resistance_ohm": 100275.0,
+      "parameters": {
+        "guard": 1,
+        "length_um": 17.36,
+        "model": "res_xhigh_po_0p35",
+        "role": "input_bias",
+        "width_um": 0.35
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -11.325
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              10.585
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -10.585
+            ]
+          }
+        ]
+      },
+      "width_um": 2.01
+    },
+    "XIN_0P35_L17P5_G": {
+      "bbox_um": [
+        -1.005,
+        -11.66,
+        1.005,
+        11.66
+      ],
+      "gencell_anchor_offset_um": [
+        0.74,
+        11.395
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_0p35_F2VZ7Q",
+      "height_um": 23.32,
+      "mag_sha256": "be0cc035ddd6f5037de6b7d8bec9bb2e244eead098a971cd2200e65ea3f3d5ad",
+      "nominal_pcell_resistance_ohm": 101075.0,
+      "parameters": {
+        "guard": 1,
+        "length_um": 17.5,
+        "model": "res_xhigh_po_0p35",
+        "role": "input_bias",
+        "width_um": 0.35
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -11.395
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              10.655
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -10.655
+            ]
+          }
+        ]
+      },
+      "width_um": 2.01
+    },
+    "XIN_0P35_L17P5_U": {
+      "bbox_um": [
+        -0.175,
+        -10.83,
+        0.175,
+        10.83
+      ],
+      "gencell_anchor_offset_um": [
+        0.1750000000000007,
+        10.83
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_0p35_L7A7ZJ",
+      "height_um": 21.66,
+      "mag_sha256": "9b5ddc1a7faf374377a642556a2c8c1a6d536efddb8d0b2de07c1301d80144a3",
+      "nominal_pcell_resistance_ohm": 101075.0,
+      "parameters": {
+        "guard": 0,
+        "length_um": 17.5,
+        "model": "res_xhigh_po_0p35",
+        "role": "input_bias",
+        "width_um": 0.35
+      },
+      "ports": {
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              10.655
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -10.655
+            ]
+          }
+        ]
+      },
+      "width_um": 0.35
+    },
+    "XIN_0P35_L5P833_G": {
+      "bbox_um": [
+        -1.005,
+        -5.825,
+        1.005,
+        5.825
+      ],
+      "gencell_anchor_offset_um": [
+        0.7399999999999984,
+        5.56
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_0p35_SDZ56B",
+      "height_um": 11.65,
+      "mag_sha256": "7ad7cfb90c6506cde9976d7075b3f7e3471e4dee1c60d0e3ccb46021500e9658",
+      "nominal_pcell_resistance_ohm": 34406.0,
+      "parameters": {
+        "guard": 1,
+        "length_um": 5.833333333,
+        "model": "res_xhigh_po_0p35",
+        "role": "input_bias",
+        "width_um": 0.35
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -5.56
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              4.82
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -4.82
+            ]
+          }
+        ]
+      },
+      "width_um": 2.01
+    },
+    "XIN_0P35_L5P833_U": {
+      "bbox_um": [
+        -0.175,
+        -4.995,
+        0.175,
+        4.995
+      ],
+      "gencell_anchor_offset_um": [
+        0.1750000000000007,
+        4.995
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_0p35_5Y2TJM",
+      "height_um": 9.99,
+      "mag_sha256": "c21aaf4d7a26d786602c339e7977f2c2e4313595d7850a6ca4bdd9f88e00b080",
+      "nominal_pcell_resistance_ohm": 34406.0,
+      "parameters": {
+        "guard": 0,
+        "length_um": 5.833333333,
+        "model": "res_xhigh_po_0p35",
+        "role": "input_bias",
+        "width_um": 0.35
+      },
+      "ports": {
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              4.82
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -4.82
+            ]
+          }
+        ]
+      },
+      "width_um": 0.35
+    }
+  },
+  "gates": {
+    "all_five_candidates_measured": true,
+    "all_guarded_candidates_have_body_terminal": true,
+    "selected_candidate_fits_3p58um_pitch_gap": true,
+    "selected_candidate_has_all_terminals": true,
+    "selected_candidate_is_at_least_3x_shorter": true,
+    "selected_nominal_resistance_matches_old_within_0p1pct": true
+  },
+  "next_gate": "place the selected guarded PCell under an M3 ground shield in the channel side corridor and prove exact DRC/topology",
+  "old_reference": {
+    "bbox_um": [
+      3.07,
+      76.32
+    ],
+    "length_um": 70.5,
+    "model": "res_xhigh_po_1p41",
+    "nominal_pcell_resistance_ohm": 100266.0,
+    "width_um": 1.41
+  },
+  "provenance": {
+    "generator": "v3/layout/measure_input_bias_pcells.tcl",
+    "generator_sha256": "263606d49c51ef8a83026921f4e1caa698c0c9aa8cf09dece3de11bb318e8223",
+    "magic_version": "8.3.676",
+    "parent_mag_sha256": "8d8989f11d7f8e6a87485d0c812686085b8f8fbb8f93d5e42ca5c18d921cfdb4",
+    "sky130_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005"
+  },
+  "schema_version": 1,
+  "scope": "measured compact input-bias PCell dimensions, terminals, and generator-reported nominal resistance",
+  "selected_candidate": "XIN_0P35_L17P36_G",
+  "status": "pass"
+}

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "retired historical internal-control overlay; do not regenerate into the release candidate",
+  "superseded_by": "v2/layout/control_openroad_route_plan.json",
+  "retired_reason": "the final router solves internal, handoff, boundary, service, and external nets concurrently instead of layering this earlier partial route",
+  "source_checkpoint": {
+    "gds": "build/v2/control_power/direct/v2_four_channel_control_powered.gds",
+    "top": "v2_four_channel_control_powered",
+    "sha256": "e55aa97955544a2b29f4fdcf9181eebcdf140c6a01f94613a6b9f057cc4410f8"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "bf00eb7ccb8d3f9e756e93591249cf904fa38d8351f2fbdefb83e8f0134f6935"
+  },
+  "pin_access_checkpoint": {
+    "json": "build/v2/control_routing/control_pin_access_catalog.json",
+    "sha256": "1b58777f043c27c3e81033ee9201151f650a763e2124a97d5e1c37886fb76260"
+  },
+  "overlay_top": "v2_control_internal_routes",
+  "output_top": "v2_control_internal_routed",
+  "routed_classes": ["local_direct", "regional_trunk"],
+  "policy": {
+    "topology": "one shortest interval M4 trunk per net with monotonic M3 leaves",
+    "track_selection": "nearest legal track to the median endpoint Y; harder and higher-fanout nets route first",
+    "pin_access": "zero lateral M1; use only inset-qualified LI or M1 ports",
+    "same_net_tree": "one connected tree with no loop, meander, stub, or direction reversal",
+    "source_gds_is_exact_obstacle_map": true,
+    "metal5_used": false
+  },
+  "rules": {
+    "locali_half_width": 0.085,
+    "metal1_pad_half_width": 0.16,
+    "metal1_width": 0.17,
+    "via1_half_width": 0.13,
+    "metal2_landing_half_width": 0.20,
+    "metal2_width": 0.32,
+    "via2_half_width": 0.20,
+    "metal3_landing_half_x": 0.31,
+    "metal3_landing_half_y": 0.20,
+    "metal3_width": 0.40,
+    "via3_half_width": 0.20,
+    "metal4_landing_half_width": 0.20,
+    "metal4_width": 0.40,
+    "minimum_metal1_clearance": 0.14,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_metal4_clearance": 0.30,
+    "maximum_m1_escape_manhattan": 0.00,
+    "maximum_m2_leaf_escape": 4.60,
+    "maximum_wrong_way_m2_vertical": 4.00,
+    "wrong_way_m2_penalty_um": 0.23,
+    "pin_escape_search_pitch": 0.23,
+    "m1_escape_search_steps": 0,
+    "m2_leaf_search_steps": 20,
+    "maximum_legal_access_candidates": 12,
+    "track_pitch_um": 0.70,
+    "maximum_track_candidates_per_net": 0,
+    "maximum_vertical_overhead_per_endpoint_um": 16.0
+  },
+  "routing_windows": {
+    "phase_configuration_bank": {
+      "lowest_track_y_um": 177.40,
+      "highest_track_y_um": 192.10
+    },
+    "global_control_core": {
+      "lowest_track_y_um": 196.44,
+      "highest_track_y_um": 222.34
+    },
+    "trim_configuration_bank": {
+      "lowest_track_y_um": 24.60,
+      "highest_track_y_um": 67.30
+    }
+  },
+  "release_gates": [
+    "all local_direct and regional_trunk nets are emitted exactly once",
+    "every mapped endpoint uses an inset-qualified named pin port",
+    "every cut has same-net conductor above and below",
+    "M4 trunks equal the leaf span and every leaf is monotonic",
+    "no floating via, dead branch, U-turn, lateral M1 route, or metal5 exists",
+    "Magic DRC and complete terminal-aware extraction pass on the assembled GDS"
+  ]
+}

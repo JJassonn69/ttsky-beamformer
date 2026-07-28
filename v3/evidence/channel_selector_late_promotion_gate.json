@@ -1,0 +1,165 @@
+{
+  "checks": {
+    "all_eight_selector_roots_connected_once": true,
+    "all_twenty_one_external_ports_promoted": true,
+    "compact_input_bias_resistor_connected": true,
+    "direct_gds_precheck_zero": true,
+    "expected_total_extracted_devices": true,
+    "frozen_analog_and_phase_routing_preserved": true,
+    "frozen_subset_matches_exact_gds": true,
+    "integrated_topology_exact": true,
+    "magic_feedback_clears_to_zero": true,
+    "magic_readback_drc_zero": true,
+    "only_nine_expected_grounded_dummy_notices": true,
+    "precheck_matches_exact_gds": true,
+    "source_gates_passed": true,
+    "straight_equal_length_phase_joins": true,
+    "vpwr_vgnd_separate_and_all_wells_closed": true
+  },
+  "gds": "build/v3/channel_selector_late_promotion/v3_channel_selector_late_promotion.gds",
+  "gds_sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
+  "magic_markers": {
+    "after_clear": 0,
+    "drc": 0,
+    "extraction": 9
+  },
+  "next_gate": "distributed-RC extraction of the integrated phase roots, then flattened visual review",
+  "schema_version": 1,
+  "scope": "15-cell weighted analog channel, edge dummies, compact input bias, shared guard, eight late-root phase joins, and local digital selector supply closure",
+  "sha256": {
+    "checker": "0d74ffd9eab098b866dbc43d25b7d10d088e37d0582396b58b98424cfd8c5d47",
+    "frozen_subset": "983e0c5fd569cb5c7e98aa62a46ab487b2776bcde5a83618524a22b29f976e32",
+    "join_builder": "cdd2c782f46d00b42095de57f0ddad974ade8e52aee2b559a2d1bfc59b0a1e95",
+    "join_manifest": "a5a697cbd4ccd062012894726bcf6eae3ec8bdfcf6a1c22b2b4f238515cf58e6",
+    "magic_log": "ed7e73d6ed5c643bdfb75f84b50a262424990bd46f388b0c3ae60e2362420862",
+    "merge_script": "44efeb5bd0f72a799e83a7e4e27e660b36136f226d0044a593b53d4ba01905ba",
+    "precheck": "14fa231da008a4808a59ef3e2db7a9a5fcf67b07063ee60aa9381bf4afd96086",
+    "spice": "5bf0cccffad9550f06939c0cda27fb64de0bed0ccb60e102750652d78b491451"
+  },
+  "status": "pass",
+  "topology": {
+    "active_analog_nmos_count": 105,
+    "extracted_x_device_count": 323,
+    "grounded_edge_dummy_count": 9,
+    "hierarchical_external_port_aliases": [],
+    "input_bias_resistor_ok": true,
+    "misbiased_mos_bodies": [],
+    "missing_top_level_ports": [],
+    "mos_count": 322,
+    "nfet_count": 218,
+    "phase_channel": {
+      "device_classes": {
+        "gm": 30,
+        "switch": 60,
+        "tail": 15
+      },
+      "switch_gate_counts": {
+        "g1_lon": 2,
+        "g1_lop": 2,
+        "g2_lon": 4,
+        "g2_lop": 4,
+        "g4_lon": 8,
+        "g4_lop": 8,
+        "g8_lon": 16,
+        "g8_lop": 16
+      },
+      "units_by_group": {
+        "1": 1,
+        "2": 2,
+        "4": 4,
+        "8": 8
+      }
+    },
+    "selector_root_joins": {
+      "group0_lo_n": {
+        "analog_switch_gate_hits": 2,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 2,
+        "expected_selector_cell": "G0_LO_N_ANDNOT",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group0_lo_p": {
+        "analog_switch_gate_hits": 2,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 2,
+        "expected_selector_cell": "G0_LO_P_AND",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group1_lo_n": {
+        "analog_switch_gate_hits": 4,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 4,
+        "expected_selector_cell": "G1_LO_N_ANDNOT",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group1_lo_p": {
+        "analog_switch_gate_hits": 4,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 4,
+        "expected_selector_cell": "G1_LO_P_AND",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group2_lo_n": {
+        "analog_switch_gate_hits": 8,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 8,
+        "expected_selector_cell": "G2_LO_N_ANDNOT",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group2_lo_p": {
+        "analog_switch_gate_hits": 8,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 8,
+        "expected_selector_cell": "G2_LO_P_AND",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group3_lo_n": {
+        "analog_switch_gate_hits": 16,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 16,
+        "expected_selector_cell": "G3_LO_N_ANDNOT",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      },
+      "group3_lo_p": {
+        "analog_switch_gate_hits": 16,
+        "connected": true,
+        "expected_analog_switch_gate_hits": 16,
+        "expected_selector_cell": "G3_LO_P_AND",
+        "selector_output_device_hits": 2,
+        "wrong_selector_cells": []
+      }
+    },
+    "top_level_ports": [
+      "VGND",
+      "VPWR",
+      "channel_enable",
+      "element_input",
+      "group0_bit0",
+      "group0_bit1",
+      "group1_bit0",
+      "group1_bit1",
+      "group2_bit0",
+      "group2_bit1",
+      "group3_bit0",
+      "group3_bit1",
+      "mixers_blank",
+      "phase_0",
+      "phase_180",
+      "phase_270",
+      "phase_90",
+      "ref",
+      "row_outn",
+      "row_outp",
+      "vbias"
+    ],
+    "unclosed_hierarchical_supply_nodes": []
+  },
+  "topology_errors": []
+}

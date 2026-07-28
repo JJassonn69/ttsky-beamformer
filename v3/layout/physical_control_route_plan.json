@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "hash-locked pin-aligned shared-controller internal route contract",
+  "source_checkpoint": {
+    "gds": "build/v3/control_placement/direct/v3_four_channel_control_placed.gds",
+    "top": "v3_four_channel_control_placed",
+    "sha256": "761415f2ebc04f380c6014fed7ea038fd6bf0af1bbb26de2b34a381f6979074d"
+  },
+  "route_checkpoint": {
+    "input_summary": "build/v3/control_routing/openroad_internal/input_summary.json",
+    "input_summary_sha256": "bc7f1339fb85c4f5449eb772d8bb1430311f698abb66a21406d716f4806b8632",
+    "audit": "build/v3/control_routing/openroad_internal/route_audit.json",
+    "audit_sha256": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f",
+    "routed_def": "build/v3/control_routing/openroad_internal/routed.def",
+    "routed_def_sha256": "1fa994b5e971b43d08b0961bfd3532ce0071530b815f07d258e38acfca34d878",
+    "detailed_route_drc": "build/v3/control_routing/openroad_internal/detailed_route_drc.rpt",
+    "detailed_route_drc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "openroad_log": "build/v3/control_routing/openroad_internal/openroad.log",
+    "openroad_log_sha256": "8ff0599758a1f1f8703765d1c8e3065ac70eefb50b5996155b427a653a545909",
+    "wire_length": "build/v3/control_routing/openroad_internal/wire_length.csv",
+    "wire_length_sha256": "de35cf240709a3734dd58c5319e06f00a1a70ed7b660d4ca0520db4deba3537c",
+    "guide_coverage": "build/v3/control_routing/openroad_internal/guide_coverage.csv",
+    "guide_coverage_sha256": "5732f60164959ba11eaed49fab7fc70a6e7aaf76e34953899a94b90ed3146fbe"
+  },
+  "overlay_top": "v3_ctrl_signal_routes",
+  "output_top": "v3_four_channel_ctrl_sig_routed",
+  "expected_route_count": 305,
+  "expected_boundary_pin_count": 55,
+  "maximum_wire_layer": "met3",
+  "wire_widths": {
+    "li1": 0.17,
+    "met1": 0.14,
+    "met2": 0.14,
+    "met3": 0.3
+  },
+  "via_geometries": {
+    "L1M1": [
+      ["li1", [-0.085, -0.085, 0.085, 0.085]],
+      ["mcon", [-0.085, -0.085, 0.085, 0.085]],
+      ["met1", [-0.145, -0.115, 0.145, 0.115]]
+    ],
+    "M1M2": [
+      ["met1", [-0.16, -0.13, 0.16, 0.13]],
+      ["via", [-0.075, -0.075, 0.075, 0.075]],
+      ["met2", [-0.13, -0.16, 0.13, 0.16]]
+    ],
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.1, -0.1, 0.1, 0.1]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "policy": {
+    "placement_is_fixed": true,
+    "two_distributed_power_contacts_per_row_are_reserved": true,
+    "all_305_internal_signal_nets_are_router_owned": true,
+    "route_centerlines_and_vias_are_reproduced_from_routed_def": true,
+    "every_route_is_a_loop_free_tree_with_qualified_foundry_pin_access": true,
+    "maximum_logical_endpoint_count": 17,
+    "metal4_is_reserved_for_analog_and_top_level_handoffs": true,
+    "power_routing_is_a_separate_gate": true,
+    "top_level_handoff_routing_is_a_separate_gate": true
+  }
+}

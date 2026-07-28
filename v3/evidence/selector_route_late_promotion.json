@@ -1,0 +1,144 @@
+{
+  "checks": {
+    "all_boundary_nets_survive_extraction": true,
+    "component_count": true,
+    "extracted_device_count_matches_library": true,
+    "magic_def_import_errors_zero": true,
+    "magic_drc_zero": true,
+    "magic_extraction_feedback_zero": true,
+    "magic_gds_feedback_zero": true,
+    "net_count": true,
+    "openroad_all_standard_cell_pins_accessible": true,
+    "openroad_drc_report_empty": true,
+    "openroad_final_drc_zero": true,
+    "pin_count": true,
+    "tiny_tapeout_pilot_geometry_precheck_zero": true
+  },
+  "design_counts": {
+    "boundary_pins": 22,
+    "components": 43,
+    "expected_transistors_from_library": 208,
+    "extracted_transistors": 208,
+    "filler_components": 17,
+    "functional_and_tap_components": 26,
+    "signal_nets": 35
+  },
+  "errors": [],
+  "independent_magic_results": {
+    "def_import_errors": 0,
+    "drc_errors": 0,
+    "extraction_feedback": 0,
+    "gds_writer_feedback": 0,
+    "missing_boundary_nets_after_flat_extraction": [],
+    "version": "8.3 revision 676"
+  },
+  "provenance": {
+    "artifacts": {
+      "detailed_route_drc.rpt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "guide_coverage.csv": "0b81757ddf95d3c72bb2f24a8409332dc831294469ad50dc41119a5b97cd50cb",
+      "input.def": "8b019f40dd0c24da77c92d00775ad2520b7d3d2a19e67880b3cd776fae0a153b",
+      "input_summary.json": "38fce7abf4f8064c95a372ccba8a1bc391f82fc7d82a8977d51ee66538fde70c",
+      "magic_extract.log": "27eb7346c8c65cc3727b2bf61141d741db8b0079d6e921ecea0617ddb4f1f9ce",
+      "openroad.log": "cd34636f119b339b96fed3243f22d4d79cb8d6894939e1d4a9baa7d8244867c4",
+      "precheck_beol.xml": "b3b6747e8644aad93b864746e195af1f3d5eb4cde99a4c4bdb697b7f666fe9ce",
+      "precheck_feol.xml": "cc4abd264ab0094352f2116734462656b4b5309668186bfd91907ca34723c884",
+      "precheck_offgrid.xml": "65fb149dbefbf995e3b228baff02932065842c5bd1aa3aa63ad9a0771f67f251",
+      "precheck_pin_purpose_overlap.xml": "524923540003979dfa71d80b89f95c414b1ac23bc976d3e5cf2a6f98c2186caf",
+      "precheck_summary.json": "b44fa907d69b2c1b57ce57d4329e74c504e2cda9d5054b7f4bf5c29d8b3d9e4b",
+      "precheck_zero_area.xml": "8505064ae81f350ecb577b35c8a48fb2155106a3c879e8cd7c31fc78379b1e96",
+      "route.tcl": "05797553a2ea2165c2583125f09e210e7e21892f9d081a697aeee6e04463d2a1",
+      "routed.def": "bc7540652f8d62e7251ffcbe7ed74984538d4b8483f1eae23e67f2fbf8af93ab",
+      "v3_selector_route_pilot.gds": "ec51e2d85caea3ed353b076aae7e17d2cde43a3797df1d3cc9ca7d6ab390bfed",
+      "v3_selector_route_pilot_flat.spice": "3e1aa7b549744dff69c1c1aa8e64c0875c39a55d6c7e20fe4da42c5f768c6da4",
+      "wire_length.csv": "b7c8025bd5253892935ee2691598c1afc7449f519fb08f784769828d9aee964c"
+    },
+    "merged_cell_lef_sha256": "44180aaa0068b1fcb0789f128b090304c01ad48f511d3f7afa66c90b3e176ec5",
+    "openroad_binary_sha256": "93fe61454a52b927602fd6c798c4402214c19e80e7d614636345f0f427ea2f46",
+    "openroad_version": "v2.0-17598-ga008522d8",
+    "precheck_runner": "v3/tools/run_selector_precheck.py",
+    "precheck_runner_sha256": "f25ba92f13bd79d85a2eacc73fd402f177cccf9d9f4a11180b24ab15572162ab",
+    "route_generator": "v3/tools/generate_selector_route_late_promotion.py",
+    "route_generator_sha256": "11e5e73d764c495cef2bd95d52245f3510da003acb6050982f9aa7f13007d309",
+    "selector_placement": "v3/layout/selector_placement.json",
+    "selector_placement_sha256": "4456e9718d5f0ad13c61d524fca3f7565af8b814d7fb594b4b4db71f2ff2146b",
+    "sky130_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005",
+    "technology_lef_sha256": "8e99b4e8b016db0713029ebcae6b2cc2aedd9c2c49682e2f23521dd0b1a2085e",
+    "tiny_tapeout_support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1"
+  },
+  "rejected_or_diagnostic_candidates": [
+    {
+      "cell_gap_sites": 0,
+      "disposition": "selected",
+      "result": "root-aligned reroute: 0 OpenROAD/Magic/FEOL/BEOL/off-grid/zero-area/pin-overlap markers",
+      "row_gap_um": 0.0
+    },
+    {
+      "cell_gap_sites": 0,
+      "disposition": "rejected",
+      "result": "7 LI spacing violations",
+      "row_gap_um": 0.68
+    },
+    {
+      "cell_gap_sites": 0,
+      "disposition": "invalid and stopped",
+      "result": "off 0.34 um routing grid",
+      "row_gap_um": 1.0
+    },
+    {
+      "cell_gap_sites": 0,
+      "disposition": "diagnostic and stopped",
+      "result": "vertical spacing did not target horizontal abutment failures",
+      "row_gap_um": 1.02
+    },
+    {
+      "cell_gap_sites": 1,
+      "disposition": "rejected",
+      "result": "route/Magic clean but 33 official MR_nwell.SP.1 FEOL markers",
+      "row_gap_um": 0.68
+    },
+    {
+      "cell_gap_sites": 1,
+      "disposition": "rejected",
+      "result": "44 official MR_nwell.SP.1 markers on the root-aligned reroute",
+      "row_gap_um": 0.0
+    }
+  ],
+  "remaining_gates": [
+    "route and compare all four selector copies with balanced phase-spine and LO-output skew constraints",
+    "add and verify VPWR/VGND straps plus antenna repair",
+    "extract routed selector RC and verify phase/control timing across PVT",
+    "integrate with the analog cores and complete direct-GDS DRC/LVS/PEX signoff",
+    "run the complete official Tiny Tapeout wrapper/LEF/Verilog/power/analog-pin/boundary precheck on the integrated top-level artifact"
+  ],
+  "route_results": {
+    "detailed_wire_length_um": 619,
+    "guide_coverage_total": "99.08%",
+    "openroad_detailed_route_violations": 0,
+    "openroad_unreachable_standard_cell_pins": 0,
+    "via_count": 148
+  },
+  "schema_version": 1,
+  "scope": "one complete V3 per-channel selector signal-route pilot; full four-channel integration, power, antenna, timing/skew, and analog-core routing remain outside this gate",
+  "selected_constraints": {
+    "filler_cells_per_channel": 17,
+    "row_gap_routing_tracks": 0,
+    "row_gap_um": 0.0,
+    "signal_cell_gap_sites": 0,
+    "signal_cell_gap_um": 0.0
+  },
+  "status": "pass",
+  "tiny_tapeout_precheck_compatible_geometry": {
+    "klayout_version": "0.30.9",
+    "marker_counts": {
+      "beol": 0,
+      "feol": 0,
+      "offgrid": 0,
+      "pin_purpose_overlap": 0,
+      "zero_area": 0
+    },
+    "scope_note": "directly applicable pilot-GDS geometry decks only; full wrapper/pin/boundary/interface checks require the integrated Tiny Tapeout top level",
+    "sky130_rule_deck_release": "2025.10.29_01.10",
+    "status": "pass",
+    "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1"
+  }
+}

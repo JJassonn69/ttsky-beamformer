@@ -1,0 +1,65 @@
+{
+  "assembly": {
+    "output_bytes": 2623276,
+    "output_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
+    "output_structure_count": 33,
+    "output_top": "v3_four_ch_analog_inputs",
+    "overlay_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/analog_input_escapes/direct/v3_analog_input_escape_routes.gds",
+    "overlay_reference_count_added": 1,
+    "overlay_sha256": "db045706528d268497f9c3356f178ba3d9eae4f4ca54cec12b07635307d97edf",
+    "overlay_structure_count": 1,
+    "overlay_top": "v3_analog_input_escape_routes",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
+    "source_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
+    "source_structure_count": 32,
+    "source_top": "v3_four_ch_ctrl_boundary_handoff",
+    "status": "pass",
+    "top_level_labels_promoted": [
+      "V3I000",
+      "V3I001",
+      "V3I002",
+      "V3I003"
+    ]
+  },
+  "geometry": {
+    "by_layer": {
+      "met2": 4,
+      "met3": 4,
+      "met4": 4,
+      "via2": 4,
+      "via3": 4
+    },
+    "labels": 4,
+    "m2_landings": 4,
+    "m3_trunks": 4,
+    "m4_terminals": 4,
+    "routes": 4,
+    "shapes": 20,
+    "total_m3_centerline_length": 38.94,
+    "vias": 8
+  },
+  "geometry_sha256": "eb59356200f267933f9121e8e181c4a15b89a93bf920b16d19d75cc9e690084d",
+  "output_gds": "build/v3/analog_input_escapes/direct/v3_four_channel_analog_inputs.gds",
+  "output_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
+  "overlay": {
+    "boundary_count": 20,
+    "bytes": 1608,
+    "dbu_per_um": 1000,
+    "label_count": 4,
+    "output_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/analog_input_escapes/direct/v3_analog_input_escape_routes.gds",
+    "output_sha256": "db045706528d268497f9c3356f178ba3d9eae4f4ca54cec12b07635307d97edf",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
+    "source_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
+    "status": "pass",
+    "top": "v3_analog_input_escape_routes",
+    "writer": "direct deterministic GDS boundary writer"
+  },
+  "policy": {
+    "magic_is_not_the_route_geometry_writer": true,
+    "route_geometry_writer": "direct deterministic matched-input writer",
+    "source_checkpoint_attached_hierarchically": true,
+    "source_geometry_modified": false
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

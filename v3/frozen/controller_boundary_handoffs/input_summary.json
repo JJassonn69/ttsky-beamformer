@@ -1,0 +1,918 @@
+{
+  "blockage_count": 1052,
+  "blockages_by_layer": {
+    "met2": 809,
+    "met3": 185,
+    "met4": 58
+  },
+  "coordinate_offset_um": [
+    100.0,
+    200.0
+  ],
+  "diearea_um": [
+    0.0,
+    0.0,
+    206.0,
+    25.75999999999999
+  ],
+  "net_count": 14,
+  "net_ids": {
+    "N000": "clk",
+    "N001": "rst_n",
+    "N002": "ena",
+    "N003": "beam_select[0]",
+    "N004": "beam_select[1]",
+    "N005": "beam_select[2]",
+    "N006": "raw_mode",
+    "N007": "channel_enable[0]",
+    "N008": "channel_enable[1]",
+    "N009": "channel_enable[2]",
+    "N010": "channel_enable[3]",
+    "N011": "cfg_clk",
+    "N012": "cfg_data",
+    "N013": "cfg_latch"
+  },
+  "nets": [
+    {
+      "net": "clk",
+      "route_class": "clock",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "clk",
+        "rect_um": [
+          214.9,
+          216.76000000000002,
+          215.20000000000002,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "clk"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "clk",
+          "rect_um": [
+            143.83,
+            224.76,
+            144.13,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "rst_n",
+      "route_class": "reset",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "rst_n",
+        "rect_um": [
+          212.14000000000001,
+          216.76000000000002,
+          212.44000000000003,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "rst_n"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "rst_n",
+          "rect_um": [
+            141.07,
+            224.76,
+            141.37,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "ena",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "ena",
+        "rect_um": [
+          217.66,
+          216.76000000000002,
+          217.96,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ena"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ena",
+          "rect_um": [
+            146.59,
+            224.76,
+            146.89,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "beam_select[0]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "beam_select[0]",
+        "rect_um": [
+          209.38,
+          216.76000000000002,
+          209.68,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[0]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[0]",
+          "rect_um": [
+            138.31,
+            224.76,
+            138.61,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "beam_select[1]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "beam_select[1]",
+        "rect_um": [
+          206.62,
+          216.76000000000002,
+          206.92000000000002,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[1]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[1]",
+          "rect_um": [
+            135.55,
+            224.76,
+            135.85,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "beam_select[2]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "beam_select[2]",
+        "rect_um": [
+          203.86,
+          216.76000000000002,
+          204.16000000000003,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[2]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[2]",
+          "rect_um": [
+            132.79,
+            224.76,
+            133.09,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "raw_mode",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "raw_mode",
+        "rect_um": [
+          201.1,
+          216.76000000000002,
+          201.4,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[3]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[3]",
+          "rect_um": [
+            130.03,
+            224.76,
+            130.33,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "channel_enable[0]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "channel_enable[0]",
+        "rect_um": [
+          198.34,
+          216.76000000000002,
+          198.64000000000001,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[4]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[4]",
+          "rect_um": [
+            127.27,
+            224.76,
+            127.57,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "channel_enable[1]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "channel_enable[1]",
+        "rect_um": [
+          195.58,
+          216.76000000000002,
+          195.88000000000002,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[5]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[5]",
+          "rect_um": [
+            124.51,
+            224.76,
+            124.81,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "channel_enable[2]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "channel_enable[2]",
+        "rect_um": [
+          192.82,
+          216.76000000000002,
+          193.12,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[6]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[6]",
+          "rect_um": [
+            121.75,
+            224.76,
+            122.05,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "channel_enable[3]",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "channel_enable[3]",
+        "rect_um": [
+          190.06,
+          216.76000000000002,
+          190.36,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "ui_in[7]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "ui_in[7]",
+          "rect_um": [
+            118.99,
+            224.76,
+            119.29,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "cfg_clk",
+      "route_class": "clock",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "cfg_clk",
+        "rect_um": [
+          187.3,
+          216.76000000000002,
+          187.60000000000002,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "uio_in[0]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "uio_in[0]",
+          "rect_um": [
+            116.23,
+            224.76,
+            116.53,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "cfg_data",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "cfg_data",
+        "rect_um": [
+          184.54,
+          216.76000000000002,
+          184.84,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "uio_in[1]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "uio_in[1]",
+          "rect_um": [
+            113.47,
+            224.76,
+            113.77,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    },
+    {
+      "net": "cfg_latch",
+      "route_class": "control_input",
+      "source": {
+        "exit_edge": "north",
+        "layer": "met2",
+        "logical": "cfg_latch",
+        "rect_um": [
+          181.78,
+          216.76000000000002,
+          182.08,
+          217.60000000000002
+        ],
+        "requires_source_coverage": true,
+        "role": "controller_input"
+      },
+      "target_logical_nets": [
+        "uio_in[2]"
+      ],
+      "targets": [
+        {
+          "exit_edge": "north",
+          "layer": "met4",
+          "logical": "uio_in[2]",
+          "rect_um": [
+            110.71,
+            224.76,
+            111.01,
+            225.76
+          ],
+          "requires_source_coverage": false,
+          "role": "tinytapeout_input_pin"
+        }
+      ]
+    }
+  ],
+  "pin_count": 28,
+  "pins": {
+    "P000_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "clk",
+      "rect_um": [
+        214.9,
+        216.76000000000002,
+        215.20000000000002,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P000_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "clk",
+      "rect_um": [
+        143.83,
+        224.76,
+        144.13,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P001_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "rst_n",
+      "rect_um": [
+        212.14000000000001,
+        216.76000000000002,
+        212.44000000000003,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P001_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "rst_n",
+      "rect_um": [
+        141.07,
+        224.76,
+        141.37,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P002_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "ena",
+      "rect_um": [
+        217.66,
+        216.76000000000002,
+        217.96,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P002_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ena",
+      "rect_um": [
+        146.59,
+        224.76,
+        146.89,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P003_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "beam_select[0]",
+      "rect_um": [
+        209.38,
+        216.76000000000002,
+        209.68,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P003_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[0]",
+      "rect_um": [
+        138.31,
+        224.76,
+        138.61,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P004_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "beam_select[1]",
+      "rect_um": [
+        206.62,
+        216.76000000000002,
+        206.92000000000002,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P004_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[1]",
+      "rect_um": [
+        135.55,
+        224.76,
+        135.85,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P005_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "beam_select[2]",
+      "rect_um": [
+        203.86,
+        216.76000000000002,
+        204.16000000000003,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P005_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[2]",
+      "rect_um": [
+        132.79,
+        224.76,
+        133.09,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P006_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "raw_mode",
+      "rect_um": [
+        201.1,
+        216.76000000000002,
+        201.4,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P006_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[3]",
+      "rect_um": [
+        130.03,
+        224.76,
+        130.33,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P007_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "channel_enable[0]",
+      "rect_um": [
+        198.34,
+        216.76000000000002,
+        198.64000000000001,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P007_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[4]",
+      "rect_um": [
+        127.27,
+        224.76,
+        127.57,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P008_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "channel_enable[1]",
+      "rect_um": [
+        195.58,
+        216.76000000000002,
+        195.88000000000002,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P008_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[5]",
+      "rect_um": [
+        124.51,
+        224.76,
+        124.81,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P009_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "channel_enable[2]",
+      "rect_um": [
+        192.82,
+        216.76000000000002,
+        193.12,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P009_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[6]",
+      "rect_um": [
+        121.75,
+        224.76,
+        122.05,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P010_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "channel_enable[3]",
+      "rect_um": [
+        190.06,
+        216.76000000000002,
+        190.36,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P010_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "ui_in[7]",
+      "rect_um": [
+        118.99,
+        224.76,
+        119.29,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P011_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "cfg_clk",
+      "rect_um": [
+        187.3,
+        216.76000000000002,
+        187.60000000000002,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P011_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "uio_in[0]",
+      "rect_um": [
+        116.23,
+        224.76,
+        116.53,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P012_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "cfg_data",
+      "rect_um": [
+        184.54,
+        216.76000000000002,
+        184.84,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P012_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "uio_in[1]",
+      "rect_um": [
+        113.47,
+        224.76,
+        113.77,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    },
+    "P013_0": {
+      "exit_edge": "north",
+      "layer": "met2",
+      "logical": "cfg_latch",
+      "rect_um": [
+        181.78,
+        216.76000000000002,
+        182.08,
+        217.60000000000002
+      ],
+      "requires_source_coverage": true,
+      "role": "controller_input"
+    },
+    "P013_1": {
+      "exit_edge": "north",
+      "layer": "met4",
+      "logical": "uio_in[2]",
+      "rect_um": [
+        110.71,
+        224.76,
+        111.01,
+        225.76
+      ],
+      "requires_source_coverage": false,
+      "role": "tinytapeout_input_pin"
+    }
+  },
+  "policy": {
+    "all_14_boundary_handoffs_are_router_owned": true,
+    "all_closed_internal_geometry_is_immutable": true,
+    "floating_stubs_allowed": false,
+    "manual_preroutes_allowed": false,
+    "metal5_allowed": false,
+    "official_template_pin_rectangles_are_exact": true,
+    "only_declared_pin_windows_are_removed_from_blockages": true,
+    "orphan_vias_allowed": false,
+    "source_gds_is_exact_m2_m3_m4_obstacle_map": true
+  },
+  "provenance": {
+    "generator": "v3/tools/generate_physical_control_boundary_handoff_inputs.py",
+    "generator_sha256": "8f2d95c44f890fd05b2950202908dbd4e38842c4c23127cea07f4ccce250a0be",
+    "plan": "/home/jason-stone/v3-controller-pin-aligned-candidate-b/v3/layout/physical_control_boundary_handoff_plan.json",
+    "plan_sha256": "862deee048c29058dc1a8c4305503e29107555f61d0b5157cc459af1c9b00bd6",
+    "source_gds": "/home/jason-stone/v3-controller-pin-aligned-candidate-b/build/v3/control_analog_handoffs/direct/v3_four_channel_ctrl_analog_handoffs.gds",
+    "source_gds_sha256": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071",
+    "technology_lef": "/home/jason-stone/tt-tools/reference/sky130hd-lef/sky130_fd_sc_hd.tlef",
+    "technology_lef_sha256": "8e99b4e8b016db0713029ebcae6b2cc2aedd9c2c49682e2f23521dd0b1a2085e"
+  },
+  "schema_version": 1,
+  "scope": "14 controller inputs to exact TinyTapeout top-boundary pins",
+  "status": "generated"
+}

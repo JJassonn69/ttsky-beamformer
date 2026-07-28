@@ -1,0 +1,241 @@
+{
+  "active_array_bbox": [
+    0.39,
+    8.0,
+    15.35,
+    84.365
+  ],
+  "active_array_height_um": 76.365,
+  "active_array_width_um": 14.959999999999999,
+  "errors": [],
+  "group_centroids_in_unit_pitch": {
+    "1": [
+      1.0,
+      2.0
+    ],
+    "2": [
+      1.0,
+      2.0
+    ],
+    "4": [
+      1.0,
+      2.0
+    ],
+    "8": [
+      1.0,
+      2.0
+    ]
+  },
+  "group_counts": {
+    "1": 1,
+    "2": 2,
+    "4": 4,
+    "8": 8
+  },
+  "local_route_status": {
+    "U_R0_C0_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R0_C0_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R0_C1_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R0_C1_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R0_C2_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R0_C2_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C0_G4.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C0_G4.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C1_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C1_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C2_G4.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R1_C2_G4.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C0_G2.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C0_G2.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C1_G1.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C1_G1.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C2_G2.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R2_C2_G2.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C0_G4.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C0_G4.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C1_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C1_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C2_G4.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R3_C2_G4.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C0_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C0_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C1_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C1_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C2_G8.lon": {
+      "connected": true,
+      "layer": "metal3",
+      "manhattan": true,
+      "segment_count": 5
+    },
+    "U_R4_C2_G8.lop": {
+      "connected": true,
+      "layer": "metal4",
+      "manhattan": true,
+      "segment_count": 5
+    }
+  },
+  "minimum_column_bbox_gap_um": 0.6399999999999988,
+  "minimum_inter_row_channel_um": 3.634999999999998,
+  "named_via3_count": 30,
+  "orientation_counts": {
+    "1": {
+      "R0": 1
+    },
+    "2": {
+      "MY": 1,
+      "R0": 1
+    },
+    "4": {
+      "MY": 2,
+      "R0": 2
+    },
+    "8": {
+      "MY": 4,
+      "R0": 4
+    }
+  },
+  "physical_status": "exact row/full local-merge pilots closed; balanced group H-tree pending",
+  "schema_version": 1,
+  "status": "pass",
+  "unit_count": 15
+}

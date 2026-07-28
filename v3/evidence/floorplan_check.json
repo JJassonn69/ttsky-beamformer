@@ -1,0 +1,76 @@
+{
+  "channel_pitch_um": [
+    19.32,
+    19.32,
+    19.32
+  ],
+  "errors": [],
+  "input_entry_lengths_um": [
+    7.5,
+    7.5,
+    7.5,
+    7.5
+  ],
+  "interchannel_guard_gaps_um": [
+    3.58,
+    3.58,
+    3.58
+  ],
+  "local_output_tap_lengths_um": {
+    "n": [
+      6.01,
+      6.01,
+      6.01,
+      6.01
+    ],
+    "p": [
+      6.01,
+      6.01,
+      6.01,
+      6.01
+    ]
+  },
+  "matrix_centroids": {
+    "1": [
+      1.0,
+      2.0
+    ],
+    "2": [
+      1.0,
+      2.0
+    ],
+    "4": [
+      1.0,
+      2.0
+    ],
+    "8": [
+      1.0,
+      2.0
+    ]
+  },
+  "output_pin_layer_lengths_um": {
+    "n": {
+      "metal3": 107.29,
+      "metal4": 65.46
+    },
+    "p": {
+      "metal3": 107.29,
+      "metal4": 65.46
+    }
+  },
+  "output_pin_path_lengths_um": {
+    "n": 172.75,
+    "p": 172.75
+  },
+  "output_pin_path_mismatch_percent": 0.0,
+  "phase_drawn_mismatch_percent": 0.0,
+  "phase_leaf_lengths_um": {
+    "0": 53.98,
+    "1": 53.98,
+    "2": 53.98,
+    "3": 53.98
+  },
+  "promotion_gate_count": 7,
+  "scope": "constraint-only review floorplan; no PCell placement, routing, DRC, LVS, extraction, or GDS",
+  "status": "pass"
+}

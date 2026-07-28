@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "status": "authoritative append-only VCM varactor ECO contract",
+  "source_checkpoint": {
+    "gds": "v2/reference/v2_control_quadrature_user_routed.gds",
+    "top": "v2_control_quadrature_routed",
+    "sha256": "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c",
+    "preserves_user_trim_routes": true
+  },
+  "output_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "top": "v2_control_quadrature_routed",
+    "sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741"
+  },
+  "analog_support_components": [
+    {
+      "name": "CVCM_VAR0",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 15.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR1",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 36.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR2",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 57.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"}
+    },
+    {
+      "name": "CVCM_VAR3",
+      "pcell": "vcm_varactor_lvt",
+      "center": [42.0, 78.0],
+      "orientation": "R0",
+      "region": "vcm_reference",
+      "implementation_stage": "vcm_varactor_eco",
+      "nets": {"G": "vcm", "D": "VGND", "S": "VGND", "B": "VGND"},
+      "placement_reason": "four identical single-device tiles form one compact symmetric column; no long matching detours are permitted"
+    }
+  ]
+}

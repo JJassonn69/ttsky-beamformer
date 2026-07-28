@@ -1,0 +1,975 @@
+{
+  "constraints": {
+    "all_sixteen_channel_phase_paths_equal": true,
+    "floating_stubs_allowed": false,
+    "frozen_source_geometry_modified": false,
+    "maximum_direction_reversals": 0,
+    "one_via3_per_channel_per_phase": true,
+    "orphan_vias_allowed": false
+  },
+  "matched_source_to_root_length_um": 37.97,
+  "provenance": {
+    "generator": "v3/tools/build_four_channel_phase_distribution.py",
+    "generator_sha256": "3feb59029e86939b60b81a07b99b6c5399617f35e63e167a93fb8179515de9e9"
+  },
+  "routing_decisions": {
+    "balanced_tree_layer": "metal4",
+    "height_compensation": "tree leaf heights rise 1.8 um per phase while source ports rise 0.8 um and horizontal escapes shrink 1.0 um",
+    "local_escape_layer": "metal3",
+    "staircase_rule": "lower phase ports escape farther left so no M3 branches cross",
+    "tree_region": "above the 192.21 um frozen-macro top boundary"
+  },
+  "schema_version": 1,
+  "source": {
+    "gate": "v3/evidence/four_channel_output_collection_gate.json",
+    "gate_sha256": "5784ba3cd45d9e6b6673d2ed81d0e136c0efdd2c1c0de50cabca80e6540961c1",
+    "gds": "build/v3/four_channel_output_collection/v3_four_channel_output_collection.gds",
+    "gds_sha256": "d6d7ead0a113df8a532468fe6554a79bfebe0e684189b99fbe15c3fd74845a70",
+    "top_cell": "v3_four_channel_output_collection"
+  },
+  "status": "route pilot; exact GDS checks pending",
+  "top_cell": "v3_four_channel_phase_distribution",
+  "trees": {
+    "phase_0": {
+      "equal_length_to_all_four_channels": true,
+      "escape_left_um": 0.0,
+      "leaf_y_um": 199.4,
+      "m3_track_points_um": [
+        [
+          82.28,
+          199.4
+        ],
+        [
+          101.6,
+          199.4
+        ],
+        [
+          120.92,
+          199.4
+        ],
+        [
+          140.24,
+          199.4
+        ]
+      ],
+      "net": "phase_0",
+      "pair_centres_um": [
+        [
+          91.94,
+          199.4
+        ],
+        [
+          130.58,
+          199.4
+        ]
+      ],
+      "pre_tree_length_um": 8.19,
+      "root_um": [
+        111.26,
+        200.2
+      ],
+      "segments": [
+        {
+          "from": [
+            82.28,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            82.28,
+            191.21
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            82.28,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            82.28,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            101.6,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            101.6,
+            191.21
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            101.6,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            101.6,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            120.92,
+            191.21
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            120.92,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            140.24,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            140.24,
+            191.21
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            140.24,
+            191.21
+          ],
+          "layer": "metal3",
+          "to": [
+            140.24,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            82.28,
+            199.4
+          ],
+          "layer": "metal4",
+          "to": [
+            101.6,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            91.94,
+            199.4
+          ],
+          "layer": "metal4",
+          "to": [
+            91.94,
+            200.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            199.4
+          ],
+          "layer": "metal4",
+          "to": [
+            140.24,
+            199.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            130.58,
+            199.4
+          ],
+          "layer": "metal4",
+          "to": [
+            130.58,
+            200.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            91.94,
+            200.2
+          ],
+          "layer": "metal4",
+          "to": [
+            130.58,
+            200.2
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          82.28,
+          191.21
+        ],
+        [
+          101.6,
+          191.21
+        ],
+        [
+          120.92,
+          191.21
+        ],
+        [
+          140.24,
+          191.21
+        ]
+      ],
+      "source_to_root_length_um": 37.97,
+      "trunk_y_um": 200.2,
+      "via3_points_um": [
+        [
+          82.28,
+          199.4
+        ],
+        [
+          101.6,
+          199.4
+        ],
+        [
+          120.92,
+          199.4
+        ],
+        [
+          140.24,
+          199.4
+        ]
+      ]
+    },
+    "phase_180": {
+      "equal_length_to_all_four_channels": true,
+      "escape_left_um": 2.0,
+      "leaf_y_um": 195.8,
+      "m3_track_points_um": [
+        [
+          80.28,
+          195.8
+        ],
+        [
+          99.6,
+          195.8
+        ],
+        [
+          118.92,
+          195.8
+        ],
+        [
+          138.24,
+          195.8
+        ]
+      ],
+      "net": "phase_180",
+      "pair_centres_um": [
+        [
+          89.94,
+          195.8
+        ],
+        [
+          128.58,
+          195.8
+        ]
+      ],
+      "pre_tree_length_um": 8.19,
+      "root_um": [
+        109.26,
+        196.6
+      ],
+      "segments": [
+        {
+          "from": [
+            82.28,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            80.28,
+            189.61
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            80.28,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            80.28,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            101.6,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            99.6,
+            189.61
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            99.6,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            99.6,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            118.92,
+            189.61
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            118.92,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            118.92,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            140.24,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            138.24,
+            189.61
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            138.24,
+            189.61
+          ],
+          "layer": "metal3",
+          "to": [
+            138.24,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            80.28,
+            195.8
+          ],
+          "layer": "metal4",
+          "to": [
+            99.6,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            89.94,
+            195.8
+          ],
+          "layer": "metal4",
+          "to": [
+            89.94,
+            196.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            118.92,
+            195.8
+          ],
+          "layer": "metal4",
+          "to": [
+            138.24,
+            195.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            128.58,
+            195.8
+          ],
+          "layer": "metal4",
+          "to": [
+            128.58,
+            196.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            89.94,
+            196.6
+          ],
+          "layer": "metal4",
+          "to": [
+            128.58,
+            196.6
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          82.28,
+          189.61
+        ],
+        [
+          101.6,
+          189.61
+        ],
+        [
+          120.92,
+          189.61
+        ],
+        [
+          140.24,
+          189.61
+        ]
+      ],
+      "source_to_root_length_um": 37.97,
+      "trunk_y_um": 196.6,
+      "via3_points_um": [
+        [
+          80.28,
+          195.8
+        ],
+        [
+          99.6,
+          195.8
+        ],
+        [
+          118.92,
+          195.8
+        ],
+        [
+          138.24,
+          195.8
+        ]
+      ]
+    },
+    "phase_270": {
+      "equal_length_to_all_four_channels": true,
+      "escape_left_um": 3.0,
+      "leaf_y_um": 194.0,
+      "m3_track_points_um": [
+        [
+          79.28,
+          194.0
+        ],
+        [
+          98.6,
+          194.0
+        ],
+        [
+          117.92,
+          194.0
+        ],
+        [
+          137.24,
+          194.0
+        ]
+      ],
+      "net": "phase_270",
+      "pair_centres_um": [
+        [
+          88.94,
+          194.0
+        ],
+        [
+          127.58,
+          194.0
+        ]
+      ],
+      "pre_tree_length_um": 8.19,
+      "root_um": [
+        108.26,
+        194.8
+      ],
+      "segments": [
+        {
+          "from": [
+            82.28,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            79.28,
+            188.81
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            79.28,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            79.28,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            101.6,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            98.6,
+            188.81
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            98.6,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            98.6,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            117.92,
+            188.81
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            117.92,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            117.92,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            140.24,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            137.24,
+            188.81
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            137.24,
+            188.81
+          ],
+          "layer": "metal3",
+          "to": [
+            137.24,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            79.28,
+            194.0
+          ],
+          "layer": "metal4",
+          "to": [
+            98.6,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            88.94,
+            194.0
+          ],
+          "layer": "metal4",
+          "to": [
+            88.94,
+            194.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            117.92,
+            194.0
+          ],
+          "layer": "metal4",
+          "to": [
+            137.24,
+            194.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            127.58,
+            194.0
+          ],
+          "layer": "metal4",
+          "to": [
+            127.58,
+            194.8
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            88.94,
+            194.8
+          ],
+          "layer": "metal4",
+          "to": [
+            127.58,
+            194.8
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          82.28,
+          188.81
+        ],
+        [
+          101.6,
+          188.81
+        ],
+        [
+          120.92,
+          188.81
+        ],
+        [
+          140.24,
+          188.81
+        ]
+      ],
+      "source_to_root_length_um": 37.97,
+      "trunk_y_um": 194.8,
+      "via3_points_um": [
+        [
+          79.28,
+          194.0
+        ],
+        [
+          98.6,
+          194.0
+        ],
+        [
+          117.92,
+          194.0
+        ],
+        [
+          137.24,
+          194.0
+        ]
+      ]
+    },
+    "phase_90": {
+      "equal_length_to_all_four_channels": true,
+      "escape_left_um": 1.0,
+      "leaf_y_um": 197.6,
+      "m3_track_points_um": [
+        [
+          81.28,
+          197.6
+        ],
+        [
+          100.6,
+          197.6
+        ],
+        [
+          119.92,
+          197.6
+        ],
+        [
+          139.24,
+          197.6
+        ]
+      ],
+      "net": "phase_90",
+      "pair_centres_um": [
+        [
+          90.94,
+          197.6
+        ],
+        [
+          129.58,
+          197.6
+        ]
+      ],
+      "pre_tree_length_um": 8.19,
+      "root_um": [
+        110.26,
+        198.4
+      ],
+      "segments": [
+        {
+          "from": [
+            82.28,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            81.28,
+            190.41
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            81.28,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            81.28,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            101.6,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            100.6,
+            190.41
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            100.6,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            100.6,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            120.92,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            119.92,
+            190.41
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            119.92,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            119.92,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            140.24,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            139.24,
+            190.41
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            139.24,
+            190.41
+          ],
+          "layer": "metal3",
+          "to": [
+            139.24,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            81.28,
+            197.6
+          ],
+          "layer": "metal4",
+          "to": [
+            100.6,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            90.94,
+            197.6
+          ],
+          "layer": "metal4",
+          "to": [
+            90.94,
+            198.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            119.92,
+            197.6
+          ],
+          "layer": "metal4",
+          "to": [
+            139.24,
+            197.6
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            129.58,
+            197.6
+          ],
+          "layer": "metal4",
+          "to": [
+            129.58,
+            198.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            90.94,
+            198.4
+          ],
+          "layer": "metal4",
+          "to": [
+            129.58,
+            198.4
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          82.28,
+          190.41
+        ],
+        [
+          101.6,
+          190.41
+        ],
+        [
+          120.92,
+          190.41
+        ],
+        [
+          140.24,
+          190.41
+        ]
+      ],
+      "source_to_root_length_um": 37.97,
+      "trunk_y_um": 198.4,
+      "via3_points_um": [
+        [
+          81.28,
+          197.6
+        ],
+        [
+          100.6,
+          197.6
+        ],
+        [
+          119.92,
+          197.6
+        ],
+        [
+          139.24,
+          197.6
+        ]
+      ]
+    }
+  },
+  "units": "um"
+}

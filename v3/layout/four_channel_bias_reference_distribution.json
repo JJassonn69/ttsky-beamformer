@@ -1,0 +1,663 @@
+{
+  "constraints": {
+    "all_four_paths_match_within_each_net": true,
+    "floating_stubs_allowed": false,
+    "frozen_source_geometry_modified": false,
+    "gds_timestamps_canonicalized": true,
+    "maximum_direction_reversals": 0,
+    "one_via2_and_two_via3_per_channel_per_net": true,
+    "orphan_vias_allowed": false
+  },
+  "provenance": {
+    "composer": "v3/tools/compose_four_channel_bias_reference_distribution.py",
+    "composer_sha256": "e1089f8171e4e14b22d1c9a668935d2cb7c9d84adc0ab802c186c3a11113b22e",
+    "generator": "v3/tools/build_four_channel_bias_reference_distribution.py",
+    "generator_sha256": "ba00a61c4f6e7d03e57944591ff819458140408cc732d5ee37051e72b043a3af"
+  },
+  "routing_decisions": {
+    "balanced_tree_layer": "metal3",
+    "crowded_band_crossing": "one M4 elevator per leaf through the selector-access band",
+    "ref_dogleg_reason": "moves REF transitions 1.0 um away from adjacent VBIAS via stacks",
+    "source_escape": "short M2 rise to a common transition row above the output collector",
+    "tree_corridor_um": [
+      157.51,
+      162.17
+    ],
+    "verified_existing_m4_elevators_clear": true
+  },
+  "schema_version": 1,
+  "source": {
+    "gate": "v3/evidence/four_channel_phase_distribution_gate.json",
+    "gate_sha256": "874e5ae55778d298b9f602575aa232c6047704a5cc1d63f570c5605032ae9273",
+    "gds": "build/v3/four_channel_phase_distribution/v3_four_channel_phase_distribution.gds",
+    "gds_sha256": "42c6477590792b5748b3b79301a96231161d30c6034f4920225ea4464d3493ed",
+    "top_cell": "v3_four_channel_phase_distribution"
+  },
+  "status": "route pilot; exact GDS checks pending",
+  "top_cell": "v3_four_channel_bias_reference_distribution",
+  "trees": {
+    "ref": {
+      "equal_length_to_all_four_channels": true,
+      "leaf_points_um": [
+        [
+          96.7,
+          160.4
+        ],
+        [
+          116.02,
+          160.4
+        ],
+        [
+          135.34,
+          160.4
+        ],
+        [
+          154.66,
+          160.4
+        ]
+      ],
+      "leaf_y_um": 160.4,
+      "net": "ref",
+      "pair_centres_um": [
+        [
+          106.36,
+          160.4
+        ],
+        [
+          145.0,
+          160.4
+        ]
+      ],
+      "root_um": [
+        125.68,
+        161.2
+      ],
+      "segments": [
+        {
+          "from": [
+            95.7,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            95.7,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            95.7,
+            148.25
+          ],
+          "layer": "metal2",
+          "to": [
+            96.7,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            96.7,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            96.7,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            115.02,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            115.02,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            115.02,
+            148.25
+          ],
+          "layer": "metal2",
+          "to": [
+            116.02,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            116.02,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            116.02,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            134.34,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            134.34,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            134.34,
+            148.25
+          ],
+          "layer": "metal2",
+          "to": [
+            135.34,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            135.34,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            135.34,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            153.66,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            153.66,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            153.66,
+            148.25
+          ],
+          "layer": "metal2",
+          "to": [
+            154.66,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            154.66,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            154.66,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            96.7,
+            160.4
+          ],
+          "layer": "metal3",
+          "to": [
+            116.02,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            106.36,
+            160.4
+          ],
+          "layer": "metal3",
+          "to": [
+            106.36,
+            161.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            135.34,
+            160.4
+          ],
+          "layer": "metal3",
+          "to": [
+            154.66,
+            160.4
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            145.0,
+            160.4
+          ],
+          "layer": "metal3",
+          "to": [
+            145.0,
+            161.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            106.36,
+            161.2
+          ],
+          "layer": "metal3",
+          "to": [
+            145.0,
+            161.2
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          95.7,
+          143.91
+        ],
+        [
+          115.02,
+          143.91
+        ],
+        [
+          134.34,
+          143.91
+        ],
+        [
+          153.66,
+          143.91
+        ]
+      ],
+      "source_to_root_length_um": 47.27,
+      "transition_points_um": [
+        [
+          96.7,
+          148.25
+        ],
+        [
+          116.02,
+          148.25
+        ],
+        [
+          135.34,
+          148.25
+        ],
+        [
+          154.66,
+          148.25
+        ]
+      ],
+      "transition_x_offset_um": 1.0,
+      "transition_y_um": 148.25,
+      "trunk_y_um": 161.2,
+      "via2_points_um": [
+        [
+          96.7,
+          148.25
+        ],
+        [
+          116.02,
+          148.25
+        ],
+        [
+          135.34,
+          148.25
+        ],
+        [
+          154.66,
+          148.25
+        ]
+      ],
+      "via3_points_um": [
+        [
+          96.7,
+          148.25
+        ],
+        [
+          116.02,
+          148.25
+        ],
+        [
+          135.34,
+          148.25
+        ],
+        [
+          154.66,
+          148.25
+        ],
+        [
+          96.7,
+          160.4
+        ],
+        [
+          116.02,
+          160.4
+        ],
+        [
+          135.34,
+          160.4
+        ],
+        [
+          154.66,
+          160.4
+        ]
+      ]
+    },
+    "vbias": {
+      "equal_length_to_all_four_channels": true,
+      "leaf_points_um": [
+        [
+          95.0,
+          158.2
+        ],
+        [
+          114.32,
+          158.2
+        ],
+        [
+          133.64,
+          158.2
+        ],
+        [
+          152.96,
+          158.2
+        ]
+      ],
+      "leaf_y_um": 158.2,
+      "net": "vbias",
+      "pair_centres_um": [
+        [
+          104.66,
+          158.2
+        ],
+        [
+          143.3,
+          158.2
+        ]
+      ],
+      "root_um": [
+        123.98,
+        159.0
+      ],
+      "segments": [
+        {
+          "from": [
+            95.0,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            95.0,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            95.0,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            95.0,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            114.32,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            114.32,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            114.32,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            114.32,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            133.64,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            133.64,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            133.64,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            133.64,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            152.96,
+            143.91
+          ],
+          "layer": "metal2",
+          "to": [
+            152.96,
+            148.25
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            152.96,
+            148.25
+          ],
+          "layer": "metal4",
+          "to": [
+            152.96,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            95.0,
+            158.2
+          ],
+          "layer": "metal3",
+          "to": [
+            114.32,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            104.66,
+            158.2
+          ],
+          "layer": "metal3",
+          "to": [
+            104.66,
+            159.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            133.64,
+            158.2
+          ],
+          "layer": "metal3",
+          "to": [
+            152.96,
+            158.2
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            143.3,
+            158.2
+          ],
+          "layer": "metal3",
+          "to": [
+            143.3,
+            159.0
+          ],
+          "width_um": 0.4
+        },
+        {
+          "from": [
+            104.66,
+            159.0
+          ],
+          "layer": "metal3",
+          "to": [
+            143.3,
+            159.0
+          ],
+          "width_um": 0.4
+        }
+      ],
+      "source_points_um": [
+        [
+          95.0,
+          143.91
+        ],
+        [
+          114.32,
+          143.91
+        ],
+        [
+          133.64,
+          143.91
+        ],
+        [
+          152.96,
+          143.91
+        ]
+      ],
+      "source_to_root_length_um": 44.07,
+      "transition_points_um": [
+        [
+          95.0,
+          148.25
+        ],
+        [
+          114.32,
+          148.25
+        ],
+        [
+          133.64,
+          148.25
+        ],
+        [
+          152.96,
+          148.25
+        ]
+      ],
+      "transition_x_offset_um": 0.0,
+      "transition_y_um": 148.25,
+      "trunk_y_um": 159.0,
+      "via2_points_um": [
+        [
+          95.0,
+          148.25
+        ],
+        [
+          114.32,
+          148.25
+        ],
+        [
+          133.64,
+          148.25
+        ],
+        [
+          152.96,
+          148.25
+        ]
+      ],
+      "via3_points_um": [
+        [
+          95.0,
+          148.25
+        ],
+        [
+          114.32,
+          148.25
+        ],
+        [
+          133.64,
+          148.25
+        ],
+        [
+          152.96,
+          148.25
+        ],
+        [
+          95.0,
+          158.2
+        ],
+        [
+          114.32,
+          158.2
+        ],
+        [
+          133.64,
+          158.2
+        ],
+        [
+          152.96,
+          158.2
+        ]
+      ]
+    }
+  },
+  "units": "um"
+}

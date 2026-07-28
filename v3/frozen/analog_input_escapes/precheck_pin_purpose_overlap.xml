@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>pin_label_purposes_overlapping_drawing.rb.drc, input=/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/analog_input_escapes/direct/v3_four_channel_analog_inputs.gds, topcell=v3_four_ch_analog_inputs</description>
+ <original-file/>
+ <generator>drc: script='/Users/ganeshpanth/tt-support-tools-pinned/precheck/tech-files/pin_label_purposes_overlapping_drawing.rb.drc'</generator>
+ <top-cell>v3_four_ch_analog_inputs</top-cell>
+ <tags>
+ </tags>
+ <categories>
+ </categories>
+ <cells>
+  <cell>
+   <name>v3_four_ch_analog_inputs</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+ </items>
+</report-database>

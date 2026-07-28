@@ -1,0 +1,628 @@
+{
+  "checks": {
+    "base_views_are_resistance_free": true,
+    "capacitance_present_in_all_views": true,
+    "current_path_resistance_below_350_ohm": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "four_lo_gate_paths_within_0p5_percent": true,
+    "gate_path_resistance_below_500_ohm": true,
+    "gm_current_paths_within_1_percent": true,
+    "magic_drc_zero_all_views": true,
+    "magic_extraction_feedback_zero_all_views": true,
+    "magic_outputs_complete": true,
+    "only_classified_magic_warnings": true,
+    "output_paths_within_1_percent": true,
+    "precheck_is_for_exact_gds": true,
+    "seven_devices_preserved_in_all_views": true,
+    "sig_ref_paths_within_0p5_percent": true,
+    "tail_pair_mismatch_within_0p5_percent": true,
+    "topology_audit_passes": true,
+    "topology_is_for_exact_gds": true
+  },
+  "distributed_rc": {
+    "gm_current_path_mismatch_percent": 0.3238141354989571,
+    "gm_current_paths": {
+      "gmn": {
+        "lower_switch_ohm": 275.4486119999944,
+        "upper_switch_ohm": 276.3420000000005
+      },
+      "gmp": {
+        "lower_switch_ohm": 275.448612,
+        "upper_switch_ohm": 276.3419999999998
+      }
+    },
+    "input_gate_path_mismatch_percent": 0.0,
+    "input_gate_paths_ohm": {
+      "ref": 229.421,
+      "sig": 229.421
+    },
+    "lo_gate_path_mismatch_percent": 0.0,
+    "lo_gate_paths_ohm": {
+      "lon_left": 333.8625,
+      "lon_right": 333.8625,
+      "lop_left": 333.8625,
+      "lop_right": 333.8625
+    },
+    "output_path_mismatch_percent": 0.32454176882782276,
+    "output_paths": {
+      "outn": {
+        "left_switch_to_port_ohm": 141.20291,
+        "right_switch_to_port_ohm": 140.98391000000004
+      },
+      "outp": {
+        "left_switch_to_port_ohm": 140.74539000000001,
+        "right_switch_to_port_ohm": 140.96438999999998
+      }
+    },
+    "tail_pair_mismatch_percent": 0.04343706041306608,
+    "tail_paths_ohm": {
+      "left_gm": 161.11771,
+      "right_gm": 161.18770999999998
+    },
+    "vbias_gate_path_ohm": 224.72600000000003,
+    "views": {
+      "gmn": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4424_5822#": [
+            4472,
+            5887
+          ],
+          "a_4424_5822.t0": [
+            4424,
+            6293
+          ],
+          "a_4424_5822.t1": [
+            4424,
+            5887
+          ],
+          "a_4424_5822.t2": [
+            4514,
+            5462
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 46,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4424_5822#",
+          "a_4424_5822.n0"
+        ],
+        "root_coordinate_internal": [
+          4472,
+          5887
+        ],
+        "root_node": "a_4424_5822#",
+        "root_to_terminal_ohm": {
+          "a_4424_5822.t0": 138.55181200009878,
+          "a_4424_5822.t1": 137.26680000000587,
+          "a_4424_5822.t2": 138.18181199989064
+        },
+        "sha256": {
+          "base_spice": "97932c13f81189a94f761a87877e5cec9a9d410119c9de23bd4e51ca5fb586fe",
+          "distributed_rc_spice": "a002803b01121c81a55a26beaf3d67c1f3f7438b0a4879120150683a5e13e24e",
+          "resistance_annotation": "8a2906319951426e727b528301d353e0ceaa9935bb36fef8548d191438769289"
+        },
+        "terminal_nodes": [
+          "a_4424_5822.t0",
+          "a_4424_5822.t1",
+          "a_4424_5822.t2"
+        ]
+      },
+      "gmp": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4000_5378#": [
+            4100,
+            5887
+          ],
+          "a_4000_5378.t0": [
+            4148,
+            6293
+          ],
+          "a_4000_5378.t1": [
+            4148,
+            5887
+          ],
+          "a_4000_5378.t2": [
+            4058,
+            5462
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 46,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4000_5378#",
+          "a_4000_5378.n0"
+        ],
+        "root_coordinate_internal": [
+          4100,
+          5887
+        ],
+        "root_node": "a_4000_5378#",
+        "root_to_terminal_ohm": {
+          "a_4000_5378.t0": 138.5518120000066,
+          "a_4000_5378.t1": 137.26680000002608,
+          "a_4000_5378.t2": 138.1818120000165
+        },
+        "sha256": {
+          "base_spice": "fb26eb924f5c14c3490e7791b2de97a0ec955ed7820c0117bfdcc8565fcaa3d6",
+          "distributed_rc_spice": "67688db3a1b25fe1a8de98a2e5ed67232ba80df168136520a3b3d6b84b11c6ca",
+          "resistance_annotation": "aac38ce83880c49b79655d949922095d4a6017f845be0c687b50c718668b50f1"
+        },
+        "terminal_nodes": [
+          "a_4000_5378.t0",
+          "a_4000_5378.t2",
+          "a_4000_5378.t1"
+        ]
+      },
+      "lon_left": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4130_5734#": [
+            3870,
+            6007
+          ],
+          "a_4130_5734.t0": [
+            4163,
+            5887
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4130_5734#",
+          "a_4130_5734.n0"
+        ],
+        "root_coordinate_internal": [
+          3870,
+          6007
+        ],
+        "root_node": "a_4130_5734#",
+        "root_to_terminal_ohm": {
+          "a_4130_5734.t0": 333.8625
+        },
+        "sha256": {
+          "base_spice": "5ac75e79c2a22edf30e73fb23db096b086a729bbf66815e156d005dfb44b3f96",
+          "distributed_rc_spice": "69fc84ddd7931aef02953c6db0dd74e9dfdeaa6c96cc782660045c661b85d493",
+          "resistance_annotation": "fecb5a3bf3aedfaf12b11ac44939fbabf189d6ad6c77d853cd2b0b1543224417"
+        },
+        "terminal_nodes": [
+          "a_4130_5734.t0"
+        ]
+      },
+      "lon_right": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4376_6140#": [
+            4702,
+            6413
+          ],
+          "a_4376_6140.t0": [
+            4409,
+            6293
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4376_6140#",
+          "a_4376_6140.n0"
+        ],
+        "root_coordinate_internal": [
+          4702,
+          6413
+        ],
+        "root_node": "a_4376_6140#",
+        "root_to_terminal_ohm": {
+          "a_4376_6140.t0": 333.8625
+        },
+        "sha256": {
+          "base_spice": "02d3a1a4a9e19fb616090d8a928c98867bd8251e7bb938013cc6bab54eee5e00",
+          "distributed_rc_spice": "a129d0c7a0e24f83bafbfc258c542d6214cf34cd3576d7e92e8480d7a475cbd0",
+          "resistance_annotation": "6a84f1985ac30aec4e1f8fb1d34cadf99aae7e3b28ebdfccb7c8daae373816e0"
+        },
+        "terminal_nodes": [
+          "a_4376_6140.t0"
+        ]
+      },
+      "lop_left": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4130_6140#": [
+            3870,
+            6413
+          ],
+          "a_4130_6140.t0": [
+            4163,
+            6293
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4130_6140#",
+          "a_4130_6140.n0"
+        ],
+        "root_coordinate_internal": [
+          3870,
+          6413
+        ],
+        "root_node": "a_4130_6140#",
+        "root_to_terminal_ohm": {
+          "a_4130_6140.t0": 333.8625
+        },
+        "sha256": {
+          "base_spice": "20737a20bc142e97629724e3840f738e5b4eb510582598e59fbaea57fe192c2e",
+          "distributed_rc_spice": "7e2ef2365530829f2be8191c8ba7048802448574b61f7e9401533ce6832b0579",
+          "resistance_annotation": "efa0a8dcc9799145f4c0aa9efdfeed621f00a4fdab7f076804737c27944fde62"
+        },
+        "terminal_nodes": [
+          "a_4130_6140.t0"
+        ]
+      },
+      "lop_right": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4376_5734#": [
+            4702,
+            6007
+          ],
+          "a_4376_5734.t0": [
+            4409,
+            5887
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4376_5734#",
+          "a_4376_5734.n0"
+        ],
+        "root_coordinate_internal": [
+          4702,
+          6007
+        ],
+        "root_node": "a_4376_5734#",
+        "root_to_terminal_ohm": {
+          "a_4376_5734.t0": 333.8625
+        },
+        "sha256": {
+          "base_spice": "a57f6487ab43d5eadfb7506929d494fb9ad184e8cfe338114ca2e964c30e97c3",
+          "distributed_rc_spice": "4709313f7bb99492dc5a8c8c78254c019ea08e91501baa1967ab013e008a034a",
+          "resistance_annotation": "9244c2bb3041adcc3c282a96a089f151bd9f016cd581beaadfc36f0d8ff05c00"
+        },
+        "terminal_nodes": [
+          "a_4376_5734.t0"
+        ]
+      },
+      "outn": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4178_5822.n0": [
+            4356,
+            6446
+          ],
+          "a_4178_5822.t0": [
+            4394,
+            5887
+          ],
+          "a_4178_5822.t1": [
+            4178,
+            5887
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4178_5822.n0"
+        ],
+        "root_coordinate_internal": [
+          4356,
+          6446
+        ],
+        "root_node": "a_4178_5822.n0",
+        "root_to_terminal_ohm": {
+          "a_4178_5822.t0": 140.98391000000004,
+          "a_4178_5822.t1": 141.20291
+        },
+        "sha256": {
+          "base_spice": "7a403d9248b1ff0e7b09b50f6932c461b2122f8cc1930c94dd34088beb1a9dc9",
+          "distributed_rc_spice": "9bf3737f3f00d99292e95c6997997a3b44f5e64d74e4225c941f014dd08d6d59",
+          "resistance_annotation": "193d95dbabbca31e4db080fc7fa9212e10524f44d4767a4520151166223e9c83"
+        },
+        "terminal_nodes": [
+          "a_4178_5822.t1",
+          "a_4178_5822.t0"
+        ]
+      },
+      "outp": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4178_6228.n0": [
+            4216,
+            6446
+          ],
+          "a_4178_6228.t0": [
+            4178,
+            6293
+          ],
+          "a_4178_6228.t1": [
+            4394,
+            6293
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 40,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4178_6228.n0"
+        ],
+        "root_coordinate_internal": [
+          4216,
+          6446
+        ],
+        "root_node": "a_4178_6228.n0",
+        "root_to_terminal_ohm": {
+          "a_4178_6228.t0": 140.74539000000001,
+          "a_4178_6228.t1": 140.96438999999998
+        },
+        "sha256": {
+          "base_spice": "0510b5da53ae51ce147b315b861cf288730c6a752e7a6b1c7b7c863521e13288",
+          "distributed_rc_spice": "fe07edccbc65b8c49cc48633c72218e5202dd355cb7f9a22155a06cda7fbfb92",
+          "resistance_annotation": "934161dfe62f7038af23664b923eaca4fc1d1cf1f198ab2a80c7c2aebe5ee09d"
+        },
+        "terminal_nodes": [
+          "a_4178_6228.t0",
+          "a_4178_6228.t1"
+        ]
+      },
+      "ref": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4394_5290.n0": [
+            4542,
+            4000
+          ],
+          "a_4394_5290.t0": [
+            4454,
+            5462
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 35,
+          "devices": 7,
+          "resistors": 492
+        },
+        "root_candidates": [
+          "a_4394_5290.n0"
+        ],
+        "root_coordinate_internal": [
+          4542,
+          4000
+        ],
+        "root_node": "a_4394_5290.n0",
+        "root_to_terminal_ohm": {
+          "a_4394_5290.t0": 229.421
+        },
+        "sha256": {
+          "base_spice": "2d94808b534ccf17e362ff222fe1ddc0f627dcf122fab63673417cbe52359d59",
+          "distributed_rc_spice": "5f168f5b15e24b6c371ab329dc1dec12afd12fac241e1c23a86d113a89732db9",
+          "resistance_annotation": "4c4a6abf55ad0c7c93210d9241abac7483b536d663ec5a74bc9199c59c73482f"
+        },
+        "terminal_nodes": [
+          "a_4394_5290.t0"
+        ]
+      },
+      "sig": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4058_5290.n0": [
+            4030,
+            4000
+          ],
+          "a_4058_5290.t0": [
+            4118,
+            5462
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 35,
+          "devices": 7,
+          "resistors": 492
+        },
+        "root_candidates": [
+          "a_4058_5290.n0"
+        ],
+        "root_coordinate_internal": [
+          4030,
+          4000
+        ],
+        "root_node": "a_4058_5290.n0",
+        "root_to_terminal_ohm": {
+          "a_4058_5290.t0": 229.421
+        },
+        "sha256": {
+          "base_spice": "a497f0925646719ff7ce51b758ef625d5947243e80e53b78b5a1fb4939873fde",
+          "distributed_rc_spice": "3045c8b6b825e3034963d46115e8c56ff3a52895e55351ccbdf7511779f4ce3d",
+          "resistance_annotation": "f3e4ba23107f064c8d84d3cbc1bd9e7d994a0955e5f2b83a867c77eec262f45b"
+        },
+        "terminal_nodes": [
+          "a_4058_5290.t0"
+        ]
+      },
+      "tail": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4128_4088#": [
+            4157,
+            4595
+          ],
+          "a_4128_4088.t0": [
+            4186,
+            4595
+          ],
+          "a_4128_4088.t1": [
+            4394,
+            5462
+          ],
+          "a_4128_4088.t2": [
+            4178,
+            5462
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 47,
+          "devices": 7,
+          "resistors": 493
+        },
+        "root_candidates": [
+          "a_4128_4088#",
+          "a_4128_4088.n0"
+        ],
+        "root_coordinate_internal": [
+          4157,
+          4595
+        ],
+        "root_node": "a_4128_4088#",
+        "root_to_terminal_ohm": {
+          "a_4128_4088.t0": 21.505599999999646,
+          "a_4128_4088.t1": 139.6821099999994,
+          "a_4128_4088.t2": 139.6121099999997
+        },
+        "sha256": {
+          "base_spice": "90adf7c13de06820826bb97a33fe3d08c3fb6256f24a3d5791f58949474c69c2",
+          "distributed_rc_spice": "2887cb61aeeba29e5dd0515195842122e1a5df0b0bb4020ca78c45432094cbca",
+          "resistance_annotation": "88ef61b025229e61dc8b6f2afbb512bd6453437dff21a365d97ca6d3dfd1749a"
+        },
+        "terminal_nodes": [
+          "a_4128_4088.t2",
+          "a_4128_4088.t0",
+          "a_4128_4088.t1"
+        ]
+      },
+      "vbias": {
+        "base": {
+          "capacitors": 69,
+          "devices": 7,
+          "resistors": 0
+        },
+        "coordinates_by_node": {
+          "a_4186_4000.n0": [
+            4286,
+            4000
+          ],
+          "a_4186_4000.t0": [
+            4286,
+            4595
+          ]
+        },
+        "distributed_rc": {
+          "capacitors": 33,
+          "devices": 7,
+          "resistors": 492
+        },
+        "root_candidates": [
+          "a_4186_4000.n0"
+        ],
+        "root_coordinate_internal": [
+          4286,
+          4000
+        ],
+        "root_node": "a_4186_4000.n0",
+        "root_to_terminal_ohm": {
+          "a_4186_4000.t0": 224.72600000000003
+        },
+        "sha256": {
+          "base_spice": "6759d9f036243c23435e0e438dddadc7a5b32f23114ba39a97f939f3929b1773",
+          "distributed_rc_spice": "6569c77c2a972409ce68cd915dc0a0a0517416f329a2c624d3049cba9ce8b35a",
+          "resistance_annotation": "9a0b3bf9fec324d800575d4a871e25af40d902616fc1389706d2984a44a9452a"
+        },
+        "terminal_nodes": [
+          "a_4186_4000.t0"
+        ]
+      }
+    }
+  },
+  "gds": "build/v3/vector_unit_pilot/v3_vector_unit_pilot.gds",
+  "gds_sha256": "bd8f43a2f1ac55efe957ebef1663d7345967e96d0c944f9c37c27e4f2d2c0abd",
+  "manifest_sha256": "01c411a8579c5f7ae0fa046ebb3b2e60b32557ee42afcb699d8ea12a7a597b9d",
+  "schema_version": 1,
+  "scope": "exact V3 seven-transistor vector unit: Magic/direct-GDS geometry, extracted topology, and distributed conductor RC",
+  "sha256": {
+    "auditor": "f4bc7c6e7d7a36499e7310389b510c006e92c32dd2c0656f6d302b5abd1f99ca",
+    "extractor": "543e3f546b33a4d238d56bf76e2b1f31892d0b06bff4b3b48889e1c062a42612",
+    "magic_log": "e9f53273dcaa8b3790879f247a0be257597b34b481dfa0c0e7017bc8cc47dc5c",
+    "precheck_summary": "aa15e00085c72669c5b69b546a9211146338810078796430eb55b84c8b24c88a",
+    "topology_audit": "09d87735f9a903c1abb5c4fff4e6c4d8b0ff3c8e7a2fb16752fa1d58518c1cb1"
+  },
+  "status": "pass",
+  "unexpected_magic_warnings": []
+}

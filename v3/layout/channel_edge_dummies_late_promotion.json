@@ -1,0 +1,449 @@
+{
+  "devices": [
+    {
+      "bbox": [
+        1.91,
+        -0.6,
+        3.49,
+        5.35
+      ],
+      "cell": "XTAIL_U",
+      "center": [
+        2.7,
+        2.375
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_QS2BNM",
+      "name": "XDUMMY_BOTTOM_TAIL_C0",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            2.055,
+            2.375
+          ]
+        ],
+        "G": [
+          [
+            2.7,
+            5.185
+          ]
+        ],
+        "S": [
+          [
+            3.345,
+            2.375
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        8.87,
+        -0.6,
+        10.45,
+        5.35
+      ],
+      "cell": "XTAIL_U",
+      "center": [
+        9.66,
+        2.375
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_QS2BNM",
+      "name": "XDUMMY_BOTTOM_TAIL_C1",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            9.015,
+            2.375
+          ]
+        ],
+        "G": [
+          [
+            9.66,
+            5.185
+          ]
+        ],
+        "S": [
+          [
+            10.305,
+            2.375
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        15.83,
+        -0.6,
+        17.41,
+        5.35
+      ],
+      "cell": "XTAIL_U",
+      "center": [
+        16.62,
+        2.375
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_QS2BNM",
+      "name": "XDUMMY_BOTTOM_TAIL_C2",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            15.975,
+            2.375
+          ]
+        ],
+        "G": [
+          [
+            16.62,
+            5.185
+          ]
+        ],
+        "S": [
+          [
+            17.265,
+            2.375
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        1.72,
+        113.3,
+        2.45,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        2.085,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_PP_C0",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "MY",
+      "terminals": {
+        "D": [
+          [
+            2.305,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            2.085,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            1.865,
+            114.065
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        2.95,
+        113.3,
+        3.68,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        3.315,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_NN_C0",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            3.095,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            3.315,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            3.535,
+            114.065
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        8.68,
+        113.3,
+        9.41,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        9.045,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_PP_C1",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "MY",
+      "terminals": {
+        "D": [
+          [
+            9.265,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            9.045,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            8.825,
+            114.065
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        9.91,
+        113.3,
+        10.64,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        10.275,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_NN_C1",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            10.055,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            10.275,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            10.495,
+            114.065
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        15.64,
+        113.3,
+        16.37,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        16.005,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_PP_C2",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "MY",
+      "terminals": {
+        "D": [
+          [
+            16.225,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            16.005,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            15.785,
+            114.065
+          ]
+        ]
+      }
+    },
+    {
+      "bbox": [
+        16.87,
+        113.3,
+        17.6,
+        114.83
+      ],
+      "cell": "XSW_U",
+      "center": [
+        17.235,
+        114.065
+      ],
+      "dummy_role": "electrically-inert process edge replica",
+      "generated_cell": "sky130_fd_pr__nfet_01v8_KTSK5Q",
+      "name": "XDUMMY_TOP_NN_C2",
+      "nets": {
+        "B": "VGND",
+        "D": "VGND",
+        "G": "VGND",
+        "S": "VGND"
+      },
+      "orientation": "R0",
+      "terminals": {
+        "D": [
+          [
+            17.015,
+            114.065
+          ]
+        ],
+        "G": [
+          [
+            17.235,
+            114.665
+          ]
+        ],
+        "S": [
+          [
+            17.455,
+            114.065
+          ]
+        ]
+      }
+    }
+  ],
+  "expected_extraction": {
+    "active_nmos": 105,
+    "dummy_nmos": 9,
+    "dummy_types": {
+      "switch_w0p65_l0p15": 6,
+      "tail_w5p07_l1": 3
+    },
+    "only_dummy_terminal_net": "VGND",
+    "total_nmos": 114
+  },
+  "ground_collection": {
+    "bottom_bus_y_um": 2.375,
+    "bus_x_range_um": [
+      0.47,
+      18.85
+    ],
+    "ground_spine_x_um": 6.98,
+    "guard_contacts_at_both_bus_ends": true,
+    "layer": "metal3",
+    "top_bus_y_um": 114.065,
+    "width_um": 0.4
+  },
+  "keepouts": {
+    "minimum_bottom_dummy_to_sig_bus_gap_um": 0.7,
+    "minimum_dummy_to_active_device_bbox_gap_um": 2.65,
+    "minimum_phase_root_to_top_dummy_bbox_gap_um": 2.47,
+    "phase_root_y_um": 110.83,
+    "top_dummy_bbox_bottom_y_um": 113.3
+  },
+  "provenance": {
+    "generator": "v3/tools/build_channel_edge_dummies_late_promotion.py",
+    "generator_sha256": "2ea12541b270d37f5fac66fc444e7a5a967d2f34d61d1584bfc472b1b8012366",
+    "matrix_manifest": "v3/layout/channel_matrix_late_promotion.json",
+    "matrix_manifest_sha256": "667d3557bc4bf0c993b9afb300f65d8a159371ae0faa9d1dbca589fe23e2ba0f",
+    "phase_tree_manifest": "v3/layout/group_phase_trees_late_promotion.json",
+    "phase_tree_manifest_sha256": "9aae5f2cb555ae504251b85142ceab894ba435666537696e194e7499cdc2bb0d",
+    "phase_tree_physical_gate_sha256": "7db58f58ca8ff00a5889391a416d91ec79c9909331bc97a7d7c4f3eb61581f81",
+    "phase_tree_rc_gate_sha256": "2cc8c5e0ea6dba210d5a031d324fba19f9452476a735ba20b4f7af59ed03871c",
+    "unit_manifest": "v3/layout/vector_unit_late_promotion.json",
+    "unit_manifest_sha256": "d123dd2945791c0196116560610308c4e53408a17df30c30ade9868368ea3ed0"
+  },
+  "schema_version": 1,
+  "shared_guard_bbox": [
+    0.47,
+    -1.4,
+    18.85,
+    115.665
+  ],
+  "status": "exact late-promotion edge-dummy placement contract",
+  "strategy": {
+    "all_dummy_terminals_tied_to_vgnd": true,
+    "bottom_boundary": "three exact tail PCells, one per active column",
+    "lateral_boundary": "continuous shared substrate guard; no transistor columns",
+    "phase_tree_geometry_frozen": true,
+    "reason": "separating the top grounded M3 bus from the M3/M4 phase-root bank avoids an avoidable clock-to-ground capacitance increase",
+    "top_boundary": "six exact switch PCells above the frozen M4 root bank"
+  },
+  "units": "um"
+}

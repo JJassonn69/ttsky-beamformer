@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "route_match_constraints": [
+    {"name": "ch0_internal_mux_trees", "nets": ["ch0_mux_a", "ch0_mux_b"], "layers": ["metal1", "metal2", "metal3", "metal4"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2", "via3"]},
+    {"name": "ch0_final_mux_outputs", "nets": ["ch0_mux_p_out", "ch0_mux_n_out"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch0_gate_outputs", "nets": ["ch0_gate_p", "ch0_gate_n"], "layers": ["metal1", "metal2"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1"]},
+    {"name": "ch0_outer_phase_leaves", "nets": ["ch0_phase_0_leaf", "ch0_phase_180_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch0_inner_phase_leaves", "nets": ["ch0_phase_90_leaf", "ch0_phase_270_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch0_all_phase_leaves", "nets": ["ch0_phase_0_leaf", "ch0_phase_90_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch1_internal_mux_trees", "nets": ["ch1_mux_a", "ch1_mux_b"], "layers": ["metal1", "metal2", "metal3", "metal4"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2", "via3"]},
+    {"name": "ch1_final_mux_outputs", "nets": ["ch1_mux_p_out", "ch1_mux_n_out"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch1_gate_outputs", "nets": ["ch1_gate_p", "ch1_gate_n"], "layers": ["metal1", "metal2"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1"]},
+    {"name": "ch1_outer_phase_leaves", "nets": ["ch1_phase_0_leaf", "ch1_phase_180_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch1_inner_phase_leaves", "nets": ["ch1_phase_90_leaf", "ch1_phase_270_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch1_all_phase_leaves", "nets": ["ch1_phase_0_leaf", "ch1_phase_90_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch2_internal_mux_trees", "nets": ["ch2_mux_a", "ch2_mux_b"], "layers": ["metal1", "metal2", "metal3", "metal4"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2", "via3"]},
+    {"name": "ch2_final_mux_outputs", "nets": ["ch2_mux_p_out", "ch2_mux_n_out"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch2_gate_outputs", "nets": ["ch2_gate_p", "ch2_gate_n"], "layers": ["metal1", "metal2"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1"]},
+    {"name": "ch2_outer_phase_leaves", "nets": ["ch2_phase_0_leaf", "ch2_phase_180_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch2_inner_phase_leaves", "nets": ["ch2_phase_90_leaf", "ch2_phase_270_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch2_all_phase_leaves", "nets": ["ch2_phase_0_leaf", "ch2_phase_90_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch3_internal_mux_trees", "nets": ["ch3_mux_a", "ch3_mux_b"], "layers": ["metal1", "metal2", "metal3", "metal4"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2", "via3"]},
+    {"name": "ch3_final_mux_outputs", "nets": ["ch3_mux_p_out", "ch3_mux_n_out"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch3_gate_outputs", "nets": ["ch3_gate_p", "ch3_gate_n"], "layers": ["metal1", "metal2"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1"]},
+    {"name": "ch3_outer_phase_leaves", "nets": ["ch3_phase_0_leaf", "ch3_phase_180_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch3_inner_phase_leaves", "nets": ["ch3_phase_90_leaf", "ch3_phase_270_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]},
+    {"name": "ch3_all_phase_leaves", "nets": ["ch3_phase_0_leaf", "ch3_phase_90_leaf"], "layers": ["metal1", "metal2", "metal3"], "max_layer_length_mismatch_percent": 0.1, "max_total_length_mismatch_percent": 0.1, "equal_vias": ["via1", "via2"]}
+  ],
+  "route_endpoint_constraints": [],
+  "route_path_constraints": [],
+  "boundary_route_constraints": []
+}

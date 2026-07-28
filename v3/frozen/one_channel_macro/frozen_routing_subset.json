@@ -1,0 +1,47 @@
+{
+  "baseline": {
+    "path": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/channel_input_bias_late_promotion/v3_channel_input_bias_late_promotion.gds",
+    "sha256": "5e1ef697aac3cce968ebccf77a479efdae3f477548f2891a154632b4d83c7e77",
+    "top": "v3_channel_input_bias_late_promotion"
+  },
+  "candidate": {
+    "path": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/channel_selector_late_promotion/v3_channel_selector_late_promotion.gds",
+    "sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
+    "top": "v3_channel_selector_late_promotion"
+  },
+  "layers": {
+    "met2": {
+      "baseline_area_um2": 475.1831,
+      "candidate_area_um2": 545.4487,
+      "missing_area_um2": 0.0,
+      "missing_polygons": 0
+    },
+    "met3": {
+      "baseline_area_um2": 343.5988,
+      "candidate_area_um2": 369.8444,
+      "missing_area_um2": 0.0,
+      "missing_polygons": 0
+    },
+    "met4": {
+      "baseline_area_um2": 276.8768,
+      "candidate_area_um2": 331.3068,
+      "missing_area_um2": 0.0,
+      "missing_polygons": 0
+    },
+    "via2": {
+      "baseline_area_um2": 7.8,
+      "candidate_area_um2": 9.08,
+      "missing_area_um2": 0.0,
+      "missing_polygons": 0
+    },
+    "via3": {
+      "baseline_area_um2": 2.68,
+      "candidate_area_um2": 3.44,
+      "missing_area_um2": 0.0,
+      "missing_polygons": 0
+    }
+  },
+  "schema_version": 1,
+  "scope": "frozen M2/Via2/M3/Via3/M4 routing polygon containment",
+  "status": "pass"
+}

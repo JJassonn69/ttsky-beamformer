@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "retired historical external-boundary overlay; do not regenerate into the release candidate",
+  "superseded_by": "v2/layout/control_openroad_route_plan.json",
+  "retired_reason": "the final router owns all external inputs in the same obstacle-aware solve as every internal and service net",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_service_routed.gds",
+    "top": "v2_control_service_routed",
+    "sha256": "312037bd8b2f52f2138132bea6c3fb77a77854eab4bcec4f4516525134075125"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "bf00eb7ccb8d3f9e756e93591249cf904fa38d8351f2fbdefb83e8f0134f6935"
+  },
+  "pin_access_checkpoint": {
+    "json": "build/v2/control_routing/control_pin_access_catalog.json",
+    "sha256": "1b58777f043c27c3e81033ee9201151f650a763e2124a97d5e1c37886fb76260"
+  },
+  "overlay_top": "v2_control_external_routes",
+  "output_top": "v2_control_external_routed",
+  "policy": {
+    "route_only_external_input_class": true,
+    "direct_drop_preferred": "use one M3 drop and one top via3 whenever the M2 pin sidestep stays within 4.60um",
+    "branched_drop": "otherwise use two monotonic M3 drops joined by one shortest legal M4 top track",
+    "pin_access": "zero lateral M1; enter only through an inset-qualified named LI or M1 port",
+    "source_gds_is_exact_obstacle_map": true,
+    "artificial_meanders": false,
+    "direction_reversals": 0,
+    "metal5_used": false
+  },
+  "rules": {
+    "locali_half_width": 0.085,
+    "metal1_pad_half_width": 0.16,
+    "via1_half_width": 0.13,
+    "metal2_landing_half_width": 0.20,
+    "metal2_width": 0.32,
+    "via2_half_width": 0.20,
+    "metal3_landing_half_x": 0.31,
+    "metal3_landing_half_y": 0.20,
+    "metal3_width": 0.40,
+    "via3_half_width": 0.20,
+    "metal4_landing_half_width": 0.20,
+    "metal4_pin_half_width_x": 0.30,
+    "metal4_width": 0.40,
+    "minimum_metal1_clearance": 0.14,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_metal4_clearance": 0.30,
+    "maximum_m1_escape_manhattan": 0.00,
+    "maximum_m2_leaf_escape": 4.60,
+    "leaf_search_pitch": 0.23,
+    "leaf_search_steps": 20,
+    "leaf_search_y_steps": 12,
+    "external_drop_search_steps": 6,
+    "track_pitch": 0.70,
+    "highest_track_y": 224.50,
+    "lowest_track_y": 193.70,
+    "maximum_legal_access_candidates": 16
+  },
+  "routing_order": [
+    "cfg_data",
+    "channel_enable[0]",
+    "channel_enable[1]",
+    "ena",
+    "beam_select[0]",
+    "manual_mode",
+    "channel_enable[2]",
+    "channel_enable[3]",
+    "beam_select[1]"
+  ],
+  "release_gates": [
+    "all nine external-input nets connect one exact top pin to one intended mapped input",
+    "every cut has same-net conductor above and below",
+    "no route overlaps or violates spacing to the frozen source or another external net",
+    "no lateral M1 route, floating landing, dead-end branch, U-turn, or metal5 exists",
+    "Magic DRC and terminal-aware topology extraction pass on the exact assembled GDS"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "repository": "JJassonn69/ttsky-beamformer",
+  "branch": "v3-controller-pin-aligned-candidate-b",
+  "commit": "90ec04a952155830b3ec937328593eb46729206c",
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
+  "workflow": {
+    "name": "gds",
+    "workflow_id": 316317254,
+    "run_id": 30341656935,
+    "run_number": 49,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30341656935"
+  },
+  "jobs": {
+    "gds": {
+      "job_id": 90218387442,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "precheck": {
+      "job_id": 90221405832,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "viewer": {
+      "job_id": 90221405874,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "validation-evidence": {
+      "job_id": 90221933291,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "scope": "official Tiny Tapeout ttsky26c custom-GDS, precheck, viewer, and repository artifact-bound validation for the exact promoted frozen GDS hash",
+  "source": "GitHub Actions run and job status queried after completion through the authenticated GitHub API"
+}

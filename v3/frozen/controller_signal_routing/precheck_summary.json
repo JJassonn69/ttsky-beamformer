@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_beol.xml",
+      "report_sha256": "c1685e747d391ed0a0b6c4ccf546f31134ebd50fd3d5f7c62b72f35d91630769"
+    },
+    "feol": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_feol.xml",
+      "report_sha256": "07a2e6013e9582288c405db7b2f34410e2be8188fe1c40378372bd39a6fd6d4d"
+    },
+    "offgrid": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_offgrid.xml",
+      "report_sha256": "646695f0eb5517c49052e8e3c0974639b3ad57107621afab7b7c19c95751099d"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "0d33ed2caa61c829dc25de762671347720312869ec1d9f0387349f8aeacdd620"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_routing/openroad_internal_pdn_reserved/direct_precheck/precheck_zero_area.xml",
+      "report_sha256": "8de6305a418fb0d405a0e0121418f1090acd13881e27c8dcd3dc568b9b4ef332"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/control_routing/openroad_internal_pdn_reserved/direct/v3_four_channel_control_signal_routed.gds",
+  "gds_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_four_channel_ctrl_sig_routed"
+}

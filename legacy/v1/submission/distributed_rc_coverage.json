@@ -1,0 +1,50 @@
+{
+  "annotation": {
+    "resistors": 6328,
+    "rnodes": 4288
+  },
+  "base": {
+    "capacitors": 538,
+    "devices": 346,
+    "resistors": 0
+  },
+  "base_netlist": "build/layout/extracted.spice",
+  "checks": {
+    "all_manifest_nets_resistively_covered": true,
+    "all_resistor_components_manifest_anchored": true,
+    "base_is_resistance_free_reference": true,
+    "device_count_preserved": true,
+    "distributed_capacitances_emitted": true,
+    "explicit_resistors_emitted": true,
+    "internal_resistor_nodes_emitted": true,
+    "resistor_records_well_formed": true,
+    "resistor_values_positive": true,
+    "top_resistance_annotation_exists": true,
+    "top_resistance_annotation_is_fresh": true
+  },
+  "distributed_rc": {
+    "capacitors": 6341,
+    "covered_manifest_nets": 30,
+    "devices": 346,
+    "internal_resistor_nodes": 6525,
+    "malformed_resistors": [],
+    "nonpositive_resistors": [],
+    "resistor_components": 30,
+    "resistors": 11333,
+    "unanchored_resistor_components": [],
+    "uncovered_manifest_nets": []
+  },
+  "distributed_rc_netlist": "build/layout/extracted_rc.spice",
+  "malformed_resistors": [],
+  "manifest_net_count": 30,
+  "nonpositive_resistors": [],
+  "passed": true,
+  "sha256": {
+    "base_netlist": "d989a016bfb9ca2d7dcf0a3fbd50b73176883daff6e8145d04d468865f1c751e",
+    "distributed_rc_netlist": "8d92dee8f661c6bd00d5155300796854381e45d8e0916717c4d481eb32b10bec",
+    "top_resistance_annotation": "ebfb4c05f6e2da63624fb16a202fcbe85694193a9a0136ae421686882ae319fc"
+  },
+  "top_device_annotation": "build/layout/buffered/tt_um_jjassonn69_beamformer.ext",
+  "top_resistance_annotation": "build/layout/buffered/tt_um_jjassonn69_beamformer.res.ext",
+  "uncovered_manifest_nets": []
+}

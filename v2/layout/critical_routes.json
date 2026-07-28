@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "coordinate_system": "single-channel template coordinates",
+  "status": "pre-route terminal and span contract",
+  "rules": {
+    "terminal_coordinates_are_measured": true,
+    "route_from_cell_center_is_forbidden": true,
+    "unselected_terminal_contact_is_forbidden": true,
+    "matching_metric": "identical endpoint count and total root-to-terminal Manhattan distance before obstacle routing",
+    "note": "These are placement feasibility bounds. Generated geometry must additionally pass topology, stub, via-ownership, DRC, LVS, and distributed-RC gates."
+  },
+  "trees": [
+    {
+      "name": "input_signal",
+      "class": "high_impedance_input",
+      "root": {"anchor": [-5.505, 53.075]},
+      "terminals": [
+        {"name": "boundary_entry", "anchor": [0.0, 8.0]},
+        {"component": "RINPUT", "terminal": "R2"},
+        {"component": "GM_SIG_A", "terminal": "G"},
+        {"component": "GM_SIG_B", "terminal": "G"}
+      ],
+      "max_root_to_terminal_um": 80.0,
+      "routing_intent": "one shielded side spine; the single named passive-side dogleg is functional, not a matching meander"
+    },
+    {
+      "name": "vcm_reference",
+      "class": "quiet_analog_reference",
+      "root": {"anchor": [-5.505, 57.775]},
+      "terminals": [
+        {"name": "vcm_global_entry", "anchor": [-5.505, 84.5]},
+        {"component": "RINPUT", "terminal": "R1"},
+        {"component": "GM_REF_A", "terminal": "G"},
+        {"component": "GM_REF_B", "terminal": "G"}
+      ],
+      "max_root_to_terminal_um": 35.0,
+      "routing_intent": "quiet side spine parallel to, but shielded from, the input spine"
+    },
+    {
+      "name": "gm_tail",
+      "class": "local_analog_current",
+      "root": {"anchor": [0.92, 49.0]},
+      "terminals": [
+        {"component": "GM_SIG_A", "terminal": "S"},
+        {"component": "GM_REF_A", "terminal": "S"},
+        {"component": "GM_REF_B", "terminal": "S"},
+        {"component": "GM_SIG_B", "terminal": "S"}
+      ],
+      "max_root_to_terminal_um": 12.0,
+      "routing_intent": "short symmetric star below the ABBA GM rows"
+    },
+    {
+      "name": "tail_bank_drain",
+      "class": "local_analog_current",
+      "root": {"anchor": [0.92, 49.0]},
+      "terminals": [
+        {"component": "TMAIN0", "terminal": "D"},
+        {"component": "TMAIN1", "terminal": "D"},
+        {"component": "TMAIN2", "terminal": "D"},
+        {"component": "TTRIM8", "terminal": "D"},
+        {"component": "TTRIM4", "terminal": "D"},
+        {"component": "TTRIM2", "terminal": "D"},
+        {"component": "TTRIM1", "terminal": "D"}
+      ],
+      "max_root_to_terminal_um": 22.0,
+      "routing_intent": "single vertical drain collector; no analog tail route crosses a channel boundary"
+    },
+    {
+      "name": "gm_p",
+      "class": "high_impedance_gm",
+      "root": {"anchor": [-0.08, 62.0]},
+      "terminals": [
+        {"component": "GM_SIG_A", "terminal": "D"},
+        {"component": "GM_SIG_B", "terminal": "D"},
+        {"component": "SW1_A", "terminal": "S"},
+        {"component": "SW2_A", "terminal": "S"},
+        {"component": "SW2_B", "terminal": "S"},
+        {"component": "SW1_B", "terminal": "S"}
+      ],
+      "max_root_to_terminal_um": 30.0,
+      "routing_intent": "interdigitated local tree on M1/M2; no channel escape"
+    },
+    {
+      "name": "gm_n",
+      "class": "high_impedance_gm",
+      "root": {"anchor": [1.92, 62.0]},
+      "terminals": [
+        {"component": "GM_REF_A", "terminal": "D"},
+        {"component": "GM_REF_B", "terminal": "D"},
+        {"component": "SW3_A", "terminal": "S"},
+        {"component": "SW4_A", "terminal": "S"},
+        {"component": "SW4_B", "terminal": "S"},
+        {"component": "SW3_B", "terminal": "S"}
+      ],
+      "max_root_to_terminal_um": 30.0,
+      "routing_intent": "mirror of gm_p about local x=1 um"
+    },
+    {
+      "name": "mixer_output_p",
+      "class": "differential_sum",
+      "root": {"anchor": [-1.08, 90.0]},
+      "terminals": [
+        {"component": "SW1_A", "terminal": "D"},
+        {"component": "SW4_A", "terminal": "D"},
+        {"component": "SW4_B", "terminal": "D"},
+        {"component": "SW1_B", "terminal": "D"}
+      ],
+      "max_root_to_terminal_um": 28.0,
+      "routing_intent": "left member of a locally mirrored P/N collector pair"
+    },
+    {
+      "name": "mixer_output_n",
+      "class": "differential_sum",
+      "root": {"anchor": [2.92, 90.0]},
+      "terminals": [
+        {"component": "SW3_A", "terminal": "D"},
+        {"component": "SW2_A", "terminal": "D"},
+        {"component": "SW2_B", "terminal": "D"},
+        {"component": "SW3_B", "terminal": "D"}
+      ],
+      "max_root_to_terminal_um": 28.0,
+      "routing_intent": "right member of a locally mirrored P/N collector pair"
+    },
+    {
+      "name": "lop",
+      "class": "local_clock",
+      "root": {"component": "PBUF_P", "terminal": "X", "expected_point_um": [-1.2, 120.495]},
+      "terminals": [
+        {"component": "SW1_A", "terminal": "G", "expected_point_um": [-0.655, 66.075]},
+        {"component": "SW3_A", "terminal": "G", "expected_point_um": [2.495, 66.075]},
+        {"component": "SW3_B", "terminal": "G", "expected_point_um": [-0.655, 80.175]},
+        {"component": "SW1_B", "terminal": "G", "expected_point_um": [2.495, 80.175]}
+      ],
+      "max_root_to_terminal_um": 65.0,
+      "routing_intent": "one buffered trunk with two balanced row branches"
+    },
+    {
+      "name": "lon",
+      "class": "local_clock",
+      "root": {"component": "PBUF_N", "terminal": "X", "expected_point_um": [3.04, 120.495]},
+      "terminals": [
+        {"component": "SW2_A", "terminal": "G", "expected_point_um": [-0.655, 70.775]},
+        {"component": "SW4_A", "terminal": "G", "expected_point_um": [2.495, 70.775]},
+        {"component": "SW4_B", "terminal": "G", "expected_point_um": [-0.655, 75.475]},
+        {"component": "SW2_B", "terminal": "G", "expected_point_um": [2.495, 75.475]}
+      ],
+      "max_root_to_terminal_um": 65.0,
+      "routing_intent": "geometric complement of lop; equal total pre-route Manhattan demand"
+    }
+  ],
+  "matching_groups": [
+    {"name": "gm_branches", "trees": ["gm_p", "gm_n"], "max_total_mismatch_percent": 0.1},
+    {"name": "mixer_outputs", "trees": ["mixer_output_p", "mixer_output_n"], "max_total_mismatch_percent": 0.1},
+    {"name": "local_lo_pair", "trees": ["lop", "lon"], "max_total_mismatch_percent": 0.1}
+  ]
+}

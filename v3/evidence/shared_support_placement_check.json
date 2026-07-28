@@ -1,0 +1,71 @@
+{
+  "component_count": 14,
+  "errors": [],
+  "physical_geometry_status": "pending exact Magic pilot",
+  "route_groups": {
+    "tail_bias.routes.decap_ground_bus": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 2
+    },
+    "tail_bias.routes.decap_top_bus": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 3
+    },
+    "tail_bias.routes.rbias_to_star": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 2
+    },
+    "vcm.divider_internal_routes[0]": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 1
+    },
+    "vcm.divider_internal_routes[1]": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 1
+    },
+    "vcm.divider_internal_routes[2]": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 1
+    },
+    "vcm.divider_internal_routes[3]": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 1
+    },
+    "vcm.divider_internal_routes[4]": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 1
+    },
+    "vcm.feed": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 7
+    },
+    "vcm.ground": {
+      "all_manhattan": true,
+      "connected": true,
+      "segment_count": 3
+    }
+  },
+  "schema_version": 1,
+  "status": "pass",
+  "tail_bypass_mim_count": 2,
+  "vcm_bypass_mim_count": 3,
+  "vcm_divider_centroids_um": {
+    "A": [
+      32.5,
+      127.0
+    ],
+    "B": [
+      32.5,
+      127.0
+    ]
+  }
+}

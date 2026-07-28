@@ -1,0 +1,5708 @@
+{
+  "counts": {
+    "by_layer": {
+      "li1": 36,
+      "mcon": 36,
+      "met1": 161,
+      "met2": 107,
+      "met3": 117,
+      "via": 17,
+      "via2": 16
+    },
+    "patches": 0,
+    "routes": 16,
+    "segments": 267,
+    "shapes": 490,
+    "vias": 69
+  },
+  "policy": {
+    "allowed_gds_labels": "R008:R023 only",
+    "allowed_nets": "active_trim_codes[0:15] only",
+    "endpoints_may_change": false,
+    "logical_mapping_may_change": false,
+    "non_trim_geometry_may_change": false,
+    "purpose": "restore the user-reviewed straight internal trim paths after the 32+8 OpenROAD regeneration reintroduced jogs and twelve avoidable vias"
+  },
+  "provenance": {
+    "donor_commit": "1dd965774182bb9647ae1337e48c0a3a24ecd211",
+    "donor_gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "donor_gds_sha256": "8747ab04e6a39da780584a59f365c7506cc34b1e7d5f9e7fe56563a10a10ad9d",
+    "donor_route_structure": "v2_control_openroad_routes",
+    "donor_route_structure_boundary_count": 6223,
+    "donor_top": "v2_control_quadrature_routed",
+    "non_override_prefix_shape_count": 429,
+    "non_override_suffix_shape_count": 5304,
+    "recovered_shape_span": [
+      429,
+      919
+    ],
+    "regenerated_source_geometry_sha256": "a248486f828bf5f3702601f01921c590d2d9a9a92e06a1b3c6d949e4c0d68481"
+  },
+  "routes": [
+    {
+      "gds_label": "R008",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          9.6
+        ]
+      },
+      "net": "active_trim_codes[0]",
+      "patch_count": 0,
+      "segment_count": 21,
+      "shape_count": 34,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            9.45,
+            185.04,
+            9.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            9.45,
+            189.395,
+            9.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            189.095,
+            9.45,
+            194.025,
+            9.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.725,
+            9.45,
+            194.03,
+            9.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.73,
+            9.45,
+            194.04,
+            9.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.82,
+            9.53,
+            193.96,
+            9.785
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.82,
+            9.645,
+            193.96,
+            17.195
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.82,
+            17.055,
+            193.96,
+            24.63
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.82,
+            24.49,
+            193.96,
+            24.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.82,
+            24.58,
+            194.035,
+            24.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.895,
+            24.58,
+            194.05,
+            24.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.91,
+            24.58,
+            194.88,
+            24.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            194.74,
+            24.58,
+            195.8,
+            24.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.58,
+            195.8,
+            24.765
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.625,
+            195.8,
+            24.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.64,
+            195.8,
+            24.89
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.75,
+            195.8,
+            25.015
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.875,
+            195.8,
+            25.06
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            195.66,
+            24.92,
+            196.26,
+            25.06
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            196.12,
+            24.92,
+            196.645,
+            25.06
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            196.505,
+            24.92,
+            196.72,
+            25.06
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.805,
+            24.565,
+            193.975,
+            24.735
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.805,
+            24.565,
+            193.975,
+            24.735
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.745,
+            24.535,
+            194.035,
+            24.765
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            196.565,
+            24.905,
+            196.735,
+            25.075
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            196.565,
+            24.905,
+            196.735,
+            25.075
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            196.505,
+            24.875,
+            196.795,
+            25.105
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.73,
+            24.52,
+            194.05,
+            24.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.815,
+            24.575,
+            193.965,
+            24.725
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.76,
+            24.49,
+            194.02,
+            24.81
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.75,
+            9.415,
+            194.03,
+            9.785
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.79,
+            9.5,
+            193.99,
+            9.7
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            193.725,
+            9.435,
+            194.055,
+            9.765
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            9.45,
+            185.04,
+            9.75
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[0]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R009",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          16.0
+        ]
+      },
+      "net": "active_trim_codes[10]",
+      "patch_count": 0,
+      "segment_count": 13,
+      "shape_count": 26,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            15.85,
+            185.04,
+            16.15
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            15.85,
+            196.3,
+            16.15
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            196.0,
+            15.85,
+            207.825,
+            16.15
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.525,
+            15.85,
+            207.84,
+            16.15
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            15.93,
+            207.76,
+            16.185
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            16.045,
+            207.76,
+            33.995
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            33.855,
+            207.76,
+            51.83
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            51.69,
+            207.76,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            51.78,
+            207.835,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.695,
+            51.78,
+            207.85,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.71,
+            51.78,
+            209.14,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            51.78,
+            210.445,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            210.305,
+            51.78,
+            210.52,
+            51.92
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.605,
+            51.765,
+            207.775,
+            51.935
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.605,
+            51.765,
+            207.775,
+            51.935
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.545,
+            51.735,
+            207.835,
+            51.965
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            210.365,
+            51.765,
+            210.535,
+            51.935
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            210.365,
+            51.765,
+            210.535,
+            51.935
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            210.305,
+            51.735,
+            210.595,
+            51.965
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.53,
+            51.72,
+            207.85,
+            51.98
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.615,
+            51.775,
+            207.765,
+            51.925
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.56,
+            51.69,
+            207.82,
+            52.01
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.55,
+            15.815,
+            207.83,
+            16.185
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.59,
+            15.9,
+            207.79,
+            16.1
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            207.525,
+            15.835,
+            207.855,
+            16.165
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            15.85,
+            185.04,
+            16.15
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[10]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R010",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          16.64
+        ]
+      },
+      "net": "active_trim_codes[11]",
+      "patch_count": 0,
+      "segment_count": 19,
+      "shape_count": 32,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            16.49,
+            185.04,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            16.49,
+            186.065,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            185.765,
+            16.49,
+            187.37,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            187.07,
+            16.49,
+            198.295,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            197.995,
+            16.49,
+            209.205,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.905,
+            16.49,
+            209.22,
+            16.79
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.92,
+            16.49,
+            209.22,
+            16.795
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.92,
+            16.495,
+            209.22,
+            16.81
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            16.59,
+            209.14,
+            16.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            16.705,
+            209.14,
+            36.195
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            36.055,
+            209.14,
+            55.57
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            55.43,
+            209.14,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.0,
+            55.52,
+            209.23,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.09,
+            55.52,
+            209.295,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.155,
+            55.52,
+            209.37,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.23,
+            55.52,
+            209.445,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.305,
+            55.52,
+            210.75,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            210.61,
+            55.52,
+            212.285,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            212.145,
+            55.52,
+            212.36,
+            55.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.215,
+            55.505,
+            209.385,
+            55.675
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.215,
+            55.505,
+            209.385,
+            55.675
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            209.155,
+            55.475,
+            209.445,
+            55.705
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            212.205,
+            55.505,
+            212.375,
+            55.675
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            212.205,
+            55.505,
+            212.375,
+            55.675
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            212.145,
+            55.475,
+            212.435,
+            55.705
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.91,
+            55.46,
+            209.23,
+            55.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.995,
+            55.515,
+            209.145,
+            55.665
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.94,
+            55.43,
+            209.2,
+            55.75
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.93,
+            16.475,
+            209.21,
+            16.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.97,
+            16.56,
+            209.17,
+            16.76
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            208.905,
+            16.495,
+            209.235,
+            16.825
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            16.49,
+            185.04,
+            16.79
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[11]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R011",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          17.28
+        ]
+      },
+      "net": "active_trim_codes[12]",
+      "patch_count": 0,
+      "segment_count": 18,
+      "shape_count": 34,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            17.13,
+            185.04,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            17.13,
+            186.525,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            186.225,
+            17.13,
+            188.29,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            187.99,
+            17.13,
+            188.295,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            187.995,
+            17.13,
+            199.45,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            199.15,
+            17.13,
+            210.585,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.285,
+            17.13,
+            210.6,
+            17.43
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            17.21,
+            210.52,
+            17.465
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            17.325,
+            210.52,
+            38.035
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            37.895,
+            210.52,
+            57.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            57.81,
+            210.52,
+            58.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            57.9,
+            210.52,
+            58.13
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            57.99,
+            210.52,
+            58.63
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            58.49,
+            210.52,
+            58.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.38,
+            57.9,
+            210.61,
+            58.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.47,
+            57.9,
+            211.9,
+            58.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            57.9,
+            213.205,
+            58.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            213.065,
+            57.9,
+            213.28,
+            58.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.365,
+            58.565,
+            210.535,
+            58.735
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.365,
+            58.565,
+            210.535,
+            58.735
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.305,
+            58.535,
+            210.595,
+            58.765
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            213.125,
+            57.885,
+            213.295,
+            58.055
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            213.125,
+            57.885,
+            213.295,
+            58.055
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            213.065,
+            57.855,
+            213.355,
+            58.085
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.29,
+            57.84,
+            210.61,
+            58.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.375,
+            57.895,
+            210.525,
+            58.045
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.32,
+            57.81,
+            210.58,
+            58.13
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.29,
+            58.52,
+            210.61,
+            58.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.375,
+            58.575,
+            210.525,
+            58.725
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.32,
+            58.49,
+            210.58,
+            58.81
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.31,
+            17.095,
+            210.59,
+            17.465
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.35,
+            17.18,
+            210.55,
+            17.38
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            210.285,
+            17.115,
+            210.615,
+            17.445
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            17.13,
+            185.04,
+            17.43
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[12]"
+        }
+      ],
+      "via_count": 5
+    },
+    {
+      "gds_label": "R012",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          17.92
+        ]
+      },
+      "net": "active_trim_codes[13]",
+      "patch_count": 0,
+      "segment_count": 23,
+      "shape_count": 39,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            17.77,
+            185.04,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            17.77,
+            186.065,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            185.765,
+            17.77,
+            187.37,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            187.07,
+            17.77,
+            187.38,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            187.08,
+            17.77,
+            199.22,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            198.92,
+            17.77,
+            211.045,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.745,
+            17.77,
+            211.06,
+            18.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.84,
+            17.85,
+            210.98,
+            18.105
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.84,
+            17.965,
+            210.98,
+            39.03
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.84,
+            38.89,
+            210.98,
+            59.99
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.84,
+            59.85,
+            210.98,
+            60.08
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.84,
+            59.94,
+            211.07,
+            60.08
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.93,
+            59.94,
+            211.44,
+            60.08
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.3,
+            59.94,
+            211.825,
+            60.08
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.685,
+            59.94,
+            211.9,
+            60.08
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            60.96,
+            211.9,
+            61.145
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            60.96,
+            211.975,
+            61.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            61.005,
+            211.9,
+            61.27
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            61.13,
+            211.9,
+            61.395
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.76,
+            61.255,
+            211.9,
+            61.44
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.835,
+            60.96,
+            213.28,
+            61.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            60.96,
+            214.585,
+            61.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            214.445,
+            60.96,
+            214.66,
+            61.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.745,
+            59.925,
+            211.915,
+            60.095
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.745,
+            59.925,
+            211.915,
+            60.095
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.685,
+            59.895,
+            211.975,
+            60.125
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.745,
+            61.285,
+            211.915,
+            61.455
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.745,
+            61.285,
+            211.915,
+            61.455
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            211.685,
+            61.255,
+            211.975,
+            61.485
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            214.505,
+            60.945,
+            214.675,
+            61.115
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            214.505,
+            60.945,
+            214.675,
+            61.115
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            214.445,
+            60.915,
+            214.735,
+            61.145
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.75,
+            59.88,
+            211.07,
+            60.14
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.835,
+            59.935,
+            210.985,
+            60.085
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.78,
+            59.85,
+            211.04,
+            60.17
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.77,
+            17.735,
+            211.05,
+            18.105
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.81,
+            17.82,
+            211.01,
+            18.02
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            210.745,
+            17.755,
+            211.075,
+            18.085
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            17.77,
+            185.04,
+            18.07
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[13]"
+        }
+      ],
+      "via_count": 5
+    },
+    {
+      "gds_label": "R013",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          18.56
+        ]
+      },
+      "net": "active_trim_codes[14]",
+      "patch_count": 0,
+      "segment_count": 17,
+      "shape_count": 30,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            18.41,
+            185.04,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            18.41,
+            185.605,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            185.305,
+            18.41,
+            186.435,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            186.135,
+            18.41,
+            186.45,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            186.15,
+            18.41,
+            199.9,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            199.6,
+            18.41,
+            213.345,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.045,
+            18.41,
+            213.36,
+            18.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            18.49,
+            213.28,
+            18.64
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            18.5,
+            213.28,
+            18.745
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            18.605,
+            213.28,
+            40.72
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            40.58,
+            213.28,
+            62.71
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            62.57,
+            213.28,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.14,
+            62.66,
+            213.355,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.215,
+            62.66,
+            213.37,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.23,
+            62.66,
+            214.66,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            214.52,
+            62.66,
+            215.965,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            215.825,
+            62.66,
+            216.04,
+            62.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.125,
+            62.645,
+            213.295,
+            62.815
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.125,
+            62.645,
+            213.295,
+            62.815
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.065,
+            62.615,
+            213.355,
+            62.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            215.885,
+            62.645,
+            216.055,
+            62.815
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            215.885,
+            62.645,
+            216.055,
+            62.815
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            215.825,
+            62.615,
+            216.115,
+            62.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.05,
+            62.6,
+            213.37,
+            62.86
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.135,
+            62.655,
+            213.285,
+            62.805
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.08,
+            62.57,
+            213.34,
+            62.89
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.07,
+            18.375,
+            213.35,
+            18.745
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.11,
+            18.46,
+            213.31,
+            18.66
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            213.045,
+            18.395,
+            213.375,
+            18.725
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            18.41,
+            185.04,
+            18.71
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[14]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R014",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          19.2
+        ]
+      },
+      "net": "active_trim_codes[15]",
+      "patch_count": 0,
+      "segment_count": 16,
+      "shape_count": 29,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            19.05,
+            185.04,
+            19.35
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            19.05,
+            199.98,
+            19.35
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            199.68,
+            19.05,
+            215.185,
+            19.35
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.885,
+            19.05,
+            215.2,
+            19.35
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.98,
+            19.13,
+            215.12,
+            19.385
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.98,
+            19.245,
+            215.12,
+            42.905
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.98,
+            42.765,
+            215.12,
+            66.45
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.98,
+            66.31,
+            215.12,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.75,
+            66.4,
+            214.965,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.825,
+            66.4,
+            215.005,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.865,
+            66.4,
+            215.03,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.89,
+            66.4,
+            215.12,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.98,
+            66.4,
+            215.21,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            215.07,
+            66.4,
+            216.5,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            216.36,
+            66.4,
+            217.805,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            217.665,
+            66.4,
+            217.88,
+            66.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.735,
+            66.385,
+            214.905,
+            66.555
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.735,
+            66.385,
+            214.905,
+            66.555
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.675,
+            66.355,
+            214.965,
+            66.585
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            217.725,
+            66.385,
+            217.895,
+            66.555
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            217.725,
+            66.385,
+            217.895,
+            66.555
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            217.665,
+            66.355,
+            217.955,
+            66.585
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.89,
+            66.34,
+            215.21,
+            66.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.975,
+            66.395,
+            215.125,
+            66.545
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.92,
+            66.31,
+            215.18,
+            66.63
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.91,
+            19.015,
+            215.19,
+            19.385
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.95,
+            19.1,
+            215.15,
+            19.3
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            214.885,
+            19.035,
+            215.215,
+            19.365
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            19.05,
+            185.04,
+            19.35
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[15]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R015",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          10.24
+        ]
+      },
+      "net": "active_trim_codes[1]",
+      "patch_count": 0,
+      "segment_count": 13,
+      "shape_count": 29,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            10.09,
+            185.04,
+            10.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            10.09,
+            190.085,
+            10.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            189.785,
+            10.09,
+            195.405,
+            10.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.105,
+            10.09,
+            195.41,
+            10.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.11,
+            10.09,
+            195.42,
+            10.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.2,
+            10.17,
+            195.34,
+            10.425
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.2,
+            10.285,
+            195.34,
+            18.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.2,
+            18.73,
+            195.34,
+            27.35
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.2,
+            27.21,
+            195.34,
+            27.44
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.2,
+            28.66,
+            195.415,
+            28.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.275,
+            28.66,
+            196.72,
+            28.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            28.66,
+            198.025,
+            28.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            197.885,
+            28.66,
+            198.1,
+            28.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.185,
+            27.285,
+            195.355,
+            27.455
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.185,
+            27.285,
+            195.355,
+            27.455
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.125,
+            27.255,
+            195.415,
+            27.485
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.185,
+            28.645,
+            195.355,
+            28.815
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.185,
+            28.645,
+            195.355,
+            28.815
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.125,
+            28.615,
+            195.415,
+            28.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            197.945,
+            28.645,
+            198.115,
+            28.815
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            197.945,
+            28.645,
+            198.115,
+            28.815
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            197.885,
+            28.615,
+            198.175,
+            28.845
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.11,
+            27.24,
+            195.43,
+            27.5
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.195,
+            27.295,
+            195.345,
+            27.445
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.14,
+            27.21,
+            195.4,
+            27.53
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.13,
+            10.055,
+            195.41,
+            10.425
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.17,
+            10.14,
+            195.37,
+            10.34
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            195.105,
+            10.075,
+            195.435,
+            10.405
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            10.09,
+            185.04,
+            10.39
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[1]"
+        }
+      ],
+      "via_count": 5
+    },
+    {
+      "gds_label": "R016",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          10.88
+        ]
+      },
+      "net": "active_trim_codes[2]",
+      "patch_count": 0,
+      "segment_count": 13,
+      "shape_count": 26,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            10.73,
+            185.04,
+            11.03
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            10.73,
+            190.78,
+            11.03
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            190.48,
+            10.73,
+            196.785,
+            11.03
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.485,
+            10.73,
+            196.8,
+            11.03
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            10.81,
+            196.72,
+            11.065
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            10.925,
+            196.72,
+            20.55
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            20.41,
+            196.72,
+            30.07
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            29.93,
+            196.72,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.58,
+            30.02,
+            196.795,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.655,
+            30.02,
+            196.81,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.67,
+            30.02,
+            198.1,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            197.96,
+            30.02,
+            199.405,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            199.265,
+            30.02,
+            199.48,
+            30.16
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.565,
+            30.005,
+            196.735,
+            30.175
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.565,
+            30.005,
+            196.735,
+            30.175
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.505,
+            29.975,
+            196.795,
+            30.205
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            199.325,
+            30.005,
+            199.495,
+            30.175
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            199.325,
+            30.005,
+            199.495,
+            30.175
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            199.265,
+            29.975,
+            199.555,
+            30.205
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.49,
+            29.96,
+            196.81,
+            30.22
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.575,
+            30.015,
+            196.725,
+            30.165
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.52,
+            29.93,
+            196.78,
+            30.25
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.51,
+            10.695,
+            196.79,
+            11.065
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.55,
+            10.78,
+            196.75,
+            10.98
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            196.485,
+            10.715,
+            196.815,
+            11.045
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            10.73,
+            185.04,
+            11.03
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[2]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R017",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          11.52
+        ]
+      },
+      "net": "active_trim_codes[3]",
+      "patch_count": 0,
+      "segment_count": 16,
+      "shape_count": 29,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            11.37,
+            185.04,
+            11.67
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            11.37,
+            192.39,
+            11.67
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            192.09,
+            11.37,
+            200.005,
+            11.67
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.705,
+            11.37,
+            200.02,
+            11.67
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.8,
+            11.45,
+            199.94,
+            11.705
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.8,
+            11.565,
+            199.94,
+            22.74
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.8,
+            22.6,
+            199.94,
+            33.81
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.8,
+            33.67,
+            199.94,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.19,
+            33.76,
+            198.405,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.265,
+            33.76,
+            199.135,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.995,
+            33.76,
+            199.85,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.71,
+            33.76,
+            199.94,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.8,
+            33.76,
+            200.03,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.89,
+            33.76,
+            200.63,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            200.49,
+            33.76,
+            201.245,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            201.105,
+            33.76,
+            201.32,
+            33.9
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.175,
+            33.745,
+            198.345,
+            33.915
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.175,
+            33.745,
+            198.345,
+            33.915
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            198.115,
+            33.715,
+            198.405,
+            33.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            201.165,
+            33.745,
+            201.335,
+            33.915
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            201.165,
+            33.745,
+            201.335,
+            33.915
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            201.105,
+            33.715,
+            201.395,
+            33.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.71,
+            33.7,
+            200.03,
+            33.96
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.795,
+            33.755,
+            199.945,
+            33.905
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.74,
+            33.67,
+            200.0,
+            33.99
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.73,
+            11.335,
+            200.01,
+            11.705
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.77,
+            11.42,
+            199.97,
+            11.62
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            199.705,
+            11.355,
+            200.035,
+            11.685
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            11.37,
+            185.04,
+            11.67
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[3]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R018",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          12.16
+        ]
+      },
+      "net": "active_trim_codes[4]",
+      "patch_count": 0,
+      "segment_count": 17,
+      "shape_count": 30,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            12.01,
+            185.04,
+            12.31
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            12.01,
+            191.44,
+            12.31
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            191.14,
+            12.01,
+            198.11,
+            12.31
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.81,
+            12.01,
+            198.125,
+            12.31
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.905,
+            12.09,
+            198.115,
+            12.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.975,
+            12.09,
+            198.76,
+            12.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            198.62,
+            12.09,
+            199.42,
+            12.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.28,
+            12.09,
+            199.48,
+            12.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.34,
+            12.09,
+            199.48,
+            12.345
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.34,
+            12.205,
+            199.48,
+            23.915
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.34,
+            23.775,
+            199.48,
+            35.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.34,
+            35.37,
+            199.48,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.34,
+            35.46,
+            199.555,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.415,
+            35.46,
+            199.57,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.43,
+            35.46,
+            200.86,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            35.46,
+            202.165,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            202.025,
+            35.46,
+            202.24,
+            35.6
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.325,
+            35.445,
+            199.495,
+            35.615
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.325,
+            35.445,
+            199.495,
+            35.615
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.265,
+            35.415,
+            199.555,
+            35.645
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            202.085,
+            35.445,
+            202.255,
+            35.615
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            202.085,
+            35.445,
+            202.255,
+            35.615
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            202.025,
+            35.415,
+            202.315,
+            35.645
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.25,
+            35.4,
+            199.57,
+            35.66
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.335,
+            35.455,
+            199.485,
+            35.605
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            199.28,
+            35.37,
+            199.54,
+            35.69
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.835,
+            11.975,
+            198.115,
+            12.345
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.875,
+            12.06,
+            198.075,
+            12.26
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            197.81,
+            11.995,
+            198.14,
+            12.325
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            12.01,
+            185.04,
+            12.31
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[4]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R019",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          12.8
+        ]
+      },
+      "net": "active_trim_codes[5]",
+      "patch_count": 0,
+      "segment_count": 21,
+      "shape_count": 37,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            12.65,
+            185.04,
+            12.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            12.65,
+            185.605,
+            12.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            185.305,
+            12.65,
+            186.445,
+            12.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            186.145,
+            12.65,
+            186.45,
+            12.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            186.15,
+            12.645,
+            186.45,
+            12.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            186.145,
+            12.645,
+            193.69,
+            12.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            193.39,
+            12.645,
+            200.925,
+            12.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.625,
+            12.645,
+            200.935,
+            12.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.635,
+            12.645,
+            200.94,
+            12.945
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            12.725,
+            200.86,
+            12.98
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            12.84,
+            200.86,
+            25.59
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            25.45,
+            200.86,
+            38.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            38.09,
+            200.86,
+            38.32
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            39.2,
+            200.86,
+            39.385
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            39.2,
+            200.935,
+            39.34
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            39.245,
+            200.86,
+            39.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            39.37,
+            200.86,
+            39.635
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.72,
+            39.495,
+            200.86,
+            39.68
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.795,
+            39.2,
+            202.24,
+            39.34
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            39.2,
+            203.545,
+            39.34
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            203.405,
+            39.2,
+            203.62,
+            39.34
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.705,
+            38.165,
+            200.875,
+            38.335
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.705,
+            38.165,
+            200.875,
+            38.335
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.645,
+            38.135,
+            200.935,
+            38.365
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.705,
+            39.525,
+            200.875,
+            39.695
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.705,
+            39.525,
+            200.875,
+            39.695
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.645,
+            39.495,
+            200.935,
+            39.725
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            203.465,
+            39.185,
+            203.635,
+            39.355
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            203.465,
+            39.185,
+            203.635,
+            39.355
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            203.405,
+            39.155,
+            203.695,
+            39.385
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.63,
+            38.12,
+            200.95,
+            38.38
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.715,
+            38.175,
+            200.865,
+            38.325
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.66,
+            38.09,
+            200.92,
+            38.41
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.65,
+            12.61,
+            200.93,
+            12.98
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.69,
+            12.695,
+            200.89,
+            12.895
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            200.625,
+            12.63,
+            200.955,
+            12.96
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            12.65,
+            185.04,
+            12.95
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[5]"
+        }
+      ],
+      "via_count": 5
+    },
+    {
+      "gds_label": "R020",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          13.44
+        ]
+      },
+      "net": "active_trim_codes[6]",
+      "patch_count": 0,
+      "segment_count": 13,
+      "shape_count": 26,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            13.29,
+            185.04,
+            13.59
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            13.29,
+            193.54,
+            13.59
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            193.24,
+            13.29,
+            202.305,
+            13.59
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.005,
+            13.29,
+            202.32,
+            13.59
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            13.37,
+            202.24,
+            13.625
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            13.485,
+            202.24,
+            27.275
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            27.135,
+            202.24,
+            40.95
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            40.81,
+            202.24,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.1,
+            40.9,
+            202.315,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.175,
+            40.9,
+            202.33,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.19,
+            40.9,
+            203.62,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            40.9,
+            204.925,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            204.785,
+            40.9,
+            205.0,
+            41.04
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.085,
+            40.885,
+            202.255,
+            41.055
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.085,
+            40.885,
+            202.255,
+            41.055
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.025,
+            40.855,
+            202.315,
+            41.085
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            204.845,
+            40.885,
+            205.015,
+            41.055
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            204.845,
+            40.885,
+            205.015,
+            41.055
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            204.785,
+            40.855,
+            205.075,
+            41.085
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.01,
+            40.84,
+            202.33,
+            41.1
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.095,
+            40.895,
+            202.245,
+            41.045
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.04,
+            40.81,
+            202.3,
+            41.13
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.03,
+            13.255,
+            202.31,
+            13.625
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.07,
+            13.34,
+            202.27,
+            13.54
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            202.005,
+            13.275,
+            202.335,
+            13.605
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            13.29,
+            185.04,
+            13.59
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[6]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R021",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          14.08
+        ]
+      },
+      "net": "active_trim_codes[7]",
+      "patch_count": 0,
+      "segment_count": 15,
+      "shape_count": 28,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            13.93,
+            185.04,
+            14.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            13.93,
+            194.23,
+            14.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            193.93,
+            13.93,
+            203.685,
+            14.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.385,
+            13.93,
+            203.7,
+            14.23
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            14.01,
+            203.62,
+            14.265
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            14.125,
+            203.62,
+            29.46
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            29.32,
+            203.62,
+            44.69
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            44.55,
+            203.62,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.48,
+            44.64,
+            203.71,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.57,
+            44.64,
+            203.775,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.635,
+            44.64,
+            203.85,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.71,
+            44.64,
+            203.925,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.785,
+            44.64,
+            205.23,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            205.09,
+            44.64,
+            206.765,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            206.625,
+            44.64,
+            206.84,
+            44.78
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.695,
+            44.625,
+            203.865,
+            44.795
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.695,
+            44.625,
+            203.865,
+            44.795
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.635,
+            44.595,
+            203.925,
+            44.825
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            206.685,
+            44.625,
+            206.855,
+            44.795
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            206.685,
+            44.625,
+            206.855,
+            44.795
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            206.625,
+            44.595,
+            206.915,
+            44.825
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.39,
+            44.58,
+            203.71,
+            44.84
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.475,
+            44.635,
+            203.625,
+            44.785
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.42,
+            44.55,
+            203.68,
+            44.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.41,
+            13.895,
+            203.69,
+            14.265
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.45,
+            13.98,
+            203.65,
+            14.18
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            203.385,
+            13.915,
+            203.715,
+            14.245
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            13.93,
+            185.04,
+            14.23
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[7]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R022",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.74,
+          14.72
+        ]
+      },
+      "net": "active_trim_codes[8]",
+      "patch_count": 0,
+      "segment_count": 15,
+      "shape_count": 28,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            14.57,
+            185.01,
+            14.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            184.71,
+            14.57,
+            185.04,
+            14.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            14.57,
+            195.045,
+            14.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            194.745,
+            14.57,
+            205.065,
+            14.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.765,
+            14.57,
+            205.08,
+            14.87
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            14.65,
+            205.0,
+            14.8
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            14.66,
+            205.0,
+            14.905
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            14.765,
+            205.0,
+            30.64
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            30.5,
+            205.0,
+            46.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            46.25,
+            205.0,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.86,
+            46.34,
+            205.075,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.935,
+            46.34,
+            205.09,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.95,
+            46.34,
+            206.38,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            46.34,
+            207.685,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            207.545,
+            46.34,
+            207.76,
+            46.48
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.845,
+            46.325,
+            205.015,
+            46.495
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.845,
+            46.325,
+            205.015,
+            46.495
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.785,
+            46.295,
+            205.075,
+            46.525
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            207.605,
+            46.325,
+            207.775,
+            46.495
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            207.605,
+            46.325,
+            207.775,
+            46.495
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            207.545,
+            46.295,
+            207.835,
+            46.525
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.77,
+            46.28,
+            205.09,
+            46.54
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.855,
+            46.335,
+            205.005,
+            46.485
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.8,
+            46.25,
+            205.06,
+            46.57
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.79,
+            14.535,
+            205.07,
+            14.905
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.83,
+            14.62,
+            205.03,
+            14.82
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            204.765,
+            14.555,
+            205.095,
+            14.885
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            14.57,
+            185.04,
+            14.87
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[8]"
+        }
+      ],
+      "via_count": 4
+    },
+    {
+      "gds_label": "R023",
+      "label": {
+        "layer": "met3",
+        "point_um": [
+          184.755,
+          15.36
+        ]
+      },
+      "net": "active_trim_codes[9]",
+      "patch_count": 0,
+      "segment_count": 17,
+      "shape_count": 33,
+      "shapes": [
+        {
+          "bbox_um": [
+            184.47,
+            15.21,
+            185.04,
+            15.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            184.74,
+            15.21,
+            195.61,
+            15.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            195.31,
+            15.21,
+            206.445,
+            15.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.145,
+            15.21,
+            206.46,
+            15.51
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            15.29,
+            206.38,
+            15.44
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            15.3,
+            206.38,
+            15.545
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            15.405,
+            206.38,
+            32.32
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            32.18,
+            206.38,
+            49.11
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            48.97,
+            206.38,
+            49.2
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            50.08,
+            206.38,
+            50.265
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            50.08,
+            206.455,
+            50.22
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            50.125,
+            206.38,
+            50.39
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            50.25,
+            206.38,
+            50.515
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.24,
+            50.375,
+            206.38,
+            50.56
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.315,
+            50.08,
+            207.76,
+            50.22
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            207.62,
+            50.08,
+            209.065,
+            50.22
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            208.925,
+            50.08,
+            209.14,
+            50.22
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.225,
+            49.045,
+            206.395,
+            49.215
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.225,
+            49.045,
+            206.395,
+            49.215
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.165,
+            49.015,
+            206.455,
+            49.245
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.225,
+            50.405,
+            206.395,
+            50.575
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.225,
+            50.405,
+            206.395,
+            50.575
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.165,
+            50.375,
+            206.455,
+            50.605
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            208.985,
+            50.065,
+            209.155,
+            50.235
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "li1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            208.985,
+            50.065,
+            209.155,
+            50.235
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "mcon",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            208.925,
+            50.035,
+            209.215,
+            50.265
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.15,
+            49.0,
+            206.47,
+            49.26
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met1",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.235,
+            49.055,
+            206.385,
+            49.205
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.18,
+            48.97,
+            206.44,
+            49.29
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.17,
+            15.175,
+            206.45,
+            15.545
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.21,
+            15.26,
+            206.41,
+            15.46
+          ],
+          "kind": "reviewed_manual_via_cut",
+          "layer": "via2",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            206.145,
+            15.195,
+            206.475,
+            15.525
+          ],
+          "kind": "reviewed_manual_route_geometry",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        },
+        {
+          "bbox_um": [
+            184.2,
+            15.21,
+            185.04,
+            15.51
+          ],
+          "kind": "openroad_top_pin",
+          "layer": "met3",
+          "net": "active_trim_codes[9]"
+        }
+      ],
+      "via_count": 5
+    }
+  ],
+  "schema_version": 1,
+  "status": "reviewed KLayout internal trim routes recovered from the hash-frozen 36+8 GDS checkpoint",
+  "units": "um"
+}

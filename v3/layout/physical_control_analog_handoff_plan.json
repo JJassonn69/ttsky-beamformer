@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "pre-route controller-to-analog handoff contract",
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_power/v3_four_channel_ctrl_powered.gds",
+    "top": "v3_four_channel_ctrl_powered",
+    "sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+    "physical_gate": "v3/evidence/physical_control_power_gate.json",
+    "physical_gate_sha256": "6811670c4ac9094ba92c05a303be78c13ba5dd14f633af3c3a6d26ca869c4b14"
+  },
+  "endpoint_sources": {
+    "controller_boundary_manifest": "v3/frozen/controller_signal_routing/input_summary.json",
+    "controller_boundary_manifest_sha256": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
+    "four_channel_placement": "v3/layout/four_channel_placement.json",
+    "four_channel_placement_sha256": "6cdc897b9e84d7c3e3b79cda27504f9a63d4d9b0adebb8c00dc6c8fddf991e40",
+    "phase_distribution": "v3/layout/four_channel_phase_distribution.json",
+    "phase_distribution_sha256": "e017dbff4b333cc504b8d853aee918cd40bfde0e9f825ad0feaf9d309e2bf117"
+  },
+  "route_region_bbox_um": [75.00, 168.00, 183.00, 206.50],
+  "route_classes": {
+    "phase": 4,
+    "group_code": 32,
+    "channel_bias": 4,
+    "blanking": 1
+  },
+  "expected_net_count": 41,
+  "expected_pin_count": 85,
+  "phase_mapping": {
+    "phase_wave[0]": "phase_0",
+    "phase_wave[1]": "phase_90",
+    "phase_wave[2]": "phase_180",
+    "phase_wave[3]": "phase_270"
+  },
+  "group_code_mapping": "group_codes[8*channel + 2*group + bit] connects to that channel's group{group}_bit{bit} port",
+  "channel_bias_mapping": "channel_bias_enable[channel] connects to that channel's channel_enable port",
+  "blanking_mapping": "mixers_blank connects to all four channel mixers_blank ports",
+  "routing_layers": ["met2", "met3", "met4"],
+  "wire_widths": {
+    "met2": 0.14,
+    "met3": 0.30,
+    "met4": 0.30
+  },
+  "via_geometries": {
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.10, -0.10, 0.10, 0.10]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ],
+    "M3M4": [
+      ["met3", [-0.19, -0.16, 0.19, 0.16]],
+      ["via3", [-0.10, -0.10, 0.10, 0.10]],
+      ["met4", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "pin_access": {
+    "controller_m3_edge_width_um": 0.30,
+    "analog_m3_edge_width_um": 0.30,
+    "phase_m4_edge_width_um": 0.30,
+    "phase_access_east_extension_um": 0.30,
+    "phase_access_line_end_halo_um": 0.30,
+    "pin_height_um": 0.30,
+    "controller_exit": "west edge of each controller M3 boundary conductor",
+    "analog_exit": "east edge of each channel M3 port conductor",
+    "phase_exit": "east edge of the channel-0 M4 leaf landing through four identical router-visible access pads"
+  },
+  "policy": {
+    "source_gds_is_exact_m2_m3_m4_obstacle_map": true,
+    "only_intended_pin_windows_are_removed_from_blockages": true,
+    "controller_power_geometry_is_immutable": true,
+    "analog_and_phase_tree_geometry_is_immutable": true,
+    "all_41_handoffs_are_router_owned": true,
+    "metal5_allowed": false,
+    "manual_preroutes_allowed": false,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false
+  }
+}

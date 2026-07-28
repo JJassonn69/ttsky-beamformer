@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "router-owned digital phase handoffs with analog-only root drops",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_trim_routed.gds",
+    "top": "v2_control_trim_routed",
+    "sha256": "fb8a6e9cc5cc578933a47976adcc566d9c791c89b89eea0ee186be35f78fc092"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "3e99dc1c0bd0e13dac7de2faaa870f5acef9c9c5cea80bb5c2119d2062b3e212"
+  },
+  "openroad_handoff_checkpoint": {
+    "geometry": "build/v2/control_routing/openroad_route_geometry.json",
+    "geometry_sha256": "0393793b6a6a14772c4c88f7cfb0c2027e586456da1f41000783f20d961d1ce1"
+  },
+  "output_top": "v2_control_phase_routed",
+  "overlay_top": "v2_control_phase_routes_overlay",
+  "selector_interface_y": 151.0,
+  "rules": {
+    "metal2_width": 0.26,
+    "metal2_landing_half_x": 0.14,
+    "metal2_landing_half_y": 0.185,
+    "via2_half_width": 0.10,
+    "metal3_via2_landing_half_width": 0.25,
+    "metal3_via3_landing_half_x": 0.25,
+    "metal3_via3_landing_half_y": 0.25,
+    "via3_half_width": 0.10,
+    "metal4_landing_half_width": 0.25,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_metal4_clearance": 0.30
+  },
+  "policy": {
+    "route_count": 12,
+    "all_standard_cell_pin_access_is_openroad_owned": true,
+    "fixed_router_boundary_layer": "metal2",
+    "analog_continuation_is_one_straight_vertical_column": "each column continues from the exact router M2 access and uses only a sub-0.42um interface jog",
+    "one_via2_per_net_at_selector_interface": true,
+    "phase_enable_uses_one_via3_per_channel": true,
+    "manual_locali_metal1_and_via1_access": false,
+    "direction_reversals": 0,
+    "artificial_length_matching": false,
+    "orphan_vias": false,
+    "floating_stubs": false,
+    "flattened_source_interaction_check_required": true
+  }
+}

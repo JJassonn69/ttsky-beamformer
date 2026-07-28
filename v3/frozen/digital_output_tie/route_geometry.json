@@ -1,0 +1,956 @@
+{
+  "counts": {
+    "ground_extensions": 1,
+    "horizontal_buses": 1,
+    "labels": 25,
+    "pins": 24,
+    "shapes": 26,
+    "vertical_drops": 24,
+    "vias": 0
+  },
+  "labels": [
+    {
+      "gds_label": "V3TIELOW",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        20.0,
+        223.9
+      ]
+    },
+    {
+      "gds_label": "V3O000",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        94.30000000000001,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O001",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        91.53999999999999,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O002",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        88.78,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O003",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        86.02000000000001,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O004",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        83.25999999999999,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O005",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        80.5,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O006",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        77.74000000000001,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O007",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        74.97999999999999,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O008",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        72.22,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O009",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        69.46000000000001,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O010",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        66.69999999999999,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O011",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        63.94,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O012",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        61.18,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O013",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        58.42,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O014",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        55.66,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O015",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        52.9,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O016",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        50.14,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O017",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        47.379999999999995,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O018",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        44.620000000000005,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O019",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        41.86,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O020",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        39.1,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O021",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        36.34,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O022",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        33.58,
+        225.1
+      ]
+    },
+    {
+      "gds_label": "V3O023",
+      "layer": "met4",
+      "net": "VGND",
+      "point_um": [
+        30.82,
+        225.1
+      ]
+    }
+  ],
+  "logical_net": "VGND",
+  "outputs": [
+    {
+      "center_x_um": 94.30000000000001,
+      "drop_bbox_um": [
+        94.15,
+        223.7,
+        94.45,
+        225.76
+      ],
+      "official_rect_um": [
+        94.15,
+        224.76,
+        94.45,
+        225.76
+      ],
+      "pin": "uo_out[0]"
+    },
+    {
+      "center_x_um": 91.53999999999999,
+      "drop_bbox_um": [
+        91.39,
+        223.7,
+        91.69,
+        225.76
+      ],
+      "official_rect_um": [
+        91.39,
+        224.76,
+        91.69,
+        225.76
+      ],
+      "pin": "uo_out[1]"
+    },
+    {
+      "center_x_um": 88.78,
+      "drop_bbox_um": [
+        88.63,
+        223.7,
+        88.93,
+        225.76
+      ],
+      "official_rect_um": [
+        88.63,
+        224.76,
+        88.93,
+        225.76
+      ],
+      "pin": "uo_out[2]"
+    },
+    {
+      "center_x_um": 86.02000000000001,
+      "drop_bbox_um": [
+        85.87,
+        223.7,
+        86.17,
+        225.76
+      ],
+      "official_rect_um": [
+        85.87,
+        224.76,
+        86.17,
+        225.76
+      ],
+      "pin": "uo_out[3]"
+    },
+    {
+      "center_x_um": 83.25999999999999,
+      "drop_bbox_um": [
+        83.11,
+        223.7,
+        83.41,
+        225.76
+      ],
+      "official_rect_um": [
+        83.11,
+        224.76,
+        83.41,
+        225.76
+      ],
+      "pin": "uo_out[4]"
+    },
+    {
+      "center_x_um": 80.5,
+      "drop_bbox_um": [
+        80.35,
+        223.7,
+        80.65,
+        225.76
+      ],
+      "official_rect_um": [
+        80.35,
+        224.76,
+        80.65,
+        225.76
+      ],
+      "pin": "uo_out[5]"
+    },
+    {
+      "center_x_um": 77.74000000000001,
+      "drop_bbox_um": [
+        77.59,
+        223.7,
+        77.89,
+        225.76
+      ],
+      "official_rect_um": [
+        77.59,
+        224.76,
+        77.89,
+        225.76
+      ],
+      "pin": "uo_out[6]"
+    },
+    {
+      "center_x_um": 74.97999999999999,
+      "drop_bbox_um": [
+        74.83,
+        223.7,
+        75.13,
+        225.76
+      ],
+      "official_rect_um": [
+        74.83,
+        224.76,
+        75.13,
+        225.76
+      ],
+      "pin": "uo_out[7]"
+    },
+    {
+      "center_x_um": 72.22,
+      "drop_bbox_um": [
+        72.07,
+        223.7,
+        72.37,
+        225.76
+      ],
+      "official_rect_um": [
+        72.07,
+        224.76,
+        72.37,
+        225.76
+      ],
+      "pin": "uio_out[0]"
+    },
+    {
+      "center_x_um": 69.46000000000001,
+      "drop_bbox_um": [
+        69.31,
+        223.7,
+        69.61,
+        225.76
+      ],
+      "official_rect_um": [
+        69.31,
+        224.76,
+        69.61,
+        225.76
+      ],
+      "pin": "uio_out[1]"
+    },
+    {
+      "center_x_um": 66.69999999999999,
+      "drop_bbox_um": [
+        66.55,
+        223.7,
+        66.85,
+        225.76
+      ],
+      "official_rect_um": [
+        66.55,
+        224.76,
+        66.85,
+        225.76
+      ],
+      "pin": "uio_out[2]"
+    },
+    {
+      "center_x_um": 63.94,
+      "drop_bbox_um": [
+        63.79,
+        223.7,
+        64.09,
+        225.76
+      ],
+      "official_rect_um": [
+        63.79,
+        224.76,
+        64.09,
+        225.76
+      ],
+      "pin": "uio_out[3]"
+    },
+    {
+      "center_x_um": 61.18,
+      "drop_bbox_um": [
+        61.03,
+        223.7,
+        61.33,
+        225.76
+      ],
+      "official_rect_um": [
+        61.03,
+        224.76,
+        61.33,
+        225.76
+      ],
+      "pin": "uio_out[4]"
+    },
+    {
+      "center_x_um": 58.42,
+      "drop_bbox_um": [
+        58.27,
+        223.7,
+        58.57,
+        225.76
+      ],
+      "official_rect_um": [
+        58.27,
+        224.76,
+        58.57,
+        225.76
+      ],
+      "pin": "uio_out[5]"
+    },
+    {
+      "center_x_um": 55.66,
+      "drop_bbox_um": [
+        55.51,
+        223.7,
+        55.81,
+        225.76
+      ],
+      "official_rect_um": [
+        55.51,
+        224.76,
+        55.81,
+        225.76
+      ],
+      "pin": "uio_out[6]"
+    },
+    {
+      "center_x_um": 52.9,
+      "drop_bbox_um": [
+        52.75,
+        223.7,
+        53.05,
+        225.76
+      ],
+      "official_rect_um": [
+        52.75,
+        224.76,
+        53.05,
+        225.76
+      ],
+      "pin": "uio_out[7]"
+    },
+    {
+      "center_x_um": 50.14,
+      "drop_bbox_um": [
+        49.99,
+        223.7,
+        50.29,
+        225.76
+      ],
+      "official_rect_um": [
+        49.99,
+        224.76,
+        50.29,
+        225.76
+      ],
+      "pin": "uio_oe[0]"
+    },
+    {
+      "center_x_um": 47.379999999999995,
+      "drop_bbox_um": [
+        47.23,
+        223.7,
+        47.53,
+        225.76
+      ],
+      "official_rect_um": [
+        47.23,
+        224.76,
+        47.53,
+        225.76
+      ],
+      "pin": "uio_oe[1]"
+    },
+    {
+      "center_x_um": 44.620000000000005,
+      "drop_bbox_um": [
+        44.47,
+        223.7,
+        44.77,
+        225.76
+      ],
+      "official_rect_um": [
+        44.47,
+        224.76,
+        44.77,
+        225.76
+      ],
+      "pin": "uio_oe[2]"
+    },
+    {
+      "center_x_um": 41.86,
+      "drop_bbox_um": [
+        41.71,
+        223.7,
+        42.01,
+        225.76
+      ],
+      "official_rect_um": [
+        41.71,
+        224.76,
+        42.01,
+        225.76
+      ],
+      "pin": "uio_oe[3]"
+    },
+    {
+      "center_x_um": 39.1,
+      "drop_bbox_um": [
+        38.95,
+        223.7,
+        39.25,
+        225.76
+      ],
+      "official_rect_um": [
+        38.95,
+        224.76,
+        39.25,
+        225.76
+      ],
+      "pin": "uio_oe[4]"
+    },
+    {
+      "center_x_um": 36.34,
+      "drop_bbox_um": [
+        36.19,
+        223.7,
+        36.49,
+        225.76
+      ],
+      "official_rect_um": [
+        36.19,
+        224.76,
+        36.49,
+        225.76
+      ],
+      "pin": "uio_oe[5]"
+    },
+    {
+      "center_x_um": 33.58,
+      "drop_bbox_um": [
+        33.43,
+        223.7,
+        33.73,
+        225.76
+      ],
+      "official_rect_um": [
+        33.43,
+        224.76,
+        33.73,
+        225.76
+      ],
+      "pin": "uio_oe[6]"
+    },
+    {
+      "center_x_um": 30.82,
+      "drop_bbox_um": [
+        30.67,
+        223.7,
+        30.97,
+        225.76
+      ],
+      "official_rect_um": [
+        30.67,
+        224.76,
+        30.97,
+        225.76
+      ],
+      "pin": "uio_oe[7]"
+    }
+  ],
+  "policy": {
+    "all_unused_digital_outputs_are_static_low": true,
+    "no_vias_or_layer_transitions": true,
+    "only_the_verified_empty_upper_left_corridor_is_used": true,
+    "source_geometry_modified": false,
+    "uio_output_enable_is_physically_low": true,
+    "unused_analog_pins_ua6_ua7_remain_isolated": true,
+    "unused_input_pins_remain_isolated": true,
+    "verilog_and_physical_output_values_match": true
+  },
+  "schema_version": 1,
+  "shapes": [
+    {
+      "bbox_um": [
+        4.0,
+        220.6,
+        6.0,
+        224.1
+      ],
+      "kind": "vgnd_upper_extension",
+      "layer": "met4",
+      "net": "VGND"
+    },
+    {
+      "bbox_um": [
+        5.0,
+        223.7,
+        94.45,
+        224.1
+      ],
+      "kind": "static_output_tie_bus",
+      "layer": "met4",
+      "net": "VGND"
+    },
+    {
+      "bbox_um": [
+        94.15,
+        223.7,
+        94.45,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[0]"
+    },
+    {
+      "bbox_um": [
+        91.39,
+        223.7,
+        91.69,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[1]"
+    },
+    {
+      "bbox_um": [
+        88.63,
+        223.7,
+        88.93,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[2]"
+    },
+    {
+      "bbox_um": [
+        85.87,
+        223.7,
+        86.17,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[3]"
+    },
+    {
+      "bbox_um": [
+        83.11,
+        223.7,
+        83.41,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[4]"
+    },
+    {
+      "bbox_um": [
+        80.35,
+        223.7,
+        80.65,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[5]"
+    },
+    {
+      "bbox_um": [
+        77.59,
+        223.7,
+        77.89,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[6]"
+    },
+    {
+      "bbox_um": [
+        74.83,
+        223.7,
+        75.13,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uo_out[7]"
+    },
+    {
+      "bbox_um": [
+        72.07,
+        223.7,
+        72.37,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[0]"
+    },
+    {
+      "bbox_um": [
+        69.31,
+        223.7,
+        69.61,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[1]"
+    },
+    {
+      "bbox_um": [
+        66.55,
+        223.7,
+        66.85,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[2]"
+    },
+    {
+      "bbox_um": [
+        63.79,
+        223.7,
+        64.09,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[3]"
+    },
+    {
+      "bbox_um": [
+        61.03,
+        223.7,
+        61.33,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[4]"
+    },
+    {
+      "bbox_um": [
+        58.27,
+        223.7,
+        58.57,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[5]"
+    },
+    {
+      "bbox_um": [
+        55.51,
+        223.7,
+        55.81,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[6]"
+    },
+    {
+      "bbox_um": [
+        52.75,
+        223.7,
+        53.05,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_out[7]"
+    },
+    {
+      "bbox_um": [
+        49.99,
+        223.7,
+        50.29,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[0]"
+    },
+    {
+      "bbox_um": [
+        47.23,
+        223.7,
+        47.53,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[1]"
+    },
+    {
+      "bbox_um": [
+        44.47,
+        223.7,
+        44.77,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[2]"
+    },
+    {
+      "bbox_um": [
+        41.71,
+        223.7,
+        42.01,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[3]"
+    },
+    {
+      "bbox_um": [
+        38.95,
+        223.7,
+        39.25,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[4]"
+    },
+    {
+      "bbox_um": [
+        36.19,
+        223.7,
+        36.49,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[5]"
+    },
+    {
+      "bbox_um": [
+        33.43,
+        223.7,
+        33.73,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[6]"
+    },
+    {
+      "bbox_um": [
+        30.67,
+        223.7,
+        30.97,
+        225.76
+      ],
+      "kind": "static_low_output_drop",
+      "layer": "met4",
+      "net": "VGND",
+      "pin": "uio_oe[7]"
+    }
+  ],
+  "source_checkpoint": {
+    "gds": "v3/frozen/analog_input_escapes/v3_four_channel_analog_inputs.gds",
+    "physical_gate": "v3/frozen/analog_input_escapes/assembly_report.json",
+    "sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
+    "top": "v3_four_ch_analog_inputs"
+  },
+  "status": "generated from hash-locked physical tie-low plan",
+  "top": "v3_digital_output_tie_low"
+}
