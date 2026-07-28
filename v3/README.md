@@ -19,8 +19,9 @@ controller-to-analog handoffs, all 14 digital boundary handoffs, and four
 matched analog-input pad escapes are integrated and hash-gated. All 24 unused
 digital outputs are also physically tied low. The official TinyTapeout wrapper,
 full project boundary, exact 53-port LEF/GDS contract, independent flattened
-topology audit, and internal submission evidence are now complete. Publication
-and a green official GitHub precheck remain the final external attestation.
+topology audit, and internal submission evidence are now complete. The
+official GitHub custom-GDS, viewer, precheck, and artifact-bound validation
+jobs are green for the exact frozen GDS hash.
 The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
@@ -159,9 +160,11 @@ The authoritative current GDS is
 `824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
 The frozen electrical source remains immutable; the deterministic packager
 adds only the official boundary/pin records and removes two redundant internal
-power text labels. `evidence/submission_gate.json` is the consolidated internal
-signoff authority. The next gate is publication of this exact hash followed by
-the official TinyTapeout custom-GDS and precheck actions.
+power text labels. `evidence/submission_gate.json` is the consolidated signoff
+authority. `frozen/submission/github_attestation.json` binds the green official
+TinyTapeout workflow to this exact GDS hash. The remaining release step is
+human visual review followed by fabrication submission without a geometry
+change.
 
 The complete operator-facing V3 datasheet is `docs/datasheet.md`. The bounded
 power-on matrix passes all eight factorized cases: worst VCM 90% time is 19.235

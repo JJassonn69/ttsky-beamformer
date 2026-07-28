@@ -212,13 +212,23 @@ class V3SubmissionPackagingTests(unittest.TestCase):
         gate = json.loads(SUBMISSION_GATE.read_text(encoding="utf-8"))
         self.assertEqual(
             gate["status"],
-            "internal_signoff_pass_official_github_precheck_pending",
+            "signoff_pass_official_github_attested",
         )
         self.assertEqual(gate["errors"], [])
         self.assertEqual(gate["gds_sha256"], sha256(OUTPUT))
         self.assertEqual(sha256(FROZEN_GDS), sha256(OUTPUT))
         self.assertEqual(sha256(ROOT / f"gds/{TOP}.gds"), sha256(OUTPUT))
         self.assertTrue(all(gate["electrical_signoff"]["gates"].values()))
+        self.assertEqual(gate["external_signoff"]["status"], "pass")
+        self.assertEqual(
+            gate["external_signoff"]["attested_gds_sha256"], sha256(OUTPUT)
+        )
+        self.assertTrue(
+            all(
+                job["status"] == "completed" and job["conclusion"] == "success"
+                for job in gate["external_signoff"]["jobs"].values()
+            )
+        )
         self.assertTrue(
             all(value == 0 for value in gate["physical_signoff"]["direct_gds_marker_groups"].values())
         )

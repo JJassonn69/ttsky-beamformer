@@ -37,6 +37,7 @@ def main() -> None:
         "packaging": frozen / "gds_packaging.json",
         "direct_precheck": frozen / "direct_precheck/precheck_summary.json",
         "official_contract": frozen / "official_contract.json",
+        "github_attestation": frozen / "github_attestation.json",
         "topology": frozen / "topology_audit.json",
         "prelayout": ROOT / "v3/evidence/implementation_checkpoint.json",
         "periodic_noise": ROOT / "v3/evidence/periodic_noise_summary.json",
@@ -57,6 +58,7 @@ def main() -> None:
     package = load(paths["packaging"])
     direct = load(paths["direct_precheck"])
     contract = load(paths["official_contract"])
+    github = load(paths["github_attestation"])
     topology = load(paths["topology"])
     prelayout = load(paths["prelayout"])
     periodic = load(paths["periodic_noise"])
@@ -77,6 +79,15 @@ def main() -> None:
         errors.append("wrapper-contract mirror is stale or failed")
     if topology.get("status") != "pass" or topology.get("gds_sha256") != GDS_SHA256:
         errors.append("flattened topology gate is stale or failed")
+    expected_github_jobs = {"gds", "precheck", "viewer", "validation-evidence"}
+    github_jobs = github.get("jobs", {})
+    if github.get("status") != "pass" or github.get("gds_sha256") != GDS_SHA256:
+        errors.append("official GitHub attestation is stale or failed")
+    if set(github_jobs) != expected_github_jobs or any(
+        job.get("status") != "completed" or job.get("conclusion") != "success"
+        for job in github_jobs.values()
+    ):
+        errors.append("one or more official GitHub jobs is not successfully completed")
 
     topology_checks = topology.get("checks", {})
     expected_topology = {
@@ -143,7 +154,7 @@ def main() -> None:
 
     report = {
         "schema_version": 1,
-        "status": "internal_signoff_pass_official_github_precheck_pending" if not errors else "fail",
+        "status": "signoff_pass_official_github_attested" if not errors else "fail",
         "errors": errors,
         "top_module": TOP,
         "gds": rel(paths["canonical_gds"]),
@@ -191,10 +202,15 @@ def main() -> None:
             "output_effective_capacitance_mismatch_percent": output_rc.get("differential_metrics", {}).get("total_effective_capacitance_mismatch_percent_typical"),
             "output_estimated_time_constant_mismatch_percent": output_rc.get("differential_metrics", {}).get("estimated_tau_mismatch_percent_typical"),
         },
-        "required_external_attestation": [
-            "push this exact hash and obtain a green TinyTapeout tt-gds-action/custom_gds result",
-            "obtain a green TinyTapeout official precheck action on the published artifact",
-        ],
+        "external_signoff": {
+            "status": github.get("status"),
+            "repository": github.get("repository"),
+            "branch": github.get("branch"),
+            "attested_commit": github.get("commit"),
+            "attested_gds_sha256": github.get("gds_sha256"),
+            "workflow": github.get("workflow"),
+            "jobs": github_jobs,
+        },
         "measurement_and_system_limits_not_fabrication_blockers": [
             "open-source switched-noise equivalent is not native PNoise",
             "clock-source phase noise is not included",

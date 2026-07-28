@@ -58,8 +58,10 @@ evidence includes:
 This remains a research prototype, not a production-qualified radio. Native
 PSS/PNoise, foundry-qualified yield, package/board behavior, RF-front-end
 matching, and measured beam patterns remain explicit system/silicon tasks.
-The final fabrication handoff requires green official Tiny Tapeout custom-GDS
-and precheck actions on the exact frozen hash.
+The official Tiny Tapeout custom-GDS, viewer, precheck, and artifact-bound
+validation jobs are green on the exact frozen hash. Human visual review is the
+remaining step before fabrication submission; any geometry edit invalidates
+the hash-bound evidence.
 
 ## Reproduce the release checks
 

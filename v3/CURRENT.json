@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "status": "immutable one-channel source plus internally signed-off packaged V3 TinyTapeout candidate; official GitHub precheck pending",
+  "status": "immutable one-channel source plus internally and officially signed-off packaged V3 TinyTapeout candidate",
   "frozen_at": "2026-07-28",
   "top_cell": "v3_channel_selector_late_promotion",
   "gds": "v3/frozen/one_channel_macro/v3_channel_selector_late_promotion.gds",
@@ -15,6 +15,7 @@
     "current_physical_topology": "v3/evidence/digital_output_tie_gate.json",
     "current_distributed_rc": "v3/frozen/analog_input_escapes/input_rc_audit.json",
     "submission": "v3/evidence/submission_gate.json",
+    "official_github_attestation": "v3/frozen/submission/github_attestation.json",
     "startup": "v3/evidence/four_channel_startup.json"
   },
   "validated_results": {
@@ -125,7 +126,7 @@
     "physical_digital_output_tie_low": "v3/evidence/digital_output_tie_gate.json"
   },
   "current_top_level": {
-    "status": "internally signed-off exact TinyTapeout candidate; official GitHub action pending",
+    "status": "internally signed-off exact TinyTapeout candidate with green official GitHub custom-GDS and precheck attestation",
     "top_cell": "tt_um_jjassonn69_beamformer",
     "gds": "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds",
     "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
@@ -135,6 +136,6 @@
     "review_image": "v3/frozen/submission/review/01_full_packaged_layout.png",
     "integration_closeup": "v3/frozen/submission/review/03_four_channel_vector_core.png"
   },
-  "next_stage": "publish this exact hash and require green TinyTapeout custom-GDS and official precheck actions before fabrication submission",
+  "next_stage": "human visual review of the hash-pinned published GDS, then fabrication submission without changing geometry",
   "policy": "Future physical generators must read this manifest and reject any GDS whose SHA-256 differs. Pilot, manual-canvas, and pre-late-promotion GDS files are not design inputs."
 }

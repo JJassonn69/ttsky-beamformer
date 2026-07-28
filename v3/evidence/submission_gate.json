@@ -12,6 +12,7 @@
     "v3/frozen/analog_input_escapes/input_rc_audit.json": "055986a8de00d0c08affeda16f12dcaa6570da7a9811f83937c72a0ef95f5002",
     "v3/frozen/submission/direct_precheck/precheck_summary.json": "585e168d1749ed773015271934f5291fb0a870e32456b2a89620cc6b55506b4b",
     "v3/frozen/submission/gds_packaging.json": "c788d9a75af3bb033a9c2e2972b9c2ff95058cf301f4fb21d763e0d7d14e9001",
+    "v3/frozen/submission/github_attestation.json": "92e4d55f8328da59d5eab8d16540fc433cfee23b90ef7a95e971b0857ca89f90",
     "v3/frozen/submission/official_contract.json": "f4fe500c01fa2dba0ea369ff8f9a9fb87642fd21129684c419a69c39413390e6",
     "v3/frozen/submission/topology_audit.json": "7cec0c6c0d586be3b78c421f35dcd60e117843fbe68cdb55727c9b6e0b536738",
     "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14"
@@ -46,9 +47,48 @@
     "worst_filtered_signal_spur_dbc": -34.3450958420078
   },
   "errors": [],
+  "external_signoff": {
+    "attested_commit": "cd950af1d2562f6446b555f06b8f08500b47503b",
+    "attested_gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "branch": "v3-constant-gm-vector-beamformer",
+    "jobs": {
+      "gds": {
+        "conclusion": "success",
+        "job_id": 90190210306,
+        "status": "completed"
+      },
+      "precheck": {
+        "conclusion": "success",
+        "job_id": 90190663675,
+        "status": "completed"
+      },
+      "validation-evidence": {
+        "conclusion": "success",
+        "job_id": 90191014861,
+        "status": "completed"
+      },
+      "viewer": {
+        "conclusion": "success",
+        "job_id": 90190663692,
+        "status": "completed"
+      }
+    },
+    "repository": "JJassonn69/ttsky-beamformer",
+    "status": "pass",
+    "workflow": {
+      "conclusion": "success",
+      "event": "pull_request",
+      "name": "gds",
+      "run_id": 30332418438,
+      "run_number": 46,
+      "status": "completed",
+      "url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30332418438",
+      "workflow_id": 316317254
+    }
+  },
   "gds": "gds/tt_um_jjassonn69_beamformer.gds",
   "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
-  "generator_sha256": "0877e8551ba9495e21ed04331479b1e10234dcad42502d12349078b17a59dbda",
+  "generator_sha256": "6e731937d487223fb7ce1b91970101002fe5e2b260eca539d84e61d0168afdb6",
   "measurement_and_system_limits_not_fabrication_blockers": [
     "open-source switched-noise equivalent is not native PNoise",
     "clock-source phase noise is not included",
@@ -150,10 +190,6 @@
     "vgnd_terminal_hits": 5242
   },
   "release_scope": "TinyTapeout SKY130 2x2 V3 custom analog macro",
-  "required_external_attestation": [
-    "push this exact hash and obtain a green TinyTapeout tt-gds-action/custom_gds result",
-    "obtain a green TinyTapeout official precheck action on the published artifact"
-  ],
   "review_images": {
     "v3/frozen/submission/review/01_full_packaged_layout.png": "415dccf8eae3f53c1e2d54f27fc6dae47d47c229b413d9143ca7cfffeb6ad8e0",
     "v3/frozen/submission/review/02_routing_and_pins.png": "eb3591a5b5526d24f2a796a21ee10f6c4e37e0dbe91317746a649ba3f00614a7",
@@ -165,7 +201,7 @@
     "v3/frozen/submission/review/08_power_spines.png": "0ede5ba7f6c583701b87f2734ad099528f0554f9c2854282e7f30c4a1e25bfe9"
   },
   "schema_version": 1,
-  "status": "internal_signoff_pass_official_github_precheck_pending",
+  "status": "signoff_pass_official_github_attested",
   "top_module": "tt_um_jjassonn69_beamformer",
   "wrapper_contract": {
     "analog_pin_adjacency": {

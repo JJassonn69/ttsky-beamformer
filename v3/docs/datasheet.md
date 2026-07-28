@@ -20,7 +20,7 @@ low-intermediate-frequency (low-IF) vector beamformer. It is not a direct
 | Analog / digital devices | 1,315 / 4,722 |
 | Frozen GDS SHA-256 | `824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14` |
 | Internal signoff | Passed |
-| External release attestation | Official GitHub Tiny Tapeout actions pending |
+| External release attestation | Official Tiny Tapeout custom-GDS, viewer, precheck, and evidence jobs passed |
 
 The frozen candidate is
 `v3/frozen/submission/tt_um_jjassonn69_beamformer.gds`. The canonical submission
@@ -351,10 +351,11 @@ The exact frozen GDS has:
 - a full 334.88 um x 225.76 um Tiny Tapeout project boundary; and
 - independent flattened topology and interface-connectivity audits.
 
-The final fabrication authorization still requires the official Tiny Tapeout
-custom-GDS and precheck GitHub actions to pass on this exact published SHA-256.
-Any geometry change after that point invalidates the hash-bound physical and
-RC evidence and must be assessed through the hierarchical change policy.
+The official Tiny Tapeout custom-GDS, viewer, precheck, and artifact-bound
+validation jobs passed on this exact published SHA-256 in workflow run
+`30332418438`. Any geometry change after that point invalidates the hash-bound
+physical, RC, and external evidence and must be assessed through the
+hierarchical change policy.
 
 ## 11. Evidence map
 
@@ -368,6 +369,7 @@ RC evidence and must be assessed through the hierarchical change policy.
 | Output distributed RC | `v3/evidence/four_channel_output_load_rc.json` |
 | Input distributed RC | `v3/frozen/analog_input_escapes/input_rc_audit.json` |
 | Official-wrapper mirror | `v3/frozen/submission/official_contract.json` |
+| Official GitHub attestation | `v3/frozen/submission/github_attestation.json` |
 | Flattened topology | `v3/frozen/submission/topology_audit.json` |
 | Direct-GDS precheck | `v3/frozen/submission/direct_precheck/precheck_summary.json` |
 | Visual review views | `v3/frozen/submission/review/` |
