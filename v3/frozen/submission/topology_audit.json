@@ -1,17 +1,17 @@
 {
   "artifact_sha256": {
-    "auditor": "ca87183abb75f9aadb20da4fc5f144ffa36fac0032acff70f6e5e9dcf7e84291",
-    "flat_ext": "41f945aabab5b30a89f77376f0e85b16972afcac7c833767bfbe35fc73cb28dd",
+    "auditor": "98b88c8866cd3bc383a3027a621fbf39a35c8639988156f991aefb3075524c54",
+    "flat_ext": "a5983b170b15769cc564f2dfb39137890a3d8e905c2d0a7edbdfa77bcd34979d",
     "flat_feedback": "5a5e09682bac1aebdd3b8dfb5c1f64666ce8362ebb1417c158679bcb77578dde",
-    "flat_magic_log": "81a9f780a1a5f6701cb38efb9b80da6776744e9c8e1927e725a6e03b236d8bf1",
-    "flat_spice": "78343b9686d302cdb34f35d709580da16efa8bc03c5a0f1d31dc186002af74dc",
-    "gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "flat_magic_log": "4ea11bd03b4a53ef04949889e27e56480f22bce235ad44885a1e40dfac2c1d03",
+    "flat_spice": "8854d58c71c1299ad408c1b377d1f7f345aec24659cba7cbfa06de4c3a91f0d9",
+    "gds": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
     "hierarchical_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
-    "hierarchical_magic_log": "012f328311462180d50dd45cea101abbd90cd5081256483b46f47bf3d4a16d80",
-    "hierarchical_spice": "2dc2e3b56396d3ae062622746681d84bc1b286b35e15fa7d336c0add2c931872",
-    "package_report": "c788d9a75af3bb033a9c2e2972b9c2ff95058cf301f4fb21d763e0d7d14e9001",
-    "plan": "44c2a1bc737f2dc4591b3891d141cd7fbf6b938ed49965d8040c354001a8d80b",
-    "precheck": "585e168d1749ed773015271934f5291fb0a870e32456b2a89620cc6b55506b4b",
+    "hierarchical_magic_log": "5e9c4b618a98ec8bd11ddbc1701c937f1c95b298f7902cf3750f59cbd52cd722",
+    "hierarchical_spice": "4060aa7f017e5a3a866fcba197c3e00f89ca33b138e90b522636553cbb76ea3c",
+    "package_report": "35e3c03f0720b79f882a2db5a16ecb27e0d1b77965680ed1b09d12a111f14248",
+    "plan": "947f3ee6ca818b0697c226d0aedfceb0c3c26a74161f164d1d27a85f875eb791",
+    "precheck": "6f5b556c8c5d742ad9829e9babb171905ebd14707559bc6413843f9681007ccc",
     "source_spice": "a613ccaa87d26fe6b52b3fcfc29a73ef8199ef6dca5f00956c2b1e112b4b881f"
   },
   "checks": {
@@ -37,7 +37,7 @@
       "gds_feedback": 0
     },
     "hierarchical_warning_baseline_exact": true,
-    "magic_extracted_preboundary_sha256": "0226f6da17aa037bcc147c1726c8b1baa01d70c1954981feec709e8475edeee9",
+    "magic_extracted_preboundary_sha256": "6d871cb0508952dc18c3e37c9ef23f26efa486182e27a238701f66ff6fbd205c",
     "unexpected_interface_aliases_on_ground": [],
     "unused_isolated_pins": 7,
     "unused_terminal_hits": {
@@ -78,7 +78,7 @@
   },
   "errors": [],
   "gds": "build/v3/submission/tt_um_jjassonn69_beamformer.gds",
-  "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
   "schema_version": 1,
   "scope": "exact packaged TinyTapeout V3 hierarchy plus independent physically flattened extraction",
   "status": "pass"

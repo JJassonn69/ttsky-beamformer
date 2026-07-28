@@ -4998,9 +4998,9 @@
   ],
   "source_checkpoint": {
     "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
-    "physical_gate": "v3/evidence/physical_control_signal_routing_gate.json",
-    "physical_gate_sha256": "cf2cab8bbf4566907d4c91752da3f88245fa30b66d9ab1695d2cc7763e29e0d9",
-    "sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+    "physical_gate": "v3/frozen/controller_signal_routing/route_audit.json",
+    "physical_gate_sha256": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f",
+    "sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
     "top": "v3_four_channel_ctrl_sig_routed"
   },
   "source_overlap_errors": [],

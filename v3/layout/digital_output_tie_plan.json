@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
   "units": "um",
-  "status": "exact physical tie-low contract for all unused TinyTapeout digital outputs",
+  "status": "exact physical tie-low contract for all unused TinyTapeout digital outputs on pin-aligned controller",
   "source_checkpoint": {
     "gds": "v3/frozen/analog_input_escapes/v3_four_channel_analog_inputs.gds",
     "top": "v3_four_ch_analog_inputs",
-    "sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
-    "physical_gate": "v3/evidence/analog_input_escape_gate.json"
+    "sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
+    "physical_gate": "v3/frozen/analog_input_escapes/assembly_report.json"
   },
   "template": {
     "def": "build/v2/tt_analog_2x2.def",

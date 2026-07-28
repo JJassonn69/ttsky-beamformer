@@ -347,9 +347,9 @@
   ],
   "source_checkpoint": {
     "gds": "v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
-    "physical_gate": "v3/evidence/physical_control_boundary_handoff_gate.json",
-    "physical_gate_sha256": "c8e11db80069959dc84cf9736af1f7e381882117e765156544a3ce25917be542",
-    "sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "physical_gate": "v3/frozen/controller_boundary_handoffs/assembly_report.json",
+    "physical_gate_sha256": "8baa568d63906a98b99a7fc23ac0227693cedb6b9fbd5f2f33056b2abd60deb6",
+    "sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
     "top": "v3_four_ch_ctrl_boundary_handoff"
   },
   "status": "generated from hash-locked, exact-translation analog-input plan",

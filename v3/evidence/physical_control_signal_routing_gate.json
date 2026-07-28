@@ -4,7 +4,7 @@
   "scope": "all 305 centralized V3 controller internal signal nets integrated with the exact frozen four-channel analog and shared-power geometry; controller power and external handoff fanout excluded",
   "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
   "top_cell": "v3_four_channel_ctrl_sig_routed",
-  "gds_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+  "gds_sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
   "flat_spice": "v3/frozen/controller_signal_routing/v3_four_channel_ctrl_sig_routed_flat.spice",
   "flat_spice_sha256": "10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d",
   "route_results": {
@@ -16,8 +16,8 @@
     "openroad_detailed_route_violations": 0,
     "maximum_signal_layer": "met3",
     "metal4_signal_length_um": 0,
-    "total_centerline_length_um": 11423.515,
-    "via_count": 2294,
+    "total_centerline_length_um": 10939.375,
+    "via_count": 2166,
     "maximum_logical_endpoint_count": 17
   },
   "integrated_extraction": {

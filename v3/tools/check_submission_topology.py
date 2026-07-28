@@ -13,7 +13,7 @@ from typing import Any
 
 
 ROOT = Path(__file__).resolve().parents[2]
-MAGIC_EXTRACTED_PREBOUNDARY_SHA256 = "0226f6da17aa037bcc147c1726c8b1baa01d70c1954981feec709e8475edeee9"
+MAGIC_EXTRACTED_PREBOUNDARY_SHA256 = "6d871cb0508952dc18c3e37c9ef23f26efa486182e27a238701f66ff6fbd205c"
 CONNECT_RE = re.compile(r'^(?:merge|equiv) "([^"]+)" "([^"]+)"')
 NODE_RE = re.compile(r'^node "([^"]+)"', re.MULTILINE)
 HIER_METRICS = {

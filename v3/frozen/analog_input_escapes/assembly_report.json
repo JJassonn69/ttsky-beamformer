@@ -1,7 +1,7 @@
 {
   "assembly": {
-    "output_bytes": 2667606,
-    "output_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+    "output_bytes": 2623276,
+    "output_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
     "output_structure_count": 33,
     "output_top": "v3_four_ch_analog_inputs",
     "overlay_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/analog_input_escapes/direct/v3_analog_input_escape_routes.gds",
@@ -10,7 +10,7 @@
     "overlay_structure_count": 1,
     "overlay_top": "v3_analog_input_escape_routes",
     "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
-    "source_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "source_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
     "source_structure_count": 32,
     "source_top": "v3_four_ch_ctrl_boundary_handoff",
     "status": "pass",
@@ -38,9 +38,9 @@
     "total_m3_centerline_length": 38.94,
     "vias": 8
   },
-  "geometry_sha256": "8e6a8f3c0daba367de5fe7ad3c1fab3348da6c3264d128a5402955f666b28a6c",
+  "geometry_sha256": "eb59356200f267933f9121e8e181c4a15b89a93bf920b16d19d75cc9e690084d",
   "output_gds": "build/v3/analog_input_escapes/direct/v3_four_channel_analog_inputs.gds",
-  "output_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+  "output_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
   "overlay": {
     "boundary_count": 20,
     "bytes": 1608,
@@ -49,7 +49,7 @@
     "output_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/analog_input_escapes/direct/v3_analog_input_escape_routes.gds",
     "output_sha256": "db045706528d268497f9c3356f178ba3d9eae4f4ca54cec12b07635307d97edf",
     "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
-    "source_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "source_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
     "status": "pass",
     "top": "v3_analog_input_escape_routes",
     "writer": "direct deterministic GDS boundary writer"

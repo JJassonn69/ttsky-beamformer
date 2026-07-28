@@ -947,8 +947,8 @@
   ],
   "source_checkpoint": {
     "gds": "v3/frozen/analog_input_escapes/v3_four_channel_analog_inputs.gds",
-    "physical_gate": "v3/evidence/analog_input_escape_gate.json",
-    "sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+    "physical_gate": "v3/frozen/analog_input_escapes/assembly_report.json",
+    "sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
     "top": "v3_four_ch_analog_inputs"
   },
   "status": "generated from hash-locked physical tie-low plan",

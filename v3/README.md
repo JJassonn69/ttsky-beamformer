@@ -157,14 +157,14 @@ See `evidence/digital_output_tie_gate.json` and
 
 The authoritative current GDS is
 `frozen/submission/tt_um_jjassonn69_beamformer.gds`, SHA-256
-`824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
+`988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9`.
 The frozen electrical source remains immutable; the deterministic packager
 adds only the official boundary/pin records and removes two redundant internal
 power text labels. `evidence/submission_gate.json` is the consolidated signoff
-authority. `frozen/submission/github_attestation.json` binds the green official
-TinyTapeout workflow to this exact GDS hash. The remaining release step is
-human visual review followed by fabrication submission without a geometry
-change.
+authority. `frozen/submission/github_attestation.json` is pending the first
+official TinyTapeout workflow for this exact GDS hash. The remaining release
+steps are external workflow attestation and human visual review before
+fabrication submission without a geometry change.
 
 The complete operator-facing V3 datasheet is `docs/datasheet.md`. The bounded
 power-on matrix passes all eight factorized cases: worst VCM 90% time is 19.235

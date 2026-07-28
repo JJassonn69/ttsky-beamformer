@@ -34,6 +34,22 @@ CONFIG_X0 = 245.64
 MAX_TAP_PITCH = 13.80
 POWER_PINS = {"VGND", "VPWR", "VPB", "VNB"}
 INDEX_RE = re.compile(r"\[([0-9]+)\]$")
+OFFICIAL_PIN_ORDER = [
+    "cfg_latch",
+    "cfg_data",
+    "cfg_clk",
+    "channel_enable[3]",
+    "channel_enable[2]",
+    "channel_enable[1]",
+    "channel_enable[0]",
+    "raw_mode",
+    "beam_select[2]",
+    "beam_select[1]",
+    "beam_select[0]",
+    "rst_n",
+    "clk",
+    "ena",
+]
 
 
 def sha256(path: Path) -> str:
@@ -322,31 +338,89 @@ class V3ControllerPlacer:
                 True,
             )
 
+    def _fanout_instances(self, net: str) -> list[str]:
+        return sorted(
+            cell["instance"]
+            for cell in self.cells.values()
+            if cell["pins"].get("A") == net
+            and cell["instance"].startswith(f"physical_fanout/{net}/")
+        )
+
+    def _place_linear_bank(
+        self,
+        instances: list[str],
+        start_x: float,
+        row: int,
+        region: str,
+        rationale: str,
+    ) -> float:
+        x = snap_site(start_x)
+        for index, instance in enumerate(instances):
+            self.add(
+                instance,
+                x,
+                row,
+                row_orientation(row, bool(index % 2)),
+                rationale,
+                region,
+                True,
+            )
+            x = snap_site(x + float(self.cells[instance]["size_um"][0]) + SITE)
+        return x
+
     def place_input_synchronizers(self) -> None:
-        sync_nets = [
-            "direct_sync[0]",
-            "beam_sync[0]", "beam_sync[1]", "beam_sync[2]",
-            "direct_sync[4]",
-            "channel_enable_sync[0]", "channel_enable_sync[1]",
-            "channel_enable_sync[2]", "channel_enable_sync[3]",
+        sync_nets = {
+            0: "direct_sync[0]",
+            1: "beam_sync[0]",
+            2: "beam_sync[1]",
+            3: "beam_sync[2]",
+            4: "direct_sync[4]",
+            5: "channel_enable_sync[0]",
+            6: "channel_enable_sync[1]",
+            7: "channel_enable_sync[2]",
+            8: "channel_enable_sync[3]",
+        }
+        bands = [
+            ((5, 4, 3), 16, 15),
+            ((8, 7, 6), 14, 13),
+            ((2, 1, 0), 12, 11),
         ]
-        row_pairs = ((16, 15), (14, 13), (12, 11))
-        for bit in range(9):
-            band, slot = divmod(bit, 3)
-            meta_row, sync_row = row_pairs[band]
-            x = 210.68 + slot * 9.66
-            meta = self.q_cell(f"direct_meta[{bit}]")
-            sync = self.q_cell(sync_nets[bit])
-            self.add(
-                meta["instance"], x, meta_row, row_orientation(meta_row),
-                f"first synchronizer stage for direct input bit {bit}",
-                "global_control_core", True,
-            )
-            self.add(
-                sync["instance"], x, sync_row, row_orientation(sync_row),
-                f"second synchronizer stage vertically aligned to input bit {bit}",
-                "global_control_core", True,
-            )
+        for bits, meta_row, sync_row in bands:
+            for slot, bit in enumerate(bits):
+                x = 210.68 + slot * 9.66
+                meta = self.q_cell(f"direct_meta[{bit}]")
+                sync = self.q_cell(sync_nets[bit])
+                self.add(
+                    meta["instance"], x, meta_row, row_orientation(meta_row),
+                    f"pin-ordered first synchronizer stage for direct bit {bit}",
+                    "global_control_core", True,
+                )
+                self.add(
+                    sync["instance"], x, sync_row, row_orientation(sync_row),
+                    f"second synchronizer stage aligned below direct bit {bit}",
+                    "global_control_core", True,
+                )
+
+        config_fanout = self._fanout_instances("cfg_latch")
+        config_fanout += self._fanout_instances("cfg_clk")
+        self._place_linear_bank(
+            config_fanout,
+            X0,
+            16,
+            "global_control_core",
+            "northwest ordered configuration ingress fanout",
+        )
+        main_fanout = self._fanout_instances("rst_n")
+        main_fanout += self._fanout_instances("clk")
+        end_x = self._place_linear_bank(
+            main_fanout,
+            CONFIG_X0,
+            16,
+            "config_storage_bank",
+            "northeast ordered reset/clock ingress fanout",
+        )
+        if end_x > 284.30:
+            raise ValueError(f"pin-aligned ingress bank ends at {end_x:.3f} um")
 
     def cell_center(self, instance: str) -> tuple[float, float]:
         box = self.placements[instance]["bbox_um"]
@@ -502,7 +576,7 @@ class V3ControllerPlacer:
                 self.placements[name]["orientation"] = alternative
                 changed += 1
         final = sum(score(name, self.placements[name]["orientation"]) for name in candidates)
-        return {
+        result = {
             "eligible_cells": len(candidates),
             "changed_cells": changed,
             "initial_pin_demand_um": initial,
@@ -510,6 +584,7 @@ class V3ControllerPlacer:
             "improvement_um": initial - final,
             "improvement_fraction": 0.0 if initial == 0 else 1.0 - final / initial,
         }
+        return result
 
     def add_taps_and_fillers(self) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
         first = round(X0 / SITE)
@@ -617,10 +692,10 @@ class V3ControllerPlacer:
             self.placements.values(), key=lambda item: (item["row"], item["origin_um"][0])
         )
         role_counts = Counter(item["role"] for item in placed)
-        return {
+        result = {
             "schema_version": 1,
             "units": "um",
-            "status": "pre-route production placement candidate",
+            "status": "pre-route production pin-aligned placement",
             "top_cell": "v3_physical_control_placed",
             "region": {
                 "bbox_um": [X0, Y0, X1, Y0 + ROW_COUNT * ROW],
@@ -640,6 +715,7 @@ class V3ControllerPlacer:
                 "minimum_functional_cell_gap_um": SITE,
                 "no_u_turns": True,
                 "no_orphan_vias": True,
+                "boundary_ingress_pin_aligned": True,
             },
             "placements": placed,
             "well_taps": taps,
@@ -665,10 +741,29 @@ class V3ControllerPlacer:
                 "vector_outputs": "west-facing final drivers followed by a formally planned M2/M3 channel fanout",
                 "phase_outputs": "one driver per phase-root row; equalization occurs before the existing balanced M4 trees",
                 "configuration": "bit 31 entry and alternating-row serpentine chain without long return loops",
-                "clock_reset": "top-entry trunks with short row branches to paired synchronizer and storage banks",
+                "clock_reset": "pin-ordered compact top-entry bank with short branches to paired synchronizer and storage banks",
                 "power": "continuous fill rows and explicit taps; upper-metal connection is a separate gate",
             },
         }
+        x_values = [round(181.93 + 2.76 * index, 6) for index in range(14)]
+        result["boundary_interface"] = {
+            "edge": "north",
+            "layer": "met2",
+            "official_pin_order_left_to_right": OFFICIAL_PIN_ORDER,
+            "local_pin_x_um": dict(zip(OFFICIAL_PIN_ORDER, x_values)),
+            "local_pitch_um": 2.76,
+            "track_pitch_um": 0.46,
+            "policy": {
+                "order_matches_fixed_tinytapeout_pins": True,
+                "constant_pitch": True,
+                "controller_bbox_preserved": True,
+                "analog_geometry_unchanged": True,
+            },
+        }
+        result["routing_intent"]["north_boundary"] = (
+            "compact port bank in exact fixed-pin order; no top-level net permutation"
+        )
+        return result
 
 
 def main() -> None:

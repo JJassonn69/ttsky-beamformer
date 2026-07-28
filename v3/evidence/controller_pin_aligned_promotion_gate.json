@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "promotion of the pin-aligned V3 controller placement and clean TinyTapeout top-interface routing into the authoritative submission",
+  "candidate": "B",
+  "candidate_a_rollback_commit": "0711b6af1287ce29017e8d11207aeee7a9f4a364",
+  "submission_gds": "gds/tt_um_jjassonn69_beamformer.gds",
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
+  "improvements": {
+    "controller_internal_wire_length_um": {
+      "candidate_a": 11423.515,
+      "candidate_b": 10939.375,
+      "reduction_percent": 4.238
+    },
+    "controller_internal_vias": {
+      "candidate_a": 2294,
+      "candidate_b": 2166,
+      "reduction_percent": 5.58
+    },
+    "top_boundary_wire_length_um": {
+      "candidate_a": 1818.92,
+      "candidate_b": 1115.14,
+      "reduction_percent": 38.692
+    },
+    "top_boundary_vias": {
+      "candidate_a": 36,
+      "candidate_b": 28,
+      "reduction_percent": 22.222
+    },
+    "worst_boundary_detour_ratio": {
+      "candidate_a": 1.180537,
+      "candidate_b": 1.0688
+    }
+  },
+  "checks": {
+    "authoritative_placement_matches_validated_candidate_b": true,
+    "all_305_internal_controller_routes_are_connected_loop_free_trees": true,
+    "all_14_boundary_routes_are_connected_loop_free_trees": true,
+    "controller_routing_uses_no_layer_above_met3": true,
+    "boundary_routing_uses_no_layer_above_met4": true,
+    "analog_facing_controller_endpoints_are_unchanged": true,
+    "extracted_device_count_is_6037": true,
+    "vdpwr_and_vgnd_are_distinct": true,
+    "direct_gds_marker_groups_are_zero": true,
+    "magic_hierarchical_and_flat_drc_are_zero": true,
+    "official_wrapper_contract_is_clean": true,
+    "external_github_attestation_pending": true
+  },
+  "artifact_sha256": {
+    "placement_generator": "5e8d3a3ffd5342d98bd242d5cd3bb1610d44f064ee2bd4a58bfc421a5a4b39aa",
+    "openroad_input_generator": "18a8c1982665b956f6f48733ec7d7622436ce81b51c13311b44030baf3e81db6",
+    "controller_routed_def": "1fa994b5e971b43d08b0961bfd3532ce0071530b815f07d258e38acfca34d878",
+    "controller_route_audit": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f",
+    "boundary_routed_def": "8c710b8b33d94cf50de01984c15b8e5af359c740629267c7f16e714f540756a1",
+    "boundary_route_audit": "ce5c3300c8c3199771a887ed4191c6d6136f032f982ce913ce045711c4bb9904",
+    "direct_precheck": "6f5b556c8c5d742ad9829e9babb171905ebd14707559bc6413843f9681007ccc",
+    "official_contract": "1bd7c4087f5ac5d1b3498e5bd1b983af7c00b82a46c559a205f4385ca39e19b2",
+    "topology_audit": "75857b10a50fce4fa695344a7b786805c1f1484a9e36442909154895cf60393c"
+  }
+}

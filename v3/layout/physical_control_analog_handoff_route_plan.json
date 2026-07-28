@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "units": "um",
-  "status": "hash-locked controller-to-analog handoff route contract",
+  "status": "hash-locked pin-aligned controller-to-analog handoff route contract",
   "source_checkpoint": {
     "gds": "v3/frozen/controller_power/v3_four_channel_ctrl_powered.gds",
     "top": "v3_four_channel_ctrl_powered",
-    "sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6"
+    "sha256": "98628e45ec42b186127b16f24ae9e14ea899569a68eaaa4ba0c8878b9371e779"
   },
   "route_contract": {
     "plan": "v3/layout/physical_control_analog_handoff_plan.json",

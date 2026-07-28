@@ -11,7 +11,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[2]
 TOP = "tt_um_jjassonn69_beamformer"
-GDS_SHA256 = "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14"
+GDS_SHA256 = "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9"
 
 
 def sha256(path: Path) -> str:
@@ -69,7 +69,7 @@ def main() -> None:
 
     if package.get("status") != "pass" or package.get("submission_sha256") != GDS_SHA256:
         errors.append("frozen packaging report is stale or failed")
-    if package.get("magic_extracted_preboundary_sha256") != "0226f6da17aa037bcc147c1726c8b1baa01d70c1954981feec709e8475edeee9":
+    if package.get("magic_extracted_preboundary_sha256") != "6d871cb0508952dc18c3e37c9ef23f26efa486182e27a238701f66ff6fbd205c":
         errors.append("electrical wrapper hash differs from the Magic-extracted candidate")
     if direct.get("status") != "pass" or direct.get("gds_sha256") != GDS_SHA256:
         errors.append("direct-GDS precheck is stale or failed")
@@ -81,13 +81,22 @@ def main() -> None:
         errors.append("flattened topology gate is stale or failed")
     expected_github_jobs = {"gds", "precheck", "viewer", "validation-evidence"}
     github_jobs = github.get("jobs", {})
-    if github.get("status") != "pass" or github.get("gds_sha256") != GDS_SHA256:
-        errors.append("official GitHub attestation is stale or failed")
-    if set(github_jobs) != expected_github_jobs or any(
+    github_jobs_pass = set(github_jobs) == expected_github_jobs and not any(
         job.get("status") != "completed" or job.get("conclusion") != "success"
         for job in github_jobs.values()
-    ):
-        errors.append("one or more official GitHub jobs is not successfully completed")
+    )
+    github_attested = (
+        github.get("status") == "pass"
+        and github.get("gds_sha256") == GDS_SHA256
+        and github_jobs_pass
+    )
+    github_pending = (
+        github.get("status") == "pending"
+        and github.get("gds_sha256") == GDS_SHA256
+        and not github_jobs
+    )
+    if not github_attested and not github_pending:
+        errors.append("official GitHub attestation is stale, failed, or malformed")
 
     topology_checks = topology.get("checks", {})
     expected_topology = {
@@ -128,6 +137,7 @@ def main() -> None:
         "four_channel_shared_support_integration_gate.json",
         "four_channel_output_load_integration_gate.json",
         "four_channel_power_integration_gate.json",
+        "controller_pin_aligned_promotion_gate.json",
         "physical_control_signal_routing_gate.json",
         "physical_control_power_gate.json",
         "physical_control_analog_handoff_gate.json",
@@ -154,7 +164,13 @@ def main() -> None:
 
     report = {
         "schema_version": 1,
-        "status": "signoff_pass_official_github_attested" if not errors else "fail",
+        "status": (
+            "signoff_pass_official_github_attested"
+            if not errors and github_attested
+            else "internal_signoff_pass_external_attestation_pending"
+            if not errors and github_pending
+            else "fail"
+        ),
         "errors": errors,
         "top_module": TOP,
         "gds": rel(paths["canonical_gds"]),

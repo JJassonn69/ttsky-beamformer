@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "status": "official TinyTapeout 2x2 V3 packaging contract",
+  "status": "official TinyTapeout 2x2 V3 pin-aligned-controller packaging contract",
   "source_checkpoint": {
     "gds": "v3/frozen/digital_output_tie/v3_four_channel_output_tied.gds",
     "top": "v3_four_ch_output_tied",
-    "sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+    "sha256": "3fa0ef720c58da0127c6fba03b1d0532d5deffc529c0cc4e41eba401a6a81184",
     "physical_gate": "v3/evidence/digital_output_tie_gate.json",
-    "physical_gate_sha256": "671e442256b92beb623130947ca6b357e25e824f43f35d3928a7df426e1f5436"
+    "physical_gate_sha256": "cc73d1393f7352c6932492699690990c7a2e97d87bbe598b15a99e97fd37980d"
   },
   "template": {
     "def": "build/v2/tt_analog_2x2.def",

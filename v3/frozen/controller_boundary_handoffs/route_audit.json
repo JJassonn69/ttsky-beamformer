@@ -1,30 +1,30 @@
 {
   "artifact_sha256": {
     "detailed_route_drc": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "guide_coverage": "9400d93ea93e21c32045b8ea8f0ebaecd3b798b70018a8b1ad50f43c0c032e39",
-    "input_def": "26f13ce75df04d6c778417a7928d812f88401990a96d058d2ee66b97738be254",
-    "input_summary": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
-    "openroad_log": "34193250b0abee218c3c6bfa5dc3afe483e62d0cd220ecba053704071a1dd25e",
-    "route_guide": "6a540093a53f28c78834397b6be15ed43209453296873389aded65d5ca02a972",
-    "routed_def": "83d2b7c83a0d79caf88cd55dbe65cd5518c2d44e0aac5347fed28b96ec380068",
-    "wire_length": "1e07539432872583e474a2b61c86757634f86bf9328f29a9a78dd3ea058b7e4e"
+    "guide_coverage": "94c2473da314efc665844e4d1b34a4c542f9b7c03587bd03c1def4fc187a6279",
+    "input_def": "6b01b33d17353dca5e4388014fcac896cf88806e8f54ccf3c904f97a4fc40cd4",
+    "input_summary": "b655b771766fc15c36af8494da1608f9576f86d7959d28b7d17638200043568e",
+    "openroad_log": "ad2ad5bb558d7ae001103bf40f8992c803eea377aaa218fab182181d141769ab",
+    "route_guide": "e6fd72ae4f7d29204f252871760bbfcd3c34754981fb6ab4f2e28c73bea7ce68",
+    "routed_def": "8c710b8b33d94cf50de01984c15b8e5af359c740629267c7f16e714f540756a1",
+    "wire_length": "ee8e97d80d0feeb26112f21ed8798989dca808e42abdda680390d877dc58d605"
   },
   "errors": [],
   "final_openroad_layer_length_um": {
     "li1": 0,
     "met1": 0,
-    "met2": 88,
-    "met3": 1668,
-    "met4": 62,
+    "met2": 59,
+    "met3": 993,
+    "met4": 61,
     "met5": 0
   },
   "final_openroad_violation_count": 0,
   "maximum_detour": {
     "cycle_rank": 0,
     "dead_leaf_count": 0,
-    "detour_ratio": 1.180537,
+    "detour_ratio": 1.0688,
     "electrical_group_count": 1,
-    "hpwl_um": 97.93,
+    "hpwl_um": 79.07,
     "layers": [
       "met2",
       "met3",
@@ -32,22 +32,22 @@
     ],
     "leaf_count": 2,
     "missed_pin_count": 0,
-    "net": "beam_select[1]",
-    "net_id": "N004",
+    "net": "clk",
+    "net_id": "N000",
     "pin_count": 2,
-    "reported_geometry_length_um": 115.39,
-    "route_class": "control_input",
+    "reported_geometry_length_um": 84.29,
+    "route_class": "clock",
     "route_group_count": 1,
-    "via_count": 4,
-    "wire_length_um": 115.61
+    "via_count": 2,
+    "wire_length_um": 84.51
   },
   "maximum_route_layer": "met4",
   "maximum_via_count": {
     "cycle_rank": 0,
     "dead_leaf_count": 0,
-    "detour_ratio": 1.068958,
+    "detour_ratio": 1.0688,
     "electrical_group_count": 1,
-    "hpwl_um": 86.43,
+    "hpwl_um": 79.07,
     "layers": [
       "met2",
       "met3",
@@ -55,22 +55,22 @@
     ],
     "leaf_count": 2,
     "missed_pin_count": 0,
-    "net": "beam_select[0]",
-    "net_id": "N003",
+    "net": "clk",
+    "net_id": "N000",
     "pin_count": 2,
-    "reported_geometry_length_um": 92.17,
-    "route_class": "control_input",
+    "reported_geometry_length_um": 84.29,
+    "route_class": "clock",
     "route_group_count": 1,
-    "via_count": 4,
-    "wire_length_um": 92.39
+    "via_count": 2,
+    "wire_length_um": 84.51
   },
   "nets": [
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.024867,
+      "detour_ratio": 1.0688,
       "electrical_group_count": 1,
-      "hpwl_um": 54.69,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -81,18 +81,18 @@
       "net": "clk",
       "net_id": "N000",
       "pin_count": 2,
-      "reported_geometry_length_um": 55.83,
+      "reported_geometry_length_um": 84.29,
       "route_class": "clock",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 56.05
+      "wire_length_um": 84.51
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
       "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 66.19,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -103,18 +103,18 @@
       "net": "rst_n",
       "net_id": "N001",
       "pin_count": 2,
-      "reported_geometry_length_um": 65.97,
+      "reported_geometry_length_um": 78.85,
       "route_class": "reset",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 66.19
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
       "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 69.41,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -125,18 +125,18 @@
       "net": "ena",
       "net_id": "N002",
       "pin_count": 2,
-      "reported_geometry_length_um": 69.19,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 69.41
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.068958,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 86.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -147,18 +147,18 @@
       "net": "beam_select[0]",
       "net_id": "N003",
       "pin_count": 2,
-      "reported_geometry_length_um": 92.17,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
-      "via_count": 4,
-      "wire_length_um": 92.39
+      "via_count": 2,
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.180537,
+      "detour_ratio": 1.0172,
       "electrical_group_count": 1,
-      "hpwl_um": 97.93,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -169,18 +169,18 @@
       "net": "beam_select[1]",
       "net_id": "N004",
       "pin_count": 2,
-      "reported_geometry_length_um": 115.39,
+      "reported_geometry_length_um": 80.21,
       "route_class": "control_input",
       "route_group_count": 1,
-      "via_count": 4,
-      "wire_length_um": 115.61
+      "via_count": 2,
+      "wire_length_um": 80.43
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.012428,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 109.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -191,18 +191,18 @@
       "net": "beam_select[2]",
       "net_id": "N005",
       "pin_count": 2,
-      "reported_geometry_length_um": 110.57,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 110.79
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.044985,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 120.93,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -213,18 +213,18 @@
       "net": "raw_mode",
       "net_id": "N006",
       "pin_count": 2,
-      "reported_geometry_length_um": 126.15,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
-      "via_count": 4,
-      "wire_length_um": 126.37
+      "via_count": 2,
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
       "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 132.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -235,18 +235,18 @@
       "net": "channel_enable[0]",
       "net_id": "N007",
       "pin_count": 2,
-      "reported_geometry_length_um": 132.21,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 132.43
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
       "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 143.93,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -257,18 +257,18 @@
       "net": "channel_enable[1]",
       "net_id": "N008",
       "pin_count": 2,
-      "reported_geometry_length_um": 143.71,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 143.93
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
       "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 155.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -279,18 +279,18 @@
       "net": "channel_enable[2]",
       "net_id": "N009",
       "pin_count": 2,
-      "reported_geometry_length_um": 155.21,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 155.43
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.040736,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 166.93,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -301,18 +301,18 @@
       "net": "channel_enable[3]",
       "net_id": "N010",
       "pin_count": 2,
-      "reported_geometry_length_um": 173.51,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
-      "via_count": 4,
-      "wire_length_um": 173.73
+      "via_count": 2,
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.022866,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 178.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -323,18 +323,18 @@
       "net": "cfg_clk",
       "net_id": "N011",
       "pin_count": 2,
-      "reported_geometry_length_um": 182.29,
+      "reported_geometry_length_um": 78.85,
       "route_class": "clock",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 182.51
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.007161,
+      "detour_ratio": 1.0,
       "electrical_group_count": 1,
-      "hpwl_um": 189.93,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -345,18 +345,18 @@
       "net": "cfg_data",
       "net_id": "N012",
       "pin_count": 2,
-      "reported_geometry_length_um": 191.07,
+      "reported_geometry_length_um": 78.85,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 191.29
+      "wire_length_um": 79.07
     },
     {
       "cycle_rank": 0,
       "dead_leaf_count": 0,
-      "detour_ratio": 1.006752,
+      "detour_ratio": 1.0172,
       "electrical_group_count": 1,
-      "hpwl_um": 201.43,
+      "hpwl_um": 79.07,
       "layers": [
         "met2",
         "met3",
@@ -367,11 +367,11 @@
       "net": "cfg_latch",
       "net_id": "N013",
       "pin_count": 2,
-      "reported_geometry_length_um": 202.57,
+      "reported_geometry_length_um": 80.21,
       "route_class": "control_input",
       "route_group_count": 1,
       "via_count": 2,
-      "wire_length_um": 202.79
+      "wire_length_um": 80.43
     }
   ],
   "nets_using_layer": {
@@ -390,11 +390,11 @@
   "scope": "14 V3 controller inputs routed to the exact TinyTapeout 2x2 top-boundary pin rectangles",
   "source_sha256": {
     "generator": "8f2d95c44f890fd05b2950202908dbd4e38842c4c23127cea07f4ccce250a0be",
-    "input_summary": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
-    "plan": "ec9679809fb487c14a058157d4dedf9a8dfc4d94548d997e7cf9e8565a60227b",
-    "source_gds": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7"
+    "input_summary": "b655b771766fc15c36af8494da1608f9576f86d7959d28b7d17638200043568e",
+    "plan": "862deee048c29058dc1a8c4305503e29107555f61d0b5157cc459af1c9b00bd6",
+    "source_gds": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071"
   },
   "status": "pass",
-  "total_centerline_wire_length_um": 1818.92,
-  "total_via_count": 36
+  "total_centerline_wire_length_um": 1115.14,
+  "total_via_count": 28
 }

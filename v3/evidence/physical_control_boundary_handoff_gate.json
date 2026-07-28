@@ -4,23 +4,23 @@
   "scope": "14 centralized-controller digital inputs routed to the exact TinyTapeout 2x2 interface rectangles without changing the frozen controller or analog array",
   "gds": "v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
   "top_cell": "v3_four_ch_ctrl_boundary_handoff",
-  "gds_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+  "gds_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
   "flat_spice": "v3/frozen/controller_boundary_handoffs/v3_four_ch_ctrl_boundary_handoff_flat.spice",
   "flat_spice_sha256": "88a7b4e0ee89ce36e16649774636684e582a38e11a371eb7957529d22c898e85",
   "route_results": {
     "nets": 14,
     "endpoints": 28,
     "exact_tinytapeout_terminals": 14,
-    "total_centerline_wire_length_um": 1818.92,
-    "total_vias": 36,
+    "total_centerline_wire_length_um": 1115.14,
+    "total_vias": 28,
     "maximum_route_layer": "met4",
     "metal5_routes": 0,
     "openroad_final_violations": 0,
     "missed_endpoints": 0,
     "floating_leaves": 0,
     "routing_loops": 0,
-    "worst_detour_ratio": 1.180537,
-    "worst_detour_net": "beam_select[1]"
+    "worst_detour_ratio": 1.0688,
+    "worst_detour_net": "clk"
   },
   "integrated_extraction": {
     "total_devices": 6037,

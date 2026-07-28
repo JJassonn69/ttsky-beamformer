@@ -3,7 +3,7 @@
 Status: the architecture, bounded electrical campaign, four-channel physical
 integration, distributed-RC extraction, exact Tiny Tapeout packaging, and
 internal signoff are complete. The frozen candidate is SHA-256
-`824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
+`988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9`.
 Official GitHub custom-GDS/precheck attestation and silicon measurement remain
 open. This contract retains the earlier gate-by-gate decisions below as design
 provenance; the current release summary is `v3/evidence/submission_gate.json`.

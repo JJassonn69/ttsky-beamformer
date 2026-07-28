@@ -18,9 +18,9 @@ low-intermediate-frequency (low-IF) vector beamformer. It is not a direct
 | Analog pins used | 6 of 8 |
 | Extracted device count | 6,037 |
 | Analog / digital devices | 1,315 / 4,722 |
-| Frozen GDS SHA-256 | `824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14` |
+| Frozen GDS SHA-256 | `988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9` |
 | Internal signoff | Passed |
-| External release attestation | Official Tiny Tapeout custom-GDS, viewer, precheck, and evidence jobs passed |
+| External release attestation | Pending official Tiny Tapeout custom-GDS, viewer, precheck, and evidence jobs |
 
 The frozen candidate is
 `v3/frozen/submission/tt_um_jjassonn69_beamformer.gds`. The canonical submission

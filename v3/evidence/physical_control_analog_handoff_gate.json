@@ -4,7 +4,7 @@
   "scope": "41 controller-to-analog handoff nets and 85 physical endpoints integrated into the exact frozen powered V3 controller and four-channel analog top",
   "gds": "v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
   "top_cell": "v3_four_ch_ctrl_analog_handoff",
-  "gds_sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
+  "gds_sha256": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071",
   "flat_spice": "v3/frozen/controller_analog_handoffs/v3_four_ch_ctrl_analog_handoff_flat.spice",
   "flat_spice_sha256": "24e4ce9f7a635d020f8ba6f382a03407db9cb311f33cb7bbe5c1e62bd05882d4",
   "route_results": {

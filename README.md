@@ -33,7 +33,7 @@ The detailed [V3 engineering datasheet](v3/docs/datasheet.md),
 - Frozen internal-signoff copy:
   `v3/frozen/submission/tt_um_jjassonn69_beamformer.gds`.
 - Frozen GDS SHA-256:
-  `824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
+  `988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9`.
 
 The wrapper is generated deterministically from the frozen physical top. It
 adds the exact Tiny Tapeout pins, labels, and full project boundary while

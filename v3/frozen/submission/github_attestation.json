@@ -1,42 +1,12 @@
 {
   "schema_version": 1,
-  "status": "pass",
+  "status": "pending",
   "repository": "JJassonn69/ttsky-beamformer",
-  "branch": "v3-constant-gm-vector-beamformer",
-  "commit": "cd950af1d2562f6446b555f06b8f08500b47503b",
-  "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
-  "workflow": {
-    "name": "gds",
-    "workflow_id": 316317254,
-    "run_id": 30332418438,
-    "run_number": 46,
-    "event": "pull_request",
-    "status": "completed",
-    "conclusion": "success",
-    "url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30332418438"
-  },
-  "jobs": {
-    "gds": {
-      "job_id": 90190210306,
-      "status": "completed",
-      "conclusion": "success"
-    },
-    "precheck": {
-      "job_id": 90190663675,
-      "status": "completed",
-      "conclusion": "success"
-    },
-    "viewer": {
-      "job_id": 90190663692,
-      "status": "completed",
-      "conclusion": "success"
-    },
-    "validation-evidence": {
-      "job_id": 90191014861,
-      "status": "completed",
-      "conclusion": "success"
-    }
-  },
-  "scope": "official Tiny Tapeout ttsky26c custom-GDS, precheck, viewer, and repository artifact-bound validation for the exact frozen GDS hash",
-  "source": "GitHub Actions run and job status queried after completion through the authenticated GitHub API"
+  "branch": "v3-controller-pin-aligned-candidate-b",
+  "commit": null,
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
+  "workflow": null,
+  "jobs": {},
+  "scope": "external Tiny Tapeout ttsky26c validation pending for the exact internally signed-off promoted GDS hash",
+  "source": "pending first official GitHub Actions run for this immutable GDS hash"
 }

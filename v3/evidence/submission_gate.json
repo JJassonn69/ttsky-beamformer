@@ -1,6 +1,6 @@
 {
   "artifact_sha256": {
-    "gds/tt_um_jjassonn69_beamformer.gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "gds/tt_um_jjassonn69_beamformer.gds": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
     "info.yaml": "74d7b96397383cca9520e90ea091502c3da70697c2ba04276a859727f5e40eca",
     "lef/tt_um_jjassonn69_beamformer.lef": "8e2af16c69851e916af08d2ba211a26840798296ddeea5f4110819ab8fbad15b",
     "src/project.v": "1f58fbf2ba57e3146eaa6fcb3ddaf62f9a0f1e28c2331fc9a6d3bd3972b5afe0",
@@ -10,12 +10,12 @@
     "v3/evidence/implementation_checkpoint.json": "d308622d288d2e917d45956d4852ed6bb0a73fe0d9e811252d953d04863efdaa",
     "v3/evidence/periodic_noise_summary.json": "6eb00572ef1828e43c2907978ecf7514d39b80968aa9b21e0bbb721101f4bc4a",
     "v3/frozen/analog_input_escapes/input_rc_audit.json": "055986a8de00d0c08affeda16f12dcaa6570da7a9811f83937c72a0ef95f5002",
-    "v3/frozen/submission/direct_precheck/precheck_summary.json": "585e168d1749ed773015271934f5291fb0a870e32456b2a89620cc6b55506b4b",
-    "v3/frozen/submission/gds_packaging.json": "c788d9a75af3bb033a9c2e2972b9c2ff95058cf301f4fb21d763e0d7d14e9001",
-    "v3/frozen/submission/github_attestation.json": "92e4d55f8328da59d5eab8d16540fc433cfee23b90ef7a95e971b0857ca89f90",
-    "v3/frozen/submission/official_contract.json": "f4fe500c01fa2dba0ea369ff8f9a9fb87642fd21129684c419a69c39413390e6",
-    "v3/frozen/submission/topology_audit.json": "7cec0c6c0d586be3b78c421f35dcd60e117843fbe68cdb55727c9b6e0b536738",
-    "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14"
+    "v3/frozen/submission/direct_precheck/precheck_summary.json": "6f5b556c8c5d742ad9829e9babb171905ebd14707559bc6413843f9681007ccc",
+    "v3/frozen/submission/gds_packaging.json": "35e3c03f0720b79f882a2db5a16ecb27e0d1b77965680ed1b09d12a111f14248",
+    "v3/frozen/submission/github_attestation.json": "174ff779ff36064beb48986c9ce00d8502682727b8e2c6edffe9f44ac8e8e257",
+    "v3/frozen/submission/official_contract.json": "1bd7c4087f5ac5d1b3498e5bd1b983af7c00b82a46c559a205f4385ca39e19b2",
+    "v3/frozen/submission/topology_audit.json": "75857b10a50fce4fa695344a7b786805c1f1484a9e36442909154895cf60393c",
+    "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9"
   },
   "electrical_signoff": {
     "gates": {
@@ -48,47 +48,17 @@
   },
   "errors": [],
   "external_signoff": {
-    "attested_commit": "cd950af1d2562f6446b555f06b8f08500b47503b",
-    "attested_gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
-    "branch": "v3-constant-gm-vector-beamformer",
-    "jobs": {
-      "gds": {
-        "conclusion": "success",
-        "job_id": 90190210306,
-        "status": "completed"
-      },
-      "precheck": {
-        "conclusion": "success",
-        "job_id": 90190663675,
-        "status": "completed"
-      },
-      "validation-evidence": {
-        "conclusion": "success",
-        "job_id": 90191014861,
-        "status": "completed"
-      },
-      "viewer": {
-        "conclusion": "success",
-        "job_id": 90190663692,
-        "status": "completed"
-      }
-    },
+    "attested_commit": null,
+    "attested_gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
+    "branch": "v3-controller-pin-aligned-candidate-b",
+    "jobs": {},
     "repository": "JJassonn69/ttsky-beamformer",
-    "status": "pass",
-    "workflow": {
-      "conclusion": "success",
-      "event": "pull_request",
-      "name": "gds",
-      "run_id": 30332418438,
-      "run_number": 46,
-      "status": "completed",
-      "url": "https://github.com/JJassonn69/ttsky-beamformer/actions/runs/30332418438",
-      "workflow_id": 316317254
-    }
+    "status": "pending",
+    "workflow": null
   },
   "gds": "gds/tt_um_jjassonn69_beamformer.gds",
-  "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
-  "generator_sha256": "6e731937d487223fb7ce1b91970101002fe5e2b260eca539d84e61d0168afdb6",
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
+  "generator_sha256": "68c985b50adf83211c08605697db091e36ac320d60a075199a3e3dae07e9dc6a",
   "measurement_and_system_limits_not_fabrication_blockers": [
     "open-source switched-noise equivalent is not native PNoise",
     "clock-source phase noise is not included",
@@ -121,13 +91,18 @@
     },
     "physical_stage_gates": {
       "analog_input_escape_gate.json": {
-        "artifact_sha256": "4dc00ba3e06b784f8daa5d5331ae82c82450f78832d0a430387381093f108e61",
-        "gds_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+        "artifact_sha256": "a3a87b0ea78ce434d76490d1a9c3cb0f6c271d16b555428ff98e5229d6ff240b",
+        "gds_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
+        "status": "pass"
+      },
+      "controller_pin_aligned_promotion_gate.json": {
+        "artifact_sha256": "57b933d587ebd85093a75820e01e757f40f64b056957b58888ab68bf65b85eda",
+        "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
         "status": "pass"
       },
       "digital_output_tie_gate.json": {
-        "artifact_sha256": "671e442256b92beb623130947ca6b357e25e824f43f35d3928a7df426e1f5436",
-        "gds_sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+        "artifact_sha256": "cc73d1393f7352c6932492699690990c7a2e97d87bbe598b15a99e97fd37980d",
+        "gds_sha256": "3fa0ef720c58da0127c6fba03b1d0532d5deffc529c0cc4e41eba401a6a81184",
         "status": "pass"
       },
       "four_channel_bias_reference_distribution_gate.json": {
@@ -166,23 +141,23 @@
         "status": "pass"
       },
       "physical_control_analog_handoff_gate.json": {
-        "artifact_sha256": "1df12a06cc63fcddf090ebaaa3b967b0df4a58e3c8b72462eb7078a36b0704f1",
-        "gds_sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
+        "artifact_sha256": "24540e4b1a6574a713b25393f4d2bd86b3fce2e3af5e9467ed7c605aa71eee13",
+        "gds_sha256": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071",
         "status": "pass"
       },
       "physical_control_boundary_handoff_gate.json": {
-        "artifact_sha256": "c8e11db80069959dc84cf9736af1f7e381882117e765156544a3ce25917be542",
-        "gds_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+        "artifact_sha256": "6d8e60a09154b4ae4b0b438e24fae15e1b6d812dc1363483a715b7773b386530",
+        "gds_sha256": "157892ba58c715637bad45a1ccd15b34ff2886e00c46cfc2474b8d999d901e43",
         "status": "pass"
       },
       "physical_control_power_gate.json": {
-        "artifact_sha256": "6811670c4ac9094ba92c05a303be78c13ba5dd14f633af3c3a6d26ca869c4b14",
-        "gds_sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+        "artifact_sha256": "cd3e4fcde152c975e76a3510da9f430765b01ea9beb2055875a52d6b30a52a1b",
+        "gds_sha256": "98628e45ec42b186127b16f24ae9e14ea899569a68eaaa4ba0c8878b9371e779",
         "status": "pass"
       },
       "physical_control_signal_routing_gate.json": {
-        "artifact_sha256": "cf2cab8bbf4566907d4c91752da3f88245fa30b66d9ab1695d2cc7763e29e0d9",
-        "gds_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+        "artifact_sha256": "8d5bf0ca4e5f43457e6d2133e1fc25217c3e4ca045fc987f5f4f377c074d4492",
+        "gds_sha256": "9ddf1cebed1a98d92a3afceb11c2d775aa154a26ad44b442e351e14bb3065ea6",
         "status": "pass"
       }
     },
@@ -191,17 +166,17 @@
   },
   "release_scope": "TinyTapeout SKY130 2x2 V3 custom analog macro",
   "review_images": {
-    "v3/frozen/submission/review/01_full_packaged_layout.png": "415dccf8eae3f53c1e2d54f27fc6dae47d47c229b413d9143ca7cfffeb6ad8e0",
-    "v3/frozen/submission/review/02_routing_and_pins.png": "eb3591a5b5526d24f2a796a21ee10f6c4e37e0dbe91317746a649ba3f00614a7",
-    "v3/frozen/submission/review/03_four_channel_vector_core.png": "48edfc52a3ccd65f09589d8f17dbaa04550dc0f0293fcea7fe666ccf302753e1",
+    "v3/frozen/submission/review/01_full_packaged_layout.png": "144373474d17326713ee419cc2e8d66ef53dfe72139926653e98beb700e30f43",
+    "v3/frozen/submission/review/02_routing_and_pins.png": "6090b9be6680a3ec857582f6cdbd09f6d96b0ac21f27d17552a278a9418349b9",
+    "v3/frozen/submission/review/03_four_channel_vector_core.png": "7728f3849d0540fdf69ae01a69004c238b080def002e42f028ef88259aa7b42b",
     "v3/frozen/submission/review/04_bottom_analog_interface.png": "85e5a260c3a3641e4e6b592541dcddba61b86ea3e14d75d9ed0c08fc4af9a6c5",
-    "v3/frozen/submission/review/05_top_digital_interface.png": "4815a8ce4cb8f6d0cbe2a3c4d126f1e21eb9d42520b2794e004f60b60f414e0a",
+    "v3/frozen/submission/review/05_top_digital_interface.png": "083a98e2fc75b1795252fc19f5bd83a3447efa06900edbaa4e2eb367c51f13a0",
     "v3/frozen/submission/review/06_outputs_loads_and_support.png": "6ebed3e422a61ba3a517bed8afde1529bd1624d38d11394faafc058ee953c085",
-    "v3/frozen/submission/review/07_controller_and_handoffs.png": "82493f003323f7045989ef783f9d7be443a441494ae1b1c0d97b9511cdeb26c2",
+    "v3/frozen/submission/review/07_controller_and_handoffs.png": "624a86f25507ab152afa20c13e3eb103d0d87de48abba1ae5f51cc5c4f8492ef",
     "v3/frozen/submission/review/08_power_spines.png": "0ede5ba7f6c583701b87f2734ad099528f0554f9c2854282e7f30c4a1e25bfe9"
   },
   "schema_version": 1,
-  "status": "signoff_pass_official_github_attested",
+  "status": "internal_signoff_pass_external_attestation_pending",
   "top_module": "tt_um_jjassonn69_beamformer",
   "wrapper_contract": {
     "analog_pin_adjacency": {

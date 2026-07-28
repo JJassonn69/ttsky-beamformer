@@ -1,7 +1,7 @@
 {
   "assembly": {
-    "output_bytes": 2671484,
-    "output_sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+    "output_bytes": 2627154,
+    "output_sha256": "3fa0ef720c58da0127c6fba03b1d0532d5deffc529c0cc4e41eba401a6a81184",
     "output_structure_count": 34,
     "output_top": "v3_four_ch_output_tied",
     "overlay_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/digital_output_tie/direct/v3_digital_output_tie_low.gds",
@@ -10,7 +10,7 @@
     "overlay_structure_count": 1,
     "overlay_top": "v3_digital_output_tie_low",
     "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/analog_input_escapes/v3_four_channel_analog_inputs.gds",
-    "source_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+    "source_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
     "source_structure_count": 33,
     "source_top": "v3_four_ch_analog_inputs",
     "status": "pass",
@@ -51,9 +51,9 @@
     "vertical_drops": 24,
     "vias": 0
   },
-  "geometry_sha256": "e2d7a047b5e491724fb6f48c9d94de941f3a7e8f64307e35e1f49c35c4ba9297",
+  "geometry_sha256": "f555f13bf0d5d96cb4193370040574cfa50a413bfedbcde84df39b59bb17c6a0",
   "output_gds": "build/v3/digital_output_tie/direct/v3_four_channel_output_tied.gds",
-  "output_sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+  "output_sha256": "3fa0ef720c58da0127c6fba03b1d0532d5deffc529c0cc4e41eba401a6a81184",
   "overlay": {
     "boundary_count": 26,
     "bytes": 2872,
@@ -62,7 +62,7 @@
     "output_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/digital_output_tie/direct/v3_digital_output_tie_low.gds",
     "output_sha256": "5c7af169805f6c8fe9f6997975d0c1fc901067e20b1c99c6ea5f989e7ee4ecc4",
     "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/analog_input_escapes/v3_four_channel_analog_inputs.gds",
-    "source_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+    "source_sha256": "e044d6d504b32fdb1dcb0bf751953bf209562d2b946f1e69e208a13f862f93f3",
     "status": "pass",
     "top": "v3_digital_output_tie_low",
     "writer": "direct deterministic GDS boundary writer"

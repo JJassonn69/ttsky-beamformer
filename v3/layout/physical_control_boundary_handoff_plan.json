@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "units": "um",
-  "status": "pre-route TinyTapeout controller-input boundary contract",
+  "status": "pin-aligned TinyTapeout controller-input boundary contract",
   "source_checkpoint": {
     "gds": "v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
     "top": "v3_four_ch_ctrl_analog_handoff",
-    "sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
-    "physical_gate": "v3/evidence/physical_control_analog_handoff_gate.json",
-    "physical_gate_sha256": "1df12a06cc63fcddf090ebaaa3b967b0df4a58e3c8b72462eb7078a36b0704f1"
+    "sha256": "7bf330e7fa70200b405e162777145292854fca0f7bef4956e64aabf161421071",
+    "physical_gate": "v3/frozen/controller_analog_handoffs/assembly_report.json",
+    "physical_gate_sha256": "4f9f5ba634d2ca21c354b31177b1be6a0f630f017c859a55a00f39aca9eafe07"
   },
   "endpoint_sources": {
     "controller_boundary_manifest": "v3/frozen/controller_signal_routing/input_summary.json",
-    "controller_boundary_manifest_sha256": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
+    "controller_boundary_manifest_sha256": "bc7f1339fb85c4f5449eb772d8bb1430311f698abb66a21406d716f4806b8632",
     "tinytapeout_template_def": "build/v2/tt_analog_2x2.def",
     "tinytapeout_template_def_sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f"
   },

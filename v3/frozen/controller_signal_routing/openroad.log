@@ -5,12 +5,12 @@ Components of this program may be licensed under more restrictive licenses which
 [INFO ORD-0030] Using 12 thread(s).
 [INFO ODB-0227] LEF file: /home/jason-stone/tt-tools/reference/sky130hd-lef/sky130_fd_sc_hd.tlef, created 13 layers, 25 vias
 [INFO ODB-0227] LEF file: /home/jason-stone/tt-tools/reference/sky130hd-lef/sky130_fd_sc_hd_merged.lef, created 441 library cells
-[INFO ODB-0127] Reading DEF file: /home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/control_routing/openroad_internal_pdn_reserved/input.def
+[INFO ODB-0127] Reading DEF file: /home/jason-stone/v3-controller-pin-aligned-candidate-b/build/v3/control_routing/openroad_internal/input.def
 [INFO ODB-0128] Design: v3_physical_control_internal
 [INFO ODB-0130]     Created 55 pins.
-[INFO ODB-0131]     Created 2006 components and 8656 component-terminals.
+[INFO ODB-0131]     Created 2006 components and 8658 component-terminals.
 [INFO ODB-0133]     Created 305 nets and 1048 connections.
-[INFO ODB-0134] Finished DEF file: /home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/control_routing/openroad_internal_pdn_reserved/input.def
+[INFO ODB-0134] Finished DEF file: /home/jason-stone/v3-controller-pin-aligned-candidate-b/build/v3/control_routing/openroad_internal/input.def
 [WARNING GRT-0300] Timing is not available, setting critical nets percentage to 0.
 [INFO GRT-0020] Min routing layer: met1
 [INFO GRT-0021] Max routing layer: met3
@@ -33,29 +33,29 @@ Components of this program may be licensed under more restrictive licenses which
 Layer     Direction    Resources     Resources    Reduction (%)
 ---------------------------------------------------------------
 li1        Vertical            0             0          0.00%
-met1       Horizontal       2960          1272          57.03%
+met1       Horizontal       2960          1266          57.23%
 met2       Vertical         1596          1205          24.50%
 met3       Horizontal       1480          1093          26.15%
 ---------------------------------------------------------------
 
 [INFO GRT-0101] Running extra iterations to remove overflow.
-[INFO GRT-0197] Via related to pin nodes: 1576
-[INFO GRT-0198] Via related Steiner nodes: 18
+[INFO GRT-0197] Via related to pin nodes: 1572
+[INFO GRT-0198] Via related Steiner nodes: 10
 [INFO GRT-0199] Via filling finished.
-[INFO GRT-0111] Final number of vias: 2030
-[INFO GRT-0112] Final usage 3D: 7653
+[INFO GRT-0111] Final number of vias: 1995
+[INFO GRT-0112] Final usage 3D: 7455
 
 [INFO GRT-0096] Final congestion report:
 Layer         Resource        Demand        Usage (%)    Max H / Max V / Total Overflow
 ---------------------------------------------------------------------------------------
 li1                  0             0            0.00%             0 /  0 /  0
-met1              1272           718           56.45%             0 /  0 /  0
-met2              1205           440           36.51%             0 /  0 /  0
-met3              1093           405           37.05%             0 /  0 /  0
+met1              1266           693           54.74%             0 /  0 /  0
+met2              1205           401           33.28%             0 /  0 /  0
+met3              1093           376           34.40%             0 /  0 /  0
 ---------------------------------------------------------------------------------------
-Total             3570          1563           43.78%             0 /  0 /  0
+Total             3564          1470           41.25%             0 /  0 /  0
 
-[INFO GRT-0018] Total wirelength: 16083 um
+[INFO GRT-0018] Total wirelength: 15062 um
 [INFO GRT-0014] Routed nets: 305
 [INFO DRT-0149] Reading tech and libs.
 [WARNING DRT-0349] LEF58_ENCLOSURE with no CUTCLASS is not supported. Skipping for layer mcon
@@ -114,7 +114,7 @@ Number of nets:           305
 [INFO DRT-0024]   Complete met5.
 [INFO DRT-0033] FR_MASTERSLICE shape region query size = 0.
 [INFO DRT-0033] FR_VIA shape region query size = 0.
-[INFO DRT-0033] li1 shape region query size = 16334.
+[INFO DRT-0033] li1 shape region query size = 16332.
 [INFO DRT-0033] mcon shape region query size = 11107.
 [INFO DRT-0033] met1 shape region query size = 5393.
 [INFO DRT-0033] via shape region query size = 0.
@@ -131,9 +131,9 @@ Number of nets:           305
 [INFO DRT-0084]   Complete 291 groups.
 #scanned instances     = 2006
 #unique  instances     = 43
-#stdCellGenAp          = 1279
+#stdCellGenAp          = 1289
 #stdCellValidPlanarAp  = 26
-#stdCellValidViaAp     = 712
+#stdCellValidViaAp     = 721
 #stdCellPinNoAp        = 0
 #stdCellPinCnt         = 1048
 #instTermValidViaApCnt = 0
@@ -142,9 +142,9 @@ Number of nets:           305
 #macroValidViaAp       = 0
 #macroNoAp             = 0
 [INFO DRT-0166] Complete pin access.
-[INFO DRT-0267] cpu time = 00:00:24, elapsed time = 00:00:04, memory = 177.72 (MB), peak = 177.04 (MB)
+[INFO DRT-0267] cpu time = 00:00:24, elapsed time = 00:00:04, memory = 177.50 (MB), peak = 176.62 (MB)
 
-[INFO DRT-0157] Number of guides:     2276
+[INFO DRT-0157] Number of guides:     2167
 
 [INFO DRT-0169] Post process guides.
 [INFO DRT-0176] GCELLGRID X 0 DO 20 STEP 6900 ;
@@ -178,1161 +178,518 @@ Number of nets:           305
 [INFO DRT-0035]   Complete met5 (guide).
 [INFO DRT-0036] FR_MASTERSLICE guide region query size = 0.
 [INFO DRT-0036] FR_VIA guide region query size = 0.
-[INFO DRT-0036] li1 guide region query size = 742.
+[INFO DRT-0036] li1 guide region query size = 729.
 [INFO DRT-0036] mcon guide region query size = 0.
-[INFO DRT-0036] met1 guide region query size = 542.
+[INFO DRT-0036] met1 guide region query size = 507.
 [INFO DRT-0036] via guide region query size = 0.
-[INFO DRT-0036] met2 guide region query size = 296.
+[INFO DRT-0036] met2 guide region query size = 264.
 [INFO DRT-0036] via2 guide region query size = 0.
-[INFO DRT-0036] met3 guide region query size = 93.
+[INFO DRT-0036] met3 guide region query size = 80.
 [INFO DRT-0036] via3 guide region query size = 0.
 [INFO DRT-0036] met4 guide region query size = 0.
 [INFO DRT-0036] via4 guide region query size = 0.
 [INFO DRT-0036] met5 guide region query size = 0.
 [INFO DRT-0179] Init gr pin query.
-[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 177.79 (MB), peak = 177.04 (MB)
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 177.50 (MB), peak = 176.62 (MB)
 [INFO DRT-0245] skipped writing guide updates to database.
 [INFO DRT-0185] Post process initialize RPin region query.
 [INFO DRT-0181] Start track assignment.
-[INFO DRT-0184] Done with 1038 vertical wires in 1 frboxes and 635 horizontal wires in 1 frboxes.
-[INFO DRT-0186] Done with 93 vertical wires in 1 frboxes and 296 horizontal wires in 1 frboxes.
+[INFO DRT-0184] Done with 993 vertical wires in 1 frboxes and 587 horizontal wires in 1 frboxes.
+[INFO DRT-0186] Done with 75 vertical wires in 1 frboxes and 236 horizontal wires in 1 frboxes.
 [INFO DRT-0182] Complete track assignment.
-[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 185.80 (MB), peak = 185.04 (MB)
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 181.95 (MB), peak = 181.12 (MB)
 [INFO DRT-0187] Start routing data preparation.
-[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 185.80 (MB), peak = 185.04 (MB)
+[INFO DRT-0267] cpu time = 00:00:00, elapsed time = 00:00:00, memory = 181.95 (MB), peak = 181.12 (MB)
 [INFO DRT-0194] Start detail routing.
 [INFO DRT-0195] Start 0th optimization iteration.
     Completing 10% with 0 violations.
-    elapsed time = 00:00:00, memory = 235.21 (MB).
+    elapsed time = 00:00:00, memory = 218.26 (MB).
     Completing 20% with 0 violations.
-    elapsed time = 00:00:06, memory = 232.52 (MB).
-    Completing 30% with 116 violations.
-    elapsed time = 00:00:07, memory = 233.06 (MB).
-    Completing 40% with 141 violations.
-    elapsed time = 00:00:07, memory = 233.06 (MB).
-[INFO DRT-0199]   Number of violations = 152.
+    elapsed time = 00:00:04, memory = 214.33 (MB).
+    Completing 30% with 61 violations.
+    elapsed time = 00:00:05, memory = 219.10 (MB).
+    Completing 40% with 73 violations.
+    elapsed time = 00:00:05, memory = 219.10 (MB).
+[INFO DRT-0199]   Number of violations = 77.
 Viol/Layer        met1   met2   met3
-Metal Spacing        9      1      0
-Recheck             10      1      0
-Short              121      8      2
-[INFO DRT-0267] cpu time = 00:00:09, elapsed time = 00:00:08, memory = 585.02 (MB), peak = 583.98 (MB)
-Total wire length = 11398 um.
+Metal Spacing        6      1      0
+Recheck              4      0      0
+Short               58      5      3
+[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:06, memory = 563.95 (MB), peak = 563.06 (MB)
+Total wire length = 11024 um.
 Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 5115 um.
-Total wire length on LAYER met2 = 3639 um.
-Total wire length on LAYER met3 = 2642 um.
+Total wire length on LAYER met1 = 4938 um.
+Total wire length on LAYER met2 = 3501 um.
+Total wire length on LAYER met3 = 2583 um.
 Total wire length on LAYER met4 = 0 um.
 Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2181.
-Up-via summary (total 2181):
+Total number of vias = 2126.
+Up-via summary (total 2126):
+
+-----------------------
+ FR_MASTERSLICE       0
+            li1     987
+           met1     963
+           met2     176
+           met3       0
+           met4       0
+-----------------------
+                   2126
+
+
+[INFO DRT-0195] Start 1st optimization iteration.
+    Completing 10% with 77 violations.
+    elapsed time = 00:00:01, memory = 607.16 (MB).
+    Completing 20% with 77 violations.
+    elapsed time = 00:00:02, memory = 607.16 (MB).
+    Completing 30% with 88 violations.
+    elapsed time = 00:00:02, memory = 607.18 (MB).
+    Completing 40% with 88 violations.
+    elapsed time = 00:00:02, memory = 607.18 (MB).
+    Completing 50% with 82 violations.
+    elapsed time = 00:00:02, memory = 610.35 (MB).
+    Completing 60% with 82 violations.
+    elapsed time = 00:00:03, memory = 610.35 (MB).
+    Completing 70% with 75 violations.
+    elapsed time = 00:00:03, memory = 611.41 (MB).
+    Completing 80% with 75 violations.
+    elapsed time = 00:00:04, memory = 611.41 (MB).
+    Completing 90% with 73 violations.
+    elapsed time = 00:00:04, memory = 611.41 (MB).
+[INFO DRT-0199]   Number of violations = 73.
+Viol/Layer        met1   met2   met3
+Metal Spacing        8      7      0
+Short               48      7      3
+[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:04, memory = 614.41 (MB), peak = 613.43 (MB)
+Total wire length = 11002 um.
+Total wire length on LAYER li1 = 0 um.
+Total wire length on LAYER met1 = 4878 um.
+Total wire length on LAYER met2 = 3498 um.
+Total wire length on LAYER met3 = 2624 um.
+Total wire length on LAYER met4 = 0 um.
+Total wire length on LAYER met5 = 0 um.
+Total number of vias = 2164.
+Up-via summary (total 2164):
 
 -----------------------
  FR_MASTERSLICE       0
             li1     982
-           met1     991
-           met2     208
+           met1     998
+           met2     184
            met3       0
            met4       0
 -----------------------
-                   2181
-
-
-[INFO DRT-0195] Start 1st optimization iteration.
-    Completing 10% with 152 violations.
-    elapsed time = 00:00:01, memory = 604.68 (MB).
-    Completing 20% with 152 violations.
-    elapsed time = 00:00:03, memory = 605.15 (MB).
-    Completing 30% with 208 violations.
-    elapsed time = 00:00:03, memory = 605.18 (MB).
-    Completing 40% with 208 violations.
-    elapsed time = 00:00:03, memory = 605.18 (MB).
-    Completing 50% with 208 violations.
-    elapsed time = 00:00:03, memory = 605.18 (MB).
-    Completing 60% with 208 violations.
-    elapsed time = 00:00:04, memory = 605.18 (MB).
-    Completing 70% with 210 violations.
-    elapsed time = 00:00:04, memory = 606.32 (MB).
-    Completing 80% with 210 violations.
-    elapsed time = 00:00:05, memory = 606.32 (MB).
-    Completing 90% with 182 violations.
-    elapsed time = 00:00:05, memory = 606.32 (MB).
-[INFO DRT-0199]   Number of violations = 182.
-Viol/Layer        met1   met2   met3
-Metal Spacing        6      3      0
-Recheck              2      0      0
-Short              141     28      2
-[INFO DRT-0267] cpu time = 00:00:07, elapsed time = 00:00:05, memory = 609.32 (MB), peak = 608.23 (MB)
-Total wire length = 11393 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 5090 um.
-Total wire length on LAYER met2 = 3641 um.
-Total wire length on LAYER met3 = 2661 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2203.
-Up-via summary (total 2203):
-
------------------------
- FR_MASTERSLICE       0
-            li1     991
-           met1     990
-           met2     222
-           met3       0
-           met4       0
------------------------
-                   2203
+                   2164
 
 
 [INFO DRT-0195] Start 2nd optimization iteration.
-    Completing 10% with 182 violations.
-    elapsed time = 00:00:00, memory = 609.32 (MB).
-    Completing 20% with 182 violations.
-    elapsed time = 00:00:00, memory = 609.32 (MB).
-    Completing 30% with 199 violations.
-    elapsed time = 00:00:00, memory = 609.32 (MB).
-    Completing 40% with 199 violations.
-    elapsed time = 00:00:01, memory = 610.11 (MB).
-    Completing 50% with 167 violations.
-    elapsed time = 00:00:01, memory = 610.11 (MB).
-    Completing 60% with 167 violations.
-    elapsed time = 00:00:02, memory = 621.40 (MB).
-    Completing 70% with 165 violations.
-    elapsed time = 00:00:02, memory = 631.59 (MB).
-    Completing 80% with 165 violations.
-    elapsed time = 00:00:04, memory = 631.59 (MB).
-    Completing 90% with 173 violations.
-    elapsed time = 00:00:04, memory = 631.59 (MB).
-[INFO DRT-0199]   Number of violations = 173.
+    Completing 10% with 73 violations.
+    elapsed time = 00:00:00, memory = 614.41 (MB).
+    Completing 20% with 73 violations.
+    elapsed time = 00:00:00, memory = 614.41 (MB).
+    Completing 30% with 73 violations.
+    elapsed time = 00:00:00, memory = 633.09 (MB).
+    Completing 40% with 73 violations.
+    elapsed time = 00:00:00, memory = 633.09 (MB).
+    Completing 50% with 58 violations.
+    elapsed time = 00:00:01, memory = 637.75 (MB).
+    Completing 60% with 58 violations.
+    elapsed time = 00:00:01, memory = 637.75 (MB).
+    Completing 70% with 52 violations.
+    elapsed time = 00:00:01, memory = 641.43 (MB).
+    Completing 80% with 52 violations.
+    elapsed time = 00:00:03, memory = 643.73 (MB).
+    Completing 90% with 47 violations.
+    elapsed time = 00:00:03, memory = 643.73 (MB).
+[INFO DRT-0199]   Number of violations = 47.
 Viol/Layer        met1   met2   met3
-Metal Spacing        6      6      4
-Short              116     38      3
-[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:04, memory = 631.59 (MB), peak = 630.48 (MB)
-Total wire length = 11405 um.
+Metal Spacing        3      1      0
+Short               38      2      3
+[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:03, memory = 643.73 (MB), peak = 642.56 (MB)
+Total wire length = 10976 um.
 Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 5133 um.
-Total wire length on LAYER met2 = 3603 um.
-Total wire length on LAYER met3 = 2668 um.
+Total wire length on LAYER met1 = 4918 um.
+Total wire length on LAYER met2 = 3459 um.
+Total wire length on LAYER met3 = 2598 um.
 Total wire length on LAYER met4 = 0 um.
 Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2223.
-Up-via summary (total 2223):
+Total number of vias = 2129.
+Up-via summary (total 2129):
 
 -----------------------
  FR_MASTERSLICE       0
-            li1     994
-           met1    1009
-           met2     220
+            li1     988
+           met1     962
+           met2     179
            met3       0
            met4       0
 -----------------------
-                   2223
+                   2129
 
 
 [INFO DRT-0195] Start 3rd optimization iteration.
-    Completing 10% with 173 violations.
-    elapsed time = 00:00:00, memory = 631.65 (MB).
-    Completing 20% with 173 violations.
-    elapsed time = 00:00:22, memory = 631.65 (MB).
-    Completing 30% with 170 violations.
-    elapsed time = 00:00:23, memory = 631.65 (MB).
-    Completing 40% with 158 violations.
-    elapsed time = 00:00:23, memory = 631.65 (MB).
-[INFO DRT-0199]   Number of violations = 158.
-Viol/Layer        met1   met2   met3
-Metal Spacing        9     13      3
-Short               59     64     10
-[INFO DRT-0267] cpu time = 00:00:23, elapsed time = 00:00:23, memory = 631.68 (MB), peak = 630.61 (MB)
-Total wire length = 11426 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4960 um.
-Total wire length on LAYER met2 = 3592 um.
-Total wire length on LAYER met3 = 2873 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2258.
-Up-via summary (total 2258):
-
------------------------
- FR_MASTERSLICE       0
-            li1     990
-           met1    1027
-           met2     241
-           met3       0
-           met4       0
------------------------
-                   2258
-
-
-[INFO DRT-0195] Start 4th optimization iteration.
-    Completing 10% with 158 violations.
-    elapsed time = 00:00:00, memory = 631.68 (MB).
-    Completing 20% with 158 violations.
-    elapsed time = 00:00:20, memory = 631.68 (MB).
-    Completing 30% with 107 violations.
-    elapsed time = 00:00:20, memory = 631.68 (MB).
-    Completing 40% with 107 violations.
-    elapsed time = 00:00:20, memory = 631.68 (MB).
-[INFO DRT-0199]   Number of violations = 107.
-Viol/Layer        met1   met2   met3
-Metal Spacing        6     11      3
-Short               42     39      6
-[INFO DRT-0267] cpu time = 00:00:21, elapsed time = 00:00:21, memory = 631.68 (MB), peak = 630.61 (MB)
-Total wire length = 11404 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4967 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2850 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2270.
-Up-via summary (total 2270):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1042
-           met2     235
-           met3       0
-           met4       0
------------------------
-                   2270
-
-
-[INFO DRT-0195] Start 5th optimization iteration.
-    Completing 10% with 107 violations.
-    elapsed time = 00:00:00, memory = 631.68 (MB).
-    Completing 20% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 30% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 40% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 50% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 60% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 70% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 80% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-    Completing 90% with 107 violations.
-    elapsed time = 00:00:07, memory = 631.68 (MB).
-[INFO DRT-0199]   Number of violations = 107.
-Viol/Layer        met1   met2   met3
-Metal Spacing        6     11      3
-Short               42     39      6
-[INFO DRT-0267] cpu time = 00:00:07, elapsed time = 00:00:07, memory = 631.68 (MB), peak = 630.61 (MB)
-Total wire length = 11404 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4967 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2850 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2270.
-Up-via summary (total 2270):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1042
-           met2     235
-           met3       0
-           met4       0
------------------------
-                   2270
-
-
-[INFO DRT-0195] Start 6th optimization iteration.
-    Completing 10% with 107 violations.
-    elapsed time = 00:00:00, memory = 631.68 (MB).
-    Completing 20% with 107 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 30% with 106 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 40% with 106 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 50% with 105 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 60% with 105 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 70% with 105 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 80% with 105 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-    Completing 90% with 105 violations.
-    elapsed time = 00:00:04, memory = 651.64 (MB).
-[INFO DRT-0199]   Number of violations = 105.
-Viol/Layer        met1   met2   met3
-Metal Spacing        4     12      5
-Short               34     49      1
-[INFO DRT-0267] cpu time = 00:00:04, elapsed time = 00:00:04, memory = 651.64 (MB), peak = 650.61 (MB)
-Total wire length = 11391 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4945 um.
-Total wire length on LAYER met2 = 3602 um.
-Total wire length on LAYER met3 = 2843 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2275.
-Up-via summary (total 2275):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1040
-           met2     242
-           met3       0
-           met4       0
------------------------
-                   2275
-
-
-[INFO DRT-0195] Start 7th optimization iteration.
-    Completing 10% with 105 violations.
-    elapsed time = 00:00:00, memory = 651.64 (MB).
-    Completing 20% with 105 violations.
-    elapsed time = 00:00:03, memory = 651.64 (MB).
-    Completing 30% with 105 violations.
-    elapsed time = 00:00:03, memory = 651.64 (MB).
-    Completing 40% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-    Completing 50% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-    Completing 60% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-    Completing 70% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-    Completing 80% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-    Completing 90% with 105 violations.
-    elapsed time = 00:00:07, memory = 651.64 (MB).
-[INFO DRT-0199]   Number of violations = 105.
-Viol/Layer        met1   met2   met3
-Metal Spacing        4     12      5
-Short               34     49      1
-[INFO DRT-0267] cpu time = 00:00:08, elapsed time = 00:00:08, memory = 651.64 (MB), peak = 650.61 (MB)
-Total wire length = 11391 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4945 um.
-Total wire length on LAYER met2 = 3602 um.
-Total wire length on LAYER met3 = 2843 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2275.
-Up-via summary (total 2275):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1040
-           met2     242
-           met3       0
-           met4       0
------------------------
-                   2275
-
-
-[INFO DRT-0195] Start 8th optimization iteration.
-    Completing 10% with 105 violations.
-    elapsed time = 00:00:00, memory = 651.64 (MB).
-    Completing 20% with 105 violations.
-    elapsed time = 00:00:01, memory = 651.64 (MB).
-    Completing 30% with 105 violations.
-    elapsed time = 00:00:01, memory = 651.64 (MB).
-    Completing 40% with 105 violations.
-    elapsed time = 00:00:05, memory = 662.94 (MB).
-    Completing 50% with 105 violations.
-    elapsed time = 00:00:05, memory = 662.94 (MB).
-    Completing 60% with 105 violations.
-    elapsed time = 00:00:05, memory = 662.94 (MB).
-    Completing 70% with 104 violations.
-    elapsed time = 00:00:05, memory = 662.94 (MB).
-    Completing 80% with 104 violations.
-    elapsed time = 00:00:06, memory = 662.94 (MB).
-    Completing 90% with 104 violations.
-    elapsed time = 00:00:06, memory = 662.94 (MB).
-[INFO DRT-0199]   Number of violations = 104.
-Viol/Layer        met1   met2   met3
-Metal Spacing        4     12      5
-Short               33     49      1
-[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:06, memory = 662.94 (MB), peak = 661.98 (MB)
-Total wire length = 11389 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4945 um.
-Total wire length on LAYER met2 = 3601 um.
-Total wire length on LAYER met3 = 2842 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2275.
-Up-via summary (total 2275):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1042
-           met2     240
-           met3       0
-           met4       0
------------------------
-                   2275
-
-
-[INFO DRT-0195] Start 9th optimization iteration.
-    Completing 10% with 104 violations.
-    elapsed time = 00:00:00, memory = 662.94 (MB).
-    Completing 20% with 104 violations.
-    elapsed time = 00:00:00, memory = 662.94 (MB).
-    Completing 30% with 103 violations.
-    elapsed time = 00:00:00, memory = 662.94 (MB).
-    Completing 40% with 103 violations.
-    elapsed time = 00:00:01, memory = 663.02 (MB).
-    Completing 50% with 103 violations.
-    elapsed time = 00:00:01, memory = 663.02 (MB).
-    Completing 60% with 103 violations.
-    elapsed time = 00:00:01, memory = 663.02 (MB).
-    Completing 70% with 103 violations.
-    elapsed time = 00:00:01, memory = 663.02 (MB).
-    Completing 80% with 103 violations.
-    elapsed time = 00:00:08, memory = 699.18 (MB).
-    Completing 90% with 103 violations.
-    elapsed time = 00:00:08, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 103.
-Viol/Layer        met1   met2   met3
-Metal Spacing        3     12      5
-Short               33     49      1
-[INFO DRT-0267] cpu time = 00:00:08, elapsed time = 00:00:08, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11390 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4945 um.
-Total wire length on LAYER met2 = 3602 um.
-Total wire length on LAYER met3 = 2842 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2275.
-Up-via summary (total 2275):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1042
-           met2     240
-           met3       0
-           met4       0
------------------------
-                   2275
-
-
-[INFO DRT-0195] Start 10th optimization iteration.
-    Completing 10% with 103 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 103 violations.
-    elapsed time = 00:00:10, memory = 699.18 (MB).
-    Completing 30% with 27 violations.
-    elapsed time = 00:00:10, memory = 699.18 (MB).
-    Completing 40% with 27 violations.
-    elapsed time = 00:00:10, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 27.
-Viol/Layer        met1   met2
-Metal Spacing        4      0
-Short               11     12
-[INFO DRT-0267] cpu time = 00:00:10, elapsed time = 00:00:10, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11427 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4987 um.
-Total wire length on LAYER met2 = 3600 um.
-Total wire length on LAYER met3 = 2838 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2278.
-Up-via summary (total 2278):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1033
-           met2     252
-           met3       0
-           met4       0
------------------------
-                   2278
-
-
-[INFO DRT-0195] Start 11th optimization iteration.
-    Completing 10% with 27 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 27 violations.
-    elapsed time = 00:00:16, memory = 699.18 (MB).
-    Completing 30% with 27 violations.
-    elapsed time = 00:00:16, memory = 699.18 (MB).
-    Completing 40% with 27 violations.
-    elapsed time = 00:00:16, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 27.
-Viol/Layer        met1   met2
-Metal Spacing        4      0
-Short               11     12
-[INFO DRT-0267] cpu time = 00:00:17, elapsed time = 00:00:16, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11427 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4987 um.
-Total wire length on LAYER met2 = 3600 um.
-Total wire length on LAYER met3 = 2838 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2278.
-Up-via summary (total 2278):
-
------------------------
- FR_MASTERSLICE       0
-            li1     993
-           met1    1033
-           met2     252
-           met3       0
-           met4       0
------------------------
-                   2278
-
-
-[INFO DRT-0195] Start 12th optimization iteration.
-    Completing 10% with 27 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 27 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 30% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 40% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 50% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 60% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 70% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 80% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-    Completing 90% with 26 violations.
-    elapsed time = 00:00:06, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 26.
-Viol/Layer        met1   met2
-Short               20      6
-[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:06, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11417 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4985 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2845 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2287.
-Up-via summary (total 2287):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1047
-           met2     246
-           met3       0
-           met4       0
------------------------
-                   2287
-
-
-[INFO DRT-0195] Start 13th optimization iteration.
-    Completing 10% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 30% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 40% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 50% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 60% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 70% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 80% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 90% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 26.
-Viol/Layer        met1   met2
-Short               20      6
-[INFO DRT-0267] cpu time = 00:00:03, elapsed time = 00:00:03, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11417 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4985 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2845 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2287.
-Up-via summary (total 2287):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1047
-           met2     246
-           met3       0
-           met4       0
------------------------
-                   2287
-
-
-[INFO DRT-0195] Start 14th optimization iteration.
-    Completing 10% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 26 violations.
-    elapsed time = 00:00:01, memory = 699.18 (MB).
-    Completing 30% with 26 violations.
-    elapsed time = 00:00:01, memory = 699.18 (MB).
-    Completing 40% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 50% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 60% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 70% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 80% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-    Completing 90% with 26 violations.
-    elapsed time = 00:00:03, memory = 699.18 (MB).
-[INFO DRT-0199]   Number of violations = 26.
-Viol/Layer        met1   met2
-Short               20      6
-[INFO DRT-0267] cpu time = 00:00:03, elapsed time = 00:00:03, memory = 699.18 (MB), peak = 698.23 (MB)
-Total wire length = 11417 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4985 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2845 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2287.
-Up-via summary (total 2287):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1047
-           met2     246
-           met3       0
-           met4       0
------------------------
-                   2287
-
-
-[INFO DRT-0195] Start 15th optimization iteration.
-    Completing 10% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 20% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 30% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.18 (MB).
-    Completing 40% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-    Completing 50% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-    Completing 60% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-    Completing 70% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-    Completing 80% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-    Completing 90% with 26 violations.
-    elapsed time = 00:00:04, memory = 699.56 (MB).
-[INFO DRT-0199]   Number of violations = 26.
-Viol/Layer        met1   met2
-Short               20      6
-[INFO DRT-0267] cpu time = 00:00:04, elapsed time = 00:00:04, memory = 699.56 (MB), peak = 698.61 (MB)
-Total wire length = 11417 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4985 um.
-Total wire length on LAYER met2 = 3586 um.
-Total wire length on LAYER met3 = 2845 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2287.
-Up-via summary (total 2287):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1047
-           met2     246
-           met3       0
-           met4       0
------------------------
-                   2287
-
-
-[INFO DRT-0195] Start 16th optimization iteration.
-    Completing 10% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.56 (MB).
-    Completing 20% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.56 (MB).
-    Completing 30% with 26 violations.
-    elapsed time = 00:00:00, memory = 699.56 (MB).
-    Completing 40% with 26 violations.
-    elapsed time = 00:00:01, memory = 707.24 (MB).
-    Completing 50% with 26 violations.
-    elapsed time = 00:00:01, memory = 707.24 (MB).
-    Completing 60% with 26 violations.
-    elapsed time = 00:00:01, memory = 707.24 (MB).
-    Completing 70% with 26 violations.
-    elapsed time = 00:00:01, memory = 707.24 (MB).
-    Completing 80% with 26 violations.
-    elapsed time = 00:00:03, memory = 707.57 (MB).
-    Completing 90% with 16 violations.
-    elapsed time = 00:00:03, memory = 707.57 (MB).
-[INFO DRT-0199]   Number of violations = 16.
-Viol/Layer        met1   met2
-Metal Spacing        1      0
-Short               11      4
-[INFO DRT-0267] cpu time = 00:00:03, elapsed time = 00:00:03, memory = 707.57 (MB), peak = 706.61 (MB)
-Total wire length = 11404 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4972 um.
-Total wire length on LAYER met2 = 3582 um.
-Total wire length on LAYER met3 = 2849 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2296.
-Up-via summary (total 2296):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1058
-           met2     244
-           met3       0
-           met4       0
------------------------
-                   2296
-
-
-[INFO DRT-0195] Start 17th optimization iteration.
-    Completing 10% with 16 violations.
-    elapsed time = 00:00:00, memory = 707.57 (MB).
-    Completing 20% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 30% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 40% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 50% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 60% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 70% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 80% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-    Completing 90% with 16 violations.
-    elapsed time = 00:00:04, memory = 707.57 (MB).
-[INFO DRT-0199]   Number of violations = 16.
-Viol/Layer        met1   met2
-Metal Spacing        1      0
-Short               11      4
-[INFO DRT-0267] cpu time = 00:00:04, elapsed time = 00:00:04, memory = 707.57 (MB), peak = 706.61 (MB)
-Total wire length = 11404 um.
-Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4972 um.
-Total wire length on LAYER met2 = 3582 um.
-Total wire length on LAYER met3 = 2849 um.
-Total wire length on LAYER met4 = 0 um.
-Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2296.
-Up-via summary (total 2296):
-
------------------------
- FR_MASTERSLICE       0
-            li1     994
-           met1    1058
-           met2     244
-           met3       0
-           met4       0
------------------------
-                   2296
-
-
-[INFO DRT-0195] Start 18th optimization iteration.
-    Completing 10% with 16 violations.
-    elapsed time = 00:00:00, memory = 707.57 (MB).
-    Completing 20% with 16 violations.
-    elapsed time = 00:00:05, memory = 707.57 (MB).
-    Completing 30% with 6 violations.
-    elapsed time = 00:00:05, memory = 707.57 (MB).
-    Completing 40% with 6 violations.
-    elapsed time = 00:00:05, memory = 707.57 (MB).
-[INFO DRT-0199]   Number of violations = 6.
+    Completing 10% with 47 violations.
+    elapsed time = 00:00:00, memory = 653.68 (MB).
+    Completing 20% with 47 violations.
+    elapsed time = 00:00:04, memory = 655.83 (MB).
+    Completing 30% with 8 violations.
+    elapsed time = 00:00:05, memory = 655.83 (MB).
+    Completing 40% with 2 violations.
+    elapsed time = 00:00:05, memory = 655.83 (MB).
+[INFO DRT-0199]   Number of violations = 2.
 Viol/Layer        met1
-Metal Spacing        1
-Short                5
-[INFO DRT-0267] cpu time = 00:00:05, elapsed time = 00:00:05, memory = 707.57 (MB), peak = 706.61 (MB)
-Total wire length = 11453 um.
+Metal Spacing        2
+[INFO DRT-0267] cpu time = 00:00:06, elapsed time = 00:00:05, memory = 655.83 (MB), peak = 664.56 (MB)
+Total wire length = 10945 um.
 Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 5018 um.
-Total wire length on LAYER met2 = 3585 um.
-Total wire length on LAYER met3 = 2849 um.
+Total wire length on LAYER met1 = 4695 um.
+Total wire length on LAYER met2 = 3448 um.
+Total wire length on LAYER met3 = 2801 um.
 Total wire length on LAYER met4 = 0 um.
 Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2305.
-Up-via summary (total 2305):
+Total number of vias = 2170.
+Up-via summary (total 2170):
 
 -----------------------
  FR_MASTERSLICE       0
-            li1     994
-           met1    1065
-           met2     246
+            li1     984
+           met1     971
+           met2     215
            met3       0
            met4       0
 -----------------------
-                   2305
+                   2170
 
 
-[INFO DRT-0195] Start 19th stubborn tiles iteration.
-    Completing 10% with 6 violations.
-    elapsed time = 00:00:02, memory = 903.92 (MB).
-    Completing 20% with 6 violations.
-    elapsed time = 00:00:02, memory = 939.35 (MB).
-    Completing 30% with 6 violations.
-    elapsed time = 00:00:03, memory = 1007.63 (MB).
-    Completing 40% with 6 violations.
-    elapsed time = 00:00:04, memory = 1098.46 (MB).
-    Completing 50% with 6 violations.
-    elapsed time = 00:00:06, memory = 1231.27 (MB).
-    Completing 60% with 6 violations.
-    elapsed time = 00:00:08, memory = 1295.28 (MB).
-    Completing 70% with 6 violations.
-    elapsed time = 00:00:10, memory = 1418.84 (MB).
-    Completing 80% with 6 violations.
-    elapsed time = 00:00:12, memory = 1431.38 (MB).
-    Completing 90% with 6 violations.
-    elapsed time = 00:00:17, memory = 1418.26 (MB).
+[INFO DRT-0195] Start 4th stubborn tiles iteration.
+    Completing 10% with 2 violations.
+    elapsed time = 00:00:00, memory = 892.89 (MB).
+    Completing 20% with 2 violations.
+    elapsed time = 00:00:01, memory = 934.14 (MB).
+    Completing 30% with 2 violations.
+    elapsed time = 00:00:01, memory = 1100.11 (MB).
+    Completing 40% with 2 violations.
+    elapsed time = 00:00:01, memory = 1117.50 (MB).
+    Completing 50% with 2 violations.
+    elapsed time = 00:00:02, memory = 1160.88 (MB).
+    Completing 60% with 2 violations.
+    elapsed time = 00:00:02, memory = 1246.21 (MB).
+    Completing 70% with 2 violations.
+    elapsed time = 00:00:02, memory = 1270.33 (MB).
+    Completing 80% with 2 violations.
+    elapsed time = 00:00:03, memory = 1359.35 (MB).
+    Completing 90% with 2 violations.
+    elapsed time = 00:00:03, memory = 1411.08 (MB).
     Completing 100% with 0 violations.
-    elapsed time = 00:00:27, memory = 1401.40 (MB).
+    elapsed time = 00:00:04, memory = 1415.62 (MB).
 [INFO DRT-0199]   Number of violations = 0.
-[INFO DRT-0267] cpu time = 00:03:20, elapsed time = 00:00:27, memory = 1401.40 (MB), peak = 1448.75 (MB)
-Total wire length = 11423 um.
+[INFO DRT-0267] cpu time = 00:00:42, elapsed time = 00:00:04, memory = 1415.62 (MB), peak = 1415.29 (MB)
+Total wire length = 10939 um.
 Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4981 um.
-Total wire length on LAYER met2 = 3588 um.
-Total wire length on LAYER met3 = 2853 um.
+Total wire length on LAYER met1 = 4691 um.
+Total wire length on LAYER met2 = 3450 um.
+Total wire length on LAYER met3 = 2798 um.
 Total wire length on LAYER met4 = 0 um.
 Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2294.
-Up-via summary (total 2294):
+Total number of vias = 2166.
+Up-via summary (total 2166):
 
 -----------------------
  FR_MASTERSLICE       0
-            li1     993
-           met1    1056
-           met2     245
+            li1     984
+           met1     970
+           met2     212
            met3       0
            met4       0
 -----------------------
-                   2294
+                   2166
 
 
 [INFO DRT-0198] Complete detail routing.
-Total wire length = 11423 um.
+Total wire length = 10939 um.
 Total wire length on LAYER li1 = 0 um.
-Total wire length on LAYER met1 = 4981 um.
-Total wire length on LAYER met2 = 3588 um.
-Total wire length on LAYER met3 = 2853 um.
+Total wire length on LAYER met1 = 4691 um.
+Total wire length on LAYER met2 = 3450 um.
+Total wire length on LAYER met3 = 2798 um.
 Total wire length on LAYER met4 = 0 um.
 Total wire length on LAYER met5 = 0 um.
-Total number of vias = 2294.
-Up-via summary (total 2294):
+Total number of vias = 2166.
+Up-via summary (total 2166):
 
 -----------------------
  FR_MASTERSLICE       0
-            li1     993
-           met1    1056
-           met2     245
+            li1     984
+           met1     970
+           met2     212
            met3       0
            met4       0
 -----------------------
-                   2294
+                   2166
 
 
-[INFO DRT-0267] cpu time = 00:06:02, elapsed time = 00:03:04, memory = 1401.65 (MB), peak = 1448.75 (MB)
-
+[INFO DRT-0267] cpu time = 00:01:06, elapsed time = 00:00:24, memory = 1415.81 (MB), peak = 1415.29 (MB)
 [INFO DRT-0180] Post processing.
-[INFO GRT-0237] Net N0047 global route wire length: 0.00um
-[INFO GRT-0240] Net N0047 detailed route wire length: 6.86um
-	Layer met1 :  3.68um
-	Layer met2 :  3.18um
+[INFO GRT-0237] Net N0047 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0047 detailed route wire length: 23.30um
+	Layer met1 :  7.72um
+	Layer met2 : 11.44um
+	Layer met3 :  4.14um
 [INFO GRT-0237] Net N0048 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0048 detailed route wire length: 6.76um
-	Layer met1 :  5.98um
+[INFO GRT-0240] Net N0048 detailed route wire length: 18.00um
+	Layer met1 :  6.22um
+	Layer met2 : 11.78um
+[INFO GRT-0237] Net N0049 global route wire length: 34.50um
+	Layer met1 : 34.50um
+[INFO GRT-0240] Net N0049 detailed route wire length: 31.78um
+	Layer met1 : 27.60um
+	Layer met2 :  4.18um
+[INFO GRT-0237] Net N0054 global route wire length: 27.60um
+	Layer met1 : 27.60um
+[INFO GRT-0240] Net N0054 detailed route wire length: 13.54um
+	Layer met1 : 12.76um
 	Layer met2 :  0.78um
-[INFO GRT-0237] Net N0049 global route wire length: 27.60um
-	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0049 detailed route wire length: 28.30um
-	Layer met1 : 22.76um
-	Layer met2 :  5.54um
-[INFO GRT-0237] Net N0054 global route wire length: 193.20um
-	Layer met1 : 75.90um
-	Layer met2 : 55.20um
-	Layer met3 : 62.10um
-[INFO GRT-0240] Net N0054 detailed route wire length: 171.79um
-	Layer met1 : 34.70um
-	Layer met2 : 62.85um
-	Layer met3 : 74.24um
-[INFO GRT-0237] Net N0059 global route wire length: 20.70um
-	Layer met1 : 20.70um
-[INFO GRT-0240] Net N0059 detailed route wire length: 19.12um
-	Layer met1 : 13.44um
-	Layer met2 :  5.68um
-[INFO GRT-0237] Net N0060 global route wire length: 241.50um
-	Layer met2 : 82.80um
-	Layer met3 : 158.70um
-[INFO GRT-0240] Net N0060 detailed route wire length: 205.37um
-	Layer met1 : 26.56um
-	Layer met2 : 63.41um
-	Layer met3 : 115.40um
-[INFO GRT-0237] Net N0068 global route wire length: 82.80um
-	Layer met1 : 27.60um
+[INFO GRT-0237] Net N0059 global route wire length: 200.10um
+	Layer met1 : 13.80um
+	Layer met2 : 48.30um
+	Layer met3 : 138.00um
+[INFO GRT-0240] Net N0059 detailed route wire length: 166.36um
+	Layer met2 : 45.38um
+	Layer met3 : 120.98um
+[INFO GRT-0237] Net N0060 global route wire length: 0.00um
+[INFO GRT-0240] Net N0060 detailed route wire length: 8.02um
+	Layer met1 :  6.44um
+	Layer met2 :  1.58um
+[INFO GRT-0237] Net N0068 global route wire length: 27.60um
 	Layer met2 : 27.60um
-	Layer met3 : 27.60um
-[INFO GRT-0240] Net N0068 detailed route wire length: 23.43um
-	Layer met2 : 22.85um
-	Layer met3 :  0.58um
-[INFO GRT-0237] Net N0069 global route wire length: 89.70um
+[INFO GRT-0240] Net N0068 detailed route wire length: 26.19um
+	Layer met1 :  2.30um
+	Layer met2 : 21.93um
+	Layer met3 :  1.96um
+[INFO GRT-0237] Net N0069 global route wire length: 55.20um
 	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0069 detailed route wire length: 29.67um
-	Layer met1 :  7.82um
-	Layer met2 : 19.89um
-	Layer met3 :  1.96um
-[INFO GRT-0237] Net N0070 global route wire length: 96.60um
-	Layer met1 : 34.50um
+	Layer met3 : 13.80um
+[INFO GRT-0240] Net N0069 detailed route wire length: 37.95um
+	Layer met1 :  8.74um
+	Layer met2 : 20.35um
+	Layer met3 :  8.86um
+[INFO GRT-0237] Net N0070 global route wire length: 55.20um
+	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0070 detailed route wire length: 23.03um
-	Layer met1 :  1.84um
-	Layer met2 : 18.77um
-	Layer met3 :  2.42um
+	Layer met3 : 13.80um
+[INFO GRT-0240] Net N0070 detailed route wire length: 34.99um
+	Layer met1 :  7.82um
+	Layer met2 : 17.85um
+	Layer met3 :  9.32um
 [INFO GRT-0237] Net N0071 global route wire length: 20.70um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0071 detailed route wire length: 57.65um
-	Layer met1 : 21.14um
-	Layer met2 : 16.61um
-	Layer met3 : 19.90um
-[INFO GRT-0237] Net N0072 global route wire length: 27.60um
-	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0072 detailed route wire length: 26.46um
-	Layer met1 : 20.92um
-	Layer met2 :  5.54um
-[INFO GRT-0237] Net N0073 global route wire length: 103.50um
-	Layer met1 : 62.10um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0073 detailed route wire length: 85.12um
-	Layer met1 : 48.30um
-	Layer met2 : 36.82um
-[INFO GRT-0237] Net N0074 global route wire length: 82.80um
-	Layer met2 : 27.60um
-	Layer met3 : 55.20um
-[INFO GRT-0240] Net N0074 detailed route wire length: 59.72um
-	Layer met2 : 15.10um
-	Layer met3 : 44.62um
-[INFO GRT-0237] Net N0075 global route wire length: 89.70um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0075 detailed route wire length: 63.97um
-	Layer met1 :  6.04um
-	Layer met2 : 20.20um
-	Layer met3 : 37.72um
-[INFO GRT-0237] Net N0080 global route wire length: 62.10um
+[INFO GRT-0240] Net N0071 detailed route wire length: 17.31um
+	Layer met1 :  0.92um
+	Layer met2 : 15.81um
+	Layer met3 :  0.58um
+[INFO GRT-0237] Net N0072 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0072 detailed route wire length: 15.26um
+	Layer met1 : 11.96um
+	Layer met2 :  3.30um
+[INFO GRT-0237] Net N0073 global route wire length: 41.40um
+	Layer met1 : 41.40um
+[INFO GRT-0240] Net N0073 detailed route wire length: 42.51um
+	Layer met1 : 33.17um
+	Layer met2 :  7.26um
+	Layer met3 :  2.07um
+[INFO GRT-0237] Net N0074 global route wire length: 34.50um
 	Layer met1 : 34.50um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0080 detailed route wire length: 68.26um
-	Layer met1 : 36.54um
-	Layer met2 : 31.72um
-[INFO GRT-0237] Net N0205 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0205 detailed route wire length: 4.92um
-	Layer met1 :  4.48um
-	Layer met2 :  0.44um
+[INFO GRT-0240] Net N0074 detailed route wire length: 39.28um
+	Layer met1 : 27.48um
+	Layer met2 : 11.80um
+[INFO GRT-0237] Net N0075 global route wire length: 27.60um
+	Layer met1 : 27.60um
+[INFO GRT-0240] Net N0075 detailed route wire length: 28.98um
+	Layer met1 : 21.96um
+	Layer met2 :  7.02um
+[INFO GRT-0237] Net N0080 global route wire length: 89.70um
+	Layer met1 : 27.60um
+	Layer met3 : 62.10um
+[INFO GRT-0240] Net N0080 detailed route wire length: 69.66um
+	Layer met1 : 12.88um
+	Layer met2 :  1.12um
+	Layer met3 : 55.66um
+[INFO GRT-0237] Net N0205 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0205 detailed route wire length: 24.68um
+	Layer met1 : 11.87um
+	Layer met2 : 12.82um
 [INFO GRT-0237] Net N0206 global route wire length: 13.80um
 	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0206 detailed route wire length: 11.55um
-	Layer met2 :  0.85um
+[INFO GRT-0240] Net N0206 detailed route wire length: 10.87um
+	Layer met2 :  0.17um
 	Layer met3 : 10.70um
 [INFO GRT-0237] Net N0207 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0207 detailed route wire length: 18.59um
+[INFO GRT-0240] Net N0207 detailed route wire length: 18.01um
 	Layer met1 :  5.52um
-	Layer met2 :  7.89um
+	Layer met2 :  7.31um
 	Layer met3 :  5.18um
 [INFO GRT-0237] Net N0208 global route wire length: 34.50um
 	Layer met1 : 20.70um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0208 detailed route wire length: 25.69um
-	Layer met1 : 10.34um
-	Layer met2 :  8.79um
-	Layer met3 :  6.56um
+[INFO GRT-0240] Net N0208 detailed route wire length: 22.05um
+	Layer met1 : 10.12um
+	Layer met2 :  6.29um
+	Layer met3 :  5.64um
 [INFO GRT-0237] Net N0209 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0209 detailed route wire length: 22.91um
-	Layer met1 : 12.74um
-	Layer met2 :  9.13um
-	Layer met3 :  1.04um
+[INFO GRT-0240] Net N0209 detailed route wire length: 20.73um
+	Layer met1 :  6.66um
+	Layer met2 :  9.35um
+	Layer met3 :  4.72um
 [INFO GRT-0237] Net N0210 global route wire length: 34.50um
 	Layer met2 : 13.80um
 	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0210 detailed route wire length: 23.41um
-	Layer met2 :  6.97um
-	Layer met3 : 16.44um
+	Layer met2 :  7.65um
+	Layer met3 : 15.76um
 [INFO GRT-0237] Net N0211 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0211 detailed route wire length: 20.73um
-	Layer met1 : 11.48um
-	Layer met2 :  8.67um
-	Layer met3 :  0.58um
+[INFO GRT-0240] Net N0211 detailed route wire length: 23.01um
+	Layer met1 :  8.14um
+	Layer met2 : 10.61um
+	Layer met3 :  4.26um
 [INFO GRT-0237] Net N0212 global route wire length: 34.50um
 	Layer met2 : 13.80um
 	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0212 detailed route wire length: 24.77um
-	Layer met1 :  2.30um
+	Layer met1 :  1.38um
 	Layer met2 :  9.01um
-	Layer met3 : 13.46um
-[INFO GRT-0237] Net N0213 global route wire length: 62.10um
-	Layer met1 : 34.50um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0213 detailed route wire length: 28.87um
-	Layer met1 :  3.56um
-	Layer met2 : 13.23um
-	Layer met3 : 12.08um
-[INFO GRT-0237] Net N0214 global route wire length: 75.90um
-	Layer met1 : 20.70um
+	Layer met3 : 14.38um
+[INFO GRT-0237] Net N0213 global route wire length: 55.20um
+	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-	Layer met3 : 34.50um
+	Layer met3 : 20.70um
+[INFO GRT-0240] Net N0213 detailed route wire length: 39.67um
+	Layer met1 :  8.96um
+	Layer met2 : 12.19um
+	Layer met3 : 18.52um
+[INFO GRT-0237] Net N0214 global route wire length: 41.40um
+	Layer met2 : 20.70um
+	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0214 detailed route wire length: 26.13um
 	Layer met1 :  0.92um
-	Layer met2 :  9.69um
-	Layer met3 : 15.52um
-[INFO GRT-0237] Net N0215 global route wire length: 34.50um
+	Layer met2 : 10.37um
+	Layer met3 : 14.84um
+[INFO GRT-0237] Net N0215 global route wire length: 82.80um
+	Layer met1 : 27.60um
 	Layer met2 : 20.70um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0215 detailed route wire length: 24.03um
-	Layer met1 :  5.86um
-	Layer met2 : 12.99um
-	Layer met3 :  5.18um
-[INFO GRT-0237] Net N0216 global route wire length: 48.30um
-	Layer met1 : 13.80um
+	Layer met3 : 34.50um
+[INFO GRT-0240] Net N0215 detailed route wire length: 23.11um
+	Layer met1 :  2.76um
+	Layer met2 : 12.41um
+	Layer met3 :  7.94um
+[INFO GRT-0237] Net N0216 global route wire length: 41.40um
 	Layer met2 : 20.70um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0216 detailed route wire length: 34.85um
-	Layer met1 :  1.38um
-	Layer met2 : 11.97um
-	Layer met3 : 21.50um
+	Layer met3 : 20.70um
+[INFO GRT-0240] Net N0216 detailed route wire length: 27.49um
+	Layer met1 :  0.46um
+	Layer met2 : 11.73um
+	Layer met3 : 15.30um
 [INFO GRT-0237] Net N0217 global route wire length: 20.70um
 	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0217 detailed route wire length: 16.27um
-	Layer met2 :  0.51um
+[INFO GRT-0240] Net N0217 detailed route wire length: 15.93um
+	Layer met2 :  0.17um
 	Layer met3 : 15.76um
 [INFO GRT-0237] Net N0218 global route wire length: 34.50um
-	Layer met2 : 20.70um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0218 detailed route wire length: 36.29um
-	Layer met1 :  5.28um
-	Layer met2 : 14.23um
-	Layer met3 : 16.78um
-[INFO GRT-0237] Net N0219 global route wire length: 48.30um
 	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0219 detailed route wire length: 30.21um
-	Layer met1 : 10.92um
-	Layer met2 : 14.11um
-	Layer met3 :  5.18um
+[INFO GRT-0240] Net N0218 detailed route wire length: 25.39um
+	Layer met1 :  7.82um
+	Layer met2 : 14.23um
+	Layer met3 :  3.34um
+[INFO GRT-0237] Net N0219 global route wire length: 41.40um
+	Layer met1 : 20.70um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0219 detailed route wire length: 31.47um
+	Layer met1 :  5.06um
+	Layer met2 : 16.17um
+	Layer met3 : 10.24um
 [INFO GRT-0237] Net N0220 global route wire length: 34.50um
 	Layer met2 : 20.70um
 	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0220 detailed route wire length: 26.17um
-	Layer met1 :  5.74um
-	Layer met2 : 14.79um
-	Layer met3 :  5.64um
+[INFO GRT-0240] Net N0220 detailed route wire length: 26.75um
+	Layer met1 :  0.46um
+	Layer met2 : 15.59um
+	Layer met3 : 10.70um
 [INFO GRT-0237] Net N0221 global route wire length: 41.40um
 	Layer met2 : 20.70um
 	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0221 detailed route wire length: 31.13um
-	Layer met1 :  0.46um
-	Layer met2 : 14.45um
-	Layer met3 : 16.22um
+[INFO GRT-0240] Net N0221 detailed route wire length: 30.21um
+	Layer met1 :  1.38um
+	Layer met2 : 14.91um
+	Layer met3 : 13.92um
 [INFO GRT-0237] Net N0222 global route wire length: 34.50um
 	Layer met2 : 20.70um
 	Layer met3 : 13.80um
 [INFO GRT-0240] Net N0222 detailed route wire length: 27.19um
-	Layer met1 :  0.92um
-	Layer met2 : 15.81um
-	Layer met3 : 10.46um
+	Layer met1 :  9.66um
+	Layer met2 : 16.49um
+	Layer met3 :  1.04um
 [INFO GRT-0237] Net N0223 global route wire length: 41.40um
 	Layer met2 : 20.70um
 	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0223 detailed route wire length: 31.57um
-	Layer met2 : 11.73um
-	Layer met3 : 19.84um
+	Layer met2 : 13.77um
+	Layer met3 : 17.80um
 [INFO GRT-0237] Net N0224 global route wire length: 41.40um
 	Layer met1 : 13.80um
 	Layer met2 : 27.60um
 [INFO GRT-0240] Net N0224 detailed route wire length: 29.47um
-	Layer met1 :  3.68um
-	Layer met2 : 17.63um
-	Layer met3 :  8.16um
+	Layer met1 :  7.92um
+	Layer met2 : 17.29um
+	Layer met3 :  4.26um
 [INFO GRT-0237] Net N0225 global route wire length: 48.30um
 	Layer met2 : 27.60um
 	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0225 detailed route wire length: 32.99um
-	Layer met1 :  7.30um
-	Layer met2 : 14.79um
-	Layer met3 : 10.90um
-[INFO GRT-0237] Net N0226 global route wire length: 62.10um
-	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0225 detailed route wire length: 32.93um
+	Layer met1 :  2.30um
+	Layer met2 : 15.81um
+	Layer met3 : 14.82um
+[INFO GRT-0237] Net N0226 global route wire length: 41.40um
 	Layer met2 : 27.60um
-	Layer met3 : 20.70um
+	Layer met3 : 13.80um
 [INFO GRT-0240] Net N0226 detailed route wire length: 29.91um
-	Layer met1 :  9.42um
-	Layer met2 : 18.99um
-	Layer met3 :  1.50um
+	Layer met1 :  4.14um
+	Layer met2 : 17.85um
+	Layer met3 :  7.92um
 [INFO GRT-0237] Net N0227 global route wire length: 48.30um
 	Layer met2 : 27.60um
 	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0227 detailed route wire length: 36.57um
-	Layer met1 : 11.04um
-	Layer met2 : 20.35um
-	Layer met3 :  5.18um
+[INFO GRT-0240] Net N0227 detailed route wire length: 34.29um
+	Layer met1 : 10.58um
+	Layer met2 : 17.85um
+	Layer met3 :  5.86um
 [INFO GRT-0237] Net N0228 global route wire length: 13.80um
 	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0228 detailed route wire length: 12.91um
-	Layer met2 :  2.21um
+[INFO GRT-0240] Net N0228 detailed route wire length: 12.23um
+	Layer met2 :  1.53um
 	Layer met3 : 10.70um
 [INFO GRT-0237] Net N0229 global route wire length: 34.50um
 	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0229 detailed route wire length: 31.61um
-	Layer met1 :  4.60um
-	Layer met2 : 18.87um
-	Layer met3 :  8.14um
+[INFO GRT-0240] Net N0229 detailed route wire length: 31.27um
+	Layer met1 :  7.36um
+	Layer met2 : 20.57um
+	Layer met3 :  3.34um
 [INFO GRT-0237] Net N0230 global route wire length: 41.40um
+	Layer met1 : 20.70um
 	Layer met2 : 20.70um
-	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0230 detailed route wire length: 37.11um
-	Layer met1 :  4.14um
-	Layer met2 : 15.81um
-	Layer met3 : 17.16um
+[INFO GRT-0240] Net N0230 detailed route wire length: 37.83um
+	Layer met2 : 21.15um
+	Layer met3 : 16.68um
 [INFO GRT-0237] Net N0231 global route wire length: 20.70um
 	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0231 detailed route wire length: 16.61um
@@ -1352,38 +709,36 @@ Up-via summary (total 2294):
 [INFO GRT-0237] Net N0234 global route wire length: 27.60um
 	Layer met2 : 13.80um
 	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0234 detailed route wire length: 16.31um
-	Layer met2 :  5.61um
+[INFO GRT-0240] Net N0234 detailed route wire length: 14.95um
+	Layer met2 :  4.25um
 	Layer met3 : 10.70um
 [INFO GRT-0237] Net N0235 global route wire length: 34.50um
 	Layer met2 : 13.80um
 	Layer met3 : 20.70um
-[INFO GRT-0240] Net N0235 detailed route wire length: 20.25um
-	Layer met1 :  4.60um
-	Layer met2 :  4.03um
-	Layer met3 : 11.62um
+[INFO GRT-0240] Net N0235 detailed route wire length: 19.33um
+	Layer met1 :  0.92um
+	Layer met2 :  3.57um
+	Layer met3 : 14.84um
 [INFO GRT-0237] Net N0236 global route wire length: 27.60um
 	Layer met2 : 13.80um
 	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0236 detailed route wire length: 18.01um
-	Layer met1 :  0.92um
-	Layer met2 :  8.69um
-	Layer met3 :  8.40um
+[INFO GRT-0240] Net N0236 detailed route wire length: 16.31um
+	Layer met1 :  0.46um
+	Layer met2 :  6.07um
+	Layer met3 :  9.78um
 [INFO GRT-0237] Net N0237 global route wire length: 34.50um
 	Layer met1 : 20.70um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0237 detailed route wire length: 30.57um
-	Layer met1 :  4.94um
-	Layer met2 :  5.51um
-	Layer met3 : 20.12um
-[INFO GRT-0237] Net N0238 global route wire length: 96.60um
-	Layer met1 : 27.60um
+[INFO GRT-0240] Net N0237 detailed route wire length: 22.39um
+	Layer met1 :  9.66um
+	Layer met2 :  6.63um
+	Layer met3 :  6.10um
+[INFO GRT-0237] Net N0238 global route wire length: 41.40um
 	Layer met2 : 41.40um
-	Layer met3 : 27.60um
-[INFO GRT-0240] Net N0238 detailed route wire length: 44.75um
-	Layer met1 : 12.86um
-	Layer met2 : 25.33um
-	Layer met3 :  6.56um
+[INFO GRT-0240] Net N0238 detailed route wire length: 35.55um
+	Layer met1 :  6.44um
+	Layer met2 : 26.69um
+	Layer met3 :  2.42um
 [INFO GRT-0237] Net N0290 global route wire length: 0.00um
 [INFO GRT-0240] Net N0290 detailed route wire length: 1.44um
 	Layer met1 :  0.69um
@@ -1391,498 +746,477 @@ Up-via summary (total 2294):
 	Layer met3 :  0.58um
 [INFO GRT-0237] Net N0291 global route wire length: 27.60um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0291 detailed route wire length: 23.31um
-	Layer met1 :  9.52um
-	Layer met2 : 12.75um
-	Layer met3 :  1.04um
+[INFO GRT-0240] Net N0291 detailed route wire length: 22.77um
+	Layer met1 :  4.78um
+	Layer met2 : 16.49um
+	Layer met3 :  1.50um
 [INFO GRT-0237] Net N0292 global route wire length: 27.60um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0292 detailed route wire length: 20.12um
-	Layer met1 :  4.29um
-	Layer met2 : 15.25um
+[INFO GRT-0240] Net N0292 detailed route wire length: 17.68um
+	Layer met1 :  2.02um
+	Layer met2 : 15.08um
 	Layer met3 :  0.58um
 [INFO GRT-0237] Net N0293 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0293 detailed route wire length: 11.93um
-	Layer met1 :  2.05um
-	Layer met2 :  9.55um
-	Layer met3 :  0.33um
+[INFO GRT-0240] Net N0293 detailed route wire length: 11.20um
+	Layer met1 :  1.15um
+	Layer met2 :  9.01um
+	Layer met3 :  1.04um
 [INFO GRT-0237] Net N0296 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0296 detailed route wire length: 27.38um
-	Layer met1 : 21.84um
-	Layer met2 :  5.54um
-[INFO GRT-0237] Net N0297 global route wire length: 138.00um
-	Layer met1 : 96.60um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0297 detailed route wire length: 111.81um
-	Layer met1 : 42.42um
-	Layer met2 : 46.85um
-	Layer met3 : 22.54um
-[INFO GRT-0237] Net N0000 global route wire length: 207.00um
+[INFO GRT-0240] Net N0296 detailed route wire length: 20.70um
+	Layer met1 : 20.14um
+	Layer met2 :  0.56um
+[INFO GRT-0237] Net N0297 global route wire length: 82.80um
+	Layer met1 : 82.80um
+[INFO GRT-0240] Net N0297 detailed route wire length: 54.02um
+	Layer met1 : 53.24um
+	Layer met2 :  0.78um
+[INFO GRT-0237] Net N0000 global route wire length: 186.30um
 	Layer met1 : 117.30um
-	Layer met2 : 89.70um
-[INFO GRT-0240] Net N0000 detailed route wire length: 128.38um
-	Layer met1 : 78.96um
-	Layer met2 : 49.42um
-[INFO GRT-0237] Net N0001 global route wire length: 227.70um
-	Layer met1 : 89.70um
-	Layer met2 : 124.20um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0001 detailed route wire length: 152.78um
-	Layer met1 : 91.58um
-	Layer met2 : 61.20um
-[INFO GRT-0237] Net N0002 global route wire length: 124.20um
-	Layer met1 : 62.10um
-	Layer met2 : 62.10um
-[INFO GRT-0240] Net N0002 detailed route wire length: 86.44um
-	Layer met1 : 29.20um
-	Layer met2 : 42.52um
-	Layer met3 : 14.72um
-[INFO GRT-0237] Net N0003 global route wire length: 62.10um
-	Layer met1 : 48.30um
+	Layer met2 : 69.00um
+[INFO GRT-0240] Net N0000 detailed route wire length: 129.30um
+	Layer met1 : 57.46um
+	Layer met2 : 49.30um
+	Layer met3 : 22.54um
+[INFO GRT-0237] Net N0001 global route wire length: 213.90um
+	Layer met1 : 117.30um
+	Layer met2 : 96.60um
+[INFO GRT-0240] Net N0001 detailed route wire length: 137.30um
+	Layer met1 : 74.94um
+	Layer met2 : 62.36um
+[INFO GRT-0237] Net N0002 global route wire length: 69.00um
+	Layer met1 : 41.40um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0002 detailed route wire length: 57.79um
+	Layer met1 : 21.60um
+	Layer met2 : 23.31um
+	Layer met3 : 12.88um
+[INFO GRT-0237] Net N0003 global route wire length: 55.20um
+	Layer met1 : 41.40um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0003 detailed route wire length: 39.06um
-	Layer met1 : 20.58um
-	Layer met2 : 10.20um
-	Layer met3 :  8.28um
-[INFO GRT-0237] Net N0004 global route wire length: 82.80um
-	Layer met1 : 48.30um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0004 detailed route wire length: 65.68um
-	Layer met1 : 44.14um
-	Layer met2 : 21.54um
-[INFO GRT-0237] Net N0005 global route wire length: 75.90um
+[INFO GRT-0240] Net N0003 detailed route wire length: 40.36um
+	Layer met1 : 32.42um
+	Layer met2 :  7.94um
+[INFO GRT-0237] Net N0004 global route wire length: 69.00um
+	Layer met1 : 41.40um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0004 detailed route wire length: 51.82um
+	Layer met1 : 34.82um
+	Layer met2 : 17.00um
+[INFO GRT-0237] Net N0005 global route wire length: 103.50um
+	Layer met1 : 75.90um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0005 detailed route wire length: 72.14um
+	Layer met1 : 44.94um
+	Layer met2 : 27.20um
+[INFO GRT-0237] Net N0006 global route wire length: 75.90um
 	Layer met1 : 48.30um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0005 detailed route wire length: 59.88um
-	Layer met1 : 13.80um
-	Layer met2 : 17.34um
-	Layer met3 : 28.74um
-[INFO GRT-0237] Net N0006 global route wire length: 82.80um
+[INFO GRT-0240] Net N0006 detailed route wire length: 57.52um
+	Layer met1 : 27.02um
+	Layer met2 : 21.76um
+	Layer met3 :  8.74um
+[INFO GRT-0237] Net N0007 global route wire length: 89.70um
 	Layer met1 : 55.20um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0006 detailed route wire length: 57.02um
-	Layer met1 : 42.62um
-	Layer met2 : 14.40um
-[INFO GRT-0237] Net N0007 global route wire length: 62.10um
-	Layer met1 : 34.50um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0007 detailed route wire length: 34.99um
-	Layer met1 : 17.75um
-	Layer met2 : 17.24um
-[INFO GRT-0237] Net N0008 global route wire length: 103.50um
-	Layer met1 : 62.10um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0008 detailed route wire length: 74.32um
-	Layer met1 : 46.54um
-	Layer met2 : 27.78um
-[INFO GRT-0237] Net N0009 global route wire length: 110.40um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0007 detailed route wire length: 56.79um
+	Layer met1 : 31.84um
+	Layer met2 : 24.95um
+[INFO GRT-0237] Net N0008 global route wire length: 96.60um
 	Layer met1 : 69.00um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0009 detailed route wire length: 51.88um
-	Layer met1 : 13.80um
-	Layer met2 : 38.08um
-[INFO GRT-0237] Net N0010 global route wire length: 62.10um
-	Layer met1 : 34.50um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0010 detailed route wire length: 45.76um
-	Layer met1 : 22.98um
-	Layer met2 : 22.78um
-[INFO GRT-0237] Net N0011 global route wire length: 124.20um
-	Layer met1 : 96.60um
-	Layer met3 : 27.60um
-[INFO GRT-0240] Net N0011 detailed route wire length: 105.86um
-	Layer met1 : 81.98um
-	Layer met2 :  2.72um
-	Layer met3 : 21.16um
+[INFO GRT-0240] Net N0008 detailed route wire length: 81.15um
+	Layer met1 : 41.72um
+	Layer met2 : 28.39um
+	Layer met3 : 11.04um
+[INFO GRT-0237] Net N0009 global route wire length: 96.60um
+	Layer met1 : 55.20um
+	Layer met2 : 41.40um
+[INFO GRT-0240] Net N0009 detailed route wire length: 52.38um
+	Layer met1 : 17.36um
+	Layer met2 : 35.02um
+[INFO GRT-0237] Net N0010 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0010 detailed route wire length: 11.78um
+	Layer met1 :  7.36um
+	Layer met2 :  4.42um
+[INFO GRT-0237] Net N0011 global route wire length: 117.30um
+	Layer met1 : 20.70um
+	Layer met3 : 96.60um
+[INFO GRT-0240] Net N0011 detailed route wire length: 105.52um
+	Layer met1 : 11.84um
+	Layer met2 :  4.46um
+	Layer met3 : 89.22um
 [INFO GRT-0237] Net N0012 global route wire length: 89.70um
 	Layer met1 : 34.50um
 	Layer met3 : 55.20um
-[INFO GRT-0240] Net N0012 detailed route wire length: 66.32um
-	Layer met1 : 26.66um
-	Layer met2 :  1.02um
-	Layer met3 : 38.64um
-[INFO GRT-0237] Net N0013 global route wire length: 144.90um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-	Layer met3 : 103.50um
-[INFO GRT-0240] Net N0013 detailed route wire length: 102.49um
-	Layer met1 :  8.05um
-	Layer met2 :  8.66um
-	Layer met3 : 85.78um
-[INFO GRT-0237] Net N0014 global route wire length: 124.20um
-	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0012 detailed route wire length: 68.70um
+	Layer met1 : 29.54um
+	Layer met2 :  3.74um
+	Layer met3 : 35.42um
+[INFO GRT-0237] Net N0013 global route wire length: 110.40um
 	Layer met3 : 110.40um
-[INFO GRT-0240] Net N0014 detailed route wire length: 103.46um
-	Layer met1 : 22.08um
-	Layer met2 :  2.72um
-	Layer met3 : 78.66um
+[INFO GRT-0240] Net N0013 detailed route wire length: 97.84um
+	Layer met1 : 17.94um
+	Layer met2 :  1.70um
+	Layer met3 : 78.20um
+[INFO GRT-0237] Net N0014 global route wire length: 117.30um
+	Layer met3 : 117.30um
+[INFO GRT-0240] Net N0014 detailed route wire length: 101.59um
+	Layer met2 :  3.61um
+	Layer met3 : 97.98um
 [INFO GRT-0237] Net N0015 global route wire length: 75.90um
 	Layer met1 : 75.90um
-[INFO GRT-0240] Net N0015 detailed route wire length: 61.94um
-	Layer met1 : 61.94um
+[INFO GRT-0240] Net N0015 detailed route wire length: 60.24um
+	Layer met1 : 60.24um
 [INFO GRT-0237] Net N0016 global route wire length: 96.60um
+	Layer met1 : 20.70um
 	Layer met2 : 13.80um
-	Layer met3 : 82.80um
-[INFO GRT-0240] Net N0016 detailed route wire length: 69.21um
-	Layer met2 :  5.73um
-	Layer met3 : 63.48um
+	Layer met3 : 62.10um
+[INFO GRT-0240] Net N0016 detailed route wire length: 68.70um
+	Layer met1 : 12.52um
+	Layer met2 :  3.74um
+	Layer met3 : 52.44um
 [INFO GRT-0237] Net N0017 global route wire length: 124.20um
 	Layer met2 : 13.80um
 	Layer met3 : 110.40um
-[INFO GRT-0240] Net N0017 detailed route wire length: 98.57um
-	Layer met1 :  6.66um
-	Layer met2 :  4.29um
-	Layer met3 : 87.62um
-[INFO GRT-0237] Net N0018 global route wire length: 117.30um
-	Layer met1 : 20.70um
-	Layer met3 : 96.60um
-[INFO GRT-0240] Net N0018 detailed route wire length: 108.56um
-	Layer met1 : 29.20um
-	Layer met2 :  9.90um
-	Layer met3 : 69.46um
+[INFO GRT-0240] Net N0017 detailed route wire length: 106.39um
+	Layer met2 : 13.47um
+	Layer met3 : 92.92um
+[INFO GRT-0237] Net N0018 global route wire length: 186.30um
+	Layer met1 : 69.00um
+	Layer met2 : 62.10um
+	Layer met3 : 55.20um
+[INFO GRT-0240] Net N0018 detailed route wire length: 145.62um
+	Layer met1 : 61.72um
+	Layer met2 : 42.96um
+	Layer met3 : 40.94um
 [INFO GRT-0237] Net N0019 global route wire length: 75.90um
 	Layer met1 : 75.90um
-[INFO GRT-0240] Net N0019 detailed route wire length: 60.24um
-	Layer met1 : 60.24um
-[INFO GRT-0237] Net N0020 global route wire length: 96.60um
-	Layer met1 : 69.00um
-	Layer met3 : 27.60um
-[INFO GRT-0240] Net N0020 detailed route wire length: 65.98um
-	Layer met1 : 49.32um
-	Layer met2 :  1.02um
-	Layer met3 : 15.64um
+[INFO GRT-0240] Net N0019 detailed route wire length: 61.60um
+	Layer met1 : 60.92um
+	Layer met2 :  0.68um
+[INFO GRT-0237] Net N0020 global route wire length: 82.80um
+	Layer met1 : 20.70um
+	Layer met3 : 62.10um
+[INFO GRT-0240] Net N0020 detailed route wire length: 66.32um
+	Layer met1 : 12.52um
+	Layer met2 :  1.36um
+	Layer met3 : 52.44um
 [INFO GRT-0237] Net N0021 global route wire length: 110.40um
 	Layer met1 : 20.70um
 	Layer met3 : 89.70um
-[INFO GRT-0240] Net N0021 detailed route wire length: 102.49um
-	Layer met1 : 12.75um
-	Layer met2 :  7.86um
+[INFO GRT-0240] Net N0021 detailed route wire length: 97.05um
+	Layer met1 : 12.07um
+	Layer met2 :  3.10um
 	Layer met3 : 81.88um
 [INFO GRT-0237] Net N0022 global route wire length: 75.90um
-	Layer met1 : 20.70um
-	Layer met3 : 55.20um
-[INFO GRT-0240] Net N0022 detailed route wire length: 60.02um
-	Layer met1 : 11.84um
-	Layer met2 :  0.34um
-	Layer met3 : 47.84um
-[INFO GRT-0237] Net N0023 global route wire length: 193.20um
-	Layer met1 : 27.60um
-	Layer met2 : 55.20um
-	Layer met3 : 110.40um
-[INFO GRT-0240] Net N0023 detailed route wire length: 110.26um
-	Layer met1 :  7.36um
-	Layer met2 : 12.28um
-	Layer met3 : 90.62um
-[INFO GRT-0237] Net N0024 global route wire length: 75.90um
 	Layer met1 : 75.90um
-[INFO GRT-0240] Net N0024 detailed route wire length: 60.24um
-	Layer met1 : 60.24um
-[INFO GRT-0237] Net N0025 global route wire length: 89.70um
-	Layer met1 : 41.40um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0025 detailed route wire length: 66.66um
-	Layer met1 : 26.32um
-	Layer met2 :  1.70um
-	Layer met3 : 38.64um
-[INFO GRT-0237] Net N0026 global route wire length: 151.80um
-	Layer met1 : 75.90um
+[INFO GRT-0240] Net N0022 detailed route wire length: 61.38um
+	Layer met1 : 61.38um
+[INFO GRT-0237] Net N0023 global route wire length: 158.70um
+	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0026 detailed route wire length: 111.32um
-	Layer met1 : 66.08um
-	Layer met2 : 12.58um
-	Layer met3 : 32.66um
+	Layer met3 : 117.30um
+[INFO GRT-0240] Net N0023 detailed route wire length: 111.28um
+	Layer met1 : 21.16um
+	Layer met2 : 10.54um
+	Layer met3 : 79.58um
+[INFO GRT-0237] Net N0024 global route wire length: 89.70um
+	Layer met1 : 75.90um
+	Layer met3 : 13.80um
+[INFO GRT-0240] Net N0024 detailed route wire length: 60.58um
+	Layer met1 : 60.58um
+[INFO GRT-0237] Net N0025 global route wire length: 82.80um
+	Layer met3 : 82.80um
+[INFO GRT-0240] Net N0025 detailed route wire length: 65.13um
+	Layer met2 :  0.51um
+	Layer met3 : 64.62um
+[INFO GRT-0237] Net N0026 global route wire length: 110.40um
+	Layer met3 : 110.40um
+[INFO GRT-0240] Net N0026 detailed route wire length: 96.53um
+	Layer met2 :  3.61um
+	Layer met3 : 92.92um
 [INFO GRT-0237] Net N0027 global route wire length: 117.30um
 	Layer met3 : 117.30um
-[INFO GRT-0240] Net N0027 detailed route wire length: 107.88um
-	Layer met2 :  7.86um
-	Layer met3 : 100.02um
+[INFO GRT-0240] Net N0027 detailed route wire length: 104.65um
+	Layer met2 :  5.31um
+	Layer met3 : 99.34um
 [INFO GRT-0237] Net N0028 global route wire length: 89.70um
-	Layer met1 : 62.10um
-	Layer met3 : 27.60um
-[INFO GRT-0240] Net N0028 detailed route wire length: 61.60um
-	Layer met1 : 39.32um
-	Layer met2 :  1.36um
-	Layer met3 : 20.92um
-[INFO GRT-0237] Net N0029 global route wire length: 124.20um
+	Layer met1 : 69.00um
+	Layer met3 : 20.70um
+[INFO GRT-0240] Net N0028 detailed route wire length: 60.58um
+	Layer met1 : 60.58um
+[INFO GRT-0237] Net N0029 global route wire length: 117.30um
+	Layer met1 : 89.70um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0029 detailed route wire length: 79.48um
+	Layer met1 : 67.58um
+	Layer met2 : 11.90um
+[INFO GRT-0237] Net N0030 global route wire length: 151.80um
 	Layer met2 : 41.40um
-	Layer met3 : 82.80um
-[INFO GRT-0240] Net N0029 detailed route wire length: 68.70um
-	Layer met1 : 12.52um
-	Layer met2 :  3.74um
-	Layer met3 : 52.44um
-[INFO GRT-0237] Net N0030 global route wire length: 186.30um
-	Layer met1 : 34.50um
-	Layer met2 : 62.10um
-	Layer met3 : 89.70um
-[INFO GRT-0240] Net N0030 detailed route wire length: 119.60um
-	Layer met1 : 28.84um
-	Layer met2 : 25.90um
-	Layer met3 : 64.86um
-[INFO GRT-0237] Net N0031 global route wire length: 165.60um
-	Layer met1 : 27.60um
+	Layer met3 : 110.40um
+[INFO GRT-0240] Net N0030 detailed route wire length: 102.66um
+	Layer met1 :  5.85um
+	Layer met2 :  8.03um
+	Layer met3 : 88.78um
+[INFO GRT-0237] Net N0031 global route wire length: 158.70um
+	Layer met1 : 20.70um
 	Layer met2 : 41.40um
 	Layer met3 : 96.60um
-[INFO GRT-0240] Net N0031 detailed route wire length: 113.66um
-	Layer met1 : 12.76um
-	Layer met2 : 14.66um
-	Layer met3 : 86.24um
-[INFO GRT-0237] Net N0032 global route wire length: 75.90um
-	Layer met1 : 75.90um
-[INFO GRT-0240] Net N0032 detailed route wire length: 61.94um
-	Layer met1 : 59.56um
-	Layer met2 :  2.38um
-[INFO GRT-0237] Net N0033 global route wire length: 89.70um
-	Layer met1 : 34.50um
-	Layer met3 : 55.20um
-[INFO GRT-0240] Net N0033 detailed route wire length: 66.10um
-	Layer met1 : 23.10um
+[INFO GRT-0240] Net N0031 detailed route wire length: 140.80um
+	Layer met1 : 14.60um
+	Layer met2 : 38.80um
+	Layer met3 : 87.40um
+[INFO GRT-0237] Net N0032 global route wire length: 89.70um
+	Layer met1 : 55.20um
+	Layer met3 : 34.50um
+[INFO GRT-0240] Net N0032 detailed route wire length: 60.58um
+	Layer met1 : 21.72um
 	Layer met2 :  0.68um
-	Layer met3 : 42.32um
-[INFO GRT-0237] Net N0034 global route wire length: 82.80um
+	Layer met3 : 38.18um
+[INFO GRT-0237] Net N0033 global route wire length: 82.80um
 	Layer met1 : 20.70um
 	Layer met3 : 62.10um
-[INFO GRT-0240] Net N0034 detailed route wire length: 66.66um
+[INFO GRT-0240] Net N0033 detailed route wire length: 66.10um
 	Layer met1 : 12.52um
-	Layer met2 :  1.70um
-	Layer met3 : 52.44um
-[INFO GRT-0237] Net N0035 global route wire length: 138.00um
+	Layer met2 :  0.68um
+	Layer met3 : 52.90um
+[INFO GRT-0237] Net N0034 global route wire length: 158.70um
+	Layer met1 : 48.30um
+	Layer met2 : 69.00um
+	Layer met3 : 41.40um
+[INFO GRT-0240] Net N0034 detailed route wire length: 124.46um
+	Layer met1 : 14.36um
+	Layer met2 : 59.50um
+	Layer met3 : 50.60um
+[INFO GRT-0237] Net N0035 global route wire length: 151.80um
 	Layer met1 : 20.70um
-	Layer met2 : 27.60um
+	Layer met2 : 41.40um
 	Layer met3 : 89.70um
-[INFO GRT-0240] Net N0035 detailed route wire length: 119.82um
-	Layer met1 : 12.88um
-	Layer met2 : 26.90um
-	Layer met3 : 80.04um
+[INFO GRT-0240] Net N0035 detailed route wire length: 130.70um
+	Layer met1 : 11.96um
+	Layer met2 : 37.78um
+	Layer met3 : 80.96um
 [INFO GRT-0237] Net N0036 global route wire length: 110.40um
 	Layer met1 : 20.70um
 	Layer met3 : 89.70um
-[INFO GRT-0240] Net N0036 detailed route wire length: 98.98um
-	Layer met1 : 12.98um
+[INFO GRT-0240] Net N0036 detailed route wire length: 97.62um
+	Layer met1 : 15.06um
 	Layer met2 :  3.44um
-	Layer met3 : 82.56um
-[INFO GRT-0237] Net N0037 global route wire length: 124.20um
-	Layer met1 : 75.90um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0037 detailed route wire length: 103.92um
-	Layer met1 : 80.96um
-	Layer met2 :  2.72um
-	Layer met3 : 20.24um
-[INFO GRT-0237] Net N0038 global route wire length: 75.90um
-	Layer met1 : 20.70um
-	Layer met3 : 55.20um
+	Layer met3 : 79.12um
+[INFO GRT-0237] Net N0037 global route wire length: 117.30um
+	Layer met3 : 117.30um
+[INFO GRT-0240] Net N0037 detailed route wire length: 103.41um
+	Layer met2 :  4.29um
+	Layer met3 : 99.12um
+[INFO GRT-0237] Net N0038 global route wire length: 82.80um
+	Layer met1 : 62.10um
+	Layer met3 : 20.70um
 [INFO GRT-0240] Net N0038 detailed route wire length: 60.02um
-	Layer met1 : 11.50um
-	Layer met2 :  0.68um
-	Layer met3 : 47.84um
+	Layer met1 : 45.88um
+	Layer met2 :  0.34um
+	Layer met3 : 13.80um
 [INFO GRT-0237] Net N0039 global route wire length: 82.80um
 	Layer met1 : 20.70um
 	Layer met3 : 62.10um
-[INFO GRT-0240] Net N0039 detailed route wire length: 70.52um
-	Layer met1 : 23.54um
-	Layer met2 :  3.74um
-	Layer met3 : 43.24um
-[INFO GRT-0237] Net N0040 global route wire length: 110.40um
-	Layer met1 : 20.70um
-	Layer met3 : 89.70um
-[INFO GRT-0240] Net N0040 detailed route wire length: 97.84um
+[INFO GRT-0240] Net N0039 detailed route wire length: 66.10um
 	Layer met1 : 12.52um
-	Layer met2 :  3.44um
+	Layer met2 :  0.68um
+	Layer met3 : 52.90um
+[INFO GRT-0237] Net N0040 global route wire length: 124.20um
+	Layer met1 : 34.50um
+	Layer met3 : 89.70um
+[INFO GRT-0240] Net N0040 detailed route wire length: 97.50um
+	Layer met1 : 12.52um
+	Layer met2 :  3.10um
 	Layer met3 : 81.88um
-[INFO GRT-0237] Net N0041 global route wire length: 117.30um
+[INFO GRT-0237] Net N0041 global route wire length: 131.10um
+	Layer met1 : 13.80um
 	Layer met3 : 117.30um
-[INFO GRT-0240] Net N0041 detailed route wire length: 110.72um
-	Layer met1 :  2.76um
-	Layer met2 : 12.28um
-	Layer met3 : 95.68um
+[INFO GRT-0240] Net N0041 detailed route wire length: 110.94um
+	Layer met1 :  3.22um
+	Layer met2 : 12.96um
+	Layer met3 : 94.76um
 [INFO GRT-0237] Net N0042 global route wire length: 75.90um
 	Layer met1 : 75.90um
-[INFO GRT-0240] Net N0042 detailed route wire length: 66.70um
+[INFO GRT-0240] Net N0042 detailed route wire length: 60.92um
 	Layer met1 : 59.22um
-	Layer met2 :  7.48um
-[INFO GRT-0237] Net N0043 global route wire length: 69.00um
-	Layer met1 : 41.40um
+	Layer met2 :  1.70um
+[INFO GRT-0237] Net N0043 global route wire length: 41.40um
+	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0043 detailed route wire length: 25.38um
-	Layer met1 : 15.86um
-	Layer met2 :  9.52um
+[INFO GRT-0240] Net N0043 detailed route wire length: 22.74um
+	Layer met1 : 12.88um
+	Layer met2 :  9.86um
 [INFO GRT-0237] Net N0044 global route wire length: 117.30um
 	Layer met1 : 62.10um
 	Layer met2 : 55.20um
-[INFO GRT-0240] Net N0044 detailed route wire length: 98.02um
-	Layer met1 : 54.94um
-	Layer met2 : 43.08um
+[INFO GRT-0240] Net N0044 detailed route wire length: 94.06um
+	Layer met1 : 53.58um
+	Layer met2 : 40.48um
 [INFO GRT-0237] Net N0045 global route wire length: 117.30um
 	Layer met1 : 62.10um
 	Layer met2 : 55.20um
-[INFO GRT-0240] Net N0045 detailed route wire length: 93.50um
-	Layer met1 : 55.64um
+[INFO GRT-0240] Net N0045 detailed route wire length: 95.32um
+	Layer met1 : 57.46um
 	Layer met2 : 37.86um
-[INFO GRT-0237] Net N0046 global route wire length: 41.40um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0046 detailed route wire length: 24.00um
-	Layer met1 :  5.98um
-	Layer met2 : 18.02um
-[INFO GRT-0237] Net N0050 global route wire length: 41.40um
-	Layer met1 : 27.60um
+[INFO GRT-0237] Net N0046 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0050 detailed route wire length: 31.72um
-	Layer met1 : 22.88um
-	Layer met2 :  8.84um
-[INFO GRT-0237] Net N0051 global route wire length: 75.90um
+[INFO GRT-0240] Net N0046 detailed route wire length: 5.68um
+	Layer met1 :  0.92um
+	Layer met2 :  4.76um
+[INFO GRT-0237] Net N0050 global route wire length: 55.20um
+	Layer met1 : 34.50um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0050 detailed route wire length: 42.84um
+	Layer met1 : 23.46um
+	Layer met2 : 19.38um
+[INFO GRT-0237] Net N0051 global route wire length: 62.10um
+	Layer met1 : 27.60um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0051 detailed route wire length: 42.58um
+	Layer met1 : 13.21um
+	Layer met2 : 29.36um
+[INFO GRT-0237] Net N0052 global route wire length: 62.10um
+	Layer met1 : 48.30um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0052 detailed route wire length: 52.42um
+	Layer met1 : 33.80um
+	Layer met2 : 18.62um
+[INFO GRT-0237] Net N0053 global route wire length: 96.60um
+	Layer met1 : 48.30um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0053 detailed route wire length: 63.99um
+	Layer met1 : 37.81um
+	Layer met2 : 26.18um
+[INFO GRT-0237] Net N0055 global route wire length: 269.10um
+	Layer met1 : 131.10um
+	Layer met2 : 89.70um
+	Layer met3 : 48.30um
+[INFO GRT-0240] Net N0055 detailed route wire length: 223.48um
+	Layer met1 : 72.54um
+	Layer met2 : 90.22um
+	Layer met3 : 60.72um
+[INFO GRT-0237] Net N0056 global route wire length: 213.90um
+	Layer met1 : 158.70um
+	Layer met2 : 55.20um
+[INFO GRT-0240] Net N0056 detailed route wire length: 200.30um
+	Layer met1 : 100.04um
+	Layer met2 : 81.86um
+	Layer met3 : 18.40um
+[INFO GRT-0237] Net N0057 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0057 detailed route wire length: 8.94um
+	Layer met1 :  7.24um
+	Layer met2 :  1.70um
+[INFO GRT-0237] Net N0058 global route wire length: 69.00um
 	Layer met1 : 41.40um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0051 detailed route wire length: 47.84um
-	Layer met1 : 24.94um
-	Layer met2 : 22.90um
-[INFO GRT-0237] Net N0052 global route wire length: 55.20um
-	Layer met1 : 20.70um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0052 detailed route wire length: 35.80um
-	Layer met1 : 14.60um
-	Layer met2 : 21.20um
-[INFO GRT-0237] Net N0053 global route wire length: 103.50um
-	Layer met1 : 69.00um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0053 detailed route wire length: 86.69um
-	Layer met1 : 48.49um
-	Layer met2 : 29.24um
-	Layer met3 :  8.96um
-[INFO GRT-0237] Net N0055 global route wire length: 255.30um
-	Layer met1 : 138.00um
-	Layer met2 : 82.80um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0055 detailed route wire length: 220.69um
-	Layer met1 : 97.60um
-	Layer met2 : 95.03um
-	Layer met3 : 28.06um
-[INFO GRT-0237] Net N0056 global route wire length: 220.80um
-	Layer met1 : 165.60um
-	Layer met2 : 55.20um
-[INFO GRT-0240] Net N0056 detailed route wire length: 201.42um
-	Layer met1 : 129.68um
-	Layer met2 : 71.74um
-[INFO GRT-0237] Net N0057 global route wire length: 48.30um
-	Layer met1 : 20.70um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0057 detailed route wire length: 37.48um
-	Layer met1 : 14.36um
-	Layer met2 : 23.12um
-[INFO GRT-0237] Net N0058 global route wire length: 124.20um
-	Layer met1 : 55.20um
-	Layer met2 : 55.20um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0058 detailed route wire length: 78.12um
-	Layer met1 : 22.55um
-	Layer met2 : 45.00um
-	Layer met3 : 10.58um
-[INFO GRT-0237] Net N0061 global route wire length: 289.80um
-	Layer met1 : 144.90um
+[INFO GRT-0240] Net N0058 detailed route wire length: 66.78um
+	Layer met1 : 32.78um
+	Layer met2 : 34.00um
+[INFO GRT-0237] Net N0061 global route wire length: 296.70um
+	Layer met1 : 158.70um
 	Layer met2 : 110.40um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0061 detailed route wire length: 217.04um
-	Layer met1 : 100.72um
-	Layer met2 : 91.48um
-	Layer met3 : 24.84um
+	Layer met3 : 27.60um
+[INFO GRT-0240] Net N0061 detailed route wire length: 224.72um
+	Layer met1 : 63.56um
+	Layer met2 : 91.24um
+	Layer met3 : 69.92um
 [INFO GRT-0237] Net N0062 global route wire length: 269.10um
 	Layer met1 : 186.30um
 	Layer met2 : 82.80um
-[INFO GRT-0240] Net N0062 detailed route wire length: 200.03um
-	Layer met1 : 101.02um
-	Layer met2 : 66.81um
-	Layer met3 : 32.20um
-[INFO GRT-0237] Net N0063 global route wire length: 48.30um
-	Layer met1 : 13.80um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0063 detailed route wire length: 35.86um
-	Layer met1 :  1.84um
-	Layer met2 : 34.02um
-[INFO GRT-0237] Net N0064 global route wire length: 62.10um
+[INFO GRT-0240] Net N0062 detailed route wire length: 202.44um
+	Layer met1 : 132.06um
+	Layer met2 : 70.38um
+[INFO GRT-0237] Net N0063 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0063 detailed route wire length: 20.40um
+	Layer met1 : 15.98um
+	Layer met2 :  4.42um
+[INFO GRT-0237] Net N0064 global route wire length: 75.90um
 	Layer met1 : 27.60um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0064 detailed route wire length: 47.84um
-	Layer met1 : 24.72um
-	Layer met2 : 23.12um
-[INFO GRT-0237] Net N0065 global route wire length: 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0065 detailed route wire length: 14.54um
-	Layer met1 :  2.30um
-	Layer met2 : 12.24um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0064 detailed route wire length: 41.80um
+	Layer met1 : 14.48um
+	Layer met2 : 27.32um
+[INFO GRT-0237] Net N0065 global route wire length: 0.00um
+[INFO GRT-0240] Net N0065 detailed route wire length: 5.80um
+	Layer met1 :  1.38um
+	Layer met2 :  4.42um
 [INFO GRT-0237] Net N0066 global route wire length: 34.50um
 	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0066 detailed route wire length: 25.42um
-	Layer met1 : 10.12um
+[INFO GRT-0240] Net N0066 detailed route wire length: 24.61um
+	Layer met1 :  9.31um
 	Layer met2 : 15.30um
 [INFO GRT-0237] Net N0067 global route wire length: 41.40um
 	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0067 detailed route wire length: 29.12um
-	Layer met1 :  6.44um
-	Layer met2 : 22.68um
-[INFO GRT-0237] Net N0076 global route wire length: 75.90um
+[INFO GRT-0240] Net N0067 detailed route wire length: 21.30um
+	Layer met1 :  7.70um
+	Layer met2 : 13.60um
+[INFO GRT-0237] Net N0076 global route wire length: 62.10um
+	Layer met1 : 13.80um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0076 detailed route wire length: 51.52um
+	Layer met1 : 13.44um
+	Layer met2 : 38.08um
+[INFO GRT-0237] Net N0077 global route wire length: 89.70um
+	Layer met1 : 41.40um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0077 detailed route wire length: 63.74um
+	Layer met1 : 25.87um
+	Layer met2 : 37.87um
+[INFO GRT-0237] Net N0078 global route wire length: 62.10um
+	Layer met1 : 13.80um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0078 detailed route wire length: 44.28um
+	Layer met1 : 13.56um
+	Layer met2 : 30.72um
+[INFO GRT-0237] Net N0079 global route wire length: 82.80um
 	Layer met1 : 34.50um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0076 detailed route wire length: 63.32um
-	Layer met1 : 28.98um
-	Layer met2 : 34.34um
-[INFO GRT-0237] Net N0077 global route wire length: 69.00um
+	Layer met2 : 48.30um
+[INFO GRT-0240] Net N0079 detailed route wire length: 70.26um
+	Layer met1 : 29.66um
+	Layer met2 : 40.60um
+[INFO GRT-0237] Net N0081 global route wire length: 138.00um
+	Layer met2 : 82.80um
+	Layer met3 : 55.20um
+[INFO GRT-0240] Net N0081 detailed route wire length: 103.92um
+	Layer met1 :  9.66um
+	Layer met2 : 69.42um
+	Layer met3 : 24.84um
+[INFO GRT-0237] Net N0082 global route wire length: 110.40um
 	Layer met1 : 55.20um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0077 detailed route wire length: 58.44um
-	Layer met1 : 21.16um
-	Layer met2 : 14.74um
-	Layer met3 : 22.54um
-[INFO GRT-0237] Net N0078 global route wire length: 41.40um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0078 detailed route wire length: 20.40um
-	Layer met1 :  7.36um
-	Layer met2 : 13.04um
-[INFO GRT-0237] Net N0079 global route wire length: 62.10um
-	Layer met1 : 34.50um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0079 detailed route wire length: 27.90um
-	Layer met1 : 17.36um
-	Layer met2 : 10.54um
-[INFO GRT-0237] Net N0081 global route wire length: 179.40um
-	Layer met1 : 48.30um
-	Layer met2 : 82.80um
-	Layer met3 : 48.30um
-[INFO GRT-0240] Net N0081 detailed route wire length: 149.67um
-	Layer met1 : 46.56um
-	Layer met2 : 65.85um
-	Layer met3 : 37.26um
-[INFO GRT-0237] Net N0082 global route wire length: 172.50um
-	Layer met1 : 48.30um
 	Layer met2 : 55.20um
-	Layer met3 : 69.00um
-[INFO GRT-0240] Net N0082 detailed route wire length: 143.26um
-	Layer met1 : 40.36um
-	Layer met2 : 40.80um
-	Layer met3 : 62.10um
-[INFO GRT-0237] Net N0083 global route wire length: 200.10um
-	Layer met1 : 117.30um
+[INFO GRT-0240] Net N0082 detailed route wire length: 83.03um
+	Layer met1 : 38.34um
+	Layer met2 : 44.68um
+[INFO GRT-0237] Net N0083 global route wire length: 234.60um
+	Layer met1 : 151.80um
 	Layer met2 : 82.80um
-[INFO GRT-0240] Net N0083 detailed route wire length: 119.71um
-	Layer met1 : 58.40um
-	Layer met2 : 41.99um
-	Layer met3 : 19.32um
-[INFO GRT-0237] Net N0084 global route wire length: 151.80um
-	Layer met1 : 110.40um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0084 detailed route wire length: 105.88um
-	Layer met1 : 58.04um
-	Layer met2 : 47.84um
-[INFO GRT-0237] Net N0085 global route wire length: 27.60um
-	Layer met1 : 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0085 detailed route wire length: 15.72um
-	Layer met1 :  6.76um
-	Layer met2 :  8.96um
+[INFO GRT-0240] Net N0083 detailed route wire length: 164.38um
+	Layer met1 : 90.56um
+	Layer met2 : 66.92um
+	Layer met3 :  6.90um
+[INFO GRT-0237] Net N0084 global route wire length: 158.70um
+	Layer met1 : 131.10um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0084 detailed route wire length: 147.35um
+	Layer met1 : 80.70um
+	Layer met2 : 49.17um
+	Layer met3 : 17.48um
+[INFO GRT-0237] Net N0085 global route wire length: 151.80um
+	Layer met1 : 27.60um
+	Layer met2 : 48.30um
+	Layer met3 : 75.90um
+[INFO GRT-0240] Net N0085 detailed route wire length: 128.04um
+	Layer met1 : 23.80um
+	Layer met2 : 32.98um
+	Layer met3 : 71.26um
 [INFO GRT-0237] Net N0086 global route wire length: 0.00um
 [INFO GRT-0240] Net N0086 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
@@ -1898,12 +1232,12 @@ Up-via summary (total 2294):
 	Layer met1 :  3.44um
 [INFO GRT-0237] Net N0090 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0090 detailed route wire length: 2.64um
-	Layer met1 :  2.64um
+[INFO GRT-0240] Net N0090 detailed route wire length: 2.58um
+	Layer met1 :  2.58um
 [INFO GRT-0237] Net N0091 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0091 detailed route wire length: 2.21um
-	Layer met1 :  2.21um
+[INFO GRT-0240] Net N0091 detailed route wire length: 2.64um
+	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0092 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0092 detailed route wire length: 2.64um
@@ -1919,8 +1253,8 @@ Up-via summary (total 2294):
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0096 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0096 detailed route wire length: 5.16um
-	Layer met1 :  5.16um
+[INFO GRT-0240] Net N0096 detailed route wire length: 2.64um
+	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0097 global route wire length: 0.00um
 [INFO GRT-0240] Net N0097 detailed route wire length: 3.44um
 	Layer met1 :  3.44um
@@ -1928,9 +1262,8 @@ Up-via summary (total 2294):
 [INFO GRT-0240] Net N0098 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0099 global route wire length: 0.00um
-[INFO GRT-0240] Net N0099 detailed route wire length: 3.19um
-	Layer met1 :  1.59um
-	Layer met2 :  1.60um
+[INFO GRT-0240] Net N0099 detailed route wire length: 2.64um
+	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0100 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0100 detailed route wire length: 2.64um
@@ -2004,8 +1337,9 @@ Up-via summary (total 2294):
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0121 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0121 detailed route wire length: 3.44um
-	Layer met1 :  3.44um
+[INFO GRT-0240] Net N0121 detailed route wire length: 3.78um
+	Layer met1 :  2.76um
+	Layer met2 :  1.02um
 [INFO GRT-0237] Net N0122 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
@@ -2013,8 +1347,9 @@ Up-via summary (total 2294):
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0123 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0123 detailed route wire length: 2.64um
-	Layer met1 :  2.64um
+[INFO GRT-0240] Net N0123 detailed route wire length: 3.66um
+	Layer met1 :  2.30um
+	Layer met2 :  1.36um
 [INFO GRT-0237] Net N0124 global route wire length: 0.00um
 [INFO GRT-0240] Net N0124 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
@@ -2041,8 +1376,8 @@ Up-via summary (total 2294):
 [INFO GRT-0240] Net N0130 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0131 global route wire length: 0.00um
-[INFO GRT-0240] Net N0131 detailed route wire length: 3.32um
-	Layer met1 :  3.32um
+[INFO GRT-0240] Net N0131 detailed route wire length: 2.64um
+	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0132 global route wire length: 0.00um
 [INFO GRT-0240] Net N0132 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
@@ -2062,16 +1397,16 @@ Up-via summary (total 2294):
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0137 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0137 detailed route wire length: 3.44um
-	Layer met1 :  3.44um
+[INFO GRT-0240] Net N0137 detailed route wire length: 3.78um
+	Layer met1 :  2.76um
+	Layer met2 :  1.02um
 [INFO GRT-0237] Net N0138 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0138 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0139 global route wire length: 0.00um
-[INFO GRT-0240] Net N0139 detailed route wire length: 3.32um
-	Layer met1 :  2.30um
-	Layer met2 :  1.02um
+[INFO GRT-0240] Net N0139 detailed route wire length: 2.64um
+	Layer met1 :  2.64um
 [INFO GRT-0237] Net N0140 global route wire length: 0.00um
 [INFO GRT-0240] Net N0140 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
@@ -2094,18 +1429,20 @@ Up-via summary (total 2294):
 [INFO GRT-0237] Net N0145 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0145 detailed route wire length: 3.44um
-	Layer met1 :  3.44um
+	Layer met2 :  0.68um
+	Layer met3 :  2.76um
 [INFO GRT-0237] Net N0146 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0146 detailed route wire length: 2.98um
 	Layer met1 :  1.84um
 	Layer met2 :  1.14um
 [INFO GRT-0237] Net N0147 global route wire length: 0.00um
-[INFO GRT-0240] Net N0147 detailed route wire length: 2.21um
-	Layer met1 :  2.21um
-[INFO GRT-0237] Net N0148 global route wire length: 0.00um
-[INFO GRT-0240] Net N0148 detailed route wire length: 2.64um
+[INFO GRT-0240] Net N0147 detailed route wire length: 2.64um
 	Layer met1 :  2.64um
+[INFO GRT-0237] Net N0148 global route wire length: 0.00um
+[INFO GRT-0240] Net N0148 detailed route wire length: 3.32um
+	Layer met1 :  1.38um
+	Layer met2 :  1.94um
 [INFO GRT-0237] Net N0149 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0149 detailed route wire length: 2.21um
@@ -2117,13 +1454,13 @@ Up-via summary (total 2294):
 [INFO GRT-0237] Net N0151 global route wire length: 34.50um
 	Layer met1 : 20.70um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0151 detailed route wire length: 18.80um
-	Layer met1 : 13.34um
-	Layer met2 :  5.46um
+[INFO GRT-0240] Net N0151 detailed route wire length: 18.00um
+	Layer met1 : 15.62um
+	Layer met2 :  2.38um
 [INFO GRT-0237] Net N0152 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0152 detailed route wire length: 40.56um
-	Layer met1 : 40.56um
+[INFO GRT-0240] Net N0152 detailed route wire length: 39.54um
+	Layer met1 : 39.54um
 [INFO GRT-0237] Net N0153 global route wire length: 27.60um
 	Layer met1 : 27.60um
 [INFO GRT-0240] Net N0153 detailed route wire length: 17.68um
@@ -2144,19 +1481,17 @@ Up-via summary (total 2294):
 [INFO GRT-0237] Net N0156 global route wire length: 62.10um
 	Layer met1 : 48.30um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0156 detailed route wire length: 45.08um
+[INFO GRT-0240] Net N0156 detailed route wire length: 38.62um
 	Layer met1 : 38.62um
-	Layer met2 :  6.46um
 [INFO GRT-0237] Net N0157 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0157 detailed route wire length: 18.14um
-	Layer met1 : 16.10um
+[INFO GRT-0240] Net N0157 detailed route wire length: 17.68um
+	Layer met1 : 15.64um
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0158 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0158 detailed route wire length: 43.66um
-	Layer met1 : 41.28um
-	Layer met2 :  2.38um
+[INFO GRT-0240] Net N0158 detailed route wire length: 42.30um
+	Layer met1 : 42.30um
 [INFO GRT-0237] Net N0159 global route wire length: 20.70um
 	Layer met1 : 20.70um
 [INFO GRT-0240] Net N0159 detailed route wire length: 16.98um
@@ -2168,31 +1503,31 @@ Up-via summary (total 2294):
 	Layer met1 : 39.54um
 [INFO GRT-0237] Net N0161 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0161 detailed route wire length: 41.28um
-	Layer met1 : 41.28um
+[INFO GRT-0240] Net N0161 detailed route wire length: 41.96um
+	Layer met1 : 41.96um
 [INFO GRT-0237] Net N0162 global route wire length: 41.40um
 	Layer met1 : 27.60um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0162 detailed route wire length: 17.68um
-	Layer met1 : 15.64um
+[INFO GRT-0240] Net N0162 detailed route wire length: 18.36um
+	Layer met1 : 16.32um
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0163 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0163 detailed route wire length: 41.62um
-	Layer met1 : 41.62um
+[INFO GRT-0240] Net N0163 detailed route wire length: 42.30um
+	Layer met1 : 42.30um
 [INFO GRT-0237] Net N0164 global route wire length: 20.70um
 	Layer met1 : 20.70um
-[INFO GRT-0240] Net N0164 detailed route wire length: 17.66um
-	Layer met1 : 14.26um
-	Layer met2 :  3.40um
+[INFO GRT-0240] Net N0164 detailed route wire length: 16.98um
+	Layer met1 : 14.94um
+	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0165 global route wire length: 48.30um
 	Layer met1 : 48.30um
 [INFO GRT-0240] Net N0165 detailed route wire length: 38.96um
 	Layer met1 : 38.96um
 [INFO GRT-0237] Net N0166 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0166 detailed route wire length: 18.14um
-	Layer met1 : 16.10um
+[INFO GRT-0240] Net N0166 detailed route wire length: 17.68um
+	Layer met1 : 15.64um
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0167 global route wire length: 55.20um
 	Layer met1 : 55.20um
@@ -2206,13 +1541,12 @@ Up-via summary (total 2294):
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0169 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0169 detailed route wire length: 40.22um
-	Layer met1 : 38.62um
-	Layer met2 :  1.60um
+[INFO GRT-0240] Net N0169 detailed route wire length: 39.54um
+	Layer met1 : 39.54um
 [INFO GRT-0237] Net N0170 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0170 detailed route wire length: 17.68um
-	Layer met1 : 15.64um
+[INFO GRT-0240] Net N0170 detailed route wire length: 18.36um
+	Layer met1 : 16.32um
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0171 global route wire length: 55.20um
 	Layer met1 : 55.20um
@@ -2220,8 +1554,8 @@ Up-via summary (total 2294):
 	Layer met1 : 42.30um
 [INFO GRT-0237] Net N0172 global route wire length: 20.70um
 	Layer met1 : 20.70um
-[INFO GRT-0240] Net N0172 detailed route wire length: 17.32um
-	Layer met1 : 15.28um
+[INFO GRT-0240] Net N0172 detailed route wire length: 16.98um
+	Layer met1 : 14.94um
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0173 global route wire length: 20.70um
 	Layer met1 : 20.70um
@@ -2234,18 +1568,18 @@ Up-via summary (total 2294):
 	Layer met1 : 38.96um
 [INFO GRT-0237] Net N0175 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0175 detailed route wire length: 39.20um
-	Layer met1 : 39.20um
+[INFO GRT-0240] Net N0175 detailed route wire length: 39.54um
+	Layer met1 : 39.54um
 [INFO GRT-0237] Net N0176 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0176 detailed route wire length: 17.34um
-	Layer met1 : 16.32um
-	Layer met2 :  1.02um
+[INFO GRT-0240] Net N0176 detailed route wire length: 17.68um
+	Layer met1 : 15.64um
+	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0177 global route wire length: 55.20um
 	Layer met1 : 55.20um
-[INFO GRT-0240] Net N0177 detailed route wire length: 51.14um
+[INFO GRT-0240] Net N0177 detailed route wire length: 44.68um
 	Layer met1 : 42.30um
-	Layer met2 :  8.84um
+	Layer met2 :  2.38um
 [INFO GRT-0237] Net N0178 global route wire length: 34.50um
 	Layer met1 : 20.70um
 	Layer met2 : 13.80um
@@ -2254,82 +1588,77 @@ Up-via summary (total 2294):
 	Layer met2 :  2.04um
 [INFO GRT-0237] Net N0179 global route wire length: 48.30um
 	Layer met1 : 48.30um
-[INFO GRT-0240] Net N0179 detailed route wire length: 38.62um
-	Layer met1 : 38.62um
+[INFO GRT-0240] Net N0179 detailed route wire length: 41.26um
+	Layer met1 : 41.26um
 [INFO GRT-0237] Net N0180 global route wire length: 27.60um
 	Layer met1 : 27.60um
-[INFO GRT-0240] Net N0180 detailed route wire length: 18.14um
-	Layer met1 : 16.10um
-	Layer met2 :  2.04um
+[INFO GRT-0240] Net N0180 detailed route wire length: 19.72um
+	Layer met1 : 15.98um
+	Layer met2 :  3.74um
 [INFO GRT-0237] Net N0181 global route wire length: 55.20um
 	Layer met1 : 55.20um
 [INFO GRT-0240] Net N0181 detailed route wire length: 41.96um
 	Layer met1 : 41.96um
-[INFO GRT-0237] Net N0182 global route wire length: 48.30um
+[INFO GRT-0237] Net N0182 global route wire length: 55.20um
 	Layer met1 : 27.60um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0182 detailed route wire length: 28.68um
-	Layer met1 : 15.77um
-	Layer met2 : 12.92um
-[INFO GRT-0237] Net N0183 global route wire length: 41.40um
-	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0183 detailed route wire length: 20.24um
-	Layer met1 :  4.60um
-	Layer met2 : 15.64um
-[INFO GRT-0237] Net N0184 global route wire length: 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0184 detailed route wire length: 12.28um
-	Layer met1 :  2.76um
-	Layer met2 :  9.52um
+[INFO GRT-0240] Net N0182 detailed route wire length: 33.20um
+	Layer met1 : 15.06um
+	Layer met2 : 18.14um
+[INFO GRT-0237] Net N0183 global route wire length: 0.00um
+[INFO GRT-0240] Net N0183 detailed route wire length: 6.48um
+	Layer met1 :  1.38um
+	Layer met2 :  5.10um
+[INFO GRT-0237] Net N0184 global route wire length: 48.30um
+	Layer met1 : 13.80um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0184 detailed route wire length: 25.42um
+	Layer met1 :  0.92um
+	Layer met2 : 23.12um
+	Layer met3 :  1.38um
 [INFO GRT-0237] Net N0185 global route wire length: 20.70um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0185 detailed route wire length: 17.40um
-	Layer met1 :  4.14um
-	Layer met2 : 13.26um
-[INFO GRT-0237] Net N0186 global route wire length: 34.50um
-	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0185 detailed route wire length: 12.88um
+	Layer met1 :  0.98um
+	Layer met2 : 11.90um
+[INFO GRT-0237] Net N0186 global route wire length: 20.70um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0186 detailed route wire length: 17.74um
-	Layer met1 :  4.14um
-	Layer met2 : 13.60um
+[INFO GRT-0240] Net N0186 detailed route wire length: 9.98um
+	Layer met1 :  0.46um
+	Layer met2 :  9.52um
 [INFO GRT-0237] Net N0187 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0187 detailed route wire length: 6.72um
-	Layer met1 :  1.38um
-	Layer met2 :  5.34um
-[INFO GRT-0237] Net N0188 global route wire length: 34.50um
-	Layer met1 : 20.70um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0188 detailed route wire length: 19.78um
-	Layer met1 :  3.22um
-	Layer met2 :  7.82um
-	Layer met3 :  8.74um
-[INFO GRT-0237] Net N0189 global route wire length: 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0189 detailed route wire length: 8.64um
+[INFO GRT-0240] Net N0187 detailed route wire length: 8.06um
 	Layer met1 :  0.92um
-	Layer met2 :  7.72um
-[INFO GRT-0237] Net N0190 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0190 detailed route wire length: 6.76um
-	Layer met1 :  1.38um
+	Layer met2 :  7.14um
+[INFO GRT-0237] Net N0188 global route wire length: 0.00um
+[INFO GRT-0240] Net N0188 detailed route wire length: 4.12um
+	Layer met1 :  2.76um
+	Layer met2 :  1.36um
+[INFO GRT-0237] Net N0189 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0189 detailed route wire length: 10.44um
+	Layer met1 :  8.74um
 	Layer met2 :  1.70um
-	Layer met3 :  3.68um
-[INFO GRT-0237] Net N0191 global route wire length: 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0191 detailed route wire length: 15.56um
-	Layer met1 :  2.30um
-	Layer met2 : 13.26um
-[INFO GRT-0237] Net N0192 global route wire length: 0.00um
-[INFO GRT-0240] Net N0192 detailed route wire length: 5.60um
+[INFO GRT-0237] Net N0190 global route wire length: 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0190 detailed route wire length: 2.74um
+	Layer met1 :  1.38um
+	Layer met2 :  1.36um
+[INFO GRT-0237] Net N0191 global route wire length: 0.00um
+[INFO GRT-0240] Net N0191 detailed route wire length: 2.62um
+	Layer met1 :  0.92um
+	Layer met2 :  1.70um
+[INFO GRT-0237] Net N0192 global route wire length: 27.60um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0192 detailed route wire length: 18.52um
 	Layer met1 :  3.22um
-	Layer met2 :  2.38um
-[INFO GRT-0237] Net N0193 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0193 detailed route wire length: 8.58um
-	Layer met1 :  5.52um
-	Layer met2 :  3.06um
+	Layer met2 : 15.30um
+[INFO GRT-0237] Net N0193 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0193 detailed route wire length: 13.66um
+	Layer met1 : 11.96um
+	Layer met2 :  1.70um
 [INFO GRT-0237] Net N0194 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0194 detailed route wire length: 8.72um
@@ -2347,9 +1676,9 @@ Up-via summary (total 2294):
 	Layer met2 :  1.36um
 [INFO GRT-0237] Net N0197 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0197 detailed route wire length: 8.72um
-	Layer met1 :  7.36um
-	Layer met2 :  1.36um
+[INFO GRT-0240] Net N0197 detailed route wire length: 10.14um
+	Layer met1 :  7.42um
+	Layer met2 :  2.72um
 [INFO GRT-0237] Net N0198 global route wire length: 13.80um
 	Layer met1 : 13.80um
 [INFO GRT-0240] Net N0198 detailed route wire length: 8.72um
@@ -2375,367 +1704,363 @@ Up-via summary (total 2294):
 [INFO GRT-0240] Net N0202 detailed route wire length: 8.72um
 	Layer met1 :  7.36um
 	Layer met2 :  1.36um
-[INFO GRT-0237] Net N0203 global route wire length: 220.80um
-	Layer met1 : 124.20um
-	Layer met2 : 96.60um
-[INFO GRT-0240] Net N0203 detailed route wire length: 160.64um
-	Layer met1 : 83.94um
-	Layer met2 : 62.90um
-	Layer met3 : 13.80um
-[INFO GRT-0237] Net N0204 global route wire length: 117.30um
+[INFO GRT-0237] Net N0203 global route wire length: 165.60um
+	Layer met1 : 96.60um
+	Layer met2 : 69.00um
+[INFO GRT-0240] Net N0203 detailed route wire length: 107.68um
+	Layer met1 : 57.00um
+	Layer met2 : 42.40um
+	Layer met3 :  8.28um
+[INFO GRT-0237] Net N0204 global route wire length: 62.10um
 	Layer met1 : 34.50um
-	Layer met2 : 82.80um
-[INFO GRT-0240] Net N0204 detailed route wire length: 57.05um
-	Layer met1 :  8.28um
-	Layer met2 : 34.97um
-	Layer met3 : 13.80um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0204 detailed route wire length: 51.99um
+	Layer met1 :  8.62um
+	Layer met2 : 26.81um
+	Layer met3 : 16.56um
 [INFO GRT-0237] Net N0239 global route wire length: 0.00um
-[INFO GRT-0240] Net N0239 detailed route wire length: 14.64um
-	Layer met1 :  9.20um
-	Layer met2 :  5.44um
-[INFO GRT-0237] Net N0240 global route wire length: 82.80um
-	Layer met1 : 34.50um
-	Layer met2 : 48.30um
-[INFO GRT-0240] Net N0240 detailed route wire length: 67.96um
-	Layer met1 : 27.12um
-	Layer met2 : 40.84um
-[INFO GRT-0237] Net N0241 global route wire length: 27.60um
-	Layer met1 : 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0241 detailed route wire length: 20.18um
-	Layer met1 :  8.96um
-	Layer met2 : 11.22um
-[INFO GRT-0237] Net N0242 global route wire length: 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0242 detailed route wire length: 8.86um
-	Layer met1 :  1.38um
-	Layer met2 :  7.48um
-[INFO GRT-0237] Net N0243 global route wire length: 48.30um
-	Layer met1 : 20.70um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0243 detailed route wire length: 22.74um
-	Layer met1 :  4.36um
-	Layer met2 :  9.18um
-	Layer met3 :  9.20um
-[INFO GRT-0237] Net N0244 global route wire length: 48.30um
-	Layer met1 : 34.50um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0244 detailed route wire length: 25.74um
-	Layer met1 : 17.58um
-	Layer met2 :  8.16um
-[INFO GRT-0237] Net N0245 global route wire length: 75.90um
-	Layer met1 : 48.30um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0245 detailed route wire length: 48.80um
-	Layer met1 : 37.24um
-	Layer met2 : 11.56um
-[INFO GRT-0237] Net N0246 global route wire length: 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0246 detailed route wire length: 15.12um
-	Layer met1 :  2.30um
-	Layer met2 : 12.82um
-[INFO GRT-0237] Net N0247 global route wire length: 55.20um
-	Layer met1 : 41.40um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0247 detailed route wire length: 53.48um
-	Layer met1 : 29.66um
-	Layer met2 : 23.82um
-[INFO GRT-0237] Net N0248 global route wire length: 62.10um
-	Layer met1 : 13.80um
-	Layer met2 : 13.80um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0248 detailed route wire length: 43.37um
-	Layer met1 : 11.04um
-	Layer met2 : 10.71um
-	Layer met3 : 21.62um
-[INFO GRT-0237] Net N0249 global route wire length: 48.30um
-	Layer met2 : 13.80um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0249 detailed route wire length: 37.04um
-	Layer met1 : 23.32um
-	Layer met2 :  7.28um
-	Layer met3 :  6.44um
-[INFO GRT-0237] Net N0250 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0250 detailed route wire length: 11.22um
-	Layer met1 :  8.16um
-	Layer met2 :  3.06um
-[INFO GRT-0237] Net N0251 global route wire length: 55.20um
-	Layer met1 : 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0251 detailed route wire length: 38.22um
-	Layer met1 : 17.36um
-	Layer met2 : 20.86um
-[INFO GRT-0237] Net N0252 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0252 detailed route wire length: 12.06um
-	Layer met1 : 11.04um
-	Layer met2 :  1.02um
-[INFO GRT-0237] Net N0253 global route wire length: 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0253 detailed route wire length: 18.38um
-	Layer met1 :  2.40um
-	Layer met2 : 15.98um
-[INFO GRT-0237] Net N0254 global route wire length: 55.20um
-	Layer met1 : 41.40um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0254 detailed route wire length: 34.57um
-	Layer met1 : 24.71um
-	Layer met2 :  9.86um
-[INFO GRT-0237] Net N0255 global route wire length: 41.40um
-	Layer met2 : 41.40um
-[INFO GRT-0240] Net N0255 detailed route wire length: 38.44um
-	Layer met1 :  0.46um
-	Layer met2 : 37.98um
-[INFO GRT-0237] Net N0256 global route wire length: 48.30um
-	Layer met2 : 48.30um
-[INFO GRT-0240] Net N0256 detailed route wire length: 39.48um
-	Layer met1 :  2.30um
-	Layer met2 : 37.18um
-[INFO GRT-0237] Net N0257 global route wire length: 34.50um
-	Layer met1 : 13.80um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0257 detailed route wire length: 16.20um
-	Layer met1 :  6.90um
-	Layer met2 :  9.30um
-[INFO GRT-0237] Net N0258 global route wire length: 41.40um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0258 detailed route wire length: 29.04um
-	Layer met1 :  7.36um
-	Layer met2 : 21.68um
-[INFO GRT-0237] Net N0259 global route wire length: 55.20um
+[INFO GRT-0240] Net N0239 detailed route wire length: 5.34um
+	Layer met1 :  0.92um
+	Layer met2 :  4.42um
+[INFO GRT-0237] Net N0240 global route wire length: 55.20um
 	Layer met1 : 20.70um
 	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0259 detailed route wire length: 49.32um
-	Layer met1 : 17.02um
-	Layer met2 : 32.30um
-[INFO GRT-0237] Net N0260 global route wire length: 27.60um
-	Layer met1 : 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0260 detailed route wire length: 11.94um
-	Layer met1 :  2.76um
-	Layer met2 :  9.18um
-[INFO GRT-0237] Net N0261 global route wire length: 41.40um
+[INFO GRT-0240] Net N0240 detailed route wire length: 37.82um
+	Layer met1 : 14.02um
+	Layer met2 : 23.80um
+[INFO GRT-0237] Net N0241 global route wire length: 62.10um
+	Layer met1 : 27.60um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0241 detailed route wire length: 34.86um
+	Layer met1 : 12.42um
+	Layer met2 : 22.44um
+[INFO GRT-0237] Net N0242 global route wire length: 41.40um
 	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0261 detailed route wire length: 26.58um
-	Layer met1 :  0.46um
-	Layer met2 : 23.36um
-	Layer met3 :  2.76um
+[INFO GRT-0240] Net N0242 detailed route wire length: 25.88um
+	Layer met1 : 10.58um
+	Layer met2 : 15.30um
+[INFO GRT-0237] Net N0243 global route wire length: 55.20um
+	Layer met1 : 27.60um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0243 detailed route wire length: 19.50um
+	Layer met1 :  8.62um
+	Layer met2 : 10.88um
+[INFO GRT-0237] Net N0244 global route wire length: 62.10um
+	Layer met1 : 34.50um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0244 detailed route wire length: 38.21um
+	Layer met1 : 24.27um
+	Layer met2 : 13.94um
+[INFO GRT-0237] Net N0245 global route wire length: 41.40um
+	Layer met1 : 20.70um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0245 detailed route wire length: 32.76um
+	Layer met1 : 16.44um
+	Layer met2 : 16.32um
+[INFO GRT-0237] Net N0246 global route wire length: 41.40um
+	Layer met1 : 20.70um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0246 detailed route wire length: 30.44um
+	Layer met1 : 13.10um
+	Layer met2 : 17.34um
+[INFO GRT-0237] Net N0247 global route wire length: 48.30um
+	Layer met1 : 27.60um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0247 detailed route wire length: 36.08um
+	Layer met1 :  3.68um
+	Layer met2 : 18.14um
+	Layer met3 : 14.26um
+[INFO GRT-0237] Net N0248 global route wire length: 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0248 detailed route wire length: 8.18um
+	Layer met1 :  1.38um
+	Layer met2 :  6.80um
+[INFO GRT-0237] Net N0249 global route wire length: 20.70um
+	Layer met1 : 20.70um
+[INFO GRT-0240] Net N0249 detailed route wire length: 16.10um
+	Layer met1 : 16.10um
+[INFO GRT-0237] Net N0250 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0250 detailed route wire length: 2.76um
+	Layer met1 :  2.76um
+[INFO GRT-0237] Net N0251 global route wire length: 82.80um
+	Layer met1 : 27.60um
+	Layer met2 : 55.20um
+[INFO GRT-0240] Net N0251 detailed route wire length: 47.14um
+	Layer met1 : 15.50um
+	Layer met2 : 31.64um
+[INFO GRT-0237] Net N0252 global route wire length: 41.40um
+	Layer met1 : 27.60um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0252 detailed route wire length: 23.30um
+	Layer met1 : 12.76um
+	Layer met2 : 10.54um
+[INFO GRT-0237] Net N0253 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0253 detailed route wire length: 2.76um
+	Layer met1 :  2.76um
+[INFO GRT-0237] Net N0254 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0254 detailed route wire length: 16.25um
+	Layer met1 : 11.15um
+	Layer met2 :  5.10um
+[INFO GRT-0237] Net N0255 global route wire length: 55.20um
+	Layer met1 : 20.70um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0255 detailed route wire length: 45.94um
+	Layer met1 : 16.66um
+	Layer met2 : 26.98um
+	Layer met3 :  2.30um
+[INFO GRT-0237] Net N0256 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0256 detailed route wire length: 7.52um
+	Layer met1 :  2.76um
+	Layer met2 :  4.76um
+[INFO GRT-0237] Net N0257 global route wire length: 48.30um
+	Layer met1 : 13.80um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0257 detailed route wire length: 28.26um
+	Layer met1 :  2.76um
+	Layer met2 : 25.50um
+[INFO GRT-0237] Net N0258 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0258 detailed route wire length: 10.24um
+	Layer met1 :  2.30um
+	Layer met2 :  7.94um
+[INFO GRT-0237] Net N0259 global route wire length: 27.60um
+	Layer met1 : 27.60um
+[INFO GRT-0240] Net N0259 detailed route wire length: 18.26um
+	Layer met1 : 16.90um
+	Layer met2 :  1.36um
+[INFO GRT-0237] Net N0260 global route wire length: 41.40um
+	Layer met1 : 13.80um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0260 detailed route wire length: 26.56um
+	Layer met1 :  2.76um
+	Layer met2 : 23.80um
+[INFO GRT-0237] Net N0261 global route wire length: 34.50um
+	Layer met1 : 13.80um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0261 detailed route wire length: 14.34um
+	Layer met1 :  2.30um
+	Layer met2 : 10.20um
+	Layer met3 :  1.84um
 [INFO GRT-0237] Net N0262 global route wire length: 41.40um
 	Layer met1 : 13.80um
 	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0262 detailed route wire length: 31.18um
-	Layer met1 :  9.08um
-	Layer met2 : 22.10um
-[INFO GRT-0237] Net N0263 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0263 detailed route wire length: 6.30um
-	Layer met1 :  4.94um
-	Layer met2 :  1.36um
-[INFO GRT-0237] Net N0264 global route wire length: 62.10um
+[INFO GRT-0240] Net N0262 detailed route wire length: 26.78um
+	Layer met1 : 10.12um
+	Layer met2 : 16.66um
+[INFO GRT-0237] Net N0263 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
-	Layer met3 : 34.50um
-[INFO GRT-0240] Net N0264 detailed route wire length: 41.12um
-	Layer met1 : 17.02um
-	Layer met2 :  2.72um
-	Layer met3 : 21.38um
-[INFO GRT-0237] Net N0265 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0265 detailed route wire length: 21.82um
-	Layer met1 : 12.98um
-	Layer met2 :  8.84um
-[INFO GRT-0237] Net N0266 global route wire length: 41.40um
-	Layer met1 : 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0266 detailed route wire length: 33.10um
-	Layer met1 : 16.78um
-	Layer met2 : 16.32um
-[INFO GRT-0237] Net N0267 global route wire length: 103.50um
-	Layer met1 : 41.40um
-	Layer met2 : 48.30um
-	Layer met3 : 13.80um
-[INFO GRT-0240] Net N0267 detailed route wire length: 61.41um
-	Layer met1 : 21.27um
-	Layer met2 : 40.14um
-[INFO GRT-0237] Net N0268 global route wire length: 55.20um
-	Layer met1 : 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0268 detailed route wire length: 18.70um
-	Layer met1 :  7.80um
-	Layer met2 : 10.90um
-[INFO GRT-0237] Net N0269 global route wire length: 82.80um
-	Layer met1 : 13.80um
-	Layer met2 : 27.60um
-	Layer met3 : 41.40um
-[INFO GRT-0240] Net N0269 detailed route wire length: 50.06um
-	Layer met1 : 15.86um
-	Layer met2 : 12.58um
-	Layer met3 : 21.62um
-[INFO GRT-0237] Net N0270 global route wire length: 48.30um
-	Layer met1 : 13.80um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0270 detailed route wire length: 38.12um
-	Layer met1 :  9.54um
-	Layer met2 : 28.58um
-[INFO GRT-0237] Net N0271 global route wire length: 34.50um
-	Layer met2 : 34.50um
-[INFO GRT-0240] Net N0271 detailed route wire length: 27.16um
-	Layer met1 :  5.06um
-	Layer met2 : 22.10um
-[INFO GRT-0237] Net N0272 global route wire length: 55.20um
-	Layer met1 : 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0272 detailed route wire length: 30.06um
-	Layer met1 : 13.74um
-	Layer met2 : 16.32um
-[INFO GRT-0237] Net N0273 global route wire length: 41.40um
-	Layer met1 : 27.60um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0273 detailed route wire length: 19.32um
+[INFO GRT-0240] Net N0263 detailed route wire length: 19.32um
 	Layer met1 : 11.84um
 	Layer met2 :  7.48um
-[INFO GRT-0237] Net N0274 global route wire length: 27.60um
-	Layer met1 : 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0274 detailed route wire length: 9.46um
-	Layer met1 :  3.68um
-	Layer met2 :  5.78um
-[INFO GRT-0237] Net N0275 global route wire length: 41.40um
+[INFO GRT-0237] Net N0264 global route wire length: 62.10um
 	Layer met1 : 20.70um
+	Layer met2 : 27.60um
+	Layer met3 : 13.80um
+[INFO GRT-0240] Net N0264 detailed route wire length: 42.52um
+	Layer met1 : 24.72um
+	Layer met2 : 17.80um
+[INFO GRT-0237] Net N0265 global route wire length: 41.40um
+	Layer met1 : 13.80um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0265 detailed route wire length: 29.16um
+	Layer met1 : 10.80um
+	Layer met2 : 18.36um
+[INFO GRT-0237] Net N0266 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0266 detailed route wire length: 14.90um
+	Layer met1 : 11.50um
+	Layer met2 :  3.40um
+[INFO GRT-0237] Net N0267 global route wire length: 0.00um
+[INFO GRT-0240] Net N0267 detailed route wire length: 6.49um
+	Layer met1 :  2.07um
+	Layer met2 :  4.42um
+[INFO GRT-0237] Net N0268 global route wire length: 34.50um
+	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0275 detailed route wire length: 26.70um
-	Layer met1 : 12.42um
-	Layer met2 : 14.28um
+[INFO GRT-0240] Net N0268 detailed route wire length: 23.58um
+	Layer met1 :  8.84um
+	Layer met2 : 14.74um
+[INFO GRT-0237] Net N0269 global route wire length: 82.80um
+	Layer met1 : 48.30um
+	Layer met2 : 34.50um
+[INFO GRT-0240] Net N0269 detailed route wire length: 60.04um
+	Layer met1 : 37.82um
+	Layer met2 : 22.22um
+[INFO GRT-0237] Net N0270 global route wire length: 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0270 detailed route wire length: 7.94um
+	Layer met1 :  0.46um
+	Layer met2 :  7.48um
+[INFO GRT-0237] Net N0271 global route wire length: 41.40um
+	Layer met2 : 41.40um
+[INFO GRT-0240] Net N0271 detailed route wire length: 42.18um
+	Layer met1 :  0.92um
+	Layer met2 : 41.26um
+[INFO GRT-0237] Net N0272 global route wire length: 48.30um
+	Layer met1 : 20.70um
+	Layer met2 : 27.60um
+[INFO GRT-0240] Net N0272 detailed route wire length: 40.34um
+	Layer met1 : 15.86um
+	Layer met2 : 24.48um
+[INFO GRT-0237] Net N0273 global route wire length: 55.20um
+	Layer met1 : 34.50um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0273 detailed route wire length: 32.34um
+	Layer met1 : 19.42um
+	Layer met2 : 12.92um
+[INFO GRT-0237] Net N0274 global route wire length: 34.50um
+	Layer met1 : 13.80um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0274 detailed route wire length: 13.42um
+	Layer met1 :  3.22um
+	Layer met2 : 10.20um
+[INFO GRT-0237] Net N0275 global route wire length: 20.70um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0275 detailed route wire length: 11.68um
+	Layer met1 :  0.46um
+	Layer met2 : 11.22um
 [INFO GRT-0237] Net N0276 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0276 detailed route wire length: 5.80um
-	Layer met1 :  1.38um
-	Layer met2 :  4.42um
+[INFO GRT-0240] Net N0276 detailed route wire length: 6.26um
+	Layer met1 :  2.52um
+	Layer met2 :  3.74um
 [INFO GRT-0237] Net N0277 global route wire length: 13.80um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0277 detailed route wire length: 9.40um
-	Layer met1 :  7.36um
+[INFO GRT-0240] Net N0277 detailed route wire length: 4.48um
+	Layer met1 :  4.48um
+[INFO GRT-0237] Net N0278 global route wire length: 13.80um
+	Layer met1 : 13.80um
+[INFO GRT-0240] Net N0278 detailed route wire length: 7.10um
+	Layer met1 :  5.06um
 	Layer met2 :  2.04um
-[INFO GRT-0237] Net N0278 global route wire length: 103.50um
+[INFO GRT-0237] Net N0279 global route wire length: 48.30um
 	Layer met1 : 20.70um
 	Layer met2 : 27.60um
-	Layer met3 : 55.20um
-[INFO GRT-0240] Net N0278 detailed route wire length: 51.22um
-	Layer met1 :  0.46um
-	Layer met2 : 19.04um
-	Layer met3 : 31.72um
-[INFO GRT-0237] Net N0279 global route wire length: 13.80um
+[INFO GRT-0240] Net N0279 detailed route wire length: 34.30um
+	Layer met1 : 12.88um
+	Layer met2 : 21.42um
+[INFO GRT-0237] Net N0280 global route wire length: 27.60um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0279 detailed route wire length: 5.24um
-	Layer met1 :  1.84um
-	Layer met2 :  3.40um
-[INFO GRT-0237] Net N0280 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0280 detailed route wire length: 9.76um
-	Layer met1 :  9.76um
-[INFO GRT-0237] Net N0281 global route wire length: 13.80um
-	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0281 detailed route wire length: 13.60um
-	Layer met1 :  8.50um
-	Layer met2 :  5.10um
-[INFO GRT-0237] Net N0282 global route wire length: 55.20um
-	Layer met1 : 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0282 detailed route wire length: 39.32um
-	Layer met1 : 15.18um
-	Layer met2 : 24.14um
-[INFO GRT-0237] Net N0283 global route wire length: 27.60um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0283 detailed route wire length: 27.06um
-	Layer met1 :  5.98um
-	Layer met2 : 21.08um
-[INFO GRT-0237] Net N0284 global route wire length: 48.30um
-	Layer met1 : 20.70um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0284 detailed route wire length: 29.26um
-	Layer met1 :  9.20um
-	Layer met2 : 20.06um
-[INFO GRT-0237] Net N0285 global route wire length: 20.70um
-	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0285 detailed route wire length: 16.28um
-	Layer met1 :  5.06um
-	Layer met2 : 11.22um
-[INFO GRT-0237] Net N0286 global route wire length: 75.90um
-	Layer met1 : 48.30um
-	Layer met2 : 27.60um
-[INFO GRT-0240] Net N0286 detailed route wire length: 71.64um
-	Layer met1 : 21.50um
-	Layer met2 : 14.96um
-	Layer met3 : 35.18um
-[INFO GRT-0237] Net N0287 global route wire length: 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0287 detailed route wire length: 5.56um
-	Layer met1 :  0.46um
-	Layer met2 :  5.10um
-[INFO GRT-0237] Net N0288 global route wire length: 96.60um
-	Layer met1 : 41.40um
-	Layer met2 : 55.20um
-[INFO GRT-0240] Net N0288 detailed route wire length: 66.48um
-	Layer met1 : 27.48um
-	Layer met2 : 39.00um
-[INFO GRT-0237] Net N0289 global route wire length: 13.80um
+[INFO GRT-0240] Net N0280 detailed route wire length: 5.92um
+	Layer met1 :  1.84um
+	Layer met2 :  4.08um
+[INFO GRT-0237] Net N0281 global route wire length: 62.10um
+	Layer met2 : 20.70um
+	Layer met3 : 41.40um
+[INFO GRT-0240] Net N0281 detailed route wire length: 42.74um
+	Layer met1 :  3.22um
+	Layer met2 : 10.54um
+	Layer met3 : 28.98um
+[INFO GRT-0237] Net N0282 global route wire length: 34.50um
 	Layer met1 : 13.80um
-[INFO GRT-0240] Net N0289 detailed route wire length: 6.42um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0282 detailed route wire length: 24.48um
+	Layer met1 :  7.82um
+	Layer met2 : 16.66um
+[INFO GRT-0237] Net N0283 global route wire length: 48.30um
+	Layer met1 : 27.60um
+	Layer met2 : 20.70um
+[INFO GRT-0240] Net N0283 detailed route wire length: 29.58um
+	Layer met1 : 15.52um
+	Layer met2 : 14.06um
+[INFO GRT-0237] Net N0284 global route wire length: 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0284 detailed route wire length: 7.82um
+	Layer met2 :  7.82um
+[INFO GRT-0237] Net N0285 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0285 detailed route wire length: 15.42um
+	Layer met1 :  8.28um
+	Layer met2 :  7.14um
+[INFO GRT-0237] Net N0286 global route wire length: 69.00um
+	Layer met1 : 55.20um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0286 detailed route wire length: 54.30um
+	Layer met1 : 40.36um
+	Layer met2 : 13.94um
+[INFO GRT-0237] Net N0287 global route wire length: 0.00um
+[INFO GRT-0240] Net N0287 detailed route wire length: 2.84um
+	Layer met1 :  0.46um
+	Layer met2 :  2.38um
+[INFO GRT-0237] Net N0288 global route wire length: 82.80um
+	Layer met1 : 20.70um
+	Layer met2 : 62.10um
+[INFO GRT-0240] Net N0288 detailed route wire length: 53.28um
+	Layer met1 : 18.26um
+	Layer met2 : 35.02um
+[INFO GRT-0237] Net N0289 global route wire length: 27.60um
+	Layer met1 : 13.80um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0289 detailed route wire length: 11.86um
 	Layer met1 :  5.06um
-	Layer met2 :  1.36um
+	Layer met2 :  6.80um
 [INFO GRT-0237] Net N0294 global route wire length: 27.60um
 	Layer met1 : 13.80um
 	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0294 detailed route wire length: 12.32um
+[INFO GRT-0240] Net N0294 detailed route wire length: 15.38um
 	Layer met1 :  5.52um
-	Layer met2 :  6.80um
+	Layer met2 :  9.86um
 [INFO GRT-0237] Net N0295 global route wire length: 34.50um
 	Layer met1 : 13.80um
 	Layer met2 : 20.70um
-[INFO GRT-0240] Net N0295 detailed route wire length: 17.98um
-	Layer met1 :  4.14um
-	Layer met2 : 13.84um
-[INFO GRT-0237] Net N0298 global route wire length: 255.30um
-	Layer met1 : 158.70um
-	Layer met2 : 96.60um
-[INFO GRT-0240] Net N0298 detailed route wire length: 142.25um
-	Layer met1 : 42.90um
-	Layer met2 : 68.53um
-	Layer met3 : 30.82um
-[INFO GRT-0237] Net N0299 global route wire length: 207.00um
-	Layer met1 : 138.00um
+[INFO GRT-0240] Net N0295 detailed route wire length: 14.58um
+	Layer met1 :  5.06um
+	Layer met2 :  9.52um
+[INFO GRT-0237] Net N0298 global route wire length: 248.40um
+	Layer met1 : 144.90um
+	Layer met2 : 103.50um
+[INFO GRT-0240] Net N0298 detailed route wire length: 144.26um
+	Layer met1 : 65.29um
+	Layer met2 : 78.97um
+[INFO GRT-0237] Net N0299 global route wire length: 200.10um
+	Layer met1 : 131.10um
 	Layer met2 : 69.00um
-[INFO GRT-0240] Net N0299 detailed route wire length: 126.62um
-	Layer met1 : 68.29um
-	Layer met2 : 58.33um
-[INFO GRT-0237] Net N0300 global route wire length: 158.70um
-	Layer met1 : 75.90um
-	Layer met2 : 82.80um
-[INFO GRT-0240] Net N0300 detailed route wire length: 105.29um
-	Layer met1 : 60.10um
-	Layer met2 : 45.19um
-[INFO GRT-0237] Net N0301 global route wire length: 117.30um
-	Layer met1 : 62.10um
+[INFO GRT-0240] Net N0299 detailed route wire length: 118.37um
+	Layer met1 : 43.51um
+	Layer met2 : 65.66um
+	Layer met3 :  9.20um
+[INFO GRT-0237] Net N0300 global route wire length: 144.90um
+	Layer met1 : 41.40um
+	Layer met2 : 103.50um
+[INFO GRT-0240] Net N0300 detailed route wire length: 101.24um
+	Layer met1 : 37.54um
+	Layer met2 : 63.70um
+[INFO GRT-0237] Net N0301 global route wire length: 96.60um
+	Layer met1 : 41.40um
 	Layer met2 : 55.20um
-[INFO GRT-0240] Net N0301 detailed route wire length: 87.80um
-	Layer met1 : 45.11um
-	Layer met2 : 42.69um
-[INFO GRT-0237] Net N0302 global route wire length: 158.70um
+[INFO GRT-0240] Net N0301 detailed route wire length: 80.30um
+	Layer met1 : 37.12um
+	Layer met2 : 43.18um
+[INFO GRT-0237] Net N0302 global route wire length: 193.20um
+	Layer met1 : 124.20um
+	Layer met2 : 69.00um
+[INFO GRT-0240] Net N0302 detailed route wire length: 91.93um
+	Layer met1 : 48.97um
+	Layer met2 : 42.96um
+[INFO GRT-0237] Net N0303 global route wire length: 144.90um
+	Layer met1 : 131.10um
+	Layer met2 : 13.80um
+[INFO GRT-0240] Net N0303 detailed route wire length: 117.29um
+	Layer met1 : 82.94um
+	Layer met2 : 30.67um
+	Layer met3 :  3.68um
+[INFO GRT-0237] Net N0304 global route wire length: 131.10um
 	Layer met1 : 62.10um
-	Layer met2 : 96.60um
-[INFO GRT-0240] Net N0302 detailed route wire length: 79.38um
-	Layer met1 : 32.32um
-	Layer met2 : 47.06um
-[INFO GRT-0237] Net N0303 global route wire length: 103.50um
-	Layer met1 : 89.70um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0303 detailed route wire length: 67.08um
-	Layer met1 : 41.92um
-	Layer met2 : 25.16um
-[INFO GRT-0237] Net N0304 global route wire length: 13.80um
-	Layer met2 : 13.80um
-[INFO GRT-0240] Net N0304 detailed route wire length: 4.76um
-	Layer met2 :  4.76um
+	Layer met2 : 34.50um
+	Layer met3 : 34.50um
+[INFO GRT-0240] Net N0304 detailed route wire length: 100.27um
+	Layer met1 : 52.66um
+	Layer met2 : 19.55um
+	Layer met3 : 28.06um

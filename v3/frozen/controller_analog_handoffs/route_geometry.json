@@ -13048,7 +13048,7 @@
   ],
   "source_checkpoint": {
     "gds": "v3/frozen/controller_power/v3_four_channel_ctrl_powered.gds",
-    "sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+    "sha256": "98628e45ec42b186127b16f24ae9e14ea899569a68eaaa4ba0c8878b9371e779",
     "top": "v3_four_channel_ctrl_powered"
   },
   "status": "generated from hash-locked, graph-audited OpenROAD routes",

@@ -105,7 +105,7 @@
       "status": "complete immutable packaged TinyTapeout candidate",
       "top_cell": "tt_um_jjassonn69_beamformer",
       "gds": "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds",
-      "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14"
+      "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9"
     }
   },
   "four_channel_integration": {
@@ -126,12 +126,12 @@
     "physical_digital_output_tie_low": "v3/evidence/digital_output_tie_gate.json"
   },
   "current_top_level": {
-    "status": "internally signed-off exact TinyTapeout candidate with green official GitHub custom-GDS and precheck attestation",
+    "status": "internally signed-off pin-aligned TinyTapeout candidate pending official GitHub custom-GDS and precheck attestation",
     "top_cell": "tt_um_jjassonn69_beamformer",
     "gds": "v3/frozen/submission/tt_um_jjassonn69_beamformer.gds",
-    "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
     "flat_spice": "v3/frozen/submission/magic/tt_um_jjassonn69_beamformer_magic_flat.spice",
-    "flat_spice_sha256": "78343b9686d302cdb34f35d709580da16efa8bc03c5a0f1d31dc186002af74dc",
+    "flat_spice_sha256": "8854d58c71c1299ad408c1b377d1f7f345aec24659cba7cbfa06de4c3a91f0d9",
     "physical_gate": "v3/evidence/submission_gate.json",
     "review_image": "v3/frozen/submission/review/01_full_packaged_layout.png",
     "integration_closeup": "v3/frozen/submission/review/03_four_channel_vector_core.png"

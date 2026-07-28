@@ -4,7 +4,7 @@
   "scope": "physical static-low closure for all 24 unused TinyTapeout digital output and output-enable pins",
   "gds": "v3/frozen/digital_output_tie/v3_four_channel_output_tied.gds",
   "top_cell": "v3_four_ch_output_tied",
-  "gds_sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+  "gds_sha256": "3fa0ef720c58da0127c6fba03b1d0532d5deffc529c0cc4e41eba401a6a81184",
   "flat_spice": "v3/frozen/digital_output_tie/v3_four_ch_output_tied_flat.spice",
   "flat_spice_sha256": "a613ccaa87d26fe6b52b3fcfc29a73ef8199ef6dca5f00956c2b1e112b4b881f",
   "route_results": {

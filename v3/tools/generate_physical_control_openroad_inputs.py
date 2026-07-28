@@ -182,7 +182,10 @@ def track_values(
 
 
 def boundary_pin_plan(
-    mapping: dict[str, Any], offset: list[float], size: list[float]
+    mapping: dict[str, Any],
+    offset: list[float],
+    size: list[float],
+    placement: dict[str, Any] | None = None,
 ) -> dict[str, dict[str, Any]]:
     input_nets: list[str] = []
     output_nets: list[str] = []
@@ -194,14 +197,10 @@ def boundary_pin_plan(
     # changes.  Clock/reset/config enter through the north on preferred M2
     # vertical tracks.  Outputs leave through the west on preferred M3
     # horizontal tracks.
-    ordered_inputs = [
-        "clk", "rst_n", "ena",
-        "beam_select[0]", "beam_select[1]", "beam_select[2]",
-        "raw_mode",
-        "channel_enable[0]", "channel_enable[1]",
-        "channel_enable[2]", "channel_enable[3]",
-        "cfg_clk", "cfg_data", "cfg_latch",
-    ]
+    if placement is None or "boundary_interface" not in placement:
+        raise ValueError("production placement lacks the pin-aligned boundary contract")
+    interface = placement["boundary_interface"]
+    ordered_inputs = interface["official_pin_order_left_to_right"]
     ordered_outputs = [
         *(f"group_codes[{index}]" for index in range(32)),
         *(f"channel_bias_enable[{index}]" for index in range(4)),
@@ -213,11 +212,7 @@ def boundary_pin_plan(
     if set(output_nets) != set(ordered_outputs):
         raise ValueError("mapped V3 output ports differ from the frozen boundary plan")
 
-    met2_x = track_values("met2", 0, offset[0], size[0])
     met3_y = track_values("met3", 1, offset[1], size[1])
-    input_track_indices = [20 + 19 * index for index in range(len(ordered_inputs))]
-    if input_track_indices[-1] >= len(met2_x):
-        raise ValueError("controller width cannot fit the north boundary inputs")
     # Leave two M3 tracks between output classes so the later top-level fanout
     # can turn without creating tightly coupled parallel buses.
     output_track_indices = [index for index in range(32)]
@@ -228,17 +223,22 @@ def boundary_pin_plan(
         raise ValueError("controller height cannot fit the west boundary outputs")
 
     pins: dict[str, dict[str, Any]] = {}
-    for index, net in enumerate(ordered_inputs):
+    local_x = interface["local_pin_x_um"]
+    for net in ordered_inputs:
+        x = float(local_x[net]) - float(offset[0])
+        if x <= 0.0 or x >= float(size[0]):
+            raise ValueError(f"{net}: pin-aligned north port leaves controller")
         pins[net] = {
             "direction": "INPUT",
             "layer": "met2",
-            "point_um": [met2_x[input_track_indices[index]], size[1]],
+            "point_um": [round(x, 6), size[1]],
             "rect_um": [-0.15, -0.84, 0.15, 0.0],
             "edge": "north",
             "routing_class": (
                 "clock" if net in {"clk", "cfg_clk"}
                 else "reset" if net == "rst_n" else "control_input"
             ),
+            "absolute_x_um": float(local_x[net]),
         }
     for net, track_index in zip(ordered_outputs, output_track_indices):
         pins[net] = {
@@ -321,7 +321,7 @@ def build_def(
     net_ids = {
         net: f"N{index:04d}" for index, net in enumerate(sorted(mapping["nets"]))
     }
-    pins = boundary_pin_plan(mapping, offset, [width, height])
+    pins = boundary_pin_plan(mapping, offset, [width, height], placement)
     pin_ids = {
         net: f"P{index:03d}" for index, net in enumerate(sorted(pins))
     }

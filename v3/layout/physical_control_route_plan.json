@@ -1,27 +1,27 @@
 {
   "schema_version": 1,
   "units": "um",
-  "status": "hash-locked shared-controller internal route contract",
+  "status": "hash-locked pin-aligned shared-controller internal route contract",
   "source_checkpoint": {
     "gds": "build/v3/control_placement/direct/v3_four_channel_control_placed.gds",
     "top": "v3_four_channel_control_placed",
-    "sha256": "5fd0f37900dca357616e3c46d90ce4a2adc91aae4c2642692882fa5eaab0b89f"
+    "sha256": "761415f2ebc04f380c6014fed7ea038fd6bf0af1bbb26de2b34a381f6979074d"
   },
   "route_checkpoint": {
-    "input_summary": "build/v3/control_routing/openroad_internal_pdn_reserved/input_summary.json",
-    "input_summary_sha256": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
-    "audit": "build/v3/control_routing/openroad_internal_pdn_reserved/route_audit.json",
-    "audit_sha256": "c11b5bced6d14c4e0813529018fc76dce1cef1436de9f606467be2e925b85ec8",
-    "routed_def": "build/v3/control_routing/openroad_internal_pdn_reserved/routed.def",
-    "routed_def_sha256": "963deb441df10b0d57ddd22d8eb0bfdebc2aa26aa198778baa3172b2b7846ea2",
-    "detailed_route_drc": "build/v3/control_routing/openroad_internal_pdn_reserved/detailed_route_drc.rpt",
+    "input_summary": "build/v3/control_routing/openroad_internal/input_summary.json",
+    "input_summary_sha256": "bc7f1339fb85c4f5449eb772d8bb1430311f698abb66a21406d716f4806b8632",
+    "audit": "build/v3/control_routing/openroad_internal/route_audit.json",
+    "audit_sha256": "1d47d290409f12d036cd9d6409f32ea1429a8c3fb4826aaa4f07e13acb61181f",
+    "routed_def": "build/v3/control_routing/openroad_internal/routed.def",
+    "routed_def_sha256": "1fa994b5e971b43d08b0961bfd3532ce0071530b815f07d258e38acfca34d878",
+    "detailed_route_drc": "build/v3/control_routing/openroad_internal/detailed_route_drc.rpt",
     "detailed_route_drc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "openroad_log": "build/v3/control_routing/openroad_internal_pdn_reserved/openroad.log",
-    "openroad_log_sha256": "c9df40e88c95696310ba61b3d62eb52d5284a9c7ee4f0c69f510a652eb3f8746",
-    "wire_length": "build/v3/control_routing/openroad_internal_pdn_reserved/wire_length.csv",
-    "wire_length_sha256": "9faee83a2818d384b37005131a6eca2389b3f53fa70e1c039be016a886e3a933",
-    "guide_coverage": "build/v3/control_routing/openroad_internal_pdn_reserved/guide_coverage.csv",
-    "guide_coverage_sha256": "b43de272de3ec6ae2bdf8807294e50a60c937de807807dc365f789e97a6b423b"
+    "openroad_log": "build/v3/control_routing/openroad_internal/openroad.log",
+    "openroad_log_sha256": "8ff0599758a1f1f8703765d1c8e3065ac70eefb50b5996155b427a653a545909",
+    "wire_length": "build/v3/control_routing/openroad_internal/wire_length.csv",
+    "wire_length_sha256": "de35cf240709a3734dd58c5319e06f00a1a70ed7b660d4ca0520db4deba3537c",
+    "guide_coverage": "build/v3/control_routing/openroad_internal/guide_coverage.csv",
+    "guide_coverage_sha256": "5732f60164959ba11eaed49fab7fc70a6e7aaf76e34953899a94b90ed3146fbe"
   },
   "overlay_top": "v3_ctrl_signal_routes",
   "output_top": "v3_four_channel_ctrl_sig_routed",

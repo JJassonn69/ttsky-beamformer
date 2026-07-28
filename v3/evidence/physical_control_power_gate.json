@@ -4,7 +4,7 @@
   "scope": "distributed 1.8 V VDPWR/VGND integration for the centralized V3 controller, assembled with the exact frozen analog and 305-net controller-signal GDS",
   "gds": "v3/frozen/controller_power/v3_four_channel_ctrl_powered.gds",
   "top_cell": "v3_four_channel_ctrl_powered",
-  "gds_sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+  "gds_sha256": "98628e45ec42b186127b16f24ae9e14ea899569a68eaaa4ba0c8878b9371e779",
   "flat_spice": "v3/frozen/controller_power/v3_four_channel_ctrl_powered_flat.spice",
   "flat_spice_sha256": "191aced39bea9aa62e1873dc2993204e015ebe30794cd8ac74cc703a86fed082",
   "power_results": {

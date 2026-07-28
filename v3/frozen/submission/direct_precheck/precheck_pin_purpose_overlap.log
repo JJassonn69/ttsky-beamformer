@@ -1,4 +1,4 @@
-Running pin_label_purposes_overlapping_drawing.rb.drc on file=/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/tt_um_jjassonn69_beamformer.gds, topcell=tt_um_jjassonn69_beamformer, output to /Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/precheck_final/precheck_pin_purpose_overlap.xml
+Running pin_label_purposes_overlapping_drawing.rb.drc on file=/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/tt_um_jjassonn69_beamformer.gds, topcell=tt_um_jjassonn69_beamformer, output to /Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/direct_precheck/precheck_pin_purpose_overlap.xml
   deep:true tiled:false threads:1
 --- #err|description, table for cell: tt_um_jjassonn69_beamformer
 NO-Check ----        pwell:64/44/EMP   122/16/dat    64/59/EMP    44/16/EMP     44/5/EMP

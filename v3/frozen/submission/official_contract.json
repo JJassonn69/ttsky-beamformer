@@ -1,11 +1,11 @@
 {
   "artifact_sha256": {
     "checker": "7a40fcc5bffe2071fb037e110807dd5689c2086e4fdf074d14f8f07265c7c139",
-    "gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "gds": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
     "klayout_probe": "e4651862f1e127fc683f2371ebf808b7e1ecc1741820aea200fbb7d98988a8e7",
     "lef": "8e2af16c69851e916af08d2ba211a26840798296ddeea5f4110819ab8fbad15b",
     "nwell_urpm_report": "d66649090b32f241d971a74ee2f362a210b4846db561ad6952656a9aa87f41fe",
-    "package_report": "c788d9a75af3bb033a9c2e2972b9c2ff95058cf301f4fb21d763e0d7d14e9001",
+    "package_report": "35e3c03f0720b79f882a2db5a16ecb27e0d1b77965680ed1b09d12a111f14248",
     "template_def": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
     "verilog": "1f58fbf2ba57e3146eaa6fcb3ddaf62f9a0f1e28c2331fc9a6d3bd3972b5afe0"
   },
@@ -217,7 +217,7 @@
   },
   "errors": [],
   "gds": "build/v3/submission/tt_um_jjassonn69_beamformer.gds",
-  "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+  "gds_sha256": "988ad4fb3509f4696c3865c3ac3b1058a7fe300133404641dc945da5017bb3a9",
   "schema_version": 1,
   "scope": "local mirror of non-DRC TinyTapeout SKY130 wrapper checks on the exact packaged V3 artifact",
   "status": "pass"
