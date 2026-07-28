@@ -1,0 +1,59 @@
+{
+  "artifact_sha256": {
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "flat_spice": "191aced39bea9aa62e1873dc2993204e015ebe30794cd8ac74cc703a86fed082",
+    "gds": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+    "geometry": "ee1487335504c95d39846ecb0f66afefc60f4f19f17d714e73f2fa4df0a44cfa",
+    "magic_log": "8a72552f480686136cadc9711d7e17ac853c1f86f03daa75b5caf883a59f46d2",
+    "overlay_ext": "d6c332cb3b7194b68977b499315924df88a62070c658deed2afa7d06e61194ad",
+    "precheck": "9e94452e93ae2f2b2de493766afc5281205bf30c2d3261c3c2547f3505fc32c1",
+    "source_gate": "cf2cab8bbf4566907d4c91752da3f88245fa30b66d9ab1695d2cc7763e29e0d9",
+    "top_ext": "efbac17e935bf39b0e67c934cefa17a49b8fccbdbb8d053b5b8b25fc9f5b11e5"
+  },
+  "checks": {
+    "analog_population": {
+      "VDPWR_terminal_hits": 740,
+      "VGND_terminal_hits": 1360,
+      "devices": 1315,
+      "stale_VPB_terminal_hits": 0,
+      "stale_VPWR_terminal_hits": 0,
+      "stale_hierarchical_VGND_terminal_hits": 0
+    },
+    "digital_population": {
+      "VDPWR_terminal_hits": 4078,
+      "VGND_terminal_hits": 3882,
+      "devices": 4722,
+      "stale_VPB_terminal_hits": 0,
+      "stale_VPWR_terminal_hits": 0,
+      "stale_hierarchical_VGND_terminal_hits": 0
+    },
+    "direct_gds_precheck_zero": true,
+    "distinct_route_label_groups": 305,
+    "extraction_warning_baseline_exact": true,
+    "magic_metrics": {
+      "drc": 0,
+      "extraction_feedback": 9,
+      "feedback_after_clear": 0,
+      "gds_feedback": 0
+    },
+    "power_overlay_component_counts": {
+      "VDPWR": 1,
+      "VGND": 1
+    },
+    "power_overlay_nodes": [
+      "VDPWR",
+      "VGND"
+    ],
+    "power_overlay_orphan_vias": 0,
+    "route_labels_in_flat_extraction": 305,
+    "routes_shorted_to_supply": 0,
+    "row_rails": 18,
+    "total_extracted_devices": 6037,
+    "upper_contacts": 36,
+    "vdpwr_and_vgnd_are_distinct": true
+  },
+  "errors": [],
+  "schema_version": 1,
+  "scope": "exact assembled V3 controller-power GDS including frozen analog, 305 controller signals, all 18 row rails, and both 1.8 V supply nets",
+  "status": "pass"
+}

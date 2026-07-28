@@ -1,0 +1,75 @@
+{
+  "assembly": {
+    "output_bytes": 2665878,
+    "output_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "output_structure_count": 32,
+    "output_top": "v3_four_ch_ctrl_boundary_handoff",
+    "overlay_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/control_boundary_handoffs/direct/v3_control_boundary_handoff_routes.gds",
+    "overlay_reference_count_added": 1,
+    "overlay_sha256": "8cf4c89eede9b99d86791724207a77993d50b2229e36945c204cda0095b4daff",
+    "overlay_structure_count": 1,
+    "overlay_top": "v3_ctrl_boundary_handoff_routes",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
+    "source_sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
+    "source_structure_count": 31,
+    "source_top": "v3_four_ch_ctrl_analog_handoff",
+    "status": "pass",
+    "top_level_labels_promoted": [
+      "V3B000",
+      "V3B001",
+      "V3B002",
+      "V3B003",
+      "V3B004",
+      "V3B005",
+      "V3B006",
+      "V3B007",
+      "V3B008",
+      "V3B009",
+      "V3B010",
+      "V3B011",
+      "V3B012",
+      "V3B013"
+    ]
+  },
+  "geometry": {
+    "access_pads": 0,
+    "boundary_terminals": 14,
+    "by_layer": {
+      "met2": 46,
+      "met3": 73,
+      "met4": 42,
+      "via2": 22,
+      "via3": 14
+    },
+    "labels": 14,
+    "patches": 0,
+    "routes": 14,
+    "segments": 75,
+    "shapes": 197,
+    "vias": 36
+  },
+  "geometry_sha256": "baae4649b92b2bbf40f81c01e60289213ae5886ad45fd1a18f8de2e8d6690ee8",
+  "output_gds": "build/v3/control_boundary_handoffs/direct/v3_four_channel_ctrl_boundary_handoffs.gds",
+  "output_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+  "overlay": {
+    "boundary_count": 197,
+    "bytes": 13358,
+    "dbu_per_um": 1000,
+    "label_count": 14,
+    "output_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/control_boundary_handoffs/direct/v3_control_boundary_handoff_routes.gds",
+    "output_sha256": "8cf4c89eede9b99d86791724207a77993d50b2229e36945c204cda0095b4daff",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
+    "source_sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
+    "status": "pass",
+    "top": "v3_ctrl_boundary_handoff_routes",
+    "writer": "direct deterministic GDS boundary writer"
+  },
+  "policy": {
+    "magic_is_not_the_route_geometry_writer": true,
+    "route_geometry_writer": "direct deterministic GDS boundary writer",
+    "source_checkpoint_attached_hierarchically": true,
+    "source_geometry_modified": false
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

@@ -44,12 +44,47 @@ def file_sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def power_reservation_contract(power_plan: dict[str, Any]) -> dict[str, Any]:
+    """Independently select the fields that alter signal-route blockages."""
+
+    region = power_plan["controller_region"]
+    underpass = power_plan["ground_finger_underpass"]
+    vias = power_plan["via_geometries"]
+    return {
+        "controller_region": {
+            "bbox_um": region["bbox_um"],
+            "row_count": region["row_count"],
+            "row_height_um": region["row_height_um"],
+        },
+        "distributed_contact_columns_um": power_plan[
+            "distributed_contact_columns_um"
+        ],
+        "ground_finger_underpass": {
+            "layer": underpass["layer"],
+            "x_span_um": underpass["x_span_um"],
+            "width_um": underpass["width_um"],
+        },
+        "via_geometries": {
+            "M1M2": vias["M1M2"],
+            "M2M3": vias["M2M3"],
+        },
+    }
+
+
+def canonical_json_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
+
+
 def validate(
     workdir: Path,
     placement_path: Path,
     mapping_path: Path,
     generator_path: Path,
     frozen_source_gds: Path,
+    power_plan_path: Path,
 ) -> dict[str, Any]:
     summary_path = workdir / "input_summary.json"
     routed_def_path = workdir / "routed.def"
@@ -80,6 +115,15 @@ def validate(
             errors.append(f"input provenance {name} differs from the current source")
     if provenance.get("frozen_source_gds_sha256") != file_sha256(frozen_source_gds):
         errors.append("input provenance frozen source GDS differs from the current source")
+    current_power_contract = power_reservation_contract(
+        json.loads(power_plan_path.read_text(encoding="utf-8"))
+    )
+    if provenance.get("power_reservation_contract") != current_power_contract:
+        errors.append("input provenance power-reservation contract differs")
+    if provenance.get("power_reservation_contract_sha256") != canonical_json_sha256(
+        current_power_contract
+    ):
+        errors.append("input provenance power-reservation hash differs")
 
     if not summary.get("policy", {}).get("metal4_reserved"):
         errors.append("input contract does not reserve M4")
@@ -312,6 +356,10 @@ def main() -> None:
         default=ROOT / "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration.gds",
     )
     parser.add_argument(
+        "--power-plan", type=Path,
+        default=ROOT / "v3/layout/physical_control_power_plan.json",
+    )
+    parser.add_argument(
         "--report", type=Path,
         default=ROOT / "build/v3/control_routing/openroad_internal/route_audit.json",
     )
@@ -322,6 +370,7 @@ def main() -> None:
         args.mapping,
         args.generator,
         args.frozen_source_gds,
+        args.power_plan,
     )
     args.report.parent.mkdir(parents=True, exist_ok=True)
     args.report.write_text(

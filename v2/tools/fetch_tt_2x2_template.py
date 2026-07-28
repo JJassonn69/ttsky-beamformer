@@ -18,6 +18,11 @@ OUTPUT = Path("build/v2/tt_analog_2x2.def")
 
 
 def main() -> None:
+    if OUTPUT.is_file():
+        existing_digest = hashlib.sha256(OUTPUT.read_bytes()).hexdigest()
+        if existing_digest == SHA256:
+            print(f"Authenticated existing {OUTPUT}: sha256={existing_digest}")
+            return
     data = urlopen(URL, timeout=30).read()
     digest = hashlib.sha256(data).hexdigest()
     if digest != SHA256:

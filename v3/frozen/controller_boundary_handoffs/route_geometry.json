@@ -1,0 +1,2566 @@
+{
+  "counts": {
+    "access_pads": 0,
+    "boundary_terminals": 14,
+    "by_layer": {
+      "met2": 46,
+      "met3": 73,
+      "met4": 42,
+      "via2": 22,
+      "via3": 14
+    },
+    "labels": 14,
+    "patches": 0,
+    "routes": 14,
+    "segments": 75,
+    "shapes": 197,
+    "vias": 36
+  },
+  "label_net_map": {
+    "V3B000": "clk",
+    "V3B001": "rst_n",
+    "V3B002": "ena",
+    "V3B003": "beam_select[0]",
+    "V3B004": "beam_select[1]",
+    "V3B005": "beam_select[2]",
+    "V3B006": "raw_mode",
+    "V3B007": "channel_enable[0]",
+    "V3B008": "channel_enable[1]",
+    "V3B009": "channel_enable[2]",
+    "V3B010": "channel_enable[3]",
+    "V3B011": "cfg_clk",
+    "V3B012": "cfg_data",
+    "V3B013": "cfg_latch"
+  },
+  "labels": [
+    {
+      "gds_label": "V3B000",
+      "layer": "met2",
+      "net": "clk",
+      "point_um": [
+        190.67,
+        221.34
+      ]
+    },
+    {
+      "gds_label": "V3B001",
+      "layer": "met2",
+      "net": "rst_n",
+      "point_um": [
+        199.41,
+        220.32
+      ]
+    },
+    {
+      "gds_label": "V3B002",
+      "layer": "met2",
+      "net": "ena",
+      "point_um": [
+        208.15,
+        220.66
+      ]
+    },
+    {
+      "gds_label": "V3B003",
+      "layer": "met4",
+      "net": "beam_select[0]",
+      "point_um": [
+        138.46,
+        224.66
+      ]
+    },
+    {
+      "gds_label": "V3B004",
+      "layer": "met4",
+      "net": "beam_select[1]",
+      "point_um": [
+        135.7,
+        220.24
+      ]
+    },
+    {
+      "gds_label": "V3B005",
+      "layer": "met4",
+      "net": "beam_select[2]",
+      "point_um": [
+        132.94,
+        222.62
+      ]
+    },
+    {
+      "gds_label": "V3B006",
+      "layer": "met4",
+      "net": "raw_mode",
+      "point_um": [
+        130.18,
+        222.96
+      ]
+    },
+    {
+      "gds_label": "V3B007",
+      "layer": "met4",
+      "net": "channel_enable[0]",
+      "point_um": [
+        127.42,
+        223.3
+      ]
+    },
+    {
+      "gds_label": "V3B008",
+      "layer": "met4",
+      "net": "channel_enable[1]",
+      "point_um": [
+        124.66,
+        223.64
+      ]
+    },
+    {
+      "gds_label": "V3B009",
+      "layer": "met4",
+      "net": "channel_enable[2]",
+      "point_um": [
+        121.9,
+        223.98
+      ]
+    },
+    {
+      "gds_label": "V3B010",
+      "layer": "met4",
+      "net": "channel_enable[3]",
+      "point_um": [
+        119.14,
+        221.26
+      ]
+    },
+    {
+      "gds_label": "V3B011",
+      "layer": "met4",
+      "net": "cfg_clk",
+      "point_um": [
+        116.38,
+        221.6
+      ]
+    },
+    {
+      "gds_label": "V3B012",
+      "layer": "met4",
+      "net": "cfg_data",
+      "point_um": [
+        113.62,
+        221.94
+      ]
+    },
+    {
+      "gds_label": "V3B013",
+      "layer": "met4",
+      "net": "cfg_latch",
+      "point_um": [
+        110.86,
+        222.28
+      ]
+    }
+  ],
+  "route_checkpoint": {
+    "audit": "build/v3/control_boundary_handoffs/openroad/route_audit.json",
+    "audit_sha256": "503ca449f3b9fc32c691b070851532a3372b89367997fdd12d358a594670626b",
+    "detailed_route_drc": "build/v3/control_boundary_handoffs/openroad/detailed_route_drc.rpt",
+    "detailed_route_drc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guide_coverage": "build/v3/control_boundary_handoffs/openroad/guide_coverage.csv",
+    "guide_coverage_sha256": "9400d93ea93e21c32045b8ea8f0ebaecd3b798b70018a8b1ad50f43c0c032e39",
+    "input_def": "build/v3/control_boundary_handoffs/openroad/input.def",
+    "input_def_sha256": "26f13ce75df04d6c778417a7928d812f88401990a96d058d2ee66b97738be254",
+    "input_summary": "build/v3/control_boundary_handoffs/openroad/input_summary.json",
+    "input_summary_sha256": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
+    "openroad_log": "build/v3/control_boundary_handoffs/openroad/openroad.log",
+    "openroad_log_sha256": "34193250b0abee218c3c6bfa5dc3afe483e62d0cd220ecba053704071a1dd25e",
+    "route_guide": "build/v3/control_boundary_handoffs/openroad/route.guide",
+    "route_guide_sha256": "6a540093a53f28c78834397b6be15ed43209453296873389aded65d5ca02a972",
+    "routed_def": "build/v3/control_boundary_handoffs/openroad/routed.def",
+    "routed_def_sha256": "83d2b7c83a0d79caf88cd55dbe65cd5518c2d44e0aac5347fed28b96ec380068",
+    "wire_length": "build/v3/control_boundary_handoffs/openroad/wire_length.csv",
+    "wire_length_sha256": "1e07539432872583e474a2b61c86757634f86bf9328f29a9a78dd3ea058b7e4e"
+  },
+  "route_contract": {
+    "checker": "v3/tools/check_physical_control_boundary_handoffs.py",
+    "checker_sha256": "7d6dfa9cdc0a38cb0d135f2786ab85fa73cff87ccb4b6e6c1efc63c3c4d26e50",
+    "generator": "v3/tools/generate_physical_control_boundary_handoff_inputs.py",
+    "generator_sha256": "8f2d95c44f890fd05b2950202908dbd4e38842c4c23127cea07f4ccce250a0be",
+    "plan": "v3/layout/physical_control_boundary_handoff_plan.json",
+    "plan_sha256": "ec9679809fb487c14a058157d4dedf9a8dfc4d94548d997e7cf9e8565a60227b"
+  },
+  "routes": [
+    {
+      "gds_label": "V3B000",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "clk",
+      "net_id": "N000",
+      "patch_count": 0,
+      "segment_count": 4,
+      "shape_count": 10,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B001",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "rst_n",
+      "net_id": "N001",
+      "patch_count": 0,
+      "segment_count": 3,
+      "shape_count": 9,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B002",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "ena",
+      "net_id": "N002",
+      "patch_count": 0,
+      "segment_count": 3,
+      "shape_count": 9,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B003",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "beam_select[0]",
+      "net_id": "N003",
+      "patch_count": 0,
+      "segment_count": 7,
+      "shape_count": 19,
+      "via_count": 4
+    },
+    {
+      "gds_label": "V3B004",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "beam_select[1]",
+      "net_id": "N004",
+      "patch_count": 0,
+      "segment_count": 5,
+      "shape_count": 17,
+      "via_count": 4
+    },
+    {
+      "gds_label": "V3B005",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "beam_select[2]",
+      "net_id": "N005",
+      "patch_count": 0,
+      "segment_count": 5,
+      "shape_count": 11,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B006",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "raw_mode",
+      "net_id": "N006",
+      "patch_count": 0,
+      "segment_count": 5,
+      "shape_count": 17,
+      "via_count": 4
+    },
+    {
+      "gds_label": "V3B007",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "channel_enable[0]",
+      "net_id": "N007",
+      "patch_count": 0,
+      "segment_count": 3,
+      "shape_count": 9,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B008",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "channel_enable[1]",
+      "net_id": "N008",
+      "patch_count": 0,
+      "segment_count": 3,
+      "shape_count": 9,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B009",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "channel_enable[2]",
+      "net_id": "N009",
+      "patch_count": 0,
+      "segment_count": 3,
+      "shape_count": 9,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B010",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "channel_enable[3]",
+      "net_id": "N010",
+      "patch_count": 0,
+      "segment_count": 9,
+      "shape_count": 21,
+      "via_count": 4
+    },
+    {
+      "gds_label": "V3B011",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "cfg_clk",
+      "net_id": "N011",
+      "patch_count": 0,
+      "segment_count": 11,
+      "shape_count": 17,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B012",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "cfg_data",
+      "net_id": "N012",
+      "patch_count": 0,
+      "segment_count": 7,
+      "shape_count": 13,
+      "via_count": 2
+    },
+    {
+      "gds_label": "V3B013",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "net": "cfg_latch",
+      "net_id": "N013",
+      "patch_count": 0,
+      "segment_count": 7,
+      "shape_count": 13,
+      "via_count": 2
+    }
+  ],
+  "schema_version": 1,
+  "shapes": [
+    {
+      "bbox_um": [
+        143.83,
+        224.76,
+        144.13,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        141.07,
+        224.76,
+        141.37,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        146.59,
+        224.76,
+        146.89,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        138.31,
+        224.76,
+        138.61,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        135.55,
+        224.76,
+        135.85,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        132.79,
+        224.76,
+        133.09,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        130.03,
+        224.76,
+        130.33,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        127.27,
+        224.76,
+        127.57,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        124.51,
+        224.76,
+        124.81,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        121.75,
+        224.76,
+        122.05,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        118.99,
+        224.76,
+        119.29,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        116.23,
+        224.76,
+        116.53,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        113.47,
+        224.76,
+        113.77,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        110.71,
+        224.76,
+        111.01,
+        225.76
+      ],
+      "kind": "exact_tinytapeout_input_terminal",
+      "layer": "met4",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        190.6,
+        217.26,
+        190.74,
+        225.49
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.83,
+        224.59,
+        144.13,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.83,
+        224.59,
+        144.13,
+        225.57
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.83,
+        225.27,
+        190.82,
+        225.57
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        190.53,
+        225.235,
+        190.81,
+        225.605
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        190.57,
+        225.32,
+        190.77,
+        225.52
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        190.505,
+        225.255,
+        190.835,
+        225.585
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.79,
+        224.58,
+        144.17,
+        224.9
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.88,
+        224.64,
+        144.08,
+        224.84
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        143.815,
+        224.575,
+        144.145,
+        224.905
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "clk"
+    },
+    {
+      "bbox_um": [
+        199.34,
+        217.26,
+        199.48,
+        223.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        141.07,
+        223.23,
+        141.37,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        141.07,
+        223.23,
+        199.56,
+        223.53
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        199.27,
+        223.195,
+        199.55,
+        223.565
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        199.31,
+        223.28,
+        199.51,
+        223.48
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        199.245,
+        223.215,
+        199.575,
+        223.545
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        141.03,
+        223.22,
+        141.41,
+        223.54
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        141.12,
+        223.28,
+        141.32,
+        223.48
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        141.055,
+        223.215,
+        141.385,
+        223.545
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "rst_n"
+    },
+    {
+      "bbox_um": [
+        208.08,
+        217.26,
+        208.22,
+        224.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        146.59,
+        223.91,
+        146.89,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        146.59,
+        223.91,
+        208.3,
+        224.21
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        208.01,
+        223.875,
+        208.29,
+        224.245
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        208.05,
+        223.96,
+        208.25,
+        224.16
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        207.985,
+        223.895,
+        208.315,
+        224.225
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        146.55,
+        223.9,
+        146.93,
+        224.22
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        146.64,
+        223.96,
+        146.84,
+        224.16
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        146.575,
+        223.895,
+        146.905,
+        224.225
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "ena"
+    },
+    {
+      "bbox_um": [
+        138.31,
+        223.91,
+        138.61,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        138.31,
+        223.91,
+        145.05,
+        224.21
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        144.75,
+        223.91,
+        145.05,
+        224.89
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        216.82,
+        217.26,
+        216.96,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        216.74,
+        217.79,
+        219.34,
+        218.09
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.12,
+        217.87,
+        219.26,
+        224.81
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        144.75,
+        224.59,
+        219.34,
+        224.89
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        138.27,
+        223.9,
+        138.65,
+        224.22
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        138.36,
+        223.96,
+        138.56,
+        224.16
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        138.295,
+        223.895,
+        138.625,
+        224.225
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        216.75,
+        217.755,
+        217.03,
+        218.125
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        216.79,
+        217.84,
+        216.99,
+        218.04
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        216.725,
+        217.775,
+        217.055,
+        218.105
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.05,
+        217.755,
+        219.33,
+        218.125
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.09,
+        217.84,
+        219.29,
+        218.04
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.025,
+        217.775,
+        219.355,
+        218.105
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.05,
+        224.555,
+        219.33,
+        224.925
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.09,
+        224.64,
+        219.29,
+        224.84
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        219.025,
+        224.575,
+        219.355,
+        224.905
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[0]"
+    },
+    {
+      "bbox_um": [
+        135.55,
+        215.07,
+        135.85,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        225.56,
+        217.26,
+        225.7,
+        224.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        213.98,
+        223.91,
+        225.78,
+        224.21
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        214.06,
+        215.15,
+        214.2,
+        224.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        135.55,
+        215.07,
+        214.28,
+        215.37
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        135.51,
+        215.06,
+        135.89,
+        215.38
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        135.6,
+        215.12,
+        135.8,
+        215.32
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        135.535,
+        215.055,
+        135.865,
+        215.385
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        225.49,
+        223.875,
+        225.77,
+        224.245
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        225.53,
+        223.96,
+        225.73,
+        224.16
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        225.465,
+        223.895,
+        225.795,
+        224.225
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        213.99,
+        223.875,
+        214.27,
+        224.245
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        214.03,
+        223.96,
+        214.23,
+        224.16
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        213.965,
+        223.895,
+        214.295,
+        224.225
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        213.99,
+        215.035,
+        214.27,
+        215.405
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        214.03,
+        215.12,
+        214.23,
+        215.32
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        213.965,
+        215.055,
+        214.295,
+        215.385
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[1]"
+    },
+    {
+      "bbox_um": [
+        132.79,
+        219.83,
+        133.09,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        203.63,
+        219.83,
+        203.93,
+        220.81
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        132.79,
+        219.83,
+        203.93,
+        220.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        234.3,
+        217.26,
+        234.44,
+        220.73
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        203.63,
+        220.51,
+        234.52,
+        220.81
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        132.75,
+        219.82,
+        133.13,
+        220.14
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        132.84,
+        219.88,
+        133.04,
+        220.08
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        132.775,
+        219.815,
+        133.105,
+        220.145
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        234.23,
+        220.475,
+        234.51,
+        220.845
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        234.27,
+        220.56,
+        234.47,
+        220.76
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        234.205,
+        220.495,
+        234.535,
+        220.825
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "beam_select[2]"
+    },
+    {
+      "bbox_um": [
+        130.03,
+        220.51,
+        130.33,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        203.02,
+        220.59,
+        203.16,
+        223.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        130.03,
+        220.51,
+        203.24,
+        220.81
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        243.04,
+        217.26,
+        243.18,
+        223.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.94,
+        223.23,
+        243.26,
+        223.53
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        129.99,
+        220.5,
+        130.37,
+        220.82
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        130.08,
+        220.56,
+        130.28,
+        220.76
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        130.015,
+        220.495,
+        130.345,
+        220.825
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.95,
+        220.475,
+        203.23,
+        220.845
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.99,
+        220.56,
+        203.19,
+        220.76
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.925,
+        220.495,
+        203.255,
+        220.825
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.95,
+        223.195,
+        203.23,
+        223.565
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.99,
+        223.28,
+        203.19,
+        223.48
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        202.925,
+        223.215,
+        203.255,
+        223.545
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        242.97,
+        223.195,
+        243.25,
+        223.565
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        243.01,
+        223.28,
+        243.21,
+        223.48
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        242.945,
+        223.215,
+        243.275,
+        223.545
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "raw_mode"
+    },
+    {
+      "bbox_um": [
+        127.27,
+        221.19,
+        127.57,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        251.78,
+        217.26,
+        251.92,
+        221.41
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        127.27,
+        221.19,
+        252.0,
+        221.49
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        127.23,
+        221.18,
+        127.61,
+        221.5
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        127.32,
+        221.24,
+        127.52,
+        221.44
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        127.255,
+        221.175,
+        127.585,
+        221.505
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        251.71,
+        221.155,
+        251.99,
+        221.525
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        251.75,
+        221.24,
+        251.95,
+        221.44
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        251.685,
+        221.175,
+        252.015,
+        221.505
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[0]"
+    },
+    {
+      "bbox_um": [
+        124.51,
+        221.87,
+        124.81,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        260.52,
+        217.26,
+        260.66,
+        222.09
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        124.51,
+        221.87,
+        260.74,
+        222.17
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        124.47,
+        221.86,
+        124.85,
+        222.18
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        124.56,
+        221.92,
+        124.76,
+        222.12
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        124.495,
+        221.855,
+        124.825,
+        222.185
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        260.45,
+        221.835,
+        260.73,
+        222.205
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        260.49,
+        221.92,
+        260.69,
+        222.12
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        260.425,
+        221.855,
+        260.755,
+        222.185
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[1]"
+    },
+    {
+      "bbox_um": [
+        121.75,
+        222.55,
+        122.05,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        269.26,
+        217.26,
+        269.4,
+        222.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        121.75,
+        222.55,
+        269.48,
+        222.85
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        121.71,
+        222.54,
+        122.09,
+        222.86
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        121.8,
+        222.6,
+        122.0,
+        222.8
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        121.735,
+        222.535,
+        122.065,
+        222.865
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        269.19,
+        222.515,
+        269.47,
+        222.885
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        269.23,
+        222.6,
+        269.43,
+        222.8
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        269.165,
+        222.535,
+        269.495,
+        222.865
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[2]"
+    },
+    {
+      "bbox_um": [
+        118.99,
+        217.11,
+        119.29,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        278.0,
+        217.26,
+        278.14,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        277.54,
+        217.87,
+        278.14,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        277.54,
+        217.19,
+        277.68,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        214.52,
+        217.19,
+        214.66,
+        220.05
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        214.52,
+        219.91,
+        218.8,
+        220.05
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        218.66,
+        217.19,
+        218.8,
+        220.05
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        118.99,
+        217.11,
+        214.74,
+        217.41
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        218.58,
+        217.11,
+        277.76,
+        217.41
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        118.95,
+        217.1,
+        119.33,
+        217.42
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        119.04,
+        217.16,
+        119.24,
+        217.36
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        118.975,
+        217.095,
+        119.305,
+        217.425
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        277.47,
+        217.075,
+        277.75,
+        217.445
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        277.51,
+        217.16,
+        277.71,
+        217.36
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        277.445,
+        217.095,
+        277.775,
+        217.425
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        214.45,
+        217.075,
+        214.73,
+        217.445
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        214.49,
+        217.16,
+        214.69,
+        217.36
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        214.425,
+        217.095,
+        214.755,
+        217.425
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        218.59,
+        217.075,
+        218.87,
+        217.445
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        218.63,
+        217.16,
+        218.83,
+        217.36
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        218.565,
+        217.095,
+        218.895,
+        217.425
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "channel_enable[3]"
+    },
+    {
+      "bbox_um": [
+        116.23,
+        217.79,
+        116.53,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        206.39,
+        217.79,
+        206.69,
+        218.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.74,
+        217.26,
+        286.88,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.28,
+        217.87,
+        286.88,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.28,
+        216.51,
+        286.42,
+        218.01
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        116.23,
+        217.79,
+        206.69,
+        218.09
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        279.25,
+        216.43,
+        286.5,
+        216.73
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        279.25,
+        216.43,
+        279.55,
+        218.09
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        233.99,
+        217.79,
+        234.29,
+        218.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        206.39,
+        218.47,
+        234.29,
+        218.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        233.99,
+        217.79,
+        279.55,
+        218.09
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        116.19,
+        217.78,
+        116.57,
+        218.1
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        116.28,
+        217.84,
+        116.48,
+        218.04
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        116.215,
+        217.775,
+        116.545,
+        218.105
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.21,
+        216.395,
+        286.49,
+        216.765
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.25,
+        216.48,
+        286.45,
+        216.68
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        286.185,
+        216.415,
+        286.515,
+        216.745
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "cfg_clk"
+    },
+    {
+      "bbox_um": [
+        113.47,
+        218.47,
+        113.77,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        205.47,
+        218.47,
+        205.77,
+        219.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        295.48,
+        217.26,
+        295.62,
+        218.69
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        113.47,
+        218.47,
+        205.77,
+        218.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        258.55,
+        218.47,
+        295.7,
+        218.77
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        258.55,
+        218.47,
+        258.85,
+        219.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        205.47,
+        219.15,
+        258.85,
+        219.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        113.43,
+        218.46,
+        113.81,
+        218.78
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        113.52,
+        218.52,
+        113.72,
+        218.72
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        113.455,
+        218.455,
+        113.785,
+        218.785
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        295.41,
+        218.435,
+        295.69,
+        218.805
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        295.45,
+        218.52,
+        295.65,
+        218.72
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        295.385,
+        218.455,
+        295.715,
+        218.785
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "cfg_data"
+    },
+    {
+      "bbox_um": [
+        110.71,
+        219.15,
+        111.01,
+        225.26
+      ],
+      "kind": "openroad_wire",
+      "layer": "met4",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        204.55,
+        219.15,
+        204.85,
+        220.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        304.22,
+        217.26,
+        304.36,
+        219.37
+      ],
+      "kind": "openroad_wire",
+      "layer": "met2",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        110.71,
+        219.15,
+        204.85,
+        219.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        279.25,
+        219.15,
+        304.44,
+        219.45
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        279.25,
+        219.15,
+        279.55,
+        220.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        204.55,
+        219.83,
+        279.55,
+        220.13
+      ],
+      "kind": "openroad_wire",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        110.67,
+        219.14,
+        111.05,
+        219.46
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        110.76,
+        219.2,
+        110.96,
+        219.4
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "via3",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        110.695,
+        219.135,
+        111.025,
+        219.465
+      ],
+      "kind": "openroad_via_M3M4",
+      "layer": "met4",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        304.15,
+        219.115,
+        304.43,
+        219.485
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met2",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        304.19,
+        219.2,
+        304.39,
+        219.4
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "via2",
+      "net": "cfg_latch"
+    },
+    {
+      "bbox_um": [
+        304.125,
+        219.135,
+        304.455,
+        219.465
+      ],
+      "kind": "openroad_via_M2M3",
+      "layer": "met3",
+      "net": "cfg_latch"
+    }
+  ],
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_analog_handoffs/v3_four_channel_ctrl_analog_handoffs.gds",
+    "sha256": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7",
+    "top": "v3_four_ch_ctrl_analog_handoff"
+  },
+  "status": "generated from hash-locked, graph-audited OpenROAD routes",
+  "top": "v3_ctrl_boundary_handoff_routes"
+}

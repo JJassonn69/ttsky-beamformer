@@ -1,0 +1,400 @@
+{
+  "artifact_sha256": {
+    "detailed_route_drc": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "guide_coverage": "9400d93ea93e21c32045b8ea8f0ebaecd3b798b70018a8b1ad50f43c0c032e39",
+    "input_def": "26f13ce75df04d6c778417a7928d812f88401990a96d058d2ee66b97738be254",
+    "input_summary": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
+    "openroad_log": "34193250b0abee218c3c6bfa5dc3afe483e62d0cd220ecba053704071a1dd25e",
+    "route_guide": "6a540093a53f28c78834397b6be15ed43209453296873389aded65d5ca02a972",
+    "routed_def": "83d2b7c83a0d79caf88cd55dbe65cd5518c2d44e0aac5347fed28b96ec380068",
+    "wire_length": "1e07539432872583e474a2b61c86757634f86bf9328f29a9a78dd3ea058b7e4e"
+  },
+  "errors": [],
+  "final_openroad_layer_length_um": {
+    "li1": 0,
+    "met1": 0,
+    "met2": 88,
+    "met3": 1668,
+    "met4": 62,
+    "met5": 0
+  },
+  "final_openroad_violation_count": 0,
+  "maximum_detour": {
+    "cycle_rank": 0,
+    "dead_leaf_count": 0,
+    "detour_ratio": 1.180537,
+    "electrical_group_count": 1,
+    "hpwl_um": 97.93,
+    "layers": [
+      "met2",
+      "met3",
+      "met4"
+    ],
+    "leaf_count": 2,
+    "missed_pin_count": 0,
+    "net": "beam_select[1]",
+    "net_id": "N004",
+    "pin_count": 2,
+    "reported_geometry_length_um": 115.39,
+    "route_class": "control_input",
+    "route_group_count": 1,
+    "via_count": 4,
+    "wire_length_um": 115.61
+  },
+  "maximum_route_layer": "met4",
+  "maximum_via_count": {
+    "cycle_rank": 0,
+    "dead_leaf_count": 0,
+    "detour_ratio": 1.068958,
+    "electrical_group_count": 1,
+    "hpwl_um": 86.43,
+    "layers": [
+      "met2",
+      "met3",
+      "met4"
+    ],
+    "leaf_count": 2,
+    "missed_pin_count": 0,
+    "net": "beam_select[0]",
+    "net_id": "N003",
+    "pin_count": 2,
+    "reported_geometry_length_um": 92.17,
+    "route_class": "control_input",
+    "route_group_count": 1,
+    "via_count": 4,
+    "wire_length_um": 92.39
+  },
+  "nets": [
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.024867,
+      "electrical_group_count": 1,
+      "hpwl_um": 54.69,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "clk",
+      "net_id": "N000",
+      "pin_count": 2,
+      "reported_geometry_length_um": 55.83,
+      "route_class": "clock",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 56.05
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.0,
+      "electrical_group_count": 1,
+      "hpwl_um": 66.19,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "rst_n",
+      "net_id": "N001",
+      "pin_count": 2,
+      "reported_geometry_length_um": 65.97,
+      "route_class": "reset",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 66.19
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.0,
+      "electrical_group_count": 1,
+      "hpwl_um": 69.41,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "ena",
+      "net_id": "N002",
+      "pin_count": 2,
+      "reported_geometry_length_um": 69.19,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 69.41
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.068958,
+      "electrical_group_count": 1,
+      "hpwl_um": 86.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "beam_select[0]",
+      "net_id": "N003",
+      "pin_count": 2,
+      "reported_geometry_length_um": 92.17,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 4,
+      "wire_length_um": 92.39
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.180537,
+      "electrical_group_count": 1,
+      "hpwl_um": 97.93,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "beam_select[1]",
+      "net_id": "N004",
+      "pin_count": 2,
+      "reported_geometry_length_um": 115.39,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 4,
+      "wire_length_um": 115.61
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.012428,
+      "electrical_group_count": 1,
+      "hpwl_um": 109.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "beam_select[2]",
+      "net_id": "N005",
+      "pin_count": 2,
+      "reported_geometry_length_um": 110.57,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 110.79
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.044985,
+      "electrical_group_count": 1,
+      "hpwl_um": 120.93,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "raw_mode",
+      "net_id": "N006",
+      "pin_count": 2,
+      "reported_geometry_length_um": 126.15,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 4,
+      "wire_length_um": 126.37
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.0,
+      "electrical_group_count": 1,
+      "hpwl_um": 132.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "channel_enable[0]",
+      "net_id": "N007",
+      "pin_count": 2,
+      "reported_geometry_length_um": 132.21,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 132.43
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.0,
+      "electrical_group_count": 1,
+      "hpwl_um": 143.93,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "channel_enable[1]",
+      "net_id": "N008",
+      "pin_count": 2,
+      "reported_geometry_length_um": 143.71,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 143.93
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.0,
+      "electrical_group_count": 1,
+      "hpwl_um": 155.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "channel_enable[2]",
+      "net_id": "N009",
+      "pin_count": 2,
+      "reported_geometry_length_um": 155.21,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 155.43
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.040736,
+      "electrical_group_count": 1,
+      "hpwl_um": 166.93,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "channel_enable[3]",
+      "net_id": "N010",
+      "pin_count": 2,
+      "reported_geometry_length_um": 173.51,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 4,
+      "wire_length_um": 173.73
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.022866,
+      "electrical_group_count": 1,
+      "hpwl_um": 178.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "cfg_clk",
+      "net_id": "N011",
+      "pin_count": 2,
+      "reported_geometry_length_um": 182.29,
+      "route_class": "clock",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 182.51
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.007161,
+      "electrical_group_count": 1,
+      "hpwl_um": 189.93,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "cfg_data",
+      "net_id": "N012",
+      "pin_count": 2,
+      "reported_geometry_length_um": 191.07,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 191.29
+    },
+    {
+      "cycle_rank": 0,
+      "dead_leaf_count": 0,
+      "detour_ratio": 1.006752,
+      "electrical_group_count": 1,
+      "hpwl_um": 201.43,
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 2,
+      "missed_pin_count": 0,
+      "net": "cfg_latch",
+      "net_id": "N013",
+      "pin_count": 2,
+      "reported_geometry_length_um": 202.57,
+      "route_class": "control_input",
+      "route_group_count": 1,
+      "via_count": 2,
+      "wire_length_um": 202.79
+    }
+  ],
+  "nets_using_layer": {
+    "met2": 14,
+    "met3": 14,
+    "met4": 14
+  },
+  "pin_count": 28,
+  "route_class_counts": {
+    "clock": 2,
+    "control_input": 11,
+    "reset": 1
+  },
+  "route_count": 14,
+  "schema_version": 1,
+  "scope": "14 V3 controller inputs routed to the exact TinyTapeout 2x2 top-boundary pin rectangles",
+  "source_sha256": {
+    "generator": "8f2d95c44f890fd05b2950202908dbd4e38842c4c23127cea07f4ccce250a0be",
+    "input_summary": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
+    "plan": "ec9679809fb487c14a058157d4dedf9a8dfc4d94548d997e7cf9e8565a60227b",
+    "source_gds": "1c249b3a49c0852d278a4ef6f52a3304146eee10e220aa80ef15c83865f263b7"
+  },
+  "status": "pass",
+  "total_centerline_wire_length_um": 1818.92,
+  "total_via_count": 36
+}

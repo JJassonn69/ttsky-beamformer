@@ -1,14 +1,6 @@
-name: v3-development-validation
+name: v3-architecture-regression-manual
 
 on:
-  push:
-    paths:
-      - ".github/workflows/v3-validation.yaml"
-      - "v3/**"
-  pull_request:
-    paths:
-      - ".github/workflows/v3-validation.yaml"
-      - "v3/**"
   workflow_dispatch:
 
 concurrency:

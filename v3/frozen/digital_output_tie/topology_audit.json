@@ -1,0 +1,168 @@
+{
+  "artifact_sha256": {
+    "assembly": "0e3ae3d6aafb8b479f78add738817ee1c3c50377be5664cd019152dcf1785de7",
+    "auditor": "0d618f1cd521a3976606eec0476f1a2812a9ae987710fa47497cdc431292e93c",
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "flat_spice": "a613ccaa87d26fe6b52b3fcfc29a73ef8199ef6dca5f00956c2b1e112b4b881f",
+    "gds": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+    "geometry": "e2d7a047b5e491724fb6f48c9d94de941f3a7e8f64307e35e1f49c35c4ba9297",
+    "magic_log": "304ae47a4faa855fffa6ec971ebab7881dbfa59db8f896f1406553ddffc6ffaa",
+    "overlay_ext": "5858f4f3cdf90d40182eb38b7d3e60ecd4d20918e075868e52f5ed371eb457bf",
+    "plan": "e381bd0e60abf422f1ba68aea400df9a9bd461fd3c53312396ba4bd09938cf26",
+    "precheck": "0ba7bdbd565c43ff99c4d1e3572d6b82effa8ee94e788ad4297416704b24e7e0",
+    "source_flat_spice": "cb6cb8433b11c1ee24dba76b01d176636ab47d2eacc9992266450d1444b0e7f4",
+    "source_top_ext": "0b2ec73c7588373175d6c9ec984fdf3211e50dd2a16920c40cd494ab99e2a7cd",
+    "top_ext": "44858fd2c8f30959360a7944e65c3f502105fce5f59a50f94a9202d68cef4425"
+  },
+  "checks": {
+    "all_outputs_tied_to_vgnd": true,
+    "device_population_matches_source": true,
+    "direct_gds_precheck_zero": true,
+    "distinct_output_roots": 1,
+    "distinct_previous_route_groups": 309,
+    "extracted_output_labels": 24,
+    "extraction_warning_baseline_exact": true,
+    "magic_metrics": {
+      "drc": 0,
+      "extraction_feedback": 9,
+      "feedback_after_clear": 0,
+      "gds_feedback": 0
+    },
+    "overlay_connectivity_names": 25,
+    "planned_output_pins": 24,
+    "previous_route_partition_preserved": true,
+    "previous_signal_labels_tied_to_supply": [],
+    "source_distinct_previous_route_groups": 309,
+    "top_connectivity_names": 9613,
+    "total_extracted_devices": 6037,
+    "vdpwr_remains_separate": true,
+    "vdpwr_terminal_hits": 4818,
+    "vgnd_terminal_hits": 5242
+  },
+  "errors": [],
+  "pin_mapping": [
+    {
+      "internal_label": "V3O000",
+      "pin": "uo_out[0]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O001",
+      "pin": "uo_out[1]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O002",
+      "pin": "uo_out[2]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O003",
+      "pin": "uo_out[3]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O004",
+      "pin": "uo_out[4]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O005",
+      "pin": "uo_out[5]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O006",
+      "pin": "uo_out[6]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O007",
+      "pin": "uo_out[7]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O008",
+      "pin": "uio_out[0]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O009",
+      "pin": "uio_out[1]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O010",
+      "pin": "uio_out[2]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O011",
+      "pin": "uio_out[3]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O012",
+      "pin": "uio_out[4]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O013",
+      "pin": "uio_out[5]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O014",
+      "pin": "uio_out[6]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O015",
+      "pin": "uio_out[7]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O016",
+      "pin": "uio_oe[0]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O017",
+      "pin": "uio_oe[1]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O018",
+      "pin": "uio_oe[2]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O019",
+      "pin": "uio_oe[3]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O020",
+      "pin": "uio_oe[4]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O021",
+      "pin": "uio_oe[5]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O022",
+      "pin": "uio_oe[6]",
+      "value": 0
+    },
+    {
+      "internal_label": "V3O023",
+      "pin": "uio_oe[7]",
+      "value": 0
+    }
+  ],
+  "schema_version": 1,
+  "scope": "24 unused TinyTapeout digital outputs tied physically and statically to VGND",
+  "status": "pass"
+}

@@ -1,7 +1,15 @@
 # Read back and extract the exact direct-GDS V3 controller signal route.
 set PROJECT_ROOT [file normalize [pwd]]
-set INPUT_GDS [file join $PROJECT_ROOT build v3 control_routing openroad_internal direct v3_four_channel_control_signal_routed.gds]
-set WORKDIR [file join $PROJECT_ROOT build v3 control_routing openroad_internal magic_readback]
+if {[info exists ::env(V3_CONTROL_SIGNAL_GDS)]} {
+    set INPUT_GDS [file normalize $::env(V3_CONTROL_SIGNAL_GDS)]
+} else {
+    set INPUT_GDS [file join $PROJECT_ROOT build v3 control_routing openroad_internal direct v3_four_channel_control_signal_routed.gds]
+}
+if {[info exists ::env(V3_CONTROL_SIGNAL_READBACK_DIR)]} {
+    set WORKDIR [file normalize $::env(V3_CONTROL_SIGNAL_READBACK_DIR)]
+} else {
+    set WORKDIR [file join $PROJECT_ROOT build v3 control_routing openroad_internal magic_readback]
+}
 set TOP v3_four_channel_ctrl_sig_routed
 file mkdir $WORKDIR
 cd $WORKDIR

@@ -1,14 +1,14 @@
 # Beamformer datasheet
 
-The active submission is the four-channel V2 design. Its detailed,
-version-controlled datasheet is:
+The active submission is the four-channel V3 constant-`gm` vector beamformer.
+Its authoritative, version-controlled engineering datasheet is:
 
-- [V2 four-channel engineering datasheet](../v2/docs/datasheet.md)
+- [V3 four-channel engineering datasheet](../v3/docs/datasheet.md)
 
-Keeping one authoritative detailed document prevents simulation metrics,
-artifact hashes, pin assignments, and release status from drifting between a
-root copy and the V2 implementation.
+That document contains the architecture, exact pin table, serial protocol,
+eight automatic beam words, raw-vector format, startup procedure, simulated
+electrical limits, distributed-RC results, external 10.5 GHz signal-chain
+guidance, first-silicon procedure, frozen GDS hash, and release evidence map.
 
-The former root document described the historical two-channel prototype. Its
-architecture remains available in `spec/beamformer_v1.md` and in repository
-history, but it is not part of the active submission contract.
+V2 documentation remains available under `v2/` as historical design context,
+but it does not describe the active wrapper.

@@ -19,17 +19,17 @@ module tt_um_jjassonn69_beamformer (
     input  wire       rst_n
 );
 
-    // The four-channel analog path, quadrature generator, beam decoder,
-    // channel enables, and serial trim/phase configuration are implemented
-    // physically in the custom GDS. Unused digital outputs must never float
-    // into the shuttle fabric.
+    // The four-channel constant-gm analog path, eight-beam vector decoder,
+    // quadrature generator, channel enables, and serial raw-vector control are
+    // implemented physically in the custom GDS. The same constant-zero
+    // outputs below are tied directly to VGND in the physical layout.
     assign uo_out  = 8'b0;
     assign uio_out = 8'b0;
     assign uio_oe  = 8'b0;
 
     // This file is the Tiny Tapeout black-box boundary contract. Keep all
-    // physically consumed inputs and the two unavailable analog-template
-    // shapes visible to lint without duplicating the GDS implementation.
+    // physically consumed inputs and the two unused analog-template shapes
+    // visible to lint without duplicating the GDS implementation.
     wire _unused = &{VGND, VDPWR, ui_in, uio_in, ua[7:6], ena, clk, rst_n, 1'b0};
 
 endmodule

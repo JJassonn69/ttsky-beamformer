@@ -5,7 +5,7 @@ of all 305 internal signal nets in the centralized four-channel controller.
 It is the only valid source for the controller-power stage.
 
 The routed top is `v3_four_channel_ctrl_sig_routed`.  Its GDS SHA-256 is
-`04d12ed4bf9d4618b1502b974839b071c50e1c02c9270e6b4cdb84663bc10c4e`.
+`24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187`.
 The corresponding flat extracted SPICE SHA-256 is
 `10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d`.
 
@@ -17,6 +17,13 @@ The checkpoint closes the following gates:
   leaves or missed foundry-LEF pin shapes.
 - Frozen-geometry awareness: a pre-existing Metal 3 ground spine at
   `[267.22, 171.36, 268.42, 208.60]` is an explicit router obstruction.
+- Power-before-signal awareness: two M2/M3 power landings at x=215.66 um and
+  x=285.02 um are reserved on every one of the 18 row-boundary rails.  This
+  bounds the nominal M1 distance to the nearest contact to 34.68 um instead of
+  leaving the controller edge-fed through more than 100 um of narrow M1.
+- Nine Metal 3 underpass corridors are also reserved so every VGND row finger
+  can cross the frozen vertical VDPWR Metal 4 spine without a same-layer
+  contact.
 - Direct-GDS checks: zero FEOL, BEOL, off-grid, zero-area, pin-purpose, and
   project flat-rule markers using pinned `tt-support-tools` commit
   `d65690eeb1d4afd26aef795c805a23d9d9daf9d1`.

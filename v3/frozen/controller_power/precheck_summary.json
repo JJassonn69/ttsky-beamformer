@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/control_power/precheck/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_power/precheck/precheck_beol.xml",
+      "report_sha256": "f8bc0e535e7da4daa0a0b59b876f7d90447b027994efd77716c3257f18559824"
+    },
+    "feol": {
+      "log": "build/v3/control_power/precheck/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_power/precheck/precheck_feol.xml",
+      "report_sha256": "edb3204c785633a9c4c2f449b947833a2152e9c3a88ee02301d63cce6466bf2e"
+    },
+    "offgrid": {
+      "log": "build/v3/control_power/precheck/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_power/precheck/precheck_offgrid.xml",
+      "report_sha256": "a2fdddf0f8b68aaf108d8ce68c782a5acb50471ec941101a6bccd0ece8c6e211"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/control_power/precheck/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_power/precheck/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "08b85af4e7c738b09b797a5d75b9d82be0815609768430769c845abc751f094c"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/control_power/precheck/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/control_power/precheck/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_power/precheck/precheck_zero_area.xml",
+      "report_sha256": "2a6a505c8f701e3d6490ce25d20e55af319c8d450a9c9820beee2a67139d01cf"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/control_power/direct/v3_four_channel_ctrl_powered.gds",
+  "gds_sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_four_channel_ctrl_powered"
+}

@@ -3284,11 +3284,1144 @@
     "P053": "raw_mode",
     "P054": "rst_n"
   },
+  "planned_power_contact_obstruction_count": 72,
+  "planned_power_contact_obstructions": [
+    {
+      "bbox_um": [
+        215.52,
+        171.36,
+        215.79999999999998,
+        171.54500000000002
+      ],
+      "boundary": 0,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        171.36,
+        215.97,
+        171.56
+      ],
+      "boundary": 0,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        171.36,
+        285.15999999999997,
+        171.54500000000002
+      ],
+      "boundary": 0,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        171.36,
+        285.33,
+        171.56
+      ],
+      "boundary": 0,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        173.895,
+        215.79999999999998,
+        174.26500000000001
+      ],
+      "boundary": 1,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        173.88000000000002,
+        215.97,
+        174.28
+      ],
+      "boundary": 1,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        173.895,
+        285.15999999999997,
+        174.26500000000001
+      ],
+      "boundary": 1,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        173.88000000000002,
+        285.33,
+        174.28
+      ],
+      "boundary": 1,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        176.615,
+        215.79999999999998,
+        176.985
+      ],
+      "boundary": 2,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        176.60000000000002,
+        215.97,
+        177.0
+      ],
+      "boundary": 2,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        176.615,
+        285.15999999999997,
+        176.985
+      ],
+      "boundary": 2,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        176.60000000000002,
+        285.33,
+        177.0
+      ],
+      "boundary": 2,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        179.335,
+        215.79999999999998,
+        179.705
+      ],
+      "boundary": 3,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        179.32000000000002,
+        215.97,
+        179.72
+      ],
+      "boundary": 3,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        179.335,
+        285.15999999999997,
+        179.705
+      ],
+      "boundary": 3,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        179.32000000000002,
+        285.33,
+        179.72
+      ],
+      "boundary": 3,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        182.055,
+        215.79999999999998,
+        182.425
+      ],
+      "boundary": 4,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        182.04000000000002,
+        215.97,
+        182.44
+      ],
+      "boundary": 4,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        182.055,
+        285.15999999999997,
+        182.425
+      ],
+      "boundary": 4,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        182.04000000000002,
+        285.33,
+        182.44
+      ],
+      "boundary": 4,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        184.775,
+        215.79999999999998,
+        185.145
+      ],
+      "boundary": 5,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        184.76000000000002,
+        215.97,
+        185.16
+      ],
+      "boundary": 5,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        184.775,
+        285.15999999999997,
+        185.145
+      ],
+      "boundary": 5,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        184.76000000000002,
+        285.33,
+        185.16
+      ],
+      "boundary": 5,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        187.495,
+        215.79999999999998,
+        187.865
+      ],
+      "boundary": 6,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        187.48000000000002,
+        215.97,
+        187.88
+      ],
+      "boundary": 6,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        187.495,
+        285.15999999999997,
+        187.865
+      ],
+      "boundary": 6,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        187.48000000000002,
+        285.33,
+        187.88
+      ],
+      "boundary": 6,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        190.215,
+        215.79999999999998,
+        190.585
+      ],
+      "boundary": 7,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        190.20000000000002,
+        215.97,
+        190.6
+      ],
+      "boundary": 7,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        190.215,
+        285.15999999999997,
+        190.585
+      ],
+      "boundary": 7,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        190.20000000000002,
+        285.33,
+        190.6
+      ],
+      "boundary": 7,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        192.935,
+        215.79999999999998,
+        193.305
+      ],
+      "boundary": 8,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        192.92000000000002,
+        215.97,
+        193.32
+      ],
+      "boundary": 8,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        192.935,
+        285.15999999999997,
+        193.305
+      ],
+      "boundary": 8,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        192.92000000000002,
+        285.33,
+        193.32
+      ],
+      "boundary": 8,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        195.655,
+        215.79999999999998,
+        196.025
+      ],
+      "boundary": 9,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        195.64000000000001,
+        215.97,
+        196.04
+      ],
+      "boundary": 9,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        195.655,
+        285.15999999999997,
+        196.025
+      ],
+      "boundary": 9,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        195.64000000000001,
+        285.33,
+        196.04
+      ],
+      "boundary": 9,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        198.375,
+        215.79999999999998,
+        198.745
+      ],
+      "boundary": 10,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        198.36,
+        215.97,
+        198.76
+      ],
+      "boundary": 10,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        198.375,
+        285.15999999999997,
+        198.745
+      ],
+      "boundary": 10,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        198.36,
+        285.33,
+        198.76
+      ],
+      "boundary": 10,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        201.09500000000003,
+        215.79999999999998,
+        201.46500000000003
+      ],
+      "boundary": 11,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        201.08000000000004,
+        215.97,
+        201.48000000000002
+      ],
+      "boundary": 11,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        201.09500000000003,
+        285.15999999999997,
+        201.46500000000003
+      ],
+      "boundary": 11,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        201.08000000000004,
+        285.33,
+        201.48000000000002
+      ],
+      "boundary": 11,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        203.815,
+        215.79999999999998,
+        204.185
+      ],
+      "boundary": 12,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        203.8,
+        215.97,
+        204.2
+      ],
+      "boundary": 12,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        203.815,
+        285.15999999999997,
+        204.185
+      ],
+      "boundary": 12,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        203.8,
+        285.33,
+        204.2
+      ],
+      "boundary": 12,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        206.53500000000003,
+        215.79999999999998,
+        206.90500000000003
+      ],
+      "boundary": 13,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        206.52000000000004,
+        215.97,
+        206.92000000000002
+      ],
+      "boundary": 13,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        206.53500000000003,
+        285.15999999999997,
+        206.90500000000003
+      ],
+      "boundary": 13,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        206.52000000000004,
+        285.33,
+        206.92000000000002
+      ],
+      "boundary": 13,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        209.25500000000002,
+        215.79999999999998,
+        209.62500000000003
+      ],
+      "boundary": 14,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        209.24000000000004,
+        215.97,
+        209.64000000000001
+      ],
+      "boundary": 14,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        209.25500000000002,
+        285.15999999999997,
+        209.62500000000003
+      ],
+      "boundary": 14,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        209.24000000000004,
+        285.33,
+        209.64000000000001
+      ],
+      "boundary": 14,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        211.97500000000002,
+        215.79999999999998,
+        212.34500000000003
+      ],
+      "boundary": 15,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        211.96000000000004,
+        215.97,
+        212.36
+      ],
+      "boundary": 15,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        211.97500000000002,
+        285.15999999999997,
+        212.34500000000003
+      ],
+      "boundary": 15,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        211.96000000000004,
+        285.33,
+        212.36
+      ],
+      "boundary": 15,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        214.69500000000002,
+        215.79999999999998,
+        215.06500000000003
+      ],
+      "boundary": 16,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        214.68000000000004,
+        215.97,
+        215.08
+      ],
+      "boundary": 16,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        214.69500000000002,
+        285.15999999999997,
+        215.06500000000003
+      ],
+      "boundary": 16,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        214.68000000000004,
+        285.33,
+        215.08
+      ],
+      "boundary": 16,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.52,
+        217.41500000000002,
+        215.79999999999998,
+        217.60000000000002
+      ],
+      "boundary": 17,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        215.35,
+        217.40000000000003,
+        215.97,
+        217.60000000000002
+      ],
+      "boundary": 17,
+      "contact_index": 0,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.88,
+        217.41500000000002,
+        285.15999999999997,
+        217.60000000000002
+      ],
+      "boundary": 17,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met2",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        284.71,
+        217.40000000000003,
+        285.33,
+        217.60000000000002
+      ],
+      "boundary": 17,
+      "contact_index": 1,
+      "kind": "planned_power_contact_obstruction",
+      "layer": "met3",
+      "net": "VDPWR",
+      "source_rectangle_count": 1
+    }
+  ],
+  "planned_power_underpass_obstruction_count": 9,
+  "planned_power_underpass_obstructions": [
+    {
+      "bbox_um": [
+        270.5,
+        171.36,
+        273.5,
+        171.76000000000002
+      ],
+      "boundary": 0,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        176.4,
+        273.5,
+        177.20000000000002
+      ],
+      "boundary": 2,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        181.84,
+        273.5,
+        182.64000000000001
+      ],
+      "boundary": 4,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        187.28,
+        273.5,
+        188.08
+      ],
+      "boundary": 6,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        192.72,
+        273.5,
+        193.52
+      ],
+      "boundary": 8,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        198.16,
+        273.5,
+        198.96
+      ],
+      "boundary": 10,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        203.6,
+        273.5,
+        204.4
+      ],
+      "boundary": 12,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        209.04000000000002,
+        273.5,
+        209.84000000000003
+      ],
+      "boundary": 14,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    },
+    {
+      "bbox_um": [
+        270.5,
+        214.48000000000002,
+        273.5,
+        215.28000000000003
+      ],
+      "boundary": 16,
+      "kind": "planned_power_underpass_obstruction",
+      "layer": "met3",
+      "net": "VGND",
+      "source_rectangle_count": 1
+    }
+  ],
   "policy": {
+    "distributed_power_contacts_are_reserved_before_signal_routing": true,
     "external_handoff_fanout_is_separate_gate": true,
     "fixed_placement": true,
     "foundry_lef_pin_access_only": true,
     "frozen_gds_m1_m2_m3_are_explicit_route_obstructions": true,
+    "ground_finger_underpasses_are_reserved_before_signal_routing": true,
     "metal4_reserved": true,
     "no_manual_internal_preroutes": true,
     "power_routing_is_separate_gate": true,
@@ -3305,14 +4438,101 @@
     "frozen_source_gds_sha256": "edeab1f4e3f79dbe8dd318df6e3a503669a0a16be8e54ea0a0f1e53b9acc6ddf",
     "frozen_source_top": "v3_four_channel_power_integration",
     "generator": "v3/tools/generate_physical_control_openroad_inputs.py",
-    "generator_sha256": "ac1cdc7eb55bf9b704ef93acb607a7d355db223c94060ff9561cec9e9c372122",
+    "generator_sha256": "e5dd7d3aa546d53226c1bf2da93653c9ed37226f8f9cb34e708b94ebb47c35c5",
     "mapping": "/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/control_mapping/physical_mapping.json",
     "mapping_sha256": "0699602b6c8fd706f6ff45c846a161d08e8c6ed9167302e0bb8930c10eefa909",
     "placement": "/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/control_placement/physical_control_placement.json",
     "placement_sha256": "e0dc2920a5a6c9dc99c16b318a3591a83c347ef15757016974a0eb95a1c38b0d",
+    "power_plan": "/home/jason-stone/tinytapeout-beamformer-v2-routefix/v3/layout/physical_control_power_plan.json",
+    "power_reservation_contract": {
+      "controller_region": {
+        "bbox_um": [
+          181.24,
+          171.36,
+          319.7,
+          217.6
+        ],
+        "row_count": 17,
+        "row_height_um": 2.72
+      },
+      "distributed_contact_columns_um": [
+        215.66,
+        285.02
+      ],
+      "ground_finger_underpass": {
+        "layer": "met3",
+        "width_um": 0.8,
+        "x_span_um": [
+          270.5,
+          273.5
+        ]
+      },
+      "via_geometries": {
+        "M1M2": [
+          [
+            "met1",
+            [
+              -0.16,
+              -0.13,
+              0.16,
+              0.13
+            ]
+          ],
+          [
+            "via",
+            [
+              -0.075,
+              -0.075,
+              0.075,
+              0.075
+            ]
+          ],
+          [
+            "met2",
+            [
+              -0.14,
+              -0.185,
+              0.14,
+              0.185
+            ]
+          ]
+        ],
+        "M2M3": [
+          [
+            "met2",
+            [
+              -0.14,
+              -0.185,
+              0.14,
+              0.185
+            ]
+          ],
+          [
+            "via2",
+            [
+              -0.1,
+              -0.1,
+              0.1,
+              0.1
+            ]
+          ],
+          [
+            "met3",
+            [
+              -0.31,
+              -0.2,
+              0.31,
+              0.2
+            ]
+          ]
+        ]
+      }
+    },
+    "power_reservation_contract_sha256": "7f7a272581361c2700e7dcf076f46412640e53c247271bd29751e6a87c09535e",
     "technology_lef": "/home/jason-stone/tt-tools/reference/sky130hd-lef/sky130_fd_sc_hd.tlef",
     "technology_lef_sha256": "8e99b4e8b016db0713029ebcae6b2cc2aedd9c2c49682e2f23521dd0b1a2085e"
   },
+  "route_obstruction_count": 82,
   "schema_version": 1,
   "scope": "shared V3 controller internal signal routing through fixed boundary handoffs; power and top-level handoff fanout excluded",
   "status": "generated",

@@ -13,9 +13,14 @@ are historical and must not be used as physical inputs.
 Four immutable copies of this macro are now placed. Their differential output
 collectors, four phase trees, balanced REF/VBIAS trees, exact VCM block,
 complete tail-reference block, differential output loads, capacitance
-compensation, direct output-pad escapes, and one shared 1.8 V power/ground
-network are integrated and hash-gated. Static digital control and four
-analog-input pad escapes remain.
+compensation, direct output-pad escapes, one shared 1.8 V power/ground
+network, the centralized static controller, all 41 internal
+controller-to-analog handoffs, all 14 digital boundary handoffs, and four
+matched analog-input pad escapes are integrated and hash-gated. All 24 unused
+digital outputs are also physically tied low. The official TinyTapeout wrapper,
+full project boundary, exact 53-port LEF/GDS contract, independent flattened
+topology audit, and internal submission evidence are now complete. Publication
+and a green official GitHub precheck remain the final external attestation.
 The complete state before generated-artifact cleanup, including the manual
 routing canvas, is recoverable from Git tag
 `v3-one-channel-precleanup-20260727`. It is not an active design input.
@@ -109,6 +114,59 @@ rejects any same-layer overlap between new supply and ground routes, pin
 shapes, or via landings. See
 `evidence/four_channel_power_integration_gate.json` and
 `frozen/four_channel_power_integration/README.md`.
+
+The centralized controller is now powered and physically joined to the analog
+array. Its four phase outputs, 32 group-code bits, four channel-bias enables,
+and one four-way mixer-blanking tree form 41 distinct routed nets with 85
+endpoint attachments. OpenROAD finishes with zero violations; an independent
+route-graph audit finds no missed endpoints, floating leaves, or loops. Direct
+GDS checks and Magic DRC are zero. Flat extraction retains all 6,037 source
+devices, keeps all 305 controller nets and both supplies distinct, and proves
+that every phase reaches 32 selector terminals across all four channels. See
+`evidence/physical_control_analog_handoff_gate.json` and
+`frozen/controller_analog_handoffs/README.md`.
+
+The 14 digital inputs now reach the exact official TinyTapeout terminal
+rectangles through independently graph-audited M2--M4 routes. Exact-GDS
+extraction proves 14 distinct boundary nets, one intended controller route per
+input, no connection to either supply or an internal analog handoff, and no
+change to the 6,037-device source population. All pinned direct-GDS checks and
+Magic DRC remain at zero. See
+`evidence/physical_control_boundary_handoff_gate.json` and
+`frozen/controller_boundary_handoffs/README.md`.
+
+The four analog inputs now use identical, straight, two-via escapes from the
+exact `ua[0:3]` Metal-4 rectangles to their four channel input rails. Magic
+extracts four independent nets, each reaching exactly fifteen gm gates and one
+input-bias resistor, with no supply or previous-route short. Distributed metal
+RC gives identical resistance vectors and 1.889 percent external-capacitance
+span. At the intended 5 MHz input and a bounded 1 kohm source, the estimated
+channel spread is 0.00000087 dB and 0.00249 degrees. Magic DRC and all pinned
+direct-GDS checks remain at zero. See
+`evidence/analog_input_escape_gate.json` and
+`frozen/analog_input_escapes/README.md`.
+
+The logical wrapper's constant-zero digital outputs are now implemented in
+the physical GDS. All 24 `uo_out`, `uio_out`, and `uio_oe` terminals use one
+straight Metal-4 bus to `VGND`, with no vias and 2.46 um clearance before the
+nearest input pin. Exact extraction proves all 24 outputs are grounded,
+`VDPWR` remains separate, and all 309 established signal groups are unchanged.
+See `evidence/digital_output_tie_gate.json` and
+`frozen/digital_output_tie/README.md`.
+
+The authoritative current GDS is
+`frozen/submission/tt_um_jjassonn69_beamformer.gds`, SHA-256
+`824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
+The frozen electrical source remains immutable; the deterministic packager
+adds only the official boundary/pin records and removes two redundant internal
+power text labels. `evidence/submission_gate.json` is the consolidated internal
+signoff authority. The next gate is publication of this exact hash followed by
+the official TinyTapeout custom-GDS and precheck actions.
+
+The complete operator-facing V3 datasheet is `docs/datasheet.md`. The bounded
+power-on matrix passes all eight factorized cases: worst VCM 90% time is 19.235
+us, worst VCM 2% settling is 49.011 us, and the required post-supply wait is 60
+us. See `evidence/four_channel_startup.json`.
 
 V3 is an architecture-development branch derived from the frozen V2 release
 commit `b7eae2e6ecf20b1141d15029503c345dacc71b99`.  Nothing under `v2/`, and none
@@ -330,14 +388,36 @@ The input generator now derives routing obstructions from the hash-locked
 frozen GDS itself.  The corrected route crosses that spine on Metal 2 and has
 zero extracted contacts to it.
 
-The frozen corrected checkpoint passes zero OpenROAD detailed-route
+Before power integration, a clean but edge-fed power candidate was rejected
+for excessive M1 rail length.  The authoritative signal router now reserves
+two distributed M2/M3 power contacts on every row boundary before routing.
+The resulting signal route remains zero-violation and limits nominal M1
+distance to a power contact to 34.68 um.  Reserving all 36 contacts and nine
+ground-underpass corridors adds only 106.075 um (0.94 percent) of signal
+centerline compared with the first clean route.
+
+The frozen corrected signal checkpoint passes zero OpenROAD detailed-route
 violations, zero Magic DRC markers, and zero applicable direct-GDS Tiny
 Tapeout geometry markers.  More importantly, the complete flat extraction
 contains the exact 6037 expected devices and retains all 305 route labels as
 305 distinct electrical groups, each incident on at least two device lines.
-This closes internal signal routing; it does not yet close controller power,
-external handoffs, antenna repair, post-layout timing/RC, or the packaged
-Tiny Tapeout submission checks.
 
-See `evidence/physical_control_signal_routing_gate.json` and the immutable
-artifacts in `frozen/controller_signal_routing/`.
+Controller power is now closed as a separate physical gate.  All 18 M1 row
+boundary rails have two redundant M1-to-M4 contacts at x=215.66 um and
+x=285.02 um.  VDPWR uses a right-side M4 collector; VGND uses a split
+left-side collector and nine M3 underpasses beneath the frozen vertical VDPWR
+M4 spine.  The final 0.60 um M4 row fingers pass the flattened spacing deck;
+the earlier 0.80 um trial was rejected because one finger came within 0.28 um
+of an inherited VGND trunk.
+
+Full extraction of the powered checkpoint produces only the two intended
+overlay nodes, VDPWR and VGND.  Both are single connected components, they
+remain mutually distinct, no power via is orphaned, and none of the 305
+controller nets is shorted to a supply.  Magic DRC and every applicable pinned
+Tiny Tapeout/KLayout subset remain at zero markers.  This closes controller
+signal and power integration; it does not yet close external handoffs, antenna
+repair, post-layout timing/RC, or the packaged Tiny Tapeout submission checks.
+
+See `evidence/physical_control_signal_routing_gate.json`,
+`evidence/physical_control_power_gate.json`, and the immutable artifacts in
+`frozen/controller_signal_routing/` and `frozen/controller_power/`.

@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_boundary_handoffs/precheck/precheck_beol.xml",
+      "report_sha256": "392822f0647d96877b7cfece7b2fa9137d1bc928ba7ba4dc35c3d333c3e6a12e"
+    },
+    "feol": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_boundary_handoffs/precheck/precheck_feol.xml",
+      "report_sha256": "ed27c9176b1c9e4e6a1885db568a5f5405aaba2860261549ab18280dacbbfd3b"
+    },
+    "offgrid": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_boundary_handoffs/precheck/precheck_offgrid.xml",
+      "report_sha256": "3a2166417a54b065d69f366ec606b09d85533923375e6a467e1fc2e8f63e4c8c"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_boundary_handoffs/precheck/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "1e6f28840a6a5f6b086d9094b3174769d26e64a5efe3e0e57f313da51fcd445e"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/control_boundary_handoffs/precheck/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/control_boundary_handoffs/precheck/precheck_zero_area.xml",
+      "report_sha256": "41ae9e6166f3340bb27c53888212fb634827ffe36f499aae8c9a36c211373ffa"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/control_boundary_handoffs/direct/v3_four_channel_ctrl_boundary_handoffs.gds",
+  "gds_sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_four_ch_ctrl_boundary_handoff"
+}

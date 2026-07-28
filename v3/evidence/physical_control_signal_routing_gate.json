@@ -4,7 +4,7 @@
   "scope": "all 305 centralized V3 controller internal signal nets integrated with the exact frozen four-channel analog and shared-power geometry; controller power and external handoff fanout excluded",
   "gds": "v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
   "top_cell": "v3_four_channel_ctrl_sig_routed",
-  "gds_sha256": "04d12ed4bf9d4618b1502b974839b071c50e1c02c9270e6b4cdb84663bc10c4e",
+  "gds_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
   "flat_spice": "v3/frozen/controller_signal_routing/v3_four_channel_ctrl_sig_routed_flat.spice",
   "flat_spice_sha256": "10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d",
   "route_results": {
@@ -16,8 +16,8 @@
     "openroad_detailed_route_violations": 0,
     "maximum_signal_layer": "met3",
     "metal4_signal_length_um": 0,
-    "total_centerline_length_um": 11317.44,
-    "via_count": 2218,
+    "total_centerline_length_um": 11423.515,
+    "via_count": 2294,
     "maximum_logical_endpoint_count": 17
   },
   "integrated_extraction": {
@@ -52,6 +52,14 @@
       "result": "all controller routes detour without extracted electrical contact"
     }
   ],
+  "planned_power_access": {
+    "contact_columns_um": [215.66, 285.02],
+    "row_boundary_rails": 18,
+    "contacts_per_rail": 2,
+    "reserved_m2_m3_obstructions": 72,
+    "reserved_ground_underpass_obstructions": 9,
+    "maximum_nominal_m1_distance_to_nearest_contact_um": 34.68
+  },
   "checks": {
     "exact_frozen_analog_source_used": true,
     "all_controller_signal_routes_are_connected": true,
@@ -68,18 +76,18 @@
     "metal4_is_reserved": true
   },
   "sha256": {
-    "route_plan": "b18a6ea44cba7db38eec645fbc8c56ae7cb3b1a44f029a6ff6ab060ddc21c0a1",
-    "input_summary": "17f2d123b7c6aae1e106d91d3536e79b2c74496b8e1a8fc053168551495a3c13",
-    "route_audit": "a1e70751874c8789414bc8ccfe98963c506d95de072fb662ec6805a41c53bbd3",
-    "gds_topology_audit": "a5552ecdbdc198b72357c2a284f4aa7cd5e077de8bd45d1799cca1813475332f",
-    "direct_gds_precheck": "3c98e262d4fe6612781ea07a904af9443f7d655218568a339df9a3c05da2f5db",
-    "routed_def": "622317718feebf833b821a40e59f2952a2dd6c549fb05d573e6c909118f92c13",
-    "openroad_log": "db19134d40eaee7a3f3b90c69693203f5b11ca4e24a4bc5425984fae6e7e7fb9",
+    "route_plan": "8f0ed44cdbf8e85affaa226b14198212bcc580df950160519dcfcbe1a8b5f167",
+    "input_summary": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
+    "route_audit": "c11b5bced6d14c4e0813529018fc76dce1cef1436de9f606467be2e925b85ec8",
+    "gds_topology_audit": "cb08678d24b7dde9df1eba289cfbff99a641310c05ad9179637e042a993ea36c",
+    "direct_gds_precheck": "1bde1092b2f989ec6e37c42c0116eecc916cebf4cd4971f3d001cc509b0e9afb",
+    "routed_def": "963deb441df10b0d57ddd22d8eb0bfdebc2aa26aa198778baa3172b2b7846ea2",
+    "openroad_log": "c9df40e88c95696310ba61b3d62eb52d5284a9c7ee4f0c69f510a652eb3f8746",
     "detailed_route_drc": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "magic_readback_log": "b410b7b5caf6bde25b92317a17477baf8265056cc42b7c048ce2bbed3fcdfc1b",
+    "magic_readback_log": "643fa3c37e1e1974239d99e3c4871a80e63c96610881ed0055629d88fe66f5de",
     "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
-    "route_input_generator": "ac1cdc7eb55bf9b704ef93acb607a7d355db223c94060ff9561cec9e9c372122",
-    "route_graph_checker": "5b1e5fbd5b75f5e2abe3d3d7b722fcf5675a391c155b4d4024615ddf1576c357",
+    "route_input_generator": "e5dd7d3aa546d53226c1bf2da93653c9ed37226f8f9cb34e708b94ebb47c35c5",
+    "route_graph_checker": "8bb44109a3c5671914e271b6cf72e119adc3b35cac1ead9691aaf4c27cea9829",
     "gds_assembler": "f4bd9f04b12eeae8dc9e74425d6e1e16847064c6783f2528560315bc0f7b47ca",
     "full_gds_topology_checker": "cab9b364203f3b7034668c79ea298951182ed94bcaa81d0c023e248f495930d6"
   },

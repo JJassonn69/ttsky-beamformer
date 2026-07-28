@@ -10,7 +10,7 @@ on:
       - "src/**"
       - "tests/**"
       - "tools/**"
-      - "v2/**"
+      - "v3/**"
   pull_request:
     paths:
       - ".github/workflows/gds.yaml"
@@ -20,7 +20,7 @@ on:
       - "src/**"
       - "tests/**"
       - "tools/**"
-      - "v2/**"
+      - "v3/**"
   workflow_dispatch:
 
 concurrency:
@@ -40,15 +40,23 @@ jobs:
         id: top_module
         run: echo "TOP_MODULE=$(yq '.project.top_module' info.yaml)" | tee "$GITHUB_OUTPUT"
 
-      - name: Rebuild active V2 submission artifacts
-        run: |
-          python3 v2/tools/fetch_tt_2x2_template.py
-          python3 v2/tools/generate_submission_gds.py
-          python3 tools/generate_submission_lef.py
-          git diff --exit-code -- gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
+      - name: Fetch exact pinned Tiny Tapeout 2x2 template
+        run: python3 v2/tools/fetch_tt_2x2_template.py
 
-      - name: Check V2 submission contract
-        run: python3 -m unittest v2.tests.test_submission_artifacts -v
+      - name: Rebuild exact frozen V3 submission artifacts
+        run: |
+          python3 v3/tools/generate_submission_gds.py
+          python3 v3/tools/generate_submission_magic_labels.py
+          python3 tools/generate_submission_lef.py
+          cmp build/v3/submission/${{ steps.top_module.outputs.TOP_MODULE }}.gds gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
+          cmp build/v3/submission/official_magic_labels.tcl v3/frozen/submission/official_magic_labels.tcl
+          git diff --exit-code -- lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
+
+      - name: Check V3 packaging and internal signoff contract
+        run: |
+          python3 v3/tools/build_submission_gate.py
+          python3 -m unittest v3.tests.test_submission_packaging -v
+          git diff --exit-code -- v3/evidence/submission_gate.json
 
       - name: Check flattened upper-metal geometry
         run: |
@@ -75,11 +83,17 @@ jobs:
     needs: precheck
     runs-on: ubuntu-24.04
     steps:
-      - name: Checkout current V2 evidence
+      - name: Checkout frozen V3 evidence
         uses: actions/checkout@v4
 
+      - name: Fetch exact pinned Tiny Tapeout 2x2 template
+        run: python3 v2/tools/fetch_tt_2x2_template.py
+
       - name: Check artifact-bound validation status
-        run: python3 v2/tools/check_latest_validation.py
+        run: |
+          python3 v3/tools/generate_submission_gds.py
+          python3 v3/tools/build_submission_gate.py
+          python3 -m unittest v3.tests.test_submission_packaging -v
 
   viewer:
     needs: gds

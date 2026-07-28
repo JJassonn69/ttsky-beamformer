@@ -1,0 +1,274 @@
+{
+  "checks": {
+    "all_6037_devices_preserved": true,
+    "all_four_resistance_vectors_are_identical": true,
+    "base_views_are_resistance_free": true,
+    "capacitance_present_all_views": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "estimated_5mhz_gain_spread_below_0p001db_at_1kohm": true,
+    "estimated_5mhz_phase_spread_below_0p01deg_at_1kohm": true,
+    "exactly_15_gm_and_one_bias_resistor_per_input": true,
+    "exactly_36_flattened_qualified_dummy_notices_all_four_views": true,
+    "external_capacitance_span_below_2_percent": true,
+    "magic_drc_zero_all_four_views": true,
+    "magic_outputs_complete": true,
+    "mean_route_resistance_mismatch_below_0p01_percent": true,
+    "only_classified_magic_warnings": true,
+    "plan_is_exact_translation": true,
+    "precheck_is_for_exact_gds": true,
+    "topology_gate_passes_for_exact_gds": true
+  },
+  "gds": "build/v3/analog_input_escapes/direct/v3_four_channel_analog_inputs.gds",
+  "gds_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+  "matching_metrics": {
+    "diagnostic_200mhz_1kohm_loading": {
+      "channel_gain_spread_db": 0.0013725956385855637,
+      "channel_phase_spread_deg": 0.09856424506324757,
+      "frequency_hz": 200000000.0,
+      "source_resistance_ohm": 1000.0,
+      "worst_gain_loss_db": 0.03718351540800549,
+      "worst_phase_lag_deg": 5.29780285768912
+    },
+    "external_capacitance_max_ff": 73.79101,
+    "external_capacitance_mean_ff": 73.09786,
+    "external_capacitance_min_ff": 72.41051,
+    "external_capacitance_span_percent": 1.8885641795806305,
+    "intended_5mhz_1kohm_loading": {
+      "channel_gain_spread_db": 8.651074761831853e-07,
+      "channel_phase_spread_deg": 0.0024848868942143054,
+      "frequency_hz": 5000000.0,
+      "source_resistance_ohm": 1000.0,
+      "worst_gain_loss_db": 2.333940601645697e-05,
+      "worst_phase_lag_deg": 0.13282358006410783
+    },
+    "maximum_route_resistance_mismatch_percent": 0.0,
+    "mean_route_resistance_mismatch_percent": 0.0,
+    "minimum_route_resistance_mismatch_percent": 0.0
+  },
+  "model_assumptions": {
+    "bounded_source_resistance_ohm": 1000.0,
+    "diagnostic_frequency_hz": 200000000.0,
+    "intended_signal_frequency_hz": 5000000.0,
+    "note": "Magic geometric capacitance excludes equal transistor intrinsic gate capacitance and package/board parasitics; those common terms reduce the relative on-chip mismatch but must be added in final board-level simulation."
+  },
+  "next_gate": "freeze the four matched analog inputs, then package the exact TinyTapeout top-level pins and run the full submission precheck and post-layout powered simulations",
+  "schema_version": 1,
+  "scope": "four complete TinyTapeout-pad-to-15-gm-gate analog-input networks with distributed conductor R/C and channel loading comparison",
+  "sha256": {
+    "auditor": "419153fde2fd8578a3c8242b2ddcf2ab14cffafccedb0529f05bff77abcc1214",
+    "extractor": "eec2a2c5159738f3544dbdc7dd924d5193e6e7976efe6b25bc2c824ffb9637dc",
+    "magic_log": "6190555f4aacf6ce65c666d9b21704cad5b06bd81f374a4ecd96d17dbe7872c7",
+    "plan": "b802600f345b34780b4f0de994c33d99e66804ea61478163d9a90849dbbbfe60",
+    "precheck_summary": "dac592169ec96e4f3d207a25b78a4e35b63c6f66b725155be9d37b5258c7658e",
+    "topology_audit": "23ae3ebe37130899a75816804cc1e66c995c260eb843a2380e35bd8c0b490555"
+  },
+  "status": "pass",
+  "unexpected_magic_warnings": [],
+  "views": {
+    "i0": {
+      "base": {
+        "capacitors": 62008,
+        "devices": 6037,
+        "resistors": 0
+      },
+      "connected_resistor_nodes": 33,
+      "distributed_rc": {
+        "capacitors": 33639,
+        "devices": 6037,
+        "resistors": 70581
+      },
+      "extracted_external_capacitance_ff": 72.41051,
+      "gm_terminal_count": 15,
+      "input_bias_resistor_terminal_count": 1,
+      "maximum_pad_to_gm_resistance_ohm": 286.08324000030285,
+      "mean_pad_to_gm_resistance_ohm": 270.4423118667319,
+      "minimum_pad_to_gm_resistance_ohm": 255.0858720001164,
+      "root_candidates": [
+        "a_28276_17932#",
+        "a_28276_17932.n0"
+      ],
+      "root_coordinate_internal": [
+        30452,
+        100
+      ],
+      "root_node": "a_28276_17932#",
+      "sha256": {
+        "base_spice": "b97cfd551fc2f224a0ab5bc1778fe583f8a3fcf11ae2fa05a6cba255d1fdb31d",
+        "distributed_rc_spice": "c97ef0dc4985f90c7d4757b806ddf4f69c0ed271b1158f33e1085313ebadc874",
+        "resistance_annotation": "977876e8fda7783ffc222dfbd4d1d1b79c994e0ee220a1323ebac43393073b30"
+      },
+      "sorted_pad_to_gm_resistance_ohm": [
+        255.0858720001164,
+        258.1088499991156,
+        258.82087199993794,
+        261.33637199983144,
+        264.3593500005499,
+        265.07137200019656,
+        269.84774000056,
+        270.609850000065,
+        273.58273999991565,
+        274.59934999986365,
+        276.0982400003688,
+        279.83324000003904,
+        280.849350000162,
+        282.3482399999537,
+        286.08324000030285
+      ],
+      "within_channel_resistance_spread_ohm": 30.99736800018644
+    },
+    "i1": {
+      "base": {
+        "capacitors": 62008,
+        "devices": 6037,
+        "resistors": 0
+      },
+      "connected_resistor_nodes": 33,
+      "distributed_rc": {
+        "capacitors": 33627,
+        "devices": 6037,
+        "resistors": 70569
+      },
+      "extracted_external_capacitance_ff": 73.79101,
+      "gm_terminal_count": 15,
+      "input_bias_resistor_terminal_count": 1,
+      "maximum_pad_to_gm_resistance_ohm": 286.08324000030285,
+      "mean_pad_to_gm_resistance_ohm": 270.4423118667319,
+      "minimum_pad_to_gm_resistance_ohm": 255.0858720001164,
+      "root_candidates": [
+        "a_24412_17932#",
+        "a_24412_17932.n0"
+      ],
+      "root_coordinate_internal": [
+        26588,
+        100
+      ],
+      "root_node": "a_24412_17932#",
+      "sha256": {
+        "base_spice": "5af112bb3779d4a5abac19a750293b3670a6a67034c76943c2f087e757887924",
+        "distributed_rc_spice": "5e654bb4d9448080dadf531dd59b8258b03e28832cf6e98b31101e9177d87bd8",
+        "resistance_annotation": "c875b5aae74a559ee551366fdbf2d4ed085012338a7af97eecbe8cc7fd7a1094"
+      },
+      "sorted_pad_to_gm_resistance_ohm": [
+        255.0858720001164,
+        258.1088499991156,
+        258.82087199993794,
+        261.33637199983144,
+        264.3593500005499,
+        265.07137200019656,
+        269.84774000056,
+        270.609850000065,
+        273.58273999991565,
+        274.59934999986365,
+        276.0982400003688,
+        279.83324000003904,
+        280.849350000162,
+        282.3482399999537,
+        286.08324000030285
+      ],
+      "within_channel_resistance_spread_ohm": 30.99736800018644
+    },
+    "i2": {
+      "base": {
+        "capacitors": 62008,
+        "devices": 6037,
+        "resistors": 0
+      },
+      "connected_resistor_nodes": 33,
+      "distributed_rc": {
+        "capacitors": 33655,
+        "devices": 6037,
+        "resistors": 70597
+      },
+      "extracted_external_capacitance_ff": 73.77799999999999,
+      "gm_terminal_count": 15,
+      "input_bias_resistor_terminal_count": 1,
+      "maximum_pad_to_gm_resistance_ohm": 286.08324000030285,
+      "mean_pad_to_gm_resistance_ohm": 270.4423118667319,
+      "minimum_pad_to_gm_resistance_ohm": 255.0858720001164,
+      "root_candidates": [
+        "a_20548_17932#",
+        "a_20548_17932.n0"
+      ],
+      "root_coordinate_internal": [
+        22724,
+        100
+      ],
+      "root_node": "a_20548_17932#",
+      "sha256": {
+        "base_spice": "919495de3d638c77874ca349ddbda82a35d359b1ba1a3bc952ef39593960c109",
+        "distributed_rc_spice": "173ba1bdaf8f42be3f23516c252e531fb13190ebff876be26cabeb23357d7a48",
+        "resistance_annotation": "aa07badf44a4a727ca18e2a168e246828eb8b66b93db68e1010a895f8f58aefb"
+      },
+      "sorted_pad_to_gm_resistance_ohm": [
+        255.0858720001164,
+        258.1088499991156,
+        258.82087199993794,
+        261.33637199983144,
+        264.3593500005499,
+        265.07137200019656,
+        269.84774000056,
+        270.609850000065,
+        273.58273999991565,
+        274.59934999986365,
+        276.0982400003688,
+        279.83324000003904,
+        280.849350000162,
+        282.3482399999537,
+        286.08324000030285
+      ],
+      "within_channel_resistance_spread_ohm": 30.99736800018644
+    },
+    "i3": {
+      "base": {
+        "capacitors": 62008,
+        "devices": 6037,
+        "resistors": 0
+      },
+      "connected_resistor_nodes": 33,
+      "distributed_rc": {
+        "capacitors": 33663,
+        "devices": 6037,
+        "resistors": 70605
+      },
+      "extracted_external_capacitance_ff": 72.41192000000001,
+      "gm_terminal_count": 15,
+      "input_bias_resistor_terminal_count": 1,
+      "maximum_pad_to_gm_resistance_ohm": 286.08324000030285,
+      "mean_pad_to_gm_resistance_ohm": 270.4423118667319,
+      "minimum_pad_to_gm_resistance_ohm": 255.0858720001164,
+      "root_candidates": [
+        "a_16684_17932#",
+        "a_16684_17932.n0"
+      ],
+      "root_coordinate_internal": [
+        18860,
+        100
+      ],
+      "root_node": "a_16684_17932#",
+      "sha256": {
+        "base_spice": "a9eff5b892b8551194dba3147a21dd35fe80699c8d7e3dab67b6c01ffee8eb2e",
+        "distributed_rc_spice": "94979df115bb49a0017369b30b2502d87c0ca7fe9d565a4e871e848ea255cf37",
+        "resistance_annotation": "f89362c2fa2797e92c8268e05163efb49c8c332318c193c3543cc901a731f7c1"
+      },
+      "sorted_pad_to_gm_resistance_ohm": [
+        255.0858720001164,
+        258.1088499991156,
+        258.82087199993794,
+        261.33637199983144,
+        264.3593500005499,
+        265.07137200019656,
+        269.84774000056,
+        270.609850000065,
+        273.58273999991565,
+        274.59934999986365,
+        276.0982400003688,
+        279.83324000003904,
+        280.849350000162,
+        282.3482399999537,
+        286.08324000030285
+      ],
+      "within_channel_resistance_spread_ohm": 30.99736800018644
+    }
+  }
+}

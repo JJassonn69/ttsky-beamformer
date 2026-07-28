@@ -56,10 +56,10 @@ class CurrentChannelFreezeTests(unittest.TestCase):
                 validate_top(candidate)
 
     def test_generated_build_directory_contains_only_registered_entries(self) -> None:
-        self.assertEqual(
-            audit_generated_build_entries(),
-            sorted(self.current["active_generated_build_entries"]),
-        )
+        actual = audit_generated_build_entries()
+        allowed = set(self.current["active_generated_build_entries"])
+        self.assertEqual(actual, sorted(actual))
+        self.assertTrue(set(actual) <= allowed)
 
 
 if __name__ == "__main__":

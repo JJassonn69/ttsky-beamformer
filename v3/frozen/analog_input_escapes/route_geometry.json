@@ -1,0 +1,357 @@
+{
+  "counts": {
+    "by_layer": {
+      "met2": 4,
+      "met3": 4,
+      "met4": 4,
+      "via2": 4,
+      "via3": 4
+    },
+    "labels": 4,
+    "m2_landings": 4,
+    "m3_trunks": 4,
+    "m4_terminals": 4,
+    "routes": 4,
+    "shapes": 20,
+    "total_m3_centerline_length": 38.94,
+    "vias": 8
+  },
+  "label_net_map": {
+    "V3I000": "element_input[0]",
+    "V3I001": "element_input[1]",
+    "V3I002": "element_input[2]",
+    "V3I003": "element_input[3]"
+  },
+  "labels": [
+    {
+      "gds_label": "V3I000",
+      "layer": "met3",
+      "net": "element_input[0]",
+      "point_um": [
+        152.26,
+        5.0
+      ]
+    },
+    {
+      "gds_label": "V3I001",
+      "layer": "met3",
+      "net": "element_input[1]",
+      "point_um": [
+        132.94,
+        5.0
+      ]
+    },
+    {
+      "gds_label": "V3I002",
+      "layer": "met3",
+      "net": "element_input[2]",
+      "point_um": [
+        113.62,
+        5.0
+      ]
+    },
+    {
+      "gds_label": "V3I003",
+      "layer": "met3",
+      "net": "element_input[3]",
+      "point_um": [
+        94.3,
+        5.0
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "channel": 0,
+      "direction_reversals": 0,
+      "gds_label": "V3I000",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "m3_centerline_length_um": 9.735,
+      "net": "element_input[0]",
+      "pin": "ua[0]",
+      "shape_count": 5,
+      "via_count": 2
+    },
+    {
+      "channel": 1,
+      "direction_reversals": 0,
+      "gds_label": "V3I001",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "m3_centerline_length_um": 9.735,
+      "net": "element_input[1]",
+      "pin": "ua[1]",
+      "shape_count": 5,
+      "via_count": 2
+    },
+    {
+      "channel": 2,
+      "direction_reversals": 0,
+      "gds_label": "V3I002",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "m3_centerline_length_um": 9.735,
+      "net": "element_input[2]",
+      "pin": "ua[2]",
+      "shape_count": 5,
+      "via_count": 2
+    },
+    {
+      "channel": 3,
+      "direction_reversals": 0,
+      "gds_label": "V3I003",
+      "layers": [
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "m3_centerline_length_um": 9.735,
+      "net": "element_input[3]",
+      "pin": "ua[3]",
+      "shape_count": 5,
+      "via_count": 2
+    }
+  ],
+  "schema_version": 1,
+  "shapes": [
+    {
+      "bbox_um": [
+        151.81,
+        0.0,
+        152.71,
+        1.0
+      ],
+      "kind": "exact_tinytapeout_analog_terminal",
+      "layer": "met4",
+      "net": "element_input[0]"
+    },
+    {
+      "bbox_um": [
+        152.16,
+        0.4,
+        152.36,
+        0.6
+      ],
+      "kind": "input_m3_m4_via",
+      "layer": "via3",
+      "net": "element_input[0]"
+    },
+    {
+      "bbox_um": [
+        152.06,
+        0.34,
+        152.46,
+        10.42
+      ],
+      "kind": "straight_input_trunk",
+      "layer": "met3",
+      "net": "element_input[0]"
+    },
+    {
+      "bbox_um": [
+        152.16,
+        10.135,
+        152.36,
+        10.335
+      ],
+      "kind": "input_m2_m3_via",
+      "layer": "via2",
+      "net": "element_input[0]"
+    },
+    {
+      "bbox_um": [
+        152.12,
+        10.05,
+        152.4,
+        10.42
+      ],
+      "kind": "element_input_access_landing",
+      "layer": "met2",
+      "net": "element_input[0]"
+    },
+    {
+      "bbox_um": [
+        132.49,
+        0.0,
+        133.39,
+        1.0
+      ],
+      "kind": "exact_tinytapeout_analog_terminal",
+      "layer": "met4",
+      "net": "element_input[1]"
+    },
+    {
+      "bbox_um": [
+        132.84,
+        0.4,
+        133.04,
+        0.6
+      ],
+      "kind": "input_m3_m4_via",
+      "layer": "via3",
+      "net": "element_input[1]"
+    },
+    {
+      "bbox_um": [
+        132.74,
+        0.34,
+        133.14,
+        10.42
+      ],
+      "kind": "straight_input_trunk",
+      "layer": "met3",
+      "net": "element_input[1]"
+    },
+    {
+      "bbox_um": [
+        132.84,
+        10.135,
+        133.04,
+        10.335
+      ],
+      "kind": "input_m2_m3_via",
+      "layer": "via2",
+      "net": "element_input[1]"
+    },
+    {
+      "bbox_um": [
+        132.8,
+        10.05,
+        133.08,
+        10.42
+      ],
+      "kind": "element_input_access_landing",
+      "layer": "met2",
+      "net": "element_input[1]"
+    },
+    {
+      "bbox_um": [
+        113.17,
+        0.0,
+        114.07,
+        1.0
+      ],
+      "kind": "exact_tinytapeout_analog_terminal",
+      "layer": "met4",
+      "net": "element_input[2]"
+    },
+    {
+      "bbox_um": [
+        113.52,
+        0.4,
+        113.72,
+        0.6
+      ],
+      "kind": "input_m3_m4_via",
+      "layer": "via3",
+      "net": "element_input[2]"
+    },
+    {
+      "bbox_um": [
+        113.42,
+        0.34,
+        113.82,
+        10.42
+      ],
+      "kind": "straight_input_trunk",
+      "layer": "met3",
+      "net": "element_input[2]"
+    },
+    {
+      "bbox_um": [
+        113.52,
+        10.135,
+        113.72,
+        10.335
+      ],
+      "kind": "input_m2_m3_via",
+      "layer": "via2",
+      "net": "element_input[2]"
+    },
+    {
+      "bbox_um": [
+        113.48,
+        10.05,
+        113.76,
+        10.42
+      ],
+      "kind": "element_input_access_landing",
+      "layer": "met2",
+      "net": "element_input[2]"
+    },
+    {
+      "bbox_um": [
+        93.85,
+        0.0,
+        94.75,
+        1.0
+      ],
+      "kind": "exact_tinytapeout_analog_terminal",
+      "layer": "met4",
+      "net": "element_input[3]"
+    },
+    {
+      "bbox_um": [
+        94.2,
+        0.4,
+        94.4,
+        0.6
+      ],
+      "kind": "input_m3_m4_via",
+      "layer": "via3",
+      "net": "element_input[3]"
+    },
+    {
+      "bbox_um": [
+        94.1,
+        0.34,
+        94.5,
+        10.42
+      ],
+      "kind": "straight_input_trunk",
+      "layer": "met3",
+      "net": "element_input[3]"
+    },
+    {
+      "bbox_um": [
+        94.2,
+        10.135,
+        94.4,
+        10.335
+      ],
+      "kind": "input_m2_m3_via",
+      "layer": "via2",
+      "net": "element_input[3]"
+    },
+    {
+      "bbox_um": [
+        94.16,
+        10.05,
+        94.44,
+        10.42
+      ],
+      "kind": "element_input_access_landing",
+      "layer": "met2",
+      "net": "element_input[3]"
+    }
+  ],
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_boundary_handoffs/v3_four_channel_ctrl_boundary_handoffs.gds",
+    "physical_gate": "v3/evidence/physical_control_boundary_handoff_gate.json",
+    "physical_gate_sha256": "c8e11db80069959dc84cf9736af1f7e381882117e765156544a3ce25917be542",
+    "sha256": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "top": "v3_four_ch_ctrl_boundary_handoff"
+  },
+  "status": "generated from hash-locked, exact-translation analog-input plan",
+  "top": "v3_analog_input_escape_routes"
+}

@@ -1,0 +1,108 @@
+box 31188 7010 31388 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 29796 7010 29996 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 28404 7010 28604 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 31396 29790 31426 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 31150 29790 31180 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 30004 29790 30034 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 29758 29790 29788 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 28612 29790 28642 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 28366 29790 28396 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 27324 7010 27524 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 25932 7010 26132 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 24540 7010 24740 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 27532 29790 27562 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 27286 29790 27316 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 26140 29790 26170 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 25894 29790 25924 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 24748 29790 24778 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 24502 29790 24532 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 23460 7010 23660 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 22068 7010 22268 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 20676 7010 20876 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 23668 29790 23698 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 23422 29790 23452 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 22276 29790 22306 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 22030 29790 22060 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 20884 29790 20914 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 20638 29790 20668 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 19596 7010 19796 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 18204 7010 18404 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 16812 7010 17012 8024
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 19804 29790 19834 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 19558 29790 19588 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 18412 29790 18442 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 18166 29790 18196 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 17020 29790 17050 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale
+box 16774 29790 16804 29920
+feedback add "device missing 1 terminal;
+ connecting remainder to node uio_oe[0]" pale

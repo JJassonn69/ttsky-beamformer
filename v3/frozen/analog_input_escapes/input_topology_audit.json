@@ -1,0 +1,116 @@
+{
+  "artifact_sha256": {
+    "assembly": "109f1b743952ea2b93638073125ea858b20e4dd68cad16dee65a73196f3c7ec9",
+    "auditor": "a610f42e1bf900faa1674502a2bfe03d4d503a8fdcf02211794c7893d42c2ee4",
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "flat_spice": "cb6cb8433b11c1ee24dba76b01d176636ab47d2eacc9992266450d1444b0e7f4",
+    "gds": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+    "geometry": "8e6a8f3c0daba367de5fe7ad3c1fab3348da6c3264d128a5402955f666b28a6c",
+    "magic_log": "c6ee8833b2b223ded1d798b44350af196361afd64917b1fcaf22255944297b03",
+    "overlay_ext": "2bbf60398c2c96873c4659fd8c090846541c28b76ab2dad352d5182a38a742a3",
+    "plan": "b802600f345b34780b4f0de994c33d99e66804ea61478163d9a90849dbbbfe60",
+    "precheck": "dac592169ec96e4f3d207a25b78a4e35b63c6f66b725155be9d37b5258c7658e",
+    "source_flat_spice": "88a7b4e0ee89ce36e16649774636684e582a38e11a371eb7957529d22c898e85",
+    "source_gate": "c8e11db80069959dc84cf9736af1f7e381882117e765156544a3ce25917be542",
+    "source_top_ext": "0efc95310f1dffd0af09bb7bdeec2bc7331f16788f75e33e983bb483b0203b98",
+    "top_ext": "0b2ec73c7588373175d6c9ec984fdf3211e50dd2a16920c40cd494ab99e2a7cd"
+  },
+  "checks": {
+    "device_population_matches_source": true,
+    "direct_gds_precheck_zero": true,
+    "distinct_input_groups": 4,
+    "distinct_previous_route_groups": 305,
+    "exact_tinytapeout_analog_terminals": true,
+    "extraction_warning_baseline_exact": true,
+    "identical_centerline_lengths": true,
+    "identical_layer_sequences": true,
+    "identical_via_counts": true,
+    "input_device_terminal_hits": {
+      "V3I000": 16,
+      "V3I001": 16,
+      "V3I002": 16,
+      "V3I003": 16
+    },
+    "input_routes_shorted_to_previous_labels": 0,
+    "input_routes_shorted_to_supply": 0,
+    "magic_metrics": {
+      "drc": 0,
+      "extraction_feedback": 9,
+      "feedback_after_clear": 0,
+      "gds_feedback": 0
+    },
+    "model_population": {
+      "sky130_fd_pr__cap_mim_m3_1": 6,
+      "sky130_fd_pr__nfet_01v8": 2867,
+      "sky130_fd_pr__pfet_01v8_hvt": 2777,
+      "sky130_fd_pr__res_high_po_1p41": 3,
+      "sky130_fd_pr__res_xhigh_po_0p35": 4,
+      "sky130_fd_pr__res_xhigh_po_1p41": 6,
+      "sky130_fd_pr__special_nfet_01v8": 374
+    },
+    "overlay_input_nodes": 4,
+    "previous_route_partition_preserved": true,
+    "total_extracted_devices": 6037,
+    "vdpwr_terminal_hits": 4818,
+    "vgnd_terminal_hits": 5242,
+    "zero_direction_reversals": true
+  },
+  "errors": [],
+  "inputs": [
+    {
+      "channel": 0,
+      "device_terminal_hits": 16,
+      "expected_target_suffix": "v3_channel_selector_late_promotion_3/v3_channel_input_bias_late_promotion_0/element_input",
+      "input_label": "V3I000",
+      "logical_net": "element_input[0]",
+      "observed_element_input_targets": [
+        "v3_four_channel_output_load_integration_0/v3_four_channel_shared_support_integration_0/v3_four_channel_bias_reference_distribution_0/v3_four_channel_phase_distribution_0/v3_four_channel_output_collection_0/v3_four_channel_placement_0/v3_channel_selector_late_promotion_3/v3_channel_input_bias_late_promotion_0/element_input"
+      ],
+      "previous_labels_in_group": [],
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ua[0]"
+    },
+    {
+      "channel": 1,
+      "device_terminal_hits": 16,
+      "expected_target_suffix": "v3_channel_selector_late_promotion_2/v3_channel_input_bias_late_promotion_0/element_input",
+      "input_label": "V3I001",
+      "logical_net": "element_input[1]",
+      "observed_element_input_targets": [
+        "v3_four_channel_output_load_integration_0/v3_four_channel_shared_support_integration_0/v3_four_channel_bias_reference_distribution_0/v3_four_channel_phase_distribution_0/v3_four_channel_output_collection_0/v3_four_channel_placement_0/v3_channel_selector_late_promotion_2/v3_channel_input_bias_late_promotion_0/element_input"
+      ],
+      "previous_labels_in_group": [],
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ua[1]"
+    },
+    {
+      "channel": 2,
+      "device_terminal_hits": 16,
+      "expected_target_suffix": "v3_channel_selector_late_promotion_1/v3_channel_input_bias_late_promotion_0/element_input",
+      "input_label": "V3I002",
+      "logical_net": "element_input[2]",
+      "observed_element_input_targets": [
+        "v3_four_channel_output_load_integration_0/v3_four_channel_shared_support_integration_0/v3_four_channel_bias_reference_distribution_0/v3_four_channel_phase_distribution_0/v3_four_channel_output_collection_0/v3_four_channel_placement_0/v3_channel_selector_late_promotion_1/v3_channel_input_bias_late_promotion_0/element_input"
+      ],
+      "previous_labels_in_group": [],
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ua[2]"
+    },
+    {
+      "channel": 3,
+      "device_terminal_hits": 16,
+      "expected_target_suffix": "v3_channel_selector_late_promotion_0/v3_channel_input_bias_late_promotion_0/element_input",
+      "input_label": "V3I003",
+      "logical_net": "element_input[3]",
+      "observed_element_input_targets": [
+        "v3_four_channel_output_load_integration_0/v3_four_channel_shared_support_integration_0/v3_four_channel_bias_reference_distribution_0/v3_four_channel_phase_distribution_0/v3_four_channel_output_collection_0/v3_four_channel_placement_0/v3_channel_selector_late_promotion_0/v3_channel_input_bias_late_promotion_0/element_input"
+      ],
+      "previous_labels_in_group": [],
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ua[3]"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "four exact translated TinyTapeout analog-input pad escapes through M4/Via3/M3/Via2/M2 into four independent channel input rails",
+  "status": "pass"
+}

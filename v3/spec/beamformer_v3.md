@@ -1,8 +1,12 @@
 # Beamformer V3A architecture contract
 
-Status: architecture Gate 1 and the bounded one-channel pre-layout electrical
-checkpoint are complete. Floorplanning is authorized; physical verification,
-extracted-layout regression, GDS, and fabrication signoff remain open.
+Status: the architecture, bounded electrical campaign, four-channel physical
+integration, distributed-RC extraction, exact Tiny Tapeout packaging, and
+internal signoff are complete. The frozen candidate is SHA-256
+`824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14`.
+Official GitHub custom-GDS/precheck attestation and silicon measurement remain
+open. This contract retains the earlier gate-by-gate decisions below as design
+provenance; the current release summary is `v3/evidence/submission_gate.json`.
 
 ## Objective
 
@@ -13,7 +17,7 @@ six-pin analog interface.
 
 V3A remains receive-only.  A detector/ADC, 50-ohm output driver, direct
 10.5 GHz interface, and reciprocal TX path are separate research gates and
-must not be added before the vector core closes.
+are not implemented in this frozen candidate.
 
 ## Frozen inheritance from V2
 

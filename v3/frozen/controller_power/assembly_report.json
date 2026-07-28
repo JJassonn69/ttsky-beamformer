@@ -1,0 +1,74 @@
+{
+  "assembly": {
+    "output_bytes": 2578386,
+    "output_sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+    "output_structure_count": 30,
+    "output_top": "v3_four_channel_ctrl_powered",
+    "overlay_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/control_power/direct/v3_ctrl_power_routes.gds",
+    "overlay_reference_count_added": 1,
+    "overlay_sha256": "ca09a054d6d45cc7d888639490fa73211110ba552b42c9d0949666199a6a480e",
+    "overlay_structure_count": 1,
+    "overlay_top": "v3_ctrl_power_routes",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+    "source_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+    "source_structure_count": 29,
+    "source_top": "v3_four_channel_ctrl_sig_routed",
+    "status": "pass",
+    "top_level_labels_promoted": [
+      "VDPWR",
+      "VGND"
+    ]
+  },
+  "connectivity": {
+    "VDPWR": {
+      "component_sizes": [
+        146
+      ],
+      "connected_component_count": 1,
+      "orphan_vias": [],
+      "shape_count": 146
+    },
+    "VGND": {
+      "component_sizes": [
+        225
+      ],
+      "connected_component_count": 1,
+      "orphan_vias": [],
+      "shape_count": 225
+    }
+  },
+  "geometry": {
+    "by_layer": {
+      "met1": 54,
+      "met2": 36,
+      "met3": 66,
+      "met4": 87,
+      "via": 36,
+      "via2": 36,
+      "via3": 56
+    },
+    "labels": 2,
+    "labels_on_own_conductor": 2,
+    "rails": 18,
+    "shapes": 371,
+    "upper_contacts": 36
+  },
+  "geometry_sha256": "ee1487335504c95d39846ecb0f66afefc60f4f19f17d714e73f2fa4df0a44cfa",
+  "output_gds": "build/v3/control_power/direct/v3_four_channel_ctrl_powered.gds",
+  "output_sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6",
+  "overlay": {
+    "boundary_count": 371,
+    "bytes": 23976,
+    "dbu_per_um": 1000,
+    "label_count": 2,
+    "output_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/control_power/direct/v3_ctrl_power_routes.gds",
+    "output_sha256": "ca09a054d6d45cc7d888639490fa73211110ba552b42c9d0949666199a6a480e",
+    "source_gds": "/Users/ganeshpanth/tinytapeout-beamformer-v2/v3/frozen/controller_signal_routing/v3_four_channel_control_signal_routed.gds",
+    "source_sha256": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+    "status": "pass",
+    "top": "v3_ctrl_power_routes",
+    "writer": "direct deterministic GDS boundary writer"
+  },
+  "schema_version": 1,
+  "status": "pass"
+}

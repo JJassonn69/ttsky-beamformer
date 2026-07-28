@@ -15,7 +15,7 @@ The following types are not handled by extraction and will be treated as non-ele
     ubm 
 Scaled tech values by 2 / 1 to match internal grid scaling
 Loading sky130A Device Generator Menu ...
-Loading "v3/layout/readback_physical_control_routes.tcl" from command line.
+Loading "build/v3/control_routing/openroad_internal_pdn_reserved/readback_physical_control_routes.tcl" from command line.
 No such cell "v3_four_channel_ctrl_sig_routed"
 Warning: Calma reading is not undoable!  I hope that's OK.
 Library written using GDS-II Release 6.0

@@ -1,0 +1,10 @@
+{
+  "label_count": 53,
+  "output_sha256": "9bd437032f20dba4c5cfa658f21e5243d4d2856f8198345d1a2b8e9bbe719505",
+  "power_ground_labels": 2,
+  "schema_version": 1,
+  "signal_labels": 51,
+  "status": "pass",
+  "template_def": "build/v2/tt_analog_2x2.def",
+  "template_def_sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f"
+}

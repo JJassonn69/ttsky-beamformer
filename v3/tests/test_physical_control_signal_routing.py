@@ -23,13 +23,19 @@ class PhysicalControlSignalRoutingFreezeTests(unittest.TestCase):
         )
         self.frozen = ROOT / "v3/frozen/controller_signal_routing"
 
-    def test_current_top_is_the_exact_frozen_signal_route(self) -> None:
-        top = self.current["current_top_level"]
-        self.assertEqual(top["physical_gate"], "v3/evidence/physical_control_signal_routing_gate.json")
-        self.assertEqual(top["gds_sha256"], sha256(ROOT / top["gds"]))
-        self.assertEqual(top["flat_spice_sha256"], sha256(ROOT / top["flat_spice"]))
-        self.assertEqual(self.gate["gds_sha256"], top["gds_sha256"])
-        self.assertEqual(self.gate["flat_spice_sha256"], top["flat_spice_sha256"])
+    def test_signal_route_remains_an_exact_frozen_upstream_input(self) -> None:
+        self.assertEqual(
+            self.current["four_channel_integration"]["centralized_control_signal_routing"],
+            "v3/evidence/physical_control_signal_routing_gate.json",
+        )
+        self.assertEqual(
+            self.gate["gds_sha256"],
+            sha256(self.frozen / "v3_four_channel_control_signal_routed.gds"),
+        )
+        self.assertEqual(
+            self.gate["flat_spice_sha256"],
+            sha256(self.frozen / "v3_four_channel_ctrl_sig_routed_flat.spice"),
+        )
 
     def test_independent_route_and_extraction_audits_are_frozen(self) -> None:
         route = json.loads((self.frozen / "route_audit.json").read_text(encoding="utf-8"))

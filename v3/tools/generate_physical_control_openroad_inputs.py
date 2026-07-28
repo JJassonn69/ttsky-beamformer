@@ -51,8 +51,113 @@ TRACK_OFFSETS = {
 }
 
 
+def planned_power_contact_obstructions(
+    power_plan: dict[str, Any], region: list[float]
+) -> list[dict[str, Any]]:
+    """Reserve the exact M2/M3 landings for distributed row-power contacts.
+
+    Power is a later physical gate, but it cannot be treated as an afterthought:
+    allowing signals to occupy every upper-metal access point leaves long,
+    resistive edge-fed M1 rails.  The selected quarter-span contacts cap the
+    nominal rail distance to about 35 um.  These rectangles are the future
+    via-stack landings; OpenROAD applies the foundry spacing rules around them.
+    """
+
+    x0, y0, x1, y1 = map(float, region)
+    configured = list(map(float, power_plan["distributed_contact_columns_um"]))
+    if len(configured) != 2 or configured != sorted(configured):
+        raise ValueError("controller power plan must reserve two ordered contact columns")
+    result: list[dict[str, Any]] = []
+    row_count = int(power_plan["controller_region"]["row_count"])
+    row_height = float(power_plan["controller_region"]["row_height_um"])
+    planned_region = list(map(float, power_plan["controller_region"]["bbox_um"]))
+    if any(
+        abs(expected - observed) > 1e-6
+        for expected, observed in zip(planned_region, map(float, region))
+    ):
+        raise ValueError("controller power and placement regions differ")
+    via_geometries = power_plan["via_geometries"]
+    landing_by_layer = {
+        "met2": next(item[1] for item in via_geometries["M1M2"] if item[0] == "met2"),
+        "met3": next(item[1] for item in via_geometries["M2M3"] if item[0] == "met3"),
+    }
+    for boundary in range(row_count + 1):
+        y = y0 + boundary * row_height
+        net = "VGND" if boundary % 2 == 0 else "VDPWR"
+        for contact_index, x in enumerate(configured):
+            for layer, relative in landing_by_layer.items():
+                dx0, dy0, dx1, dy1 = map(float, relative)
+                bbox = [
+                    max(x0, x + dx0),
+                    max(y0, y + dy0),
+                    min(x1, x + dx1),
+                    min(y1, y + dy1),
+                ]
+                if bbox[0] >= bbox[2] or bbox[1] >= bbox[3]:
+                    raise ValueError("planned controller power contact misses route region")
+                result.append({
+                    "layer": layer,
+                    "bbox_um": bbox,
+                    "source_rectangle_count": 1,
+                    "kind": "planned_power_contact_obstruction",
+                    "net": net,
+                    "boundary": boundary,
+                    "contact_index": contact_index,
+                })
+        if boundary % 2 == 0:
+            underpass = power_plan["ground_finger_underpass"]
+            ux0, ux1 = map(float, underpass["x_span_um"])
+            half = float(underpass["width_um"]) / 2.0
+            result.append({
+                "layer": "met3",
+                "bbox_um": [
+                    max(x0, ux0), max(y0, y - half),
+                    min(x1, ux1), min(y1, y + half),
+                ],
+                "source_rectangle_count": 1,
+                "kind": "planned_power_underpass_obstruction",
+                "net": "VGND",
+                "boundary": boundary,
+            })
+    return result
+
+
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def power_reservation_contract(power_plan: dict[str, Any]) -> dict[str, Any]:
+    """Return only the power-plan fields that alter signal-route blockages."""
+
+    region = power_plan["controller_region"]
+    underpass = power_plan["ground_finger_underpass"]
+    vias = power_plan["via_geometries"]
+    return {
+        "controller_region": {
+            "bbox_um": region["bbox_um"],
+            "row_count": region["row_count"],
+            "row_height_um": region["row_height_um"],
+        },
+        "distributed_contact_columns_um": power_plan[
+            "distributed_contact_columns_um"
+        ],
+        "ground_finger_underpass": {
+            "layer": underpass["layer"],
+            "x_span_um": underpass["x_span_um"],
+            "width_um": underpass["width_um"],
+        },
+        "via_geometries": {
+            "M1M2": vias["M1M2"],
+            "M2M3": vias["M2M3"],
+        },
+    }
+
+
+def canonical_json_sha256(value: Any) -> str:
+    payload = json.dumps(
+        value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+    ).encode("utf-8")
+    return hashlib.sha256(payload).hexdigest()
 
 
 def q(value: float) -> int:
@@ -308,8 +413,28 @@ def build_def(
         "net_count": len(mapping["nets"]),
         "pin_count": len(pins),
         "endpoint_count": sum(endpoint_counts.values()),
-        "frozen_route_obstruction_count": len(obstructions),
-        "frozen_route_obstructions": obstructions,
+        "frozen_route_obstruction_count": sum(
+            item["kind"] == "frozen_gds_route_obstruction" for item in obstructions
+        ),
+        "planned_power_contact_obstruction_count": sum(
+            item["kind"] == "planned_power_contact_obstruction" for item in obstructions
+        ),
+        "planned_power_underpass_obstruction_count": sum(
+            item["kind"] == "planned_power_underpass_obstruction" for item in obstructions
+        ),
+        "route_obstruction_count": len(obstructions),
+        "frozen_route_obstructions": [
+            item for item in obstructions
+            if item["kind"] == "frozen_gds_route_obstruction"
+        ],
+        "planned_power_contact_obstructions": [
+            item for item in obstructions
+            if item["kind"] == "planned_power_contact_obstruction"
+        ],
+        "planned_power_underpass_obstructions": [
+            item for item in obstructions
+            if item["kind"] == "planned_power_underpass_obstruction"
+        ],
         "component_ids": {value: key for key, value in component_ids.items()},
         "net_ids": {value: key for key, value in net_ids.items()},
         "pin_ids": {value: key for key, value in pin_ids.items()},
@@ -322,6 +447,8 @@ def build_def(
             "power_routing_is_separate_gate": True,
             "external_handoff_fanout_is_separate_gate": True,
             "frozen_gds_m1_m2_m3_are_explicit_route_obstructions": True,
+            "distributed_power_contacts_are_reserved_before_signal_routing": True,
+            "ground_finger_underpasses_are_reserved_before_signal_routing": True,
             "no_manual_internal_preroutes": True,
         },
     }
@@ -378,6 +505,10 @@ def main() -> None:
         default=ROOT / "v3/frozen/four_channel_power_integration/v3_four_channel_power_integration.gds",
     )
     parser.add_argument("--source-top", default="v3_four_channel_power_integration")
+    parser.add_argument(
+        "--power-plan", type=Path,
+        default=ROOT / "v3/layout/physical_control_power_plan.json",
+    )
     args = parser.parse_args()
     if args.threads < 1 or args.threads > 32:
         raise SystemExit("--threads must be in [1, 32]")
@@ -388,6 +519,12 @@ def main() -> None:
         args.source_top,
         list(placement["region"]["bbox_um"]),
     )
+    power_plan = json.loads(args.power_plan.read_text(encoding="utf-8"))
+    obstructions.extend(
+        planned_power_contact_obstructions(
+            power_plan, list(placement["region"]["bbox_um"])
+        )
+    )
     text, report = build_def(placement, mapping, obstructions)
     args.workdir.mkdir(parents=True, exist_ok=True)
     (args.workdir / "input.def").write_text(text, encoding="utf-8")
@@ -395,6 +532,7 @@ def main() -> None:
         build_route_tcl(args.technology_lef, args.cell_lef, args.workdir, args.threads),
         encoding="utf-8",
     )
+    reservation_contract = power_reservation_contract(power_plan)
     report["provenance"] = {
         "placement": str(args.placement),
         "placement_sha256": sha256(args.placement),
@@ -407,6 +545,11 @@ def main() -> None:
         "frozen_source_gds": str(args.source_gds),
         "frozen_source_gds_sha256": sha256(args.source_gds),
         "frozen_source_top": args.source_top,
+        "power_plan": str(args.power_plan),
+        "power_reservation_contract": reservation_contract,
+        "power_reservation_contract_sha256": canonical_json_sha256(
+            reservation_contract
+        ),
         "generator": str(Path(__file__).resolve().relative_to(ROOT)),
         "generator_sha256": sha256(Path(__file__)),
     }
@@ -419,6 +562,12 @@ def main() -> None:
         "nets": report["net_count"],
         "pins": report["pin_count"],
         "frozen_route_obstructions": report["frozen_route_obstruction_count"],
+        "planned_power_contact_obstructions": report[
+            "planned_power_contact_obstruction_count"
+        ],
+        "planned_power_underpass_obstructions": report[
+            "planned_power_underpass_obstruction_count"
+        ],
         "metal4_reserved": report["policy"]["metal4_reserved"],
     }, indent=2))
 

@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "Four-Channel Quadrature Low-IF Beamformer"
+  title:        "Four-Channel Constant-gm Vector Beamformer"
   author:       "Jason"
   discord:      ""
-  description:  "A four-channel 5 MHz receive beamformer with four selectable phase-code beams, per-channel gain trim, and a differential 1 MHz output"
+  description:  "A four-channel 5 MHz receive beamformer with eight automatic vector beams, raw per-channel phase/amplitude control, and a differential 1 MHz output"
   language:     "Analog"
   clock_hz:     16000000
   tiles:        "2x2"
@@ -16,8 +16,8 @@ project:
 pinout:
   ui[0]: "BEAM_SELECT_0"
   ui[1]: "BEAM_SELECT_1"
-  ui[2]: "RX_DIRECTION_RESERVED"
-  ui[3]: "MANUAL_MODE"
+  ui[2]: "BEAM_SELECT_2"
+  ui[3]: "RAW_VECTOR_MODE"
   ui[4]: "CH0_ENABLE"
   ui[5]: "CH1_ENABLE"
   ui[6]: "CH2_ENABLE"

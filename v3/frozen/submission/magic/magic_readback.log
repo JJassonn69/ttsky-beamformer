@@ -1,0 +1,136 @@
+Script started on 2026-07-28 05:36:49+03:00 [COMMAND="/usr/bin/env -C /home/jason-stone/tinytapeout-beamformer-v2-routefix PDK_ROOT=/home/jason-stone/pdk/ciel/sky130/versions/0536d02d875c8f67dd7cca3902ac457e62f20005 V3_SUBMISSION_GDS=/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/submission/tt_um_jjassonn69_beamformer.gds V3_SUBMISSION_READBACK_DIR=/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/submission/magic_readback /usr/local/bin/magic -dnull -noconsole -rcfile /home/jason-stone/pdk/ciel/sky130/versions/0536d02d875c8f67dd7cca3902ac457e62f20005/sky130A/libs.tech/magic/sky130A.magicrc build/v3/submission/readback_submission_gds.tcl" <not executed on terminal>]
+
+Magic 8.3 revision 676 - Compiled on Sun Jul 19 19:34:30 EEST 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "build/v3/submission/readback_submission_gds.tcl" from command line.
+No such cell "tt_um_jjassonn69_beamformer"
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: v3_output_compensation_cap_block
+Reading "sky130_fd_sc_hd__and2b_1".
+Reading "sky130_fd_sc_hd__fill_1".
+Reading "sky130_fd_sc_hd__mux2_1".
+Reading "sky130_fd_sc_hd__tapvpwrvgnd_1".
+Reading "sky130_fd_sc_hd__and2_1".
+Reading "v3_channel_input_bias_late_promotion".
+Reading "v3_selector_route_pilot".
+Reading "v3_channel_selector_late_promotion".
+Reading "v3_four_channel_placement".
+Reading "v3_four_channel_output_collection".
+Reading "v3_four_channel_phase_distribution".
+Reading "v3_vcm_support_block".
+Reading "v3_tail_bias_support_block".
+Reading "v3_four_channel_bias_reference_distribution".
+Reading "v3_four_channel_shared_support_integration".
+Reading "v3_output_load_pair_block".
+Reading "v3_output_compensation_cap_block".
+Reading "v3_four_channel_output_load_integration".
+Reading "tt_um_jjassonn69_beamformer".
+Reading "sky130_fd_sc_hd__buf_4".
+Reading "sky130_fd_sc_hd__dfrtp_1".
+Reading "sky130_fd_sc_hd__dfstp_1".
+Reading "sky130_fd_sc_hd__inv_1".
+Reading "sky130_fd_sc_hd__nand2_1".
+Reading "sky130_fd_sc_hd__nor2_1".
+Reading "sky130_fd_sc_hd__or2_1".
+Reading "sky130_fd_sc_hd__or2b_1".
+Reading "sky130_fd_sc_hd__xor2_1".
+Reading "v3_ctrl_signal_routes".
+Reading "v3_ctrl_power_routes".
+Reading "v3_ctrl_analog_handoff_routes".
+Reading "v3_ctrl_boundary_handoff_routes".
+Reading "v3_analog_input_escape_routes".
+Reading "v3_digital_output_tie_low".
+V3_SUBMISSION_GDS_FEEDBACK_COUNT=0
+DRC style is now "drc(full)"
+V3_SUBMISSION_DRC_COUNT=0
+Warning:  Extract option "do unique" disabled because "extract unique" was run.
+Processing v3_analog_input_escape_routes
+Processing v3_ctrl_analog_handoff_routes
+Processing sky130_fd_sc_hd__and2b_1
+Processing sky130_fd_sc_hd__fill_1
+Processing sky130_fd_sc_hd__or2_1
+Processing sky130_fd_sc_hd__and2_1
+Processing sky130_fd_sc_hd__mux2_1
+Processing sky130_fd_sc_hd__tapvpwrvgnd_1
+Processing sky130_fd_sc_hd__nand2_1
+Processing sky130_fd_sc_hd__xor2_1
+Processing sky130_fd_sc_hd__dfrtp_1
+Processing sky130_fd_sc_hd__inv_1
+Processing sky130_fd_sc_hd__or2b_1
+Processing sky130_fd_sc_hd__dfstp_1
+Processing sky130_fd_sc_hd__buf_4
+Processing sky130_fd_sc_hd__nor2_1
+Processing v3_ctrl_power_routes
+Processing v3_ctrl_signal_routes
+Processing v3_ctrl_boundary_handoff_routes
+Processing v3_digital_output_tie_low
+Processing v3_output_compensation_cap_block
+Processing v3_output_load_pair_block
+Processing v3_vcm_support_block
+Processing v3_tail_bias_support_block
+Processing v3_selector_route_pilot
+Processing v3_channel_input_bias_late_promotion
+Processing v3_channel_selector_late_promotion
+Processing v3_four_channel_placement
+Processing v3_four_channel_output_collection
+Processing v3_four_channel_phase_distribution
+Processing v3_four_channel_bias_reference_distribution
+Processing v3_four_channel_shared_support_integration
+Processing v3_four_channel_output_load_integration
+Processing tt_um_jjassonn69_beamformer
+Extracting v3_analog_input_escape_routes into v3_analog_input_escape_routes.ext:
+Extracting v3_ctrl_analog_handoff_routes into v3_ctrl_analog_handoff_routes.ext:
+Extracting sky130_fd_sc_hd__and2b_1 into sky130_fd_sc_hd__and2b_1.ext:
+Extracting sky130_fd_sc_hd__fill_1 into sky130_fd_sc_hd__fill_1.ext:
+Extracting sky130_fd_sc_hd__or2_1 into sky130_fd_sc_hd__or2_1.ext:
+Extracting sky130_fd_sc_hd__and2_1 into sky130_fd_sc_hd__and2_1.ext:
+Extracting sky130_fd_sc_hd__mux2_1 into sky130_fd_sc_hd__mux2_1.ext:
+Extracting sky130_fd_sc_hd__tapvpwrvgnd_1 into sky130_fd_sc_hd__tapvpwrvgnd_1.ext:
+Extracting sky130_fd_sc_hd__nand2_1 into sky130_fd_sc_hd__nand2_1.ext:
+Extracting sky130_fd_sc_hd__xor2_1 into sky130_fd_sc_hd__xor2_1.ext:
+Extracting sky130_fd_sc_hd__dfrtp_1 into sky130_fd_sc_hd__dfrtp_1.ext:
+Extracting sky130_fd_sc_hd__inv_1 into sky130_fd_sc_hd__inv_1.ext:
+Extracting sky130_fd_sc_hd__or2b_1 into sky130_fd_sc_hd__or2b_1.ext:
+Extracting sky130_fd_sc_hd__dfstp_1 into sky130_fd_sc_hd__dfstp_1.ext:
+Extracting sky130_fd_sc_hd__buf_4 into sky130_fd_sc_hd__buf_4.ext:
+Extracting sky130_fd_sc_hd__nor2_1 into sky130_fd_sc_hd__nor2_1.ext:
+Extracting v3_ctrl_power_routes into v3_ctrl_power_routes.ext:
+Extracting v3_ctrl_signal_routes into v3_ctrl_signal_routes.ext:
+Extracting v3_ctrl_boundary_handoff_routes into v3_ctrl_boundary_handoff_routes.ext:
+Extracting v3_digital_output_tie_low into v3_digital_output_tie_low.ext:
+Extracting v3_output_compensation_cap_block into v3_output_compensation_cap_block.ext:
+Extracting v3_output_load_pair_block into v3_output_load_pair_block.ext:
+Extracting v3_vcm_support_block into v3_vcm_support_block.ext:
+Extracting v3_tail_bias_support_block into v3_tail_bias_support_block.ext:
+Extracting v3_selector_route_pilot into v3_selector_route_pilot.ext:
+Extracting v3_channel_input_bias_late_promotion into v3_channel_input_bias_late_promotion.ext:
+v3_channel_input_bias_late_promotion: 9 warnings
+Extracting v3_channel_selector_late_promotion into v3_channel_selector_late_promotion.ext:
+Extracting v3_four_channel_placement into v3_four_channel_placement.ext:
+Extracting v3_four_channel_output_collection into v3_four_channel_output_collection.ext:
+Extracting v3_four_channel_phase_distribution into v3_four_channel_phase_distribution.ext:
+Extracting v3_four_channel_bias_reference_distribution into v3_four_channel_bias_reference_distribution.ext:
+Extracting v3_four_channel_shared_support_integration into v3_four_channel_shared_support_integration.ext:
+Extracting v3_four_channel_output_load_integration into v3_four_channel_output_load_integration.ext:
+Extracting tt_um_jjassonn69_beamformer into tt_um_jjassonn69_beamformer.ext:
+Total of 9 warnings.
+V3_SUBMISSION_EXTRACTION_FEEDBACK_COUNT=9
+exttospice finished.
+V3_SUBMISSION_FEEDBACK_AFTER_CLEAR=0
+
+Script done on 2026-07-28 05:37:53+03:00 [COMMAND_EXIT_CODE="0"]
