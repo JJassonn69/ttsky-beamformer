@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "retired historical direct-boundary overlay; do not regenerate into the release candidate",
+  "superseded_by": "v2/layout/control_openroad_route_plan.json",
+  "retired_reason": "all direct-boundary nets are owned by the unified 206-net OpenROAD route; this sequential overlay retains stale checkpoints only as design history",
+  "source_checkpoint": {
+    "gds": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "top": "v2_control_quadrature_routed",
+    "sha256": "fe0945d54d2b172fc8f434c248cb777d691a803669309719c83b979db5b16b00"
+  },
+  "allocation_checkpoint": {
+    "json": "build/v2/control_routing/control_route_allocation.json",
+    "sha256": "799fed192f74eeda9367bf085c90e51f4a5e3afa40c69a0e205017057cc2529f"
+  },
+  "pin_access_checkpoint": {
+    "json": "build/v2/control_routing/control_pin_access_catalog.json",
+    "sha256": "ff672191e40d970c7aada7293a4091f172980a78105aeea1a717695b49fa6bbc"
+  },
+  "service_access_checkpoint": {
+    "json": "build/v2/control_routing/service_pin_access_reservations.json",
+    "sha256": "ae9f69bf98aacc991c8e8304794b074e990e32d0e4ec162c8a639176d9f8e4af"
+  },
+  "overlay_top": "v2_control_direct_routes",
+  "output_top": "v2_control_direct_routed",
+  "policy": {
+    "topology": "one straight M2 boundary spine with one compact M3 trunk per occupied region",
+    "reason_for_replacing_abstract_m3_spine": "the frozen quadrature fanout occupies horizontal M3 at the boundary; M2 crosses it without jogs or upper-metal transitions",
+    "metal4_used": false,
+    "artificial_length_matching": false,
+    "direction_reversal_allowed": false,
+    "pin_access_must_be_catalog_legal": true,
+    "source_gds_is_exact_obstacle_map": true,
+    "future_service_access_is_reserved": true,
+    "future_service_access_source": "frozen exact lower-metal landing contract generated before direct routing"
+  },
+  "rules": {
+    "locali_half_width": 0.085,
+    "metal1_pad_half_width": 0.16,
+    "metal1_width": 0.23,
+    "via1_half_width": 0.13,
+    "metal2_landing_half_width": 0.20,
+    "metal2_width": 0.32,
+    "via2_half_width": 0.20,
+    "metal3_landing_half_x": 0.31,
+    "metal3_landing_half_y": 0.20,
+    "metal3_width": 0.40,
+    "minimum_metal1_clearance": 0.14,
+    "minimum_metal2_clearance": 0.14,
+    "minimum_metal3_clearance": 0.30,
+    "minimum_spine_pitch": 0.70,
+    "maximum_pin_escape_length": 3.00,
+    "reserved_service_m2_landing_half_width": 0.20
+  },
+  "routes": {
+    "active_beam[0]": {"spine_x_um": 124.20, "phase_track_y_um": 178.80, "global_track_y_um": 202.04},
+    "active_beam[1]": {"spine_x_um": 143.52, "phase_track_y_um": 182.30, "global_track_y_um": 206.94},
+    "active_channel_enable[0]": {"spine_x_um": 160.08, "phase_track_y_um": 187.90, "global_track_y_um": 203.44},
+    "active_channel_enable[1]": {"spine_x_um": 129.90, "phase_track_y_um": 188.60, "global_track_y_um": 213.24},
+    "active_channel_enable[2]": {"spine_x_um": 112.40, "phase_track_y_um": 189.30, "global_track_y_um": 206.24},
+    "active_channel_enable[3]": {"spine_x_um": 97.52, "phase_track_y_um": 190.00, "global_track_y_um": 198.54},
+    "active_manual": {"spine_x_um": 126.04, "phase_track_y_um": 179.50, "global_track_y_um": 209.04},
+    "blank_reg": {"spine_x_um": 154.90, "phase_track_y_um": 181.60, "global_track_y_um": 204.14},
+    "direct_sync[0]": {"spine_x_um": 146.28, "phase_track_y_um": 183.00, "global_track_y_um": 197.14}
+  },
+  "locali_access_overrides": {
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$589|A0": [129.55, 178.13],
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$594|A0": [90.91, 178.13],
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$590|B": [134.23, 181.08],
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$593|S": [115.36, 178.61],
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$595|S": [96.04, 178.61],
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$558|B": [140.385, 197.06]
+  },
+  "metal2_access_overrides": {
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$558|B": [138.90, 197.06]
+  },
+  "leaf_column_x_overrides": {
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$599|B": 87.50,
+    "core/$auto$ff.cc:266:slice$447/state_ff|Q": 140.80,
+    "core/$auto$ff.cc:266:slice$447/enable_mux|A0": 127.20,
+    "core/$abc$549$auto$blifparse.cc:396:parse_blif$578|A_N": 106.80
+  }
+}

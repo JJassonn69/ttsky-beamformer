@@ -1,0 +1,55 @@
+{
+  "added_pin_purpose_polygons": 53,
+  "added_project_boundary_polygons": 1,
+  "added_signal_drawing_polygons": 51,
+  "added_top_level_labels": 51,
+  "changed_existing_gds_records": 3,
+  "ensured_top_level_interface_labels": 53,
+  "isolated_unused_analog_pins": [
+    "ua[6]",
+    "ua[7]"
+  ],
+  "isolated_unused_digital_inputs": [
+    "uio_in[3]",
+    "uio_in[4]",
+    "uio_in[5]",
+    "uio_in[6]",
+    "uio_in[7]"
+  ],
+  "magic_extracted_preboundary_sha256": "0226f6da17aa037bcc147c1726c8b1baa01d70c1954981feec709e8475edeee9",
+  "met4_drawing_layer": [
+    71,
+    20
+  ],
+  "met4_label_texttype": 5,
+  "met4_pin_layer": [
+    71,
+    16
+  ],
+  "output_bytes": 2680410,
+  "physically_tied_low_digital_outputs": 24,
+  "project_boundary_is_non_electrical_only_delta": true,
+  "project_boundary_layer": [
+    235,
+    4
+  ],
+  "removed_redundant_internal_power_labels": 2,
+  "schema_version": 1,
+  "source": "v3/frozen/digital_output_tie/v3_four_channel_output_tied.gds",
+  "source_gate": "v3/evidence/digital_output_tie_gate.json",
+  "source_gate_sha256": "671e442256b92beb623130947ca6b357e25e824f43f35d3928a7df426e1f5436",
+  "source_sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+  "source_top": "v3_four_ch_output_tied",
+  "status": "pass",
+  "structure_count": 34,
+  "submission_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+  "submission_top": "tt_um_jjassonn69_beamformer",
+  "template_def": "build/v2/tt_analog_2x2.def",
+  "template_def_sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
+  "template_size_nm": [
+    334880,
+    225760
+  ],
+  "used_analog_pins": 6,
+  "used_digital_inputs": 14
+}

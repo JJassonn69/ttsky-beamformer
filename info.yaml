@@ -1,27 +1,27 @@
 # Tiny Tapeout project information
 project:
-  title:        "Two-Channel Low-IF Beamformer"
+  title:        "Four-Channel Constant-gm Vector Beamformer"
   author:       "Jason"
   discord:      ""
-  description:  "A two-channel 5 MHz receive beamformer with selectable 0/180 degree LO weighting and a differential 1 MHz output"
+  description:  "A four-channel 5 MHz receive beamformer with eight automatic vector beams, raw per-channel phase/amplitude control, and a differential 1 MHz output"
   language:     "Analog"
-  clock_hz:     4000000
-  tiles:        "1x2"
-  analog_pins:  4
+  clock_hz:     16000000
+  tiles:        "2x2"
+  analog_pins:  6
   uses_vapwr:   false
   top_module:   "tt_um_jjassonn69_beamformer"
   source_files:
     - "project.v"
 
 pinout:
-  ui[0]: "CH2_PHASE_180"
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "BEAM_SELECT_0"
+  ui[1]: "BEAM_SELECT_1"
+  ui[2]: "BEAM_SELECT_2"
+  ui[3]: "RAW_VECTOR_MODE"
+  ui[4]: "CH0_ENABLE"
+  ui[5]: "CH1_ENABLE"
+  ui[6]: "CH2_ENABLE"
+  ui[7]: "CH3_ENABLE"
 
   uo[0]: ""
   uo[1]: ""
@@ -32,20 +32,20 @@ pinout:
   uo[6]: ""
   uo[7]: ""
 
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
+  uio[0]: "CFG_CLK"
+  uio[1]: "CFG_DATA"
+  uio[2]: "CFG_LATCH"
   uio[3]: ""
   uio[4]: ""
   uio[5]: ""
   uio[6]: ""
   uio[7]: ""
 
-  ua[0]: "IF_INPUT_1"
-  ua[1]: "IF_INPUT_2"
-  ua[2]: "BEAM_OUT_P"
-  ua[3]: "BEAM_OUT_N"
-  ua[4]: ""
-  ua[5]: ""
+  ua[0]: "ELEMENT_INPUT_0"
+  ua[1]: "ELEMENT_INPUT_1"
+  ua[2]: "ELEMENT_INPUT_2"
+  ua[3]: "ELEMENT_INPUT_3"
+  ua[4]: "BEAM_OUT_P"
+  ua[5]: "BEAM_OUT_N"
 
 yaml_version: 6

@@ -1,0 +1,187 @@
+{
+  "architecture": {
+    "beam_states": 4,
+    "channels": 4,
+    "nominal_if_mhz": 1.0,
+    "nominal_lo_mhz": 4.0,
+    "nominal_master_clock_mhz": 16.0,
+    "nominal_rf_mhz": 5.0,
+    "phase_states_per_channel": 4,
+    "tail_bank": "32 fixed equal units plus 4-bit 1/2/4/8 switched trim; reset code 8"
+  },
+  "as_of": "2026-07-24",
+  "distributed_rc": {
+    "base_netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+    "capacitors": 34054,
+    "covered_named_routes": 254,
+    "devices": 4208,
+    "distributed_rc_netlist_sha256": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126",
+    "internal_resistor_nodes": 63083,
+    "required_named_routes": 254,
+    "resistors": 95139,
+    "spice_to_annotation_ratio": 0.9469488100807214,
+    "status": "pass"
+  },
+  "electrical": {
+    "gate4": {
+      "base_corrected_constructive_rms_v": 0.023808223798559812,
+      "base_to_rc_constructive_delta_db": 0.1122669130826494,
+      "rc_corrected_constructive_rms_v": 0.02350247777256871,
+      "rc_corrected_null_rms_v": 4.652130074204933e-06,
+      "rc_representative_rejection_db": 74.06923602922994
+    },
+    "gate5": {
+      "codebook_constructive_spread_db": 0.24351285052462948,
+      "fifty_mv_peak_compression_db": 0.3704520161924094,
+      "minimum_codebook_rejection_db": 61.04947702699859,
+      "minimum_mismatch_rejection_db": 36.489527528344915,
+      "mismatch_seed_count": 60,
+      "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
+      "ten_mv_per_tone_im3_separation_db": 49.19991349667463
+    },
+    "nominal_rc_codebook": {
+      "constructive_diagonal_v_rms": [
+        0.0234875,
+        0.024096,
+        0.0241553,
+        0.0240973
+      ],
+      "constructive_spread_db": 0.24351285052462948,
+      "minimum_rejection_db": 61.04947702699859,
+      "settled_operating_ranges": {
+        "estimated_power_w": [
+          0.00123710436,
+          0.00123717402
+        ],
+        "output_common_mode_v": [
+          0.9722154,
+          0.9722194
+        ],
+        "supply_current_a": [
+          0.0006872802,
+          0.0006873189
+        ],
+        "vcm_v": [
+          1.199097,
+          1.1991
+        ]
+      }
+    },
+    "startup": {
+      "recommended_enable_delay_us": 120.0,
+      "vcm_1p10_v_first_us": 60.9887,
+      "vcm_1p17_v_first_us": 97.45739999999999,
+      "vcm_final_avg_v": 1.184191
+    },
+    "trim": {
+      "default_spread_db": 0.00698248190624473,
+      "minimum_adjacent_step_db": 0.1188982064402381,
+      "span_db_by_channel": [
+        2.3365673679109324,
+        2.343274870560247,
+        2.3372620381509805,
+        2.342500850769867
+      ],
+      "stress_calibrated_spread_db": 0.059429965910311126
+    }
+  },
+  "gds": {
+    "bytes": 1846764,
+    "final_eco": "four foundry cap_var_lvt devices, G=VCM and D=S=B=VGND",
+    "path": "build/v2/control_routing/direct/v2_control_quadrature_routed.gds",
+    "pre_varactor_user_route_source": {
+      "bytes": 1796808,
+      "path": "v2/reference/v2_control_quadrature_user_routed.gds",
+      "sha256": "950a98877295c3b4ca90e660a64c312035a62721fe8486dbe5ff6af07fa90c9c",
+      "top": "v2_control_quadrature_routed"
+    },
+    "sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "top": "v2_control_quadrature_routed"
+  },
+  "known_characterization_residuals": {
+    "independent_foundry_lvs": "not available in the open local flow",
+    "noise": "known_characterization_gap_not_structural_fabrication_blocker_for_a_research_prototype",
+    "package_board_and_antenna": "requires first-silicon measurement",
+    "production_yield": "open-PDK coefficient mismatch campaign is not foundry-qualified yield"
+  },
+  "official_tinytapeout": {
+    "commit": null,
+    "run_url": null,
+    "status": "pending"
+  },
+  "physical": {
+    "direct_flat_rule_counts": {
+      "capm-to-unrelated-met3 spacing": 0,
+      "met3 spacing": 0,
+      "met4 minimum area": 0,
+      "met4 spacing": 0,
+      "via-only met3 island": 0,
+      "via3 enclosure": 0
+    },
+    "klayout_delta": {
+      "added_category_counts": {
+        "ct.2": 10
+      },
+      "candidate_marker_count": 2778,
+      "removed_marker_count": 0,
+      "source_marker_count": 2768,
+      "status": "pass"
+    },
+    "magic_drc_count": 0,
+    "status": "pass"
+  },
+  "routing": {
+    "maximum_detour": {
+      "cycle_rank": 0,
+      "detour_ratio": 1.81492,
+      "electrical_group_count": 1,
+      "hpwl_um": 355.6575,
+      "layers": [
+        "li1",
+        "met1",
+        "met2",
+        "met3",
+        "met4"
+      ],
+      "leaf_count": 107,
+      "multi_access_pin_count": 35,
+      "net": "rst_n",
+      "net_id": "N0157",
+      "pin_count": 80,
+      "region": "digital_control",
+      "route_group_count": 36,
+      "unattached_leaf_count": 0,
+      "via_count": 117,
+      "wire_length_um": 645.49
+    },
+    "maximum_signal_layer": "met4",
+    "maximum_two_pin_detour": {
+      "cycle_rank": 0,
+      "detour_ratio": 1.591304,
+      "electrical_group_count": 1,
+      "hpwl_um": 2.3000000000000043,
+      "layers": [
+        "li1",
+        "met1",
+        "met2"
+      ],
+      "leaf_count": 2,
+      "multi_access_pin_count": 0,
+      "net": "trim_config/$auto$ff.cc:266:slice$510/enabled_d",
+      "net_id": "N0180",
+      "pin_count": 2,
+      "region": "digital_control",
+      "route_group_count": 1,
+      "unattached_leaf_count": 0,
+      "via_count": 4,
+      "wire_length_um": 3.66
+    },
+    "nets_using_met4": 13,
+    "routed_control_nets": 206,
+    "vias": 1478,
+    "wire_length_um": 7557.34
+  },
+  "schema_version": 7,
+  "status": "local_signoff_passed_official_tinytapeout_workflow_pending",
+  "top": "v2_control_quadrature_routed"
+}

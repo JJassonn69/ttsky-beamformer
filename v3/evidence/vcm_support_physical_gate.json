@@ -1,0 +1,106 @@
+{
+  "checks": {
+    "all_named_endpoints_found": true,
+    "base_is_resistance_free": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "divider_devices_preserved": true,
+    "extracted_parasitic_capacitance_preserved": true,
+    "magic_drc_zero": true,
+    "magic_extraction_feedback_zero": true,
+    "magic_outputs_complete": true,
+    "mim_devices_preserved": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true,
+    "route_resistance_within_limit": true,
+    "topology_is_for_exact_gds": true,
+    "topology_passes": true
+  },
+  "distributed_rc": {
+    "base_counts": {
+      "C": 13,
+      "R": 0,
+      "X": 9,
+      "vcm_divider_resistors": 6,
+      "vcm_mim_capacitors": 3
+    },
+    "base_parasitic_capacitance_f": 1.5932151000000002e-13,
+    "distributed_counts": {
+      "C": 23,
+      "R": 1783,
+      "X": 9,
+      "vcm_divider_resistors": 6,
+      "vcm_mim_capacitors": 3
+    },
+    "distributed_parasitic_capacitance_f": 1.5948862e-13,
+    "maximum_allowed_parasitic_capacitance_delta_percent": 0.5,
+    "maximum_allowed_route_resistance_ohm": 30.0,
+    "maximum_effective_resistance_ohm": 16.552349999999993,
+    "parasitic_capacitance_delta_percent": 0.1048885363941071,
+    "root_um": [
+      113.62,
+      90.0
+    ],
+    "routes": {
+      "CVCM0": {
+        "candidate_resistances_ohm": {
+          "a_4259_22596#->a_4259_22596.n0": 8.443610000000001,
+          "a_4259_22596#->a_4259_22596.t4": 8.445653210000003
+        },
+        "effective_resistance_ohm": 8.445653210000003,
+        "point_um": [
+          32.5,
+          78.0
+        ]
+      },
+      "CVCM1": {
+        "candidate_resistances_ohm": {
+          "a_4259_22596#->a_4259_22596.n1": 9.09177000000001,
+          "a_4259_22596#->a_4259_22596.t3": 9.093813209999976
+        },
+        "effective_resistance_ohm": 9.093813209999976,
+        "point_um": [
+          32.5,
+          50.0
+        ]
+      },
+      "CVCM2": {
+        "candidate_resistances_ohm": {
+          "a_4259_22596#->a_4259_22596.t2": 9.741473000000083
+        },
+        "effective_resistance_ohm": 9.741473000000083,
+        "point_um": [
+          32.5,
+          22.0
+        ]
+      },
+      "divider_star": {
+        "candidate_resistances_ohm": {
+          "a_4259_22596#->a_4259_22596.n2": 16.552349999999993
+        },
+        "effective_resistance_ohm": 16.552349999999993,
+        "point_um": [
+          32.5,
+          113.155
+        ]
+      }
+    }
+  },
+  "gds": "build/v3/vcm_support_pilot/v3_vcm_support_pilot.gds",
+  "gds_sha256": "83dc59e454a5f06eb52788d2207cfd85b9852153a15d5d7ffc6f8115552d0135",
+  "manifest_sha256": "4e7fc8386102a4a423694296149489f30da73807b29cedbfada0c9c4562e3cda",
+  "schema_version": 1,
+  "scope": "exact three-MIM VCM divider/feed pilot: topology, direct-GDS geometry, and distributed metal RC; four-channel leaf integration remains a separate gate",
+  "sha256": {
+    "auditor": "78bef44dce8b57eac4f254d120e68293a1f7c6aa40547266a08b59d784a20b57",
+    "base_spice": "4f9bd887af66085b99cb8a21cad32d9ddb17716a0e8839c00e8a1e44b00de2ba",
+    "distributed_rc_spice": "157587283886b4e2ac6dbf72ea4b6b51d7e50b54b581fc3e671dad4d72d3a036",
+    "extractor": "d89dce4006980e0974d98b088befeccb335210e30e53b64fd6edc7e680f45868",
+    "magic_log": "d80a23d3357f3007d3cf78624b7bee8513c261480b10f94169f6662f3f64a0b7",
+    "precheck_summary": "c929939b304cbc2c935daa748d47c711576185abd7c34b41c6a74d367e880861",
+    "resistance_annotation": "aaaf2612a22098add9bcc8766af5a36601aa3ffbdc7a91411f89a269eb1d0c5a",
+    "topology_audit": "1156808c62d9c9d59d5d5ee19102f580808a25d21fe034158affa796f3e9eb3f"
+  },
+  "status": "pass",
+  "unexpected_magic_warnings": []
+}

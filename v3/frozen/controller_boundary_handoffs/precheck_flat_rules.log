@@ -1,0 +1,2 @@
+Flattened GDS audit: 2912 M3 rectangles/819 components, 15460 via3 cuts, 982 M4 rectangles/165 components, 6 capm component(s)
+Flattened GDS routing rules passed: M3/M4 spacing, M4 width/area, via3 two-sided enclosure/dead-end connectivity, and capm clearance

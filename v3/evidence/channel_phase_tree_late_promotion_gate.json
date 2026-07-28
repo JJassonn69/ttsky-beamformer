@@ -1,0 +1,57 @@
+{
+  "checks": {
+    "all_eight_phase_gate_populations_exact": true,
+    "all_fifteen_cell_topologies_exact": true,
+    "direct_gds_precheck_zero": true,
+    "exactly_one_hundred_five_nmos": true,
+    "magic_and_export_markers_zero": true,
+    "only_classified_magic_warnings": true,
+    "precheck_matches_exact_gds": true
+  },
+  "gds": "build/v3/channel_phase_tree_late_promotion/v3_channel_phase_tree_late_promotion.gds",
+  "gds_sha256": "e43ee3cb565599e28c369d5f7792b76c06c5540f78abbcd089ef81f1a94c2e34",
+  "next_gate": "rendered visual review, then edge-dummy/input-bias/selector integration and distributed-RC extraction",
+  "physical_markers": {
+    "V3_CHANNEL_PHASE_TREE_LATE_DRC_COUNT": 0,
+    "V3_CHANNEL_PHASE_TREE_LATE_EXTRACTION_FEEDBACK_COUNT": 0,
+    "V3_CHANNEL_PHASE_TREE_LATE_GDS_FEEDBACK_COUNT": 0
+  },
+  "schema_version": 1,
+  "scope": "exact 15-cell late-promotion service channel plus eight global 1/2/4/8 LON/LOP phase trees",
+  "sha256": {
+    "checker": "00508cbf873b4fd7836acb645be4c261246a7604a7055facdba9b89d4bf9b41b",
+    "generator": "cadd8daf4c4d6b9bb8c7207663cab3c55b1993fa9db755742b33fad40b5bd6de",
+    "magic_log": "db886482fa37ae0b6a785bc6fe289b037ea6cb682f6000c1847917989b7ecd60",
+    "matrix": "667d3557bc4bf0c993b9afb300f65d8a159371ae0faa9d1dbca589fe23e2ba0f",
+    "phase_trees": "9aae5f2cb555ae504251b85142ceab894ba435666537696e194e7499cdc2bb0d",
+    "planner": "3d2f7947168882dac4d8542f9d5aad0fddf09d4ac79ab63dc4e9a8d36adc3b31",
+    "precheck": "bb39690cce4cabe1b45be6146caf734b2986a3336af45b9d0d5458e434dca1cd",
+    "spice": "761e83feb3b43da52179737bf0224bfd221d183e219372e21a37a14452b1959f"
+  },
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 30,
+      "switch": 60,
+      "tail": 15
+    },
+    "switch_gate_counts": {
+      "g1_lon": 2,
+      "g1_lop": 2,
+      "g2_lon": 4,
+      "g2_lop": 4,
+      "g4_lon": 8,
+      "g4_lop": 8,
+      "g8_lon": 16,
+      "g8_lop": 16
+    },
+    "units_by_group": {
+      "1": 1,
+      "2": 2,
+      "4": 4,
+      "8": 8
+    }
+  },
+  "topology_errors": [],
+  "unexpected_magic_warnings": []
+}

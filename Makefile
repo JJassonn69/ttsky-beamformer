@@ -1,102 +1,59 @@
 PYTHON ?= python3
-NGSPICE ?= ngspice
+IVERILOG ?= iverilog
 BUILD_DIR := build
+TOP := tt_um_jjassonn69_beamformer
 
-.PHONY: verify test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives pvt-quick pvt layout-template layout-scripts layout-place layout-route layout-extract layout-sim layout-pvt-quick layout-pvt layout-signoff release-check
+.PHONY: test test-v2 test-v3 test-submission datasheet-figures template-def submission-gds submission-lef submission-artifacts v2-tail-screen v2-gate3 v2-gate4 v2-gate5 freeze-release-evidence release-check
 
-verify: test golden spice sky130-smoke transconductor mixer bias lo-buffer core passives
+# The unqualified targets operate on the active four-channel V3 submission.
+test: test-v3
 
-test:
-	$(PYTHON) -m unittest discover -s tests -v
+test-v3:
+	$(PYTHON) -m unittest discover -s v3/tests -p 'test_*.py' -v
+	$(PYTHON) -m unittest tests.test_gds_flat_rules -v
 
-golden:
+test-v2:
+	$(PYTHON) -m unittest discover -s v2/tests -p 'test_*.py' -v
+
+test-submission:
+	$(PYTHON) v3/tools/build_submission_gate.py
+	$(PYTHON) -m unittest v3.tests.test_submission_packaging -v
 	mkdir -p $(BUILD_DIR)
-	$(PYTHON) model/beamformer.py summary --output $(BUILD_DIR)/golden_summary.json
-	$(PYTHON) model/beamformer.py sweep --output $(BUILD_DIR)/golden_phase_sweep.csv
+	$(IVERILOG) -g2012 -s $(TOP) -o $(BUILD_DIR)/project.vvp src/project.v
 
-spice:
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/ideal_ngspice.log spice/ideal/beamformer_ideal.spice
-	$(PYTHON) tools/check_ideal_spice.py $(BUILD_DIR)/ideal_ngspice.log
+datasheet-figures:
+	$(PYTHON) v2/tools/generate_datasheet_figures.py
 
-sky130-smoke:
-	test -f third_party/sky130_fd_pr/models/parameters/lod.spice
-	test -f third_party/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__tt.corner.spice
-	test -f third_party/sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8__mismatch.corner.spice
-	test -f third_party/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__tt.corner.spice
-	test -f third_party/sky130_fd_pr/cells/pfet_01v8/sky130_fd_pr__pfet_01v8__mismatch.corner.spice
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/sky130_smoke.log spice/sky130/model_smoke.spice
-	$(PYTHON) tools/check_sky130_smoke.py $(BUILD_DIR)/sky130_smoke.log
+submission-gds: template-def
+	$(PYTHON) v3/tools/generate_submission_gds.py
+	cmp $(BUILD_DIR)/v3/submission/$(TOP).gds gds/$(TOP).gds
 
-transconductor: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/transconductor.log spice/sky130/transconductor.spice
-	$(PYTHON) tools/check_transconductor.py $(BUILD_DIR)/transconductor.log
+template-def:
+	$(PYTHON) v2/tools/fetch_tt_2x2_template.py
 
-mixer: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/two_channel_mixer.log spice/sky130/two_channel_mixer.spice
-	$(PYTHON) tools/check_two_channel_mixer.py $(BUILD_DIR)/two_channel_mixer.log
-
-bias: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/bias_mirror.log spice/sky130/bias_mirror.spice
-	$(PYTHON) tools/check_bias_mirror.py $(BUILD_DIR)/bias_mirror.log
-
-lo-buffer: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/lo_buffer.log spice/sky130/lo_buffer.spice
-	$(PYTHON) tools/check_lo_buffer.py $(BUILD_DIR)/lo_buffer.log
-
-core: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/beamformer_core.log spice/sky130/beamformer_core.spice
-	$(PYTHON) tools/check_beamformer_core.py $(BUILD_DIR)/beamformer_core.log
-
-passives: sky130-smoke
-	mkdir -p $(BUILD_DIR)
-	$(NGSPICE) -b -o $(BUILD_DIR)/passive_smoke.log spice/sky130/passive_smoke.spice
-	$(PYTHON) tools/check_passives.py $(BUILD_DIR)/passive_smoke.log
-
-pvt-quick: sky130-smoke
-	$(PYTHON) tools/run_core_pvt.py --ngspice $(NGSPICE)
-
-pvt: sky130-smoke
-	$(PYTHON) tools/run_core_pvt.py --full --ngspice $(NGSPICE)
-
-layout-template:
-	$(PYTHON) tools/fetch_tt_template.py
-
-layout-scripts:
-	$(PYTHON) tools/generate_layout_scripts.py
-
-layout-place: layout-template layout-scripts
-	tools/run_magic_layout.sh build/layout/place.tcl
-
-layout-route:
-	$(PYTHON) tools/generate_route_script.py
-	$(PYTHON) tools/check_generated_routes.py build/layout/route.tcl
-	tools/run_magic_layout.sh build/layout/route.tcl
-
-layout-extract:
-	tools/run_magic_layout.sh layout/extract.tcl
-	$(PYTHON) tools/check_extracted_layout.py build/layout/extracted.spice build/layout/buffered/tt_um_jjassonn69_beamformer.ext
-
-layout-sim:
-	$(PYTHON) tools/run_extracted_sim.py --ngspice $(NGSPICE)
-	$(PYTHON) tools/check_beamformer_core.py $(BUILD_DIR)/extracted_core.log
-
-layout-pvt-quick:
-	$(PYTHON) tools/run_extracted_pvt.py --ngspice $(NGSPICE)
-
-layout-pvt:
-	$(PYTHON) tools/run_extracted_pvt.py --full --ngspice $(NGSPICE)
-
-layout-signoff:
-	tools/run_magic_layout.sh layout/signoff.tcl
+submission-lef: template-def
 	$(PYTHON) tools/generate_submission_lef.py
 
-release-check:
-	$(PYTHON) tools/check_release_files.py
-	iverilog -g2012 -s tt_um_jjassonn69_beamformer -o $(BUILD_DIR)/project.vvp src/project.v
+submission-artifacts: template-def submission-gds submission-lef test-submission
+
+# Gate-1 architecture screen.  This is deliberately not part of release-check:
+# it selects a candidate before physical regeneration and cannot sign off GDS.
+v2-tail-screen:
+	$(PYTHON) v2/tools/run_tail_headroom_screen.py
+
+v2-gate3:
+	$(PYTHON) v2/tools/check_gate3_candidate.py
+
+v2-gate4: v2-gate3
+	$(PYTHON) v2/tools/check_gate4_candidate.py
+
+v2-gate5: v2-gate4
+	$(PYTHON) v2/tools/check_gate5_candidate.py
+
+freeze-release-evidence: v2-gate5 datasheet-figures
+	$(PYTHON) v2/tools/freeze_release_evidence.py
+
+release-check: submission-artifacts test-v3
+	$(PYTHON) v3/tools/check_submission_topology.py
+	$(PYTHON) tools/check_gds_flat_rules.py gds/$(TOP).gds
+	$(PYTHON) v3/tools/build_submission_gate.py

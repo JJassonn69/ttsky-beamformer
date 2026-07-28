@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "active_device_count_unchanged": true,
+    "active_topology_unchanged": true,
+    "all_eight_phase_populations_exact": true,
+    "direct_gds_precheck_zero": true,
+    "frozen_routing_is_geometrically_preserved": true,
+    "grounded_dummy_device_count_exact": true,
+    "magic_markers_exact": true,
+    "no_unexpected_magic_warnings": true,
+    "only_nine_classified_inert_dummy_markers": true,
+    "precheck_matches_exact_gds": true
+  },
+  "classified_dummy_feedback_count": 9,
+  "gds": "build/v3/channel_edge_dummy_late_promotion/v3_channel_edge_dummy_late_promotion.gds",
+  "gds_sha256": "92bab4b0086ac794a6a21154b93581b09009ca19d87c6b102aaa0f878b33a3ae",
+  "next_gate": "compact input-bias resistor and direct sig/vcm connections",
+  "physical_markers": {
+    "V3_CHANNEL_EDGE_DUMMY_LATE_DRC_COUNT": 0,
+    "V3_CHANNEL_EDGE_DUMMY_LATE_EXTRACTION_FEEDBACK_COUNT": 9,
+    "V3_CHANNEL_EDGE_DUMMY_LATE_GDS_FEEDBACK_COUNT": 0
+  },
+  "schema_version": 1,
+  "scope": "frozen late-promotion phase channel plus enlarged shared guard and nine grounded edge dummies",
+  "sha256": {
+    "checker": "f1216423d3a555a1102445f198ddc96c2269be4dcf34ffa6b04ba3db4d6bfe99",
+    "frozen_routing": "296a5b325b3e420c39d3830748e94f757c8c93d5c8649a0c1597d919cc4fef1d",
+    "generator": "01ec4cf8e6f815b504515c2f674a5c0fd3cbafada735627ca3d859cddf01be39",
+    "magic_log": "bcba7b7ad9e39c5411d36b8887ff981ae3d447ce3c8054138028fc40500c7e45",
+    "manifest": "176f086cdda4ff4c0d3ad5d2fe0c994b465c8fdd4186b5c12d8e362c6e754104",
+    "precheck": "bb5525644bc51f9af6f2e2bcfbde13349d6fea48010432c13ecba3a9389d4133",
+    "spice": "a32ffc24a88793aaddf58f8bb05a284826d66c1ad322e83436e0990b7cf3a486"
+  },
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 30,
+      "switch": 60,
+      "tail": 15
+    },
+    "switch_gate_counts": {
+      "g1_lon": 2,
+      "g1_lop": 2,
+      "g2_lon": 4,
+      "g2_lop": 4,
+      "g4_lon": 8,
+      "g4_lop": 8,
+      "g8_lon": 16,
+      "g8_lop": 16
+    },
+    "units_by_group": {
+      "1": 1,
+      "2": 2,
+      "4": 4,
+      "8": 8
+    }
+  },
+  "topology_errors": [],
+  "unexpected_magic_warnings": []
+}

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "status": "deferred_requires_periodic_noise_or_measurement",
+  "release_classification": "known_characterization_gap_not_structural_fabrication_blocker_for_a_research_prototype",
+  "candidate_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+  "base_netlist_sha256": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+  "distributed_rc_netlist_sha256": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126",
+  "reason": "The beamformer is a periodically switched mixer. A static small-signal .noise analysis does not translate device noise through the 4 MHz switching waveform, and ngspice transient-noise sources inject explicit source noise rather than automatically generating the compact-model cyclostationary device noise needed for a mixer noise figure.",
+  "simulator_capability_checked": {
+    "ngspice_manual": "https://ngspice.sourceforge.io/docs/ngspice-manual.pdf",
+    "ngspice_special_features": "https://ngspice.sourceforge.io/extras.html",
+    "periodic_noise_tools_found_on_validation_host": []
+  },
+  "prohibited_claims": [
+    "Do not publish a simulated noise figure for this candidate.",
+    "Do not present a frozen-clock .noise result as a switching-mixer noise result.",
+    "Do not infer production noise yield from deterministic transient simulations."
+  ],
+  "first_silicon_measurement_plan": [
+    "Measure the zero-input 1 MHz differential-output noise spectrum for every beam code after the documented VCM startup interval.",
+    "Measure input-referred noise or noise figure with a calibrated 5 MHz source and the same output load used for conversion-gain characterization.",
+    "Repeat at minimum and maximum intended supply and record clock feedthrough separately from the broadband noise floor.",
+    "Retain raw spectra, resolution bandwidth, averaging, gain calibration, temperature, trim codes, and board configuration."
+  ]
+}

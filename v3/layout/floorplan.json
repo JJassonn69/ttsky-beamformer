@@ -1,0 +1,1011 @@
+{
+  "analog_pins": {
+    "ua[0]": {
+      "center": [
+        152.26,
+        0.5
+      ],
+      "function": "element_0",
+      "size": [
+        0.9,
+        1.0
+      ]
+    },
+    "ua[1]": {
+      "center": [
+        132.94,
+        0.5
+      ],
+      "function": "element_1",
+      "size": [
+        0.9,
+        1.0
+      ]
+    },
+    "ua[2]": {
+      "center": [
+        113.62,
+        0.5
+      ],
+      "function": "element_2",
+      "size": [
+        0.9,
+        1.0
+      ]
+    },
+    "ua[3]": {
+      "center": [
+        94.3,
+        0.5
+      ],
+      "function": "element_3",
+      "size": [
+        0.9,
+        1.0
+      ]
+    },
+    "ua[4]": {
+      "center": [
+        74.98,
+        0.5
+      ],
+      "function": "combined_p",
+      "size": [
+        0.9,
+        1.0
+      ]
+    },
+    "ua[5]": {
+      "center": [
+        55.66,
+        0.5
+      ],
+      "function": "combined_n",
+      "size": [
+        0.9,
+        1.0
+      ]
+    }
+  },
+  "authorization": {
+    "device_placement_authorized": false,
+    "floorplan_authorized": true,
+    "gds_authorized": false,
+    "routing_authorized": false
+  },
+  "channel_template": {
+    "active_matrix_top_to_bottom": [
+      [
+        8,
+        8,
+        8
+      ],
+      [
+        4,
+        8,
+        4
+      ],
+      [
+        2,
+        1,
+        2
+      ],
+      [
+        4,
+        8,
+        4
+      ],
+      [
+        8,
+        8,
+        8
+      ]
+    ],
+    "array_columns": 3,
+    "array_rows_active": 5,
+    "array_rows_with_top_bottom_dummies": 7,
+    "channel_pitch": 19.32,
+    "estimated_height": 93.99,
+    "estimated_width": 15.74,
+    "group_counts": {
+      "1": 1,
+      "2": 2,
+      "4": 4,
+      "8": 8
+    },
+    "minimum_interchannel_guard_gap": 3.58,
+    "orientation_policy": "unit-level inversion pairs only; keep all four channel macros R0 until mirrored extracted equivalence is proven",
+    "required_features": [
+      "one shared substrate guard per channel",
+      "device-row edge dummies",
+      "top and bottom dummy coverage",
+      "equal contact populations",
+      "identical switch-route topology",
+      "local ground strap",
+      "local bias pass and blank devices"
+    ]
+  },
+  "channels": [
+    {
+      "center_x": 152.26,
+      "index": 0,
+      "input_entry": [
+        152.26,
+        8.0
+      ],
+      "macro_bbox": [
+        144.39,
+        8.0,
+        160.13,
+        101.99
+      ],
+      "macro_orientation": "R0",
+      "output_anchors": {
+        "n": [
+          153.26,
+          100.79
+        ],
+        "p": [
+          151.26,
+          101.99
+        ]
+      },
+      "phase_leaf": [
+        152.26,
+        169.0
+      ],
+      "pin": "ua[0]",
+      "selector_bbox": [
+        144.39,
+        134.0,
+        160.13,
+        168.0
+      ],
+      "unit_matrix": [
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "unit_matrix_orientation": "inversion-paired R0/MY"
+    },
+    {
+      "center_x": 132.94,
+      "index": 1,
+      "input_entry": [
+        132.94,
+        8.0
+      ],
+      "macro_bbox": [
+        125.07,
+        8.0,
+        140.81,
+        101.99
+      ],
+      "macro_orientation": "R0",
+      "output_anchors": {
+        "n": [
+          133.94,
+          100.79
+        ],
+        "p": [
+          131.94,
+          101.99
+        ]
+      },
+      "phase_leaf": [
+        132.94,
+        169.0
+      ],
+      "pin": "ua[1]",
+      "selector_bbox": [
+        125.07,
+        134.0,
+        140.81,
+        168.0
+      ],
+      "unit_matrix": [
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "unit_matrix_orientation": "inversion-paired R0/MY"
+    },
+    {
+      "center_x": 113.62,
+      "index": 2,
+      "input_entry": [
+        113.62,
+        8.0
+      ],
+      "macro_bbox": [
+        105.75,
+        8.0,
+        121.49,
+        101.99
+      ],
+      "macro_orientation": "R0",
+      "output_anchors": {
+        "n": [
+          114.62,
+          100.79
+        ],
+        "p": [
+          112.62,
+          101.99
+        ]
+      },
+      "phase_leaf": [
+        113.62,
+        169.0
+      ],
+      "pin": "ua[2]",
+      "selector_bbox": [
+        105.75,
+        134.0,
+        121.49,
+        168.0
+      ],
+      "unit_matrix": [
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "unit_matrix_orientation": "inversion-paired R0/MY"
+    },
+    {
+      "center_x": 94.3,
+      "index": 3,
+      "input_entry": [
+        94.3,
+        8.0
+      ],
+      "macro_bbox": [
+        86.43,
+        8.0,
+        102.17,
+        101.99
+      ],
+      "macro_orientation": "R0",
+      "output_anchors": {
+        "n": [
+          95.3,
+          100.79
+        ],
+        "p": [
+          93.3,
+          101.99
+        ]
+      },
+      "phase_leaf": [
+        94.3,
+        169.0
+      ],
+      "pin": "ua[3]",
+      "selector_bbox": [
+        86.43,
+        134.0,
+        102.17,
+        168.0
+      ],
+      "unit_matrix": [
+        [
+          8,
+          8,
+          8
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          2,
+          1,
+          2
+        ],
+        [
+          4,
+          8,
+          4
+        ],
+        [
+          8,
+          8,
+          8
+        ]
+      ],
+      "unit_matrix_orientation": "inversion-paired R0/MY"
+    }
+  ],
+  "digital_pin_contract": {
+    "clk": "16 MHz system clock producing 4 MHz quadrature phases",
+    "ena": "project enable",
+    "rst_n": "asynchronous active-low reset",
+    "ui_in[2:0]": "automatic_beam_index",
+    "ui_in[3]": "automatic_or_raw_mode",
+    "ui_in[7:4]": "channel_enable_mask",
+    "uio_in[0]": "configuration_clock",
+    "uio_in[1]": "configuration_data",
+    "uio_in[2]": "atomic_configuration_latch"
+  },
+  "global_route_invariants": {
+    "empty_area_policy": "leave quiet; add only required foundry density or extracted grounded shielding",
+    "floating_stubs_allowed": false,
+    "length_matching_with_u_bends_allowed": false,
+    "orphan_vias_allowed": false,
+    "route_regeneration_starts_from_clean_placement": true,
+    "same_net_dead_end_landings_allowed": false,
+    "unrelated_routes_inside_passive_keepouts_allowed": false,
+    "via_stacks_only_at_endpoints_or_named_branch_points": true
+  },
+  "keepouts": [
+    {
+      "bbox": [
+        54.76,
+        0.0,
+        56.56,
+        112.5
+      ],
+      "name": "combined_n_vertical_trunk",
+      "permitted_nets": [
+        "ua[5]",
+        "VGND_shield"
+      ]
+    },
+    {
+      "bbox": [
+        74.08,
+        0.0,
+        75.88,
+        112.5
+      ],
+      "name": "combined_p_vertical_trunk",
+      "permitted_nets": [
+        "ua[4]",
+        "VGND_shield"
+      ]
+    },
+    {
+      "bbox": [
+        50.0,
+        0.0,
+        163.0,
+        4.0
+      ],
+      "name": "analog_boundary_escape",
+      "permitted_nets": [
+        "ua[0]",
+        "ua[1]",
+        "ua[2]",
+        "ua[3]",
+        "ua[4]",
+        "ua[5]"
+      ]
+    },
+    {
+      "bbox": [
+        108.0,
+        113.0,
+        138.0,
+        133.0
+      ],
+      "name": "load_pair_no_crossing",
+      "permitted_nets": [
+        "VAPWR",
+        "beam_out_p",
+        "beam_out_n"
+      ]
+    }
+  ],
+  "net_classes": {
+    "differential_sum_and_output": {
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "matched_route_topology": true,
+      "max_direction_reversals": 0,
+      "width": 0.8
+    },
+    "element_inputs": {
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "max_direction_reversals": 0,
+      "max_pin_to_macro_entry_length": 8.0,
+      "width": 0.4
+    },
+    "local_vector_core": {
+      "layers": [
+        "locali",
+        "metal1",
+        "metal2",
+        "metal3"
+      ],
+      "leave_channel_macro": false,
+      "max_direction_reversals": 0,
+      "width_upper_metal": 0.4
+    },
+    "phase_distribution": {
+      "branch_only_vias": true,
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "max_direction_reversals": 0,
+      "width": 0.5
+    },
+    "static_vector_control": {
+      "layers": [
+        "metal2",
+        "metal3"
+      ],
+      "max_direction_reversals": 0,
+      "shield": "VGND",
+      "signals_static_during_measurement": true,
+      "width": 0.4
+    }
+  },
+  "output_pair": {
+    "channel_taps": {
+      "n": [
+        {
+          "channel": 0,
+          "route": {
+            "from": [
+              153.26,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              153.26,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 1,
+          "route": {
+            "from": [
+              133.94,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              133.94,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 2,
+          "route": {
+            "from": [
+              114.62,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              114.62,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 3,
+          "route": {
+            "from": [
+              95.3,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              95.3,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        }
+      ],
+      "p": [
+        {
+          "channel": 0,
+          "route": {
+            "from": [
+              151.26,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              151.26,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 1,
+          "route": {
+            "from": [
+              131.94,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              131.94,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 2,
+          "route": {
+            "from": [
+              112.62,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              112.62,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 3,
+          "route": {
+            "from": [
+              93.3,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              93.3,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        }
+      ]
+    },
+    "equal_via_sites": [
+      "via2",
+      "via3"
+    ],
+    "load_n_bbox": [
+      112.085,
+      114.285,
+      115.155,
+      131.715
+    ],
+    "load_n_center": [
+      113.62,
+      123.0
+    ],
+    "load_n_pin": "ua[5]",
+    "load_n_terminal": [
+      113.62,
+      115.29
+    ],
+    "load_p_bbox": [
+      131.405,
+      114.285,
+      134.475,
+      131.715
+    ],
+    "load_p_center": [
+      132.94,
+      123.0
+    ],
+    "load_p_pin": "ua[4]",
+    "load_p_terminal": [
+      132.94,
+      115.29
+    ],
+    "load_pcell": "V2-qualified/V3-remeasured res_high_po_1p41 w=1.41 um l=11.6117 um; PCell nominal 2.91 kohm, schematic screen 2.925 kohm; re-extract in placed V3 context",
+    "max_drawn_pin_path_mismatch_percent": 0.1,
+    "max_extracted_rc_mismatch_percent": 1.0,
+    "note": "pin paths are length matched; full branched-net RC must be matched after extraction",
+    "required_via3_sites_per_pin_path": 3,
+    "routes": {
+      "n": [
+        {
+          "from": [
+            113.62,
+            115.29
+          ],
+          "layer": "metal3",
+          "to": [
+            113.62,
+            106.8
+          ]
+        },
+        {
+          "from": [
+            113.62,
+            106.8
+          ],
+          "layer": "metal4",
+          "to": [
+            55.66,
+            106.8
+          ]
+        },
+        {
+          "from": [
+            55.66,
+            106.8
+          ],
+          "layer": "metal3",
+          "to": [
+            55.66,
+            8.0
+          ]
+        },
+        {
+          "from": [
+            55.66,
+            8.0
+          ],
+          "layer": "metal4",
+          "to": [
+            55.66,
+            0.5
+          ]
+        }
+      ],
+      "p": [
+        {
+          "from": [
+            132.94,
+            115.29
+          ],
+          "layer": "metal3",
+          "to": [
+            132.94,
+            108.0
+          ]
+        },
+        {
+          "from": [
+            132.94,
+            108.0
+          ],
+          "layer": "metal4",
+          "to": [
+            74.98,
+            108.0
+          ]
+        },
+        {
+          "from": [
+            74.98,
+            108.0
+          ],
+          "layer": "metal3",
+          "to": [
+            74.98,
+            8.0
+          ]
+        },
+        {
+          "from": [
+            74.98,
+            8.0
+          ],
+          "layer": "metal4",
+          "to": [
+            74.98,
+            0.5
+          ]
+        }
+      ]
+    },
+    "sum_bus_extensions": {
+      "n": {
+        "from": [
+          113.62,
+          106.8
+        ],
+        "layer": "metal4",
+        "to": [
+          160.13,
+          106.8
+        ]
+      },
+      "p": {
+        "from": [
+          132.94,
+          108.0
+        ],
+        "layer": "metal4",
+        "to": [
+          160.13,
+          108.0
+        ]
+      }
+    },
+    "wire_width": 0.8
+  },
+  "phase_tree": {
+    "allow_meanders": false,
+    "allow_u_turns": false,
+    "bundle_track_pitch": 0.8,
+    "equal_via_sites": [
+      "via2",
+      "via3"
+    ],
+    "leaves": [
+      {
+        "branch": "left",
+        "channel": 3,
+        "point": [
+          94.3,
+          169.0
+        ]
+      },
+      {
+        "branch": "left",
+        "channel": 2,
+        "point": [
+          113.62,
+          169.0
+        ]
+      },
+      {
+        "branch": "right",
+        "channel": 1,
+        "point": [
+          132.94,
+          169.0
+        ]
+      },
+      {
+        "branch": "right",
+        "channel": 0,
+        "point": [
+          152.26,
+          169.0
+        ]
+      }
+    ],
+    "max_drawn_leaf_mismatch_percent": 0.1,
+    "max_extracted_leaf_skew_ps": 100.0,
+    "pair_branches": {
+      "left": [
+        103.96,
+        178.0
+      ],
+      "right": [
+        142.6,
+        178.0
+      ]
+    },
+    "phase_bus_order": [
+      "phase_0",
+      "phase_90",
+      "phase_270",
+      "phase_180"
+    ],
+    "preferred_layers": {
+      "horizontal": "metal4",
+      "vertical": "metal3"
+    },
+    "root": [
+      123.28,
+      194.0
+    ],
+    "shield": "VGND",
+    "topology": "four parallel copies of a two-level balanced H-tree",
+    "wire_width": 0.5
+  },
+  "promotion_gates": [
+    "synthesized selector/control cells fit reserved regions at signoff density",
+    "shared tail reference and VCM PCells are measured and placed",
+    "transistor-level channel placement preserves the exact group centroids",
+    "Magic DRC and independent KLayout flat-rule checks pass",
+    "LVS proves all four channels and both branched output nets",
+    "distributed-RC extraction closes phase-tree, channel, and output mismatch",
+    "post-layout PVT, settling, spur, loading, noise, and independent calibration gates pass"
+  ],
+  "provenance": {
+    "generator": "v3/tools/build_floorplan.py",
+    "pcell_candidate": "shared_guard_tall_narrow_device_row_dummies",
+    "pcell_scope": "dimension-only PCell feasibility; no placement, routing, layout database, DRC, extraction, or GDS",
+    "prelayout_checkpoint": "v3/evidence/implementation_checkpoint.json",
+    "prelayout_checkpoint_sha256": "d308622d288d2e917d45956d4852ed6bb0a73fe0d9e811252d953d04863efdaa",
+    "shared_support_candidate_selection": "v3/evidence/shared_support_candidate_selection.json",
+    "shared_support_candidate_selection_sha256": "67ad1977478e511c09681ec8174ad88affed5aa029acf97b52274d34c29bd0d2",
+    "support_floorplan_study": "v3/evidence/support_floorplan_study.json",
+    "support_floorplan_study_sha256": "512e43a2dbf037ca39f1d6e961b1e61ce8a5f7393f02f356cb1efe2658d5e011"
+  },
+  "schema_version": 1,
+  "shared_support": {
+    "input_bias_status": "four measured 100 kohm-class V3 PCells constraint-placed with equal input branches and balanced VCM H-tree; exact channel-guard merge pending",
+    "next_gate": "close the exact three-MIM VCM support pilot, then place and route one complete common-centroid channel without moving the closed reference, selector, channel, or pin axes",
+    "output_load_status": "symmetric measured 2.91 kohm PCells constraint-placed; schematic screen uses 2.925 kohm; exact extraction pending",
+    "power_partition": "1.8 V only; Tiny Tapeout VAPWR is unused",
+    "tail_reference": "64 um / 1.00 um shared diode-connected NMOS reference",
+    "tail_reference_bbox": [
+      188.005,
+      42.95,
+      199.995,
+      53.05
+    ],
+    "tail_reference_integrated": false,
+    "tail_reference_orientation": "R0 provisional; orient after measured terminal-access study",
+    "tail_reference_selected_folding": "XREF_8X8",
+    "tail_reference_status": "physical pilot passes diode topology, DRC, direct-GDS precheck, and distributed-RC matching; top-level integration pending",
+    "vcm": "six identical 5.875 um xhigh-poly units in exact B-A-B/B-A-B common-centroid 2:4 divider with three 22x22 um MIM bypass capacitors and no varactor",
+    "vcm_status": "nominal mode screen and full five-corner MOS PVT/headroom pass; exact three-MIM Magic pilot, topology, direct-GDS, and distributed-RC gates pending"
+  },
+  "status": "constraint floorplan with passed selector/reference pilots and PVT-selected shared support; no integrated placement database, routing, or GDS",
+  "template": {
+    "commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+    "die": {
+      "height": 225.76,
+      "width": 334.88
+    },
+    "forbidden_signal_layers": [
+      "metal5"
+    ],
+    "path": "tech/sky130A/def/analog/tt_analog_2x2.def",
+    "repository": "https://github.com/TinyTapeout/tt-support-tools",
+    "sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f"
+  },
+  "units": "um",
+  "zones": [
+    {
+      "bbox": [
+        12.0,
+        4.0,
+        53.0,
+        156.0
+      ],
+      "name": "shared_vcm",
+      "noise_class": "quiet_analog"
+    },
+    {
+      "bbox": [
+        84.0,
+        8.0,
+        162.0,
+        102.0
+      ],
+      "name": "four_channel_vector_core",
+      "noise_class": "critical_analog"
+    },
+    {
+      "bbox": [
+        50.0,
+        103.0,
+        162.0,
+        112.0
+      ],
+      "name": "differential_sum_corridor",
+      "noise_class": "critical_analog"
+    },
+    {
+      "bbox": [
+        108.0,
+        113.0,
+        138.0,
+        133.0
+      ],
+      "name": "differential_load_pair",
+      "noise_class": "critical_analog"
+    },
+    {
+      "bbox": [
+        84.0,
+        134.0,
+        162.0,
+        168.0
+      ],
+      "name": "local_group_selectors",
+      "noise_class": "clock"
+    },
+    {
+      "bbox": [
+        84.0,
+        169.0,
+        180.0,
+        198.0
+      ],
+      "name": "quadrature_tree",
+      "noise_class": "clock"
+    },
+    {
+      "bbox": [
+        181.0,
+        169.0,
+        320.0,
+        220.0
+      ],
+      "name": "static_control",
+      "noise_class": "digital_clock"
+    },
+    {
+      "bbox": [
+        181.0,
+        20.0,
+        320.0,
+        165.0
+      ],
+      "name": "shared_tail_bias_and_decap",
+      "noise_class": "quiet_mixed_signal"
+    }
+  ]
+}

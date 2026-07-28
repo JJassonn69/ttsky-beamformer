@@ -1,0 +1,462 @@
+{
+  "bound_method": "0.69 * maximum extracted selector-output-to-gate resistance * (all incident extracted C + 10 fF per driven switch gate); conservative skew range starts at zero",
+  "checks": {
+    "all_323_devices_preserved": true,
+    "base_views_are_resistance_free": true,
+    "capacitance_present_all_views": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "edge_skew_bound_below_100ps_all_views": true,
+    "exact_switch_gate_population_all_views": true,
+    "exactly_nine_grounded_dummy_notices_all_views": true,
+    "integrated_topology_gate_passes": true,
+    "magic_drc_zero_all_views": true,
+    "magic_outputs_complete": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true,
+    "topology_is_for_exact_gds": true
+  },
+  "gds": "build/v3/channel_selector_late_promotion/v3_channel_selector_late_promotion.gds",
+  "gds_sha256": "4cd2d39ba041ac80391516b35140ce79e476117fd4e73ae22795c565befbd274",
+  "maximum_allowed_edge_skew_ps": 100.0,
+  "next_gate": "flattened visual review and top-level port/pin planning",
+  "schema_version": 1,
+  "scope": "eight complete selector-output to analog-switch-gate paths, including the new matched joins and frozen phase trees",
+  "sha256": {
+    "auditor": "07fc6410fee853a9695235aab22e4d47b8de134b105364febba454bb377111e4",
+    "extractor": "a71a4f116a3e5773c2ddd2145ad94e7fda571736ddd62c56f18bda6ea93cc898",
+    "magic_log": "c7a3a97ea0e29021be79d15c24379c29f0c29184cb6030d2f1410dad434b92ed",
+    "precheck_summary": "14fa231da008a4808a59ef3e2db7a9a5fcf67b07063ee60aa9381bf4afd96086",
+    "topology_gate": "18766caea255a602d337a4d55851ab10976a957eebf400f8da9dd29fd9ca3d13"
+  },
+  "status": "pass",
+  "unexpected_magic_warnings": [],
+  "views": {
+    "g1_lon": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 40.47107,
+      "connected_resistor_nodes": 7,
+      "distributed_rc": {
+        "capacitors": 1546,
+        "devices": 323,
+        "resistors": 6361
+      },
+      "extracted_incident_capacitance_ff": 20.471070000000005,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 354.5323999999757,
+      "minimum_root_to_gate_ohm": 354.31840000020134,
+      "root_candidates": [
+        "a_5776_15334#"
+      ],
+      "root_coordinate_internal": [
+        5444,
+        28684
+      ],
+      "root_node": "a_5776_15334#",
+      "root_to_gate_ohm": {
+        "a_5776_15334.t2": 354.5323999999757,
+        "a_5776_15334.t3": 354.31840000020134
+      },
+      "root_to_gate_spread_ohm": 0.2139999997743871,
+      "sha256": {
+        "base_spice": "f8fbf99dc2cb25677b08ec93d6795389fd6b26f2f5dd40e554956915128768c5",
+        "distributed_rc_spice": "fd71f2b8128488b8aa9285679634e3daa1b508183f5a7b7bb2304fae0bf68acd",
+        "resistance_annotation": "cd5e5cc70b00b7fd59fe198b332968464a90d9a0c566f3cab66ed0f94217f64a"
+      },
+      "switch_gate_count": 2,
+      "switch_gate_nodes": [
+        "a_5776_15334.t2",
+        "a_5776_15334.t3"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 9.900330848590242
+    },
+    "g1_lop": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 38.41651,
+      "connected_resistor_nodes": 7,
+      "distributed_rc": {
+        "capacitors": 1545,
+        "devices": 323,
+        "resistors": 6363
+      },
+      "extracted_incident_capacitance_ff": 18.416510000000002,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 354.9117999999972,
+      "minimum_root_to_gate_ohm": 354.69579999999786,
+      "root_candidates": [
+        "a_5776_15740#"
+      ],
+      "root_coordinate_internal": [
+        5588,
+        28684
+      ],
+      "root_node": "a_5776_15740#",
+      "root_to_gate_ohm": {
+        "a_5776_15740.t2": 354.9117999999972,
+        "a_5776_15740.t3": 354.69579999999786
+      },
+      "root_to_gate_spread_ohm": 0.21599999999932606,
+      "sha256": {
+        "base_spice": "f5eec269719c715c7394ef176f0aa1868c02ad98e4d111149985dc7bb3fe13a7",
+        "distributed_rc_spice": "ce3aa76e7d8cfb269e88acf81c84320cb19fdda32272f003d81b7a2de02aed69",
+        "resistance_annotation": "aa1e8a31b7b6a1d3282247b74247c96c32a7797c672e89a43c313611fb6d4912"
+      },
+      "switch_gate_count": 2,
+      "switch_gate_nodes": [
+        "a_5776_15740.t2",
+        "a_5776_15740.t3"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 9.407786172534344
+    },
+    "g2_lon": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 69.4307,
+      "connected_resistor_nodes": 11,
+      "distributed_rc": {
+        "capacitors": 1548,
+        "devices": 323,
+        "resistors": 6362
+      },
+      "extracted_incident_capacitance_ff": 29.4307,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 355.3884999999807,
+      "minimum_root_to_gate_ohm": 354.07469999999006,
+      "root_candidates": [
+        "a_4384_15334#"
+      ],
+      "root_coordinate_internal": [
+        5732,
+        28684
+      ],
+      "root_node": "a_4384_15334#",
+      "root_to_gate_ohm": {
+        "a_4384_15334.t2": 354.28870000006737,
+        "a_4384_15334.t3": 355.3884999999807,
+        "a_4384_15334.t4": 354.07469999999006,
+        "a_4384_15334.t5": 355.17450000000116
+      },
+      "root_to_gate_spread_ohm": 1.3137999999906356,
+      "sha256": {
+        "base_spice": "bfc8ae05d16d7ed8654bc67ec29f6497713fd6cd7f4dcc64eb6cc98a6e933e1a",
+        "distributed_rc_spice": "bb8c977e734b444914efe0a9daccb8e55265430dab2b6bb5f2cce86fb5104a6a",
+        "resistance_annotation": "5542dd1943f45b974363677970a6ba30d85ffef76e31a8cf8b00839f8ae99152"
+      },
+      "switch_gate_count": 4,
+      "switch_gate_nodes": [
+        "a_4384_15334.t2",
+        "a_4384_15334.t3",
+        "a_4384_15334.t4",
+        "a_4384_15334.t5"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 17.02566190559457
+    },
+    "g2_lop": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 73.45812000000001,
+      "connected_resistor_nodes": 11,
+      "distributed_rc": {
+        "capacitors": 1544,
+        "devices": 323,
+        "resistors": 6359
+      },
+      "extracted_incident_capacitance_ff": 33.45812000000001,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 376.8275999999599,
+      "minimum_root_to_gate_ohm": 368.1324999999729,
+      "root_candidates": [
+        "a_4384_15740#"
+      ],
+      "root_coordinate_internal": [
+        5876,
+        28684
+      ],
+      "root_node": "a_4384_15740#",
+      "root_to_gate_ohm": {
+        "a_4384_15740.t2": 368.3485000000012,
+        "a_4384_15740.t3": 376.8275999999599,
+        "a_4384_15740.t4": 368.1324999999729,
+        "a_4384_15740.t5": 376.6116000000071
+      },
+      "root_to_gate_spread_ohm": 8.695099999987008,
+      "sha256": {
+        "base_spice": "951a2e8c57211a02e30bd5b74295970b62659f38302f591f58b840eefcc9d7bd",
+        "distributed_rc_spice": "37edb7d45f4f813ec8ac7e89ddb624b8deb1b9ddadca269557e8dc8edcbbb885",
+        "resistance_annotation": "e64436b6706c379534b21ba8479a4c86a3d3a0136d1473a8864ce6ae2e765380"
+      },
+      "switch_gate_count": 4,
+      "switch_gate_nodes": [
+        "a_4384_15740.t2",
+        "a_4384_15740.t3",
+        "a_4384_15740.t4",
+        "a_4384_15740.t5"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 19.099922471475246
+    },
+    "g4_lon": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 127.3226,
+      "connected_resistor_nodes": 19,
+      "distributed_rc": {
+        "capacitors": 1549,
+        "devices": 323,
+        "resistors": 6362
+      },
+      "extracted_incident_capacitance_ff": 47.32260000000001,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 363.76689999966754,
+      "minimum_root_to_gate_ohm": 358.035099999997,
+      "root_candidates": [
+        "a_4384_11740#"
+      ],
+      "root_coordinate_internal": [
+        6020,
+        28684
+      ],
+      "root_node": "a_4384_11740#",
+      "root_to_gate_ohm": {
+        "a_4384_11740.t2": 363.76689999966754,
+        "a_4384_11740.t3": 362.9491000011094,
+        "a_4384_11740.t4": 363.5529000009827,
+        "a_4384_11740.t5": 362.78610000000083,
+        "a_4384_11740.t6": 359.0668999993774,
+        "a_4384_11740.t7": 358.30009999910254,
+        "a_4384_11740.t8": 358.8529000000224,
+        "a_4384_11740.t9": 358.035099999997
+      },
+      "root_to_gate_spread_ohm": 5.731799999670557,
+      "sha256": {
+        "base_spice": "694856ca70a20665bcbbf901ac159ae6b3e03f1d5478a56378db60747d353473",
+        "distributed_rc_spice": "62dde47ca3e7d23fa9dfb71e30c6cc4261caf6d86c6eba708537da7458f425bc",
+        "resistance_annotation": "f80d11e7b811d3b0141b158de0bf135537537dc1d613c4d04198e5f70074de1e"
+      },
+      "switch_gate_count": 8,
+      "switch_gate_nodes": [
+        "a_4384_11740.t2",
+        "a_4384_11740.t3",
+        "a_4384_11740.t4",
+        "a_4384_11740.t5",
+        "a_4384_11740.t6",
+        "a_4384_11740.t7",
+        "a_4384_11740.t8",
+        "a_4384_11740.t9"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 31.957865776309387
+    },
+    "g4_lop": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 122.06871,
+      "connected_resistor_nodes": 18,
+      "distributed_rc": {
+        "capacitors": 1548,
+        "devices": 323,
+        "resistors": 6360
+      },
+      "extracted_incident_capacitance_ff": 42.06871,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 378.5102000000141,
+      "minimum_root_to_gate_ohm": 358.3178999999408,
+      "root_candidates": [
+        "a_4384_11334#"
+      ],
+      "root_coordinate_internal": [
+        6164,
+        28684
+      ],
+      "root_node": "a_4384_11334#",
+      "root_to_gate_ohm": {
+        "a_4384_11334.t2": 370.5911000000057,
+        "a_4384_11334.t3": 378.5102000000141,
+        "a_4384_11334.t4": 370.37509999999014,
+        "a_4384_11334.t5": 378.2431999999988,
+        "a_4384_11334.t6": 358.47190000003496,
+        "a_4384_11334.t7": 367.1336999999871,
+        "a_4384_11334.t8": 358.3178999999408,
+        "a_4384_11334.t9": 366.9686999999971
+      },
+      "root_to_gate_spread_ohm": 20.192300000073317,
+      "sha256": {
+        "base_spice": "1cfa957846926003286a6cb0cda5b240b52fe00337172988c89fa312cb5c2564",
+        "distributed_rc_spice": "c4bdebb7e520d80bf66d46039d785da65fc50e55763db5cbefc23a1fe101cfb9",
+        "resistance_annotation": "4eede692d66a235737165fc8b90c52d78d42034d5ba6add1ab70b7d66d47ee2a"
+      },
+      "switch_gate_count": 8,
+      "switch_gate_nodes": [
+        "a_4384_11334.t2",
+        "a_4384_11334.t3",
+        "a_4384_11334.t4",
+        "a_4384_11334.t5",
+        "a_4384_11334.t6",
+        "a_4384_11334.t7",
+        "a_4384_11334.t8",
+        "a_4384_11334.t9"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 31.880933766732166
+    },
+    "g8_lon": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 220.64427999999998,
+      "connected_resistor_nodes": 35,
+      "distributed_rc": {
+        "capacitors": 1547,
+        "devices": 323,
+        "resistors": 6357
+      },
+      "extracted_incident_capacitance_ff": 60.64428000000001,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 365.60009999954616,
+      "minimum_root_to_gate_ohm": 348.3504999999033,
+      "root_candidates": [
+        "a_4384_7740#"
+      ],
+      "root_coordinate_internal": [
+        6308,
+        28684
+      ],
+      "root_node": "a_4384_7740#",
+      "root_to_gate_ohm": {
+        "a_4384_7740.t10": 357.77780000002673,
+        "a_4384_7740.t11": 357.56380000002576,
+        "a_4384_7740.t12": 348.56450000111585,
+        "a_4384_7740.t13": 355.47880000013754,
+        "a_4384_7740.t14": 355.64330000000416,
+        "a_4384_7740.t15": 348.3504999999033,
+        "a_4384_7740.t16": 355.21380000008077,
+        "a_4384_7740.t17": 355.3782999999464,
+        "a_4384_7740.t2": 365.60009999954616,
+        "a_4384_7740.t3": 364.7823000000517,
+        "a_4384_7740.t4": 364.94630000007396,
+        "a_4384_7740.t5": 365.38609999984163,
+        "a_4384_7740.t6": 364.61930000005617,
+        "a_4384_7740.t7": 364.7833000000486,
+        "a_4384_7740.t8": 362.4548000001011,
+        "a_4384_7740.t9": 362.2407999999974
+      },
+      "root_to_gate_spread_ohm": 17.24959999964284,
+      "sha256": {
+        "base_spice": "0386893a50a8d6cf952217dcfa868c4b32bc0f7ed5e976a131b2ca8ea0ba09d7",
+        "distributed_rc_spice": "e15a65e47626384f476d2268ca2d3f6d436ad7697b0ea9e1442ce18751ead3f1",
+        "resistance_annotation": "be882f2f0dade7cbb0d8287482b2dd346079dcab8655fe35e67f44fc25b68e2b"
+      },
+      "switch_gate_count": 16,
+      "switch_gate_nodes": [
+        "a_4384_7740.t10",
+        "a_4384_7740.t11",
+        "a_4384_7740.t12",
+        "a_4384_7740.t13",
+        "a_4384_7740.t14",
+        "a_4384_7740.t15",
+        "a_4384_7740.t16",
+        "a_4384_7740.t17",
+        "a_4384_7740.t2",
+        "a_4384_7740.t3",
+        "a_4384_7740.t4",
+        "a_4384_7740.t5",
+        "a_4384_7740.t6",
+        "a_4384_7740.t7",
+        "a_4384_7740.t8",
+        "a_4384_7740.t9"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 55.66062387430622
+    },
+    "g8_lop": {
+      "base": {
+        "capacitors": 2318,
+        "devices": 323,
+        "resistors": 0
+      },
+      "bounded_total_tree_capacitance_ff": 222.77626,
+      "connected_resistor_nodes": 32,
+      "distributed_rc": {
+        "capacitors": 1550,
+        "devices": 323,
+        "resistors": 6364
+      },
+      "extracted_incident_capacitance_ff": 62.77626,
+      "intrinsic_gate_capacitance_bound_ff_per_gate": 10.0,
+      "maximum_root_to_gate_ohm": 380.79547999994577,
+      "minimum_root_to_gate_ohm": 355.62380000011797,
+      "root_candidates": [
+        "a_4384_7334#"
+      ],
+      "root_coordinate_internal": [
+        6452,
+        28684
+      ],
+      "root_node": "a_4384_7334#",
+      "root_to_gate_ohm": {
+        "a_4384_7334.t10": 365.64788000017734,
+        "a_4384_7334.t11": 365.43187999995774,
+        "a_4384_7334.t12": 364.2668999998987,
+        "a_4384_7334.t13": 363.41726000007765,
+        "a_4384_7334.t14": 355.7267999999842,
+        "a_4384_7334.t15": 364.05089999992884,
+        "a_4384_7334.t16": 363.2522600000846,
+        "a_4384_7334.t17": 355.62380000011797,
+        "a_4384_7334.t2": 380.48127999975,
+        "a_4384_7334.t3": 379.7144800000409,
+        "a_4384_7334.t4": 380.79547999994577,
+        "a_4384_7334.t5": 380.2652800000802,
+        "a_4384_7334.t6": 379.44747999995667,
+        "a_4384_7334.t7": 380.5284799998733,
+        "a_4384_7334.t8": 377.4064799999542,
+        "a_4384_7334.t9": 377.19048000013765
+      },
+      "root_to_gate_spread_ohm": 25.171679999827802,
+      "sha256": {
+        "base_spice": "672c924b80da8d4b8bbc70047ddb91e45b6b17f7adf43646e4b1e6d273dce9b5",
+        "distributed_rc_spice": "f1ad270d1a5b36d4c9c8dbcb44bc2f8e9b0ca2fecab160d65c17c3232d9c8fe9",
+        "resistance_annotation": "93f7f939645af7d5b651fc71720ea5953cf8c85716a9ec527162d430588734b9"
+      },
+      "switch_gate_count": 16,
+      "switch_gate_nodes": [
+        "a_4384_7334.t10",
+        "a_4384_7334.t11",
+        "a_4384_7334.t12",
+        "a_4384_7334.t13",
+        "a_4384_7334.t14",
+        "a_4384_7334.t15",
+        "a_4384_7334.t16",
+        "a_4384_7334.t17",
+        "a_4384_7334.t2",
+        "a_4384_7334.t3",
+        "a_4384_7334.t4",
+        "a_4384_7334.t5",
+        "a_4384_7334.t6",
+        "a_4384_7334.t7",
+        "a_4384_7334.t8",
+        "a_4384_7334.t9"
+      ],
+      "worst_case_edge_delay_and_skew_bound_ps": 58.534213072911975
+    }
+  },
+  "worst_case_edge_delay_and_skew_bound_ps": 58.534213072911975,
+  "worst_case_tree": "g8_lop"
+}

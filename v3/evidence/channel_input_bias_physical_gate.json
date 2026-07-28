@@ -1,0 +1,50 @@
+{
+  "checks": {
+    "active_and_dummy_device_counts_exact": true,
+    "all_eight_phase_populations_exact": true,
+    "direct_gds_precheck_zero": true,
+    "final_gds_readback_drc_zero": true,
+    "final_gds_readback_feedback_cleared": true,
+    "final_gds_readback_nine_classified_dummy_markers": true,
+    "mask_repair_preserves_exact_extracted_netlist": true,
+    "no_raw_port_short_or_unknown_layer_warning": true,
+    "no_readback_port_short_warning": true,
+    "one_compact_resistor_between_vcm_and_element_input": true,
+    "precheck_and_repair_bind_final_gds": true,
+    "raw_and_final_gds_are_distinct": true,
+    "raw_gds_feedback_zero": true,
+    "raw_magic_drc_zero": true,
+    "raw_nine_classified_dummy_markers": true
+  },
+  "device_counts": {
+    "active_nmos": 105,
+    "grounded_dummy_nmos": 9,
+    "input_bias_resistors": 1
+  },
+  "extracted_spice_sha256": "8bfa39085397acd2a59fde3c9a629bcf86c7ea48c4209a96d08562111d4bbc84",
+  "gds": "build/v3/channel_input_bias_pilot/v3_channel_input_bias_pilot.gds",
+  "gds_sha256": "b38d928b5c65d8c097d62f6b8f7ff2f6fb504a0fb129b7a10af7316cd5c7b542",
+  "next_gate": "rerun the complete four-channel support PVT set with res_xhigh_po_0p35 l=17.36, then integrate the route-closed selector",
+  "phase_switch_counts": {
+    "g1_lon": 2,
+    "g1_lop": 2,
+    "g2_lon": 4,
+    "g2_lop": 4,
+    "g4_lon": 8,
+    "g4_lop": 8,
+    "g8_lon": 16,
+    "g8_lop": 16
+  },
+  "raw_magic_gds_sha256": "bae233cb23275af4e17801694ee25bc42152449bc0373904ac91077023208eac",
+  "schema_version": 1,
+  "scope": "exact eight-tree/dummy channel plus compact guarded input-bias resistor, grounded clock shield, direct-GDS mask repair, and final-GDS Magic readback",
+  "sha256": {
+    "auditor": "c8341ecef97ce3f0c997de2526bbdfb72b43b39696383191850d63d316a68961",
+    "generator": "1726d7f8e178ca685f4201dd09ebb36c50445d4be6cfdf6e2d0c0e6ce7c9757a",
+    "placement": "eb9f35758562675b81ef5279bc9641ac7156324f932b4f7a3d0fdee11b7b0da8",
+    "precheck": "5366f5c24921cd56e7c990ef6f92235c1ad4523f1d4b1050bf0eb1001059f66d",
+    "readback_tcl": "81db56d91142750d6ef1a73e0682fe6ce639ddca80ba96c39e727c165985affa",
+    "urpm_repair": "64540c3fc64d2f06c7fe498cc3dfb6dab9eca14247b49b449d7dc3d9d6cd0386"
+  },
+  "status": "pass"
+}

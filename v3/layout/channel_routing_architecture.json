@@ -1,0 +1,648 @@
+{
+  "candidates": {
+    "dual_service_corridors": {
+      "active_array_bbox": [
+        0.42,
+        8.0,
+        18.9,
+        100.365
+      ],
+      "channel_bbox": [
+        0.0,
+        0.0,
+        19.32,
+        112.99
+      ],
+      "column_origins_um": [
+        1.27,
+        8.23,
+        15.19
+      ],
+      "column_pitch_um": 6.96,
+      "geometry_errors": [],
+      "geometry_status": "pass",
+      "global_output_collection": {
+        "channel_root_y_um": 116.5,
+        "load_centers_x_um": {
+          "n": 111.68,
+          "p": 131.0
+        },
+        "load_relocation_required": true,
+        "load_to_output_pin_horizontal_length_um": {
+          "n": 56.02,
+          "p": 56.02
+        },
+        "n_channel_roots_x_um": [
+          92.76,
+          112.08,
+          131.4,
+          150.72
+        ],
+        "n_tree_centroid_x_um": 121.74,
+        "p_channel_roots_x_um": [
+          91.96,
+          111.28,
+          130.6,
+          149.92
+        ],
+        "p_tree_centroid_x_um": 120.94,
+        "pair_topology": "two-level balanced H-tree per polarity",
+        "tree_root_to_load_length_um": {
+          "n": 10.06,
+          "p": 10.06
+        }
+      },
+      "guard_and_power": {
+        "floating_metal_allowed": false,
+        "ground_collection_layer": "metal3",
+        "guard_layers": [
+          "diffusion",
+          "locali",
+          "metal1"
+        ],
+        "interchannel_policy": "one abutted/shared grounded guard boundary; exact adjacent-channel guard pilot is mandatory before promotion",
+        "named_crossings": [
+          "M3 row-output bridges across the left guard only at row roots",
+          "M3 analog branches across the right guard only at unit row roots",
+          "M4 phase handoff across the top guard only at eight named trunks"
+        ],
+        "projected_interchannel_active_gap_um": 0.84,
+        "selector_power": "local M1 rails with top-band M2 straps; do not enter the analog row channels"
+      },
+      "known_tradeoffs": [
+        "column pitch grows from 5.20 um to 6.96 um; mismatch geometry must be re-qualified",
+        "the projected 0.84 um active-array gap requires an exact shared-guard abutment proof",
+        "selector and load placement evidence must be regenerated",
+        "phase routes must be replanned against the exact output and analog-spine GDS"
+      ],
+      "name": "dual_service_corridors",
+      "phase_distribution": {
+        "horizontal_layer": "metal3",
+        "internal_g1_trunks_x_um": [
+          11.6,
+          10.36
+        ],
+        "mixed_centre_g8_handoffs_x_um": [
+          12.15,
+          13.05
+        ],
+        "policy": "G1 uses two central handoffs; mixed G8/G4 rows hand centre-G8 off inside the right inter-column gap before the outer roots; G2/G4 and all-G8 rows use the right bank; global trees route later against the exact service GDS",
+        "side_bank_bbox": [
+          15.05,
+          20.7,
+          18.95,
+          112.0
+        ],
+        "side_bank_trunks_x_um": [
+          15.25,
+          15.95,
+          16.65,
+          17.35,
+          18.05,
+          18.75
+        ],
+        "trunk_pitch_um": 0.7,
+        "trunk_width_um": 0.4,
+        "vertical_layer": "metal4"
+      },
+      "recommendation": "selected for exact feasibility pilot",
+      "row_origins_top_to_bottom_um": [
+        88.0,
+        68.0,
+        48.0,
+        28.0,
+        8.0
+      ],
+      "row_pitch_um": 20.0,
+      "row_track_plan": [
+        {
+          "centre_group": 8,
+          "origin_y_um": 88.0,
+          "outer_group": null,
+          "row_top_to_bottom": 0,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 107.45,
+            "next_row_sig_m3": 106.05,
+            "next_row_vbias_m3": 106.75,
+            "output_n_bus_m3": 105.25,
+            "output_p_bus_m3": 104.35,
+            "phase_centre_lon_m3": 101.15,
+            "phase_centre_lop_m3": 101.95,
+            "phase_outer_lon_m3": 102.75,
+            "phase_outer_lop_m3": 103.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 68.0,
+          "outer_group": 4,
+          "row_top_to_bottom": 1,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 87.45,
+            "next_row_sig_m3": 86.05,
+            "next_row_vbias_m3": 86.75,
+            "output_n_bus_m3": 85.25,
+            "output_p_bus_m3": 84.35,
+            "phase_centre_lon_m3": 81.15,
+            "phase_centre_lop_m3": 81.95,
+            "phase_outer_lon_m3": 82.75,
+            "phase_outer_lop_m3": 83.55
+          }
+        },
+        {
+          "centre_group": 1,
+          "origin_y_um": 48.0,
+          "outer_group": 2,
+          "row_top_to_bottom": 2,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 67.45,
+            "next_row_sig_m3": 66.05,
+            "next_row_vbias_m3": 66.75,
+            "output_n_bus_m3": 65.25,
+            "output_p_bus_m3": 64.35,
+            "phase_centre_lon_m3": 61.15,
+            "phase_centre_lop_m3": 61.95,
+            "phase_outer_lon_m3": 62.75,
+            "phase_outer_lop_m3": 63.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 28.0,
+          "outer_group": 4,
+          "row_top_to_bottom": 3,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 47.45,
+            "next_row_sig_m3": 46.05,
+            "next_row_vbias_m3": 46.75,
+            "output_n_bus_m3": 45.25,
+            "output_p_bus_m3": 44.35,
+            "phase_centre_lon_m3": 41.15,
+            "phase_centre_lop_m3": 41.95,
+            "phase_outer_lon_m3": 42.75,
+            "phase_outer_lop_m3": 43.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 8.0,
+          "outer_group": null,
+          "row_top_to_bottom": 4,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 27.45,
+            "next_row_sig_m3": 26.05,
+            "next_row_vbias_m3": 26.75,
+            "output_n_bus_m3": 25.25,
+            "output_p_bus_m3": 24.35,
+            "phase_centre_lon_m3": 21.15,
+            "phase_centre_lop_m3": 21.95,
+            "phase_outer_lon_m3": 22.75,
+            "phase_outer_lop_m3": 23.55
+          }
+        }
+      ],
+      "score_total": 82,
+      "scores": {
+        "coupling_isolation": 13,
+        "matching": 16,
+        "reuse_of_closed_evidence": 3,
+        "route_simplicity": 8,
+        "support_integration": 18,
+        "topology_and_capacity": 24
+      },
+      "selector_and_global_phase": {
+        "phase_tree_band_global_y_um": [
+          179.0,
+          208.0
+        ],
+        "selector_band_global_y_um": [
+          144.0,
+          178.0
+        ],
+        "selector_outputs_must_land_directly_on_reserved_phase_trunks": true,
+        "selector_rebuild_required": true
+      },
+      "service_corridors": {
+        "analog_right": {
+          "bbox": [
+            11.94,
+            7.7,
+            14.34,
+            112.0
+          ],
+          "layer": "metal2",
+          "pitch_um": 0.7,
+          "spines": {
+            "ref": 13.84,
+            "sig": 12.44,
+            "vbias": 13.14
+          },
+          "width_um": 0.4
+        },
+        "output_left": {
+          "bbox": [
+            4.98,
+            7.7,
+            7.38,
+            108.8
+          ],
+          "layer": "metal2",
+          "pitch_um": 0.8,
+          "spines": {
+            "n": 6.33,
+            "p": 5.53
+          },
+          "width_um": 0.5
+        }
+      },
+      "support_band_global": {
+        "bbox": [
+          82.0,
+          115.0,
+          160.5,
+          141.0
+        ],
+        "compact_input_bias_bbox_y_um": [
+          117.5,
+          140.68
+        ],
+        "compact_input_bias_resistor_centers_x_um": [
+          98.87,
+          118.19,
+          137.51,
+          156.83
+        ],
+        "output_load_centers_um": {
+          "n": [
+            111.68,
+            123.0
+          ],
+          "p": [
+            131.0,
+            123.0
+          ]
+        },
+        "reason": "attach each bias resistor to the top of its required signal spine; keep both inter-column routing corridors clear"
+      }
+    },
+    "same_side_layer_overlay": {
+      "active_array_bbox": [
+        0.39,
+        8.0,
+        15.35,
+        100.365
+      ],
+      "channel_bbox": [
+        0.0,
+        0.0,
+        19.32,
+        112.99
+      ],
+      "column_origins_um": [
+        1.24,
+        6.44,
+        11.64
+      ],
+      "column_pitch_um": 5.2,
+      "geometry_errors": [],
+      "geometry_status": "pass",
+      "known_tradeoffs": [
+        "long parallel M2-output/M4-phase overlap remains for most of the channel height",
+        "the compact input-bias shield, phase bank, and output bank all claim the same right edge",
+        "the output-only GDS is DRC clean, but the previously closed phase tree is not integrated with it",
+        "local obstacle routing produced direction reversals and scarce output access"
+      ],
+      "name": "same_side_layer_overlay",
+      "phase_distribution": {
+        "horizontal_layer": "metal3",
+        "policy": "six phase trunks run directly above and beside the two output spines; two G1 trunks remain internal",
+        "side_bank_bbox": [
+          15.62,
+          20.7,
+          19.32,
+          112.0
+        ],
+        "vertical_layer": "metal4"
+      },
+      "recommendation": "reference only; do not promote without defeating the coupling/capacity findings",
+      "row_origins_top_to_bottom_um": [
+        88.0,
+        68.0,
+        48.0,
+        28.0,
+        8.0
+      ],
+      "row_pitch_um": 20.0,
+      "row_track_plan": [
+        {
+          "centre_group": 8,
+          "origin_y_um": 88.0,
+          "outer_group": null,
+          "row_top_to_bottom": 0,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 107.45,
+            "next_row_sig_m3": 106.05,
+            "next_row_vbias_m3": 106.75,
+            "output_n_bus_m3": 105.25,
+            "output_p_bus_m3": 104.35,
+            "phase_centre_lon_m3": 101.15,
+            "phase_centre_lop_m3": 101.95,
+            "phase_outer_lon_m3": 102.75,
+            "phase_outer_lop_m3": 103.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 68.0,
+          "outer_group": 4,
+          "row_top_to_bottom": 1,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 87.45,
+            "next_row_sig_m3": 86.05,
+            "next_row_vbias_m3": 86.75,
+            "output_n_bus_m3": 85.25,
+            "output_p_bus_m3": 84.35,
+            "phase_centre_lon_m3": 81.15,
+            "phase_centre_lop_m3": 81.95,
+            "phase_outer_lon_m3": 82.75,
+            "phase_outer_lop_m3": 83.55
+          }
+        },
+        {
+          "centre_group": 1,
+          "origin_y_um": 48.0,
+          "outer_group": 2,
+          "row_top_to_bottom": 2,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 67.45,
+            "next_row_sig_m3": 66.05,
+            "next_row_vbias_m3": 66.75,
+            "output_n_bus_m3": 65.25,
+            "output_p_bus_m3": 64.35,
+            "phase_centre_lon_m3": 61.15,
+            "phase_centre_lop_m3": 61.95,
+            "phase_outer_lon_m3": 62.75,
+            "phase_outer_lop_m3": 63.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 28.0,
+          "outer_group": 4,
+          "row_top_to_bottom": 3,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 47.45,
+            "next_row_sig_m3": 46.05,
+            "next_row_vbias_m3": 46.75,
+            "output_n_bus_m3": 45.25,
+            "output_p_bus_m3": 44.35,
+            "phase_centre_lon_m3": 41.15,
+            "phase_centre_lop_m3": 41.95,
+            "phase_outer_lon_m3": 42.75,
+            "phase_outer_lop_m3": 43.55
+          }
+        },
+        {
+          "centre_group": 8,
+          "origin_y_um": 8.0,
+          "outer_group": null,
+          "row_top_to_bottom": 4,
+          "track_widths_um": {
+            "next_row_ref_m3": 0.3,
+            "next_row_sig_m3": 0.4,
+            "next_row_vbias_m3": 0.4,
+            "output_n_bus_m3": 0.6,
+            "output_p_bus_m3": 0.6,
+            "phase_centre_lon_m3": 0.4,
+            "phase_centre_lop_m3": 0.4,
+            "phase_outer_lon_m3": 0.4,
+            "phase_outer_lop_m3": 0.4
+          },
+          "tracks": {
+            "next_row_ref_m3": 27.45,
+            "next_row_sig_m3": 26.05,
+            "next_row_vbias_m3": 26.75,
+            "output_n_bus_m3": 25.25,
+            "output_p_bus_m3": 24.35,
+            "phase_centre_lon_m3": 21.15,
+            "phase_centre_lop_m3": 21.95,
+            "phase_outer_lon_m3": 22.75,
+            "phase_outer_lop_m3": 23.55
+          }
+        }
+      ],
+      "score_total": 62,
+      "scores": {
+        "coupling_isolation": 6,
+        "matching": 20,
+        "reuse_of_closed_evidence": 8,
+        "route_simplicity": 5,
+        "support_integration": 8,
+        "topology_and_capacity": 15
+      },
+      "service_corridors": {
+        "compact_input_bias_right_bottom": {
+          "bbox": [
+            16.01,
+            0.0,
+            19.32,
+            20.7
+          ],
+          "layer": "device_and_metal3_shield"
+        },
+        "output_right": {
+          "bbox": [
+            15.35,
+            20.7,
+            18.0,
+            108.8
+          ],
+          "layer": "metal2",
+          "spines": {
+            "n": 17.55,
+            "p": 16.65
+          },
+          "width_um": 0.6
+        }
+      }
+    }
+  },
+  "decision": {
+    "preserves": [
+      "vector-unit transistor dimensions and internal topology",
+      "3x5 group common-centroid assignment",
+      "20 um row pitch",
+      "four fixed analog input pins",
+      "1.8 V-only power contract",
+      "no Metal 5, no meanders, no floating stubs, no orphan vias"
+    ],
+    "reason": "it reserves all five analog/output spines, eight phase trunks, row tracks, support passives, selector handoff, guard crossings, and matched output tails before detailed routing",
+    "reopens": [
+      "channel matrix placement",
+      "group phase trees",
+      "edge dummies and shared guard",
+      "compact input-bias integration",
+      "selector placement and selector-to-channel join",
+      "output-load placement and differential sum tree"
+    ],
+    "selected": "dual_service_corridors"
+  },
+  "fixed_constraints": {
+    "channel_input_pin_centers_x_um": [
+      94.3,
+      113.62,
+      132.94,
+      152.26
+    ],
+    "channel_origins_x_um": [
+      86.43,
+      105.75,
+      125.07,
+      144.39
+    ],
+    "channel_pitch_um": 19.32,
+    "die_bbox": [
+      0.0,
+      0.0,
+      334.88,
+      225.76
+    ],
+    "floating_stubs_allowed": false,
+    "metal5_signal_use": false,
+    "minimum_same_layer_spacing_um": 0.3,
+    "orphan_vias_allowed": false,
+    "u_turns_or_meanders_allowed": false
+  },
+  "promotion_gates": [
+    "render and visually review the complete one-channel and four-channel skeleton",
+    "prove two adjacent widened arrays can share/abut a grounded guard with zero DRC and no channel-to-channel signal short",
+    "regenerate the exact 3x5 matrix at 6.96 um equal column pitch",
+    "prove one row with all local LO, output, signal, vbias, and ref transitions",
+    "route the full channel with outputs first, analog spines second, phase last",
+    "merge compact input bias, edge dummies, guard, selector, and output loads",
+    "pass Magic DRC/topology, distributed RC, and the direct-GDS shuttle-equivalent precheck",
+    "repeat mismatch/calibration geometry study for the larger symmetric column pitch"
+  ],
+  "provenance": {
+    "floorplan": "v3/layout/floorplan.json",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
+    "generator": "v3/tools/plan_channel_routing_architecture.py",
+    "generator_sha256": "49dad7e03cc83a327a3e615e43fec1ef4d9cca93930fa204f7cb56e64bb8ae4d",
+    "matrix": "v3/layout/channel_matrix_placement.json",
+    "matrix_sha256": "781f91255fc961b9a1826035d1253ee56f4d772a395c32d73b1eec67171f3245",
+    "output_experiment": "v3/layout/channel_output_collection.json",
+    "output_experiment_sha256": "d8da7f3e7876c95b8ba15f629147cf6aa36b6c9247ca109acc8d15ad4e6d721a",
+    "selector": "v3/layout/selector_placement.json",
+    "selector_sha256": "4456e9718d5f0ad13c61d524fca3f7565af8b814d7fb594b4b4db71f2ff2146b"
+  },
+  "schema_version": 1,
+  "score_weights": {
+    "coupling_isolation": 15,
+    "matching": 20,
+    "reuse_of_closed_evidence": 10,
+    "route_simplicity": 10,
+    "support_integration": 20,
+    "topology_and_capacity": 25
+  },
+  "status": "architecture selected; exact one-channel feasibility GDS not yet authorized",
+  "units": "um"
+}

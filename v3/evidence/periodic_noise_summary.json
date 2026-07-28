@@ -1,0 +1,346 @@
+{
+  "conservative_metrics": {
+    "combined_worst_state_mean_v_rms_10hz_to_2mhz": 4.800641811410145e-05,
+    "folded_increment_v_rms_10hz_to_10khz": 2.964000239956794e-06,
+    "minimum_nominal_output_snr_db_at_5mv_peak": 38.60528579007437,
+    "minimum_tone_peak_v_at_5mv_input": 0.005782006700957631,
+    "worst_state_mean_v_rms_10khz_to_2mhz": 4.7914829465661916e-05
+  },
+  "frequency_domain_crosscheck": {
+    "aggregate": {
+      "mean_folded_noise_v_rms_10hz_to_2mhz": 3.5102091622153715e-05,
+      "mean_folded_noise_v_rms_10khz_to_2mhz": 3.497672853237722e-05,
+      "state_snapshot_span_db_10hz_to_2mhz": 6.643993073765839e-08,
+      "state_snapshot_span_db_10khz_to_2mhz": 6.646375926917462e-08
+    },
+    "comparison_to_switched_transient": {
+      "algorithms": {
+        "zoh": {
+          "delta_db": 1.5114566707466763,
+          "mean_folded_reference_v_rms": 3.497672853237722e-05,
+          "mean_transient_noise_v_rms": 4.1624786585377304e-05,
+          "within_tolerance": true
+        }
+      },
+      "status": "pass",
+      "switched_summary_sha256": "b7f971f8ec6fac34a91693c4d825cd892272f1bba25e64d4dec8650c410935b1",
+      "tolerance_db": 3.0
+    },
+    "configuration": {
+      "held_lo_states": [
+        [
+          false,
+          false
+        ],
+        [
+          true,
+          false
+        ],
+        [
+          true,
+          true
+        ],
+        [
+          false,
+          true
+        ]
+      ],
+      "lo_hz": 4000000.0,
+      "lo_rise_ns": 5.0,
+      "maximum_harmonic": 16,
+      "output_frequency_hz": [
+        10.0,
+        2000000.0
+      ],
+      "receiver_cutoff_hz": 2000000.0,
+      "source_frequency_hz": [
+        10.0,
+        64000000.0
+      ],
+      "words": [
+        8,
+        21,
+        93,
+        106,
+        162,
+        191,
+        247,
+        192
+      ]
+    },
+    "gates": {
+      "all_eight_words_and_four_held_states": true,
+      "all_folded_results_finite_and_nonzero": true,
+      "commutator_parseval_truncation_below_1_percent": true,
+      "switched_transient_agrees_within_3db": true
+    },
+    "relative_parseval_truncation": 0.006984491590806154
+  },
+  "limitations": [
+    "cross-checked open-source equivalent, not native PNoise",
+    "TT schematic only",
+    "clock-source phase noise excluded",
+    "package and board noise excluded",
+    "extracted-layout parasitics excluded",
+    "silicon correlation and foundry yield excluded"
+  ],
+  "noise_scale_linearity": {
+    "cases": [
+      {
+        "deck_sha256": "c93238c3bfe2946a69593a581b905ff2cd6aaa8818a72b8970a0852ef9d9f5a6",
+        "elapsed_s": 435.9416803959757,
+        "measured_scaled_metrics": {
+          "maximum_absolute_residual_v": 4.62980076498809e-09,
+          "periodogram_band_rms_v": 3.9134725084936503e-10,
+          "periodogram_bin_count": 312,
+          "post_settle_sample_count": 626770,
+          "raw_differential_rms_v": 1.2321017284950387e-09,
+          "receiver_filtered_ac_rms_v": 4.932636584708011e-10,
+          "receiver_filtered_mean_v": -4.336686808955208e-11,
+          "receiver_filtered_rms_v": 4.951663579201396e-10,
+          "record_frequency_resolution_hz": 6381.926384551652
+        },
+        "metrics": {
+          "maximum_absolute_residual_v": 0.00046298007649880896,
+          "periodogram_band_rms_v": 3.91347250849365e-05,
+          "periodogram_bin_count": 312,
+          "post_settle_sample_count": 626770,
+          "raw_differential_rms_v": 0.00012321017284950387,
+          "receiver_filtered_ac_rms_v": 4.9326365847080103e-05,
+          "receiver_filtered_mean_v": -4.3366868089552074e-06,
+          "receiver_filtered_rms_v": 4.951663579201396e-05,
+          "record_frequency_resolution_hz": 6381.926384551652
+        },
+        "mode": "zoh",
+        "noise_amplitude_extrapolation_factor": 99999.99999999999,
+        "seed": 104729,
+        "status": "pass",
+        "word": 8
+      },
+      {
+        "deck_sha256": "d3b6cf7f0617921f03abed8bee2652cc4cd33d52894c6d0f65472b40e73bd9ac",
+        "elapsed_s": 435.1072200955823,
+        "measured_scaled_metrics": {
+          "maximum_absolute_residual_v": 1.3873422188837026e-08,
+          "periodogram_band_rms_v": 1.1681522677346601e-09,
+          "periodogram_bin_count": 313,
+          "post_settle_sample_count": 628919,
+          "raw_differential_rms_v": 3.703735158752223e-09,
+          "receiver_filtered_ac_rms_v": 1.4786667586554823e-09,
+          "receiver_filtered_mean_v": -1.305148593178854e-10,
+          "receiver_filtered_rms_v": 1.484415545477572e-09,
+          "record_frequency_resolution_hz": 6360.11950671778
+        },
+        "metrics": {
+          "maximum_absolute_residual_v": 0.0004624474062945675,
+          "periodogram_band_rms_v": 3.893840892448867e-05,
+          "periodogram_bin_count": 313,
+          "post_settle_sample_count": 628919,
+          "raw_differential_rms_v": 0.0001234578386250741,
+          "receiver_filtered_ac_rms_v": 4.928889195518274e-05,
+          "receiver_filtered_mean_v": -4.35049531059618e-06,
+          "receiver_filtered_rms_v": 4.948051818258573e-05,
+          "record_frequency_resolution_hz": 6360.11950671778
+        },
+        "mode": "zoh",
+        "noise_amplitude_extrapolation_factor": 33333.333333333336,
+        "seed": 104729,
+        "status": "pass",
+        "word": 8
+      },
+      {
+        "deck_sha256": "300d834bd64e0a39f9564de02fb0585b466a17087c68673765c0d675d5c686b0",
+        "elapsed_s": 500.9495983393863,
+        "measured_scaled_metrics": {
+          "maximum_absolute_residual_v": 4.603645775702603e-08,
+          "periodogram_band_rms_v": 3.8775442256038575e-09,
+          "periodogram_bin_count": 317,
+          "post_settle_sample_count": 637950,
+          "raw_differential_rms_v": 1.2322260694883067e-08,
+          "receiver_filtered_ac_rms_v": 4.9295359645510966e-09,
+          "receiver_filtered_mean_v": -4.36522914269543e-10,
+          "receiver_filtered_rms_v": 4.948825828465283e-09,
+          "record_frequency_resolution_hz": 6270.083862442887
+        },
+        "metrics": {
+          "maximum_absolute_residual_v": 0.0004603645775702603,
+          "periodogram_band_rms_v": 3.8775442256038574e-05,
+          "periodogram_bin_count": 317,
+          "post_settle_sample_count": 637950,
+          "raw_differential_rms_v": 0.00012322260694883067,
+          "receiver_filtered_ac_rms_v": 4.9295359645510965e-05,
+          "receiver_filtered_mean_v": -4.3652291426954295e-06,
+          "receiver_filtered_rms_v": 4.9488258284652825e-05,
+          "record_frequency_resolution_hz": 6270.083862442887
+        },
+        "mode": "zoh",
+        "noise_amplitude_extrapolation_factor": 10000.0,
+        "seed": 104729,
+        "status": "pass",
+        "word": 8
+      }
+    ],
+    "configuration": {
+      "mode": "zoh",
+      "oversample": 2,
+      "precondition_us": 20.0,
+      "production_scale": 1e-05,
+      "receiver_cutoff_hz": 2000000.0,
+      "scales": [
+        1e-05,
+        3e-05,
+        0.0001
+      ],
+      "seed": 104729,
+      "settle_us": 10.0,
+      "source_noise_band_hz": [
+        10000.0,
+        64000000.0
+      ],
+      "step_ns": 0.25,
+      "stop_us": 110.0,
+      "word": 8
+    },
+    "fit": {
+      "endpoint_extrapolated_delta_percent": -0.9180665716142067,
+      "extrapolated_noise_span_db": 0.08011054856968108,
+      "extrapolated_periodogram_band_rms_v": [
+        3.91347250849365e-05,
+        3.893840892448867e-05,
+        3.8775442256038574e-05
+      ],
+      "measured_rms_per_unit_scale_v": 3.879204210008356e-05,
+      "through_origin_r_squared": 0.9999949577117915
+    },
+    "gates": {
+      "all_scale_runs_numerically_valid": true,
+      "extrapolated_noise_span_no_more_than_0p25db": true,
+      "production_scale_is_in_qualified_sweep": true,
+      "through_origin_r_squared_at_least_0p999": true
+    }
+  },
+  "schema_version": 1,
+  "scope": "TT schematic complete 15-slice channel; pre-layout only",
+  "source_report_sha256": {
+    "channel": "3557e8de5717b26f363246b5a86cff5e57279d4760590bc22bd92cb580cef3a6",
+    "folding": "61ddfd93c3ed8409a123613fc5b5362062c09180c751453048cd2776f0e43190",
+    "scale": "ba8697461fde4ffa03640a289239f7ef9fdcd070bf10e408d403a82363fc0db7",
+    "switched": "b7f971f8ec6fac34a91693c4d825cd892272f1bba25e64d4dec8650c410935b1"
+  },
+  "status": "pass_by_crosschecked_transient_noise_equivalent",
+  "switched_noise": {
+    "configuration": {
+      "noise_scale": 1e-05,
+      "oversample": 2,
+      "precondition_us": 20.0,
+      "primary_mode": "zoh",
+      "primary_seeds": [
+        104729,
+        130363,
+        155921,
+        181081
+      ],
+      "receiver_cutoff_hz": 2000000.0,
+      "required_words": [
+        8,
+        21,
+        93,
+        106,
+        162,
+        191,
+        247,
+        192
+      ],
+      "reuse_completed": true,
+      "selected_words": [
+        8,
+        21,
+        93,
+        106,
+        162,
+        191,
+        247,
+        192
+      ],
+      "settle_us": 10.0,
+      "source_noise_band_hz": [
+        10000.0,
+        64000000.0
+      ],
+      "step_ns": 0.25,
+      "stop_us": 110.0
+    },
+    "coverage": {
+      "all_cases_numerically_valid": true,
+      "all_eight_words_with_at_least_four_primary_mode_seeds": true,
+      "noise_amplitude_scaling_is_independently_qualified": true,
+      "reused_baseline_count": 8,
+      "reused_noise_case_count": 4
+    },
+    "mode_summary": {
+      "zoh": {
+        "by_word": {
+          "106": {
+            "maximum_v": 5.041372385002652e-05,
+            "mean_periodogram_band_rms_v": 4.5410032038054834e-05,
+            "minimum_v": 3.922742355121605e-05,
+            "sample_standard_deviation_v": 4.973177470050118e-06,
+            "seed_count": 4
+          },
+          "162": {
+            "maximum_v": 4.2847186178972146e-05,
+            "mean_periodogram_band_rms_v": 3.8384608246427716e-05,
+            "minimum_v": 3.442414005366553e-05,
+            "sample_standard_deviation_v": 3.6101146328909326e-06,
+            "seed_count": 4
+          },
+          "191": {
+            "maximum_v": 4.406839548236323e-05,
+            "mean_periodogram_band_rms_v": 4.1039017272106005e-05,
+            "minimum_v": 3.492525964713316e-05,
+            "sample_standard_deviation_v": 4.179997100900899e-06,
+            "seed_count": 4
+          },
+          "192": {
+            "maximum_v": 5.0587544298548204e-05,
+            "mean_periodogram_band_rms_v": 4.7914829465661916e-05,
+            "minimum_v": 4.4890135980265566e-05,
+            "sample_standard_deviation_v": 2.4915803086874004e-06,
+            "seed_count": 4
+          },
+          "21": {
+            "maximum_v": 4.843797724395957e-05,
+            "mean_periodogram_band_rms_v": 4.542408866407462e-05,
+            "minimum_v": 4.094766236266936e-05,
+            "sample_standard_deviation_v": 3.2696006436796447e-06,
+            "seed_count": 4
+          },
+          "247": {
+            "maximum_v": 4.031733256997412e-05,
+            "mean_periodogram_band_rms_v": 3.8393919752551433e-05,
+            "minimum_v": 3.639234832974445e-05,
+            "sample_standard_deviation_v": 1.8895225000167617e-06,
+            "seed_count": 4
+          },
+          "8": {
+            "maximum_v": 4.236196166061641e-05,
+            "mean_periodogram_band_rms_v": 3.903865429333097e-05,
+            "minimum_v": 3.6689358702673095e-05,
+            "sample_standard_deviation_v": 2.4302172694071525e-06,
+            "seed_count": 4
+          },
+          "93": {
+            "maximum_v": 3.7675360249403104e-05,
+            "mean_periodogram_band_rms_v": 3.739314295081091e-05,
+            "minimum_v": 3.667430728212405e-05,
+            "sample_standard_deviation_v": 4.809514649601307e-07,
+            "seed_count": 4
+          }
+        },
+        "case_count": 32,
+        "mean_over_cases_v": 4.1624786585377304e-05,
+        "state_span_db": 2.1535595396035383
+      }
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "artifacts": {
+    "architecture": "v3/layout/channel_routing_architecture.json",
+    "matrix_gds": "build/v3/channel_architecture_feasibility/v3_channel_architecture_feasibility.gds",
+    "matrix_manifest": "build/v3/channel_architecture_feasibility/channel_matrix_placement.json",
+    "pair_gds": "build/v3/channel_architecture_guard_pair/v3_channel_architecture_guard_pair.gds",
+    "pair_spice": "build/v3/channel_architecture_guard_pair/v3_channel_architecture_guard_pair_flat.spice"
+  },
+  "checks": {
+    "adjacent_pair_magic_markers_zero": true,
+    "no_device_touches_both_channel_namespaces": true,
+    "no_non_ground_node_shared_between_channels": true,
+    "no_unowned_non_ground_signal_node": true,
+    "selected_architecture_geometry_pass": true,
+    "single_matrix_magic_markers_zero": true,
+    "two_exact_105_mos_channels": true
+  },
+  "device_count": 210,
+  "device_count_by_channel_namespace": {
+    "0": 105,
+    "1": 105
+  },
+  "geometry": {
+    "channel_pitch_um": 19.32,
+    "column_pitch_um": 6.96,
+    "projected_active_array_gap_um": 0.84
+  },
+  "mixed_owner_devices": [],
+  "next_gate": "exact one-row pilot with both M2 service corridors and all nine reserved row tracks",
+  "physical_markers": {
+    "adjacent_pair": {
+      "V3_CHANNEL_GUARD_PAIR_DRC_COUNT": 0,
+      "V3_CHANNEL_GUARD_PAIR_EXTRACTION_FEEDBACK_COUNT": 0,
+      "V3_CHANNEL_GUARD_PAIR_GDS_FEEDBACK_COUNT": 0
+    },
+    "single_matrix": {
+      "V3_CHANNEL_ARCHITECTURE_DRC_COUNT": 0,
+      "V3_CHANNEL_ARCHITECTURE_EXTRACTION_FEEDBACK_COUNT": 0,
+      "V3_CHANNEL_ARCHITECTURE_GDS_FEEDBACK_COUNT": 0
+    }
+  },
+  "schema_version": 1,
+  "scope": "selected 6.96 um equal-column-pitch matrix plus two exact copies at the real 19.32 um channel pitch; local unit topology, shared guards, DRC, extraction feedback, and channel-to-channel short audit",
+  "sha256": {
+    "architecture": "9a290c8833a93f7732f8e544bf1c8811e04c47d8ce89fa05652023245fcb9d22",
+    "checker": "a9a75f1702e2e4b0d509820d4a5b3f3b18ee972101129f2d34a2004d677bfa96",
+    "composer": "5fb8c769d16bca01424eca07a49e1992a661d6fe0377f7946b1827b5c560ad55",
+    "generator": "595484e29f5f37d361031dfdfce9cd5fa392d3fe9e9de05b8adb88e38bbd7c36",
+    "matrix_gds": "bd857580f0749b18e7a6720f6e8d87d88fef035ff23f83d90fac9603a01dd049",
+    "matrix_manifest": "88f2717afa218307090167007b625e43e593e26f4154dc7b786117a5cd3e45dd",
+    "matrix_markers": "e06bdcb062aac36026466191b3905ef00a84d5af940de99678a0df6bd3c286e6",
+    "pair_gds": "f8520ef1f67b6a93edc333de21dd8aaf515c0e2978030e2b5ea8faa867b74115",
+    "pair_markers": "91e4a27bc6ec27f815ac7813d3b66c9f64043785276c517236d52d3ea3f2a8ab",
+    "pair_spice": "892f29c9f541bbb7bacd3cfcb771d1322aca852ad4e820972df681a7334582de"
+  },
+  "shared_non_ground_nodes": [],
+  "status": "pass",
+  "unowned_non_ground_signal_nodes": []
+}

@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
-"""Generate and run the integrated beamformer PVT regression matrix."""
+"""Legacy V1 helper: run the historical two-channel PVT matrix."""
 
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import re
 import subprocess
 import sys
 from pathlib import Path
+
+try:
+    from simulation_provenance import ngspice_provenance
+except ModuleNotFoundError:  # Imported as tools.run_core_pvt by unit tests.
+    from tools.simulation_provenance import ngspice_provenance
 
 
 MEASURE_RE = re.compile(
@@ -26,7 +32,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def evaluate(
-    values: dict[str, float], null_db_min: float = 20.0
+    values: dict[str, float], null_db_min: float = 20.0, supply_v: float = 1.8
 ) -> tuple[dict[str, float], dict[str, bool]]:
     null_db = -20.0 * math.log10(max(values["null_rms"], 1e-30) / values["sum_rms"])
     sum_current = -values["sum_supply"]
@@ -35,6 +41,9 @@ def evaluate(
         "null_db": null_db,
         "sum_current_a": sum_current,
         "null_current_a": null_current,
+        "output_high_headroom_v": supply_v - max(
+            values["sum_cm"], values["null_cm"]
+        ),
     }
     checks = {
         "sum_rms": values["sum_rms"] > 1e-3,
@@ -42,7 +51,13 @@ def evaluate(
         # across the signoff envelope.  Nominal verification separately keeps
         # the deliberately stronger 40 dB implementation target.
         "null_db": null_db >= null_db_min,
-        "common_mode": 1.0 < min(values["sum_cm"], values["null_cm"]) and max(values["sum_cm"], values["null_cm"]) < 1.75,
+        # A fixed 1.75 V ceiling incorrectly rejects a safe output when the
+        # characterized supply is 1.98 V.  Require receiver-side low range
+        # plus explicit headroom from the actual supply instead.
+        "common_mode": (
+            1.0 < min(values["sum_cm"], values["null_cm"])
+            and derived["output_high_headroom_v"] >= 0.10
+        ),
         "supply_current": 0 < max(sum_current, null_current) < 1e-3,
         "mode_current_match": abs(sum_current / null_current - 1.0) < 0.10,
     }
@@ -53,7 +68,9 @@ def main() -> int:
     args = parse_args()
     root = Path(__file__).resolve().parents[1]
     template_path = root / "spice/sky130/beamformer_core.spice"
-    template = template_path.read_text(encoding="utf-8")
+    template_bytes = template_path.read_bytes()
+    template_sha256 = hashlib.sha256(template_bytes).hexdigest()
+    template = template_bytes.decode("utf-8")
     build_dir = root / "build/pvt"
     build_dir.mkdir(parents=True, exist_ok=True)
 
@@ -96,7 +113,7 @@ def main() -> int:
                         "error": f"ngspice={completed.returncode}, missing={missing}",
                     }
                 else:
-                    derived, checks = evaluate(values)
+                    derived, checks = evaluate(values, supply_v=supply)
                     result = {
                         "case": case,
                         "corner": corner,
@@ -112,6 +129,9 @@ def main() -> int:
                 print(f"{status} {case}", flush=True)
 
     report = {
+        **ngspice_provenance(args.ngspice),
+        "source": str(template_path.relative_to(root)),
+        "source_sha256": template_sha256,
         "matrix": "full" if args.full else "quick",
         "null_db_min_spec": 20.0,
         "case_count": len(results),

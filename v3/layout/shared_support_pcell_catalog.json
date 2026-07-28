@@ -1,0 +1,605 @@
+{
+  "cells": {
+    "XDECAP_MIM": {
+      "area_um2": 541.184,
+      "bbox_um": [
+        -12.08,
+        -11.2,
+        12.08,
+        11.2
+      ],
+      "gencell_anchor_offset_um": [
+        12.080000000000013,
+        11.2
+      ],
+      "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+      "height_um": 22.4,
+      "mag_sha256": "2013573dc1365de09f61a5c6c55428e6987c74cc5217d581c91cf17db30d69d0",
+      "parameters": {
+        "length_um": 22.0,
+        "model": "cap_mim_m3_1",
+        "role": "decap",
+        "width_um": 22.0
+      },
+      "ports": {
+        "C1": [
+          {
+            "layer": "mimcapcontact",
+            "point_um": [
+              -0.88,
+              0.0
+            ]
+          }
+        ],
+        "C2": [
+          {
+            "layer": "via3",
+            "point_um": [
+              11.82,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 24.16
+    },
+    "XINPUT_BIAS": {
+      "area_um2": 234.30239999999998,
+      "bbox_um": [
+        -1.535,
+        -38.16,
+        1.535,
+        38.16
+      ],
+      "gencell_anchor_offset_um": [
+        1.269999999999996,
+        37.895
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_KKLLRZ",
+      "height_um": 76.32,
+      "mag_sha256": "9e2eed85b1828bf5695bc8d1ab09d306008adeeea55ecaabef0638a6d0a164ba",
+      "parameters": {
+        "guard": 1,
+        "length_um": 70.5,
+        "model": "res_xhigh_po_1p41",
+        "role": "input_bias",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -37.895
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              37.155
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -37.155
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XOUTPUT_LOAD": {
+      "area_um2": 53.510099999999994,
+      "bbox_um": [
+        -1.535,
+        -8.715,
+        1.535,
+        8.715
+      ],
+      "gencell_anchor_offset_um": [
+        1.269999999999996,
+        8.45
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_WFQE74",
+      "height_um": 17.43,
+      "mag_sha256": "b346713ec8e8c1e73cb6a9d8e8b4429b46a72c52eccb5ee5177a5ee376e2824b",
+      "parameters": {
+        "guard": 1,
+        "length_um": 11.6117,
+        "model": "res_high_po_1p41",
+        "role": "output_load",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -8.45
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              7.71
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -7.71
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XTAIL_BIAS_RESISTOR": {
+      "area_um2": 155.956,
+      "bbox_um": [
+        -1.535,
+        -25.4,
+        1.535,
+        25.4
+      ],
+      "gencell_anchor_offset_um": [
+        1.2700000000000102,
+        25.135
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_HMPGGH",
+      "height_um": 50.8,
+      "mag_sha256": "5a6305c7c59f36a06ce79d8ac6dd9ca806035c70fae4730040a94fd1e913895b",
+      "parameters": {
+        "guard": 1,
+        "length_um": 44.9768,
+        "model": "res_high_po_1p41",
+        "role": "tail_bias",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -25.135
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              24.395
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -24.395
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_HIGH_UNIT_L11P75": {
+      "area_um2": 53.9399,
+      "bbox_um": [
+        -1.535,
+        -8.785,
+        1.535,
+        8.785
+      ],
+      "gencell_anchor_offset_um": [
+        1.2699999999999818,
+        8.52
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_MSR47S",
+      "height_um": 17.57,
+      "mag_sha256": "19422513739c99378c3e5c2f7f7c0dec7a8d20cbe1c856beebe720ad2d2ea263",
+      "parameters": {
+        "guard": 1,
+        "length_um": 11.75,
+        "model": "res_high_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -8.52
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              7.78
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -7.78
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_HIGH_UNIT_L23P5": {
+      "area_um2": 90.0124,
+      "bbox_um": [
+        -1.535,
+        -14.66,
+        1.535,
+        14.66
+      ],
+      "gencell_anchor_offset_um": [
+        1.2699999999999818,
+        14.395
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_S2QK2G",
+      "height_um": 29.32,
+      "mag_sha256": "b9d36313aa7f8bb5d2573d3a906f8fc1ce2f12d3882f710e0ff7caff87cd94fe",
+      "parameters": {
+        "guard": 1,
+        "length_um": 23.5,
+        "model": "res_high_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -14.395
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              13.655
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -13.655
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_HIGH_UNIT_L5P875": {
+      "area_um2": 35.919,
+      "bbox_um": [
+        -1.535,
+        -5.85,
+        1.535,
+        5.85
+      ],
+      "gencell_anchor_offset_um": [
+        1.2700000000000102,
+        5.585
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_JFEN6R",
+      "height_um": 11.7,
+      "mag_sha256": "2212bf935d3111dcb9c6b1a96e3103a64211388b8f44296aed5ef42aaac63551",
+      "parameters": {
+        "guard": 1,
+        "length_um": 5.875,
+        "model": "res_high_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -5.585
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              4.845
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -4.845
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_UNIT_SCALE_0P25": {
+      "area_um2": 35.919,
+      "bbox_um": [
+        -1.535,
+        -5.85,
+        1.535,
+        5.85
+      ],
+      "gencell_anchor_offset_um": [
+        1.2700000000000031,
+        5.585
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+      "height_um": 11.7,
+      "mag_sha256": "23965553f1f5677baceb124678480fdcbd87df3d7a66ece6290a43752cf12b75",
+      "parameters": {
+        "guard": 1,
+        "length_um": 5.875,
+        "model": "res_xhigh_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -5.585
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              4.845
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -4.845
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_UNIT_SCALE_0P5": {
+      "area_um2": 53.9399,
+      "bbox_um": [
+        -1.535,
+        -8.785,
+        1.535,
+        8.785
+      ],
+      "gencell_anchor_offset_um": [
+        1.2699999999999996,
+        8.52
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_9TQN96",
+      "height_um": 17.57,
+      "mag_sha256": "b9fa8c232a977c11b116d610bb44b9664250910afee1337dbb28305b03259f1a",
+      "parameters": {
+        "guard": 1,
+        "length_um": 11.75,
+        "model": "res_xhigh_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -8.52
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              7.78
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -7.78
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_UNIT_SCALE_1": {
+      "area_um2": 90.0124,
+      "bbox_um": [
+        -1.535,
+        -14.66,
+        1.535,
+        14.66
+      ],
+      "gencell_anchor_offset_um": [
+        1.27,
+        14.395
+      ],
+      "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_CMYV2H",
+      "height_um": 29.32,
+      "mag_sha256": "9ff65d917a8ffef67f7cabc8ccac219808d323695ca4b91d9fd9988a5bce73ae",
+      "parameters": {
+        "guard": 1,
+        "length_um": 23.5,
+        "model": "res_xhigh_po_1p41",
+        "role": "vcm_divider_unit",
+        "width_um": 1.41
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -14.395
+            ]
+          }
+        ],
+        "R1": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              13.655
+            ]
+          }
+        ],
+        "R2": [
+          {
+            "layer": "xpolycontact",
+            "point_um": [
+              0.0,
+              -13.655
+            ]
+          }
+        ]
+      },
+      "width_um": 3.07
+    },
+    "XVCM_VAR": {
+      "area_um2": 395.96590000000003,
+      "bbox_um": [
+        -10.055,
+        -9.845,
+        10.055,
+        9.845
+      ],
+      "gencell_anchor_offset_um": [
+        9.789999999999992,
+        9.58
+      ],
+      "generated_cell": "sky130_fd_pr__cap_var_lvt_88578Y",
+      "height_um": 19.69,
+      "mag_sha256": "424c34ad7f8c3abb5ee3cd5dfaf641e2f741623ca70ff43a1ea01984246ea38c",
+      "parameters": {
+        "guard": 1,
+        "length_um": 17.68,
+        "model": "cap_var_lvt",
+        "role": "optional_vcm_varactor",
+        "width_um": 17.68
+      },
+      "ports": {
+        "B": [
+          {
+            "layer": "psubdiffcont",
+            "point_um": [
+              0.0,
+              -9.58
+            ]
+          }
+        ],
+        "D": [
+          {
+            "layer": "nsubdiffcont",
+            "point_um": [
+              -9.18,
+              0.0
+            ]
+          }
+        ],
+        "G": [
+          {
+            "layer": "polycont",
+            "point_um": [
+              0.0,
+              9.115
+            ]
+          }
+        ],
+        "S": [
+          {
+            "layer": "nsubdiffcont",
+            "point_um": [
+              9.18,
+              0.0
+            ]
+          }
+        ]
+      },
+      "width_um": 20.11
+    }
+  },
+  "gates": {
+    "all_eleven_pcells_measured": true,
+    "all_required_terminals_measured": true,
+    "four_guarded_input_resistors_fit_pitch_gaps_by_width": true,
+    "output_load_matches_v2_proven_geometry": true,
+    "smallest_vcm_unit_is_legal_and_nonzero": true
+  },
+  "next_gate": "select the VCM divider scale electrically, then use only its measured PCell in the routed support pilot",
+  "provenance": {
+    "coordinate_conversion": "Magic internal coordinates divided by 200 give micrometres",
+    "generator": "v3/layout/measure_shared_support_pcells.tcl",
+    "generator_sha256": "0870b12d589d1485ad7d196c242cc9f46e9b22020c9b5b5530a9b814ceaa77d4",
+    "magic_version": "8.3.676",
+    "parent_mag_sha256": "11920689d8fb63655cb2a40b634f03d7fa26ffb91ccc590b714aa736ba00fde6",
+    "sky130_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005"
+  },
+  "schema_version": 1,
+  "scope": "measured PCell dimensions only; terminal access, placement, routing, DRC, extraction, and GDS remain separate gates",
+  "status": "pass"
+}

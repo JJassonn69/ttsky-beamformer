@@ -1,0 +1,178 @@
+{
+  "candidates": [
+    {
+      "area_um2": 121.099,
+      "aspect_ratio": 1.187129,
+      "fits_support_zone_with_route_margin": true,
+      "height_um": 10.1,
+      "name": "XREF_8X8",
+      "required_envelope_um": [
+        19.99,
+        18.1
+      ],
+      "selection_score": 122.911888,
+      "width_um": 11.99
+    },
+    {
+      "area_um2": 123.623,
+      "aspect_ratio": 2.650073,
+      "fits_support_zone_with_route_margin": true,
+      "height_um": 18.1,
+      "name": "XREF_4X16",
+      "required_envelope_um": [
+        14.83,
+        26.1
+      ],
+      "selection_score": 139.94196,
+      "width_um": 6.83
+    },
+    {
+      "area_um2": 136.091,
+      "aspect_ratio": 3.657377,
+      "fits_support_zone_with_route_margin": true,
+      "height_um": 6.1,
+      "name": "XREF_16X4",
+      "required_envelope_um": [
+        30.31,
+        14.1
+      ],
+      "selection_score": 165.022608,
+      "width_um": 22.31
+    },
+    {
+      "area_um2": 176.095,
+      "aspect_ratio": 10.47561,
+      "fits_support_zone_with_route_margin": true,
+      "height_um": 4.1,
+      "name": "XREF_32X2",
+      "required_envelope_um": [
+        50.95,
+        12.1
+      ],
+      "selection_score": 309.5836,
+      "width_um": 42.95
+    }
+  ],
+  "gate": {
+    "all_candidates_preserve_64um_aggregate_width": true,
+    "selected_candidate_fits_reserved_support_zone": true,
+    "selected_candidate_has_guard": true,
+    "selected_candidate_is_measured_not_estimated": true
+  },
+  "measured_pcells": {
+    "XREF_16X4": {
+      "area_um2": 136.09099999999998,
+      "bbox_um": [
+        -11.155,
+        -3.05,
+        11.155,
+        3.05
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_66BXLB",
+      "height_um": 6.1,
+      "mag_sha256": "bb31269a6cb9c4195eff116ba46736f46a154aa794a8b056349fabd4a039abb4",
+      "parameters": {
+        "aggregate_width_um": 64.0,
+        "finger_width_um": 4.0,
+        "fingers": 16,
+        "guard": 1,
+        "length_um": 1.0
+      },
+      "width_um": 22.31
+    },
+    "XREF_32X2": {
+      "area_um2": 176.095,
+      "bbox_um": [
+        -21.475,
+        -2.05,
+        21.475,
+        2.05
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_WAH25E",
+      "height_um": 4.1,
+      "mag_sha256": "0ef9fafb1d14af98ab4aca84ca78b5bf6362be2b6747e0b9c28255c53a0e56ac",
+      "parameters": {
+        "aggregate_width_um": 64.0,
+        "finger_width_um": 2.0,
+        "fingers": 32,
+        "guard": 1,
+        "length_um": 1.0
+      },
+      "width_um": 42.95
+    },
+    "XREF_4X16": {
+      "area_um2": 123.623,
+      "bbox_um": [
+        -3.415,
+        -9.05,
+        3.415,
+        9.05
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_AGXXS3",
+      "height_um": 18.1,
+      "mag_sha256": "b35cf71868de299000bba59aaca23ca6290c26fedc69ef45dcfba50c2aaa792f",
+      "parameters": {
+        "aggregate_width_um": 64.0,
+        "finger_width_um": 16.0,
+        "fingers": 4,
+        "guard": 1,
+        "length_um": 1.0
+      },
+      "width_um": 6.83
+    },
+    "XREF_8X8": {
+      "area_um2": 121.099,
+      "bbox_um": [
+        -5.995,
+        -5.05,
+        5.995,
+        5.05
+      ],
+      "generated_cell": "sky130_fd_pr__nfet_01v8_9BFFDH",
+      "height_um": 10.1,
+      "mag_sha256": "0a138e4df1bbe220426c057bf1ec9e802049520650f9df5e4319e694c0758f64",
+      "parameters": {
+        "aggregate_width_um": 64.0,
+        "finger_width_um": 8.0,
+        "fingers": 8,
+        "guard": 1,
+        "length_um": 1.0
+      },
+      "width_um": 11.99
+    }
+  },
+  "next_checks": [
+    "draw and extract the diode-connected gate/drain strap",
+    "add a dedicated substrate-guard connection and local decoupling",
+    "match the four channel bias branches from one named star point",
+    "run DRC and LVS before promoting this reservation to placement"
+  ],
+  "placement_orientation": "R0 provisional; orient after measured terminal-access study",
+  "provenance": {
+    "generator": "v3/layout/measure_support_pcells.tcl",
+    "generator_sha256": "1e4e2d8a5cfcc4a14bc28bb8802117b516e7188a50e1f3dd965e7bb555cfd6d3",
+    "magic_version": "8.3.676",
+    "parent_mag_sha256": "bb7a022c143ebff5d638e79630cbe0fc4ba1d70742cc45f45232a46795a5688f",
+    "sky130_pdk_commit": "0536d02d875c8f67dd7cca3902ac457e62f20005"
+  },
+  "schema_version": 1,
+  "scope": "measured shared-reference folding and floorplan reservation; no diode strap, placement database, DRC, LVS, extraction, or GDS",
+  "selected_candidate": "XREF_8X8",
+  "selected_placement_bbox_um": [
+    188.005,
+    42.95,
+    199.995,
+    53.05
+  ],
+  "selected_placement_center_um": [
+    194.0,
+    48.0
+  ],
+  "status": "pass",
+  "support_zone_bbox_um": [
+    181.0,
+    20.0,
+    320.0,
+    165.0
+  ]
+}

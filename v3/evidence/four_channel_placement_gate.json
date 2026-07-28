@@ -1,0 +1,166 @@
+{
+  "checks": {
+    "all_unrouted_signal_interfaces_remain_isolated": true,
+    "direct_gds_precheck_zero": true,
+    "equal_non_dummy_device_population_per_channel": true,
+    "expected_model_population": true,
+    "four_complete_channel_device_sets": true,
+    "gds_matches_precheck": true,
+    "magic_drc_zero": true,
+    "manifest_uses_exact_frozen_macro": true,
+    "no_device_bridges_two_channel_namespaces": true,
+    "no_unexpected_unprefixed_signal_nodes": true,
+    "only_nine_hierarchical_dummy_feedback_markers": true,
+    "thirty_six_grounded_dummies_share_only_substrate": true
+  },
+  "cross_channel_device_rows": [],
+  "device_count": 1292,
+  "gds": "build/v3/four_channel_placement/v3_four_channel_placement.gds",
+  "gds_sha256": "16908591b0896d5bc9dbe0eed99eec564c5f538a650e8e85d4a6db04078c8f33",
+  "global_grounded_dummy_rows": 36,
+  "interface_nodes": {
+    "VPWR": [
+      "v3_channel_selector_late_promotion_0/VPWR",
+      "v3_channel_selector_late_promotion_1/VPWR",
+      "v3_channel_selector_late_promotion_2/VPWR",
+      "v3_channel_selector_late_promotion_3/VPWR"
+    ],
+    "channel_enable": [
+      "v3_channel_selector_late_promotion_0/channel_enable",
+      "v3_channel_selector_late_promotion_1/channel_enable",
+      "v3_channel_selector_late_promotion_2/channel_enable",
+      "v3_channel_selector_late_promotion_3/channel_enable"
+    ],
+    "element_input": [
+      "v3_channel_selector_late_promotion_0/element_input",
+      "v3_channel_selector_late_promotion_1/element_input",
+      "v3_channel_selector_late_promotion_2/element_input",
+      "v3_channel_selector_late_promotion_3/element_input"
+    ],
+    "group0_bit0": [
+      "v3_channel_selector_late_promotion_0/group0_bit0",
+      "v3_channel_selector_late_promotion_1/group0_bit0",
+      "v3_channel_selector_late_promotion_2/group0_bit0",
+      "v3_channel_selector_late_promotion_3/group0_bit0"
+    ],
+    "group0_bit1": [
+      "v3_channel_selector_late_promotion_0/group0_bit1",
+      "v3_channel_selector_late_promotion_1/group0_bit1",
+      "v3_channel_selector_late_promotion_2/group0_bit1",
+      "v3_channel_selector_late_promotion_3/group0_bit1"
+    ],
+    "group1_bit0": [
+      "v3_channel_selector_late_promotion_0/group1_bit0",
+      "v3_channel_selector_late_promotion_1/group1_bit0",
+      "v3_channel_selector_late_promotion_2/group1_bit0",
+      "v3_channel_selector_late_promotion_3/group1_bit0"
+    ],
+    "group1_bit1": [
+      "v3_channel_selector_late_promotion_0/group1_bit1",
+      "v3_channel_selector_late_promotion_1/group1_bit1",
+      "v3_channel_selector_late_promotion_2/group1_bit1",
+      "v3_channel_selector_late_promotion_3/group1_bit1"
+    ],
+    "group2_bit0": [
+      "v3_channel_selector_late_promotion_0/group2_bit0",
+      "v3_channel_selector_late_promotion_1/group2_bit0",
+      "v3_channel_selector_late_promotion_2/group2_bit0",
+      "v3_channel_selector_late_promotion_3/group2_bit0"
+    ],
+    "group2_bit1": [
+      "v3_channel_selector_late_promotion_0/group2_bit1",
+      "v3_channel_selector_late_promotion_1/group2_bit1",
+      "v3_channel_selector_late_promotion_2/group2_bit1",
+      "v3_channel_selector_late_promotion_3/group2_bit1"
+    ],
+    "group3_bit0": [
+      "v3_channel_selector_late_promotion_0/group3_bit0",
+      "v3_channel_selector_late_promotion_1/group3_bit0",
+      "v3_channel_selector_late_promotion_2/group3_bit0",
+      "v3_channel_selector_late_promotion_3/group3_bit0"
+    ],
+    "group3_bit1": [
+      "v3_channel_selector_late_promotion_0/group3_bit1",
+      "v3_channel_selector_late_promotion_1/group3_bit1",
+      "v3_channel_selector_late_promotion_2/group3_bit1",
+      "v3_channel_selector_late_promotion_3/group3_bit1"
+    ],
+    "mixers_blank": [
+      "v3_channel_selector_late_promotion_0/mixers_blank",
+      "v3_channel_selector_late_promotion_1/mixers_blank",
+      "v3_channel_selector_late_promotion_2/mixers_blank",
+      "v3_channel_selector_late_promotion_3/mixers_blank"
+    ],
+    "phase_0": [
+      "v3_channel_selector_late_promotion_0/phase_0",
+      "v3_channel_selector_late_promotion_1/phase_0",
+      "v3_channel_selector_late_promotion_2/phase_0",
+      "v3_channel_selector_late_promotion_3/phase_0"
+    ],
+    "phase_180": [
+      "v3_channel_selector_late_promotion_0/phase_180",
+      "v3_channel_selector_late_promotion_1/phase_180",
+      "v3_channel_selector_late_promotion_2/phase_180",
+      "v3_channel_selector_late_promotion_3/phase_180"
+    ],
+    "phase_270": [
+      "v3_channel_selector_late_promotion_0/phase_270",
+      "v3_channel_selector_late_promotion_1/phase_270",
+      "v3_channel_selector_late_promotion_2/phase_270",
+      "v3_channel_selector_late_promotion_3/phase_270"
+    ],
+    "phase_90": [
+      "v3_channel_selector_late_promotion_0/phase_90",
+      "v3_channel_selector_late_promotion_1/phase_90",
+      "v3_channel_selector_late_promotion_2/phase_90",
+      "v3_channel_selector_late_promotion_3/phase_90"
+    ],
+    "ref": [
+      "v3_channel_selector_late_promotion_0/ref",
+      "v3_channel_selector_late_promotion_1/ref",
+      "v3_channel_selector_late_promotion_2/ref",
+      "v3_channel_selector_late_promotion_3/ref"
+    ],
+    "row_outn": [
+      "v3_channel_selector_late_promotion_0/row_outn",
+      "v3_channel_selector_late_promotion_1/row_outn",
+      "v3_channel_selector_late_promotion_2/row_outn",
+      "v3_channel_selector_late_promotion_3/row_outn"
+    ],
+    "row_outp": [
+      "v3_channel_selector_late_promotion_0/row_outp",
+      "v3_channel_selector_late_promotion_1/row_outp",
+      "v3_channel_selector_late_promotion_2/row_outp",
+      "v3_channel_selector_late_promotion_3/row_outp"
+    ],
+    "vbias": [
+      "v3_channel_selector_late_promotion_0/vbias",
+      "v3_channel_selector_late_promotion_1/vbias",
+      "v3_channel_selector_late_promotion_2/vbias",
+      "v3_channel_selector_late_promotion_3/vbias"
+    ]
+  },
+  "models": {
+    "sky130_fd_pr__nfet_01v8": 872,
+    "sky130_fd_pr__pfet_01v8_hvt": 416,
+    "sky130_fd_pr__res_xhigh_po_0p35": 4
+  },
+  "next_gate": "reserve and close the differential output collector before phase, bias, power, input, or control routing",
+  "non_dummy_device_rows_per_channel": {
+    "0": 314,
+    "1": 314,
+    "2": 314,
+    "3": 314
+  },
+  "schema_version": 1,
+  "scope": "four immutable R0 channel copies: exact abutment geometry, replicated devices, and pre-routing signal isolation",
+  "sha256": {
+    "auditor": "a9d1bff86fb03720f6f32c1c7681a6bff33df9068dfa00f4beb160a2d6f9c1a6",
+    "flat_spice": "fe08f99f5e259a9a36a09b9a171ca9b6d9ff7fc17d265fd4fc008cf96daa7b14",
+    "magic_log": "f46d50cfd35d549030d8dab5474c57053a89e1327505d224d0c97c2cc2f0e81c",
+    "manifest": "6cdc897b9e84d7c3e3b79cda27504f9a63d4d9b0adebb8c00dc6c8fddf991e40",
+    "precheck": "bcda204db1d6ae055b9a76c3d878774f441538982c4d5290af5983c96c6ed188"
+  },
+  "status": "pass",
+  "unexpected_unprefixed_signal_nodes": []
+}

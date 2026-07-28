@@ -1,0 +1,164 @@
+{
+  "blocks": {
+    "tail_bias": {
+      "bbox_um": [
+        188.06,
+        29.6,
+        268.08,
+        105.345
+      ],
+      "drc_marker": "V3_TAIL_BIAS_SUPPORT_BLOCK_DRC_COUNT",
+      "extraction_marker": "V3_TAIL_BIAS_SUPPORT_BLOCK_EXTRACTION_FEEDBACK_COUNT",
+      "gds": "build/v3/tail_bias_support_block/v3_tail_bias_support_block.gds",
+      "gds_sha256": "aee2c7fd617e982e2783c0c9051e10c9b694ce7c455eaa4e1b0c8d00c910ba6e",
+      "magic_log": "build/v3/tail_bias_support_block/magic_build.log",
+      "magic_log_sha256": "ed4a0a0cedf85ff9b29e1bdffa2519dba010a528c11c9941a5a58eb101bfba33",
+      "orientation": "R0",
+      "precheck": "build/v3/tail_bias_support_block/precheck_summary.json",
+      "precheck_sha256": "47849178d3f697afd8e0aee38ab3db98a814b3c2baed13013b2c3e055f6ee9c8",
+      "signal": "vbias",
+      "signal_root_um": [
+        194.0,
+        52.2
+      ],
+      "top_cell": "v3_tail_bias_support_block",
+      "translation_um": [
+        0.0,
+        0.0
+      ]
+    },
+    "vcm": {
+      "bbox_um": [
+        15.0,
+        4.6,
+        53.25,
+        141.795
+      ],
+      "drc_marker": "V3_VCM_SUPPORT_BLOCK_DRC_COUNT",
+      "extraction_marker": "V3_VCM_SUPPORT_BLOCK_EXTRACTION_FEEDBACK_COUNT",
+      "gds": "build/v3/vcm_support_block/v3_vcm_support_block.gds",
+      "gds_sha256": "a95a12d4ba384950829f521877449583c60923acc83af76d4e3183c06aaab0af",
+      "magic_log": "build/v3/vcm_support_block/magic_build.log",
+      "magic_log_sha256": "60dd4d2b9127d25913f89eeb6ff1c6d978877e1b3234577a2ad60dec9563e6ca",
+      "orientation": "R0",
+      "precheck": "build/v3/vcm_support_block/precheck_summary.json",
+      "precheck_sha256": "c5cfb684b34d6cfc6f87df039e60a06f7046eac0f5deb530e370e5e52ffcd19a",
+      "signal": "ref",
+      "signal_root_um": [
+        53.0,
+        90.0
+      ],
+      "top_cell": "v3_vcm_support_block",
+      "translation_um": [
+        0.0,
+        0.0
+      ]
+    }
+  },
+  "common_routes": {
+    "ref": [
+      {
+        "from": [
+          125.68,
+          161.2
+        ],
+        "layer": "metal3",
+        "net": "ref",
+        "to": [
+          53.0,
+          161.2
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          53.0,
+          161.2
+        ],
+        "layer": "metal3",
+        "net": "ref",
+        "to": [
+          53.0,
+          90.0
+        ],
+        "width_um": 0.5
+      }
+    ],
+    "vbias": [
+      {
+        "from": [
+          123.98,
+          159.0
+        ],
+        "layer": "metal3",
+        "net": "vbias",
+        "to": [
+          194.0,
+          159.0
+        ],
+        "width_um": 0.5
+      },
+      {
+        "from": [
+          194.0,
+          159.0
+        ],
+        "layer": "metal3",
+        "net": "vbias",
+        "to": [
+          194.0,
+          52.2
+        ],
+        "width_um": 0.5
+      }
+    ]
+  },
+  "constraints": {
+    "all_common_route_ends_are_named_roots": true,
+    "blocks_are_exact_hash_bound": true,
+    "floating_stubs_allowed": false,
+    "frozen_source_geometry_modified": false,
+    "gds_timestamps_canonicalized": true,
+    "maximum_direction_reversals": 0,
+    "orphan_vias_allowed": false
+  },
+  "provenance": {
+    "composer": "v3/tools/compose_four_channel_shared_support_integration.py",
+    "composer_sha256": "b70a730acb758b9c42ef58d3c589640fb7f82db99c4bd22cbbef4762bb74d094",
+    "generator": "v3/tools/build_four_channel_shared_support_integration.py",
+    "generator_sha256": "4c658c167705c215d7e5cf659e3d1b2df592711eb2c26dbfea513e6914e9e2d2"
+  },
+  "routing_decisions": {
+    "no_route_crosses_a_frozen_channel": true,
+    "ref": "M3 west from the balanced root, then down outside the channel-array boundary",
+    "support_placement": "validated support blocks remain at their original absolute coordinates in empty edge regions",
+    "vbias": "M3 east from the balanced root, then down outside the channel-array boundary"
+  },
+  "schema_version": 1,
+  "source": {
+    "gate": "v3/evidence/four_channel_bias_reference_distribution_gate.json",
+    "gate_sha256": "c636de21766acf3b9b48e6feb240efa5e416cb7be3322236ccb7fb8610cdba8d",
+    "gds": "build/v3/four_channel_bias_reference_distribution/v3_four_channel_bias_reference_distribution.gds",
+    "gds_sha256": "a36cfa7b226d16bfb5384e188c552626d316d472c47a765544534693477b3e35",
+    "top_cell": "v3_four_channel_bias_reference_distribution"
+  },
+  "status": "integration pilot; exact GDS checks pending",
+  "top_cell": "v3_four_channel_shared_support_integration",
+  "tree_roots_um": {
+    "ref": [
+      125.68,
+      161.2
+    ],
+    "vbias": [
+      123.98,
+      159.0
+    ]
+  },
+  "units": "um",
+  "via3_points_um": [
+    [
+      53.0,
+      90.0
+    ]
+  ]
+}

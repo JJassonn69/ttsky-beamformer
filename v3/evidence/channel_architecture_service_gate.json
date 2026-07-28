@@ -1,0 +1,67 @@
+{
+  "checks": {
+    "all_fifteen_service_topologies_exact": true,
+    "binary_group_population_exact": true,
+    "exactly_one_hundred_five_nmos": true,
+    "magic_and_export_markers_zero": true,
+    "pinned_direct_gds_precheck_pass": true,
+    "precheck_matches_exact_gds": true
+  },
+  "device_count": 105,
+  "gds": "build/v3/channel_architecture_service/v3_channel_architecture_service.gds",
+  "gds_sha256": "7a93535e2773481d3fb8d5ede009cb6d161c7ec4b85b76b3047675e3dba8cd00",
+  "group_counts": {
+    "1": 1,
+    "2": 2,
+    "4": 4,
+    "8": 8
+  },
+  "next_gate": "route all eight group phase nets against this exact service-skeleton GDS obstacle map",
+  "physical_markers": {
+    "V3_CHANNEL_ARCHITECTURE_SERVICE_DRC_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_SERVICE_EXTRACTION_FEEDBACK_COUNT": 0,
+    "V3_CHANNEL_ARCHITECTURE_SERVICE_GDS_FEEDBACK_COUNT": 0
+  },
+  "schema_version": 1,
+  "scope": "complete exact 15-unit channel with elevated row grounds, shared sig/ref/vbias spines, differential output spines, local LO merges, and pinned direct-GDS decks; global group phase trees absent",
+  "sha256": {
+    "architecture": "89f24513ba23efffe7bc48f7622b0695b786aa89d35c4fd2bb2651e1150f6624",
+    "architecture_planner": "66cdb523ef6c415ee1c16ebe8ad7141d8dce90a1da2d268e0972b13945905816",
+    "checker": "453324ed284ef17d343ca0bf9a3028df07b7aa0437bf06568e8b29b573548a14",
+    "matrix": "88f2717afa218307090167007b625e43e593e26f4154dc7b786117a5cd3e45dd",
+    "matrix_generator": "f3444eee90b078809f22d2a13ce691d7902164ac0215bd80b178b688851d5b9b",
+    "physical_markers": "a717f6405b25d85f6e3106e0ce958e82f6c6a7c6ae9c7bb6dca8bd526abf9478",
+    "precheck": "8aa816a3470a234942309bc62f4f32c63c994d444e011b9128bc3ad06d014f8e",
+    "service_generator": "44a91f202ba4589cf241b33ed858662aafe3dd919c92b8c8d8091e4f8a76d995",
+    "spice": "7cc0d7305e2e8fa83ba0866eaa5afaecd74fe22d4391ad1754647e9a0aef7227",
+    "unit_manifest": "01c411a8579c5f7ae0fa046ebb3b2e60b32557ee42afcb699d8ea12a7a597b9d"
+  },
+  "stale_evidence_policy": "promotion requires regeneration after any hashed source or physical artifact changes",
+  "status": "pass",
+  "topology": {
+    "device_classes": {
+      "gm": 30,
+      "switch": 60,
+      "tail": 15
+    },
+    "local_phase_gate_counts": {
+      "u00": 4,
+      "u01": 4,
+      "u02": 4,
+      "u03": 4,
+      "u04": 4,
+      "u05": 4,
+      "u06": 4,
+      "u07": 4,
+      "u08": 4,
+      "u09": 4,
+      "u10": 4,
+      "u11": 4,
+      "u12": 4,
+      "u13": 4,
+      "u14": 4
+    },
+    "unit_count": 15
+  },
+  "topology_errors": []
+}

@@ -1,0 +1,144 @@
+{
+  "checks": {
+    "all_1315_devices_preserved": true,
+    "base_views_are_resistance_free": true,
+    "capacitance_present_both_views": true,
+    "compensation_mim_reaches_p_only": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "estimated_5mhz_differential_phase_error_below_0p1deg": true,
+    "estimated_output_poles_above_100mhz": true,
+    "estimated_tau_mismatch_below_1_percent": true,
+    "exactly_120_mixers_and_one_load_per_output": true,
+    "exactly_36_flattened_qualified_dummy_notices_both_views": true,
+    "magic_drc_zero_both_views": true,
+    "magic_outputs_complete": true,
+    "maximum_route_resistance_mismatch_below_1_percent": true,
+    "mean_route_resistance_mismatch_below_1_percent": true,
+    "minimum_route_resistance_mismatch_below_1_percent": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true,
+    "topology_gate_passes_for_exact_gds": true,
+    "total_effective_capacitance_mismatch_below_1_percent": true
+  },
+  "differential_metrics": {
+    "estimated_5mhz_differential_gain_error_db": 1.5916863631842623e-05,
+    "estimated_5mhz_differential_phase_error_deg": 0.0031511383407289983,
+    "estimated_tau_mismatch_percent_typical": 0.1652450153152717,
+    "maximum_route_resistance_mismatch_percent": 0.265100161222992,
+    "mean_route_resistance_mismatch_percent": 0.3333675328412753,
+    "minimum_route_resistance_mismatch_percent": 0.3763144725673472,
+    "total_effective_capacitance_mismatch_percent_typical": 0.18523949130592127
+  },
+  "gds": "build/v3/four_channel_output_load_integration/v3_four_channel_output_load_integration.gds",
+  "gds_sha256": "16c045e05f05168008237a1179d9b89af0c5cbc1120ef431507e42f1786f52f9",
+  "model_assumptions": {
+    "m3_dimension_adjustment_um": -0.025,
+    "note": "geometric RC is extracted at the installed PDK nominal deck; final powered-top PVT transient/noise remains a later gate",
+    "output_load_ohm": 2910.0,
+    "signal_frequency_hz": 5000000.0,
+    "typical_mim_area_coefficient_ff_per_um2": 2.0,
+    "typical_mim_perimeter_coefficient_ff_per_um": 0.19
+  },
+  "next_gate": "freeze this output stage, then close shared power, static control, and four analog-input pad escapes before powered-top PVT/noise simulation",
+  "schema_version": 1,
+  "scope": "both complete pad-to-120-mixer output networks with distributed conductor R/C and intentional P-side MIM compensation",
+  "sha256": {
+    "auditor": "d26f11ba497d2ad5e6524301a3a6287477df093aba16e4a70a6a24cd203e19f1",
+    "extractor": "84fd68b38921219220917952d1c2b661aca47e3fc6ece64cde187cb9051245eb",
+    "magic_log": "b21de420f27ce938268da8404de0d66d2303eb0a2c605829f27507e2022032bd",
+    "manifest": "b1d72e041008f30c42fa84c42b3a8ebe88950cf0559ba9def7c6e37530ea9387",
+    "precheck_summary": "f7afad4ffe8e88d9c66a0695af8ee6df5c30162e76a929612a129236f57ccb2f",
+    "topology_gate": "e98a24b9574504c9bc8806665a12e559e529a51ce7f00b5891291f42cd3007fe"
+  },
+  "status": "pass",
+  "uncompensated_baseline": {
+    "mismatch_percent": 12.614393,
+    "n_extracted_capacitance_ff": 342.11402,
+    "p_extracted_capacitance_ff": 301.51883,
+    "status": "rejected and replaced by the hash-bound 4.20 um P-side MIM"
+  },
+  "unexpected_magic_warnings": [],
+  "views": {
+    "n": {
+      "base": {
+        "capacitors": 9873,
+        "devices": 1315,
+        "resistors": 0
+      },
+      "compensation_mim_terminal_count": 0,
+      "connected_resistor_nodes": 242,
+      "distributed_rc": {
+        "capacitors": 6391,
+        "devices": 1315,
+        "resistors": 30199
+      },
+      "estimated_5mhz_gain_loss_db": 0.00481085759902725,
+      "estimated_5mhz_phase_lag_deg": 1.906784603611906,
+      "estimated_load_plus_mean_route_tau_ns": 1.0597160333671125,
+      "estimated_output_pole_mhz": 150.1864066227259,
+      "extracted_external_capacitance_ff": 342.28781000000004,
+      "intentional_mim_capacitance_ff_typical": 0.0,
+      "maximum_pad_to_mixer_resistance_ohm": 198.68990300001298,
+      "mean_pad_to_mixer_resistance_ohm": 185.9794722666646,
+      "minimum_pad_to_mixer_resistance_ohm": 173.4069700000089,
+      "mixer_terminal_count": 120,
+      "output_load_terminal_count": 1,
+      "root_candidates": [
+        "a_10991_23023#"
+      ],
+      "root_coordinate_internal": [
+        11132,
+        100
+      ],
+      "root_node": "a_10991_23023#",
+      "sha256": {
+        "base_spice": "c167e0a552cbabfe4b9badbabe2ddbdb990c9edbc065e7b50f3c794e521bef70",
+        "distributed_rc_spice": "a0a9f0b1b61c653fed433a2dbd8b8790acd54761d679490b704e381ad0f5225e",
+        "resistance_annotation": "1db705750d3fd2bf8130da1e28418ac3707240db95e8991849ea87fcb25039b3"
+      },
+      "total_effective_capacitance_ff_typical": 342.28781000000004,
+      "within_net_resistance_spread_ohm": 25.28293300000408
+    },
+    "p": {
+      "base": {
+        "capacitors": 9873,
+        "devices": 1315,
+        "resistors": 0
+      },
+      "compensation_mim_terminal_count": 1,
+      "connected_resistor_nodes": 244,
+      "distributed_rc": {
+        "capacitors": 6386,
+        "devices": 1315,
+        "resistors": 30190
+      },
+      "estimated_5mhz_gain_loss_db": 0.004826774462659092,
+      "estimated_5mhz_phase_lag_deg": 1.909935741952635,
+      "estimated_load_plus_mean_route_tau_ns": 1.0614686093109418,
+      "estimated_output_pole_mhz": 149.93843595168738,
+      "extracted_external_capacitance_ff": 304.88820000000004,
+      "intentional_mim_capacitance_ff_typical": 38.03425,
+      "maximum_pad_to_mixer_resistance_ohm": 198.16387300001517,
+      "mean_pad_to_mixer_resistance_ohm": 185.360508799997,
+      "minimum_pad_to_mixer_resistance_ohm": 172.75563999998548,
+      "mixer_terminal_count": 120,
+      "output_load_terminal_count": 1,
+      "root_candidates": [
+        "a_14855_23023#"
+      ],
+      "root_coordinate_internal": [
+        14996,
+        100
+      ],
+      "root_node": "a_14855_23023#",
+      "sha256": {
+        "base_spice": "115239c8ac8dfcb522f8d17f217f6ffcad55cc901098b0e5077feceea0c360dd",
+        "distributed_rc_spice": "b0965c54e6f4ce10c89860bb3419614f5cd8fe809402c5b8e43fbc56689db92c",
+        "resistance_annotation": "55f033e1c299fb6d4a861844d3da009985b28127fccaad9532be6b8556d6c358"
+      },
+      "total_effective_capacitance_ff_typical": 342.92245,
+      "within_net_resistance_spread_ohm": 25.408233000029696
+    }
+  }
+}

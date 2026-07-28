@@ -1,0 +1,60 @@
+{
+  "checks": {
+    "beol": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_beol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/analog_input_escapes/precheck/precheck_beol.xml",
+      "report_sha256": "1dfe1c1f637ccf72d51d8aa6b0dad764c316cae27584de0b30c60d5173583e2e"
+    },
+    "feol": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_feol.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/analog_input_escapes/precheck/precheck_feol.xml",
+      "report_sha256": "b7a948f10294cb80d737c4892c0742f68ef88a982d773fe59347ecaf266a8bf4"
+    },
+    "offgrid": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_offgrid.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/analog_input_escapes/precheck/precheck_offgrid.xml",
+      "report_sha256": "bd7a7b2c6fe58235e43cf9f9b4d36279e4f5e34e3bd8c455198443e276974aa5"
+    },
+    "pin_purpose_overlap": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_pin_purpose_overlap.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/analog_input_escapes/precheck/precheck_pin_purpose_overlap.xml",
+      "report_sha256": "cc1214e4e9222bf1d7132d9fa50066c5dd60db4e747237311753099a91219aa0"
+    },
+    "project_flat_rules": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_flat_rules.log",
+      "markers": 0,
+      "process_exit_code": 0
+    },
+    "zero_area": {
+      "log": "build/v3/analog_input_escapes/precheck/precheck_zero_area.log",
+      "markers": 0,
+      "process_exit_code": 0,
+      "report": "build/v3/analog_input_escapes/precheck/precheck_zero_area.xml",
+      "report_sha256": "77355bdd1e6e37f627fa2d2357753cd076ca2a8a6d35545e3d4de7bce23c50ca"
+    }
+  },
+  "deferred_until_integrated_top": [
+    "top-module and project-boundary contract",
+    "LEF/template pin equivalence and analog-pin adjacency",
+    "power-pin and Verilog syntax contract",
+    "forbidden/invalid-layer and unique-top checks in the packaged artifact",
+    "urpm-to-nwell check and full official GitHub Action"
+  ],
+  "gds": "build/v3/analog_input_escapes/direct/v3_four_channel_analog_inputs.gds",
+  "gds_sha256": "5dae3f99aa6836eaf61a7224096781465965899118d2413040dee4f91dcdfa88",
+  "klayout_binary": "/Applications/KLayout/klayout.app/Contents/MacOS/klayout",
+  "klayout_binary_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "schema_version": 1,
+  "scope": "pilot-GDS geometry subset; not the full Tiny Tapeout wrapper/interface precheck",
+  "status": "pass",
+  "support_tools_commit": "d65690eeb1d4afd26aef795c805a23d9d9daf9d1",
+  "top": "v3_four_ch_analog_inputs"
+}

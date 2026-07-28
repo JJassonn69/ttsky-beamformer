@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Fetch and authenticate the exact TinyTapeout SKY130A 2x2 analog DEF."""
+
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+from urllib.request import urlopen
+
+
+COMMIT = "d65690eeb1d4afd26aef795c805a23d9d9daf9d1"
+SHA256 = "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f"
+URL = (
+    "https://raw.githubusercontent.com/TinyTapeout/tt-support-tools/"
+    f"{COMMIT}/tech/sky130A/def/analog/tt_analog_2x2.def"
+)
+OUTPUT = Path("build/v2/tt_analog_2x2.def")
+
+
+def main() -> None:
+    if OUTPUT.is_file():
+        existing_digest = hashlib.sha256(OUTPUT.read_bytes()).hexdigest()
+        if existing_digest == SHA256:
+            print(f"Authenticated existing {OUTPUT}: sha256={existing_digest}")
+            return
+    data = urlopen(URL, timeout=30).read()
+    digest = hashlib.sha256(data).hexdigest()
+    if digest != SHA256:
+        raise SystemExit(f"DEF SHA-256 mismatch: expected {SHA256}, got {digest}")
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    OUTPUT.write_bytes(data)
+    print(f"Authenticated {OUTPUT}: sha256={digest}")
+
+
+if __name__ == "__main__":
+    main()

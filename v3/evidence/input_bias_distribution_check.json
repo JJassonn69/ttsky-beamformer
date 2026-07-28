@@ -1,0 +1,28 @@
+{
+  "errors": [],
+  "input_branch_lengths_um": {
+    "0": 10.664999999999997,
+    "1": 10.664999999999997,
+    "2": 10.665000000000012,
+    "3": 10.664999999999997
+  },
+  "input_branch_mismatch_percent": 1.3324758288984518e-13,
+  "local_vcm_entry_lengths_um": {
+    "0": 1.789999999999992,
+    "1": 1.789999999999992,
+    "2": 1.7900000000000063,
+    "3": 1.7900000000000063
+  },
+  "local_vcm_entry_mismatch_percent": 7.939024980559751e-13,
+  "physical_guard_merge_status": "pending exact one-channel pilot",
+  "resistor_count": 4,
+  "schema_version": 1,
+  "status": "pass",
+  "vcm_tree_leaf_lengths_um": {
+    "0": 35.66499999999999,
+    "1": 35.66499999999999,
+    "2": 35.665000000000006,
+    "3": 35.665000000000006
+  },
+  "vcm_tree_leaf_mismatch_percent": 3.984537982672649e-14
+}

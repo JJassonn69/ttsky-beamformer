@@ -1,0 +1,14 @@
+"polygons" in: nwell_urpm.drc:7
+    Polygons (raw): 2182 (flat)  14 (hierarchical)
+    Elapsed: 0.000s  Memory: 369.00M
+"polygons" in: nwell_urpm.drc:8
+    Polygons (raw): 14 (flat)  8 (hierarchical)
+    Elapsed: 0.000s  Memory: 369.00M
+"separation" in: nwell_urpm.drc:10
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 0.020s  Memory: 371.00M
+"output" in: nwell_urpm.drc:10
+    Edge pairs: 0 (flat)  0 (hierarchical)
+    Elapsed: 0.000s  Memory: 371.00M
+Writing report database: /Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/official_contract/nwell_urpm.xml ..
+Total elapsed: 0.030s  Memory: 371.00M

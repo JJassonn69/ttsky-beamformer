@@ -1,0 +1,3915 @@
+{
+  "cell_catalog": {
+    "and2": {
+      "height_um": 2.72,
+      "lef": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__and2_1.lef",
+      "lef_sha256": "4f82ff0260110fd38c0b5b0647a363cfcb38b564935360b5b670a5079a909847",
+      "width_um": 2.3
+    },
+    "and2b": {
+      "height_um": 2.72,
+      "lef": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__and2b_1.lef",
+      "lef_sha256": "7dbe2019c7208527621d1c40bd63348fa86f8c32b7ce39fcec10e4a710f9b1b7",
+      "width_um": 2.76
+    },
+    "fill": {
+      "height_um": 2.72,
+      "lef": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__fill_1.lef",
+      "lef_sha256": "48bfefe5924f5ab5622fb59dd561e81447a9dfe85707da192e41ff5dcf8e5901",
+      "width_um": 0.46
+    },
+    "mux2": {
+      "height_um": 2.72,
+      "lef": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__mux2_1.lef",
+      "lef_sha256": "a08ee90e9fbb1fcb1a99f06ac9f2697ef8d0db9f5d9a455884f34ff8c4375b64",
+      "width_um": 4.14
+    },
+    "tap": {
+      "height_um": 2.72,
+      "lef": "third_party/sky130_fd_sc_hd_cells/sky130_fd_sc_hd__tapvpwrvgnd_1.lef",
+      "lef_sha256": "6386798102b4aa328f024982a18331c45432970e1f2f77ba90b0eb306c1e17ad",
+      "width_um": 0.46
+    }
+  },
+  "channel_template": {
+    "bbox": [
+      0.0,
+      0.0,
+      15.74,
+      34.0
+    ],
+    "cell_area_um2": 225.216,
+    "cell_gap_sites": 0,
+    "cell_site_width_um": 0.46,
+    "instances": [
+      {
+        "bbox": [
+          3.3,
+          4.76,
+          3.76,
+          7.48
+        ],
+        "cell_role": "tap",
+        "connections": {},
+        "group": null,
+        "name": "TAP_ENABLE",
+        "orientation": "R0",
+        "row": 0
+      },
+      {
+        "bbox": [
+          3.76,
+          4.76,
+          4.22,
+          7.48
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": null,
+        "name": "FILL_ENABLE",
+        "orientation": "R0",
+        "row": 0
+      },
+      {
+        "bbox": [
+          4.22,
+          4.76,
+          6.98,
+          7.48
+        ],
+        "cell_role": "and2b",
+        "connections": {
+          "A_N": "mixers_blank",
+          "B": "channel_enable",
+          "X": "group_enable"
+        },
+        "group": null,
+        "name": "ENABLE_ANDNOT",
+        "orientation": "R0",
+        "row": 0
+      },
+      {
+        "bbox": [
+          3.3,
+          7.48,
+          3.76,
+          10.2
+        ],
+        "cell_role": "tap",
+        "connections": {},
+        "group": 0,
+        "name": "TAP_G0",
+        "orientation": "MX",
+        "row": 1
+      },
+      {
+        "bbox": [
+          3.76,
+          7.48,
+          4.22,
+          10.2
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 0,
+        "name": "FILL_G0_R0",
+        "orientation": "MX",
+        "row": 1
+      },
+      {
+        "bbox": [
+          4.22,
+          7.48,
+          8.36,
+          10.2
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_0",
+          "A1": "phase_90",
+          "S": "group0_bit0",
+          "X": "group0_positive_axis"
+        },
+        "group": 0,
+        "name": "G0_MUX_POS",
+        "orientation": "MX",
+        "row": 1
+      },
+      {
+        "bbox": [
+          8.36,
+          7.48,
+          8.82,
+          10.2
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 0,
+        "name": "FILL_G0_R1",
+        "orientation": "MX",
+        "row": 1
+      },
+      {
+        "bbox": [
+          8.82,
+          7.48,
+          12.96,
+          10.2
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_180",
+          "A1": "phase_270",
+          "S": "group0_bit0",
+          "X": "group0_negative_axis"
+        },
+        "group": 0,
+        "name": "G0_MUX_NEG",
+        "orientation": "MX",
+        "row": 1
+      },
+      {
+        "bbox": [
+          3.3,
+          10.2,
+          7.44,
+          12.92
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "group0_positive_axis",
+          "A1": "group0_negative_axis",
+          "S": "group0_bit1",
+          "X": "group0_selected_phase"
+        },
+        "group": 0,
+        "name": "G0_MUX_AXIS",
+        "orientation": "R0",
+        "row": 2
+      },
+      {
+        "bbox": [
+          7.44,
+          10.2,
+          7.9,
+          12.92
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 0,
+        "name": "FILL_G0_R2",
+        "orientation": "R0",
+        "row": 2
+      },
+      {
+        "bbox": [
+          7.9,
+          10.2,
+          10.2,
+          12.92
+        ],
+        "cell_role": "and2",
+        "connections": {
+          "A": "group0_selected_phase",
+          "B": "group_enable",
+          "X": "group0_lo_p"
+        },
+        "group": 0,
+        "name": "G0_LO_P_AND",
+        "orientation": "R0",
+        "row": 2
+      },
+      {
+        "bbox": [
+          10.2,
+          10.2,
+          10.66,
+          12.92
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 0,
+        "name": "FILL_G0_R3",
+        "orientation": "R0",
+        "row": 2
+      },
+      {
+        "bbox": [
+          10.66,
+          10.2,
+          13.42,
+          12.92
+        ],
+        "cell_role": "and2b",
+        "connections": {
+          "A_N": "group0_selected_phase",
+          "B": "group_enable",
+          "X": "group0_lo_n"
+        },
+        "group": 0,
+        "name": "G0_LO_N_ANDNOT",
+        "orientation": "R0",
+        "row": 2
+      },
+      {
+        "bbox": [
+          3.3,
+          12.92,
+          3.76,
+          15.64
+        ],
+        "cell_role": "tap",
+        "connections": {},
+        "group": 1,
+        "name": "TAP_G1",
+        "orientation": "MX",
+        "row": 3
+      },
+      {
+        "bbox": [
+          3.76,
+          12.92,
+          4.22,
+          15.64
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 1,
+        "name": "FILL_G1_R0",
+        "orientation": "MX",
+        "row": 3
+      },
+      {
+        "bbox": [
+          4.22,
+          12.92,
+          8.36,
+          15.64
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_0",
+          "A1": "phase_90",
+          "S": "group1_bit0",
+          "X": "group1_positive_axis"
+        },
+        "group": 1,
+        "name": "G1_MUX_POS",
+        "orientation": "MX",
+        "row": 3
+      },
+      {
+        "bbox": [
+          8.36,
+          12.92,
+          8.82,
+          15.64
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 1,
+        "name": "FILL_G1_R1",
+        "orientation": "MX",
+        "row": 3
+      },
+      {
+        "bbox": [
+          8.82,
+          12.92,
+          12.96,
+          15.64
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_180",
+          "A1": "phase_270",
+          "S": "group1_bit0",
+          "X": "group1_negative_axis"
+        },
+        "group": 1,
+        "name": "G1_MUX_NEG",
+        "orientation": "MX",
+        "row": 3
+      },
+      {
+        "bbox": [
+          3.3,
+          15.64,
+          7.44,
+          18.36
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "group1_positive_axis",
+          "A1": "group1_negative_axis",
+          "S": "group1_bit1",
+          "X": "group1_selected_phase"
+        },
+        "group": 1,
+        "name": "G1_MUX_AXIS",
+        "orientation": "R0",
+        "row": 4
+      },
+      {
+        "bbox": [
+          7.44,
+          15.64,
+          7.9,
+          18.36
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 1,
+        "name": "FILL_G1_R2",
+        "orientation": "R0",
+        "row": 4
+      },
+      {
+        "bbox": [
+          7.9,
+          15.64,
+          10.2,
+          18.36
+        ],
+        "cell_role": "and2",
+        "connections": {
+          "A": "group1_selected_phase",
+          "B": "group_enable",
+          "X": "group1_lo_p"
+        },
+        "group": 1,
+        "name": "G1_LO_P_AND",
+        "orientation": "R0",
+        "row": 4
+      },
+      {
+        "bbox": [
+          10.2,
+          15.64,
+          10.66,
+          18.36
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 1,
+        "name": "FILL_G1_R3",
+        "orientation": "R0",
+        "row": 4
+      },
+      {
+        "bbox": [
+          10.66,
+          15.64,
+          13.42,
+          18.36
+        ],
+        "cell_role": "and2b",
+        "connections": {
+          "A_N": "group1_selected_phase",
+          "B": "group_enable",
+          "X": "group1_lo_n"
+        },
+        "group": 1,
+        "name": "G1_LO_N_ANDNOT",
+        "orientation": "R0",
+        "row": 4
+      },
+      {
+        "bbox": [
+          3.3,
+          18.36,
+          3.76,
+          21.08
+        ],
+        "cell_role": "tap",
+        "connections": {},
+        "group": 2,
+        "name": "TAP_G2",
+        "orientation": "MX",
+        "row": 5
+      },
+      {
+        "bbox": [
+          3.76,
+          18.36,
+          4.22,
+          21.08
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 2,
+        "name": "FILL_G2_R0",
+        "orientation": "MX",
+        "row": 5
+      },
+      {
+        "bbox": [
+          4.22,
+          18.36,
+          8.36,
+          21.08
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_0",
+          "A1": "phase_90",
+          "S": "group2_bit0",
+          "X": "group2_positive_axis"
+        },
+        "group": 2,
+        "name": "G2_MUX_POS",
+        "orientation": "MX",
+        "row": 5
+      },
+      {
+        "bbox": [
+          8.36,
+          18.36,
+          8.82,
+          21.08
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 2,
+        "name": "FILL_G2_R1",
+        "orientation": "MX",
+        "row": 5
+      },
+      {
+        "bbox": [
+          8.82,
+          18.36,
+          12.96,
+          21.08
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_180",
+          "A1": "phase_270",
+          "S": "group2_bit0",
+          "X": "group2_negative_axis"
+        },
+        "group": 2,
+        "name": "G2_MUX_NEG",
+        "orientation": "MX",
+        "row": 5
+      },
+      {
+        "bbox": [
+          3.3,
+          21.08,
+          7.44,
+          23.8
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "group2_positive_axis",
+          "A1": "group2_negative_axis",
+          "S": "group2_bit1",
+          "X": "group2_selected_phase"
+        },
+        "group": 2,
+        "name": "G2_MUX_AXIS",
+        "orientation": "R0",
+        "row": 6
+      },
+      {
+        "bbox": [
+          7.44,
+          21.08,
+          7.9,
+          23.8
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 2,
+        "name": "FILL_G2_R2",
+        "orientation": "R0",
+        "row": 6
+      },
+      {
+        "bbox": [
+          7.9,
+          21.08,
+          10.2,
+          23.8
+        ],
+        "cell_role": "and2",
+        "connections": {
+          "A": "group2_selected_phase",
+          "B": "group_enable",
+          "X": "group2_lo_p"
+        },
+        "group": 2,
+        "name": "G2_LO_P_AND",
+        "orientation": "R0",
+        "row": 6
+      },
+      {
+        "bbox": [
+          10.2,
+          21.08,
+          10.66,
+          23.8
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 2,
+        "name": "FILL_G2_R3",
+        "orientation": "R0",
+        "row": 6
+      },
+      {
+        "bbox": [
+          10.66,
+          21.08,
+          13.42,
+          23.8
+        ],
+        "cell_role": "and2b",
+        "connections": {
+          "A_N": "group2_selected_phase",
+          "B": "group_enable",
+          "X": "group2_lo_n"
+        },
+        "group": 2,
+        "name": "G2_LO_N_ANDNOT",
+        "orientation": "R0",
+        "row": 6
+      },
+      {
+        "bbox": [
+          3.3,
+          23.8,
+          3.76,
+          26.52
+        ],
+        "cell_role": "tap",
+        "connections": {},
+        "group": 3,
+        "name": "TAP_G3",
+        "orientation": "MX",
+        "row": 7
+      },
+      {
+        "bbox": [
+          3.76,
+          23.8,
+          4.22,
+          26.52
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 3,
+        "name": "FILL_G3_R0",
+        "orientation": "MX",
+        "row": 7
+      },
+      {
+        "bbox": [
+          4.22,
+          23.8,
+          8.36,
+          26.52
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_0",
+          "A1": "phase_90",
+          "S": "group3_bit0",
+          "X": "group3_positive_axis"
+        },
+        "group": 3,
+        "name": "G3_MUX_POS",
+        "orientation": "MX",
+        "row": 7
+      },
+      {
+        "bbox": [
+          8.36,
+          23.8,
+          8.82,
+          26.52
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 3,
+        "name": "FILL_G3_R1",
+        "orientation": "MX",
+        "row": 7
+      },
+      {
+        "bbox": [
+          8.82,
+          23.8,
+          12.96,
+          26.52
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "phase_180",
+          "A1": "phase_270",
+          "S": "group3_bit0",
+          "X": "group3_negative_axis"
+        },
+        "group": 3,
+        "name": "G3_MUX_NEG",
+        "orientation": "MX",
+        "row": 7
+      },
+      {
+        "bbox": [
+          3.3,
+          26.52,
+          7.44,
+          29.24
+        ],
+        "cell_role": "mux2",
+        "connections": {
+          "A0": "group3_positive_axis",
+          "A1": "group3_negative_axis",
+          "S": "group3_bit1",
+          "X": "group3_selected_phase"
+        },
+        "group": 3,
+        "name": "G3_MUX_AXIS",
+        "orientation": "R0",
+        "row": 8
+      },
+      {
+        "bbox": [
+          7.44,
+          26.52,
+          7.9,
+          29.24
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 3,
+        "name": "FILL_G3_R2",
+        "orientation": "R0",
+        "row": 8
+      },
+      {
+        "bbox": [
+          7.9,
+          26.52,
+          10.2,
+          29.24
+        ],
+        "cell_role": "and2",
+        "connections": {
+          "A": "group3_selected_phase",
+          "B": "group_enable",
+          "X": "group3_lo_p"
+        },
+        "group": 3,
+        "name": "G3_LO_P_AND",
+        "orientation": "R0",
+        "row": 8
+      },
+      {
+        "bbox": [
+          10.2,
+          26.52,
+          10.66,
+          29.24
+        ],
+        "cell_role": "fill",
+        "connections": {},
+        "group": 3,
+        "name": "FILL_G3_R3",
+        "orientation": "R0",
+        "row": 8
+      },
+      {
+        "bbox": [
+          10.66,
+          26.52,
+          13.42,
+          29.24
+        ],
+        "cell_role": "and2b",
+        "connections": {
+          "A_N": "group3_selected_phase",
+          "B": "group_enable",
+          "X": "group3_lo_n"
+        },
+        "group": 3,
+        "name": "G3_LO_N_ANDNOT",
+        "orientation": "R0",
+        "row": 8
+      }
+    ],
+    "logic_contract": {
+      "axis_code": {
+        "00": "phase_0",
+        "01": "phase_90",
+        "10": "phase_180",
+        "11": "phase_270"
+      },
+      "channel_group_enable": "channel_enable AND NOT mixers_blank",
+      "lo_n": "NOT selected_phase AND channel_group_enable",
+      "lo_p": "selected_phase AND channel_group_enable"
+    },
+    "raw_cell_utilization_percent": 42.083862770012715,
+    "reserved_area_um2": 535.16,
+    "route_envelope_bbox": [
+      0.0,
+      0.0,
+      19.32,
+      34.0
+    ],
+    "route_reservations": {
+      "analog_group_output_entry": {
+        "anchors": {
+          "group0_lo_n": [
+            10.87,
+            0.0
+          ],
+          "group0_lo_p": [
+            4.87,
+            0.0
+          ],
+          "group1_lo_n": [
+            18.47,
+            0.0
+          ],
+          "group1_lo_p": [
+            19.12,
+            0.0
+          ],
+          "group2_lo_n": [
+            17.17,
+            0.0
+          ],
+          "group2_lo_p": [
+            17.82,
+            0.0
+          ],
+          "group3_lo_n": [
+            15.82,
+            0.0
+          ],
+          "group3_lo_p": [
+            16.52,
+            0.0
+          ]
+        },
+        "edge": "bottom",
+        "layer": "metal2",
+        "note": "ports are vertically aligned with the closed analog group-tree roots; the 19.32 um route envelope includes the inter-channel phase-trunk corridor"
+      },
+      "phase_spine": {
+        "bbox": [
+          0.2,
+          0.0,
+          2.95,
+          34.0
+        ],
+        "layer": "metal3",
+        "note": "upper-metal spine is separate from standard-cell local interconnect",
+        "tracks": [
+          "phase_0",
+          "phase_90",
+          "phase_180",
+          "phase_270"
+        ],
+        "wire_width_um": 0.5
+      },
+      "static_code_entry": {
+        "bbox": [
+          12.2,
+          0.0,
+          15.74,
+          34.0
+        ],
+        "note": "tracks may cross cell footprints on legal upper-metal resources; detailed pin access remains a routing gate",
+        "preferred_layer": "metal2",
+        "tracks": [
+          "group0_bit0",
+          "group0_bit1",
+          "group1_bit0",
+          "group1_bit1",
+          "group2_bit0",
+          "group2_bit1",
+          "group3_bit0",
+          "group3_bit1"
+        ]
+      }
+    },
+    "row_count": 9,
+    "row_gap_um": 0.0,
+    "row_height_um": 2.72,
+    "row_lower_margin_um": 4.76
+  },
+  "channels": [
+    {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          155.26,
+          134.0
+        ],
+        "group0_lo_p": [
+          149.26,
+          134.0
+        ],
+        "group1_lo_n": [
+          162.86,
+          134.0
+        ],
+        "group1_lo_p": [
+          163.51,
+          134.0
+        ],
+        "group2_lo_n": [
+          161.56,
+          134.0
+        ],
+        "group2_lo_p": [
+          162.21,
+          134.0
+        ],
+        "group3_lo_n": [
+          160.21,
+          134.0
+        ],
+        "group3_lo_p": [
+          160.91,
+          134.0
+        ]
+      },
+      "bbox": [
+        144.39,
+        134.0,
+        160.13,
+        168.0
+      ],
+      "channel": 0,
+      "instances": [
+        {
+          "bbox": [
+            147.69,
+            138.76,
+            148.15,
+            141.48
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": null,
+          "name": "TAP_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            148.15,
+            138.76,
+            148.61,
+            141.48
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": null,
+          "name": "FILL_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            148.61,
+            138.76,
+            151.37,
+            141.48
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "mixers_blank",
+            "B": "channel_enable",
+            "X": "group_enable"
+          },
+          "group": null,
+          "name": "ENABLE_ANDNOT",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            147.69,
+            141.48,
+            148.15,
+            144.2
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 0,
+          "name": "TAP_G0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            148.15,
+            141.48,
+            148.61,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            148.61,
+            141.48,
+            152.75,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group0_bit0",
+            "X": "group0_positive_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_POS",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            152.75,
+            141.48,
+            153.21,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R1",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            153.21,
+            141.48,
+            157.35,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group0_bit0",
+            "X": "group0_negative_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_NEG",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            147.69,
+            144.2,
+            151.83,
+            146.92
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group0_positive_axis",
+            "A1": "group0_negative_axis",
+            "S": "group0_bit1",
+            "X": "group0_selected_phase"
+          },
+          "group": 0,
+          "name": "G0_MUX_AXIS",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            151.83,
+            144.2,
+            152.29,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R2",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            152.29,
+            144.2,
+            154.59,
+            146.92
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_p"
+          },
+          "group": 0,
+          "name": "G0_LO_P_AND",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            154.59,
+            144.2,
+            155.05,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R3",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            155.05,
+            144.2,
+            157.81,
+            146.92
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_n"
+          },
+          "group": 0,
+          "name": "G0_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            147.69,
+            146.92,
+            148.15,
+            149.64
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 1,
+          "name": "TAP_G1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            148.15,
+            146.92,
+            148.61,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R0",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            148.61,
+            146.92,
+            152.75,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group1_bit0",
+            "X": "group1_positive_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_POS",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            152.75,
+            146.92,
+            153.21,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            153.21,
+            146.92,
+            157.35,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group1_bit0",
+            "X": "group1_negative_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_NEG",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            147.69,
+            149.64,
+            151.83,
+            152.36
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group1_positive_axis",
+            "A1": "group1_negative_axis",
+            "S": "group1_bit1",
+            "X": "group1_selected_phase"
+          },
+          "group": 1,
+          "name": "G1_MUX_AXIS",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            151.83,
+            149.64,
+            152.29,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R2",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            152.29,
+            149.64,
+            154.59,
+            152.36
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_p"
+          },
+          "group": 1,
+          "name": "G1_LO_P_AND",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            154.59,
+            149.64,
+            155.05,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R3",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            155.05,
+            149.64,
+            157.81,
+            152.36
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_n"
+          },
+          "group": 1,
+          "name": "G1_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            147.69,
+            152.36,
+            148.15,
+            155.08
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 2,
+          "name": "TAP_G2",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            148.15,
+            152.36,
+            148.61,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R0",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            148.61,
+            152.36,
+            152.75,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group2_bit0",
+            "X": "group2_positive_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_POS",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            152.75,
+            152.36,
+            153.21,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R1",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            153.21,
+            152.36,
+            157.35,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group2_bit0",
+            "X": "group2_negative_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_NEG",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            147.69,
+            155.08,
+            151.83,
+            157.8
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group2_positive_axis",
+            "A1": "group2_negative_axis",
+            "S": "group2_bit1",
+            "X": "group2_selected_phase"
+          },
+          "group": 2,
+          "name": "G2_MUX_AXIS",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            151.83,
+            155.08,
+            152.29,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R2",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            152.29,
+            155.08,
+            154.59,
+            157.8
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_p"
+          },
+          "group": 2,
+          "name": "G2_LO_P_AND",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            154.59,
+            155.08,
+            155.05,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R3",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            155.05,
+            155.08,
+            157.81,
+            157.8
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_n"
+          },
+          "group": 2,
+          "name": "G2_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            147.69,
+            157.8,
+            148.15,
+            160.52
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 3,
+          "name": "TAP_G3",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            148.15,
+            157.8,
+            148.61,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R0",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            148.61,
+            157.8,
+            152.75,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group3_bit0",
+            "X": "group3_positive_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_POS",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            152.75,
+            157.8,
+            153.21,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R1",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            153.21,
+            157.8,
+            157.35,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group3_bit0",
+            "X": "group3_negative_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_NEG",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            147.69,
+            160.52,
+            151.83,
+            163.24
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group3_positive_axis",
+            "A1": "group3_negative_axis",
+            "S": "group3_bit1",
+            "X": "group3_selected_phase"
+          },
+          "group": 3,
+          "name": "G3_MUX_AXIS",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            151.83,
+            160.52,
+            152.29,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R2",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            152.29,
+            160.52,
+            154.59,
+            163.24
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_p"
+          },
+          "group": 3,
+          "name": "G3_LO_P_AND",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            154.59,
+            160.52,
+            155.05,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R3",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            155.05,
+            160.52,
+            157.81,
+            163.24
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_n"
+          },
+          "group": 3,
+          "name": "G3_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 8
+        }
+      ],
+      "phase_spine_bbox": [
+        144.59,
+        134.0,
+        147.34,
+        168.0
+      ],
+      "route_envelope_bbox": [
+        144.39,
+        134.0,
+        163.71,
+        168.0
+      ],
+      "static_code_entry_bbox": [
+        156.59,
+        134.0,
+        160.13,
+        168.0
+      ]
+    },
+    {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          135.94,
+          134.0
+        ],
+        "group0_lo_p": [
+          129.94,
+          134.0
+        ],
+        "group1_lo_n": [
+          143.54,
+          134.0
+        ],
+        "group1_lo_p": [
+          144.19,
+          134.0
+        ],
+        "group2_lo_n": [
+          142.24,
+          134.0
+        ],
+        "group2_lo_p": [
+          142.89,
+          134.0
+        ],
+        "group3_lo_n": [
+          140.89,
+          134.0
+        ],
+        "group3_lo_p": [
+          141.59,
+          134.0
+        ]
+      },
+      "bbox": [
+        125.07,
+        134.0,
+        140.81,
+        168.0
+      ],
+      "channel": 1,
+      "instances": [
+        {
+          "bbox": [
+            128.37,
+            138.76,
+            128.83,
+            141.48
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": null,
+          "name": "TAP_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            128.83,
+            138.76,
+            129.29,
+            141.48
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": null,
+          "name": "FILL_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            129.29,
+            138.76,
+            132.05,
+            141.48
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "mixers_blank",
+            "B": "channel_enable",
+            "X": "group_enable"
+          },
+          "group": null,
+          "name": "ENABLE_ANDNOT",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            128.37,
+            141.48,
+            128.83,
+            144.2
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 0,
+          "name": "TAP_G0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            128.83,
+            141.48,
+            129.29,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            129.29,
+            141.48,
+            133.43,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group0_bit0",
+            "X": "group0_positive_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_POS",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            133.43,
+            141.48,
+            133.89,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R1",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            133.89,
+            141.48,
+            138.03,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group0_bit0",
+            "X": "group0_negative_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_NEG",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            128.37,
+            144.2,
+            132.51,
+            146.92
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group0_positive_axis",
+            "A1": "group0_negative_axis",
+            "S": "group0_bit1",
+            "X": "group0_selected_phase"
+          },
+          "group": 0,
+          "name": "G0_MUX_AXIS",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            132.51,
+            144.2,
+            132.97,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R2",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            132.97,
+            144.2,
+            135.27,
+            146.92
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_p"
+          },
+          "group": 0,
+          "name": "G0_LO_P_AND",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            135.27,
+            144.2,
+            135.73,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R3",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            135.73,
+            144.2,
+            138.49,
+            146.92
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_n"
+          },
+          "group": 0,
+          "name": "G0_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            128.37,
+            146.92,
+            128.83,
+            149.64
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 1,
+          "name": "TAP_G1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            128.83,
+            146.92,
+            129.29,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R0",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            129.29,
+            146.92,
+            133.43,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group1_bit0",
+            "X": "group1_positive_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_POS",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            133.43,
+            146.92,
+            133.89,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            133.89,
+            146.92,
+            138.03,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group1_bit0",
+            "X": "group1_negative_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_NEG",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            128.37,
+            149.64,
+            132.51,
+            152.36
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group1_positive_axis",
+            "A1": "group1_negative_axis",
+            "S": "group1_bit1",
+            "X": "group1_selected_phase"
+          },
+          "group": 1,
+          "name": "G1_MUX_AXIS",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            132.51,
+            149.64,
+            132.97,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R2",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            132.97,
+            149.64,
+            135.27,
+            152.36
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_p"
+          },
+          "group": 1,
+          "name": "G1_LO_P_AND",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            135.27,
+            149.64,
+            135.73,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R3",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            135.73,
+            149.64,
+            138.49,
+            152.36
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_n"
+          },
+          "group": 1,
+          "name": "G1_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            128.37,
+            152.36,
+            128.83,
+            155.08
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 2,
+          "name": "TAP_G2",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            128.83,
+            152.36,
+            129.29,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R0",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            129.29,
+            152.36,
+            133.43,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group2_bit0",
+            "X": "group2_positive_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_POS",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            133.43,
+            152.36,
+            133.89,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R1",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            133.89,
+            152.36,
+            138.03,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group2_bit0",
+            "X": "group2_negative_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_NEG",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            128.37,
+            155.08,
+            132.51,
+            157.8
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group2_positive_axis",
+            "A1": "group2_negative_axis",
+            "S": "group2_bit1",
+            "X": "group2_selected_phase"
+          },
+          "group": 2,
+          "name": "G2_MUX_AXIS",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            132.51,
+            155.08,
+            132.97,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R2",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            132.97,
+            155.08,
+            135.27,
+            157.8
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_p"
+          },
+          "group": 2,
+          "name": "G2_LO_P_AND",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            135.27,
+            155.08,
+            135.73,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R3",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            135.73,
+            155.08,
+            138.49,
+            157.8
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_n"
+          },
+          "group": 2,
+          "name": "G2_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            128.37,
+            157.8,
+            128.83,
+            160.52
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 3,
+          "name": "TAP_G3",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            128.83,
+            157.8,
+            129.29,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R0",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            129.29,
+            157.8,
+            133.43,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group3_bit0",
+            "X": "group3_positive_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_POS",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            133.43,
+            157.8,
+            133.89,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R1",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            133.89,
+            157.8,
+            138.03,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group3_bit0",
+            "X": "group3_negative_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_NEG",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            128.37,
+            160.52,
+            132.51,
+            163.24
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group3_positive_axis",
+            "A1": "group3_negative_axis",
+            "S": "group3_bit1",
+            "X": "group3_selected_phase"
+          },
+          "group": 3,
+          "name": "G3_MUX_AXIS",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            132.51,
+            160.52,
+            132.97,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R2",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            132.97,
+            160.52,
+            135.27,
+            163.24
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_p"
+          },
+          "group": 3,
+          "name": "G3_LO_P_AND",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            135.27,
+            160.52,
+            135.73,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R3",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            135.73,
+            160.52,
+            138.49,
+            163.24
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_n"
+          },
+          "group": 3,
+          "name": "G3_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 8
+        }
+      ],
+      "phase_spine_bbox": [
+        125.27,
+        134.0,
+        128.02,
+        168.0
+      ],
+      "route_envelope_bbox": [
+        125.07,
+        134.0,
+        144.39,
+        168.0
+      ],
+      "static_code_entry_bbox": [
+        137.27,
+        134.0,
+        140.81,
+        168.0
+      ]
+    },
+    {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          116.62,
+          134.0
+        ],
+        "group0_lo_p": [
+          110.62,
+          134.0
+        ],
+        "group1_lo_n": [
+          124.22,
+          134.0
+        ],
+        "group1_lo_p": [
+          124.87,
+          134.0
+        ],
+        "group2_lo_n": [
+          122.92,
+          134.0
+        ],
+        "group2_lo_p": [
+          123.57,
+          134.0
+        ],
+        "group3_lo_n": [
+          121.57,
+          134.0
+        ],
+        "group3_lo_p": [
+          122.27,
+          134.0
+        ]
+      },
+      "bbox": [
+        105.75,
+        134.0,
+        121.49,
+        168.0
+      ],
+      "channel": 2,
+      "instances": [
+        {
+          "bbox": [
+            109.05,
+            138.76,
+            109.51,
+            141.48
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": null,
+          "name": "TAP_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            109.51,
+            138.76,
+            109.97,
+            141.48
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": null,
+          "name": "FILL_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            109.97,
+            138.76,
+            112.73,
+            141.48
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "mixers_blank",
+            "B": "channel_enable",
+            "X": "group_enable"
+          },
+          "group": null,
+          "name": "ENABLE_ANDNOT",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            109.05,
+            141.48,
+            109.51,
+            144.2
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 0,
+          "name": "TAP_G0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            109.51,
+            141.48,
+            109.97,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            109.97,
+            141.48,
+            114.11,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group0_bit0",
+            "X": "group0_positive_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_POS",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            114.11,
+            141.48,
+            114.57,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R1",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            114.57,
+            141.48,
+            118.71,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group0_bit0",
+            "X": "group0_negative_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_NEG",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            109.05,
+            144.2,
+            113.19,
+            146.92
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group0_positive_axis",
+            "A1": "group0_negative_axis",
+            "S": "group0_bit1",
+            "X": "group0_selected_phase"
+          },
+          "group": 0,
+          "name": "G0_MUX_AXIS",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            113.19,
+            144.2,
+            113.65,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R2",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            113.65,
+            144.2,
+            115.95,
+            146.92
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_p"
+          },
+          "group": 0,
+          "name": "G0_LO_P_AND",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            115.95,
+            144.2,
+            116.41,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R3",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            116.41,
+            144.2,
+            119.17,
+            146.92
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_n"
+          },
+          "group": 0,
+          "name": "G0_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            109.05,
+            146.92,
+            109.51,
+            149.64
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 1,
+          "name": "TAP_G1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            109.51,
+            146.92,
+            109.97,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R0",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            109.97,
+            146.92,
+            114.11,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group1_bit0",
+            "X": "group1_positive_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_POS",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            114.11,
+            146.92,
+            114.57,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            114.57,
+            146.92,
+            118.71,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group1_bit0",
+            "X": "group1_negative_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_NEG",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            109.05,
+            149.64,
+            113.19,
+            152.36
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group1_positive_axis",
+            "A1": "group1_negative_axis",
+            "S": "group1_bit1",
+            "X": "group1_selected_phase"
+          },
+          "group": 1,
+          "name": "G1_MUX_AXIS",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            113.19,
+            149.64,
+            113.65,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R2",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            113.65,
+            149.64,
+            115.95,
+            152.36
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_p"
+          },
+          "group": 1,
+          "name": "G1_LO_P_AND",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            115.95,
+            149.64,
+            116.41,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R3",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            116.41,
+            149.64,
+            119.17,
+            152.36
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_n"
+          },
+          "group": 1,
+          "name": "G1_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            109.05,
+            152.36,
+            109.51,
+            155.08
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 2,
+          "name": "TAP_G2",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            109.51,
+            152.36,
+            109.97,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R0",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            109.97,
+            152.36,
+            114.11,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group2_bit0",
+            "X": "group2_positive_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_POS",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            114.11,
+            152.36,
+            114.57,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R1",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            114.57,
+            152.36,
+            118.71,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group2_bit0",
+            "X": "group2_negative_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_NEG",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            109.05,
+            155.08,
+            113.19,
+            157.8
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group2_positive_axis",
+            "A1": "group2_negative_axis",
+            "S": "group2_bit1",
+            "X": "group2_selected_phase"
+          },
+          "group": 2,
+          "name": "G2_MUX_AXIS",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            113.19,
+            155.08,
+            113.65,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R2",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            113.65,
+            155.08,
+            115.95,
+            157.8
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_p"
+          },
+          "group": 2,
+          "name": "G2_LO_P_AND",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            115.95,
+            155.08,
+            116.41,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R3",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            116.41,
+            155.08,
+            119.17,
+            157.8
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_n"
+          },
+          "group": 2,
+          "name": "G2_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            109.05,
+            157.8,
+            109.51,
+            160.52
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 3,
+          "name": "TAP_G3",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            109.51,
+            157.8,
+            109.97,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R0",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            109.97,
+            157.8,
+            114.11,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group3_bit0",
+            "X": "group3_positive_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_POS",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            114.11,
+            157.8,
+            114.57,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R1",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            114.57,
+            157.8,
+            118.71,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group3_bit0",
+            "X": "group3_negative_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_NEG",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            109.05,
+            160.52,
+            113.19,
+            163.24
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group3_positive_axis",
+            "A1": "group3_negative_axis",
+            "S": "group3_bit1",
+            "X": "group3_selected_phase"
+          },
+          "group": 3,
+          "name": "G3_MUX_AXIS",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            113.19,
+            160.52,
+            113.65,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R2",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            113.65,
+            160.52,
+            115.95,
+            163.24
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_p"
+          },
+          "group": 3,
+          "name": "G3_LO_P_AND",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            115.95,
+            160.52,
+            116.41,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R3",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            116.41,
+            160.52,
+            119.17,
+            163.24
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_n"
+          },
+          "group": 3,
+          "name": "G3_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 8
+        }
+      ],
+      "phase_spine_bbox": [
+        105.95,
+        134.0,
+        108.7,
+        168.0
+      ],
+      "route_envelope_bbox": [
+        105.75,
+        134.0,
+        125.07,
+        168.0
+      ],
+      "static_code_entry_bbox": [
+        117.95,
+        134.0,
+        121.49,
+        168.0
+      ]
+    },
+    {
+      "analog_group_output_anchors": {
+        "group0_lo_n": [
+          97.3,
+          134.0
+        ],
+        "group0_lo_p": [
+          91.3,
+          134.0
+        ],
+        "group1_lo_n": [
+          104.9,
+          134.0
+        ],
+        "group1_lo_p": [
+          105.55,
+          134.0
+        ],
+        "group2_lo_n": [
+          103.6,
+          134.0
+        ],
+        "group2_lo_p": [
+          104.25,
+          134.0
+        ],
+        "group3_lo_n": [
+          102.25,
+          134.0
+        ],
+        "group3_lo_p": [
+          102.95,
+          134.0
+        ]
+      },
+      "bbox": [
+        86.43,
+        134.0,
+        102.17,
+        168.0
+      ],
+      "channel": 3,
+      "instances": [
+        {
+          "bbox": [
+            89.73,
+            138.76,
+            90.19,
+            141.48
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": null,
+          "name": "TAP_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            90.19,
+            138.76,
+            90.65,
+            141.48
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": null,
+          "name": "FILL_ENABLE",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            90.65,
+            138.76,
+            93.41,
+            141.48
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "mixers_blank",
+            "B": "channel_enable",
+            "X": "group_enable"
+          },
+          "group": null,
+          "name": "ENABLE_ANDNOT",
+          "orientation": "R0",
+          "row": 0
+        },
+        {
+          "bbox": [
+            89.73,
+            141.48,
+            90.19,
+            144.2
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 0,
+          "name": "TAP_G0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            90.19,
+            141.48,
+            90.65,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R0",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            90.65,
+            141.48,
+            94.79,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group0_bit0",
+            "X": "group0_positive_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_POS",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            94.79,
+            141.48,
+            95.25,
+            144.2
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R1",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            95.25,
+            141.48,
+            99.39,
+            144.2
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group0_bit0",
+            "X": "group0_negative_axis"
+          },
+          "group": 0,
+          "name": "G0_MUX_NEG",
+          "orientation": "MX",
+          "row": 1
+        },
+        {
+          "bbox": [
+            89.73,
+            144.2,
+            93.87,
+            146.92
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group0_positive_axis",
+            "A1": "group0_negative_axis",
+            "S": "group0_bit1",
+            "X": "group0_selected_phase"
+          },
+          "group": 0,
+          "name": "G0_MUX_AXIS",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            93.87,
+            144.2,
+            94.33,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R2",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            94.33,
+            144.2,
+            96.63,
+            146.92
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_p"
+          },
+          "group": 0,
+          "name": "G0_LO_P_AND",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            96.63,
+            144.2,
+            97.09,
+            146.92
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 0,
+          "name": "FILL_G0_R3",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            97.09,
+            144.2,
+            99.85,
+            146.92
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group0_selected_phase",
+            "B": "group_enable",
+            "X": "group0_lo_n"
+          },
+          "group": 0,
+          "name": "G0_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 2
+        },
+        {
+          "bbox": [
+            89.73,
+            146.92,
+            90.19,
+            149.64
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 1,
+          "name": "TAP_G1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            90.19,
+            146.92,
+            90.65,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R0",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            90.65,
+            146.92,
+            94.79,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group1_bit0",
+            "X": "group1_positive_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_POS",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            94.79,
+            146.92,
+            95.25,
+            149.64
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R1",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            95.25,
+            146.92,
+            99.39,
+            149.64
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group1_bit0",
+            "X": "group1_negative_axis"
+          },
+          "group": 1,
+          "name": "G1_MUX_NEG",
+          "orientation": "MX",
+          "row": 3
+        },
+        {
+          "bbox": [
+            89.73,
+            149.64,
+            93.87,
+            152.36
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group1_positive_axis",
+            "A1": "group1_negative_axis",
+            "S": "group1_bit1",
+            "X": "group1_selected_phase"
+          },
+          "group": 1,
+          "name": "G1_MUX_AXIS",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            93.87,
+            149.64,
+            94.33,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R2",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            94.33,
+            149.64,
+            96.63,
+            152.36
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_p"
+          },
+          "group": 1,
+          "name": "G1_LO_P_AND",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            96.63,
+            149.64,
+            97.09,
+            152.36
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 1,
+          "name": "FILL_G1_R3",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            97.09,
+            149.64,
+            99.85,
+            152.36
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group1_selected_phase",
+            "B": "group_enable",
+            "X": "group1_lo_n"
+          },
+          "group": 1,
+          "name": "G1_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 4
+        },
+        {
+          "bbox": [
+            89.73,
+            152.36,
+            90.19,
+            155.08
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 2,
+          "name": "TAP_G2",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            90.19,
+            152.36,
+            90.65,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R0",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            90.65,
+            152.36,
+            94.79,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group2_bit0",
+            "X": "group2_positive_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_POS",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            94.79,
+            152.36,
+            95.25,
+            155.08
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R1",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            95.25,
+            152.36,
+            99.39,
+            155.08
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group2_bit0",
+            "X": "group2_negative_axis"
+          },
+          "group": 2,
+          "name": "G2_MUX_NEG",
+          "orientation": "MX",
+          "row": 5
+        },
+        {
+          "bbox": [
+            89.73,
+            155.08,
+            93.87,
+            157.8
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group2_positive_axis",
+            "A1": "group2_negative_axis",
+            "S": "group2_bit1",
+            "X": "group2_selected_phase"
+          },
+          "group": 2,
+          "name": "G2_MUX_AXIS",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            93.87,
+            155.08,
+            94.33,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R2",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            94.33,
+            155.08,
+            96.63,
+            157.8
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_p"
+          },
+          "group": 2,
+          "name": "G2_LO_P_AND",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            96.63,
+            155.08,
+            97.09,
+            157.8
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 2,
+          "name": "FILL_G2_R3",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            97.09,
+            155.08,
+            99.85,
+            157.8
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group2_selected_phase",
+            "B": "group_enable",
+            "X": "group2_lo_n"
+          },
+          "group": 2,
+          "name": "G2_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 6
+        },
+        {
+          "bbox": [
+            89.73,
+            157.8,
+            90.19,
+            160.52
+          ],
+          "cell_role": "tap",
+          "connections": {},
+          "group": 3,
+          "name": "TAP_G3",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            90.19,
+            157.8,
+            90.65,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R0",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            90.65,
+            157.8,
+            94.79,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_0",
+            "A1": "phase_90",
+            "S": "group3_bit0",
+            "X": "group3_positive_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_POS",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            94.79,
+            157.8,
+            95.25,
+            160.52
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R1",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            95.25,
+            157.8,
+            99.39,
+            160.52
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "phase_180",
+            "A1": "phase_270",
+            "S": "group3_bit0",
+            "X": "group3_negative_axis"
+          },
+          "group": 3,
+          "name": "G3_MUX_NEG",
+          "orientation": "MX",
+          "row": 7
+        },
+        {
+          "bbox": [
+            89.73,
+            160.52,
+            93.87,
+            163.24
+          ],
+          "cell_role": "mux2",
+          "connections": {
+            "A0": "group3_positive_axis",
+            "A1": "group3_negative_axis",
+            "S": "group3_bit1",
+            "X": "group3_selected_phase"
+          },
+          "group": 3,
+          "name": "G3_MUX_AXIS",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            93.87,
+            160.52,
+            94.33,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R2",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            94.33,
+            160.52,
+            96.63,
+            163.24
+          ],
+          "cell_role": "and2",
+          "connections": {
+            "A": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_p"
+          },
+          "group": 3,
+          "name": "G3_LO_P_AND",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            96.63,
+            160.52,
+            97.09,
+            163.24
+          ],
+          "cell_role": "fill",
+          "connections": {},
+          "group": 3,
+          "name": "FILL_G3_R3",
+          "orientation": "R0",
+          "row": 8
+        },
+        {
+          "bbox": [
+            97.09,
+            160.52,
+            99.85,
+            163.24
+          ],
+          "cell_role": "and2b",
+          "connections": {
+            "A_N": "group3_selected_phase",
+            "B": "group_enable",
+            "X": "group3_lo_n"
+          },
+          "group": 3,
+          "name": "G3_LO_N_ANDNOT",
+          "orientation": "R0",
+          "row": 8
+        }
+      ],
+      "phase_spine_bbox": [
+        86.63,
+        134.0,
+        89.38,
+        168.0
+      ],
+      "route_envelope_bbox": [
+        86.43,
+        134.0,
+        105.75,
+        168.0
+      ],
+      "static_code_entry_bbox": [
+        98.63,
+        134.0,
+        102.17,
+        168.0
+      ]
+    }
+  ],
+  "constraints": {
+    "all_channels_identical": true,
+    "channel_macro_orientation": "R0",
+    "detailed_routing_authorized": false,
+    "group_outputs_vertically_aligned_to_analog_roots": true,
+    "maximum_raw_cell_utilization_percent": 45.0,
+    "maximum_row_width_um": 12.6,
+    "minimum_signal_cell_gap_sites": 0,
+    "one_tap_at_least_every_rows": 2,
+    "phase_spines_balanced": true
+  },
+  "next_gate": [
+    "synthesize the complete control core and compare mapped logic with this template",
+    "route all four selector copies and compare phase/control path lengths",
+    "check power-rail abutment, tap spacing, antenna, DRC, and extracted phase skew"
+  ],
+  "provenance": {
+    "floorplan": "v3/layout/floorplan.json",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
+    "generator": "v3/tools/build_selector_placement.py"
+  },
+  "schema_version": 1,
+  "status": "route-informed review placement; full four-channel routing and physical signoff pending"
+}

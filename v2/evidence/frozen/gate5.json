@@ -1,0 +1,42 @@
+{
+  "payload": {
+    "errors": [],
+    "evidence": {
+      "clock": "build/v2/signoff/gate5_clock_pilot.json",
+      "distributed_rc_codebook": "build/v2/postlayout_smoke/rc/codebook/summary_startup_op_step_5ns.json",
+      "fast_high_cold": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_10ns_corner_ff_vdd_1p98_temp_m40c_passives_hh/report.json",
+      "fs_nominal": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_10ns_corner_fs_vdd_1p8_temp_27c_passives_ll/report.json",
+      "heavy_load": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_5ns_outcap_50pf/report.json",
+      "mismatch": "build/v2/gate5_mismatch_pilot/base_pilot_summary.json",
+      "noise_scope": "v2/evidence/noise_scope.json",
+      "sensitivity": "build/v2/signoff/gate5_sensitivity_pilot.json",
+      "sf_nominal": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_10ns_corner_sf_vdd_1p8_temp_27c_passives_hh/report.json",
+      "slow_low_hot": "build/v2/postlayout_smoke/rc/codebook/selected_0_incident_0_startup_op_step_10ns_corner_ss_vdd_1p62_temp_85c_passives_ll/report.json",
+      "twotone": "build/v2/gate5_twotone_pilot/base_summary.json"
+    },
+    "expected_netlist_sha256": {
+      "base": "489eddaf9a554b1f866f548064560983b56e64fd5474b914e750e2ec261d0df4",
+      "rc": "61395853bd63ccab0f3732d66d8144f1980de586c7cda2534f9e7d9f446e9126"
+    },
+    "frozen_gds_sha256": "1b76aba2cf2362071e248fdeb6532e22ab6a928f1b8ce9f5c35393381aa89741",
+    "gate": 5,
+    "metrics": {
+      "codebook_constructive_spread_db": 0.24351285052462948,
+      "fifty_mv_peak_compression_db": 0.3704520161924094,
+      "minimum_codebook_rejection_db": 61.04947702699859,
+      "minimum_mismatch_rejection_db": 36.489527528344915,
+      "mismatch_seed_count": 60,
+      "mismatch_zero_failure_95pct_lower_bound": 0.9512970866899025,
+      "ten_mv_per_tone_im3_separation_db": 49.19991349667463
+    },
+    "schema_version": 1,
+    "scope": "bounded post-layout electrical characterization; not production-yield qualification",
+    "status": "pass_with_documented_noise_residual",
+    "warnings": [
+      "Periodically switched mixer noise figure remains a documented first-silicon/periodic-noise characterization item."
+    ]
+  },
+  "schema_version": 1,
+  "source_path": "build/v2/signoff/gate5_audit.json",
+  "source_sha256": "cd4e641c5d01d35036ccdcfa69051f2373a2706ad01047396b4c8680c8e2f575"
+}

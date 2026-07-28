@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "units": "um",
+  "status": "hash-locked controller-to-analog handoff route contract",
+  "source_checkpoint": {
+    "gds": "v3/frozen/controller_power/v3_four_channel_ctrl_powered.gds",
+    "top": "v3_four_channel_ctrl_powered",
+    "sha256": "b9d4c6d085f919b4da99c9e12c09d625e40ea10d5a49625d8e745bdc7dc2daa6"
+  },
+  "route_contract": {
+    "plan": "v3/layout/physical_control_analog_handoff_plan.json",
+    "plan_sha256": "547d260266ebccfb40a2a0f2f0430c5bafd7fc30eedd731aecc13c521a5de120",
+    "generator": "v3/tools/generate_physical_control_analog_handoff_inputs.py",
+    "generator_sha256": "215b1ebfddfb2ecb3798dbade65010c11206fb472d24cdd1b7825159d1fb60c6",
+    "checker": "v3/tools/check_physical_control_analog_handoffs.py",
+    "checker_sha256": "5df3960bab219184d02bccf121f890c578f513acc32ca556134ab66f2f514f1f"
+  },
+  "route_checkpoint": {
+    "input_def": "build/v3/control_analog_handoffs/openroad/input.def",
+    "input_def_sha256": "34cf8f24fc4abfa511ff28a2d9f5e781e589e08d09a07b5a5df5bc42ee8c3923",
+    "input_summary": "build/v3/control_analog_handoffs/openroad/input_summary.json",
+    "input_summary_sha256": "ab7df4d35787d6bff162028bc9a0391a81d1268e7c617c85ee0312d5f701fda4",
+    "audit": "build/v3/control_analog_handoffs/openroad/route_audit.json",
+    "audit_sha256": "85ab5202bc7561d7b33b8f38c2fe1323720ec50000f35c82465963d306f4d165",
+    "routed_def": "build/v3/control_analog_handoffs/openroad/routed.def",
+    "routed_def_sha256": "c58499647d3b89390f58428899147122ffffa2085b787e332ce73ad18e26246e",
+    "detailed_route_drc": "build/v3/control_analog_handoffs/openroad/detailed_route_drc.rpt",
+    "detailed_route_drc_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "openroad_log": "build/v3/control_analog_handoffs/openroad/openroad.log",
+    "openroad_log_sha256": "ef5d776ea73e6944a36326ed65944a54107478d30c10d4aadf57842c9b60f86c",
+    "wire_length": "build/v3/control_analog_handoffs/openroad/wire_length.csv",
+    "wire_length_sha256": "e0262e454f86874a8c563e987b997421a3be88bd68f06cac659d3fb0d3594dd2",
+    "guide_coverage": "build/v3/control_analog_handoffs/openroad/guide_coverage.csv",
+    "guide_coverage_sha256": "f38f1f122f56fec3ccb944e47910da16c2f15ab67d712d4af5804c1e64fbb1d7",
+    "route_guide": "build/v3/control_analog_handoffs/openroad/route.guide",
+    "route_guide_sha256": "ed143c1feba61507c4d90abaab74e161e3f2ae0fb805a5864b8b51f848d59aee"
+  },
+  "overlay_top": "v3_ctrl_analog_handoff_routes",
+  "output_top": "v3_four_ch_ctrl_analog_handoff",
+  "expected_route_count": 41,
+  "expected_pin_count": 85,
+  "maximum_wire_layer": "met4",
+  "wire_widths": {
+    "met2": 0.14,
+    "met3": 0.30,
+    "met4": 0.30
+  },
+  "via_geometries": {
+    "M2M3": [
+      ["met2", [-0.14, -0.185, 0.14, 0.185]],
+      ["via2", [-0.10, -0.10, 0.10, 0.10]],
+      ["met3", [-0.165, -0.165, 0.165, 0.165]]
+    ],
+    "M3M4": [
+      ["met3", [-0.19, -0.16, 0.19, 0.16]],
+      ["via3", [-0.10, -0.10, 0.10, 0.10]],
+      ["met4", [-0.165, -0.165, 0.165, 0.165]]
+    ]
+  },
+  "policy": {
+    "powered_controller_source_geometry_modified": false,
+    "route_centerlines_and_vias_reproduced_from_routed_def": true,
+    "all_85_declared_endpoints_are_graph_proven": true,
+    "every_route_is_a_loop_free_tree": true,
+    "floating_stubs_allowed": false,
+    "orphan_vias_allowed": false,
+    "metal5_allowed": false
+  }
+}

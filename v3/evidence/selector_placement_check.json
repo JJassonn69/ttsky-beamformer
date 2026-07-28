@@ -1,0 +1,75 @@
+{
+  "errors": [],
+  "instances_per_channel": 43,
+  "raw_cell_utilization_percent": 42.083863,
+  "role_counts_per_channel": {
+    "and2": 4,
+    "and2b": 5,
+    "fill": 17,
+    "mux2": 12,
+    "tap": 5
+  },
+  "row_widths_um": {
+    "0": 3.68,
+    "1": 9.66,
+    "2": 10.12,
+    "3": 9.66,
+    "4": 10.12,
+    "5": 9.66,
+    "6": 10.12,
+    "7": 9.66,
+    "8": 10.12
+  },
+  "scope": "route-informed local selector placement; full-channel routing, extraction, and GDS remain pending",
+  "status": "pass",
+  "truth_table": [
+    {
+      "code": 0,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 6
+    },
+    {
+      "code": 1,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 6
+    },
+    {
+      "code": 2,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 6
+    },
+    {
+      "code": 3,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 6
+    },
+    {
+      "code": 0,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 9
+    },
+    {
+      "code": 1,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 9
+    },
+    {
+      "code": 2,
+      "lo_n": 1,
+      "lo_p": 0,
+      "phase_pattern": 9
+    },
+    {
+      "code": 3,
+      "lo_n": 0,
+      "lo_p": 1,
+      "phase_pattern": 9
+    }
+  ]
+}

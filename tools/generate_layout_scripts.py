@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate deterministic Magic placement input from the circuit manifest."""
+"""Legacy V1 helper: generate the historical 1x2 Magic placement."""
 
 from __future__ import annotations
 

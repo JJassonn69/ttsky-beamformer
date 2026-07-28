@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "official TinyTapeout 2x2 V3 packaging contract",
+  "source_checkpoint": {
+    "gds": "v3/frozen/digital_output_tie/v3_four_channel_output_tied.gds",
+    "top": "v3_four_ch_output_tied",
+    "sha256": "03702735a7ab4f939bc0593a5e797569bd090f682655ba882bee55488a2fcc05",
+    "physical_gate": "v3/evidence/digital_output_tie_gate.json",
+    "physical_gate_sha256": "671e442256b92beb623130947ca6b357e25e824f43f35d3928a7df426e1f5436"
+  },
+  "template": {
+    "def": "build/v2/tt_analog_2x2.def",
+    "sha256": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
+    "width_nm": 334880,
+    "height_nm": 225760,
+    "signal_pins": 51,
+    "power_ground_pins": 2,
+    "total_pins": 53
+  },
+  "submission_top": "tt_um_jjassonn69_beamformer",
+  "candidate_gds": "build/v3/submission/tt_um_jjassonn69_beamformer.gds",
+  "interface_policy": {
+    "add_exact_full_die_prboundary": true,
+    "add_exact_met4_drawing_for_every_signal_pin": true,
+    "add_exact_met4_pin_purpose_for_all_53_pins": true,
+    "add_one_top_level_met4_label_for_all_53_pins": true,
+    "used_digital_inputs": 14,
+    "used_analog_pins": 6,
+    "physically_tied_low_digital_outputs": 24,
+    "isolated_unused_digital_inputs": [
+      "uio_in[3]", "uio_in[4]", "uio_in[5]", "uio_in[6]", "uio_in[7]"
+    ],
+    "isolated_unused_analog_pins": ["ua[6]", "ua[7]"],
+    "source_geometry_modified": false,
+    "only_top_name_interface_and_project_boundary_records_may_change": true
+  }
+}

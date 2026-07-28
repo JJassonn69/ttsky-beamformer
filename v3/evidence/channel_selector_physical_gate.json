@@ -1,0 +1,151 @@
+{
+  "checks": {
+    "all_joined_nets_survive_topology": true,
+    "direct_gds_precheck_zero": true,
+    "eight_root_aligned_joins": true,
+    "equal_drawn_join_lengths": true,
+    "magic_drc_zero": true,
+    "magic_feedback_cleared": true,
+    "no_wrong_selector_output_cell": true,
+    "one_via2_and_via3_per_join": true,
+    "only_nine_intentional_dummy_extraction_markers": true,
+    "precheck_binds_canonical_gds": true,
+    "zero_direction_reversals": true
+  },
+  "direct_gds_marker_counts": {
+    "beol": 0,
+    "feol": 0,
+    "offgrid": 0,
+    "pin_purpose_overlap": 0,
+    "project_flat_rules": 0,
+    "zero_area": 0
+  },
+  "gds": "build/v3/channel_selector_pilot/v3_channel_selector_pilot.gds",
+  "gds_sha256": "d2aaa5bf314e7a38254553ab100c6ca0c47d8e4ab6da9d0a82baa2b04db4b28e",
+  "join_metrics": {
+    "count": 8,
+    "direction_reversals_per_join": 0,
+    "drawn_vertical_length_um": 33.37,
+    "horizontal_fanout_um": 0.0,
+    "via2_per_join": 1,
+    "via3_per_join": 1
+  },
+  "magic_readback": {
+    "drc_errors": 0,
+    "extraction_feedback": 9,
+    "feedback_after_intentional_dummy_clear": 0
+  },
+  "provenance": {
+    "analog_channel_gate_sha256": "75ff183b7fc0701b280ded6c1afc4961b7256c60845493366596842837d1ecf4",
+    "flat_spice_sha256": "432a41302d456dc7a60a9acc8f4524cb94d2af77fae00b82a626402bda89f859",
+    "manifest": "v3/layout/channel_selector_join.json",
+    "manifest_sha256": "0c88a15e6e2b72a13a63f19567c2a23c79039dc1fa5c130df896a780b494b3c3",
+    "merger": "v3/layout/merge_channel_selector.rb",
+    "merger_sha256": "17ccc2d022dc5266776fef46252acc918edfadd98278180dbc4da1c7aa5258cd",
+    "precheck_summary_sha256": "ffa0072374b23bf052902ae9a8f78fcd365bb64cde9906bf34187aea31a95459",
+    "readback": "v3/layout/readback_channel_selector.tcl",
+    "readback_log_sha256": "57cbcd3e99d7c8e08d73e691b2288c601fa29bac403bfb890a110e1c88528efa",
+    "readback_sha256": "7bf9938e132e14c98927165d107d4a559c4ef978784db10ba99195a289ac5770",
+    "selector_route_gate_sha256": "368f62714ee4155193aed701b6ae544fd0c123d4125e9a3d3f393f5ef54aeec3",
+    "topology_checker": "v3/tools/check_channel_selector_extraction.py",
+    "topology_checker_sha256": "bc11e49d8b3ef6c7b9e04461f4df8bc441f8c675e37deae8751dfe0b83b6a419"
+  },
+  "remaining_gates": [
+    "selector VPWR/VGND straps and shared guard integration",
+    "one-channel output collection",
+    "four-channel replication and differential summing",
+    "distributed-RC timing/extracted beam-mode regression"
+  ],
+  "schema_version": 1,
+  "scope": "one exact root-aligned selector joined to one 15-unit analog channel; selector power/global phase inputs and four-channel replication remain separate gates",
+  "status": "pass",
+  "topology": {
+    "errors": [],
+    "extracted_device_count": 323,
+    "join_count": 8,
+    "joins": [
+      {
+        "analog_net": "g1_lop",
+        "analog_switch_device_hits": 2,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group0_lo_p",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g1_lop",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g1_lon",
+        "analog_switch_device_hits": 2,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group0_lo_n",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g1_lon",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g2_lop",
+        "analog_switch_device_hits": 4,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group1_lo_p",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g2_lop",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g2_lon",
+        "analog_switch_device_hits": 4,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group1_lo_n",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g2_lon",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g4_lop",
+        "analog_switch_device_hits": 8,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group2_lo_p",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g4_lop",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g4_lon",
+        "analog_switch_device_hits": 8,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group2_lo_n",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g4_lon",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g8_lop",
+        "analog_switch_device_hits": 16,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group3_lo_p",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g8_lop",
+        "wrong_selector_output_cells": []
+      },
+      {
+        "analog_net": "g8_lon",
+        "analog_switch_device_hits": 16,
+        "connected": true,
+        "expected_selector_cell_hits": 2,
+        "selector_net": "group3_lo_n",
+        "selector_output_device_hits": 2,
+        "surviving_extracted_node": "v3_channel_input_bias_pilot_0/g8_lon",
+        "wrong_selector_output_cells": []
+      }
+    ],
+    "schema_version": 1,
+    "status": "pass"
+  }
+}

@@ -2,21 +2,66 @@ name: gds
 
 on:
   push:
+    paths:
+      - ".github/workflows/gds.yaml"
+      - "gds/**"
+      - "lef/**"
+      - "info.yaml"
+      - "src/**"
+      - "tests/**"
+      - "tools/**"
+      - "v3/**"
+  pull_request:
+    paths:
+      - ".github/workflows/gds.yaml"
+      - "gds/**"
+      - "lef/**"
+      - "info.yaml"
+      - "src/**"
+      - "tests/**"
+      - "tools/**"
+      - "v3/**"
   workflow_dispatch:
+
+concurrency:
+  group: gds-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   gds:
     runs-on: ubuntu-24.04
     steps:
-      - name: checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
         with:
           submodules: recursive
 
-      - name: Read top module name
+      - name: Read top-module name
         id: top_module
+        run: echo "TOP_MODULE=$(yq '.project.top_module' info.yaml)" | tee "$GITHUB_OUTPUT"
+
+      - name: Fetch exact pinned Tiny Tapeout 2x2 template
+        run: python3 v2/tools/fetch_tt_2x2_template.py
+
+      - name: Rebuild exact frozen V3 submission artifacts
         run: |
-          echo TOP_MODULE=`yq '.project.top_module' info.yaml` | tee $GITHUB_OUTPUT
+          python3 v3/tools/generate_submission_gds.py
+          python3 v3/tools/generate_submission_magic_labels.py
+          python3 tools/generate_submission_lef.py
+          cmp build/v3/submission/${{ steps.top_module.outputs.TOP_MODULE }}.gds gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
+          cmp build/v3/submission/official_magic_labels.tcl v3/frozen/submission/official_magic_labels.tcl
+          git diff --exit-code -- lef/${{ steps.top_module.outputs.TOP_MODULE }}.lef
+
+      - name: Check V3 packaging and internal signoff contract
+        run: |
+          python3 v3/tools/build_submission_gate.py
+          python3 -m unittest v3.tests.test_submission_packaging -v
+          git diff --exit-code -- v3/evidence/submission_gate.json
+
+      - name: Check flattened upper-metal geometry
+        run: |
+          python3 -m unittest tests.test_gds_flat_rules -v
+          python3 tools/check_gds_flat_rules.py gds/${{ steps.top_module.outputs.TOP_MODULE }}.gds
 
       - name: Create and publish the GDS artifact
         uses: TinyTapeout/tt-gds-action/custom_gds@ttsky26c
@@ -31,8 +76,24 @@ jobs:
     needs: gds
     runs-on: ubuntu-24.04
     steps:
-      - name: Run Tiny Tapeout Precheck
+      - name: Run Tiny Tapeout precheck
         uses: TinyTapeout/tt-gds-action/precheck@ttsky26c
+
+  validation-evidence:
+    needs: precheck
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout frozen V3 evidence
+        uses: actions/checkout@v4
+
+      - name: Fetch exact pinned Tiny Tapeout 2x2 template
+        run: python3 v2/tools/fetch_tt_2x2_template.py
+
+      - name: Check artifact-bound validation status
+        run: |
+          python3 v3/tools/generate_submission_gds.py
+          python3 v3/tools/build_submission_gate.py
+          python3 -m unittest v3.tests.test_submission_packaging -v
 
   viewer:
     needs: gds

@@ -28,7 +28,7 @@ def main() -> None:
     checks = {
         "load resistor is 2.7..3.3 kohm": 2.7e3 < rload < 3.3e3,
         "bias resistor is 9.5..11.5 kohm": 9.5e3 < rbias < 11.5e3,
-        "input/VCM resistor is 90..110 kohm": 90e3 < rxhigh < 110e3,
+        "input-bias unit resistor is 90..110 kohm": 90e3 < rxhigh < 110e3,
         "VCM capacitor is 0.9..1.1 pF": 0.9e-12 < cap < 1.1e-12,
     }
     report = {

@@ -1,0 +1,214 @@
+{
+  "artifact_sha256": {
+    "assembly": "a13da3c5ec60a1009076717265b409cbf328a0b05548a14e2c82d3febb1813b4",
+    "auditor": "bb147a19eadbe9525c41c984b062ce56a13fdd1201b3a1dbe8278aa6dc702a27",
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "flat_spice": "88a7b4e0ee89ce36e16649774636684e582a38e11a371eb7957529d22c898e85",
+    "gds": "598790c7ed1358cdff93a05393aed9e245238a6712e1242d69516215c3bdc452",
+    "geometry": "baae4649b92b2bbf40f81c01e60289213ae5886ad45fd1a18f8de2e8d6690ee8",
+    "input_summary": "db56e0923383308bd2d761e424085b732af0b3130d2430b32c2ea188936c6c42",
+    "magic_log": "819772382358de9c1daebd68fa2b4397c7efd68c19ab2ce1e0a79393f0156c9a",
+    "overlay_ext": "f19d19d5f580dd5c1546b7a1081a8ae1f882be1ec3f9649ec451924f429e5d1c",
+    "plan": "ec9679809fb487c14a058157d4dedf9a8dfc4d94548d997e7cf9e8565a60227b",
+    "precheck": "77db988d19c1fb6a7ed40ce5b14a2ea682e38c077f2dcc4eec5eea680d8a548f",
+    "route_audit": "503ca449f3b9fc32c691b070851532a3372b89367997fdd12d358a594670626b",
+    "route_plan": "ec71c2eac00029b3e4b4218c5aefd6c5e75affa01624d6179c86fbfd2ef29431",
+    "source_flat_spice": "24e4ce9f7a635d020f8ba6f382a03407db9cb311f33cb7bbe5c1e62bd05882d4",
+    "source_gate": "1df12a06cc63fcddf090ebaaa3b967b0df4a58e3c8b72462eb7078a36b0704f1",
+    "source_routes": "b3437fd10c2c87c433e55faf32f9b38dc0e680ba75264af169075fa733b21a86",
+    "top_ext": "0efc95310f1dffd0af09bb7bdeec2bc7331f16788f75e33e983bb483b0203b98"
+  },
+  "checks": {
+    "boundary_inputs_shorted_to_internal_handoffs": 0,
+    "boundary_inputs_shorted_to_supply": 0,
+    "controller_labels_in_flat_extraction_text": 305,
+    "device_population_matches_source": true,
+    "direct_gds_precheck_zero": true,
+    "distinct_boundary_groups": 14,
+    "distinct_controller_route_groups": 305,
+    "distinct_internal_handoff_groups": 41,
+    "exact_tinytapeout_boundary_terminals": true,
+    "extraction_warning_baseline_exact": true,
+    "magic_metrics": {
+      "drc": 0,
+      "extraction_feedback": 9,
+      "feedback_after_clear": 0,
+      "gds_feedback": 0
+    },
+    "model_population": {
+      "sky130_fd_pr__cap_mim_m3_1": 6,
+      "sky130_fd_pr__nfet_01v8": 2867,
+      "sky130_fd_pr__pfet_01v8_hvt": 2777,
+      "sky130_fd_pr__res_high_po_1p41": 3,
+      "sky130_fd_pr__res_xhigh_po_0p35": 4,
+      "sky130_fd_pr__res_xhigh_po_1p41": 6,
+      "sky130_fd_pr__special_nfet_01v8": 374
+    },
+    "openroad_route_graph_audit": "pass",
+    "overlay_boundary_nodes": 14,
+    "tinytapeout_boundary_terminal_count": 14,
+    "total_extracted_devices": 6037,
+    "vdpwr_terminal_hits": 4818,
+    "vgnd_terminal_hits": 5242
+  },
+  "errors": [],
+  "handoffs": [
+    {
+      "boundary_label": "V3B000",
+      "controller_labels_in_group": [
+        "V3R080"
+      ],
+      "controller_route": "V3R080",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "clk",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "clk"
+    },
+    {
+      "boundary_label": "V3B001",
+      "controller_labels_in_group": [
+        "V3R297"
+      ],
+      "controller_route": "V3R297",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "rst_n",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "rst_n"
+    },
+    {
+      "boundary_label": "V3B002",
+      "controller_labels_in_group": [
+        "V3R205"
+      ],
+      "controller_route": "V3R205",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "ena",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ena"
+    },
+    {
+      "boundary_label": "V3B003",
+      "controller_labels_in_group": [
+        "V3R047"
+      ],
+      "controller_route": "V3R047",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "beam_select[0]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[0]"
+    },
+    {
+      "boundary_label": "V3B004",
+      "controller_labels_in_group": [
+        "V3R048"
+      ],
+      "controller_route": "V3R048",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "beam_select[1]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[1]"
+    },
+    {
+      "boundary_label": "V3B005",
+      "controller_labels_in_group": [
+        "V3R049"
+      ],
+      "controller_route": "V3R049",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "beam_select[2]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[2]"
+    },
+    {
+      "boundary_label": "V3B006",
+      "controller_labels_in_group": [
+        "V3R296"
+      ],
+      "controller_route": "V3R296",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "raw_mode",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[3]"
+    },
+    {
+      "boundary_label": "V3B007",
+      "controller_labels_in_group": [
+        "V3R072"
+      ],
+      "controller_route": "V3R072",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "channel_enable[0]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[4]"
+    },
+    {
+      "boundary_label": "V3B008",
+      "controller_labels_in_group": [
+        "V3R073"
+      ],
+      "controller_route": "V3R073",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "channel_enable[1]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[5]"
+    },
+    {
+      "boundary_label": "V3B009",
+      "controller_labels_in_group": [
+        "V3R074"
+      ],
+      "controller_route": "V3R074",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "channel_enable[2]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[6]"
+    },
+    {
+      "boundary_label": "V3B010",
+      "controller_labels_in_group": [
+        "V3R075"
+      ],
+      "controller_route": "V3R075",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "channel_enable[3]",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "ui_in[7]"
+    },
+    {
+      "boundary_label": "V3B011",
+      "controller_labels_in_group": [
+        "V3R054"
+      ],
+      "controller_route": "V3R054",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "cfg_clk",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "uio_in[0]"
+    },
+    {
+      "boundary_label": "V3B012",
+      "controller_labels_in_group": [
+        "V3R059"
+      ],
+      "controller_route": "V3R059",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "cfg_data",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "uio_in[1]"
+    },
+    {
+      "boundary_label": "V3B013",
+      "controller_labels_in_group": [
+        "V3R060"
+      ],
+      "controller_route": "V3R060",
+      "internal_handoff_labels_in_group": [],
+      "logical_net": "cfg_latch",
+      "shorted_to_supply": false,
+      "tinytapeout_pin": "uio_in[2]"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "exact assembled V3 controller-to-TinyTapeout boundary GDS: 14 distinct digital input handoffs on 28 endpoints with official terminal rectangles",
+  "status": "pass"
+}

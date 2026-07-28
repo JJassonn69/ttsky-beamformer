@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="820" viewBox="0 0 1500 820" role="img" aria-labelledby="svg-title svg-desc">
+<title id="svg-title">Open-PDK MOS mismatch campaign</title>
+<desc id="svg-desc">Corrected beam rejection for every seeded MOS mismatch sample.</desc>
+<style>text{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif;fill:#172033}.title{font-size:26px;font-weight:600}.subtitle{font-size:15px;fill:#5b6475}.axis{font-size:14px;fill:#5b6475}.tick{font-size:13px;fill:#667085}.value{font-size:14px;font-weight:600}.small{font-size:12px;fill:#667085}.cell{font-size:18px;font-weight:600}.cellsub{font-size:12px}.label{font-size:15px;font-weight:600}</style>
+<rect width="1500" height="820" fill="#ffffff"/>
+<text x="60.00" y="48.00" text-anchor="start" class="title">MOS mismatch sensitivity — 60 seeded samples</text>
+<text x="60.00" y="76.00" text-anchor="start" class="subtitle">Published SKY130 coefficient model; background-corrected result; not foundry-qualified yield</text>
+<rect x="95.00" y="125.00" width="970.00" height="520.00" fill="#ffffff" stroke="#d9dee8" stroke-width="1" rx="0" opacity="1"/>
+<line x1="95.00" y1="627.67" x2="1065.00" y2="627.67" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="632.67" text-anchor="end" class="tick">12</text>
+<line x1="95.00" y1="558.33" x2="1065.00" y2="558.33" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="563.33" text-anchor="end" class="tick">20</text>
+<line x1="95.00" y1="471.67" x2="1065.00" y2="471.67" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="476.67" text-anchor="end" class="tick">30</text>
+<line x1="95.00" y1="385.00" x2="1065.00" y2="385.00" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="390.00" text-anchor="end" class="tick">40</text>
+<line x1="95.00" y1="298.33" x2="1065.00" y2="298.33" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="303.33" text-anchor="end" class="tick">50</text>
+<line x1="95.00" y1="211.67" x2="1065.00" y2="211.67" stroke="#d9dee8" stroke-width="1" opacity="1"/>
+<text x="83.00" y="216.67" text-anchor="end" class="tick">60</text>
+<line x1="95.00" y1="645.00" x2="95.00" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="95.00" y="668.00" text-anchor="middle" class="tick">1</text>
+<line x1="242.97" y1="645.00" x2="242.97" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="242.97" y="668.00" text-anchor="middle" class="tick">10</text>
+<line x1="407.37" y1="645.00" x2="407.37" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="407.37" y="668.00" text-anchor="middle" class="tick">20</text>
+<line x1="571.78" y1="645.00" x2="571.78" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="571.78" y="668.00" text-anchor="middle" class="tick">30</text>
+<line x1="736.19" y1="645.00" x2="736.19" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="736.19" y="668.00" text-anchor="middle" class="tick">40</text>
+<line x1="900.59" y1="645.00" x2="900.59" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="900.59" y="668.00" text-anchor="middle" class="tick">50</text>
+<line x1="1065.00" y1="645.00" x2="1065.00" y2="651.00" stroke="#5b6475" stroke-width="1" opacity="1"/>
+<text x="1065.00" y="668.00" text-anchor="middle" class="tick">60</text>
+<text x="580.00" y="695.00" text-anchor="middle" class="axis">Mismatch seed</text>
+<text x="33.00" y="385.00" text-anchor="middle" class="axis" transform="rotate(-90.00 33.00 385.00)">Corrected beam rejection (dB)</text>
+<line x1="95.00" y1="627.67" x2="1065.00" y2="627.67" stroke="#aa6a00" stroke-width="2" stroke-dasharray="7 5" opacity="1"/>
+<text x="1057.00" y="618.67" text-anchor="end" class="small" style="fill:#aa6a00">12 dB engineering target</text>
+<polyline points="95.00,352.26 111.44,293.02 127.88,389.33 144.32,345.48 160.76,366.00 177.20,323.87 193.64,353.98 210.08,299.94 226.53,382.51 242.97,328.55 259.41,386.34 275.85,389.06 292.29,343.96 308.73,359.43 325.17,342.44 341.61,335.76 358.05,342.13 374.49,344.05 390.93,334.79 407.37,212.84 423.81,338.66 440.25,132.13 456.69,369.89 473.14,334.06 489.58,274.14 506.02,296.04 522.46,343.88 538.90,219.27 555.34,333.52 571.78,328.03 588.22,267.76 604.66,324.55 621.10,307.63 637.54,203.19 653.98,327.07 670.42,356.99 686.86,277.10 703.31,387.74 719.75,299.11 736.19,275.95 752.63,342.75 769.07,306.22 785.51,343.29 801.95,307.89 818.39,286.58 834.83,379.84 851.27,415.42 867.71,379.91 884.15,322.73 900.59,133.98 917.03,350.32 933.47,270.24 949.92,378.37 966.36,271.96 982.80,339.51 999.24,157.86 1015.68,297.84 1032.12,334.60 1048.56,339.26 1065.00,278.24" fill="none" stroke="#a6b0bf" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="95.00" cy="352.26" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="111.44" cy="293.02" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="127.88" cy="389.33" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="144.32" cy="345.48" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="160.76" cy="366.00" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="177.20" cy="323.87" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="193.64" cy="353.98" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="210.08" cy="299.94" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="226.53" cy="382.51" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="242.97" cy="328.55" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="259.41" cy="386.34" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="275.85" cy="389.06" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="292.29" cy="343.96" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="308.73" cy="359.43" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="325.17" cy="342.44" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="341.61" cy="335.76" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="358.05" cy="342.13" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="374.49" cy="344.05" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="390.93" cy="334.79" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="407.37" cy="212.84" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="423.81" cy="338.66" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="440.25" cy="132.13" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="456.69" cy="369.89" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="473.14" cy="334.06" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="489.58" cy="274.14" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="506.02" cy="296.04" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="522.46" cy="343.88" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="538.90" cy="219.27" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="555.34" cy="333.52" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="571.78" cy="328.03" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="588.22" cy="267.76" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="604.66" cy="324.55" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="621.10" cy="307.63" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="637.54" cy="203.19" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="653.98" cy="327.07" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="670.42" cy="356.99" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="686.86" cy="277.10" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="703.31" cy="387.74" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="719.75" cy="299.11" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="736.19" cy="275.95" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="752.63" cy="342.75" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="769.07" cy="306.22" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="785.51" cy="343.29" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="801.95" cy="307.89" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="818.39" cy="286.58" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="834.83" cy="379.84" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="851.27" cy="415.42" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="867.71" cy="379.91" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="884.15" cy="322.73" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="900.59" cy="133.98" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="917.03" cy="350.32" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="933.47" cy="270.24" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="949.92" cy="378.37" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="966.36" cy="271.96" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="982.80" cy="339.51" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="999.24" cy="157.86" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1015.68" cy="297.84" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1032.12" cy="334.60" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1048.56" cy="339.26" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<circle cx="1065.00" cy="278.24" r="4.20" fill="#27884a" stroke="#ffffff" stroke-width="1"/>
+<rect x="1115.00" y="125.00" width="330.00" height="520.00" fill="#f7f9fc" stroke="#d9dee8" stroke-width="1" rx="8" opacity="1"/>
+<text x="1139.00" y="165.00" text-anchor="start" class="label">Campaign summary</text>
+<text x="1139.00" y="215.00" text-anchor="start" class="small">Passing samples</text>
+<text x="1421.00" y="238.00" text-anchor="end" class="value" style="fill:#27884a">60 / 60</text>
+<text x="1139.00" y="273.00" text-anchor="start" class="small">Minimum rejection</text>
+<text x="1421.00" y="296.00" text-anchor="end" class="value" style="fill:#27884a">36.49 dB</text>
+<text x="1139.00" y="331.00" text-anchor="start" class="small">Median rejection</text>
+<text x="1421.00" y="354.00" text-anchor="end" class="value" style="fill:#172033">45.85 dB</text>
+<text x="1139.00" y="389.00" text-anchor="start" class="small">Maximum rejection</text>
+<text x="1421.00" y="412.00" text-anchor="end" class="value" style="fill:#172033">69.18 dB</text>
+<text x="1139.00" y="447.00" text-anchor="start" class="small">Output common mode</text>
+<text x="1421.00" y="470.00" text-anchor="end" class="value" style="fill:#172033">0.950–1.014 V</text>
+<text x="1139.00" y="505.00" text-anchor="start" class="small">Minimum headroom</text>
+<text x="1421.00" y="528.00" text-anchor="end" class="value" style="fill:#27884a">37.3 mV</text>
+<text x="1139.00" y="563.00" text-anchor="start" class="small">95% lower bound</text>
+<text x="1421.00" y="586.00" text-anchor="end" class="value" style="fill:#27884a">95.13%</text>
+<text x="95.00" y="700.00" text-anchor="start" class="label" style="fill:#27884a">Every sampled circuit passed the hard 6 dB gate and the 12 dB engineering target.</text>
+<text x="95.00" y="727.00" text-anchor="start" class="small" style="fill:#aa6a00">Scope excludes passive mismatch, spatial gradients/correlation, package effects, and proprietary foundry statistics.</text>
+<text x="1458.00" y="798.00" text-anchor="end" class="small">GDS 1b76aba2cf23 | source 41ed54eff2ee | open-PDK coefficient sensitivity</text>
+</svg>

@@ -1,0 +1,381 @@
+{
+  "cases": [
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_-40C_0p1V/compare.spice",
+      "deck_sha256": "73825c9a0ced97c466aff95316d8de78d2e403f5c899d854a97f07bf5e82049a",
+      "log": "build/v3/input_bias_equivalence/res_low_-40C_0p1V/ngspice.log",
+      "log_sha256": "07c9e31c26b5e4c75b70931ec71308fbe7040cdb2e072ebd99bb1a1b713fc72a",
+      "new_resistance_ohm": 102215.7,
+      "new_vs_old_percent": -6.17549463712842,
+      "old_resistance_ohm": 108943.5,
+      "temperature_c": -40,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_-40C_0p9V/compare.spice",
+      "deck_sha256": "f5b378e23d988880e3aaf2ee3db14c54b2270c95ddb6c0c3b24b000c0fc56671",
+      "log": "build/v3/input_bias_equivalence/res_low_-40C_0p9V/ngspice.log",
+      "log_sha256": "f23fc0a5a858e98d8d8680cb402d265eab7415c3ab0ee86e8ba7eeff953c8c78",
+      "new_resistance_ohm": 102145.8,
+      "new_vs_old_percent": -6.170582740005126,
+      "old_resistance_ohm": 108863.3,
+      "temperature_c": -40,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_-40C_1p8V/compare.spice",
+      "deck_sha256": "d7fe996f7823d6e8d46c5b042be956e61031d1c55d5935ebee55b711a21d4893",
+      "log": "build/v3/input_bias_equivalence/res_low_-40C_1p8V/ngspice.log",
+      "log_sha256": "8e8acb0636392465a768b61d45b5c16a7aa89b3c9034392c7acc8346324be6f0",
+      "new_resistance_ohm": 102068.6,
+      "new_vs_old_percent": -6.164352077430413,
+      "old_resistance_ohm": 108773.8,
+      "temperature_c": -40,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+27C_0p1V/compare.spice",
+      "deck_sha256": "38fba32a866b11bccecb795f4860779af54bdfc65d65a68d72a9f109c698ae03",
+      "log": "build/v3/input_bias_equivalence/res_low_+27C_0p1V/ngspice.log",
+      "log_sha256": "27ee821b4dcb280c5abf9db923a73431c53d25b65bf4d427497020fd3d0574c4",
+      "new_resistance_ohm": 92057.8,
+      "new_vs_old_percent": -6.165213106686562,
+      "old_resistance_ohm": 98106.26,
+      "temperature_c": 27,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+27C_0p9V/compare.spice",
+      "deck_sha256": "b26ab476190e603168262e74e1c9bad211abe219f51c84f289dc13d00748bfb9",
+      "log": "build/v3/input_bias_equivalence/res_low_+27C_0p9V/ngspice.log",
+      "log_sha256": "890b54c7022b44d451aaead3e2b078586f01f5e591cfaf1b5748a5f7cb228809",
+      "new_resistance_ohm": 91996.07,
+      "new_vs_old_percent": -6.159686315151669,
+      "old_resistance_ohm": 98034.7,
+      "temperature_c": 27,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+27C_1p8V/compare.spice",
+      "deck_sha256": "2960f37cd051019d518f6157780d73aabdf2e9aacc71ddbf1d5e033eaa5c69de",
+      "log": "build/v3/input_bias_equivalence/res_low_+27C_1p8V/ngspice.log",
+      "log_sha256": "dd80e169b08b391ebb98e31dee5c215b00bbbc3448e327a467f7c907663c7326",
+      "new_resistance_ohm": 91928.01,
+      "new_vs_old_percent": -6.152843810062647,
+      "old_resistance_ohm": 97955.03,
+      "temperature_c": 27,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+125C_0p1V/compare.spice",
+      "deck_sha256": "c6e4fb30b2aeb45da7545ffe666154c3df8bf7aa25406701acab7a28471c0070",
+      "log": "build/v3/input_bias_equivalence/res_low_+125C_0p1V/ngspice.log",
+      "log_sha256": "415443d9901131075a5e015c8d0fc1dca3ecda34324f27809aa7246bfe3b4213",
+      "new_resistance_ohm": 81209.45,
+      "new_vs_old_percent": -6.15134108804396,
+      "old_resistance_ohm": 86532.35,
+      "temperature_c": 125,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+125C_0p9V/compare.spice",
+      "deck_sha256": "623a038b055edfb9124059cd62b0ede63a6ad37cb0e72cdc918de0a2d7a927fb",
+      "log": "build/v3/input_bias_equivalence/res_low_+125C_0p9V/ngspice.log",
+      "log_sha256": "e4927c1f7b142281681165d96fdba0dd8046c7cf44c7e97b260708a8cd37cebd",
+      "new_resistance_ohm": 81156.41,
+      "new_vs_old_percent": -6.145064100228925,
+      "old_resistance_ohm": 86470.05,
+      "temperature_c": 125,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_low",
+      "deck": "build/v3/input_bias_equivalence/res_low_+125C_1p8V/compare.spice",
+      "deck_sha256": "34ea90138e8605007c57d632dc31f7a264bc6f9e958285e65efd48634f5cb8c7",
+      "log": "build/v3/input_bias_equivalence/res_low_+125C_1p8V/ngspice.log",
+      "log_sha256": "d61c80204fdae0a8314fb920af3ef282eb440a24132b2fdc6377296a78011fc6",
+      "new_resistance_ohm": 81098.12,
+      "new_vs_old_percent": -6.137293420580992,
+      "old_resistance_ohm": 86400.79,
+      "temperature_c": 125,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_-40C_0p1V/compare.spice",
+      "deck_sha256": "de9aba41aae91590df7da56583af0a91f9cdd743fc74fb907f8e1c5b15eadf4c",
+      "log": "build/v3/input_bias_equivalence/res_typical_-40C_0p1V/ngspice.log",
+      "log_sha256": "1187e93cce1a87532160e28f92c4ce4d95c90a87146adbac0b5e7077ac2134f9",
+      "new_resistance_ohm": 110749.0,
+      "new_vs_old_percent": -0.47914221681454316,
+      "old_resistance_ohm": 111282.2,
+      "temperature_c": -40,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_-40C_0p9V/compare.spice",
+      "deck_sha256": "9834f5b0e97590582527a52f943114c17b2eb8119623e8e4e95a241ced170dfb",
+      "log": "build/v3/input_bias_equivalence/res_typical_-40C_0p9V/ngspice.log",
+      "log_sha256": "bab5e2af2411dc5aac73123ef29d0e99326765b18a8ab347476e9a01524d4ac0",
+      "new_resistance_ohm": 110691.9,
+      "new_vs_old_percent": -0.46193716863180967,
+      "old_resistance_ohm": 111205.6,
+      "temperature_c": -40,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_-40C_1p8V/compare.spice",
+      "deck_sha256": "a6cda30a2d99b160e21a2e895654f92e7f5b372ac856a7efcbbabf73f6bdce7d",
+      "log": "build/v3/input_bias_equivalence/res_typical_-40C_1p8V/ngspice.log",
+      "log_sha256": "ac43a2ec26cf278b9ed582059c565343f0b29171293be26ac424982e2e395235",
+      "new_resistance_ohm": 110631.2,
+      "new_vs_old_percent": -0.440691175107466,
+      "old_resistance_ohm": 111120.9,
+      "temperature_c": -40,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+27C_0p1V/compare.spice",
+      "deck_sha256": "b4054bf3237011203f1b57f5277cd66eccae6113a09b3336aa767d0b9bc68b50",
+      "log": "build/v3/input_bias_equivalence/res_typical_+27C_0p1V/ngspice.log",
+      "log_sha256": "c5358c18db99d7260b25655d4c5f0d94f3aa38d5ef0d96e5dca87dbbfeec6fb1",
+      "new_resistance_ohm": 99777.6,
+      "new_vs_old_percent": -0.4437136246124851,
+      "old_resistance_ohm": 100222.3,
+      "temperature_c": 27,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+27C_0p9V/compare.spice",
+      "deck_sha256": "4358b18e9a2824564b1211d16360cb0986499689e2a0ff5a7efbfa07aa6275ef",
+      "log": "build/v3/input_bias_equivalence/res_typical_+27C_0p9V/ngspice.log",
+      "log_sha256": "e76547e0c3dcc68792082e8021c2765d22aaf77d5792384fbf0a229bb55ff703",
+      "new_resistance_ohm": 99729.2,
+      "new_vs_old_percent": -0.4246439251356704,
+      "old_resistance_ohm": 100154.5,
+      "temperature_c": 27,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+27C_1p8V/compare.spice",
+      "deck_sha256": "08d76a10ecbd62988e5a7fdcb2382ec1adad98c7404569e3f16295956f251ffd",
+      "log": "build/v3/input_bias_equivalence/res_typical_+27C_1p8V/ngspice.log",
+      "log_sha256": "99b40e92f32811cfb1c7ca79aa8f02d1f8abb8d87d8565485e05a68c0db19969",
+      "new_resistance_ohm": 99678.46,
+      "new_vs_old_percent": -0.4010199860511321,
+      "old_resistance_ohm": 100079.8,
+      "temperature_c": 27,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+125C_0p1V/compare.spice",
+      "deck_sha256": "8816b885268e514d4006677cfb7b30a65d5a36606182ec3da5ed638d881cf70d",
+      "log": "build/v3/input_bias_equivalence/res_typical_+125C_0p1V/ngspice.log",
+      "log_sha256": "e237a1c11c4d7908fe4dee4b56689e4241a589e0be8a8c32a5499a549f78d298",
+      "new_resistance_ohm": 88060.36,
+      "new_vs_old_percent": -0.39609526238667536,
+      "old_resistance_ohm": 88410.55,
+      "temperature_c": 125,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+125C_0p9V/compare.spice",
+      "deck_sha256": "8447032e4789257e78a58f6c8463a1c1fcdabdc6bba6291b2d16bc00b8982abe",
+      "log": "build/v3/input_bias_equivalence/res_typical_+125C_0p9V/ngspice.log",
+      "log_sha256": "82e85fe45be3b2bdd62a19628ef1dc9a085af866bc80aa1fa49ce400d3201023",
+      "new_resistance_ohm": 88021.33,
+      "new_vs_old_percent": -0.3745349297312739,
+      "old_resistance_ohm": 88352.24,
+      "temperature_c": 125,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_typical",
+      "deck": "build/v3/input_bias_equivalence/res_typical_+125C_1p8V/compare.spice",
+      "deck_sha256": "06da0b550b2fc2700dfd67cca546f86c2aad00289e0878fac7eb229cd9556ca3",
+      "log": "build/v3/input_bias_equivalence/res_typical_+125C_1p8V/ngspice.log",
+      "log_sha256": "a7bc11cbf98b55f86bdc2917ad57d32eeaa470439da59f46711d735f4b291b3c",
+      "new_resistance_ohm": 87981.15,
+      "new_vs_old_percent": -0.3477137472824854,
+      "old_resistance_ohm": 88288.14,
+      "temperature_c": 125,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_-40C_0p1V/compare.spice",
+      "deck_sha256": "e0836c52f103fd32bc455047ffd162b3e73a013d0d15316ae2451283075568d3",
+      "log": "build/v3/input_bias_equivalence/res_high_-40C_0p1V/ngspice.log",
+      "log_sha256": "30d08cf05f82f4e7935b4d278e18bd74537504f261a571a665de2679fce36d3e",
+      "new_resistance_ohm": 119282.4,
+      "new_vs_old_percent": 4.9827980591598875,
+      "old_resistance_ohm": 113620.9,
+      "temperature_c": -40,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_-40C_0p9V/compare.spice",
+      "deck_sha256": "2350f2d4bfed46916ff5e0166a9f04e0f0fafef45504320f3e04d2ba1ac9066b",
+      "log": "build/v3/input_bias_equivalence/res_high_-40C_0p9V/ngspice.log",
+      "log_sha256": "613a6dc55b6483a978935e95e51334c7b48ed2ce9de77ce5d23213253b652efa",
+      "new_resistance_ohm": 119237.9,
+      "new_vs_old_percent": 5.011101041939137,
+      "old_resistance_ohm": 113547.9,
+      "temperature_c": -40,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_-40C_1p8V/compare.spice",
+      "deck_sha256": "164b5e5e1b988c0590a7bb16d1ccd2b106b18dafaf39c2042dedb598b8083950",
+      "log": "build/v3/input_bias_equivalence/res_high_-40C_1p8V/ngspice.log",
+      "log_sha256": "32221bab887e93b05eb4b4f414bd93091c245b21889c0899bdb4793c229c0365",
+      "new_resistance_ohm": 119193.9,
+      "new_vs_old_percent": 5.046268551485866,
+      "old_resistance_ohm": 113468.0,
+      "temperature_c": -40,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+27C_0p1V/compare.spice",
+      "deck_sha256": "2feed2e758f01a7d2379f3318c2347bc0163da86451d5f385ea17361da61e5d2",
+      "log": "build/v3/input_bias_equivalence/res_high_+27C_0p1V/ngspice.log",
+      "log_sha256": "6743e5ac487d67244e5cc2f0830cb3739c98c03953f508d00714f17c72f96543",
+      "new_resistance_ohm": 107497.4,
+      "new_vs_old_percent": 5.041221126401352,
+      "old_resistance_ohm": 102338.3,
+      "temperature_c": 27,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+27C_0p9V/compare.spice",
+      "deck_sha256": "6b3d62e462de41ef3b130756bee774a2f3eb6e74ae08b566a8c61406da545f32",
+      "log": "build/v3/input_bias_equivalence/res_high_+27C_0p9V/ngspice.log",
+      "log_sha256": "39915a50594360c0b0bda444485f2e25ff2baad5689eca871d4954247896afaa",
+      "new_resistance_ohm": 107462.3,
+      "new_vs_old_percent": 5.072530369281081,
+      "old_resistance_ohm": 102274.4,
+      "temperature_c": 27,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+27C_1p8V/compare.spice",
+      "deck_sha256": "6b3cd87e4c9236a2c67fe678b3acd92d3ff8a87e537a2487b78f9000fa2df338",
+      "log": "build/v3/input_bias_equivalence/res_high_+27C_1p8V/ngspice.log",
+      "log_sha256": "85b5ca9e6b7eb1f26379860b78c3b200e1e796674fe59fb3a24dd7e0818bba6d",
+      "new_resistance_ohm": 107428.9,
+      "new_vs_old_percent": 5.1116094578913085,
+      "old_resistance_ohm": 102204.6,
+      "temperature_c": 27,
+      "voltage_v": 1.8
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+125C_0p1V/compare.spice",
+      "deck_sha256": "67bf6bb0e7a82cc0b2f8f723841114d5392d008344d7201704d3d3456da532e4",
+      "log": "build/v3/input_bias_equivalence/res_high_+125C_0p1V/ngspice.log",
+      "log_sha256": "b972b50d1f457311fe531e3845cb02a85e154339beba95a77ee5fce92d47a430",
+      "new_resistance_ohm": 94911.26,
+      "new_vs_old_percent": 5.119708171805248,
+      "old_resistance_ohm": 90288.74,
+      "temperature_c": 125,
+      "voltage_v": 0.1
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+125C_0p9V/compare.spice",
+      "deck_sha256": "4e8ff30e727785cdc27a0419574248d410846183e755fec56b63fdf78f6107f8",
+      "log": "build/v3/input_bias_equivalence/res_high_+125C_0p9V/ngspice.log",
+      "log_sha256": "f9b2a09025ea811221819fd33548b0046ee71a16222901d0bba75525dea3a787",
+      "new_resistance_ohm": 94886.26,
+      "new_vs_old_percent": 5.155260009371143,
+      "old_resistance_ohm": 90234.44,
+      "temperature_c": 125,
+      "voltage_v": 0.9
+    },
+    {
+      "corner": "res_high",
+      "deck": "build/v3/input_bias_equivalence/res_high_+125C_1p8V/compare.spice",
+      "deck_sha256": "5d117d72b5400e4364a63621cf58f152fa3e45397d1ac9985775af922b922d70",
+      "log": "build/v3/input_bias_equivalence/res_high_+125C_1p8V/ngspice.log",
+      "log_sha256": "c38bcefc0b9cf8609eb909fb8c087ee3022876db45b654a106f381d9dee32d79",
+      "new_resistance_ohm": 94864.19,
+      "new_vs_old_percent": 5.19952816447129,
+      "old_resistance_ohm": 90175.49,
+      "temperature_c": 125,
+      "voltage_v": 1.8
+    }
+  ],
+  "gates": {
+    "all_27_cases_completed": true,
+    "both_models_use_same_characterized_xhigh_base": true,
+    "compact_resistance_stays_in_80k_to_120k_bias_range": true,
+    "typical_compact_resistance_matches_old_within_0p5pct": true,
+    "width_dependent_corner_shift_is_bounded_within_7pct": true
+  },
+  "interpretation": "the input-bias resistor establishes DC common mode after the external AC-coupling capacitor; it is not in the signal-current gain path. The observed narrow-width process spread is acceptable only if the full four-channel PVT regression remains inside its existing functional gates.",
+  "model_provenance": {
+    "corner_sha256": {
+      "res_high": [
+        "5cba9d602f98bc235c12582ebb8e94631bf4faa9214d9f793adaa4f8647f3709",
+        "7e5c296f986c542ec9973efc5e0d17ea5486cf4244ec18cb4c076c6a14e21b5f"
+      ],
+      "res_low": [
+        "b4ec3bced359b576d184c21076da9e51858f9001b49568242d15a86e294a81ac",
+        "bb3ad6033420ca47e038ca5b809d6cbfb0f9c38f9494a341c5c3a69a8a1fe3cf"
+      ],
+      "res_typical": [
+        "3b1f8cbce726e224bb4afb365393f07140e4f7287d61662bd42cd096d9403d1b",
+        "aa793ec63ab459d26ef90afefde9601494ba6d4baa7311d6890d643b5c6cccc1"
+      ]
+    },
+    "linear_model_sha256": "229eae8e63e49373e8e6e33ececb455fafb7203f052887a723453c2c6e511d87"
+  },
+  "next_gate": "exact guarded-PCell integration under a grounded M3 shield",
+  "nominal_case": {
+    "corner": "res_typical",
+    "deck": "build/v3/input_bias_equivalence/res_typical_+27C_0p9V/compare.spice",
+    "deck_sha256": "4358b18e9a2824564b1211d16360cb0986499689e2a0ff5a7efbfa07aa6275ef",
+    "log": "build/v3/input_bias_equivalence/res_typical_+27C_0p9V/ngspice.log",
+    "log_sha256": "e76547e0c3dcc68792082e8021c2765d22aaf77d5792384fbf0a229bb55ff703",
+    "new_resistance_ohm": 99729.2,
+    "new_vs_old_percent": -0.4246439251356704,
+    "old_resistance_ohm": 100154.5,
+    "temperature_c": 27,
+    "voltage_v": 0.9
+  },
+  "schema_version": 1,
+  "scope": "old 1.41x70.5 um versus compact 0.35x17.36 um characterized xhigh-poly input-bias resistor across bounded resistance corners, temperature, and terminal voltage",
+  "status": "pass",
+  "worst_case": {
+    "corner": "res_low",
+    "deck": "build/v3/input_bias_equivalence/res_low_-40C_0p1V/compare.spice",
+    "deck_sha256": "73825c9a0ced97c466aff95316d8de78d2e403f5c899d854a97f07bf5e82049a",
+    "log": "build/v3/input_bias_equivalence/res_low_-40C_0p1V/ngspice.log",
+    "log_sha256": "07c9e31c26b5e4c75b70931ec71308fbe7040cdb2e072ebd99bb1a1b713fc72a",
+    "new_resistance_ohm": 102215.7,
+    "new_vs_old_percent": -6.17549463712842,
+    "old_resistance_ohm": 108943.5,
+    "temperature_c": -40,
+    "voltage_v": 0.1
+  }
+}

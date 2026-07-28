@@ -1,0 +1,479 @@
+{
+  "channel_gds_origin_um": [
+    20.0,
+    20.0
+  ],
+  "constraints": {
+    "all_drawn_vertical_lengths_equal": true,
+    "expected_join_count": 8,
+    "maximum_direction_reversals": 0,
+    "minimum_transition_y_spacing_um": 0.8,
+    "no_floating_stubs": true,
+    "no_horizontal_fanout": true,
+    "required_via2_per_join": 1,
+    "required_via3_per_join": 1
+  },
+  "joins": [
+    {
+      "analog_net": "g1_lop",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            4.87,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            4.87,
+            118.0
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            4.87,
+            118.0
+          ],
+          "layer": "metal4",
+          "to": [
+            4.87,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group0_lo_p",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 118.0,
+      "transitions": [
+        {
+          "at": [
+            4.87,
+            118.0
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            4.87,
+            118.0
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 4.87
+    },
+    {
+      "analog_net": "g1_lon",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            10.87,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            10.87,
+            118.8
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            10.87,
+            118.8
+          ],
+          "layer": "metal4",
+          "to": [
+            10.87,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group0_lo_n",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 118.8,
+      "transitions": [
+        {
+          "at": [
+            10.87,
+            118.8
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            10.87,
+            118.8
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 10.87
+    },
+    {
+      "analog_net": "g2_lop",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            19.12,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            19.12,
+            119.6
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            19.12,
+            119.6
+          ],
+          "layer": "metal4",
+          "to": [
+            19.12,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group1_lo_p",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 119.6,
+      "transitions": [
+        {
+          "at": [
+            19.12,
+            119.6
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            19.12,
+            119.6
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 19.12
+    },
+    {
+      "analog_net": "g2_lon",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            18.47,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            18.47,
+            120.4
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            18.47,
+            120.4
+          ],
+          "layer": "metal4",
+          "to": [
+            18.47,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group1_lo_n",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 120.4,
+      "transitions": [
+        {
+          "at": [
+            18.47,
+            120.4
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            18.47,
+            120.4
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 18.47
+    },
+    {
+      "analog_net": "g4_lop",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            17.82,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            17.82,
+            121.2
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            17.82,
+            121.2
+          ],
+          "layer": "metal4",
+          "to": [
+            17.82,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group2_lo_p",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 121.2,
+      "transitions": [
+        {
+          "at": [
+            17.82,
+            121.2
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            17.82,
+            121.2
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 17.82
+    },
+    {
+      "analog_net": "g4_lon",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            17.17,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            17.17,
+            122.0
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            17.17,
+            122.0
+          ],
+          "layer": "metal4",
+          "to": [
+            17.17,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group2_lo_n",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 122.0,
+      "transitions": [
+        {
+          "at": [
+            17.17,
+            122.0
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            17.17,
+            122.0
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 17.17
+    },
+    {
+      "analog_net": "g8_lop",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            16.52,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            16.52,
+            122.8
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            16.52,
+            122.8
+          ],
+          "layer": "metal4",
+          "to": [
+            16.52,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group3_lo_p",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 122.8,
+      "transitions": [
+        {
+          "at": [
+            16.52,
+            122.8
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            16.52,
+            122.8
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 16.52
+    },
+    {
+      "analog_net": "g8_lon",
+      "analog_root_y_um": 93.05,
+      "direction_reversals": 0,
+      "drawn_vertical_length_um": 33.37,
+      "segments": [
+        {
+          "from": [
+            15.82,
+            126.42
+          ],
+          "layer": "metal2",
+          "to": [
+            15.82,
+            123.6
+          ],
+          "width_um": 0.3
+        },
+        {
+          "from": [
+            15.82,
+            123.6
+          ],
+          "layer": "metal4",
+          "to": [
+            15.82,
+            93.05
+          ],
+          "width_um": 0.3
+        }
+      ],
+      "selector_net": "group3_lo_n",
+      "selector_pin_center_y_um": 126.42,
+      "transition_y_um": 123.6,
+      "transitions": [
+        {
+          "at": [
+            15.82,
+            123.6
+          ],
+          "from": "metal2",
+          "to": "metal3",
+          "via": "via2"
+        },
+        {
+          "at": [
+            15.82,
+            123.6
+          ],
+          "from": "metal3",
+          "to": "metal4",
+          "via": "via3"
+        }
+      ],
+      "x_um": 15.82
+    }
+  ],
+  "provenance": {
+    "generator": "v3/tools/build_channel_selector_join.py",
+    "generator_sha256": "893b8f8e305193c9b0b10cb2253604a36786e71259cdf97b8177790f38814046",
+    "group_phase_trees_sha256": "4ca4d0e826af5aab550b037900244b754ce82d40254826630a3c2eeaf69d8733",
+    "selector_placement_sha256": "4456e9718d5f0ad13c61d524fca3f7565af8b814d7fb594b4b4db71f2ff2146b"
+  },
+  "schema_version": 1,
+  "selector_instance_origin_um": [
+    20.0,
+    146.0
+  ],
+  "status": "exact root-aligned selector/channel join contract",
+  "units": "um"
+}

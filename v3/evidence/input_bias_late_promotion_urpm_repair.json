@@ -1,0 +1,23 @@
+{
+  "input": "build/v3/channel_input_bias_late_promotion/v3_channel_input_bias_late_promotion_magic.gds",
+  "input_sha256": "d27f993a890985f294742cd6ce0a720db635709aff643bd2e9b7adcb5ffa95f2",
+  "klayout_sha256": "f476548f7fcfacd065340f017dee5b9e19dd30755bf8dc8914670885d7782159",
+  "manifest_sha256": "0a9acc7c8f8431e250311844aed10ee02eff6681460fe95946398b502fb61a68",
+  "output": "build/v3/channel_input_bias_late_promotion/v3_channel_input_bias_late_promotion.gds",
+  "output_sha256": "5e1ef697aac3cce968ebccf77a479efdae3f477548f2891a154632b4d83c7e77",
+  "schema_version": 1,
+  "scope": "mask-only URPM 79/20 minimum-width repair; conductor, device, via, label and frozen-route geometry unchanged",
+  "status": "pass",
+  "urpm_bbox_local_um": [
+    12.49,
+    -25.35,
+    13.79,
+    -3.43
+  ],
+  "urpm_bbox_pilot_um": [
+    32.49,
+    -5.350000000000001,
+    33.79,
+    16.57
+  ]
+}

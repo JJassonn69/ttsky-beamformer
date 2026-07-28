@@ -1,0 +1,1184 @@
+{
+  "input_bias": {
+    "integration_status": "constraint-placed; exact guard merge remains one-channel pilot gate",
+    "manifest": "v3/layout/input_bias_distribution.json",
+    "resistor_count": 4
+  },
+  "layout_invariants": {
+    "all_via_stacks_must_be_at_named_terminals_or_branch_points": true,
+    "do_not_move_channel_pin_selector_or_closed_tail_reference_axes": true,
+    "exact_common_centroid_required_for_vcm_divider": true,
+    "floating_stubs_allowed": false,
+    "metal5_used": false,
+    "orphan_vias_allowed": false,
+    "u_turns_or_meanders_allowed": false
+  },
+  "output_pair": {
+    "channel_taps": {
+      "n": [
+        {
+          "channel": 0,
+          "route": {
+            "from": [
+              153.26,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              153.26,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 1,
+          "route": {
+            "from": [
+              133.94,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              133.94,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 2,
+          "route": {
+            "from": [
+              114.62,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              114.62,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 3,
+          "route": {
+            "from": [
+              95.3,
+              100.79
+            ],
+            "layer": "metal3",
+            "to": [
+              95.3,
+              106.8
+            ]
+          },
+          "via_at_bus": "via3"
+        }
+      ],
+      "p": [
+        {
+          "channel": 0,
+          "route": {
+            "from": [
+              151.26,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              151.26,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 1,
+          "route": {
+            "from": [
+              131.94,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              131.94,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 2,
+          "route": {
+            "from": [
+              112.62,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              112.62,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        },
+        {
+          "channel": 3,
+          "route": {
+            "from": [
+              93.3,
+              101.99
+            ],
+            "layer": "metal3",
+            "to": [
+              93.3,
+              108.0
+            ]
+          },
+          "via_at_bus": "via3"
+        }
+      ]
+    },
+    "components": [
+      {
+        "bbox": [
+          131.405,
+          114.285,
+          134.475,
+          131.715
+        ],
+        "catalog_cell": "XOUTPUT_LOAD",
+        "center": [
+          132.94,
+          123.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_high_po_1p41_WFQE74",
+        "name": "RLOAD_P",
+        "nets": {
+          "B": "VGND",
+          "R1": "VDPWR",
+          "R2": "beam_out_p"
+        },
+        "orientation": "R0",
+        "role": "differential_output_load",
+        "terminals": {
+          "B": [
+            [
+              132.94,
+              114.55
+            ]
+          ],
+          "R1": [
+            [
+              132.94,
+              130.71
+            ]
+          ],
+          "R2": [
+            [
+              132.94,
+              115.29
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          112.085,
+          114.285,
+          115.155,
+          131.715
+        ],
+        "catalog_cell": "XOUTPUT_LOAD",
+        "center": [
+          113.62,
+          123.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_high_po_1p41_WFQE74",
+        "name": "RLOAD_N",
+        "nets": {
+          "B": "VGND",
+          "R1": "VDPWR",
+          "R2": "beam_out_n"
+        },
+        "orientation": "R0",
+        "role": "differential_output_load",
+        "terminals": {
+          "B": [
+            [
+              113.62,
+              114.55
+            ]
+          ],
+          "R1": [
+            [
+              113.62,
+              130.71
+            ]
+          ],
+          "R2": [
+            [
+              113.62,
+              115.29
+            ]
+          ]
+        }
+      }
+    ],
+    "nominal_simulation_resistance_ohm": 2925.0,
+    "pcell_nominal_value_ohm": 2910.0,
+    "routing": {
+      "n": [
+        {
+          "from": [
+            113.62,
+            115.29
+          ],
+          "layer": "metal3",
+          "to": [
+            113.62,
+            106.8
+          ]
+        },
+        {
+          "from": [
+            113.62,
+            106.8
+          ],
+          "layer": "metal4",
+          "to": [
+            55.66,
+            106.8
+          ]
+        },
+        {
+          "from": [
+            55.66,
+            106.8
+          ],
+          "layer": "metal3",
+          "to": [
+            55.66,
+            8.0
+          ]
+        },
+        {
+          "from": [
+            55.66,
+            8.0
+          ],
+          "layer": "metal4",
+          "to": [
+            55.66,
+            0.5
+          ]
+        }
+      ],
+      "p": [
+        {
+          "from": [
+            132.94,
+            115.29
+          ],
+          "layer": "metal3",
+          "to": [
+            132.94,
+            108.0
+          ]
+        },
+        {
+          "from": [
+            132.94,
+            108.0
+          ],
+          "layer": "metal4",
+          "to": [
+            74.98,
+            108.0
+          ]
+        },
+        {
+          "from": [
+            74.98,
+            108.0
+          ],
+          "layer": "metal3",
+          "to": [
+            74.98,
+            8.0
+          ]
+        },
+        {
+          "from": [
+            74.98,
+            8.0
+          ],
+          "layer": "metal4",
+          "to": [
+            74.98,
+            0.5
+          ]
+        }
+      ]
+    }
+  },
+  "promotion_gates": [
+    "selected support candidate remains bound to passing all five MOS PVT corners and gm headroom evidence",
+    "Magic pilot places the exact measured PCells without overlap or keepout intrusion",
+    "Magic DRC and Tiny Tapeout-compatible direct-GDS flat checks have zero markers",
+    "extraction proves the 2:4 VCM divider, three VCM MIMs, two tail-bias MIMs, symmetric loads, and no unintended shorts",
+    "distributed RC confirms balanced VCM leaves, output loads, and tail-bias branches",
+    "startup settles before the documented enable/measurement delay"
+  ],
+  "provenance": {
+    "bias_distribution": "v3/layout/bias_distribution.json",
+    "bias_distribution_sha256": "05207661c5caa05757204545848254a852f61f788344571bb693851a44bfbe3d",
+    "floorplan": "v3/layout/floorplan.json",
+    "floorplan_sha256": "cd3ec34da99f56f837b2903308b653101dde626e3c4f088912b079935c3415b3",
+    "generator": "v3/tools/build_shared_support_placement.py",
+    "input_bias_distribution": "v3/layout/input_bias_distribution.json",
+    "input_bias_distribution_sha256": "8c7c0e4406de6c1e06404f045e569227d444011d0d368996c02409d79e160946",
+    "pcell_catalog": "v3/layout/shared_support_pcell_catalog.json",
+    "pcell_catalog_sha256": "5cb5506866fc49820f7b64d7b4d8886a54f7808525ae885c231aeb7c56446dda",
+    "shared_support_candidate_selection": "v3/evidence/shared_support_candidate_selection.json",
+    "shared_support_candidate_selection_sha256": "67ad1977478e511c09681ec8174ad88affed5aa029acf97b52274d34c29bd0d2"
+  },
+  "schema_version": 1,
+  "status": "constraint placement selected by nominal and full five-corner PVT gates; exact Magic routing, DRC, extraction topology, distributed RC, and direct-GDS checks pending",
+  "tail_bias": {
+    "bias_resistor": {
+      "bbox": [
+        208.465,
+        54.6,
+        211.535,
+        105.4
+      ],
+      "catalog_cell": "XTAIL_BIAS_RESISTOR",
+      "center": [
+        210.0,
+        80.0
+      ],
+      "generated_cell": "sky130_fd_pr__res_high_po_1p41_HMPGGH",
+      "name": "RBIAS",
+      "nets": {
+        "B": "VGND",
+        "R1": "VDPWR",
+        "R2": "vbias_ref"
+      },
+      "orientation": "R0",
+      "role": "tail_reference_bias_resistor",
+      "terminals": {
+        "B": [
+          [
+            210.0,
+            54.865
+          ]
+        ],
+        "R1": [
+          [
+            210.0,
+            104.395
+          ]
+        ],
+        "R2": [
+          [
+            210.0,
+            55.605
+          ]
+        ]
+      }
+    },
+    "bypass_capacitors": [
+      {
+        "bbox": [
+          215.92,
+          36.8,
+          240.08,
+          59.2
+        ],
+        "catalog_cell": "XDECAP_MIM",
+        "center": [
+          228.0,
+          48.0
+        ],
+        "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+        "name": "CBIAS0",
+        "nets": {
+          "C1": "vbias_ref",
+          "C2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "tail_bias_bypass",
+        "terminals": {
+          "C1": [
+            [
+              227.12,
+              48.0
+            ]
+          ],
+          "C2": [
+            [
+              239.82,
+              48.0
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          243.92,
+          36.8,
+          268.08,
+          59.2
+        ],
+        "catalog_cell": "XDECAP_MIM",
+        "center": [
+          256.0,
+          48.0
+        ],
+        "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+        "name": "CBIAS1",
+        "nets": {
+          "C1": "vbias_ref",
+          "C2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "tail_bias_bypass",
+        "terminals": {
+          "C1": [
+            [
+              255.12,
+              48.0
+            ]
+          ],
+          "C2": [
+            [
+              267.82,
+              48.0
+            ]
+          ]
+        }
+      }
+    ],
+    "bypass_nominal_total_pf": 1.96,
+    "closed_bias_tree_manifest": "v3/layout/bias_distribution.json",
+    "reference_center": [
+      194.0,
+      48.0
+    ],
+    "reference_status": "physical pilot pass; top-level integration pending",
+    "routes": {
+      "decap_ground_bus": {
+        "net": "VGND",
+        "segments": [
+          {
+            "from": [
+              239.82,
+              48.0
+            ],
+            "layer": "metal3",
+            "to": [
+              267.82,
+              48.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              239.82,
+              48.0
+            ],
+            "layer": "metal3",
+            "to": [
+              239.82,
+              30.0
+            ],
+            "width_um": 0.8
+          }
+        ]
+      },
+      "decap_top_bus": {
+        "net": "vbias_ref",
+        "segments": [
+          {
+            "from": [
+              194.0,
+              52.2
+            ],
+            "layer": "metal4",
+            "to": [
+              227.12,
+              52.2
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              227.12,
+              52.2
+            ],
+            "layer": "metal4",
+            "to": [
+              227.12,
+              48.0
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              227.12,
+              48.0
+            ],
+            "layer": "metal4",
+            "to": [
+              255.12,
+              48.0
+            ],
+            "width_um": 0.8
+          }
+        ]
+      },
+      "rbias_to_star": {
+        "net": "vbias_ref",
+        "segments": [
+          {
+            "from": [
+              210.0,
+              55.605
+            ],
+            "layer": "metal2",
+            "to": [
+              194.0,
+              55.605
+            ],
+            "width_um": 0.8
+          },
+          {
+            "from": [
+              194.0,
+              55.605
+            ],
+            "layer": "metal2",
+            "to": [
+              194.0,
+              52.2
+            ],
+            "width_um": 0.8
+          }
+        ]
+      }
+    }
+  },
+  "units": "um",
+  "vcm": {
+    "bypass_capacitors": [
+      {
+        "bbox": [
+          21.3,
+          66.8,
+          45.46,
+          89.2
+        ],
+        "catalog_cell": "XDECAP_MIM",
+        "center": [
+          33.38,
+          78.0
+        ],
+        "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+        "name": "CVCM0",
+        "nets": {
+          "C1": "vcm",
+          "C2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "vcm_bypass",
+        "terminals": {
+          "C1": [
+            [
+              32.5,
+              78.0
+            ]
+          ],
+          "C2": [
+            [
+              45.2,
+              78.0
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          21.3,
+          38.8,
+          45.46,
+          61.2
+        ],
+        "catalog_cell": "XDECAP_MIM",
+        "center": [
+          33.38,
+          50.0
+        ],
+        "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+        "name": "CVCM1",
+        "nets": {
+          "C1": "vcm",
+          "C2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "vcm_bypass",
+        "terminals": {
+          "C1": [
+            [
+              32.5,
+              50.0
+            ]
+          ],
+          "C2": [
+            [
+              45.2,
+              50.0
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          21.3,
+          10.8,
+          45.46,
+          33.2
+        ],
+        "catalog_cell": "XDECAP_MIM",
+        "center": [
+          33.38,
+          22.0
+        ],
+        "generated_cell": "sky130_fd_pr__cap_mim_m3_1_2SELCQ",
+        "name": "CVCM2",
+        "nets": {
+          "C1": "vcm",
+          "C2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "vcm_bypass",
+        "terminals": {
+          "C1": [
+            [
+              32.5,
+              22.0
+            ]
+          ],
+          "C2": [
+            [
+              45.2,
+              22.0
+            ]
+          ]
+        }
+      }
+    ],
+    "bypass_measured_pcell_nominal_total_pf": 2.95416,
+    "bypass_modeled_total_pf": 2.94,
+    "common_centroid_matrix": [
+      [
+        "B",
+        "A",
+        "B"
+      ],
+      [
+        "B",
+        "A",
+        "B"
+      ]
+    ],
+    "divider_internal_routes": [
+      {
+        "net": "vcm_tmid",
+        "segments": [
+          {
+            "from": [
+              32.5,
+              131.155
+            ],
+            "layer": "metal2",
+            "to": [
+              32.5,
+              122.845
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "net": "vcm_b1",
+        "segments": [
+          {
+            "from": [
+              22.0,
+              122.845
+            ],
+            "layer": "metal2",
+            "to": [
+              22.0,
+              131.155
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "net": "vcm_b2",
+        "segments": [
+          {
+            "from": [
+              22.0,
+              140.845
+            ],
+            "layer": "metal3",
+            "to": [
+              43.0,
+              140.845
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "net": "vcm_b3",
+        "segments": [
+          {
+            "from": [
+              43.0,
+              131.155
+            ],
+            "layer": "metal2",
+            "to": [
+              43.0,
+              122.845
+            ],
+            "width_um": 0.5
+          }
+        ]
+      },
+      {
+        "net": "vcm",
+        "segments": [
+          {
+            "from": [
+              22.0,
+              113.155
+            ],
+            "layer": "metal2",
+            "to": [
+              32.5,
+              113.155
+            ],
+            "width_um": 0.5
+          }
+        ]
+      }
+    ],
+    "divider_topology": "six identical units; two series above VCM and four below",
+    "divider_unit_cell": "XVCM_UNIT_SCALE_0P25",
+    "divider_units": [
+      {
+        "bbox": [
+          20.465,
+          130.15,
+          23.535,
+          141.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          22.0,
+          136.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_B0",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm_b2",
+          "R2": "vcm_b1"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_B",
+        "terminals": {
+          "B": [
+            [
+              22.0,
+              130.415
+            ]
+          ],
+          "R1": [
+            [
+              22.0,
+              140.845
+            ]
+          ],
+          "R2": [
+            [
+              22.0,
+              131.155
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          30.965,
+          130.15,
+          34.035,
+          141.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          32.5,
+          136.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_T0",
+        "nets": {
+          "B": "VGND",
+          "R1": "VDPWR",
+          "R2": "vcm_tmid"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_A",
+        "terminals": {
+          "B": [
+            [
+              32.5,
+              130.415
+            ]
+          ],
+          "R1": [
+            [
+              32.5,
+              140.845
+            ]
+          ],
+          "R2": [
+            [
+              32.5,
+              131.155
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          41.465,
+          130.15,
+          44.535,
+          141.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          43.0,
+          136.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_B1",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm_b2",
+          "R2": "vcm_b3"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_B",
+        "terminals": {
+          "B": [
+            [
+              43.0,
+              130.415
+            ]
+          ],
+          "R1": [
+            [
+              43.0,
+              140.845
+            ]
+          ],
+          "R2": [
+            [
+              43.0,
+              131.155
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          20.465,
+          112.15,
+          23.535,
+          123.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          22.0,
+          118.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_B2",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm_b1",
+          "R2": "vcm"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_B",
+        "terminals": {
+          "B": [
+            [
+              22.0,
+              112.415
+            ]
+          ],
+          "R1": [
+            [
+              22.0,
+              122.845
+            ]
+          ],
+          "R2": [
+            [
+              22.0,
+              113.155
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          30.965,
+          112.15,
+          34.035,
+          123.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          32.5,
+          118.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_T1",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm_tmid",
+          "R2": "vcm"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_A",
+        "terminals": {
+          "B": [
+            [
+              32.5,
+              112.415
+            ]
+          ],
+          "R1": [
+            [
+              32.5,
+              122.845
+            ]
+          ],
+          "R2": [
+            [
+              32.5,
+              113.155
+            ]
+          ]
+        }
+      },
+      {
+        "bbox": [
+          41.465,
+          112.15,
+          44.535,
+          123.85
+        ],
+        "catalog_cell": "XVCM_UNIT_SCALE_0P25",
+        "center": [
+          43.0,
+          118.0
+        ],
+        "generated_cell": "sky130_fd_pr__res_xhigh_po_1p41_R2WDSM",
+        "name": "RVCM_B3",
+        "nets": {
+          "B": "VGND",
+          "R1": "vcm_b3",
+          "R2": "VGND"
+        },
+        "orientation": "R0",
+        "role": "vcm_divider_B",
+        "terminals": {
+          "B": [
+            [
+              43.0,
+              112.415
+            ]
+          ],
+          "R1": [
+            [
+              43.0,
+              122.845
+            ]
+          ],
+          "R2": [
+            [
+              43.0,
+              113.155
+            ]
+          ]
+        }
+      }
+    ],
+    "feed": {
+      "crossing_policy": "leave each MIM C1 top plate vertically, cross above the capacitor so Metal 4 never touches its C2 Via-3 landing, cross output Metal-3 trunks only on Metal 4, and remain below the Metal-4 differential sum buses",
+      "direction_reversals": 0,
+      "named_star": [
+        32.5,
+        113.155
+      ],
+      "net": "vcm",
+      "segments": [
+        {
+          "from": [
+            32.5,
+            113.155
+          ],
+          "layer": "metal4",
+          "to": [
+            32.5,
+            94.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            32.5,
+            94.0
+          ],
+          "layer": "metal4",
+          "to": [
+            32.5,
+            78.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            32.5,
+            78.0
+          ],
+          "layer": "metal4",
+          "to": [
+            32.5,
+            50.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            32.5,
+            50.0
+          ],
+          "layer": "metal4",
+          "to": [
+            32.5,
+            22.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            32.5,
+            94.0
+          ],
+          "layer": "metal4",
+          "to": [
+            53.0,
+            94.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            53.0,
+            94.0
+          ],
+          "layer": "metal4",
+          "to": [
+            53.0,
+            90.0
+          ],
+          "width_um": 0.5
+        },
+        {
+          "from": [
+            53.0,
+            90.0
+          ],
+          "layer": "metal4",
+          "to": [
+            113.62,
+            90.0
+          ],
+          "width_um": 0.5
+        }
+      ],
+      "via3_at_input_tree_root": true,
+      "via_stack_at_divider_star": [
+        "via1",
+        "via2",
+        "via3"
+      ]
+    },
+    "ground": {
+      "joins_guard_and_power_ground_only_at_named_ground_strap": true,
+      "net": "VGND",
+      "segments": [
+        {
+          "from": [
+            45.2,
+            78.0
+          ],
+          "layer": "metal3",
+          "to": [
+            45.2,
+            50.0
+          ],
+          "width_um": 0.8
+        },
+        {
+          "from": [
+            45.2,
+            50.0
+          ],
+          "layer": "metal3",
+          "to": [
+            45.2,
+            22.0
+          ],
+          "width_um": 0.8
+        },
+        {
+          "from": [
+            45.2,
+            22.0
+          ],
+          "layer": "metal3",
+          "to": [
+            45.2,
+            5.0
+          ],
+          "width_um": 0.8
+        }
+      ]
+    },
+    "varactor_count": 0
+  }
+}

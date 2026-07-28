@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<report-database>
+ <description>pin_label_purposes_overlapping_drawing.rb.drc, input=/Users/ganeshpanth/tinytapeout-beamformer-v2/build/v3/submission/tt_um_jjassonn69_beamformer.gds, topcell=tt_um_jjassonn69_beamformer</description>
+ <original-file/>
+ <generator>drc: script='/Users/ganeshpanth/tt-support-tools-pinned/precheck/tech-files/pin_label_purposes_overlapping_drawing.rb.drc'</generator>
+ <top-cell>tt_um_jjassonn69_beamformer</top-cell>
+ <tags>
+ </tags>
+ <categories>
+ </categories>
+ <cells>
+  <cell>
+   <name>tt_um_jjassonn69_beamformer</name>
+   <variant/>
+   <layout-name/>
+   <references>
+   </references>
+  </cell>
+ </cells>
+ <items>
+ </items>
+</report-database>

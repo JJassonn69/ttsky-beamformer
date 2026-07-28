@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1106.1" height="767.9" viewBox="0 0 1106.1 767.9">
+<rect width="100%" height="100%" fill="#f6f7f9"/>
+<style>text{font-family:Inter,Arial,sans-serif}.small{font-size:8px}.label{font-size:9px;font-weight:600}.title{font-size:16px;font-weight:700}</style>
+<rect x="34.00" y="34.00" width="1038.13" height="699.86" fill="#fff" stroke="#17324d" stroke-width="2"/>
+<rect x="71.20" y="250.26" width="127.10" height="471.20" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="294.40" y="417.66" width="241.80" height="291.40" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="189.00" y="386.66" width="347.20" height="27.90" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="368.80" y="321.56" width="93.00" height="62.00" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="294.40" y="213.06" width="241.80" height="105.40" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="294.40" y="120.06" width="297.60" height="89.90" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="595.10" y="51.86" width="430.90" height="158.10" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="595.10" y="222.36" width="430.90" height="449.50" fill="#9fb3c8" fill-opacity="0.08" stroke="#9fb3c8" stroke-width="0.8"/>
+<rect x="481.61" y="417.69" width="48.79" height="291.37" fill="#118c8b" fill-opacity="0.05" stroke="#118c8b" stroke-width="1"/>
+<text class="small" x="498.01" y="436.26" fill="#087f8c">CH0</text>
+<rect x="421.72" y="417.69" width="48.79" height="291.37" fill="#118c8b" fill-opacity="0.05" stroke="#118c8b" stroke-width="1"/>
+<text class="small" x="438.11" y="436.26" fill="#087f8c">CH1</text>
+<rect x="361.82" y="417.69" width="48.79" height="291.37" fill="#118c8b" fill-opacity="0.05" stroke="#118c8b" stroke-width="1"/>
+<text class="small" x="378.22" y="436.26" fill="#087f8c">CH2</text>
+<rect x="301.93" y="417.69" width="48.79" height="291.37" fill="#118c8b" fill-opacity="0.05" stroke="#118c8b" stroke-width="1"/>
+<text class="small" x="318.33" y="436.26" fill="#087f8c">CH3</text>
+<path d="M 134.75 327.28 L 134.75 353.04" stroke="#2a9d8f" stroke-width="1.8" fill="none"/>
+<path d="M 102.20 353.04 L 102.20 327.28" stroke="#2a9d8f" stroke-width="1.8" fill="none"/>
+<path d="M 102.20 297.24 L 167.30 297.24" stroke="#2a9d8f" stroke-width="1.8" fill="none"/>
+<path d="M 167.30 327.28 L 167.30 353.04" stroke="#2a9d8f" stroke-width="1.8" fill="none"/>
+<path d="M 102.20 383.08 L 134.75 383.08" stroke="#2a9d8f" stroke-width="1.8" fill="none"/>
+<path d="M 134.75 383.08 L 134.75 442.46" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 134.75 442.46 L 134.75 492.06" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 134.75 492.06 L 134.75 578.86" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 134.75 578.86 L 134.75 665.66" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 134.75 442.46 L 198.30 442.46" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 198.30 442.46 L 198.30 454.86" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 198.30 454.86 L 386.22 454.86" stroke="#0077b6" stroke-width="2.5" fill="none"/>
+<path d="M 174.12 492.06 L 174.12 578.86" stroke="#4b5966" stroke-width="2.5" fill="none"/>
+<path d="M 174.12 578.86 L 174.12 665.66" stroke="#4b5966" stroke-width="2.5" fill="none"/>
+<path d="M 174.12 665.66 L 174.12 718.36" stroke="#4b5966" stroke-width="2.5" fill="none"/>
+<path d="M 777.44 585.06 L 864.24 585.06" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 777.44 585.06 L 777.44 640.86" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 635.40 572.04 L 738.07 572.04" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 738.07 572.04 L 738.07 585.06" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 738.07 585.06 L 824.87 585.06" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 685.00 561.48 L 635.40 561.48" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<path d="M 635.40 561.48 L 635.40 572.04" stroke="#d56b30" stroke-width="2.2" fill="none"/>
+<rect x="97.44" y="294.12" width="9.52" height="36.27" fill="#52b788" fill-opacity="0.45" stroke="#52b788" stroke-width="1.4"/>
+<text class="label" x="99.44" y="304.12" fill="#17202a">RVCM_B0</text>
+<rect x="129.99" y="294.12" width="9.52" height="36.27" fill="#2a9d8f" fill-opacity="0.45" stroke="#2a9d8f" stroke-width="1.4"/>
+<text class="label" x="131.99" y="304.12" fill="#17202a">RVCM_T0</text>
+<rect x="162.54" y="294.12" width="9.52" height="36.27" fill="#52b788" fill-opacity="0.45" stroke="#52b788" stroke-width="1.4"/>
+<text class="label" x="164.54" y="304.12" fill="#17202a">RVCM_B1</text>
+<rect x="97.44" y="349.92" width="9.52" height="36.27" fill="#52b788" fill-opacity="0.45" stroke="#52b788" stroke-width="1.4"/>
+<text class="label" x="99.44" y="359.92" fill="#17202a">RVCM_B2</text>
+<rect x="129.99" y="349.92" width="9.52" height="36.27" fill="#2a9d8f" fill-opacity="0.45" stroke="#2a9d8f" stroke-width="1.4"/>
+<text class="label" x="131.99" y="359.92" fill="#17202a">RVCM_T1</text>
+<rect x="162.54" y="349.92" width="9.52" height="36.27" fill="#52b788" fill-opacity="0.45" stroke="#52b788" stroke-width="1.4"/>
+<text class="label" x="164.54" y="359.92" fill="#17202a">RVCM_B3</text>
+<rect x="100.03" y="457.34" width="74.90" height="69.44" fill="#0077b6" fill-opacity="0.45" stroke="#0077b6" stroke-width="1.4"/>
+<text class="label" x="102.03" y="467.34" fill="#17202a">CVCM0</text>
+<rect x="100.03" y="544.14" width="74.90" height="69.44" fill="#0077b6" fill-opacity="0.45" stroke="#0077b6" stroke-width="1.4"/>
+<text class="label" x="102.03" y="554.14" fill="#17202a">CVCM1</text>
+<rect x="100.03" y="630.94" width="74.90" height="69.44" fill="#0077b6" fill-opacity="0.45" stroke="#0077b6" stroke-width="1.4"/>
+<text class="label" x="102.03" y="640.94" fill="#17202a">CVCM2</text>
+<rect x="441.36" y="325.54" width="9.52" height="54.03" fill="#5a189a" fill-opacity="0.45" stroke="#5a189a" stroke-width="1.4"/>
+<text class="label" x="443.36" y="335.54" fill="#17202a">RLOAD_P</text>
+<rect x="381.46" y="325.54" width="9.52" height="54.03" fill="#5a189a" fill-opacity="0.45" stroke="#5a189a" stroke-width="1.4"/>
+<text class="label" x="383.46" y="335.54" fill="#17202a">RLOAD_N</text>
+<rect x="680.24" y="407.12" width="9.52" height="157.48" fill="#e76f51" fill-opacity="0.45" stroke="#e76f51" stroke-width="1.4"/>
+<text class="label" x="682.24" y="417.12" fill="#17202a">RBIAS</text>
+<rect x="703.35" y="550.34" width="74.90" height="69.44" fill="#f4a261" fill-opacity="0.45" stroke="#f4a261" stroke-width="1.4"/>
+<text class="label" x="705.35" y="560.34" fill="#17202a">CBIAS0</text>
+<rect x="790.15" y="550.34" width="74.90" height="69.44" fill="#f4a261" fill-opacity="0.45" stroke="#f4a261" stroke-width="1.4"/>
+<text class="label" x="792.15" y="560.34" fill="#17202a">CBIAS1</text>
+<rect x="616.82" y="569.40" width="37.17" height="31.31" fill="#6f5aa8" fill-opacity="0.55" stroke="#4d3d7a" stroke-width="1.5"/>
+<text class="label" x="618.82" y="579.40" fill="#34275a">XREF</text>
+<text class="title" x="34.00" y="21" fill="#17324d">V3 shared-support placement — PVT-selected three-MIM VCM</text>
+<text class="small" x="636.13" y="21" fill="#4b5966">6-unit exact centroid · 3× VCM MIM · symmetric 2.91 kΩ loads · shared tail reference/RBIAS/2× MIM</text>
+</svg>

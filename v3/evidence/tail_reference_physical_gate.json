@@ -1,0 +1,177 @@
+{
+  "checks": {
+    "all_four_branch_endpoints_found": true,
+    "base_is_resistance_free": true,
+    "branch_resistance_mismatch_within_limit": true,
+    "device_count_preserved": true,
+    "direct_gds_precheck_zero": true,
+    "distributed_resistors_present": true,
+    "extracted_capacitances_preserved": true,
+    "extracted_device_topology_passes": true,
+    "magic_drc_zero": true,
+    "magic_extraction_feedback_zero": true,
+    "magic_outputs_complete": true,
+    "only_classified_magic_warnings": true,
+    "precheck_is_for_exact_gds": true,
+    "topology_is_for_exact_gds": true
+  },
+  "distributed_rc": {
+    "aggregate_base": {
+      "capacitors": 5,
+      "devices": 40,
+      "resistors": 0
+    },
+    "aggregate_distributed_rc": {
+      "capacitors": 5,
+      "devices": 40,
+      "resistors": 3746
+    },
+    "branch_resistance_mismatch_percent": 0.0,
+    "branches": {
+      "0": {
+        "base": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 0
+        },
+        "common_end_node": "a_37739_8800.n0",
+        "distributed_rc": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 749
+        },
+        "effective_resistance_ohm": 9.156399999999998,
+        "leaf_node": "a_37739_8800#",
+        "leaf_um": [
+          152.26,
+          102.0
+        ],
+        "subtracted_common_route_resistance_ohm": 22.3824,
+        "total_leaf_to_reference_side_resistance_ohm": 31.5388
+      },
+      "1": {
+        "base": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 0
+        },
+        "common_end_node": "a_37739_8800.n0",
+        "distributed_rc": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 749
+        },
+        "effective_resistance_ohm": 9.156399999999998,
+        "leaf_node": "a_37739_8800#",
+        "leaf_um": [
+          132.94,
+          102.0
+        ],
+        "subtracted_common_route_resistance_ohm": 22.3824,
+        "total_leaf_to_reference_side_resistance_ohm": 31.5388
+      },
+      "2": {
+        "base": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 0
+        },
+        "common_end_node": "a_37739_8800.n0",
+        "distributed_rc": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 749
+        },
+        "effective_resistance_ohm": 9.156399999999998,
+        "leaf_node": "a_37739_8800#",
+        "leaf_um": [
+          113.62,
+          102.0
+        ],
+        "subtracted_common_route_resistance_ohm": 22.3824,
+        "total_leaf_to_reference_side_resistance_ohm": 31.5388
+      },
+      "3": {
+        "base": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 0
+        },
+        "common_end_node": "a_37739_8800.n0",
+        "distributed_rc": {
+          "capacitors": 1,
+          "devices": 8,
+          "resistors": 749
+        },
+        "effective_resistance_ohm": 9.156399999999998,
+        "leaf_node": "a_37739_8800#",
+        "leaf_um": [
+          94.3,
+          102.0
+        ],
+        "subtracted_common_route_resistance_ohm": 22.3824,
+        "total_leaf_to_reference_side_resistance_ohm": 31.5388
+      }
+    },
+    "common_route": {
+      "effective_resistance_ohm": 22.3824,
+      "end_candidate_resistances_ohm": {
+        "a_37739_8800#->a_37739_8800.n1": 18.9719,
+        "a_37739_8800.n0->a_37739_8800.n1": 22.3824
+      },
+      "end_node": "a_37739_8800.n1",
+      "source_node": "a_37739_8800.n0"
+    },
+    "common_route_reference_side_um": [
+      194.0,
+      52.2
+    ],
+    "maximum_allowed_mismatch_percent": 1.0,
+    "mean_branch_resistance_ohm": 9.156399999999998,
+    "star_um": [
+      123.28,
+      111.0
+    ]
+  },
+  "gds": "build/v3/tail_reference_pilot/v3_tail_reference_pilot.gds",
+  "gds_sha256": "a7f66eae71578eaa7063af490c98168851014c44e5c4710afac0af8a6242a3eb",
+  "manifest_sha256": "05207661c5caa05757204545848254a852f61f788344571bb693851a44bfbe3d",
+  "schema_version": 1,
+  "scope": "exact V3 shared tail-reference pilot: topology, direct-GDS geometry, and distributed star-to-leaf RC; VCM, decap, channel devices, and top-level integration remain separate gates",
+  "sha256": {
+    "auditor": "f5dacdc8a8360341ad3612989509de9955493708e14319dd66a9a3500f6ab33d",
+    "extractor": "52ed082df6cb299b41ebcd9d14f130b7a70fb44ab24367f9df85fa3b30ebc450",
+    "magic_log": "d27bcb646f1caad154328e9d56e3426119be928d064fad88e58c8c7016fd6d4b",
+    "per_channel": {
+      "ch0": {
+        "base_spice": "1f55839cc0e09b6575c889a997977477ac790d7a379376c9ccc462197a9ef2d4",
+        "distributed_rc_spice": "179d28992994ce54aa52ce3e966d268ca761b3521545ac74cf34ca9f744e6868",
+        "resistance_annotation": "89ed35d14a2f4c9af3574eb1796636bd0405a353e31d2e8e2be8809ef6ffdf3d"
+      },
+      "ch1": {
+        "base_spice": "ffcdce5029ecf980c3300a84e9b9f0c794431dde45d0608b06da793aba4daabc",
+        "distributed_rc_spice": "adb4898385293b89955ee3da9fdccc90f3935706d70f2ff8efefd33bd03a51a4",
+        "resistance_annotation": "88dc79753e34acedd411ae5b2a531a815835fb6e328b128d56c2ab605ee5fd76"
+      },
+      "ch2": {
+        "base_spice": "7cc74f04918b444151ca133c95863d40a26da5aa24f7fd0811e9b6d54d6a5e1d",
+        "distributed_rc_spice": "1737da38afd07ce6657cedb4e5eb0f08a40652eb72fef01d02d5e02a633b46dd",
+        "resistance_annotation": "44c1ffc5232c3f8ce1abd88e4a023c2124d021bbd1d802a66166636a83c3667d"
+      },
+      "ch3": {
+        "base_spice": "53d04b106cb3d3776eaffb1cc43afc36764197750a4febc0b0c6d6b871ddb38a",
+        "distributed_rc_spice": "68b977ef120559e7c3b2fbfc86d94f9e1f7063d0b80b30121afd5202b1641468",
+        "resistance_annotation": "27d9c7c3069358ae34f44bec38f73c46b185f8e1a7c3e41bc581e52a13e6f43b"
+      },
+      "common": {
+        "base_spice": "0ea6e04e0f5fb7b76a6fda9012f1724ee4cf9a0b4755030dbfb9c3984aa45738",
+        "distributed_rc_spice": "a2fbf99f4dbb348b010c0be4b74c22cdbb1008a909dcac1696da224569bae4b5",
+        "resistance_annotation": "66d58065413cca743024c7fe698a558cb854847d9d46bf24d08707504905541a"
+      }
+    },
+    "precheck_summary": "0962d791a3de70726185f5240446b309df17e2200d472dc38b1b2b28fd69341f",
+    "topology_audit": "540d79af05f5deed63a5206871d3ec89a3e6eecbb31667377d17d4fc70dc9a60"
+  },
+  "status": "pass",
+  "unexpected_magic_warnings": []
+}

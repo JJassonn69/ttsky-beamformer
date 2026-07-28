@@ -1,0 +1,1660 @@
+{
+  "boundary_routing": [
+    {
+      "endpoint_reversal_um": 0.0,
+      "failures": [],
+      "name": "clk_monotonic_fanout",
+      "net": "clk",
+      "passed": true,
+      "source_leg_um": 1.76,
+      "track_y_um": 223.5
+    },
+    {
+      "endpoint_reversal_um": 0.0,
+      "failures": [],
+      "name": "select_monotonic_fanout",
+      "net": "select",
+      "passed": true,
+      "source_leg_um": 2.91,
+      "track_y_um": 222.35
+    }
+  ],
+  "cross_net_overlap_count": 0,
+  "cross_net_spacing_count": 0,
+  "cross_net_via_overlap_count": 0,
+  "dead_end_via3_site_count": 0,
+  "disconnected_route_component_count": 0,
+  "endpoint_matching": [
+    {
+      "endpoints": [
+        "XCH1_GM1A.G",
+        "XCH2_GM1A.G"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.6760961810466792,
+        "metal4": 2.9293299157817674
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "input_gm_upper",
+      "nets": [
+        "ua[0]",
+        "ua[1]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        167.925,
+        169.495
+      ],
+      "total_length_mismatch_percent": 0.9305909548930076,
+      "via_sites": {
+        "via1": [
+          1,
+          1
+        ],
+        "via2": [
+          1,
+          1
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH1_GM1B.G",
+        "XCH2_GM1B.G"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.6200657894736834,
+        "metal4": 0.0
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "input_gm_lower",
+      "nets": [
+        "ua[0]",
+        "ua[1]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        159.525,
+        161.495
+      ],
+      "total_length_mismatch_percent": 1.227337860569452,
+      "via_sites": {
+        "via1": [
+          1,
+          1
+        ],
+        "via2": [
+          1,
+          1
+        ],
+        "via3": [
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XRIN1.R1",
+        "XRIN2.R1"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 8.851728995319666,
+        "metal4": 2.509547190398251
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "input_bias_resistors",
+      "nets": [
+        "ua[0]",
+        "ua[1]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        300.83,
+        322.61
+      ],
+      "total_length_mismatch_percent": 6.987039650968809,
+      "via_sites": {
+        "via1": [
+          1,
+          1
+        ],
+        "via2": [
+          1,
+          1
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XRLOADP.R2",
+        "XRLOADN.R2"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 2.9188203101246604,
+        "metal4": 1.589825119236884
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_loads",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        127.51,
+        126.97
+      ],
+      "total_length_mismatch_percent": 0.4243948443885508,
+      "via_sites": {
+        "via1": [
+          1,
+          1
+        ],
+        "via2": [
+          1,
+          1
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH1_SW1A.D",
+        "XCH1_SW2A.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.1953514111787475,
+        "metal4": 1.324795760653566
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch1_gmp_upper",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        203.785,
+        203.365
+      ],
+      "total_length_mismatch_percent": 0.20631216996192436,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH2_SW1A.D",
+        "XCH2_SW2A.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 0.4378420641125897,
+        "metal4": 1.324795760653566
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch2_gmp_upper",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        177.785,
+        176.565
+      ],
+      "total_length_mismatch_percent": 0.6885847326090017,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH1_SW1B.D",
+        "XCH1_SW2B.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 0.4378420641125897,
+        "metal4": 1.5752165922814387
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch1_gmp_lower",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        159.785,
+        158.565
+      ],
+      "total_length_mismatch_percent": 0.7664520182189406,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH2_SW1B.D",
+        "XCH2_SW2B.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.1953514111787475,
+        "metal4": 1.5752165922814387
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch2_gmp_lower",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        185.785,
+        185.365
+      ],
+      "total_length_mismatch_percent": 0.22632358884547354,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH1_SW4A.D",
+        "XCH1_SW3A.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 0.7378129117259582,
+        "metal4": 1.324795760653566
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch1_gmn_upper",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        151.785,
+        150.565
+      ],
+      "total_length_mismatch_percent": 0.8070117413593509,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH2_SW4A.D",
+        "XCH2_SW3A.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 2.5477707006369528,
+        "metal4": 1.324795760653566
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch2_gmn_upper",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        124.825,
+        123.605
+      ],
+      "total_length_mismatch_percent": 0.9821680151350473,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH1_SW4B.D",
+        "XCH1_SW3B.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 2.5477707006369528,
+        "metal4": 1.5752165922814387
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch1_gmn_lower",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        106.825,
+        105.605
+      ],
+      "total_length_mismatch_percent": 1.1486136609706716,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          3,
+          3
+        ]
+      }
+    },
+    {
+      "endpoints": [
+        "XCH2_SW4B.D",
+        "XCH2_SW3B.D"
+      ],
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 0.7378129117259582,
+        "metal4": 1.5752165922814387
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "output_ch2_gmn_lower",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        133.785,
+        132.565
+      ],
+      "total_length_mismatch_percent": 0.9160878543270125,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          5,
+          5
+        ]
+      }
+    }
+  ],
+  "matching": [
+    {
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 2.4586031721410135,
+        "metal4": 0.7859575582918522
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "analog_inputs",
+      "nets": [
+        "ua[0]",
+        "ua[1]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        356.09,
+        350.5
+      ],
+      "total_length_mismatch_percent": 1.5822471305849308,
+      "via_sites": {
+        "via1": [
+          3,
+          3
+        ],
+        "via2": [
+          3,
+          3
+        ],
+        "via3": [
+          9,
+          9
+        ]
+      }
+    },
+    {
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.480111008325618,
+        "metal4": 0.5603287261860291
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "differential_outputs",
+      "nets": [
+        "ua[2]",
+        "ua[3]"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        359.555,
+        362.165
+      ],
+      "total_length_mismatch_percent": 0.7232721831180947,
+      "via_sites": {
+        "via1": [
+          25,
+          25
+        ],
+        "via2": [
+          25,
+          25
+        ],
+        "via3": [
+          21,
+          21
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive: metal3 length mismatch 19.112% > 3.000% (ch1_lop=176.750um, ch2_lop=214.100um)",
+        "final_lo_positive: metal4 length mismatch 15.482% > 3.000% (ch1_lop=170.460um, ch2_lop=199.065um)",
+        "final_lo_positive: selected-layer total mismatch 17.348% > 2.000% (ch1_lop=347.210um, ch2_lop=413.165um)",
+        "final_lo_positive: via3 site count differs (ch1_lop=13, ch2_lop=14)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 19.112191377766404,
+        "metal4": 15.482037751167034
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "required": false,
+      "selected_layer_total_um": [
+        347.21,
+        413.165
+      ],
+      "total_length_mismatch_percent": 17.348019069538037,
+      "via_sites": {
+        "via1": [
+          10,
+          10
+        ],
+        "via2": [
+          10,
+          10
+        ],
+        "via3": [
+          13,
+          14
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_negative: metal3 length mismatch 4.859% > 3.000% (ch1_lon=241.750um, ch2_lon=253.790um)",
+        "final_lo_negative: metal4 length mismatch 3.986% > 3.000% (ch1_lon=165.960um, ch2_lon=172.710um)",
+        "final_lo_negative: selected-layer total mismatch 4.505% > 2.000% (ch1_lon=407.710um, ch2_lon=426.500um)",
+        "final_lo_negative: via3 site count differs (ch1_lon=11, ch2_lon=15)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 4.859345360616698,
+        "metal4": 3.986181238373638
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_negative",
+      "nets": [
+        "ch1_lon",
+        "ch2_lon"
+      ],
+      "passed": true,
+      "required": false,
+      "selected_layer_total_um": [
+        407.71,
+        426.5
+      ],
+      "total_length_mismatch_percent": 4.504860886347553,
+      "via_sites": {
+        "via1": [
+          10,
+          10
+        ],
+        "via2": [
+          10,
+          10
+        ],
+        "via3": [
+          11,
+          15
+        ]
+      }
+    },
+    {
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.0589013898080701,
+        "metal4": 0.0
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "gm_positive",
+      "nets": [
+        "gm1_p",
+        "gm2_p"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        136.73,
+        135.93
+      ],
+      "total_length_mismatch_percent": 0.5868114134820005,
+      "via_sites": {
+        "via1": [
+          18,
+          18
+        ],
+        "via2": [
+          10,
+          10
+        ],
+        "via3": [
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.6200891049007784,
+        "metal4": 2.498750624687656
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "gm_negative",
+      "nets": [
+        "gm1_n",
+        "gm2_n"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        160.34,
+        157.24
+      ],
+      "total_length_mismatch_percent": 1.9522639964733257,
+      "via_sites": {
+        "via1": [
+          18,
+          18
+        ],
+        "via2": [
+          10,
+          10
+        ],
+        "via3": [
+          10,
+          10
+        ]
+      }
+    },
+    {
+      "failures": [],
+      "geometry_passed": true,
+      "layer_length_mismatch_percent": {
+        "metal3": 1.1939110536265078,
+        "metal4": 0.0
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "tail_currents",
+      "nets": [
+        "tail1",
+        "tail2"
+      ],
+      "passed": true,
+      "required": true,
+      "selected_layer_total_um": [
+        235.9506,
+        233.5506
+      ],
+      "total_length_mismatch_percent": 1.0223616041875954,
+      "via_sites": {
+        "via1": [
+          22,
+          22
+        ],
+        "via2": [
+          14,
+          14
+        ],
+        "via3": [
+          15,
+          14
+        ]
+      }
+    }
+  ],
+  "metrics": {
+    "VDPWR": {
+      "total_wire_length_um": 1067.4348,
+      "via_sites": {
+        "via1": 53,
+        "via2": 32,
+        "via3": 25
+      },
+      "wire_length_um": {
+        "metal1": 38.7848,
+        "metal2": 41.36,
+        "metal3": 811.12,
+        "metal4": 176.17
+      }
+    },
+    "VGND": {
+      "total_wire_length_um": 1828.42,
+      "via_sites": {
+        "via1": 117,
+        "via2": 72,
+        "via3": 38
+      },
+      "wire_length_um": {
+        "metal1": 43.23,
+        "metal2": 102.84,
+        "metal3": 1427.225,
+        "metal4": 255.125
+      }
+    },
+    "ch1_lon": {
+      "total_wire_length_um": 417.03,
+      "via_sites": {
+        "via1": 10,
+        "via2": 10,
+        "via3": 11
+      },
+      "wire_length_um": {
+        "metal1": 8.04,
+        "metal2": 1.28,
+        "metal3": 241.75,
+        "metal4": 165.96
+      }
+    },
+    "ch1_lon_raw": {
+      "total_wire_length_um": 171.71,
+      "via_sites": {
+        "via1": 8,
+        "via2": 4,
+        "via3": 8
+      },
+      "wire_length_um": {
+        "metal1": 3.54,
+        "metal2": 7.12,
+        "metal3": 97.24,
+        "metal4": 63.81
+      }
+    },
+    "ch1_lop": {
+      "total_wire_length_um": 356.53,
+      "via_sites": {
+        "via1": 10,
+        "via2": 10,
+        "via3": 13
+      },
+      "wire_length_um": {
+        "metal1": 8.04,
+        "metal2": 1.28,
+        "metal3": 176.75,
+        "metal4": 170.46
+      }
+    },
+    "ch1_lop_raw": {
+      "total_wire_length_um": 148.905,
+      "via_sites": {
+        "via1": 8,
+        "via2": 4,
+        "via3": 8
+      },
+      "wire_length_um": {
+        "metal1": 3.54,
+        "metal2": 7.12,
+        "metal3": 98.84,
+        "metal4": 39.405
+      }
+    },
+    "ch2_lon": {
+      "total_wire_length_um": 435.82,
+      "via_sites": {
+        "via1": 10,
+        "via2": 10,
+        "via3": 15
+      },
+      "wire_length_um": {
+        "metal1": 8.04,
+        "metal2": 1.28,
+        "metal3": 253.79,
+        "metal4": 172.71
+      }
+    },
+    "ch2_lon_raw": {
+      "total_wire_length_um": 347.17,
+      "via_sites": {
+        "via1": 14,
+        "via2": 6,
+        "via3": 14
+      },
+      "wire_length_um": {
+        "metal1": 6.18,
+        "metal2": 13.6,
+        "metal3": 283.94,
+        "metal4": 43.45
+      }
+    },
+    "ch2_lop": {
+      "total_wire_length_um": 422.485,
+      "via_sites": {
+        "via1": 10,
+        "via2": 10,
+        "via3": 14
+      },
+      "wire_length_um": {
+        "metal1": 8.04,
+        "metal2": 1.28,
+        "metal3": 214.1,
+        "metal4": 199.065
+      }
+    },
+    "ch2_lop_raw": {
+      "total_wire_length_um": 272.275,
+      "via_sites": {
+        "via1": 14,
+        "via2": 6,
+        "via3": 14
+      },
+      "wire_length_um": {
+        "metal1": 6.18,
+        "metal2": 13.6,
+        "metal3": 227.9,
+        "metal4": 24.595
+      }
+    },
+    "clk": {
+      "total_wire_length_um": 218.78,
+      "via_sites": {
+        "via1": 4,
+        "via2": 4,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 1.8,
+        "metal2": 1.28,
+        "metal3": 172.8,
+        "metal4": 42.9
+      }
+    },
+    "gm1_n": {
+      "total_wire_length_um": 184.82,
+      "via_sites": {
+        "via1": 18,
+        "via2": 10,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 11.52,
+        "metal2": 12.96,
+        "metal3": 99.56,
+        "metal4": 60.78
+      }
+    },
+    "gm1_p": {
+      "total_wire_length_um": 161.21,
+      "via_sites": {
+        "via1": 18,
+        "via2": 10,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 11.52,
+        "metal2": 12.96,
+        "metal3": 75.95,
+        "metal4": 60.78
+      }
+    },
+    "gm2_n": {
+      "total_wire_length_um": 181.72,
+      "via_sites": {
+        "via1": 18,
+        "via2": 10,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 11.52,
+        "metal2": 12.96,
+        "metal3": 97.96,
+        "metal4": 59.28
+      }
+    },
+    "gm2_p": {
+      "total_wire_length_um": 160.41,
+      "via_sites": {
+        "via1": 18,
+        "via2": 10,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 11.52,
+        "metal2": 12.96,
+        "metal3": 75.15,
+        "metal4": 60.78
+      }
+    },
+    "ln1": {
+      "total_wire_length_um": 53.625,
+      "via_sites": {
+        "via1": 6,
+        "via2": 6,
+        "via3": 6
+      },
+      "wire_length_um": {
+        "metal1": 1.86,
+        "metal2": 0.64,
+        "metal3": 38.4,
+        "metal4": 12.725
+      }
+    },
+    "ln2": {
+      "total_wire_length_um": 181.23,
+      "via_sites": {
+        "via1": 8,
+        "via2": 8,
+        "via3": 8
+      },
+      "wire_length_um": {
+        "metal1": 3.54,
+        "metal2": 0.64,
+        "metal3": 161.72,
+        "metal4": 15.33
+      }
+    },
+    "lon": {
+      "total_wire_length_um": 420.9435,
+      "via_sites": {
+        "via1": 28,
+        "via2": 28,
+        "via3": 14
+      },
+      "wire_length_um": {
+        "metal1": 19.6535,
+        "metal2": 0.0,
+        "metal3": 360.6,
+        "metal4": 40.69
+      }
+    },
+    "lop": {
+      "total_wire_length_um": 321.3485,
+      "via_sites": {
+        "via1": 28,
+        "via2": 28,
+        "via3": 10
+      },
+      "wire_length_um": {
+        "metal1": 19.6535,
+        "metal2": 0.0,
+        "metal3": 261.6,
+        "metal4": 40.095
+      }
+    },
+    "lp1": {
+      "total_wire_length_um": 86.8684,
+      "via_sites": {
+        "via1": 6,
+        "via2": 6,
+        "via3": 4
+      },
+      "wire_length_um": {
+        "metal1": 2.3934,
+        "metal2": 0.64,
+        "metal3": 71.8,
+        "metal4": 12.035
+      }
+    },
+    "select": {
+      "total_wire_length_um": 330.73,
+      "via_sites": {
+        "via1": 6,
+        "via2": 6,
+        "via3": 15
+      },
+      "wire_length_um": {
+        "metal1": 2.7,
+        "metal2": 1.92,
+        "metal3": 280.21,
+        "metal4": 45.9
+      }
+    },
+    "select_b": {
+      "total_wire_length_um": 224.6284,
+      "via_sites": {
+        "via1": 8,
+        "via2": 8,
+        "via3": 12
+      },
+      "wire_length_um": {
+        "metal1": 3.2934,
+        "metal2": 1.28,
+        "metal3": 180.98,
+        "metal4": 39.075
+      }
+    },
+    "tail1": {
+      "total_wire_length_um": 267.3066,
+      "via_sites": {
+        "via1": 22,
+        "via2": 14,
+        "via3": 15
+      },
+      "wire_length_um": {
+        "metal1": 16.636,
+        "metal2": 14.72,
+        "metal3": 202.22,
+        "metal4": 33.7306
+      }
+    },
+    "tail2": {
+      "total_wire_length_um": 264.9066,
+      "via_sites": {
+        "via1": 22,
+        "via2": 14,
+        "via3": 14
+      },
+      "wire_length_um": {
+        "metal1": 16.636,
+        "metal2": 14.72,
+        "metal3": 199.82,
+        "metal4": 33.7306
+      }
+    },
+    "ua[0]": {
+      "total_wire_length_um": 358.08,
+      "via_sites": {
+        "via1": 3,
+        "via2": 3,
+        "via3": 9
+      },
+      "wire_length_um": {
+        "metal1": 0.9,
+        "metal2": 1.09,
+        "metal3": 261.04,
+        "metal4": 95.05
+      }
+    },
+    "ua[1]": {
+      "total_wire_length_um": 352.49,
+      "via_sites": {
+        "via1": 3,
+        "via2": 3,
+        "via3": 9
+      },
+      "wire_length_um": {
+        "metal1": 0.9,
+        "metal2": 1.09,
+        "metal3": 254.7,
+        "metal4": 95.8
+      }
+    },
+    "ua[2]": {
+      "total_wire_length_um": 375.235,
+      "via_sites": {
+        "via1": 25,
+        "via2": 25,
+        "via3": 21
+      },
+      "wire_length_um": {
+        "metal1": 15.36,
+        "metal2": 0.32,
+        "metal3": 225.33,
+        "metal4": 134.225
+      }
+    },
+    "ua[3]": {
+      "total_wire_length_um": 377.845,
+      "via_sites": {
+        "via1": 25,
+        "via2": 25,
+        "via3": 21
+      },
+      "wire_length_um": {
+        "metal1": 15.36,
+        "metal2": 0.32,
+        "metal3": 228.69,
+        "metal4": 133.475
+      }
+    },
+    "vbias": {
+      "total_wire_length_um": 442.1079,
+      "via_sites": {
+        "via1": 17,
+        "via2": 17,
+        "via3": 13
+      },
+      "wire_length_um": {
+        "metal1": 9.989,
+        "metal2": 2.43,
+        "metal3": 321.205,
+        "metal4": 108.4839
+      }
+    },
+    "vcm": {
+      "total_wire_length_um": 544.935,
+      "via_sites": {
+        "via1": 8,
+        "via2": 8,
+        "via3": 16
+      },
+      "wire_length_um": {
+        "metal1": 1.8,
+        "metal2": 2.69,
+        "metal3": 393.945,
+        "metal4": 146.5
+      }
+    }
+  },
+  "net_label_connection_error_count": 0,
+  "net_label_count": 30,
+  "orthogonal_neck_count": 0,
+  "passed": true,
+  "path_matching": [
+    {
+      "failures": [
+        "final_lo_positive_paths_01: metal3 length mismatch 21.759% > 3.000% (XCH1LP_N.D -> XCH1_SW1A.G=93.660um, XCH2LP_N.D -> XCH2_SW1A.G=75.280um)",
+        "final_lo_positive_paths_01: metal4 length mismatch 3.952% > 3.000% (XCH1LP_N.D -> XCH1_SW1A.G=148.815um, XCH2LP_N.D -> XCH2_SW1A.G=154.815um)",
+        "final_lo_positive_paths_01: selected-layer total mismatch 5.239% > 2.000% (XCH1LP_N.D -> XCH1_SW1A.G=242.475um, XCH2LP_N.D -> XCH2_SW1A.G=230.095um)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 21.759204451284475,
+        "metal4": 3.952178638474459
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_01",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_N.D",
+          "XCH1_SW1A.G"
+        ],
+        [
+          "XCH2LP_N.D",
+          "XCH2_SW1A.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        242.475,
+        230.095
+      ],
+      "total_length_mismatch_percent": 5.239435427555704,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_02: metal3 length mismatch 41.304% > 3.000% (XCH1LP_N.D -> XCH1_SW1B.G=67.660um, XCH2LP_N.D -> XCH2_SW1B.G=102.880um)",
+        "final_lo_positive_paths_02: selected-layer total mismatch 14.411% > 2.000% (XCH1LP_N.D -> XCH1_SW1B.G=207.475um, XCH2LP_N.D -> XCH2_SW1B.G=239.695um)",
+        "final_lo_positive_paths_02: via3 site count differs (XCH1LP_N.D -> XCH1_SW1B.G=4, XCH2LP_N.D -> XCH2_SW1B.G=6)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 41.304092881435444,
+        "metal4": 2.1689621516104545
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_02",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_N.D",
+          "XCH1_SW1B.G"
+        ],
+        [
+          "XCH2LP_N.D",
+          "XCH2_SW1B.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        207.475,
+        239.695
+      ],
+      "total_length_mismatch_percent": 14.410626830959144,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_03: metal3 length mismatch 55.473% > 3.000% (XCH1LP_N.D -> XCH1_SW3A.G=54.660um, XCH2LP_N.D -> XCH2_SW3A.G=96.620um)",
+        "final_lo_positive_paths_03: metal4 length mismatch 9.596% > 3.000% (XCH1LP_N.D -> XCH1_SW3A.G=148.815um, XCH2LP_N.D -> XCH2_SW3A.G=163.815um)",
+        "final_lo_positive_paths_03: selected-layer total mismatch 24.556% > 2.000% (XCH1LP_N.D -> XCH1_SW3A.G=203.475um, XCH2LP_N.D -> XCH2_SW3A.G=260.435um)",
+        "final_lo_positive_paths_03: via3 site count differs (XCH1LP_N.D -> XCH1_SW3A.G=4, XCH2LP_N.D -> XCH2_SW3A.G=6)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 55.473294553146495,
+        "metal4": 9.59600806064677
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_03",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_N.D",
+          "XCH1_SW3A.G"
+        ],
+        [
+          "XCH2LP_N.D",
+          "XCH2_SW3A.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        203.475,
+        260.435
+      ],
+      "total_length_mismatch_percent": 24.556487249682057,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_04: metal3 length mismatch 84.529% > 3.000% (XCH1LP_N.D -> XCH1_SW3B.G=28.660um, XCH2LP_N.D -> XCH2_SW3B.G=70.620um)",
+        "final_lo_positive_paths_04: metal4 length mismatch 4.484% > 3.000% (XCH1LP_N.D -> XCH1_SW3B.G=130.815um, XCH2LP_N.D -> XCH2_SW3B.G=136.815um)",
+        "final_lo_positive_paths_04: selected-layer total mismatch 26.143% > 2.000% (XCH1LP_N.D -> XCH1_SW3B.G=159.475um, XCH2LP_N.D -> XCH2_SW3B.G=207.435um)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 84.52860596293314,
+        "metal4": 4.483802264320143
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_04",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_N.D",
+          "XCH1_SW3B.G"
+        ],
+        [
+          "XCH2LP_N.D",
+          "XCH2_SW3B.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        159.475,
+        207.435
+      ],
+      "total_length_mismatch_percent": 26.142650786296375,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_05: metal3 length mismatch 21.759% > 3.000% (XCH1LP_P.D -> XCH1_SW1A.G=93.660um, XCH2LP_P.D -> XCH2_SW1A.G=75.280um)",
+        "final_lo_positive_paths_05: selected-layer total mismatch 7.566% > 2.000% (XCH1LP_P.D -> XCH1_SW1A.G=252.120um, XCH2LP_P.D -> XCH2_SW1A.G=233.740um)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 21.759204451284475,
+        "metal4": 0.0
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_05",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_P.D",
+          "XCH1_SW1A.G"
+        ],
+        [
+          "XCH2LP_P.D",
+          "XCH2_SW1A.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        252.12,
+        233.74
+      ],
+      "total_length_mismatch_percent": 7.5659655044663054,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          4
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_06: metal3 length mismatch 41.304% > 3.000% (XCH1LP_P.D -> XCH1_SW1B.G=67.660um, XCH2LP_P.D -> XCH2_SW1B.G=102.880um)",
+        "final_lo_positive_paths_06: metal4 length mismatch 6.209% > 3.000% (XCH1LP_P.D -> XCH1_SW1B.G=149.460um, XCH2LP_P.D -> XCH2_SW1B.G=140.460um)",
+        "final_lo_positive_paths_06: selected-layer total mismatch 11.389% > 2.000% (XCH1LP_P.D -> XCH1_SW1B.G=217.120um, XCH2LP_P.D -> XCH2_SW1B.G=243.340um)",
+        "final_lo_positive_paths_06: via3 site count differs (XCH1LP_P.D -> XCH1_SW1B.G=4, XCH2LP_P.D -> XCH2_SW1B.G=6)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 41.304092881435444,
+        "metal4": 6.208609271523178
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_06",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_P.D",
+          "XCH1_SW1B.G"
+        ],
+        [
+          "XCH2LP_P.D",
+          "XCH2_SW1B.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        217.12,
+        243.34
+      ],
+      "total_length_mismatch_percent": 11.388611388611388,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_07: metal3 length mismatch 55.473% > 3.000% (XCH1LP_P.D -> XCH1_SW3A.G=54.660um, XCH2LP_P.D -> XCH2_SW3A.G=96.620um)",
+        "final_lo_positive_paths_07: metal4 length mismatch 5.523% > 3.000% (XCH1LP_P.D -> XCH1_SW3A.G=158.460um, XCH2LP_P.D -> XCH2_SW3A.G=167.460um)",
+        "final_lo_positive_paths_07: selected-layer total mismatch 21.358% > 2.000% (XCH1LP_P.D -> XCH1_SW3A.G=213.120um, XCH2LP_P.D -> XCH2_SW3A.G=264.080um)",
+        "final_lo_positive_paths_07: via3 site count differs (XCH1LP_P.D -> XCH1_SW3A.G=4, XCH2LP_P.D -> XCH2_SW3A.G=6)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 55.473294553146495,
+        "metal4": 5.522827687776141
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_07",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_P.D",
+          "XCH1_SW3A.G"
+        ],
+        [
+          "XCH2LP_P.D",
+          "XCH2_SW3A.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        213.12,
+        264.08
+      ],
+      "total_length_mismatch_percent": 21.357921207041088,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          6
+        ]
+      }
+    },
+    {
+      "failures": [
+        "final_lo_positive_paths_08: metal3 length mismatch 84.529% > 3.000% (XCH1LP_P.D -> XCH1_SW3B.G=28.660um, XCH2LP_P.D -> XCH2_SW3B.G=70.620um)",
+        "final_lo_positive_paths_08: selected-layer total mismatch 22.073% > 2.000% (XCH1LP_P.D -> XCH1_SW3B.G=169.120um, XCH2LP_P.D -> XCH2_SW3B.G=211.080um)"
+      ],
+      "geometry_passed": false,
+      "layer_length_mismatch_percent": {
+        "metal3": 84.52860596293314,
+        "metal4": 0.0
+      },
+      "layers": [
+        "metal3",
+        "metal4"
+      ],
+      "name": "final_lo_positive_paths_08",
+      "nets": [
+        "ch1_lop",
+        "ch2_lop"
+      ],
+      "passed": true,
+      "paths": [
+        [
+          "XCH1LP_P.D",
+          "XCH1_SW3B.G"
+        ],
+        [
+          "XCH2LP_P.D",
+          "XCH2_SW3B.G"
+        ]
+      ],
+      "required": false,
+      "selected_layer_total_um": [
+        169.12,
+        211.08
+      ],
+      "total_length_mismatch_percent": 22.072593371909523,
+      "via_sites": {
+        "via1": [
+          4,
+          4
+        ],
+        "via2": [
+          4,
+          4
+        ],
+        "via3": [
+          4,
+          4
+        ]
+      }
+    }
+  ],
+  "route": "build/layout/route.tcl",
+  "route_sha256": "9fcd25523df9515a91b5da5e816b9bdb85a042aedb79e26a213b3f44a40981e2",
+  "shape_count": 6753,
+  "top_boundary_m4_clearance_count": 0
+}

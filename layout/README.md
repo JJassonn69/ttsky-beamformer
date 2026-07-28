@@ -1,35 +1,11 @@
-# Physical layout
+# Legacy two-channel layout flow
 
-The production macro occupies TinyTapeout's SKY130 1x2 analog boundary
-(161.00 x 225.76 um) and preserves every port from the authenticated official
-DEF template.
+The files in this root directory reproduce the original 1x2 two-channel
+prototype and are retained as historical engineering provenance. They do not
+generate, extract, or sign off the active submission.
 
-The reproducible flow is:
-
-1. `tools/fetch_tt_template.py` authenticates the pinned template DEF.
-2. `tools/generate_layout_scripts.py` generates the Magic PCell placement for
-   all 47 devices and the full-height power ports.
-3. `tools/generate_route_script.py` reads actual PCell terminal labels and
-   generates deterministic M2/M3/M4 routing on 26 named tracks.
-4. `tools/check_generated_routes.py` rejects cross-net same-layer overlaps
-   before Magic is run.
-5. `layout/extract.tcl` requires zero DRC errors and writes full-parasitic and
-   topology-only extracted SPICE views.
-6. `tools/check_extracted_layout.py` checks device/finger/passive counts,
-   power connectivity, and unexpected net equivalences.
-7. `layout/signoff.tcl` requires zero final DRC errors, emits uncompressed
-   GDSII, and rejects any Magic GDS-writer geometry feedback.
-8. `tools/generate_submission_lef.py` creates the exact template-pin abstract
-   LEF. Magic's generic LEF output is intentionally not used because it exposes
-   internal connected geometry as extra port rectangles.
-
-Run a physical script with the pinned SKY130 PDK and Magic:
-
-```sh
-PDK_ROOT=/path/to/pdk \
-MAGIC_BIN=/path/to/magic \
-tools/run_magic_layout.sh layout/pdk_smoke.tcl
-```
-
-The release tool, PDK, template, action, and output hashes are recorded in
-`submission/template.lock`.
+The active four-channel floorplan and constraints are under `v2/layout/`; its
+authoritative physical-design record is `v2/spec/physical_design.md`. The root
+submission wrapper is generated from the frozen V2 candidate by
+`v2/tools/generate_submission_gds.py` and
+`tools/generate_submission_lef.py`.

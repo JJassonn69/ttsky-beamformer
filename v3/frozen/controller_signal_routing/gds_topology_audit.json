@@ -1,0 +1,50 @@
+{
+  "artifact_sha256": {
+    "extraction_feedback": "9ed55e0d1d012174335f267d75d2cfdfe49e5ce1f61a90519494f101b09e0346",
+    "flat_spice": "10c142119818a8b3d8ec7879eb1c8bb7b6c55d0d83e93159b8d16c087840353d",
+    "gds": "24e315ea6ae5ecdce17dc99291184bd45675daf3a5b03b42918acfcf504bd187",
+    "magic_log": "643fa3c37e1e1974239d99e3c4871a80e63c96610881ed0055629d88fe66f5de",
+    "mapping": "0699602b6c8fd706f6ff45c846a161d08e8c6ed9167302e0bb8930c10eefa909",
+    "overlay_ext": "152b2e578867c8a4212cceb177198e0fa285eb438a508879e516048cc1c81e05",
+    "route_audit": "c11b5bced6d14c4e0813529018fc76dce1cef1436de9f606467be2e925b85ec8",
+    "route_geometry": "05184118e97db53ab9a9b4ebdcb8e64cc3ab8a5739c90e63bab24ffaddadb15f",
+    "top_ext": "7f350cba28e70e17a76781feb4d568b9fb9fb50619c32c88f19f080f86692e9d"
+  },
+  "checks": {
+    "digital_devices_by_cell": {
+      "sky130_fd_sc_hd__and2_1": 78,
+      "sky130_fd_sc_hd__and2b_1": 112,
+      "sky130_fd_sc_hd__buf_4": 240,
+      "sky130_fd_sc_hd__dfrtp_1": 2492,
+      "sky130_fd_sc_hd__dfstp_1": 288,
+      "sky130_fd_sc_hd__inv_1": 8,
+      "sky130_fd_sc_hd__mux2_1": 1260,
+      "sky130_fd_sc_hd__nand2_1": 12,
+      "sky130_fd_sc_hd__nor2_1": 8,
+      "sky130_fd_sc_hd__or2_1": 72,
+      "sky130_fd_sc_hd__or2b_1": 32,
+      "sky130_fd_sc_hd__xor2_1": 120
+    },
+    "expected_analog_devices": 1315,
+    "expected_digital_devices": 4722,
+    "expected_total_devices": 6037,
+    "extracted_devices": 6037,
+    "extraction_warning_baseline_exact": true,
+    "magic_metrics": {
+      "drc": 0,
+      "extraction_feedback": 9,
+      "feedback_after_clear": 0,
+      "gds_feedback": 0
+    },
+    "minimum_device_line_incidence": 2,
+    "route_labels_expected": 305,
+    "route_labels_in_flat_extraction": 305,
+    "route_labels_with_device_incidence": 305,
+    "route_merge_groups": 305,
+    "route_overlay_extracted_nodes": 305
+  },
+  "errors": [],
+  "schema_version": 1,
+  "scope": "exact assembled GDS after frozen analog/power geometry and controller routes are combined",
+  "status": "pass"
+}

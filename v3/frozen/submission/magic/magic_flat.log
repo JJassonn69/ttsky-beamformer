@@ -1,0 +1,446 @@
+Script started on 2026-07-28 05:37:53+03:00 [COMMAND="/usr/bin/env -C /home/jason-stone/tinytapeout-beamformer-v2-routefix PDK_ROOT=/home/jason-stone/pdk/ciel/sky130/versions/0536d02d875c8f67dd7cca3902ac457e62f20005 V3_SUBMISSION_GDS=/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/submission/tt_um_jjassonn69_beamformer.gds V3_SUBMISSION_FLAT_DIR=/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/submission/magic_flat V3_SUBMISSION_LABELS=/home/jason-stone/tinytapeout-beamformer-v2-routefix/build/v3/submission/official_magic_labels.tcl /usr/local/bin/magic -dnull -noconsole -rcfile /home/jason-stone/pdk/ciel/sky130/versions/0536d02d875c8f67dd7cca3902ac457e62f20005/sky130A/libs.tech/magic/sky130A.magicrc build/v3/submission/readback_submission_flat.tcl" <not executed on terminal>]
+
+Magic 8.3 revision 676 - Compiled on Sun Jul 19 19:34:30 EEST 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology sky130A ...
+2 Magic internal units = 1 Lambda
+Input style sky130(): scaleFactor=2, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    ubm 
+Scaled tech values by 2 / 1 to match internal grid scaling
+Loading sky130A Device Generator Menu ...
+Loading "build/v3/submission/readback_submission_flat.tcl" from command line.
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: v3_output_compensation_cap_block
+Reading "sky130_fd_sc_hd__and2b_1".
+Reading "sky130_fd_sc_hd__fill_1".
+Reading "sky130_fd_sc_hd__mux2_1".
+Reading "sky130_fd_sc_hd__tapvpwrvgnd_1".
+Reading "sky130_fd_sc_hd__and2_1".
+Reading "v3_channel_input_bias_late_promotion".
+Reading "v3_selector_route_pilot".
+Reading "v3_channel_selector_late_promotion".
+Reading "v3_four_channel_placement".
+Reading "v3_four_channel_output_collection".
+Reading "v3_four_channel_phase_distribution".
+Reading "v3_vcm_support_block".
+Reading "v3_tail_bias_support_block".
+Reading "v3_four_channel_bias_reference_distribution".
+Reading "v3_four_channel_shared_support_integration".
+Reading "v3_output_load_pair_block".
+Reading "v3_output_compensation_cap_block".
+Reading "v3_four_channel_output_load_integration".
+Reading "tt_um_jjassonn69_beamformer".
+Reading "sky130_fd_sc_hd__buf_4".
+Reading "sky130_fd_sc_hd__dfrtp_1".
+Reading "sky130_fd_sc_hd__dfstp_1".
+Reading "sky130_fd_sc_hd__inv_1".
+Reading "sky130_fd_sc_hd__nand2_1".
+Reading "sky130_fd_sc_hd__nor2_1".
+Reading "sky130_fd_sc_hd__or2_1".
+Reading "sky130_fd_sc_hd__or2b_1".
+Reading "sky130_fd_sc_hd__xor2_1".
+Reading "v3_ctrl_signal_routes".
+Reading "v3_ctrl_power_routes".
+Reading "v3_ctrl_analog_handoff_routes".
+Reading "v3_ctrl_boundary_handoff_routes".
+Reading "v3_analog_input_escape_routes".
+Reading "v3_digital_output_tie_low".
+V3_SUBMISSION_FLAT_GDS_FEEDBACK_COUNT=0
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )  area (units^2)
+
+microns:  334.880 x 225.760  ( 0.000,  0.000), ( 334.880,  225.760)  75602.500 
+lambda:   33488.00 x 22576.00  (  0.00,  0.00 ), ( 33488.00,  22576.00)  756025088.00
+internal:  66976 x 45152   (     0,  0    ), ( 66976,  45152)  3024100352
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 143.980,  225.260), ( 143.980,  225.260)
+lambda:     0.00 x 0.00    ( 14398.00,  22526.00), ( 14398.00,  22526.00)
+internal:      0 x 0       ( 28796,  45052), ( 28796,  45052)
+Moving label "clk" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 146.740,  225.260), ( 146.740,  225.260)
+lambda:     0.00 x 0.00    ( 14674.00,  22526.00), ( 14674.00,  22526.00)
+internal:      0 x 0       ( 29348,  45052), ( 29348,  45052)
+Moving label "ena" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 141.220,  225.260), ( 141.220,  225.260)
+lambda:     0.00 x 0.00    ( 14122.00,  22526.00), ( 14122.00,  22526.00)
+internal:      0 x 0       ( 28244,  45052), ( 28244,  45052)
+Moving label "rst_n" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 152.260,  0.500), ( 152.260,  0.500)
+lambda:     0.00 x 0.00    ( 15226.00,  50.00), ( 15226.00,  50.00)
+internal:      0 x 0       ( 30452,  100  ), ( 30452,  100  )
+Moving label "ua[0]" from space to via3 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 132.940,  0.500), ( 132.940,  0.500)
+lambda:     0.00 x 0.00    ( 13294.00,  50.00), ( 13294.00,  50.00)
+internal:      0 x 0       ( 26588,  100  ), ( 26588,  100  )
+Moving label "ua[1]" from space to via3 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 113.620,  0.500), ( 113.620,  0.500)
+lambda:     0.00 x 0.00    ( 11362.00,  50.00), ( 11362.00,  50.00)
+internal:      0 x 0       ( 22724,  100  ), ( 22724,  100  )
+Moving label "ua[2]" from space to via3 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 94.300,  0.500), ( 94.300,  0.500)
+lambda:     0.00 x 0.00    ( 9430.00,  50.00), ( 9430.00,  50.00)
+internal:      0 x 0       ( 18860,  100  ), ( 18860,  100  )
+Moving label "ua[3]" from space to via3 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 74.980,  0.500), ( 74.980,  0.500)
+lambda:     0.00 x 0.00    ( 7498.00,  50.00), ( 7498.00,  50.00)
+internal:      0 x 0       ( 14996,  100  ), ( 14996,  100  )
+Moving label "ua[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 55.660,  0.500), ( 55.660,  0.500)
+lambda:     0.00 x 0.00    ( 5566.00,  50.00), ( 5566.00,  50.00)
+internal:      0 x 0       ( 11132,  100  ), ( 11132,  100  )
+Moving label "ua[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 36.340,  0.500), ( 36.340,  0.500)
+lambda:     0.00 x 0.00    ( 3634.00,  50.00), ( 3634.00,  50.00)
+internal:      0 x 0       (  7268,  100  ), (  7268,  100  )
+Moving label "ua[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 17.020,  0.500), ( 17.020,  0.500)
+lambda:     0.00 x 0.00    ( 1702.00,  50.00), ( 1702.00,  50.00)
+internal:      0 x 0       (  3404,  100  ), (  3404,  100  )
+Moving label "ua[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 138.460,  225.260), ( 138.460,  225.260)
+lambda:     0.00 x 0.00    ( 13846.00,  22526.00), ( 13846.00,  22526.00)
+internal:      0 x 0       ( 27692,  45052), ( 27692,  45052)
+Moving label "ui_in[0]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 135.700,  225.260), ( 135.700,  225.260)
+lambda:     0.00 x 0.00    ( 13570.00,  22526.00), ( 13570.00,  22526.00)
+internal:      0 x 0       ( 27140,  45052), ( 27140,  45052)
+Moving label "ui_in[1]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 132.940,  225.260), ( 132.940,  225.260)
+lambda:     0.00 x 0.00    ( 13294.00,  22526.00), ( 13294.00,  22526.00)
+internal:      0 x 0       ( 26588,  45052), ( 26588,  45052)
+Moving label "ui_in[2]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 130.180,  225.260), ( 130.180,  225.260)
+lambda:     0.00 x 0.00    ( 13018.00,  22526.00), ( 13018.00,  22526.00)
+internal:      0 x 0       ( 26036,  45052), ( 26036,  45052)
+Moving label "ui_in[3]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 127.420,  225.260), ( 127.420,  225.260)
+lambda:     0.00 x 0.00    ( 12742.00,  22526.00), ( 12742.00,  22526.00)
+internal:      0 x 0       ( 25484,  45052), ( 25484,  45052)
+Moving label "ui_in[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 124.660,  225.260), ( 124.660,  225.260)
+lambda:     0.00 x 0.00    ( 12466.00,  22526.00), ( 12466.00,  22526.00)
+internal:      0 x 0       ( 24932,  45052), ( 24932,  45052)
+Moving label "ui_in[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 121.900,  225.260), ( 121.900,  225.260)
+lambda:     0.00 x 0.00    ( 12190.00,  22526.00), ( 12190.00,  22526.00)
+internal:      0 x 0       ( 24380,  45052), ( 24380,  45052)
+Moving label "ui_in[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 119.140,  225.260), ( 119.140,  225.260)
+lambda:     0.00 x 0.00    ( 11914.00,  22526.00), ( 11914.00,  22526.00)
+internal:      0 x 0       ( 23828,  45052), ( 23828,  45052)
+Moving label "ui_in[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 116.380,  225.260), ( 116.380,  225.260)
+lambda:     0.00 x 0.00    ( 11638.00,  22526.00), ( 11638.00,  22526.00)
+internal:      0 x 0       ( 23276,  45052), ( 23276,  45052)
+Moving label "uio_in[0]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 113.620,  225.260), ( 113.620,  225.260)
+lambda:     0.00 x 0.00    ( 11362.00,  22526.00), ( 11362.00,  22526.00)
+internal:      0 x 0       ( 22724,  45052), ( 22724,  45052)
+Moving label "uio_in[1]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 110.860,  225.260), ( 110.860,  225.260)
+lambda:     0.00 x 0.00    ( 11086.00,  22526.00), ( 11086.00,  22526.00)
+internal:      0 x 0       ( 22172,  45052), ( 22172,  45052)
+Moving label "uio_in[2]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 108.100,  225.260), ( 108.100,  225.260)
+lambda:     0.00 x 0.00    ( 10810.00,  22526.00), ( 10810.00,  22526.00)
+internal:      0 x 0       ( 21620,  45052), ( 21620,  45052)
+Moving label "uio_in[3]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 105.340,  225.260), ( 105.340,  225.260)
+lambda:     0.00 x 0.00    ( 10534.00,  22526.00), ( 10534.00,  22526.00)
+internal:      0 x 0       ( 21068,  45052), ( 21068,  45052)
+Moving label "uio_in[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 102.580,  225.260), ( 102.580,  225.260)
+lambda:     0.00 x 0.00    ( 10258.00,  22526.00), ( 10258.00,  22526.00)
+internal:      0 x 0       ( 20516,  45052), ( 20516,  45052)
+Moving label "uio_in[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 99.820,  225.260), ( 99.820,  225.260)
+lambda:     0.00 x 0.00    ( 9982.00,  22526.00), ( 9982.00,  22526.00)
+internal:      0 x 0       ( 19964,  45052), ( 19964,  45052)
+Moving label "uio_in[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 97.060,  225.260), ( 97.060,  225.260)
+lambda:     0.00 x 0.00    ( 9706.00,  22526.00), ( 9706.00,  22526.00)
+internal:      0 x 0       ( 19412,  45052), ( 19412,  45052)
+Moving label "uio_in[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 50.140,  225.260), ( 50.140,  225.260)
+lambda:     0.00 x 0.00    ( 5014.00,  22526.00), ( 5014.00,  22526.00)
+internal:      0 x 0       ( 10028,  45052), ( 10028,  45052)
+Moving label "uio_oe[0]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 47.380,  225.260), ( 47.380,  225.260)
+lambda:     0.00 x 0.00    ( 4738.00,  22526.00), ( 4738.00,  22526.00)
+internal:      0 x 0       (  9476,  45052), (  9476,  45052)
+Moving label "uio_oe[1]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 44.620,  225.260), ( 44.620,  225.260)
+lambda:     0.00 x 0.00    ( 4462.00,  22526.00), ( 4462.00,  22526.00)
+internal:      0 x 0       (  8924,  45052), (  8924,  45052)
+Moving label "uio_oe[2]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 41.860,  225.260), ( 41.860,  225.260)
+lambda:     0.00 x 0.00    ( 4186.00,  22526.00), ( 4186.00,  22526.00)
+internal:      0 x 0       (  8372,  45052), (  8372,  45052)
+Moving label "uio_oe[3]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 39.100,  225.260), ( 39.100,  225.260)
+lambda:     0.00 x 0.00    ( 3910.00,  22526.00), ( 3910.00,  22526.00)
+internal:      0 x 0       (  7820,  45052), (  7820,  45052)
+Moving label "uio_oe[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 36.340,  225.260), ( 36.340,  225.260)
+lambda:     0.00 x 0.00    ( 3634.00,  22526.00), ( 3634.00,  22526.00)
+internal:      0 x 0       (  7268,  45052), (  7268,  45052)
+Moving label "uio_oe[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 33.580,  225.260), ( 33.580,  225.260)
+lambda:     0.00 x 0.00    ( 3358.00,  22526.00), ( 3358.00,  22526.00)
+internal:      0 x 0       (  6716,  45052), (  6716,  45052)
+Moving label "uio_oe[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 30.820,  225.260), ( 30.820,  225.260)
+lambda:     0.00 x 0.00    ( 3082.00,  22526.00), ( 3082.00,  22526.00)
+internal:      0 x 0       (  6164,  45052), (  6164,  45052)
+Moving label "uio_oe[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 72.220,  225.260), ( 72.220,  225.260)
+lambda:     0.00 x 0.00    ( 7222.00,  22526.00), ( 7222.00,  22526.00)
+internal:      0 x 0       ( 14444,  45052), ( 14444,  45052)
+Moving label "uio_out[0]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 69.460,  225.260), ( 69.460,  225.260)
+lambda:     0.00 x 0.00    ( 6946.00,  22526.00), ( 6946.00,  22526.00)
+internal:      0 x 0       ( 13892,  45052), ( 13892,  45052)
+Moving label "uio_out[1]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 66.700,  225.260), ( 66.700,  225.260)
+lambda:     0.00 x 0.00    ( 6670.00,  22526.00), ( 6670.00,  22526.00)
+internal:      0 x 0       ( 13340,  45052), ( 13340,  45052)
+Moving label "uio_out[2]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 63.940,  225.260), ( 63.940,  225.260)
+lambda:     0.00 x 0.00    ( 6394.00,  22526.00), ( 6394.00,  22526.00)
+internal:      0 x 0       ( 12788,  45052), ( 12788,  45052)
+Moving label "uio_out[3]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 61.180,  225.260), ( 61.180,  225.260)
+lambda:     0.00 x 0.00    ( 6118.00,  22526.00), ( 6118.00,  22526.00)
+internal:      0 x 0       ( 12236,  45052), ( 12236,  45052)
+Moving label "uio_out[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 58.420,  225.260), ( 58.420,  225.260)
+lambda:     0.00 x 0.00    ( 5842.00,  22526.00), ( 5842.00,  22526.00)
+internal:      0 x 0       ( 11684,  45052), ( 11684,  45052)
+Moving label "uio_out[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 55.660,  225.260), ( 55.660,  225.260)
+lambda:     0.00 x 0.00    ( 5566.00,  22526.00), ( 5566.00,  22526.00)
+internal:      0 x 0       ( 11132,  45052), ( 11132,  45052)
+Moving label "uio_out[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 52.900,  225.260), ( 52.900,  225.260)
+lambda:     0.00 x 0.00    ( 5290.00,  22526.00), ( 5290.00,  22526.00)
+internal:      0 x 0       ( 10580,  45052), ( 10580,  45052)
+Moving label "uio_out[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 94.300,  225.260), ( 94.300,  225.260)
+lambda:     0.00 x 0.00    ( 9430.00,  22526.00), ( 9430.00,  22526.00)
+internal:      0 x 0       ( 18860,  45052), ( 18860,  45052)
+Moving label "uo_out[0]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 91.540,  225.260), ( 91.540,  225.260)
+lambda:     0.00 x 0.00    ( 9154.00,  22526.00), ( 9154.00,  22526.00)
+internal:      0 x 0       ( 18308,  45052), ( 18308,  45052)
+Moving label "uo_out[1]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 88.780,  225.260), ( 88.780,  225.260)
+lambda:     0.00 x 0.00    ( 8878.00,  22526.00), ( 8878.00,  22526.00)
+internal:      0 x 0       ( 17756,  45052), ( 17756,  45052)
+Moving label "uo_out[2]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 86.020,  225.260), ( 86.020,  225.260)
+lambda:     0.00 x 0.00    ( 8602.00,  22526.00), ( 8602.00,  22526.00)
+internal:      0 x 0       ( 17204,  45052), ( 17204,  45052)
+Moving label "uo_out[3]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 83.260,  225.260), ( 83.260,  225.260)
+lambda:     0.00 x 0.00    ( 8326.00,  22526.00), ( 8326.00,  22526.00)
+internal:      0 x 0       ( 16652,  45052), ( 16652,  45052)
+Moving label "uo_out[4]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 80.500,  225.260), ( 80.500,  225.260)
+lambda:     0.00 x 0.00    ( 8050.00,  22526.00), ( 8050.00,  22526.00)
+internal:      0 x 0       ( 16100,  45052), ( 16100,  45052)
+Moving label "uo_out[5]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 77.740,  225.260), ( 77.740,  225.260)
+lambda:     0.00 x 0.00    ( 7774.00,  22526.00), ( 7774.00,  22526.00)
+internal:      0 x 0       ( 15548,  45052), ( 15548,  45052)
+Moving label "uo_out[6]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 74.980,  225.260), ( 74.980,  225.260)
+lambda:     0.00 x 0.00    ( 7498.00,  22526.00), ( 7498.00,  22526.00)
+internal:      0 x 0       ( 14996,  45052), ( 14996,  45052)
+Moving label "uo_out[7]" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 2.000,  112.880), ( 2.000,  112.880)
+lambda:     0.00 x 0.00    ( 200.00,  11288.00), ( 200.00,  11288.00)
+internal:      0 x 0       (   400,  22576), (   400,  22576)
+Moving label "VDPWR" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+Root cell box:
+           width x height  (   llx,  lly  ), (   urx,  ury  )
+
+microns:   0.000 x 0.000   ( 5.000,  112.880), ( 5.000,  112.880)
+lambda:     0.00 x 0.00    ( 500.00,  11288.00), ( 500.00,  11288.00)
+internal:      0 x 0       (  1000,  22576), (  1000,  22576)
+Moving label "VGND" from space to metal4 in cell tt_um_jjassonn69_beamformer_magic_flat.
+DRC style is now "drc(full)"
+V3_SUBMISSION_FLAT_DRC_COUNT=0
+Warning:  Extract option "do unique" disabled because "extract unique" was run.
+Processing tt_um_jjassonn69_beamformer_magic_flat
+Extracting tt_um_jjassonn69_beamformer_magic_flat into tt_um_jjassonn69_beamformer_magic_flat.ext:
+tt_um_jjassonn69_beamformer_magic_flat: 36 warnings
+Total of 36 warnings.
+V3_SUBMISSION_FLAT_EXTRACTION_FEEDBACK_COUNT=36
+exttospice finished.
+V3_SUBMISSION_FLAT_FEEDBACK_AFTER_CLEAR=0
+
+Script done on 2026-07-28 05:38:00+03:00 [COMMAND_EXIT_CODE="0"]

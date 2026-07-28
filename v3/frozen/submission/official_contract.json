@@ -1,0 +1,224 @@
+{
+  "artifact_sha256": {
+    "checker": "7a40fcc5bffe2071fb037e110807dd5689c2086e4fdf074d14f8f07265c7c139",
+    "gds": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+    "klayout_probe": "e4651862f1e127fc683f2371ebf808b7e1ecc1741820aea200fbb7d98988a8e7",
+    "lef": "8e2af16c69851e916af08d2ba211a26840798296ddeea5f4110819ab8fbad15b",
+    "nwell_urpm_report": "d66649090b32f241d971a74ee2f362a210b4846db561ad6952656a9aa87f41fe",
+    "package_report": "c788d9a75af3bb033a9c2e2972b9c2ff95058cf301f4fb21d763e0d7d14e9001",
+    "template_def": "c9bf60e875dc86e730424e7af724878977aec59586832a9b8fc937c2cd65c86f",
+    "verilog": "1f58fbf2ba57e3146eaa6fcb3ddaf62f9a0f1e28c2331fc9a6d3bd3972b5afe0"
+  },
+  "checks": {
+    "analog_pin_adjacency": {
+      "ua[0]": true,
+      "ua[1]": true,
+      "ua[2]": true,
+      "ua[3]": true,
+      "ua[4]": true,
+      "ua[5]": true,
+      "ua[6]": false,
+      "ua[7]": false
+    },
+    "exact_artifact_layer_population": true,
+    "exact_gds_pin_purpose_shapes": true,
+    "exact_lef_ports": true,
+    "expected_analog_pin_adjacency": {
+      "ua[0]": true,
+      "ua[1]": true,
+      "ua[2]": true,
+      "ua[3]": true,
+      "ua[4]": true,
+      "ua[5]": true,
+      "ua[6]": false,
+      "ua[7]": false
+    },
+    "forbidden_layer_hits": [],
+    "invalid_cell_names": [],
+    "layer_pairs": [
+      [
+        64,
+        5
+      ],
+      [
+        64,
+        16
+      ],
+      [
+        64,
+        20
+      ],
+      [
+        64,
+        59
+      ],
+      [
+        65,
+        20
+      ],
+      [
+        65,
+        44
+      ],
+      [
+        66,
+        13
+      ],
+      [
+        66,
+        20
+      ],
+      [
+        66,
+        44
+      ],
+      [
+        67,
+        5
+      ],
+      [
+        67,
+        16
+      ],
+      [
+        67,
+        20
+      ],
+      [
+        67,
+        44
+      ],
+      [
+        68,
+        5
+      ],
+      [
+        68,
+        16
+      ],
+      [
+        68,
+        20
+      ],
+      [
+        68,
+        44
+      ],
+      [
+        69,
+        5
+      ],
+      [
+        69,
+        16
+      ],
+      [
+        69,
+        20
+      ],
+      [
+        69,
+        44
+      ],
+      [
+        70,
+        5
+      ],
+      [
+        70,
+        16
+      ],
+      [
+        70,
+        20
+      ],
+      [
+        70,
+        44
+      ],
+      [
+        71,
+        5
+      ],
+      [
+        71,
+        16
+      ],
+      [
+        71,
+        20
+      ],
+      [
+        78,
+        44
+      ],
+      [
+        79,
+        20
+      ],
+      [
+        81,
+        4
+      ],
+      [
+        83,
+        44
+      ],
+      [
+        86,
+        20
+      ],
+      [
+        89,
+        44
+      ],
+      [
+        93,
+        44
+      ],
+      [
+        94,
+        20
+      ],
+      [
+        95,
+        20
+      ],
+      [
+        122,
+        16
+      ],
+      [
+        235,
+        4
+      ],
+      [
+        236,
+        0
+      ]
+    ],
+    "nwell_urpm_exit": 0,
+    "nwell_urpm_markers": 0,
+    "prboundary_bbox_dbu": [
+      0,
+      0,
+      334880,
+      225760
+    ],
+    "prboundary_polygon_count_recursive": 5,
+    "top_bbox_dbu": [
+      0,
+      0,
+      334880,
+      225760
+    ],
+    "unique_top": true,
+    "verilog_syntax_exit": 0
+  },
+  "errors": [],
+  "gds": "build/v3/submission/tt_um_jjassonn69_beamformer.gds",
+  "gds_sha256": "824e38f94ce4fbff84d0c079dcb059d6944bca7569a0f657134c318f31553c14",
+  "schema_version": 1,
+  "scope": "local mirror of non-DRC TinyTapeout SKY130 wrapper checks on the exact packaged V3 artifact",
+  "status": "pass"
+}
